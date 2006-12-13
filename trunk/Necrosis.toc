@@ -1,0 +1,45 @@
+## Interface: 20000
+## Title: Necrosis
+## Title-frFR: Necrosis
+## Author: Lomig & Liadora
+## Version: 2.0
+## Notes: Shard managment UI
+## Notes-frFR: Gestion graphique des shards.
+## eMail: lomig@larmes-cenarius.net
+## URL: http://necrosis.larmes-cenarius.net
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: NecrosisConfig
+NecrosisGeneral.xml
+
+Localization.lua
+Localization-functions-fr.lua
+Localization-functions-en.lua
+Localization-functions-de.lua
+Localization-functions-es.lua
+
+Localization-dialog-fr.lua
+Localization-dialog-en.lua
+Localization-dialog-de.lua
+Localization-dialog-es.lua
+
+Speech-fr.lua
+Speech-en.lua
+Speech-de.lua
+Speech-es.lua
+
+Necrosis.lua
+NecrosisInitialize.lua
+NecrosisMessage.lua
+NecrosisTimerFunction.lua
+NecrosisGraphicalTimer.lua
+
+Necrosis.xml
+NecrosisTimer.xml
+NecrosisShardMenu.xml
+NecrosisMessageMenu.xml
+NecrosisButtonMenu.xml
+NecrosisTimerMenu.xml
+NecrosisGraphOptionMenu.xml
+
+ClickBinder.lua
