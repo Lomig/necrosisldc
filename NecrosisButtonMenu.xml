@@ -1,0 +1,340 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Frame name="NecrosisButtonMenu" hidden="true" parent="NecrosisGeneralFrame" movable="false" frameStrata="DIALOG" enableMouse="true">
+		<Size>
+			<AbsDimension x="350" y="452" />
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="NecrosisGeneralFrame" />
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="35" top="0" bottom="75" />
+		</HitRectInsets>
+		<Layers>
+			<Layer>
+				<FontString name="NecrosisShowFirestone_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowSpellstone_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-60" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowHealthStone_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowSoulstone_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-100" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowMount_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-140" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowBuffMenu_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-120" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowPetMenu_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-160" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+				<FontString name="NecrosisShowCurseMenu_Option" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+							<Offset>
+								<AbsDimension x="60" y="-180" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Slider name="NecrosisBanishScale_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="100" maxValue="200" valueStep="5">
+				<Size>
+					<AbsDimension x="150" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="0" y="-70" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+						GameTooltip:SetText(this:GetValue().." %")
+						NecrosisBuffMenu9:Show()
+						NecrosisBuffMenu9:ClearAllPoints()
+						NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+						Necrosis_CreateMenu()
+					</OnLeave>
+					<OnValueChanged>
+						if this:GetValue() ~= NecrosisConfig.BanishScale then
+							GameTooltip:SetText(this:GetValue().." %")
+							NecrosisConfig.BanishScale = this:GetValue()
+							NecrosisBuffMenu9:ClearAllPoints()
+							NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale / 100)
+							NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+						end
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<CheckButton name="NecrosisShowFirestone_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[1] = math.abs(NecrosisConfig.StonePosition[1])
+							ShowUIPanel(NecrosisFirestoneButton)
+						else
+							NecrosisConfig.StonePosition[1] = - math.abs(NecrosisConfig.StonePosition[1])
+							HideUIPanel(NecrosisFirestoneButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowSpellstone_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-55" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[2] = math.abs(NecrosisConfig.StonePosition[2])
+							ShowUIPanel(NecrosisSpellstoneButton)
+						else
+							NecrosisConfig.StonePosition[2] = - math.abs(NecrosisConfig.StonePosition[2])
+							HideUIPanel(NecrosisSpellstoneButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowHealthStone_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-75" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[3] = math.abs(NecrosisConfig.StonePosition[3])
+							ShowUIPanel(NecrosisHealthstoneButton)
+						else
+							NecrosisConfig.StonePosition[3] = - math.abs(NecrosisConfig.StonePosition[3])
+							HideUIPanel(NecrosisHealthstoneButton)	
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowSoulstone_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-95" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[4] = math.abs(NecrosisConfig.StonePosition[4])
+							ShowUIPanel(NecrosisSoulstoneButton)
+						else
+							NecrosisConfig.StonePosition[4] = - math.abs(NecrosisConfig.StonePosition[4])
+							HideUIPanel(NecrosisSoulstoneButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowBuffMenu_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-115" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[5] = math.abs(NecrosisConfig.StonePosition[5])
+							ShowUIPanel(NecrosisBuffMenuButton)
+						else
+							NecrosisConfig.StonePosition[5] = - math.abs(NecrosisConfig.StonePosition[5])
+							HideUIPanel(NecrosisBuffMenuButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowMount_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-135" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[6] = math.abs(NecrosisConfig.StonePosition[6])
+							ShowUIPanel(NecrosisMountButton)
+						else
+							NecrosisConfig.StonePosition[6] = - math.abs(NecrosisConfig.StonePosition[6])
+							HideUIPanel(NecrosisMountButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowPetMenu_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-155" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[7] = math.abs(NecrosisConfig.StonePosition[7])
+							ShowUIPanel(NecrosisPetMenuButton)
+						else
+							NecrosisConfig.StonePosition[7] = - math.abs(NecrosisConfig.StonePosition[7])
+							HideUIPanel(NecrosisPetMenuButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="NecrosisShowCurseMenu_Button" inherits="UICheckButtonTemplate" enableMouse="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="30" y="-175" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							NecrosisConfig.StonePosition[8] = math.abs(NecrosisConfig.StonePosition[8])
+							ShowUIPanel(NecrosisCurseMenuButton)
+						else
+							NecrosisConfig.StonePosition[8] = - math.abs(NecrosisConfig.StonePosition[8])
+							HideUIPanel(NecrosisCurseMenuButton)
+						end
+						Necrosis_UpdateButtonsScale()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="Necrosis_Binding" inherits="OptionsButtonTemplate" text="Bindings">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="NecrosisButtonMenu">
+						<Offset>
+							<AbsDimension x="60" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ClickBinder.Open("Necrosis - "..NECROSIS_BINDING.Binding, NecrosisBinding)
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+	</Frame>
+</Ui>
