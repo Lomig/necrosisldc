@@ -119,7 +119,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Shard" />
 	</Button>
-	<Button name="NecrosisSoulstoneButton" inherits="SecureActionButtonTemplate" hidden="true" parent="UIParent" movable="true">
+	<Button name="NecrosisSoulstoneButton" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34" />
 		</Size>
@@ -307,7 +307,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\MountButton-01" />
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\MountButton-02" />
 	</Button>
-	<Button name="NecrosisBuffMenuButton" inherits="SecureAnchorButtonTemplate, SecureAnchorEnterTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
+	<Button name="NecrosisBuffMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
 			<AbsDimension x="34" y="34" />
 		</Size>
@@ -638,7 +638,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Enslave-01" />
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Enslave-02" />
 	</Button>
-	<Button name="NecrosisPetMenuButton" inherits="SecureAnchorButtonTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
+	<Button name="NecrosisPetMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
 			<AbsDimension x="34" y="34" />
 		</Size>
@@ -927,7 +927,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Felguard-01" />
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Felguard-02" />
 	</Button>
-	<Button name="NecrosisCurseMenuButton" inherits="SecureAnchorButtonTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
+	<Button name="NecrosisCurseMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
 			<AbsDimension x="34" y="34" />
 		</Size>
