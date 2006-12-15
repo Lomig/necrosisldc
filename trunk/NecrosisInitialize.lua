@@ -324,34 +324,97 @@ function Necrosis_LanguageInitialize()
 
 	-- Déclaration sécurisée du bouton des buffs
 	NecrosisBuffMenuButton:SetAttribute("*childraise*", true);
-	NecrosisBuffMenuButton:SetAttribute("*childstate*", "^click");
 
-	NecrosisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
+	NecrosisBuffMenu0:SetAttribute("statemap-anchor", "$input");
+	NecrosisBuffMenu0:SetAttribute("delaystatemap-anchor", "0");
+	NecrosisBuffMenu0:SetAttribute("delaytimemap-anchor", "5");
+	NecrosisBuffMenu0:SetAttribute("delayhovermap-anchor", "true");
 
-	NecrosisBuffMenu0:SetAttribute("headofsx", "0:3000;1:"..(NecrosisConfig.BuffMenuDecalage.x));
-	NecrosisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..(NecrosisConfig.BuffMenuDecalage.y));
-	NecrosisBuffMenuButton:SetAttribute("anchorchild", NecrosisBuffMenu0);
-	for i=1, table.getn(NecrosisConfig.BuffSpellPosition) ,1 do
-		local btn = getglobal("NecrosisBuffMenu"..i);
-		NecrosisBuffMenu0:SetAttribute("addchild", btn);
-	end
+	NecrosisBuffMenuButton:SetAttribute("onmouseupbutton", "mup");
+	NecrosisBuffMenuButton:SetAttribute("onmousedownbutton", "mdn");
+	NecrosisBuffMenuButton:SetAttribute("*anchorchild-mdn", NecrosisBuffMenu0);
+	NecrosisBuffMenuButton:SetAttribute("*childofsx-mdn", 0);
+	NecrosisBuffMenuButton:SetAttribute("*childofsy-mdn", 0);
+	NecrosisBuffMenuButton:SetAttribute("*childpoint-mdn", "CENTER");
+	NecrosisBuffMenuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
+	NecrosisBuffMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
+	NecrosisBuffMenuButton:SetAttribute("*childreparent-mdn", "true");
+
+	NecrosisBuffMenuButton:SetAttribute("*anchorchild-mup", NecrosisBuffMenu0);
+	NecrosisBuffMenuButton:SetAttribute("*childstate-mup", "mouseup");
+	NecrosisBuffMenuButton:SetAttribute("*childverify-mup", true);
+
+	NecrosisBuffMenu0:SetAttribute("state", 0)
+
+	NecrosisBuffMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
+	NecrosisBuffMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
+	NecrosisBuffMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
+	NecrosisBuffMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	NecrosisBuffMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
 
 
 	-- Déclaration sécurisée du bouton des démons
 	NecrosisPetMenuButton:SetAttribute("*childraise*", true);
-	NecrosisPetMenuButton:SetAttribute("*childstate*", "^click");
-	NecrosisPetMenu0:SetAttribute("statemap-anchor-click", "0-1");
-	NecrosisPetMenuButton:SetAttribute("anchorchild", NecrosisPetMenu0);
-	NecrosisPetMenu0:SetAttribute("headofsx", "0:3000;1:"..(NecrosisConfig.PetMenuDecalage.x));
-	NecrosisPetMenu0:SetAttribute("headofsy", "0:3000;1:"..(NecrosisConfig.PetMenuDecalage.y));
+
+	NecrosisPetMenu0:SetAttribute("statemap-anchor", "$input");
+	NecrosisPetMenu0:SetAttribute("delaystatemap-anchor", "0");
+	NecrosisPetMenu0:SetAttribute("delaytimemap-anchor", "5");
+	NecrosisPetMenu0:SetAttribute("delayhovermap-anchor", "true");
+
+	NecrosisPetMenuButton:SetAttribute("onmouseupbutton", "mup");
+	NecrosisPetMenuButton:SetAttribute("onmousedownbutton", "mdn");
+	NecrosisPetMenuButton:SetAttribute("*anchorchild-mdn", NecrosisPetMenu0);
+	NecrosisPetMenuButton:SetAttribute("*childofsx-mdn", 0);
+	NecrosisPetMenuButton:SetAttribute("*childofsy-mdn", 0);
+	NecrosisPetMenuButton:SetAttribute("*childpoint-mdn", "CENTER");
+	NecrosisPetMenuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
+	NecrosisPetMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
+	NecrosisPetMenuButton:SetAttribute("*childreparent-mdn", "true");
+
+	NecrosisPetMenuButton:SetAttribute("*anchorchild-mup", NecrosisPetMenu0);
+	NecrosisPetMenuButton:SetAttribute("*childstate-mup", "mouseup");
+	NecrosisPetMenuButton:SetAttribute("*childverify-mup", true);
+
+	NecrosisPetMenu0:SetAttribute("state", 0)
+
+	NecrosisPetMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
+	NecrosisPetMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
+	NecrosisPetMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
+	NecrosisPetMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	NecrosisPetMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+
 
 	-- Déclaration sécurisée du bouton des malédictions
 	NecrosisCurseMenuButton:SetAttribute("*childraise*", true);
-	NecrosisCurseMenuButton:SetAttribute("*childstate*", "^click");
-	NecrosisCurseMenu0:SetAttribute("statemap-anchor-click", "0-1");
-	NecrosisCurseMenuButton:SetAttribute("anchorchild", NecrosisCurseMenu0);
-	NecrosisCurseMenu0:SetAttribute("headofsx", "0:3000;1:"..(NecrosisConfig.CurseMenuDecalage.x));
-	NecrosisCurseMenu0:SetAttribute("headofsy", "0:3000;1:"..(NecrosisConfig.CurseMenuDecalage.y));
+
+	NecrosisCurseMenu0:SetAttribute("statemap-anchor", "$input");
+	NecrosisCurseMenu0:SetAttribute("delaystatemap-anchor", "0");
+	NecrosisCurseMenu0:SetAttribute("delaytimemap-anchor", "5");
+	NecrosisCurseMenu0:SetAttribute("delayhovermap-anchor", "true");
+
+	NecrosisCurseMenuButton:SetAttribute("onmouseupbutton", "mup");
+	NecrosisCurseMenuButton:SetAttribute("onmousedownbutton", "mdn");
+	NecrosisCurseMenuButton:SetAttribute("*anchorchild-mdn", NecrosisCurseMenu0);
+	NecrosisCurseMenuButton:SetAttribute("*childofsx-mdn", 0);
+	NecrosisCurseMenuButton:SetAttribute("*childofsy-mdn", 0);
+	NecrosisCurseMenuButton:SetAttribute("*childpoint-mdn", "CENTER");
+	NecrosisCurseMenuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
+	NecrosisCurseMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
+	NecrosisCurseMenuButton:SetAttribute("*childreparent-mdn", "true");
+
+	NecrosisCurseMenuButton:SetAttribute("*anchorchild-mup", NecrosisCurseMenu0);
+	NecrosisCurseMenuButton:SetAttribute("*childstate-mup", "mouseup");
+	NecrosisCurseMenuButton:SetAttribute("*childverify-mup", true);
+
+	NecrosisCurseMenu0:SetAttribute("state", 0)
+
+	NecrosisCurseMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
+	NecrosisCurseMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
+	NecrosisCurseMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
+	NecrosisCurseMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	NecrosisCurseMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+
+
 end
 
 

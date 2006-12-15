@@ -182,7 +182,6 @@ local BacklashID = -1;
 
 -- Variables utilisées pour la gestion des fragments d'âme
 -- (principalement comptage)
-local Soulshards = {0, 0, 0, 0, 0};
 local SoulshardsCount = 0;
 local SoulshardContainer = 4;
 local SoulshardSlot = {};
@@ -192,9 +191,7 @@ local SoulshardTime = 0;
 
 -- Variables utilisées pour la gestion des composants d'invocation
 -- (principalement comptage)
-local InfernalStone = {0, 0, 0, 0, 0};
 local InfernalStoneCount = 0;
-local DemoniacStone = {0, 0, 0, 0, 0};
 local DemoniacStoneCount = 0;
 
 
@@ -391,7 +388,7 @@ function Necrosis_OnUpdate()
 		if UnitExists("target") and UnitCanAttack("player", "target") and not UnitIsDead("target") then
 			-- Checking if the target has natural immunity (only NPC target)
 			if not UnitIsPlayer("target") then
-				for index=1, table.getn(NECROSIS_UNIT.Undead), 1 do
+				for index=1, #NECROSIS_UNIT.Undead, 1 do
 					if (UnitCreatureType("target") == NECROSIS_UNIT.Undead[index] ) then
 						Actif = 2; -- Immun
 						break;
@@ -401,7 +398,7 @@ function Necrosis_OnUpdate()
 
 			-- We'll start to parse the target buffs, as his class doesn't give him natural permanent immunity
 			if not Actif then
-				for index=1, table.getn(NECROSIS_ANTI_FEAR_SPELL.Buff), 1 do
+				for index=1, #NECROSIS_ANTI_FEAR_SPELL.Buff, 1 do
 					if Necrosis_UnitHasBuff("target",NECROSIS_ANTI_FEAR_SPELL.Buff[index]) then
 						Actif = 3; -- Prot
 						break;
@@ -409,7 +406,7 @@ function Necrosis_OnUpdate()
 				end
 
 				-- No buff found, let's try the debuffs
-				for index=1, table.getn(NECROSIS_ANTI_FEAR_SPELL.Debuff), 1 do
+				for index=1, #NECROSIS_ANTI_FEAR_SPELL.Debuff, 1 do
 					if Necrosis_UnitHasEffect("target",NECROSIS_ANTI_FEAR_SPELL.Debuff[index]) then
 						Actif = 3; -- Prot
 						break;
@@ -469,7 +466,7 @@ function Necrosis_OnUpdate()
 	-- Parcours du tableau des Timers
 	local GraphicalTimer = {texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {}};
 	if SpellTimer then
-		for index = 1, table.getn(SpellTimer), 1 do
+		for index = 1, #SpellTimer, 1 do
 			if SpellTimer[index] then
 				if (GetTime() <= SpellTimer[index].TimeMax) then
 					-- Création de l'affichage des timers
@@ -541,7 +538,7 @@ function Necrosis_OnUpdate()
 		else
 			NecrosisListSpells:SetText("");
 		end
-		for i = 4, table.getn(SpellGroup.Name) do
+		for i = 4, #SpellGroup.Name do
 			SpellGroup.Visible[i] = false;
 		end
 	else
@@ -684,9 +681,6 @@ function Necrosis_OnEvent(event)
 		Necrosis_SpellSetup();
 		Necrosis_CreateMenu();
 		Necrosis_ButtonSetup();
-		PetMenuShow = false;
-		BuffMenuShow = false;
-		CurseMenuShow = false;
 
 	-- A la fin du combat, on arrête de signaler le Crépuscule
 	-- On enlève les timers de sorts ainsi que les noms des mobs
@@ -713,11 +707,11 @@ function Necrosis_OnEvent(event)
 			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
 			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
 		end
-		if StoneIDInSpellTable[2] > 0 and HealthstoneMode == 1 then
+		if StoneIDInSpellTable[2] and HealthstoneMode == 1 then
 			NecrosisHealthstoneButton:SetAttribute("type1", "spell");
 			NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
 		end
-		if StoneIDInSpellTable[1] > 0 and (SoulstoneMode == 1 or SoulstoneMode == 3) then
+		if StoneIDInSpellTable[1] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
 			NecrosisSoulstoneButton:SetAttribute("type1", "spell");
 			NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
 		end
@@ -901,10 +895,10 @@ function Necrosis_SpellManagement()
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("Spellstone", nil, nil, SpellGroup, SpellTimer, TimerTable);
 		-- Pour les autres sorts castés, tentative de timer si valable
 		else
-			for spell=1, table.getn(NECROSIS_SPELL_TABLE), 1 do
+			for spell=1, #NECROSIS_SPELL_TABLE, 1 do
 				if SpellCastName == NECROSIS_SPELL_TABLE[spell].Name and not (spell == 10) then
 					-- Si le timer existe déjà sur la cible, on le met à jour
-					for thisspell=1, table.getn(SpellTimer), 1 do
+					for thisspell=1, #SpellTimer, 1 do
 						if SpellTimer[thisspell].Name == SpellCastName
 							and SpellTimer[thisspell].Target == SpellTargetName
 							and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
@@ -945,7 +939,7 @@ function Necrosis_SpellManagement()
 					end
 					-- Si le timer est une malédiction, on enlève la précédente malédiction sur la cible
 					if (NECROSIS_SPELL_TABLE[spell].Type == 4) or (spell == 16) then
-						for thisspell=1, table.getn(SpellTimer), 1 do
+						for thisspell=1, #SpellTimer, 1 do
 							-- Mais on garde le cooldown de la malédiction funeste
 							if SpellTimer[thisspell].Name == NECROSIS_SPELL_TABLE[16].Name then
 								SpellTimer[thisspell].Target = "";
@@ -963,7 +957,7 @@ function Necrosis_SpellManagement()
 					end
 					-- Si le timer est une corruption, on enlève la précédente corruption sur la cible
 					if (NECROSIS_SPELL_TABLE[spell].Type == 5) then
-						for thisspell=1, table.getn(SpellTimer), 1 do
+						for thisspell=1, #SpellTimer, 1 do
 							if SpellTimer[thisspell].Type == 5
 								and SpellTimer[thisspell].Target == SpellTargetName
 								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
@@ -1350,7 +1344,7 @@ function Necrosis_UpdateIcons()
 	-- On se renseigne pour savoir si une pierre d'âme a été utilisée --> vérification dans les timers
 	local SoulstoneInUse = false;
 	if SpellTimer then
-		for index = 1, table.getn(SpellTimer), 1 do
+		for index = 1, #SpellTimer, 1 do
 			if (SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name)  and SpellTimer[index].TimeMax > 0 then
 				SoulstoneInUse = true;
 				break;
@@ -1389,7 +1383,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-	if StoneIDInSpellTable[1] > 0 and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
+	if StoneIDInSpellTable[1] and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
 		NecrosisSoulstoneButton:SetAttribute("type1", "spell");
 		NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
 	end
@@ -1406,7 +1400,7 @@ function Necrosis_UpdateIcons()
 	else
 		HealthstoneMode = 1;
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-		if StoneIDInSpellTable[2] > 0 and NecrosisConfig.ItemSwitchCombat[4] then
+		if StoneIDInSpellTable[2] and NecrosisConfig.ItemSwitchCombat[4] then
 			NecrosisHealthstoneButton:SetAttribute("type1", "spell");
 			NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
 		end
@@ -1790,7 +1784,7 @@ end
 -- T'AS QU'A SAVOIR OU T'AS MIS TES AFFAIRES !
 function Necrosis_SoulshardSetup()
 	SoulshardSlotID = 1;
-	for slot=1, table.getn(SoulshardSlot), 1 do
+	for slot=1, #SoulshardSlot, 1 do
 		table.remove(SoulshardSlot, slot);
 	end
 	for slot=1, GetContainerNumSlots(NecrosisConfig.SoulshardContainer), 1 do
@@ -1801,7 +1795,7 @@ end
 
 -- Fonction qui fait l'inventaire des éléments utilisés en démonologie : Pierres, Fragments, Composants d'invocation
 function Necrosis_BagExplore(arg)
-	local soulshards = Soulshards[1] + Soulshards[2] + Soulshards[3] + Soulshards[4] + Soulshards[5];
+	local soulshards = SoulshardsCount
 	-- Ca n'est pas à proprement parlé un sac, mais bon, on regarde si on a une pierre de sort / feu équipée
 	NecrosisTooltip:SetInventoryItem("player", 18);
 	local rightHand = tostring(NecrosisTooltipTextLeft1:GetText());
@@ -1815,9 +1809,6 @@ function Necrosis_BagExplore(arg)
 	end
 
 	if not arg then
-		Soulshards = {0, 0, 0, 0, 0};
-		InfernalStone = {0, 0, 0, 0, 0};
-		DemoniacStone = {0, 0, 0, 0, 0};
 		SoulstoneOnHand = nil;
 		HealthstoneOnHand = nil;
 		FirestoneOnHand = nil;
@@ -1839,17 +1830,8 @@ function Necrosis_BagExplore(arg)
 				end
 				-- Dans le cas d'un emplacement non vide
 				if itemName then
-					-- On prend le nombre d'item en stack sur le slot
-					local _, ItemCount = GetContainerItemInfo(container, slot);
-					-- Si c'est un fragment ou une pierre infernale, alors on rajoute la qté au nombre de pierres
-					if itemName == NECROSIS_ITEM.Soulshard then
-						Soulshards[container+1] = Soulshards[container+1] + 1;
-					elseif itemName == NECROSIS_ITEM.InfernalStone then
-						InfernalStone[container+1] = InfernalStone[container+1] + ItemCount;
-					elseif itemName == NECROSIS_ITEM.DemoniacStone then
-						DemoniacStone[container+1] = DemoniacStone[container+1] + ItemCount;
 					-- Si c'est une pierre d'âme, on note son existence et son emplacement
-					elseif string.find(itemName, NECROSIS_ITEM.Soulstone) then
+					if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 						SoulstoneOnHand = container;
 						SoulstoneLocation = {container,slot};
 						NecrosisSoulstoneButton:SetAttribute("type1", "item");
@@ -1913,9 +1895,6 @@ function Necrosis_BagExplore(arg)
 		if FirestoneOnHand == arg then FirestoneOnHand = nil end
 		if SpellstoneOnHand == arg then SpellstoneOnHand = nil end
 		if HearthstoneOnHand == arg then HearthstoneOnHand = nil end
-		Soulshards[arg+1] = 0;
-		InfernalStone[arg+1] = 0;
-		DemoniacStone[arg+1] = 0;
 		for slot=1, GetContainerNumSlots(arg), 1 do
 			Necrosis_MoneyToggle();
 			NecrosisTooltip:SetBagItem(arg, slot);
@@ -1929,17 +1908,8 @@ function Necrosis_BagExplore(arg)
 			end
 			-- Dans le cas d'un emplacement non vide
 			if itemName then
-				-- On prend le nombre d'item en stack sur le slot
-				local _, ItemCount = GetContainerItemInfo(arg, slot);
-				-- Si c'est un fragment ou une pierre infernale, alors on rajoute la qté au nombre de pierres
-				if itemName == NECROSIS_ITEM.Soulshard then
-					Soulshards[arg+1] = Soulshards[arg+1] + 1;
-				elseif itemName == NECROSIS_ITEM.InfernalStone then
-					InfernalStone[arg+1] = InfernalStone[arg+1] + ItemCount;
-				elseif itemName == NECROSIS_ITEM.DemoniacStone then
-					DemoniacStone[arg+1] = DemoniacStone[arg+1] + ItemCount;
 				-- Si c'est une pierre d'âme, on note son existence et son emplacement
-				elseif string.find(itemName, NECROSIS_ITEM.Soulstone) then
+				if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 					SoulstoneOnHand = arg;
 					SoulstoneLocation = {arg,slot};
 					NecrosisSoulstoneButton:SetAttribute("type1", "item");
@@ -1998,9 +1968,9 @@ function Necrosis_BagExplore(arg)
 	end
 
 
-	SoulshardsCount = Soulshards[1] + Soulshards[2] + Soulshards[3] + Soulshards[4] + Soulshards[5];
-	InfernalStoneCount = InfernalStone[1] + InfernalStone[2] + InfernalStone[3] + InfernalStone[4] + InfernalStone[5];
-	DemoniacStoneCount = DemoniacStone[1] + DemoniacStone[2] + DemoniacStone[3] + DemoniacStone[4] + DemoniacStone[5];
+	SoulshardsCount = GetItemCount(6265);
+	InfernalStoneCount = GetItemCount(5565);
+	DemoniacStoneCount = GetItemCount(16583);
 
 	if IsEquippedItemType("Wand") then
 		NecrosisConfig.ItemSwitchCombat[3] = rightHand;
@@ -2147,16 +2117,16 @@ function Necrosis_ButtonSetup()
 		HideUIPanel(NecrosisSpellstoneButton);
 		HideUIPanel(NecrosisHealthstoneButton);
 		HideUIPanel(NecrosisSoulstoneButton);
-		if (NecrosisConfig.StonePosition[1] > 0) and StoneIDInSpellTable[4] ~= 0 then
+		if (NecrosisConfig.StonePosition[1] > 0) and StoneIDInSpellTable[4] then
 			ShowUIPanel(NecrosisFirestoneButton);
 		end
-		if (NecrosisConfig.StonePosition[2] > 0) and StoneIDInSpellTable[3] ~= 0 then
+		if (NecrosisConfig.StonePosition[2] > 0) and StoneIDInSpellTable[3] then
 			ShowUIPanel(NecrosisSpellstoneButton);
 		end
-		if (NecrosisConfig.StonePosition[3] > 0) and StoneIDInSpellTable[2] ~= 0 then
+		if (NecrosisConfig.StonePosition[3] > 0) and StoneIDInSpellTable[2] then
 			ShowUIPanel(NecrosisHealthstoneButton);
 		end
-		if (NecrosisConfig.StonePosition[4] > 0) and StoneIDInSpellTable[1] ~= 0 then
+		if (NecrosisConfig.StonePosition[4] > 0) and StoneIDInSpellTable[1] then
 			ShowUIPanel(NecrosisSoulstoneButton);
 		end
 		if (NecrosisConfig.StonePosition[5] > 0) and BuffMenuCreate[1] then
@@ -2211,7 +2181,7 @@ function Necrosis_SpellSetup()
 		if (string.find(subSpellName, NECROSIS_TRANSLATION.Rank)) then
 			local found = false;
 			local rank = tonumber(strsub(subSpellName, 6, strlen(subSpellName)));
-			for index=1, table.getn(CurrentSpells.Name), 1 do
+			for index=1, #CurrentSpells.Name, 1 do
 				if (CurrentSpells.Name[index] == spellName) then
 			found = true;
 					if (CurrentSpells.subName[index] < rank) then
@@ -2243,16 +2213,16 @@ function Necrosis_SpellSetup()
 
 		-- Les pierres n'ont pas de rang numéroté, l'attribut de rang fait partie du nom du sort
 		-- Pour chaque type de pierre, on va donc faire....
-		for stoneID=1, table.getn(StoneType), 1 do
+		for stoneID=1, #StoneType, 1 do
 			-- Si le sort étudié est bien une invocation de ce type de pierre et qu'on n'a pas
 			-- déjà assigné un rang maximum à cette dernière
 			if (string.find(spellName, StoneType[stoneID]))
-				and StoneMaxRank[stoneID] ~= table.getn(NECROSIS_STONE_RANK)
+				and StoneMaxRank[stoneID] ~= #NECROSIS_STONE_RANK
 				then
 				-- Récupération de la fin du nom de la pierre, contenant son rang
 				local stoneSuffix = string.sub(spellName, string.len(NECROSIS_CREATE[stoneID]) + 1);
 				-- Reste à trouver la correspondance de son rang
-				for rankID=1, table.getn(NECROSIS_STONE_RANK), 1 do
+				for rankID=1, #NECROSIS_STONE_RANK, 1 do
 					-- Si la fin du nom de la pierre correspond à une taille de pierre, on note le rang !
 					if string.lower(stoneSuffix) == string.lower(NECROSIS_STONE_RANK[rankID]) then
 						-- On a une pierre, on a son rang, reste à vérifier si c'est la plus puissante,
@@ -2273,7 +2243,7 @@ function Necrosis_SpellSetup()
 	end
 
 	-- On insère dans la table les pierres avec le plus grand rang
-	for stoneID=1, table.getn(StoneType), 1 do
+	for stoneID=1, #StoneType, 1 do
 		if StoneMaxRank[stoneID] ~= 0 then
 			table.insert(NECROSIS_SPELL_TABLE, {
 				ID = CurrentStone.ID[stoneID],
@@ -2283,12 +2253,12 @@ function Necrosis_SpellSetup()
 				Length = 0,
 				Type = 0,
 			});
-			StoneIDInSpellTable[stoneID] = table.getn(NECROSIS_SPELL_TABLE);
+			StoneIDInSpellTable[stoneID] = #NECROSIS_SPELL_TABLE;
 		end
 	end
 	-- On met à jour la liste des sorts avec les nouveaux rangs
-	for spell=1, table.getn(NECROSIS_SPELL_TABLE), 1 do
-		for index = 1, table.getn(CurrentSpells.Name), 1 do
+	for spell=1, #NECROSIS_SPELL_TABLE, 1 do
+		for index = 1, #CurrentSpells.Name, 1 do
 			if (NECROSIS_SPELL_TABLE[spell].Name == CurrentSpells.Name[index])
 				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[1]
 				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[2]
@@ -2304,7 +2274,7 @@ function Necrosis_SpellSetup()
 	for spellID=1, MAX_SPELLS, 1 do
         local spellName, subSpellName = GetSpellName(spellID, "spell");
 		if (spellName) then
-			for index=1, table.getn(NECROSIS_SPELL_TABLE), 1 do
+			for index=1, #NECROSIS_SPELL_TABLE, 1 do
 				if NECROSIS_SPELL_TABLE[index].Name == spellName then
 					Necrosis_MoneyToggle();
 					NecrosisTooltip:SetSpell(spellID, 1);
@@ -2315,6 +2285,12 @@ function Necrosis_SpellSetup()
 					NECROSIS_SPELL_TABLE[index].Mana = tonumber(ManaCost);
 				end
 			end
+		end
+	end
+
+	for i=1, 4, 1 do
+		if StoneIDInSpellTable[i] == 0 then
+			StoneIDInSpellTable[i] = nil;
 		end
 	end
 
@@ -2332,7 +2308,7 @@ function Necrosis_SpellSetup()
 
 	-- Maintenant qu'on connait tous les sorts, on recupère leur véritable nom coté client
 	-- (utile pour les pierres invoquées ou l'invisibilité par exemple)
-		for spellID=1, table.getn(NECROSIS_SPELL_TABLE), 1 do
+		for spellID=1, #NECROSIS_SPELL_TABLE, 1 do
 		if NECROSIS_SPELL_TABLE[spellID].ID then
 			local spellName, spellRank = GetSpellName(NECROSIS_SPELL_TABLE[spellID].ID, "spell");
 			NECROSIS_SPELL_TABLE[spellID].Name = spellName;
@@ -2522,14 +2498,14 @@ function Necrosis_SpellSetup()
 
 	-- Création de pierres sur le clique droit
 	-- Soulstone
-	if StoneIDInSpellTable[1] > 0 then
+	if StoneIDInSpellTable[1] then
 		NecrosisSoulstoneButton:SetAttribute("type2", "spell");
 		NecrosisSoulstoneButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
 		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name, "CLICK NecrosisSoulstoneButton:RightButton"});
 		table.insert(NecrosisBinding, {NECROSIS_ITEM.Soulstone, "CLICK NecrosisSoulstoneButton:LeftButton"});
 	end
 	-- Healthstone
-	if StoneIDInSpellTable[2] > 0 then
+	if StoneIDInSpellTable[2] then
 		NecrosisHealthstoneButton:SetAttribute("type2", "spell");
 		NecrosisHealthstoneButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell");
@@ -2538,14 +2514,14 @@ function Necrosis_SpellSetup()
 		table.insert(NecrosisBinding, {NECROSIS_ITEM.Healthstone, "CLICK NecrosisHealthstoneButton:LeftButton"});
 	end
 	-- Spellstone
-	if StoneIDInSpellTable[3] > 0 then
+	if StoneIDInSpellTable[3] then
 		NecrosisSpellstoneButton:SetAttribute("type2", "spell");
 		NecrosisSpellstoneButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Rank..")");
 		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Name, "CLICK NecrosisSpellstoneButton:RightButton"});
 		table.insert(NecrosisBinding, {NECROSIS_ITEM.Spellstone, "CLICK NecrosisSpellstoneButton:LeftButton"});
 	end
 	-- Firestone
-	if StoneIDInSpellTable[4] > 0 then
+	if StoneIDInSpellTable[4] then
 		NecrosisFirestoneButton:SetAttribute("type2", "spell");
 		NecrosisFirestoneButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Rank..")");
 		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Name, "CLICK NecrosisFirestoneButton:RightButton"});
@@ -2556,7 +2532,7 @@ end
 -- Fonction d'extraction d'attribut de sort
 -- F(type=string, string, int) -> Spell=table
 function Necrosis_FindSpellAttribute(type, attribute, array)
-	for index=1, table.getn(NECROSIS_SPELL_TABLE), 1 do
+	for index=1, #NECROSIS_SPELL_TABLE, 1 do
 		if string.find(NECROSIS_SPELL_TABLE[index][type], attribute) then return NECROSIS_SPELL_TABLE[index][array]; end
 	end
 	return nil;
@@ -2671,56 +2647,48 @@ function Necrosis_UpdateButtonsScale()
 		NBRScale = 1.1;
 	end
 	if NecrosisConfig.NecrosisLockServ then
+		local ButtonName = {
+			"NecrosisFirestoneButton",
+			"NecrosisSpellstoneButton",
+			"NecrosisHealthstoneButton",
+			"NecrosisSoulstoneButton",
+			"NecrosisBuffMenuButton",
+			"NecrosisMountButton",
+			"NecrosisPetMenuButton",
+			"NecrosisCurseMenuButton"
+		};
+
 		Necrosis_ClearAllPoints();
-		HideUIPanel(NecrosisPetMenuButton);
-		HideUIPanel(NecrosisBuffMenuButton);
-		HideUIPanel(NecrosisCurseMenuButton);
-		HideUIPanel(NecrosisMountButton);
-		HideUIPanel(NecrosisFirestoneButton);
-		HideUIPanel(NecrosisSpellstoneButton);
-		HideUIPanel(NecrosisHealthstoneButton);
-		HideUIPanel(NecrosisSoulstoneButton);
+		for index, valeur in ipairs(ButtonName) do
+			local f = getglobal(valeur);
+			f:Hide();
+		end
 		local indexScale = -36;
-		for index=1, table.getn(NecrosisConfig.StonePosition), 1 do
-			if math.abs(NecrosisConfig.StonePosition[index]) == 1 and NecrosisConfig.StonePosition[1] > 0 and StoneIDInSpellTable[4] ~= 0 then
-				NecrosisFirestoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisFirestoneButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 2 and NecrosisConfig.StonePosition[2] > 0 and StoneIDInSpellTable[3] ~= 0 then
-				NecrosisSpellstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisSpellstoneButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 3 and NecrosisConfig.StonePosition[3] > 0 and StoneIDInSpellTable[2] ~= 0 then
-				NecrosisHealthstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisHealthstoneButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 4 and NecrosisConfig.StonePosition[4] > 0 and StoneIDInSpellTable[1] ~= 0 then
-				NecrosisSoulstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisSoulstoneButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 5 and NecrosisConfig.StonePosition[5] > 0 and BuffMenuCreate[1] then
-				NecrosisBuffMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisBuffMenuButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 6 and NecrosisConfig.StonePosition[6] > 0 and MountAvailable then
-				NecrosisMountButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisMountButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 7 and NecrosisConfig.StonePosition[7] > 0 and PetMenuCreate[1] then
-				NecrosisPetMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisPetMenuButton);
-				indexScale = indexScale + 36;
-			end
-			if math.abs(NecrosisConfig.StonePosition[index]) == 8 and NecrosisConfig.StonePosition[8] > 0 and CurseMenuCreate[1] then
-				NecrosisCurseMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-				ShowUIPanel(NecrosisCurseMenuButton);
-				indexScale = indexScale + 36;
+		local SpellExist = {
+			StoneIDInSpellTable[4],
+			StoneIDInSpellTable[3],
+			StoneIDInSpellTable[2],
+			StoneIDInSpellTable[1],
+			BuffMenuCreate[1],
+			MountAvailable,
+			PetMenuCreate[1],
+			CurseMenuCreate[1]
+		};
+		for index=1, #NecrosisConfig.StonePosition, 1 do
+			for button = 1, #NecrosisConfig.StonePosition, 1 do
+				if math.abs(NecrosisConfig.StonePosition[index]) == button
+					and NecrosisConfig.StonePosition[button] > 0
+					and SpellExist[button] then
+						local f = getglobal(ButtonName[button]);
+						f:SetPoint(
+							"CENTER", "NecrosisButton", "CENTER",
+							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)),
+							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale))
+						);
+						f:Show();
+						indexScale = indexScale + 36;
+						break
+				end
 			end
 		end
 	end
@@ -2776,301 +2744,163 @@ function Necrosis_CreateMenu()
 	local CurseButtonPosition = 0;
 
 	-- On cache toutes les icones des démons
-	for i = 1, table.getn(NecrosisConfig.DemonSpellPosition), 1 do
+	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		menuVariable = getglobal("NecrosisPetMenu"..i);
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
 	-- On cache toutes les icones des sorts
-	for i = 1, table.getn(NecrosisConfig.BuffSpellPosition), 1 do
+	for i = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		menuVariable = getglobal("NecrosisBuffMenu"..i);
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
 	-- On cache toutes les icones des curses
-	for i = 1, table.getn(NecrosisConfig.CurseSpellPosition), 1 do
+	for i = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		menuVariable = getglobal("NecrosisCurseMenu"..i);
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
 
+	local MenuID = {15, 3, 4, 5, 6, 7, 8, 30, 35, 44};
+	local ButtonID = {1, 2, 3, 4, 5, 10, 6, 7, 8, 9};
 	-- On ordonne et on affiche les boutons dans le menu des démons
-	for index = 1, table.getn(NecrosisConfig.DemonSpellPosition), 1 do
-		-- Si le sort de Domination corrompue existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 1 and NecrosisConfig.DemonSpellPosition[1] > 0 and NECROSIS_SPELL_TABLE[15].ID then
-			menuVariable = getglobal("NecrosisPetMenu1");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 1;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Diablotin existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 2 and NecrosisConfig.DemonSpellPosition[2] > 0 and NECROSIS_SPELL_TABLE[3].ID then
-			menuVariable = getglobal("NecrosisPetMenu2");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 2;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Marcheur existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 3 and NecrosisConfig.DemonSpellPosition[3] > 0 and NECROSIS_SPELL_TABLE[4].ID then
-			menuVariable = getglobal("NecrosisPetMenu3");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 3;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Succube existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 4 and NecrosisConfig.DemonSpellPosition[4] > 0 and NECROSIS_SPELL_TABLE[5].ID then
-			menuVariable = getglobal("NecrosisPetMenu4");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 4;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Felhunter existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 5 and NecrosisConfig.DemonSpellPosition[5] > 0 and NECROSIS_SPELL_TABLE[6].ID then
-			menuVariable = getglobal("NecrosisPetMenu5");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 5;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Felguard existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 6 and NecrosisConfig.DemonSpellPosition[6] > 0 and NECROSIS_SPELL_TABLE[7].ID then
-			menuVariable = getglobal("NecrosisPetMenu10");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 10;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-
-		-- Si l'invocation de l'Infernal existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 7 and NecrosisConfig.DemonSpellPosition[7] > 0 and NECROSIS_SPELL_TABLE[8].ID then
-			menuVariable = getglobal("NecrosisPetMenu6");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 6;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'invocation du Doomguard existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 8 and NecrosisConfig.DemonSpellPosition[8] > 0 and NECROSIS_SPELL_TABLE[30].ID then
-			menuVariable = getglobal("NecrosisPetMenu7");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 7;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si l'asservissement existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 9 and NecrosisConfig.DemonSpellPosition[9] > 0 and NECROSIS_SPELL_TABLE[35].ID then
-			menuVariable = getglobal("NecrosisPetMenu8");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 8;
-			table.insert(PetMenuCreate, menuVariable);
-		end
-		-- Si le sacrifice démoniaque existe, on affiche le bouton dans le menu des pets
-		if math.abs(NecrosisConfig.DemonSpellPosition[index]) == 10 and NecrosisConfig.DemonSpellPosition[10] > 0 and NECROSIS_SPELL_TABLE[44].ID then
-			menuVariable = getglobal("NecrosisPetMenu9");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER", NecrosisConfig.PetMenuPos.x * 32, NecrosisConfig.PetMenuPos.y * 32);
-			PetButtonPosition = 9;
-			table.insert(PetMenuCreate, menuVariable);
+	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
+		for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
+				and NecrosisConfig.DemonSpellPosition[sort] > 0
+				and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
+					menuVariable = getglobal("NecrosisPetMenu"..ButtonID[sort]);
+					menuVariable:ClearAllPoints();
+					menuVariable:SetPoint(
+						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
+						NecrosisConfig.PetMenuPos.x * 32,
+						NecrosisConfig.PetMenuPos.y * 32
+					);
+					PetButtonPosition = ButtonID[sort];
+					table.insert(PetMenuCreate, menuVariable);
+					break;
+			end
 		end
 	end
 
 
-	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres (hors de l'écran), on affiche les disponibles
+	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
 	if PetMenuCreate[1] then
-		NecrosisPetMenu0:ClearAllPoints();
-		NecrosisPetMenu0:SetPoint("CENTER", "NecrosisPetMenuButton", "CENTER", 3000, 3000);
-		for i = 1, table.getn(PetMenuCreate), 1 do
-			ShowUIPanel(PetMenuCreate[i]);
+		PetMenuCreate[1]:ClearAllPoints();
+		PetMenuCreate[1]:SetPoint(
+			"CENTER", "NecrosisPetMenuButton", "CENTER",
+			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
+			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
+		);
+		for i = 1, #PetMenuCreate, 1 do
+			PetMenuCreate[i]:Show();
+
+			NecrosisPetMenu0:SetAttribute("addchild", PetMenuCreate[i])
+			PetMenuCreate[i]:SetAttribute("showstates", "!0,*")
+			PetMenuCreate[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
+			PetMenuCreate[i]:SetAttribute("childstate", (i + 1))
+			PetMenuCreate[i]:SetAttribute("newstate", "0")
 		end
 	end
 
 	-- On ordonne et on affiche les boutons dans le menu des buffs
-	for index = 1, table.getn(NecrosisConfig.BuffSpellPosition), 1 do
-		-- Si l'Armure Démoniaque existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1 and NecrosisConfig.BuffSpellPosition[1] > 0 and (NECROSIS_SPELL_TABLE[31].ID or NECROSIS_SPELL_TABLE[36].ID) then
-			menuVariable = getglobal("NecrosisBuffMenu1");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 1;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si la Gangrarmure existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 2 and NecrosisConfig.BuffSpellPosition[2] > 0 and NECROSIS_SPELL_TABLE[47].ID then
-			menuVariable = getglobal("NecrosisBuffMenu10");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 10;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si la respiration interminable existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 3 and NecrosisConfig.BuffSpellPosition[3] > 0 and NECROSIS_SPELL_TABLE[32].ID then
-			menuVariable = getglobal("NecrosisBuffMenu2");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 2;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si la détection de l'invisibilité existe, on affiche le bouton dans le menu des buffs (au plus haut rang)
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 4 and NecrosisConfig.BuffSpellPosition[4] > 0 and NECROSIS_SPELL_TABLE[33].ID then
-			menuVariable = getglobal("NecrosisBuffMenu3");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 3;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si l'oeil de Kilrogg, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 5 and NecrosisConfig.BuffSpellPosition[5] > 0 and NECROSIS_SPELL_TABLE[34].ID then
-			menuVariable = getglobal("NecrosisBuffMenu4");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 4;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si l'invocation de joueur existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 6 and NecrosisConfig.BuffSpellPosition[6] > 0 and NECROSIS_SPELL_TABLE[37].ID then
-			menuVariable = getglobal("NecrosisBuffMenu5");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 5;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si le Radar à démon existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 7 and NecrosisConfig.BuffSpellPosition[7] > 0 and NECROSIS_SPELL_TABLE[39].ID then
-			menuVariable = getglobal("NecrosisBuffMenu6");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 6;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si le Lien Spirituel existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 8 and NecrosisConfig.BuffSpellPosition[8] > 0 and NECROSIS_SPELL_TABLE[38].ID then
-			menuVariable = getglobal("NecrosisBuffMenu7");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 7;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si la protection contre les ombres existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 9 and NecrosisConfig.BuffSpellPosition[9] > 0 and NECROSIS_SPELL_TABLE[43].ID then
-			menuVariable = getglobal("NecrosisBuffMenu8");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 8;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si l'enslave existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 10 and NecrosisConfig.BuffSpellPosition[10] > 0 and NECROSIS_SPELL_TABLE[35].ID then
-			menuVariable = getglobal("NecrosisBuffMenu11");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * 32, NecrosisConfig.BuffMenuPos.y * 32);
-			BuffButtonPosition = 11;
-			table.insert(BuffMenuCreate, menuVariable);
-		end
-		-- Si le banissement existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 11 and NecrosisConfig.BuffSpellPosition[11] > 0 and NECROSIS_SPELL_TABLE[9].ID then
-			menuVariable = getglobal("NecrosisBuffMenu9");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", NecrosisConfig.BuffMenuPos.x * (17 + menuVariable:GetWidth() / 2 - 4 * (NecrosisConfig.BanishScale / 10) * (1 - 27/32)), NecrosisConfig.BuffMenuPos.y * (17 + menuVariable:GetWidth() / 2 - 4 * (NecrosisConfig.BanishScale / 10) * (1 - 27/32)));
-			BuffButtonPosition = 9;
-			table.insert(BuffMenuCreate, menuVariable);
+	local MenuID = {47, 32, 33, 34, 37, 39, 38, 43, 35, 9};
+	local ButtonID = {10, 2, 3, 4, 5, 6, 7, 8, 11, 9};
+	for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
+		-- Si le buff existe, on affiche le bouton dans le menu des buffs
+		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1 
+			and NecrosisConfig.BuffSpellPosition[1] > 0
+			and (NECROSIS_SPELL_TABLE[31].ID or NECROSIS_SPELL_TABLE[36].ID) then
+				menuVariable = getglobal("NecrosisBuffMenu1");
+				menuVariable:ClearAllPoints();
+				menuVariable:SetPoint(
+					"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
+					NecrosisConfig.BuffMenuPos.x * 32,
+					NecrosisConfig.BuffMenuPos.y * 32
+				);
+				BuffButtonPosition = 1;
+				table.insert(BuffMenuCreate, menuVariable);
+		else
+			for sort = 2, #NecrosisConfig.BuffSpellPosition, 1 do
+				if math.abs(NecrosisConfig.BuffSpellPosition[index]) == sort
+					and NecrosisConfig.BuffSpellPosition[sort] > 0
+					and NECROSIS_SPELL_TABLE[ MenuID[sort - 1] ].ID then
+						menuVariable = getglobal("NecrosisBuffMenu"..ButtonID[sort - 1]);
+						menuVariable:ClearAllPoints();
+						menuVariable:SetPoint(
+							"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
+							NecrosisConfig.BuffMenuPos.x * 32,
+							NecrosisConfig.BuffMenuPos.y * 32
+						);
+						BuffButtonPosition = ButtonID[sort - 1];
+						table.insert(BuffMenuCreate, menuVariable);
+						break;
+				end
+			end
 		end
 	end
 
-	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres (hors de l'écran), on affiche les disponibles
-	NecrosisBuffMenu0:ClearAllPoints();
-	NecrosisBuffMenu0:SetPoint("CENTER", "NecrosisPetMenuButton", "CENTER", 3000, 3000);
-	for i = 1, table.getn(BuffMenuCreate), 1 do
-		ShowUIPanel(BuffMenuCreate[i]);
+	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
+	if BuffMenuCreate[1] then
+		BuffMenuCreate[1]:ClearAllPoints();
+		BuffMenuCreate[1]:SetPoint(
+			"CENTER", "NecrosisBuffMenuButton", "CENTER",
+			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
+			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
+		);
+		for i = 1, #BuffMenuCreate, 1 do
+			BuffMenuCreate[i]:Show();
+
+			NecrosisBuffMenu0:SetAttribute("addchild", BuffMenuCreate[i])
+			BuffMenuCreate[i]:SetAttribute("showstates", "!0,*")
+			BuffMenuCreate[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
+			BuffMenuCreate[i]:SetAttribute("childstate", (i + 1))
+			BuffMenuCreate[i]:SetAttribute("newstate", "0")
+		end
 	end
 
 
 	-- On ordonne et on affiche les boutons dans le menu des malédictions
-	for index = 1, table.getn(NecrosisConfig.CurseSpellPosition), 1 do
-		-- Si la Malédiction amplifiée existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 1 and NecrosisConfig.CurseSpellPosition[1] > 0 and NECROSIS_SPELL_TABLE[42].ID then
-			menuVariable = getglobal("NecrosisCurseMenu1");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 1;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction de faiblesse existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 2 and NecrosisConfig.CurseSpellPosition[2] > 0 and NECROSIS_SPELL_TABLE[23].ID then
-			menuVariable = getglobal("NecrosisCurseMenu2");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 2;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction d'agonie existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 3 and NecrosisConfig.CurseSpellPosition[3] > 0 and NECROSIS_SPELL_TABLE[22].ID then
-			menuVariable = getglobal("NecrosisCurseMenu3");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 3;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction de témérité existe, on affiche le bouton dans le menu des curses (au plus haut rang)
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 4 and NecrosisConfig.CurseSpellPosition[4] > 0 and NECROSIS_SPELL_TABLE[24].ID then
-			menuVariable = getglobal("NecrosisCurseMenu4");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 4;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction des languages existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 5 and NecrosisConfig.CurseSpellPosition[5] > 0 and NECROSIS_SPELL_TABLE[25].ID then
-			menuVariable = getglobal("NecrosisCurseMenu5");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 5;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction de fatigue existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 6 and NecrosisConfig.CurseSpellPosition[6] > 0 and NECROSIS_SPELL_TABLE[40].ID then
-			menuVariable = getglobal("NecrosisCurseMenu6");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 6;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction des éléments existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 7 and NecrosisConfig.CurseSpellPosition[7] > 0 and NECROSIS_SPELL_TABLE[26].ID then
-			menuVariable = getglobal("NecrosisCurseMenu7");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 7;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction de l'ombre, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 8 and NecrosisConfig.CurseSpellPosition[8] > 0 and NECROSIS_SPELL_TABLE[27].ID then
-			menuVariable = getglobal("NecrosisCurseMenu8");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 8;
-			table.insert(CurseMenuCreate, menuVariable);
-		end
-		-- Si la Malédiction funeste existe, on affiche le bouton dans le menu des curses
-		if math.abs(NecrosisConfig.CurseSpellPosition[index]) == 9 and NecrosisConfig.CurseSpellPosition[9] > 0 and NECROSIS_SPELL_TABLE[16].ID then
-			menuVariable = getglobal("NecrosisCurseMenu9");
-			menuVariable:ClearAllPoints();
-			menuVariable:SetPoint("CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER", NecrosisConfig.CurseMenuPos.x * 32, NecrosisConfig.CurseMenuPos.y * 32);
-			CurseButtonPosition = 9;
-			table.insert(CurseMenuCreate, menuVariable);
+	-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
+	local MenuID = {42, 23, 22, 24, 25, 40, 26, 27, 16};
+	for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
+		for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
+		-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
+			if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
+				and NecrosisConfig.CurseSpellPosition[sort] > 0
+				and NECROSIS_SPELL_TABLE[MenuID[sort]].ID then
+					menuVariable = getglobal("NecrosisCurseMenu"..sort);
+					menuVariable:ClearAllPoints();
+					menuVariable:SetPoint(
+						"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",
+						NecrosisConfig.CurseMenuPos.x * 32,
+						NecrosisConfig.CurseMenuPos.y * 32
+					);
+					CurseButtonPosition = sort;
+					table.insert(CurseMenuCreate, menuVariable);
+					break
+			end
 		end
 	end
 
-	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres (hors de l'écran), on affiche les disponibles
+	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles
 	if CurseMenuCreate[1] then
-		NecrosisCurseMenu0:ClearAllPoints();
-		NecrosisCurseMenu0:SetPoint("CENTER", "NecrosisCurseMenuButton", "CENTER", 3000, 3000);
-		for i = 1, table.getn(CurseMenuCreate), 1 do
-			ShowUIPanel(CurseMenuCreate[i]);
+		CurseMenuCreate[1]:ClearAllPoints();
+		CurseMenuCreate[1]:SetPoint(
+			"CENTER", "NecrosisCurseMenuButton", "CENTER",
+			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
+		);
+		for i = 1, #CurseMenuCreate, 1 do
+			CurseMenuCreate[i]:Show();
+
+			NecrosisCurseMenu0:SetAttribute("addchild", CurseMenuCreate[i])
+			CurseMenuCreate[i]:SetAttribute("showstates", "!0,*")
+			CurseMenuCreate[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
+			CurseMenuCreate[i]:SetAttribute("childstate", (i + 1))
+			CurseMenuCreate[i]:SetAttribute("newstate", "0")
 		end
 	end
 end
