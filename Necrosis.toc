@@ -35,6 +35,9 @@ NecrosisMessage.lua
 NecrosisTimerFunction.lua
 NecrosisGraphicalTimer.lua
 
+XML\Attributes.lua
+XML\XML.lua
+
 Necrosis.xml
 NecrosisTimer.xml
 NecrosisShardMenu.xml
@@ -43,5 +46,4 @@ NecrosisButtonMenu.xml
 NecrosisTimerMenu.xml
 NecrosisGraphOptionMenu.xml
 
-XML\Attributes.lua
 ClickBinder.lua
