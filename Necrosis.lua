@@ -135,7 +135,10 @@ Default_NecrosisConfig = {
 NecrosisConfig = {};
 NecrosisBinding = {};
 local Debug = false;
-local Loaded = false
+local Loaded = false;
+
+-- On définit G comme étant le tableau contenant toutes les frames existantes.
+local _G = getfenv(0);
 
 -- Détection des initialisations du mod
 local NecrosisRL = true;
@@ -196,7 +199,7 @@ local DemoniacStoneCount = 0;
 
 
 -- Variables utilisées pour la gestion des boutons d'invocation et d'utilisation des pierres
-StoneIDInSpellTable = {0, 0, 0, 0}
+local StoneIDInSpellTable = {0, 0, 0, 0}
 local SoulstoneOnHand = false;
 local SoulstoneLocation = {nil,nil};
 local SoulstoneMode = 1;
@@ -484,7 +487,7 @@ function Necrosis_OnUpdate()
 							SpellTimer[index].TimeMax = -1;
 							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd); end
 							Necrosis_RemoveFrame(SpellTimer[index].Gtimer, TimerTable);
-								-- On met à jour l'apparence du bouton de la pierre d'âme
+							-- On met à jour l'apparence du bouton de la pierre d'âme
 							Necrosis_UpdateIcons();
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
 						elseif SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
@@ -520,8 +523,7 @@ function Necrosis_OnUpdate()
 		end
 	else
 		for i = 1, 10, 1 do
-			local frameName = "NecrosisTarget"..i.."Text";
-			local frameItem = getglobal(frameName);
+			local frameItem = _G["NecrosisTarget"..i.."Text"];
 			if frameItem:IsShown() then
 				frameItem:Hide();
 			end
@@ -675,9 +677,9 @@ function Necrosis_OnEvent(event)
 	-- Si le Démoniste apprend un nouveau sort / rang de sort, on récupère la nouvelle liste des sorts
 	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
 	elseif (event == "LEARNED_SPELL_IN_TAB") then
-		table.foreach(NECROSIS_SPELL_TABLE, function (index, valeur)
-			valeur.ID = nil;
-		end);
+		for index in ipairs(NECROSIS_SPELL_TABLE) do
+			NECROSIS_SPELL_TABLE[index].ID = nil;
+		end
 		Necrosis_SpellSetup();
 		Necrosis_CreateMenu();
 		Necrosis_ButtonSetup();
@@ -688,33 +690,15 @@ function Necrosis_OnEvent(event)
 		PlayerCombat = false;
 		SpellGroup, SpellTimer, TimerTable = Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable);
 		for i = 1, 10, 1 do
-			local frameName = "NecrosisTarget"..i.."Text";
-			local frameItem = getglobal(frameName);
+			local frameItem = _G["NecrosisTarget"..i.."Text"];
 			if frameItem:IsShown() then
 				frameItem:Hide();
 			end
 		end
-		if SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-		elseif FirestoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-		elseif NecrosisConfig.ItemSwitchCombat[1] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-		elseif NecrosisConfig.ItemSwitchCombat[2] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-		end
-		if StoneIDInSpellTable[2] and HealthstoneMode == 1 then
-			NecrosisHealthstoneButton:SetAttribute("type1", "spell");
-			NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
-		end
-		if StoneIDInSpellTable[1] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
-			NecrosisSoulstoneButton:SetAttribute("type1", "spell");
-			NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
-		end
+		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
+		Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable) ;
+		Necrosis_UpdateIcons();
+
 	-- Quand le démoniste change de démon
 	elseif (event == "UNIT_PET" and arg1 == "player") then
 		Necrosis_ChangeDemon();
@@ -726,24 +710,9 @@ function Necrosis_OnEvent(event)
 		Necrosis_SelfEffect("DEBUFF");
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		PlayerCombat = true;
-		if NecrosisConfig.ItemSwitchCombat[1] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-		end
-		if NecrosisConfig.ItemSwitchCombat[2] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-		end
-		if NecrosisConfig.ItemSwitchCombat[4] then
-			NecrosisHealthstoneButton:SetAttribute("type1", "macro");
-			NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[4]);
-		end
-		if NecrosisConfig.ItemSwitchCombat[5] then
-			NecrosisSoulstoneButton:SetAttribute("type1", "item");
-			NecrosisSoulstoneButton:SetAttribute("unit", "target");
-			NecrosisSoulstoneButton:SetAttribute("item1", NecrosisConfig.ItemSwitchCombat[5]);
-		end
-	-- Fin de l'écran de chargement
+
+		-- On annule les attributs des boutons de sorts de manière situationnelle
+		Necrosis_InCombatAttribute();
 	end
 	return;
 end
@@ -1016,15 +985,14 @@ function Necrosis_HideGraphTimer()
 		if NecrosisConfig.Graphical then
 			if TimerTable[i] then
 				for j = 1, 4, 1 do
-					frameName = "NecrosisTimer"..i..elements[j];
-					frameItem = getglobal(frameName);
+					frameItem = _G["NecrosisTimer"..i..elements[j]];
 					frameItem:Show();
 				end
 			end
 		else
 			for j = 1, 4, 1 do
 				frameName = "NecrosisTimer"..i..elements[j];
-				frameItem = getglobal(frameName);
+				frameItem = _G["NecrosisTimer"..i..elements[j]];
 				frameItem:Hide();
 			end
 		end
@@ -1383,9 +1351,8 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-	if StoneIDInSpellTable[1] and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
-		NecrosisSoulstoneButton:SetAttribute("type1", "spell");
-		NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
+	if StoneIDInSpellTable[1]  and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
+		Necrosis_SoulstoneUpdateAttribute(StoneIDInSpellTable);
 	end
 
 	-- Affichage de l'icone liée au mode
@@ -1401,10 +1368,8 @@ function Necrosis_UpdateIcons()
 		HealthstoneMode = 1;
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if StoneIDInSpellTable[2] and NecrosisConfig.ItemSwitchCombat[4] then
-			NecrosisHealthstoneButton:SetAttribute("type1", "spell");
-			NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
+			Necrosis_HealthstoneUpdateAttribute(StoneIDInSpellTable);
 		end
-
 	end
 
 	-- Affichage de l'icone liée au mode
@@ -1424,6 +1389,10 @@ function Necrosis_UpdateIcons()
 		-- Pierre inexistante, mode 1
 		else
 			SpellstoneMode = 1;
+			-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+			if StoneIDInSpellTable[3] and NecrosisConfig.ItemSwitchCombat[1] then
+				Necrosis_SpellstoneUpdateAttribute(StoneIDInSpellTable);
+			end
 		end
 	end
 
@@ -1442,6 +1411,10 @@ function Necrosis_UpdateIcons()
 	-- Pierre inexistante = mode 1
 	else
 		FirestoneMode = 1;
+		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+		if StoneIDInSpellTable[4] and NecrosisConfig.ItemSwitchCombat[2] then
+			Necrosis_FirestoneUpdateAttribute(StoneIDInSpellTable);
+		end
 	end
 
 	-- Affichage de l'icone liée au mode
@@ -1834,57 +1807,37 @@ function Necrosis_BagExplore(arg)
 					if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 						SoulstoneOnHand = container;
 						SoulstoneLocation = {container,slot};
-						NecrosisSoulstoneButton:SetAttribute("type1", "item");
-						NecrosisSoulstoneButton:SetAttribute("type3", "item");
-						NecrosisSoulstoneButton:SetAttribute("unit", "target");
-						NecrosisSoulstoneButton:SetAttribute("item1", itemName);
-						NecrosisSoulstoneButton:SetAttribute("item3", itemName);
 						NecrosisConfig.ItemSwitchCombat[5] = itemName
+
+						-- On attache des actions au bouton de la pierre
+						Necrosis_SoulstoneUpdateAttribute();
 					-- Même chose pour une pierre de soin
 					elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
 						HealthstoneOnHand = container;
 						HealthstoneLocation = {container,slot};
-						NecrosisHealthstoneButton:SetAttribute("type1", "macro");
-						NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..itemName);
-						NecrosisHealthstoneButton:SetAttribute("type3", "macro");
-						NecrosisHealthstoneButton:SetAttribute("macrotext3", "/necro trade");
-						NecrosisHealthstoneButton:SetAttribute("ctrl-type1", "macro");
-						NecrosisHealthstoneButton:SetAttribute("ctrl-macrotext1", "/necro trade");
 						NecrosisConfig.ItemSwitchCombat[4] = itemName
+
+						-- On attache des actions au bouton de la pierre
+						Necrosis_HealthstoneUpdateAttribute();
 					-- Et encore pour la pierre de sort
 					elseif string.find(itemName, NECROSIS_ITEM.Spellstone) then
 						SpellstoneOnHand = container;
 						SpellstoneLocation = {container,slot};
-						NecrosisSpellstoneButton:SetAttribute("type1", "item");
-						NecrosisSpellstoneButton:SetAttribute("item", itemName);
-						NecrosisSpellstoneButton:SetAttribute("ctrl-type1", "macro");
-						NecrosisSpellstoneButton:SetAttribute("shift-type1", "macro");
-						NecrosisSpellstoneButton:SetAttribute("type3", "macro");
-						NecrosisSpellstoneButton:SetAttribute("macrotext3", "/equip "..itemName);
-						NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..itemName);
-						if NecrosisConfig.ItemSwitchCombat[3] then
-							NecrosisSpellstoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-						end
 						NecrosisConfig.ItemSwitchCombat[1] = itemName;
+
+						-- On attache des actions au bouton de la pierre
+						Necrosis_SpellstoneUpdateAttribute();
 					-- La pierre de feu maintenant
 					elseif string.find(itemName, NECROSIS_ITEM.Firestone) then
 						FirestoneOnHand = container;
-						NecrosisFirestoneButton:SetAttribute("ctrl-type1", "macro");
-						NecrosisFirestoneButton:SetAttribute("shift-type1", "macro");
-						NecrosisFirestoneButton:SetAttribute("type1", "macro");
-						NecrosisFirestoneButton:SetAttribute("type3", "macro");
-						NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..itemName);
-						NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..itemName);
-						if NecrosisConfig.ItemSwitchCombat[3] then
-							NecrosisFirestoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-						end
 						NecrosisConfig.ItemSwitchCombat[2] = itemName;
+
+						-- On attache des actions au bouton de la pierre
+						Necrosis_FirestoneUpdateAttribute();
 					-- et enfin la pierre de foyer
 					elseif string.find(itemName, NECROSIS_ITEM.Hearthstone) then
 						HearthstoneOnHand = container;
 						HearthstoneLocation = {container,slot};
-						NecrosisSpellTimerButton:SetAttribute("type", "item");
-						NecrosisSpellTimerButton:SetAttribute("item", itemName);
 					end
 				end
 			end
@@ -1912,56 +1865,37 @@ function Necrosis_BagExplore(arg)
 				if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 					SoulstoneOnHand = arg;
 					SoulstoneLocation = {arg,slot};
-					NecrosisSoulstoneButton:SetAttribute("type1", "item");
-					NecrosisSoulstoneButton:SetAttribute("type3", "item");
-					NecrosisSoulstoneButton:SetAttribute("unit", "target");
-					NecrosisSoulstoneButton:SetAttribute("item", itemName);
 					NecrosisConfig.ItemSwitchCombat[5] = itemName
+
+					-- On attache des actions au bouton de la pierre
+					Necrosis_SoulstoneUpdateAttribute();
 				-- Même chose pour une pierre de soin
 				elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
 					HealthstoneOnHand = arg;
 					HealthstoneLocation = {arg,slot};
-					NecrosisHealthstoneButton:SetAttribute("type1", "macro");
-					NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..itemName);
-					NecrosisHealthstoneButton:SetAttribute("type3", "macro");
-					NecrosisHealthstoneButton:SetAttribute("macrotext3", "/necro trade");
-					NecrosisHealthstoneButton:SetAttribute("ctrl-type1", "macro");
-					NecrosisHealthstoneButton:SetAttribute("ctrl-macrotext1", "/necro trade");
 					NecrosisConfig.ItemSwitchCombat[4] = itemName
+
+					-- On attache des actions au bouton de la pierre
+					Necrosis_HealthstoneUpdateAttribute();
 				-- Et encore pour la pierre de sort
 				elseif string.find(itemName, NECROSIS_ITEM.Spellstone) then
 					SpellstoneOnHand = arg;
 					SpellstoneLocation = {arg,slot};
-					NecrosisSpellstoneButton:SetAttribute("type1", "item");
-					NecrosisSpellstoneButton:SetAttribute("item", itemName);
-					NecrosisSpellstoneButton:SetAttribute("ctrl-type1", "macro");
-					NecrosisSpellstoneButton:SetAttribute("shift-type1", "macro");
-					NecrosisSpellstoneButton:SetAttribute("type3", "macro");
-					NecrosisSpellstoneButton:SetAttribute("macrotext3", "/equip "..itemName);
-					NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..itemName);
-					if NecrosisConfig.ItemSwitchCombat[3] then
-						NecrosisSpellstoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-					end
 					NecrosisConfig.ItemSwitchCombat[1] = itemName;
+
+					-- On attache des actions au bouton de la pierre
+					Necrosis_SpellstoneUpdateAttribute();
 				-- La pierre de feu maintenant
 				elseif string.find(itemName, NECROSIS_ITEM.Firestone) then
 					FirestoneOnHand = arg;
-					NecrosisFirestoneButton:SetAttribute("ctrl-type1", "macro");
-					NecrosisFirestoneButton:SetAttribute("shift-type1", "macro");
-					NecrosisFirestoneButton:SetAttribute("type1", "macro");
-					NecrosisFirestoneButton:SetAttribute("type3", "macro");
-					NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..itemName);
-					NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..itemName);
-					if NecrosisConfig.ItemSwitchCombat[3] then
-						NecrosisFirestoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-					end
 					NecrosisConfig.ItemSwitchCombat[2] = itemName;
+
+					-- On attache des actions au bouton de la pierre
+					Necrosis_FirestoneUpdateAttribute();
 				-- et enfin la pierre de foyer
 				elseif string.find(itemName, NECROSIS_ITEM.Hearthstone) then
 					HearthstoneOnHand = arg;
 					HearthstoneLocation = {arg,slot};
-					NecrosisSpellTimerButton:SetAttribute("type", "item");
-					NecrosisSpellTimerButton:SetAttribute("item", itemName);
 				end
 			end
 		end
@@ -1974,23 +1908,10 @@ function Necrosis_BagExplore(arg)
 
 	if IsEquippedItemType("Wand") then
 		NecrosisConfig.ItemSwitchCombat[3] = rightHand;
-		if NecrosisConfig.ItemSwitchCombat[1] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1]);
-		end
-		if NecrosisConfig.ItemSwitchCombat[2] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2]);
-		end
-	elseif IsEquippedItemType("Relic") then
-		if SpellstoneMode == 3 then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1","/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-		elseif FirestoneMode == 3 then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3]);
-		end
 	end
+
+	-- On change l'affectation des boutons de pierre de feu et de sort pour prendre en compte la baguette
+	Necrosis_RangedUpdateAttribute();
 
 	-- Affichage du bouton principal de Necrosis
 	if NecrosisConfig.Circle == 1 then
@@ -2332,201 +2253,19 @@ function Necrosis_SpellSetup()
 	-- Association du sort de monture correct au bouton
 	if NECROSIS_SPELL_TABLE[1].ID or NECROSIS_SPELL_TABLE[2].ID then
 		MountAvailable = true;
-		NecrosisMountButton:SetAttribute("type1", "spell");
-		NecrosisMountButton:SetAttribute("type2", "spell");
-		if NECROSIS_SPELL_TABLE[2].ID then
-			NecrosisMountButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[2].Name.."("..NECROSIS_SPELL_TABLE[2].Rank..")");
-			NecrosisMountButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[2].Rank..")");
-
-		else
-			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[1].Rank..")");
-		end
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[2].Name, "CLICK NecrosisMountButton:LeftButton"});
 	else
 		MountAvailable = false;
 	end
-	-- Association de l'armure demoniaque si le sort est disponible
-	NecrosisBuffMenu1:SetAttribute("type", "spell");
-	if not NECROSIS_SPELL_TABLE[31].ID then
-		NecrosisBuffMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")");
-	else
-		NecrosisBuffMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")");
-	end
-	-- Association de la Connexion au bouton central si le sort est disponible
-	if NECROSIS_SPELL_TABLE[41].ID then
-		NecrosisButton:SetAttribute("type1", "spell");
-		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name.."("..NECROSIS_SPELL_TABLE[41].Rank..")");
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"});
-	end
-	-- Association des autres sorts aux boutons
-	-- GangreArmure
-	NecrosisBuffMenu10:SetAttribute("type", "spell");
-	NecrosisBuffMenu10:SetAttribute("spell", NECROSIS_SPELL_TABLE[47].Name.."("..NECROSIS_SPELL_TABLE[47].Rank..")");
-	NecrosisBuffMenu10:SetAttribute("spell", NECROSIS_SPELL_TABLE[47].Name.."("..NECROSIS_SPELL_TABLE[47].Rank..")");
-	-- Respiration aquatique
-	NecrosisBuffMenu2:SetAttribute("helpbutton", "buff");
-	NecrosisBuffMenu2:SetAttribute("type-buff", "spell");
-	NecrosisBuffMenu2:SetAttribute("*unit*", "target");
-	NecrosisBuffMenu2:SetAttribute("spell-buff", NECROSIS_SPELL_TABLE[32].Name);
-	-- Détection de l'invisibilité
-	NecrosisBuffMenu3:SetAttribute("helpbutton", "buff");
-	NecrosisBuffMenu3:SetAttribute("type-buff", "spell");
-	NecrosisBuffMenu3:SetAttribute("*unit*", "target");
-	NecrosisBuffMenu3:SetAttribute("spell-buff", NECROSIS_SPELL_TABLE[33].Name);
-	-- Oeil de Killrog
-	NecrosisBuffMenu4:SetAttribute("type", "spell");
-	NecrosisBuffMenu4:SetAttribute("spell", NECROSIS_SPELL_TABLE[34].Name);
-	-- TP
-	NecrosisBuffMenu5:SetAttribute("type", "spell");
-	NecrosisBuffMenu5:SetAttribute("unit", "target");
-	NecrosisBuffMenu5:SetAttribute("spell", NECROSIS_SPELL_TABLE[37].Name);
-	-- Détection des démons
-	NecrosisBuffMenu6:SetAttribute("type", "spell");
-	NecrosisBuffMenu6:SetAttribute("spell", NECROSIS_SPELL_TABLE[39].Name);
-	-- Lien spirituel
-	NecrosisBuffMenu7:SetAttribute("type", "spell");
-	NecrosisBuffMenu7:SetAttribute("spell", NECROSIS_SPELL_TABLE[38].Name);
-	-- Gardien de l'ombre
-	NecrosisBuffMenu8:SetAttribute("type", "spell");
-	NecrosisBuffMenu8:SetAttribute("spell", NECROSIS_SPELL_TABLE[43].Name.."("..NECROSIS_SPELL_TABLE[43].Rank..")");
-	table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[43].Name, "CLICK NecrosisBuffMenu8:LeftButton"});
-	-- Banish
-	NecrosisBuffMenu9:SetAttribute("*unit", "target");
-	table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu9:LeftButton"});
-	if string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
-		-- Si le Ban est de rang 2, association du rang 1 sur le shift+clic
-		NecrosisBuffMenu9:SetAttribute("type2", "spell");
-		NecrosisBuffMenu9:SetAttribute("spell2", NECROSIS_SPELL_TABLE[9].Name.."("..string.gsub(NECROSIS_SPELL_TABLE[9].Rank, "2", "1")..")");
-	end
-	NecrosisBuffMenu9:SetAttribute("type1", "spell");
-	NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")");
-	-- Domination Corrompue
-	NecrosisPetMenu1:SetAttribute("type", "spell");
-	NecrosisPetMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[15].Name);
-	-- Imp
-	NecrosisPetMenu2:SetAttribute("type1", "spell");
-	NecrosisPetMenu2:SetAttribute("type2", "macro");
-	NecrosisPetMenu2:SetAttribute("spell", NECROSIS_SPELL_TABLE[3].Name.."("..NECROSIS_SPELL_TABLE[3].Rank..")");
-	NecrosisPetMenu2:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[3].Name.."("..NECROSIS_SPELL_TABLE[3].Rank..")");
-	-- Marcheur
-	NecrosisPetMenu3:SetAttribute("type1", "spell");
-	NecrosisPetMenu3:SetAttribute("type2", "macro");
-	NecrosisPetMenu3:SetAttribute("spell", NECROSIS_SPELL_TABLE[4].Name.."("..NECROSIS_SPELL_TABLE[4].Rank..")");
-	NecrosisPetMenu3:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[4].Name.."("..NECROSIS_SPELL_TABLE[4].Rank..")");
-	-- Succube
-	NecrosisPetMenu4:SetAttribute("type1", "spell");
-	NecrosisPetMenu4:SetAttribute("type2", "macro");
-	NecrosisPetMenu4:SetAttribute("spell", NECROSIS_SPELL_TABLE[5].Name.."("..NECROSIS_SPELL_TABLE[5].Rank..")");
-	NecrosisPetMenu4:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[5].Name.."("..NECROSIS_SPELL_TABLE[5].Rank..")");
-	-- Chasseur Corrompu
-	NecrosisPetMenu5:SetAttribute("type1", "spell");
-	NecrosisPetMenu5:SetAttribute("type2", "macro");
-	NecrosisPetMenu5:SetAttribute("spell", NECROSIS_SPELL_TABLE[6].Name.."("..NECROSIS_SPELL_TABLE[6].Rank..")");
-	NecrosisPetMenu5:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[6].Name.."("..NECROSIS_SPELL_TABLE[6].Rank..")");
-	-- Gangregarde
-	NecrosisPetMenu10:SetAttribute("type1", "spell");
-	NecrosisPetMenu10:SetAttribute("type2", "macro");
-	NecrosisPetMenu10:SetAttribute("spell", NECROSIS_SPELL_TABLE[7].Name.."("..NECROSIS_SPELL_TABLE[7].Rank..")");
-	NecrosisPetMenu10:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[7].Name.."("..NECROSIS_SPELL_TABLE[7].Rank..")");
-	-- Infernal
-	NecrosisPetMenu6:SetAttribute("type", "spell");
-	NecrosisPetMenu6:SetAttribute("spell", NECROSIS_SPELL_TABLE[8].Name.."("..NECROSIS_SPELL_TABLE[8].Rank..")");
-	-- Doomguard
-	NecrosisPetMenu7:SetAttribute("type", "spell");
-	NecrosisPetMenu7:SetAttribute("spell", NECROSIS_SPELL_TABLE[30].Name);
-	-- Enslave
-	NecrosisPetMenu8:SetAttribute("type", "spell");
-	NecrosisPetMenu8:SetAttribute("spell", NECROSIS_SPELL_TABLE[35].Name.."("..NECROSIS_SPELL_TABLE[35].Rank..")");
-	NecrosisBuffMenu11:SetAttribute("type", "spell");
-	NecrosisBuffMenu11:SetAttribute("spell", NECROSIS_SPELL_TABLE[35].Name.."("..NECROSIS_SPELL_TABLE[35].Rank..")");
-	-- Sacrifice
-	NecrosisPetMenu9:SetAttribute("type", "spell");
-	NecrosisPetMenu9:SetAttribute("spell", NECROSIS_SPELL_TABLE[44].Name);
 
-	-- Malédiction amplifiée
-	NecrosisCurseMenu1:SetAttribute("type", "spell");
-	NecrosisCurseMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[42].Name);
-	-- Malédiction de faiblesse
-	NecrosisCurseMenu2:SetAttribute("harmbutton1", "debuff");
-	NecrosisCurseMenu2:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu2:SetAttribute("unit", "target");
-	NecrosisCurseMenu2:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[23].Name.."("..NECROSIS_SPELL_TABLE[23].Rank..")");
-	NecrosisCurseMenu2:SetAttribute("harmbutton2", "amplif");
-	NecrosisCurseMenu2:SetAttribute("type-amplif", "macro");
-	NecrosisCurseMenu2:SetAttribute("macrotext-amplif", "/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[23].Name.."("..NECROSIS_SPELL_TABLE[23].Rank..")");
-	-- Malédiction d'agonie
-	NecrosisCurseMenu3:SetAttribute("harmbutton1", "debuff");
-	NecrosisCurseMenu3:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu3:SetAttribute("unit", "target");
-	NecrosisCurseMenu3:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[22].Name.."("..NECROSIS_SPELL_TABLE[22].Rank..")");
-	NecrosisCurseMenu3:SetAttribute("harmbutton2", "amplif");
-	NecrosisCurseMenu3:SetAttribute("type-amplif", "macro");
-	NecrosisCurseMenu3:SetAttribute("macrotext-amplif", "/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[22].Name.."("..NECROSIS_SPELL_TABLE[22].Rank..")");
-	-- Malédiction de témérité
-	NecrosisCurseMenu4:SetAttribute("harmbutton", "debuff");
-	NecrosisCurseMenu4:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu4:SetAttribute("unit", "target");
-	NecrosisCurseMenu4:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[24].Name.."("..NECROSIS_SPELL_TABLE[24].Rank..")");
-	-- Malédiction des langages
-	NecrosisCurseMenu5:SetAttribute("harmbutton", "debuff");
-	NecrosisCurseMenu5:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu5:SetAttribute("unit", "target");
-	NecrosisCurseMenu5:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[25].Name.."("..NECROSIS_SPELL_TABLE[25].Rank..")");
-	-- Malédiction de fatigue
-	NecrosisCurseMenu6:SetAttribute("harmbutton1", "debuff");
-	NecrosisCurseMenu6:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu6:SetAttribute("unit", "target");
-	NecrosisCurseMenu6:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[40].Name.."("..NECROSIS_SPELL_TABLE[40].Rank..")");
-	NecrosisCurseMenu6:SetAttribute("harmbutton2", "amplif");
-	NecrosisCurseMenu6:SetAttribute("type-amplif", "macro");
-	NecrosisCurseMenu6:SetAttribute("macrotext-amplif", "/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[40].Name.."("..NECROSIS_SPELL_TABLE[40].Rank..")");
-	-- Malédiction des éléments
-	NecrosisCurseMenu7:SetAttribute("harmbutton", "debuff");
-	NecrosisCurseMenu7:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu7:SetAttribute("unit", "target");
-	NecrosisCurseMenu7:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[26].Name.."("..NECROSIS_SPELL_TABLE[26].Rank..")");
-	-- Malédiction des ombres
-	NecrosisCurseMenu8:SetAttribute("harmbutton", "debuff");
-	NecrosisCurseMenu8:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu8:SetAttribute("unit", "target");
-	NecrosisCurseMenu8:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[27].Name.."("..NECROSIS_SPELL_TABLE[27].Rank..")");
-	-- Malédiction des ténèbres
-	NecrosisCurseMenu9:SetAttribute("harmbutton", "debuff");
-	NecrosisCurseMenu9:SetAttribute("type-debuff", "spell");
-	NecrosisCurseMenu9:SetAttribute("unit", "target");
-	NecrosisCurseMenu9:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[16].Name.."("..NECROSIS_SPELL_TABLE[16].Rank..")");
+	if not InCombatLockdown() then
+		Necrosis_MainButtonAttribute();
+		Necrosis_BuffSpellAttribute();
+		Necrosis_PetSpellAttribute();
+		Necrosis_CurseSpellAttribute();
+		Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
+	end
 
-	-- Création de pierres sur le clique droit
-	-- Soulstone
-	if StoneIDInSpellTable[1] then
-		NecrosisSoulstoneButton:SetAttribute("type2", "spell");
-		NecrosisSoulstoneButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Rank..")");
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].Name, "CLICK NecrosisSoulstoneButton:RightButton"});
-		table.insert(NecrosisBinding, {NECROSIS_ITEM.Soulstone, "CLICK NecrosisSoulstoneButton:LeftButton"});
-	end
-	-- Healthstone
-	if StoneIDInSpellTable[2] then
-		NecrosisHealthstoneButton:SetAttribute("type2", "spell");
-		NecrosisHealthstoneButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Rank..")");
-		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell");
-		NecrosisHealthstoneButton:SetAttribute("shift-spell*", NECROSIS_SPELL_TABLE[50].Name);
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name, "CLICK NecrosisHealthstoneButton:RightButton"});
-		table.insert(NecrosisBinding, {NECROSIS_ITEM.Healthstone, "CLICK NecrosisHealthstoneButton:LeftButton"});
-	end
-	-- Spellstone
-	if StoneIDInSpellTable[3] then
-		NecrosisSpellstoneButton:SetAttribute("type2", "spell");
-		NecrosisSpellstoneButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Rank..")");
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].Name, "CLICK NecrosisSpellstoneButton:RightButton"});
-		table.insert(NecrosisBinding, {NECROSIS_ITEM.Spellstone, "CLICK NecrosisSpellstoneButton:LeftButton"});
-	end
-	-- Firestone
-	if StoneIDInSpellTable[4] then
-		NecrosisFirestoneButton:SetAttribute("type2", "spell");
-		NecrosisFirestoneButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Name.."("..NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Rank..")");
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].Name, "CLICK NecrosisFirestoneButton:RightButton"});
-		table.insert(NecrosisBinding, {NECROSIS_ITEM.Firestone, "CLICK NecrosisFirestoneButton:LeftButton"});
-	end
+
 end
 
 -- Fonction d'extraction d'attribut de sort
@@ -2626,9 +2365,9 @@ end
 
 function Necrosis_MoneyToggle()
 	for index=1, 10 do
-		local text = getglobal("NecrosisTooltipTextLeft"..index);
+		local text = _G["NecrosisTooltipTextLeft"..index];
 			if text then text:SetText(nil); end
-			text = getglobal("NecrosisTooltipTextRight"..index);
+			text = _G["NecrosisTooltipTextRight"..index];
 			if text then text:SetText(nil); end
 	end
 	NecrosisTooltip:Hide();
@@ -2660,7 +2399,7 @@ function Necrosis_UpdateButtonsScale()
 
 		Necrosis_ClearAllPoints();
 		for index, valeur in ipairs(ButtonName) do
-			local f = getglobal(valeur);
+			local f = _G[valeur];
 			f:Hide();
 		end
 		local indexScale = -36;
@@ -2679,7 +2418,7 @@ function Necrosis_UpdateButtonsScale()
 				if math.abs(NecrosisConfig.StonePosition[index]) == button
 					and NecrosisConfig.StonePosition[button] > 0
 					and SpellExist[button] then
-						local f = getglobal(ButtonName[button]);
+						local f = _G[ButtonName[button]];
 						f:SetPoint(
 							"CENTER", "NecrosisButton", "CENTER",
 							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)),
@@ -2745,19 +2484,19 @@ function Necrosis_CreateMenu()
 
 	-- On cache toutes les icones des démons
 	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-		menuVariable = getglobal("NecrosisPetMenu"..i);
+		menuVariable = _G["NecrosisPetMenu"..i];
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
 	-- On cache toutes les icones des sorts
 	for i = 1, #NecrosisConfig.BuffSpellPosition, 1 do
-		menuVariable = getglobal("NecrosisBuffMenu"..i);
+		menuVariable = _G["NecrosisBuffMenu"..i];
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
 	-- On cache toutes les icones des curses
 	for i = 1, #NecrosisConfig.CurseSpellPosition, 1 do
-		menuVariable = getglobal("NecrosisCurseMenu"..i);
+		menuVariable = _G["NecrosisCurseMenu"..i];
 		menuVariable:ClearAllPoints();
 		menuVariable:Hide();
 	end
@@ -2771,7 +2510,7 @@ function Necrosis_CreateMenu()
 			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
 				and NecrosisConfig.DemonSpellPosition[sort] > 0
 				and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
-					menuVariable = getglobal("NecrosisPetMenu"..ButtonID[sort]);
+					menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]];
 					menuVariable:ClearAllPoints();
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
@@ -2813,7 +2552,7 @@ function Necrosis_CreateMenu()
 		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1 
 			and NecrosisConfig.BuffSpellPosition[1] > 0
 			and (NECROSIS_SPELL_TABLE[31].ID or NECROSIS_SPELL_TABLE[36].ID) then
-				menuVariable = getglobal("NecrosisBuffMenu1");
+				menuVariable = _G["NecrosisBuffMenu1"];
 				menuVariable:ClearAllPoints();
 				menuVariable:SetPoint(
 					"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
@@ -2827,7 +2566,7 @@ function Necrosis_CreateMenu()
 				if math.abs(NecrosisConfig.BuffSpellPosition[index]) == sort
 					and NecrosisConfig.BuffSpellPosition[sort] > 0
 					and NECROSIS_SPELL_TABLE[ MenuID[sort - 1] ].ID then
-						menuVariable = getglobal("NecrosisBuffMenu"..ButtonID[sort - 1]);
+						menuVariable = _G["NecrosisBuffMenu"..ButtonID[sort - 1]];
 						menuVariable:ClearAllPoints();
 						menuVariable:SetPoint(
 							"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
@@ -2871,7 +2610,7 @@ function Necrosis_CreateMenu()
 			if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
 				and NecrosisConfig.CurseSpellPosition[sort] > 0
 				and NECROSIS_SPELL_TABLE[MenuID[sort]].ID then
-					menuVariable = getglobal("NecrosisCurseMenu"..sort);
+					menuVariable = _G["NecrosisCurseMenu"..sort];
 					menuVariable:ClearAllPoints();
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",
@@ -2909,7 +2648,7 @@ end
 function NecrosisGeneralTab_OnClick(id)
 	local TabName;
 	for index=1, 5, 1 do
-		TabName = getglobal("NecrosisGeneralTab"..index);
+		TabName = _G["NecrosisGeneralTab"..index];
 		if index == id then
 			TabName:SetChecked(1);
 		else
