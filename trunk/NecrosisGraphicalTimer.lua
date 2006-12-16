@@ -31,6 +31,8 @@
 -- Version 04.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
+-- On définit G comme étant le tableau contenant toutes les frames existantes.
+local _G = getfenv(0);
 
 -- La fonction d'affichage des timers
 -- tableau est de la forme suivante :
@@ -67,8 +69,7 @@ function NecrosisAfficheTimer(tableau, pointeur)
 				if TimerTarget ~= 1 then yPosition = yPosition - PositionTitre[1]; end
 				if TimerTarget == 11 then TimerTarget = 1; end
 				-- On affiche le titre
-				local frameName = "NecrosisTarget"..TimerTarget.."Text";
-				local frameItem = getglobal(frameName);
+				local frameItem = _G["NecrosisTarget"..TimerTarget.."Text"];
 				-- On place le coin gauche de la frame par rapport au centre du bouton des SpellTimers
 				frameItem:ClearAllPoints();
 				frameItem:SetPoint(NecrosisConfig.SpellTimerJust, "NecrosisSpellTimerButton", "CENTER", NecrosisConfig.SpellTimerPos * 23, yPosition);
@@ -83,16 +84,11 @@ function NecrosisAfficheTimer(tableau, pointeur)
 				local JustifInverse = "LEFT";
 				if NecrosisConfig.SpellTimerJust == "LEFT" then JustifInverse = "RIGHT"; end	
 			
-				local frameName1 = "NecrosisTimer"..tableau.Gtimer[index].."Text";
-				local frameItem1 = getglobal(frameName1);
-				local frameName2 = "NecrosisTimer"..tableau.Gtimer[index].."Bar";
-				local frameItem2 = getglobal(frameName2);
-				local frameName3 = "NecrosisTimer"..tableau.Gtimer[index].."Texture";
-				local frameItem3 = getglobal(frameName3);
-				local frameName4 = "NecrosisTimer"..tableau.Gtimer[index].."Spark";
-				local frameItem4 = getglobal(frameName4);
-				local frameName5 = "NecrosisTimer"..tableau.Gtimer[index].."OutText";
-				local frameItem5 = getglobal(frameName5);
+				local frameItem1 = _G["NecrosisTimer"..tableau.Gtimer[index].."Text"];
+				local frameItem2 = _G["NecrosisTimer"..tableau.Gtimer[index].."Bar"];
+				local frameItem3 = _G["NecrosisTimer"..tableau.Gtimer[index].."Texture"];
+				local frameItem4 = _G["NecrosisTimer"..tableau.Gtimer[index].."Spark"];
+				local frameItem5 = _G["NecrosisTimer"..tableau.Gtimer[index].."OutText"];
 
 				frameItem1:ClearAllPoints();
 				frameItem1:SetPoint(NecrosisConfig.SpellTimerJust, "NecrosisSpellTimerButton", "CENTER", NecrosisConfig.SpellTimerPos * 23, yPosition + 1);
@@ -136,8 +132,7 @@ function NecrosisAfficheTimer(tableau, pointeur)
 		end
 		if TimerTarget < 10 then
 			for i = TimerTarget + 1, 10, 1 do
-				local frameName = "NecrosisTarget"..i.."Text";
-				local frameItem = getglobal(frameName);
+				local frameItem = _G["NecrosisTarget"..i.."Text"];
 				if frameItem:IsShown() then
 					frameItem:Hide();
 				end
@@ -155,8 +150,7 @@ function Necrosis_AddFrame(SpellTimer, TimerTable)
 			if NecrosisConfig.Graphical then
 				local elements = {"Text", "Bar", "Texture", "OutText"}
 				for j = 1, 4, 1 do
-					frameName = "NecrosisTimer"..i..elements[j];
-					frameItem = getglobal(frameName);
+					frameItem = _G["NecrosisTimer"..i..elements[j]];
 					frameItem:Show();
 				end
 			end
@@ -170,8 +164,7 @@ function Necrosis_RemoveFrame(Gtime, TimerTable)
 	-- On cache le timer graphique
 	local elements = {"Text", "Bar", "Texture", "OutText"}
 	for j = 1, 4, 1 do
-		frameName = "NecrosisTimer"..Gtime..elements[j];
-		frameItem = getglobal(frameName);
+		frameItem = _G["NecrosisTimer"..Gtime..elements[j]];
 		frameItem:Hide();
 	end
 
