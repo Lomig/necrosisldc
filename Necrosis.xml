@@ -10,13 +10,6 @@
 		<Size>
 			<AbsDimension x="34" y="34" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset>
-					<AbsDimension x="120" y="340" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisListSpells" inherits="GameFontNormalSmall" justifyH="LEFT">
@@ -60,13 +53,6 @@
 		<Size>
 			<AbsDimension x="58" y="58" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="0" y="-100" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisShardCount" inherits="GameFontNormal" text="00">
@@ -106,16 +92,6 @@
 			<OnDragStop>
 				Necrosis_OnDragStop(this)
 			</OnDragStop>
-			<PreClick>
-				if this:CanChangeProtectedState() and arg1 == "RightButton" then
-					if NecrosisGeneralFrame:IsVisible() then
-						NecrosisGeneralFrame:Hide()
-					else
-						NecrosisGeneralFrame:Show()
-						NecrosisGeneralTab_OnClick(1)
-					end
-				end
-			</PreClick>	
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Shard" />
 	</Button>
@@ -151,12 +127,14 @@
 				Necrosis_OnDragStop(this)
 			</OnDragStop>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisSoulstoneButton:SetAttribute("unit", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisSoulstoneButton:SetAttribute("unit", "target")
+				if not InCombatLockdown() then
+					NecrosisSoulstoneButton:SetAttribute("unit", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\SoulstoneButton-01" />
@@ -394,12 +372,14 @@
 				GameTooltip:Hide()
 			</OnLeave>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisBuffMenu2:SetAttribute("*unit*", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisBuffMenu2:SetAttribute("*unit*", "target")
+				if not InCombatLockdown() then
+					NecrosisBuffMenu2:SetAttribute("*unit*", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Aqua-01" />
@@ -427,12 +407,14 @@
 				GameTooltip:Hide()
 			</OnLeave>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisBuffMenu3:SetAttribute("*unit*", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisBuffMenu3:SetAttribute("*unit*", "target")
+				if not InCombatLockdown() then
+					NecrosisBuffMenu3:SetAttribute("*unit*", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Invisible-01" />
@@ -1207,13 +1189,6 @@
 		<Size>
 			<AbsDimension x="40" y="40" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset>
-					<AbsDimension x="100" y="-30" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisShadowTranceTimer" inherits="GameFontNormal">
@@ -1253,13 +1228,6 @@
 		<Size>
 			<AbsDimension x="40" y="40" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset>
-					<AbsDimension x="100" y="-90" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisBacklashTimer" inherits="GameFontNormal">
@@ -1299,13 +1267,6 @@
 		<Size>
 			<AbsDimension x="43" y="43" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="100" y="30" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
 			<OnMouseUp>
 				Necrosis_OnDragStop(this)
@@ -1324,13 +1285,6 @@
 		<Size>
 			<AbsDimension x="43" y="43" />
 		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="100" y="90" />
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
 			<OnMouseUp>
 				Necrosis_OnDragStop(this)

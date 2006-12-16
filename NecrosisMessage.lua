@@ -286,53 +286,53 @@ end
 function Necrosis_Speech_Then(SpellCastName, SpellTargetName, DemonName, PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, NecrosisMounted)
 	-- Si le sort était un un cast de monture et qu'il y avait quelque chose à faire dire après le cast, on y va !
 	if (SpellCastName == NECROSIS_SPELL_TABLE[1].Name or SpellCastName == NECROSIS_SPELL_TABLE[2].Name) then
-		table.foreach(SteedSummoned, function (index, valeur)
-			if string.find(valeur, "<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur), "EMOTE");
-			elseif string.find(valeur, "<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur), "YELL");
+		for i in ipairs(SteedSummoned) do
+			if string.find(SteedSummoned[i], "<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "EMOTE");
+			elseif string.find(SteedSummoned[i], "<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "YELL");
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(valeur), "WORLD");
+				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "WORLD");
 			end
-		end)
+		end
 		SteedSummoned = {};
 		NecrosisMounted = true;
 		NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02");
 	-- Si le sort était un cast de Rez et qu'il y avait quelque chose à faire dire après le cast, on y va !
 	elseif SpellCastName == NECROSIS_SPELL_TABLE[11].Name then
-		table.foreach(PlayerSoulstoned, function (index, valeur)
-			if string.find(valeur, "<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "EMOTE");
-			elseif string.find(valeur, "<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "YELL");
+		for i in ipairs(PlayerSoulstoned) do
+			if string.find(PlayerSoulstoned[i], "<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "EMOTE");
+			elseif string.find(PlayerSoulstoned[i], "<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "YELL");
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "WORLD");
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "WORLD");
 			end
-		end)
+		end
 		PlayerSoulstoned = {};
 	-- Si le sort était un cast de TP et qu'il y avait quelque chose à faire dire après le cast, on y va !
 	elseif (SpellCastName == NECROSIS_SPELL_TABLE[37].Name) then
-		table.foreach(PlayerSummoned, function (index, valeur)
-			if string.find(valeur, "<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "EMOTE");
-			elseif string.find(valeur, "<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "YELL");
+		for i in ipairs(PlayerSummoned) do
+			if string.find(PlayerSummoned[i], "<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "EMOTE");
+			elseif string.find(PlayerSummoned[i], "<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "YELL");
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, SpellTargetName), "WORLD");
+				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "WORLD");
 			end
-		end)
+		end
 		PlayerSummoned = {};
 	-- Si le sort était un sacrifice de démon et qu'il y avait quelque chose à faire dire à sa mort, on y va !
 	elseif SpellCastName == NECROSIS_SPELL_TABLE[44].Name then
-		table.foreach(DemonSacrified, function (index, valeur)
-			if string.find(valeur, "<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "EMOTE");
-			elseif string.find(valeur, "<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "YELL");
+		for i in ipairs(DemonSacrified) do
+			if string.find(DemonSacrified[i], "<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "EMOTE");
+			elseif string.find(DemonSacrified[i], "<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "YELL");
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "SAY");
+				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "SAY");
 			end
-		end)
+		end
 		DemonSacrified = {};
 	-- Si le sort était un cast de démon et qu'il y avait quelque chose à faire dire après le cast, on y va !
 	elseif SpellCastName == NECROSIS_SPELL_TABLE[3].Name
@@ -341,15 +341,15 @@ function Necrosis_Speech_Then(SpellCastName, SpellTargetName, DemonName, PlayerS
 			or SpellCastName == NECROSIS_SPELL_TABLE[6].Name
 			or SpellCastName == NECROSIS_SPELL_TABLE[7].Name
 			then
-				table.foreach(DemonSummoned, function (index, valeur)
-					if string.find(valeur, "<emote>") then
-						Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "EMOTE");
-					elseif string.find(valeur, "<yell>") then
-						Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "YELL");
+				for i in ipairs(DemonSummoned) do
+					if string.find(DemonSummoned[i], "<emote>") then
+						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "EMOTE");
+					elseif string.find(DemonSummoned[i], "<yell>") then
+						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "YELL");
 					else
-						Necrosis_Msg(Necrosis_MsgReplace(valeur, nil, DemonName), "SAY");
+						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "SAY");
 					end
-				end)
+				end
 				DemonSummoned = {};
 	end
 

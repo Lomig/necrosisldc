@@ -292,6 +292,10 @@ end
 -- Association de la Connexion au bouton central si le sort est disponible
 function Necrosis_MainButtonAttribute()
 
+	-- Le clic droit ouvre le Menu des options
+	NecrosisButton:SetAttribute("type2", "macro");
+	NecrosisButton:SetAttribute("macrotext2", "/necro");
+
 	if NECROSIS_SPELL_TABLE[41].ID then
 		NecrosisButton:SetAttribute("type1", "spell");
 		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name.."("..NECROSIS_SPELL_TABLE[41].Rank..")");

@@ -23,7 +23,6 @@
 			<OnLoad>
 				this:RegisterForDrag("LeftButton")
 				this:RegisterForClicks("AnyUp")
-				this:SetScale(UIParent:GetEffectiveScale())
 			</OnLoad>
 			<OnDragStart> 
 				if not NecrosisLockServ then Necrosis_OnDragStart(this) end
@@ -69,11 +68,6 @@
 
 	<Button name="NecrosisButton" inherits="NecrosisGeneralTemplate, SecureActionButtonTemplate" toplevel="true">
 		<Size> <AbsDimension x="58" y="58" /> </Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset> <AbsDimension x="0" y="-100" /> </Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisShardCount" inherits="GameFontNormal" text="00">
@@ -92,16 +86,6 @@
 			<OnUpdate> Necrosis_OnUpdate() </OnUpdate>
 			<OnEnter> Necrosis_BuildTooltip(this, "Main", "ANCHOR_LEFT") </OnEnter>
 			<OnDragStart> Necrosis_OnDragStart(this) </OnDragStart>
-			<PreClick>
-				if this:CanChangeProtectedState() and arg1 == "RightButton" then
-					if NecrosisGeneralFrame:IsVisible() then
-						NecrosisGeneralFrame:Hide()
-					else
-						NecrosisGeneralFrame:Show()
-						NecrosisGeneralTab_OnClick(1)
-					end
-				end
-			</PreClick>	
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Shard" />
 	</Button>
@@ -111,12 +95,14 @@
 				Necrosis_BuildTooltip(this, "Soulstone", "ANCHOR_LEFT")
 			</OnEnter>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisSoulstoneButton:SetAttribute("unit", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisSoulstoneButton:SetAttribute("unit", "target")
+				if not InCombatLockdown() then
+					NecrosisSoulstoneButton:SetAttribute("unit", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\SoulstoneButton-01" />
@@ -197,12 +183,14 @@
 				Necrosis_BuildTooltip(this, "Aqua", "ANCHOR_RIGHT")
 			</OnEnter>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisBuffMenu2:SetAttribute("*unit*", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisBuffMenu2:SetAttribute("*unit*", "target")
+				if not InCombatLockdown() then
+					NecrosisBuffMenu2:SetAttribute("*unit*", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Aqua-01" />
@@ -215,12 +203,14 @@
 				Necrosis_BuildTooltip(this, "Invisible", "ANCHOR_RIGHT")
 			</OnEnter>
 			<PreClick>
-				if not (UnitIsFriend("player","target")) then
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 					NecrosisBuffMenu3:SetAttribute("*unit*", "player")
 				end
 			</PreClick>
 			<PostClick>
-				NecrosisBuffMenu3:SetAttribute("*unit*", "target")
+				if not InCombatLockdown() then
+					NecrosisBuffMenu3:SetAttribute("*unit*", "target")
+				end
 			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Invisible-01" />
@@ -521,11 +511,6 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Doom-02" />
 	</Button>
 	<Button name="NecrosisShadowTranceButton" inherits="NecrosisGeneralTemplate">
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset> <AbsDimension x="100" y="-30" /> </Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisShadowTranceTimer" inherits="GameFontNormal">
@@ -548,11 +533,6 @@
 	</Button>
 
 	<Button name="NecrosisBacklashButton" inherits="NecrosisGeneralTemplate">
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset> <AbsDimension x="100" y="-90" /> </Offset>
-			</Anchor>
-		</Anchors>
 		<Layers>
 			<Layer>
 				<FontString name="NecrosisBacklashTimer" inherits="GameFontNormal">
@@ -576,11 +556,6 @@
 	</Button>
 
 	<Button name="NecrosisAntiFearButton" inherits="NecrosisGeneralTemplate">
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset> <AbsDimension x="100" y="30" /> </Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
 			<OnDragStart> Necrosis_OnDragStart(this) </OnDragStart>
 		</Scripts>
@@ -589,11 +564,6 @@
 	</Button>
 
 	<Button name="NecrosisCreatureAlertButton" inherits="NecrosisGeneralTemplate">
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset> <AbsDimension x="100" y="90" /> </Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
 			<OnDragStart>
 				Necrosis_OnDragStart(this)
