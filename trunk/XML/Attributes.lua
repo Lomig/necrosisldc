@@ -157,6 +157,7 @@ function Necrosis_BuffSpellAttribute()
 	for i = 2, #buffID, 1 do
 		local f = _G["NecrosisBuffMenu"..i];
 		f:SetAttribute("type", "spell");
+		-- Si le sort nécessite une cible, on lui en associe une
 		if not (i == 4 or i == 6 or i == 7 or i == 8) then
 			f:SetAttribute("unit", "target");
 		end
@@ -188,7 +189,7 @@ end
 
 -- On associe les démons au clic sur le bouton concerné
 function Necrosis_PetSpellAttribute()
-	
+
 	-- Démons maitrisés
 	local buttonID = {2, 3, 4, 5, 10};
 	for i = 1, #buttonID, 1 do
@@ -215,7 +216,7 @@ function Necrosis_CurseSpellAttribute()
 	-- Malédiction amplifiée
 	NecrosisCurseMenu1:SetAttribute("type", "spell");
 	NecrosisCurseMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[42].Name);
-	
+
 	-- Malédictions amplifiables
 	local buttonID = {2, 3, 6};
 	local buffID = {23, 22, 40};

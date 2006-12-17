@@ -6,49 +6,7 @@
 			</OnUpdate>
 		</Scripts>
 	</Frame>
-	<Button name="NecrosisSpellTimerButton" inherits="SecureActionButtonTemplate" hidden="true" parent="UIParent" movable="true" frameStrata="MEDIUM" enableMouse="true">
-		<Size>
-			<AbsDimension x="34" y="34" />
-		</Size>
-		<Layers>
-			<Layer>
-				<FontString name="NecrosisListSpells" inherits="GameFontNormalSmall" justifyH="LEFT">
-					<Anchors>
-						<Anchor point="LEFT" relativeTo="NecrosisSpellTimerButton">
-							<Offset>
-								<AbsDimension x="23" y="0" />
-							</Offset>
-						</Anchor>
-					</Anchors>
-					<Color r="1" g="1" b="1" />
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton")
-				this:RegisterForClicks("RightButtonUp")
-			</OnLoad>
-			<OnEnter>
-				Necrosis_BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip)
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide()
-			</OnLeave>
-			<OnMouseUp>
-				Necrosis_OnDragStop(this)
-			</OnMouseUp>
-			<OnDragStart>
-				Necrosis_OnDragStart(this)
-			</OnDragStart>
-			<OnDragStop>
-				Necrosis_OnDragStop(this)
-			</OnDragStop>
-		</Scripts>
-		<NormalTexture file="Interface\AddOns\Necrosis\UI\SpellTimerButton-Normal" />
-		<PushedTexture file="Interface\AddOns\Necrosis\UI\SpellTimerButton-Pushed" />
-		<HighlightTexture file="Interface\AddOns\Necrosis\UI\SpellTimerButton-Highlight" />
-	</Button>
+
 	<Button name="NecrosisButton" inherits="SecureActionButtonTemplate" hidden="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true">
 		<Size>
 			<AbsDimension x="58" y="58" />
@@ -170,7 +128,7 @@
 			</OnDragStart>
 			<OnDragStop>
 				Necrosis_OnDragStop(this)
-			</OnDragStop>	
+			</OnDragStop>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\HealthstoneButton-01" />
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\HealthstoneButton-03" />
