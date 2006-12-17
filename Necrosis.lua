@@ -255,46 +255,51 @@ local Necrosis_In = true;
 -- Fonction appliquée au chargement
 function Necrosis_OnLoad()
 
-	-- Enregistrement des événements interceptés par Necrosis
-	this:RegisterEvent("PLAYER_ENTERING_WORLD");
-	this:RegisterEvent("PLAYER_LEAVING_WORLD");
-	NecrosisButton:RegisterEvent("BAG_UPDATE");
-	NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-	NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-	NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
-	NecrosisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
-	NecrosisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
-	NecrosisButton:RegisterEvent("UNIT_PET");
-	NecrosisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
-	NecrosisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
-	NecrosisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-	NecrosisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
-	NecrosisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
-	NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
-	NecrosisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
-	NecrosisButton:RegisterEvent("TRADE_REQUEST");
-	NecrosisButton:RegisterEvent("TRADE_REQUEST_CANCEL");
-	NecrosisButton:RegisterEvent("TRADE_SHOW");
-	NecrosisButton:RegisterEvent("TRADE_CLOSED");
+	local _, Classe = UnitClass("player");
+	if Classe == "WARLOCK" then
+		Necrosis_CreateWarlockUI();
+		Necrosis_CreateWarlockPopup();
 
-	-- Enregistrement des composants graphiques
-	NecrosisButton:RegisterForDrag("LeftButton");
-	NecrosisButton:RegisterForClicks("AnyUp");
-	NecrosisButton:SetFrameLevel(1);
+		-- Enregistrement des événements interceptés par Necrosis
+		NecrosisButton:RegisterEvent("PLAYER_ENTERING_WORLD");
+		NecrosisButton:RegisterEvent("PLAYER_LEAVING_WORLD");
+		NecrosisButton:RegisterEvent("BAG_UPDATE");
+		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
+		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
+		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
+		NecrosisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
+		NecrosisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
+		NecrosisButton:RegisterEvent("UNIT_PET");
+		NecrosisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
+		NecrosisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+		NecrosisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		NecrosisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
+		NecrosisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
+		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
+		NecrosisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
+		NecrosisButton:RegisterEvent("TRADE_REQUEST");
+		NecrosisButton:RegisterEvent("TRADE_REQUEST_CANCEL");
+		NecrosisButton:RegisterEvent("TRADE_SHOW");
+		NecrosisButton:RegisterEvent("TRADE_CLOSED");
 
-	-- Enregistrement de la commande console
-	SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler;
-	SLASH_NecrosisCommand1 = "/necro"
-	if UnitName("player") == "Lycion" then
-		SendChatMessage("Je suis le pire noob de la terre, et Lomig est mon maitre !", "GUILD");
-		SendChatMessage("Il n'y a pas plus cr\195\169tin que Lycion... Virez moi !", "OFFICER");
-		SendChatMessage("Lycion floode Cyrax by Lomig", "WHISPER", "Common", "Cyrax");
+
+		-- Enregistrement de la commande console
+		SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler;
+		SLASH_NecrosisCommand1 = "/necro"
+
+		-- Easter Egg
+		if UnitName("player") == "Lycion" then
+			SendChatMessage("Je suis le pire noob de la terre, et Lomig est mon maitre !", "GUILD");
+			SendChatMessage("Il n'y a pas plus cr\195\169tin que Lycion... Virez moi !", "OFFICER");
+			SendChatMessage("Lycion floode Cyrax by Lomig", "WHISPER", "Common", "Cyrax");
+		end
 	end
 end
 
 -- Fonction appliquée une fois les paramètres des mods chargés
 function Necrosis_LoadVariables()
-	if Loaded or UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
+	local _, Classe = UnitClass("player")
+	if Loaded or not Classe == "WARLOCK" then
 		return
 	end
 
@@ -312,12 +317,8 @@ end
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
 function Necrosis_OnUpdate()
 
-	-- La fonction n'est utilisée que si Necrosis est initialisé et le joueur un Démoniste --
-	if (not Loaded) and UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
-		return;
-	end
-	-- La fonction n'est utilisée que si Necrosis est initialisé et le joueur un Démoniste --
-
+	-- La fonction n'est utilisée que si Necrosis est initialisé
+	if not Loaded then return end
 
 	-- Gestion des fragments d'âme : Tri des fragment toutes les secondes
 	local curTime = GetTime();
@@ -561,7 +562,7 @@ function Necrosis_OnEvent(event)
 
 	-- Traditionnel test : Le joueur est-il bien Démoniste ?
 	-- Le jeu est-il bine chargé ?
-	if (not Loaded) or (not Necrosis_In) or UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
+	if (not Loaded) or (not Necrosis_In) then
 		return;
 	end
 
@@ -2383,34 +2384,37 @@ function Necrosis_UpdateButtonsScale()
 	if NecrosisConfig.NecrosisButtonScale <= 95 then
 		NBRScale = 1.1;
 	end
-	if NecrosisConfig.NecrosisLockServ then
-		local ButtonName = {
-			"NecrosisFirestoneButton",
-			"NecrosisSpellstoneButton",
-			"NecrosisHealthstoneButton",
-			"NecrosisSoulstoneButton",
-			"NecrosisBuffMenuButton",
-			"NecrosisMountButton",
-			"NecrosisPetMenuButton",
-			"NecrosisCurseMenuButton"
-		};
 
-		Necrosis_ClearAllPoints();
-		for index, valeur in ipairs(ButtonName) do
-			local f = _G[valeur];
-			if f then f:Hide(); end
-		end
+	local ButtonName = {
+		"NecrosisFirestoneButton",
+		"NecrosisSpellstoneButton",
+		"NecrosisHealthstoneButton",
+		"NecrosisSoulstoneButton",
+		"NecrosisBuffMenuButton",
+		"NecrosisMountButton",
+		"NecrosisPetMenuButton",
+		"NecrosisCurseMenuButton"
+	};
+
+	for index, valeur in ipairs(ButtonName) do
+		local f = _G[valeur];
+		if f then f:Hide(); endLua-isation de toutes les Frames principales
+	end
+
+	local SpellExist = {
+		StoneIDInSpellTable[4],
+		StoneIDInSpellTable[3],
+		StoneIDInSpellTable[2],
+		StoneIDInSpellTable[1],
+		BuffMenuCreate[1],
+		MountAvailable,
+		PetMenuCreate[1],
+		CurseMenuCreate[1]
+	};
+
+	if NecrosisConfig.NecrosisLockServ then
 		local indexScale = -36;
-		local SpellExist = {
-			StoneIDInSpellTable[4],
-			StoneIDInSpellTable[3],
-			StoneIDInSpellTable[2],
-			StoneIDInSpellTable[1],
-			BuffMenuCreate[1],
-			MountAvailable,
-			PetMenuCreate[1],
-			CurseMenuCreate[1]
-		};
+		Necrosis_ClearAllPoints();
 		for index=1, #NecrosisConfig.StonePosition, 1 do
 			for button = 1, #NecrosisConfig.StonePosition, 1 do
 				if math.abs(NecrosisConfig.StonePosition[index]) == button
@@ -2419,6 +2423,7 @@ function Necrosis_UpdateButtonsScale()
 						local f = _G[ButtonName[button]];
 						if not f then
 							f = Necrosis_CreateSphereButtons(ButtonName[button]);
+							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
 						end
 						f:SetPoint(
 							"CENTER", "NecrosisButton", "CENTER",
@@ -2427,6 +2432,21 @@ function Necrosis_UpdateButtonsScale()
 						);
 						f:Show();
 						indexScale = indexScale + 36;
+						break
+				end
+			end
+		end
+	else
+		for index=1, #NecrosisConfig.StonePosition, 1 do
+			for button = 1, #NecrosisConfig.StonePosition, 1 do
+				if math.abs(NecrosisConfig.StonePosition[index]) == button
+					and NecrosisConfig.StonePosition[button] > 0
+					and SpellExist[button] then
+						local f = _G[ButtonName[button]];
+						if not f then
+							f = Necrosis_CreateSphereButtons(ButtonName[button]);
+							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
+						end
 						break
 				end
 			end
@@ -2453,7 +2473,7 @@ function Necrosis_NoDrag()
 	if  _G["NecrosisFirestoneButton"] then NecrosisFirestoneButton:RegisterForDrag(""); end
 	if  _G["NecrosisSpellstoneButton"] then NecrosisSpellstoneButton:RegisterForDrag(""); end
 	if  _G["NecrosisHealthstoneButton"] then NecrosisHealthstoneButton:RegisterForDrag(""); end
-	if  _G["NecrosisSoulstoneButton"] then NecrosisSoulstoneButton:RegisterForDrag("");end 
+	if  _G["NecrosisSoulstoneButton"] then NecrosisSoulstoneButton:RegisterForDrag("");end
 	if  _G["NecrosisMountButton"] then NecrosisMountButton:RegisterForDrag(""); end
 	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:RegisterForDrag(""); end
 	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:RegisterForDrag(""); end
@@ -2504,29 +2524,30 @@ function Necrosis_CreateMenu()
 
 	local MenuID = {15, 3, 4, 5, 6, 7, 8, 30, 35, 44};
 	local ButtonID = {1, 2, 3, 4, 5, 10, 6, 7, 8, 9};
-	if  _G["NecrosisPetMenuButton"] then
-		-- On ordonne et on affiche les boutons dans le menu des démons
-		for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-			-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
-			for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-				if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
-					and NecrosisConfig.DemonSpellPosition[sort] > 0
-					and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
-						menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]];
-						menuVariable:ClearAllPoints();
-						menuVariable:SetPoint(
-							"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
-							NecrosisConfig.PetMenuPos.x * 32,
-							NecrosisConfig.PetMenuPos.y * 32
-						);
-						PetButtonPosition = ButtonID[sort];
-						table.insert(PetMenuCreate, menuVariable);
-						break;
-				end
+	-- On ordonne et on affiche les boutons dans le menu des démons
+	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
+		for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
+				and NecrosisConfig.DemonSpellPosition[sort] > 0
+				and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
+					-- Création à la demande du bouton du menu des démons
+					if not _G["NecrosisPetMenuButton"] then
+						_ = Necrosis_CreateSphereButtons("PetMenu");
+					end
+					menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]];
+					menuVariable:ClearAllPoints();
+					menuVariable:SetPoint(
+						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
+						NecrosisConfig.PetMenuPos.x * 32,
+						NecrosisConfig.PetMenuPos.y * 32
+					);
+					PetButtonPosition = ButtonID[sort];
+					table.insert(PetMenuCreate, menuVariable);
+					break;
 			end
 		end
 	end
-
 
 	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
 	if PetMenuCreate[1] then
@@ -2536,6 +2557,8 @@ function Necrosis_CreateMenu()
 			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
 			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 		);
+		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+		Necrosis_MenuAttribute("NecrosisPetMenu");
 		for i = 1, #PetMenuCreate, 1 do
 			PetMenuCreate[i]:Show();
 
@@ -2550,12 +2573,15 @@ function Necrosis_CreateMenu()
 	-- On ordonne et on affiche les boutons dans le menu des buffs
 	local MenuID = {47, 32, 33, 34, 37, 39, 38, 43, 35, 9};
 	local ButtonID = {10, 2, 3, 4, 5, 6, 7, 8, 11, 9};
-	if  _G["NecrosisBuffMenuButton"] then
 	for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		-- Si le buff existe, on affiche le bouton dans le menu des buffs
 		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
 			and NecrosisConfig.BuffSpellPosition[1] > 0
 			and (NECROSIS_SPELL_TABLE[31].ID or NECROSIS_SPELL_TABLE[36].ID) then
+				-- Création à la demande du bouton du menu des Buffs
+				if not _G["NecrosisBuffMenuButton"] then
+					_ = Necrosis_CreateSphereButtons("BuffMenu");
+				end
 				menuVariable = _G["NecrosisBuffMenu1"];
 				menuVariable:ClearAllPoints();
 				menuVariable:SetPoint(
@@ -2570,6 +2596,10 @@ function Necrosis_CreateMenu()
 				if math.abs(NecrosisConfig.BuffSpellPosition[index]) == sort
 					and NecrosisConfig.BuffSpellPosition[sort] > 0
 					and NECROSIS_SPELL_TABLE[ MenuID[sort - 1] ].ID then
+						-- Création à la demande du bouton du menu des Buffs
+						if not _G["NecrosisBuffMenuButton"] then
+							_ = Necrosis_CreateSphereButtons("BuffMenu");
+						end
 						menuVariable = _G["NecrosisBuffMenu"..ButtonID[sort - 1]];
 						menuVariable:ClearAllPoints();
 						menuVariable:SetPoint(
@@ -2584,7 +2614,6 @@ function Necrosis_CreateMenu()
 			end
 		end
 	end
-	end
 
 	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
 	if BuffMenuCreate[1] then
@@ -2594,6 +2623,8 @@ function Necrosis_CreateMenu()
 			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
 			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
 		);
+		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+		Necrosis_MenuAttribute("NecrosisBuffMenu");
 		for i = 1, #BuffMenuCreate, 1 do
 			BuffMenuCreate[i]:Show();
 
@@ -2609,13 +2640,16 @@ function Necrosis_CreateMenu()
 	-- On ordonne et on affiche les boutons dans le menu des malédictions
 	-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 	local MenuID = {42, 23, 22, 24, 25, 40, 26, 27, 16};
-	if  _G["NecrosisCurseMenuButton"] then
 	for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
 			if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
 				and NecrosisConfig.CurseSpellPosition[sort] > 0
 				and NECROSIS_SPELL_TABLE[MenuID[sort]].ID then
+					-- Création à la demande du bouton du menu des malédictions
+					if not _G["NecrosisCurseMenuButton"] then
+						_ = Necrosis_CreateSphereButtons("CurseMenu");
+					end
 					menuVariable = _G["NecrosisCurseMenu"..sort];
 					menuVariable:ClearAllPoints();
 					menuVariable:SetPoint(
@@ -2629,7 +2663,6 @@ function Necrosis_CreateMenu()
 			end
 		end
 	end
-	end
 
 	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles
 	if CurseMenuCreate[1] then
@@ -2639,6 +2672,8 @@ function Necrosis_CreateMenu()
 			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
 			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 		);
+		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+		Necrosis_MenuAttribute("NecrosisCurseMenu");
 		for i = 1, #CurseMenuCreate, 1 do
 			CurseMenuCreate[i]:Show();
 
