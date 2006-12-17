@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ function Necrosis_Localization_Dialog_Es()
 		["Armor"] = {
 			Label = "|c00FFFFFFDemon Armor|r"
 		},
-		["Fel Armor"] = {
+		["FelArmor"] = {
 			Label = "|c00FFFFFFFel Armor|r"
 		},
 		["Invisible"] = {
@@ -136,13 +136,13 @@ function Necrosis_Localization_Dialog_Es()
 		["Imp"] = {
 			Label = "|c00FFFFFFImp|r"
 		},
-		["Void"] = {
+		["Voidwalker"] = {
 			Label = "|c00FFFFFFVoidwalker|r"
 		},
 		["Succubus"] = {
 			Label = "|c00FFFFFFSuccubus|r"
 		},
-		["Fel"] = {
+		["Felhunter"] = {
 			Label = "|c00FFFFFFMan\195\161fago|r"
 		},
 		["Felguard"] = {
@@ -217,7 +217,7 @@ function Necrosis_Localization_Dialog_Es()
 
 	NECROSIS_PROC_TEXT = {
 		["ShadowTrance"] = "<white>Tr<lightPurple1>a<lightPurple2>n<purple>c<darkPurple1>e<darkPurple2> de las S<darkPurple1>o<purple>m<lightPurple2>b<lightPurple1>r<white>as",
-		["Backlash"] = "<white>B<lightPurple1>a<lightPurple2>c<purple>k<darkPurple1>l<darkPurple2>a<darkPurple1>s<purple>h"		
+		["Backlash"] = "<white>B<lightPurple1>a<lightPurple2>c<purple>k<darkPurple1>l<darkPurple2>a<darkPurple1>s<purple>h"
 	};
 
 
@@ -281,7 +281,7 @@ function Necrosis_Localization_Dialog_Es()
 		["TranseWarning"] = "Al\195\169rtame cuando entre en un Trance de las Sombras",
 		["SpellTime"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
 		["AntiFearWarning"] = "Prevenme cuando mi objetivo no pueda ser asustado",
-		["GraphicalTimer"] = "Mostrar temporizadores gr\195\161ficos en lugar de textos",	
+		["GraphicalTimer"] = "Mostrar temporizadores gr\195\161ficos en lugar de textos",
 		["TranceButtonView"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos.",
 		["ButtonLock"] = "Bloquear los botones alrededor de la Esfera Necrosis.",
 		["MainLock"] = "Bloquear los botones y la Esfera Necrosis.",

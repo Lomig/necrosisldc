@@ -31,38 +31,405 @@
 -- Version 15.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
--- Création du bouton de Timer des sorts
-local SpellTimerButton = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
+-- On définit G comme étant le tableau contenant toutes les frames existantes.
+local _G = getfenv(0);
 
-SpellTimerButton:SetFrameStrata("MEDIUM");
-SpellTimerButton:SetMovable(true);
-SpellTimerButton:EnableMouse(true);
-SpellTimerButton:SetMovable(true);
-SpellTimerButton:SetWidth(34);
-SpellTimerButton:SetHeight(34);
-SpellTimerButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal");
-SpellTimerButton:SetPushedTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Pushed");
-SpellTimerButton:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Highlight");
-SpellTimerButton:Hide();
+------------------------------------------------------------------------------------------------------
+-- BOUTON DU TIMER DES SORTS
+------------------------------------------------------------------------------------------------------
+
+-- Création du bouton de Timer des sorts
+local frame = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
+
+-- Définition de ses attributs
+frame:SetFrameStrata("MEDIUM");
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetWidth(34);
+frame:SetHeight(34);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal");
+frame:SetPushedTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Pushed");
+frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Highlight");
+frame:Hide();
 
 -- Création de la liste des Timers Textes
-local TextTimer = SpellTimerButton:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
+local FontString = frame:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
 
-TextTimer:SetJustifyH("LEFT");
-TextTimer:SetPoint("LEFT", "NecrosisSpellTimerButton", "LEFT", 23, 0);
-TextTimer:SetTextColor(1, 1, 1);
+-- Définition de ses attributs
+FontString:SetJustifyH("LEFT");
+FontString:SetPoint("LEFT", "NecrosisSpellTimerButton", "LEFT", 23, 0);
+FontString:SetTextColor(1, 1, 1);
 
 -- Edition des scripts associés au bouton
-SpellTimerButton:SetScript("OnLoad",
-	function()
-		this:RegisterForDrag("LeftButton");
-		this:RegisterForClicks("RightButtonUp");
+frame:SetScript("OnLoad", function()
+	this:RegisterForDrag("LeftButton");
+	this:RegisterForClicks("RightButtonUp");
+end);
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+
+------------------------------------------------------------------------------------------------------
+-- SPHERE NECROSIS
+------------------------------------------------------------------------------------------------------
+
+-- Création du bouton de Timer des sorts
+local frame = CreateFrame("Button", "NecrosisButton", UIParent, "SecureActionButtonTemplate");
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetWidth(58);
+frame:SetHeight(58);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Shard");
+frame:Hide();
+
+-- Création du compteur de fragments d'âme
+local FontString = frame:CreateFontString("NecrosisShardCount", nil, "GameFontNormal");
+
+-- Définition de ses attributs
+FontString:SetText("00");
+FontString:SetPoint("CENTER");
+FontString:SetTextColor(1, 1, 1);
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEvent", function() Necrosis_OnEvent(event); end);
+frame:SetScript("OnUpdate", function() Necrosis_OnUpdate(); end);
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Main", "ANCHOR_LEFT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+
+------------------------------------------------------------------------------------------------------
+-- BOUTON DES PIERRES ET DE LA MONTURE
+------------------------------------------------------------------------------------------------------
+
+local stone = {"Soulstone", "Healthstone", "Firestone", "Spellstone", "Mount"}
+
+for i = 1, 5, 1 do
+	-- Création du bouton de la pierre
+	local frame = CreateFrame("Button", "Necrosis"..stone[i].."Button", UIParent, "SecureActionButtonTemplate");
+
+	-- Définition de ses attributs
+	frame:SetMovable(true);
+	frame:EnableMouse(true);
+	frame:SetWidth(34);
+	frame:SetHeight(34);
+	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..stone[i].."Button-01");
+	if i == 1 then
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SoulstoneButton-04");
+	elseif i == 5 then
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-02");
+	else
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..stone[i].."Button-03");
+	end
+	frame:RegisterForDrag("LeftButton");
+	frame:RegisterForClicks("AnyUp");
+	frame:Hide();
+
+	-- Edition des scripts associés au bouton
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, stone[i], "ANCHOR_LEFT"); end);
+	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+	frame:SetScript("OnDragStart", function()
+		if not NecrosisLockServ then
+			Necrosis_OnDragStart(this);
+		end
 	end);
-SpellTimerButton:SetScript("OnEnter",
-	function()
-		Necrosis_BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip);
+	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+end
+
+-- Attributs spécifiques à la pierre d'âme
+-- Ils permettent de caster la pierre sur soi si pas de cible et hors combat
+NecrosisSoulstoneButton:SetScript("PreClick", function()
+	if not (InCombatLockdown() or UnitIsFriend("player","target")) then
+		this:SetAttribute("unit", "player");
+	end
+end);
+NecrosisSoulstoneButton:SetScript("PostClick", function()
+	if not (InCombatLockdown() then
+		this:SetAttribute("unit", "target")
+	end
+end);
+
+
+------------------------------------------------------------------------------------------------------
+-- MENU DES BUFFS
+------------------------------------------------------------------------------------------------------
+
+-- Creaton du bouton d'ouverture du menu
+local frame = CreateFrame("Button", "NecrosisBuffMenuButton", UIParent, "SecureAnchorUpDownTemplate");
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetWidth(34);
+frame:SetHeight(34);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\BuffMenuButton-01");
+frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\BuffMenuButton-02");
+frame:RegisterForDrag("LeftButton");
+frame:RegisterForClicks("AnyUp");
+frame:Hide();
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Buff", "ANCHOR_RIGHT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function()
+	if not NecrosisLockServ then
+		Necrosis_OnDragStart(this);
+	end
+end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+-- Header du bouton
+_ = CreateFrame("Frame", "NecrosisBuffMenu0", NecrosisBuffMenuButton, "SecureStateHeaderTemplate");
+
+-- Boutons du menu des buffs
+local BuffName = {"Armor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Banish", "FelArmor", "Enslave"};
+for i, v in ipairs(BuffName) do
+	-- Creaton du bouton
+	local frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate");
+
+	-- Définition de ses attributs
+	frame:SetMovable(true);
+	frame:EnableMouse(true);
+	frame:SetWidth(40);
+	frame:SetHeight(40);
+	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-01");
+	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-02");
+	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+	frame:Hide();
+
+	-- Edition des scripts associés au bouton
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, v, "ANCHOR_RIGHT"); end);
+	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+end
+
+-- Attributs spéciaux pour les buffs castables sur les autres joueurs
+for i = 2, 3, 1 do
+	local f = _G["NecrosisBuffMenu"..i];
+
+	f:SetScript("PreClick", function()
+		if not (InCombatLockdown() or UnitIsFriend("player","target")) then
+			this:SetAttribute("unit", "player");
+		end
 	end);
-SpellTimerButton:SetScript("OnLeave", function() GameTooltip:Hide(); end);
-SpellTimerButton:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
-SpellTimerButton:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
-SpellTimerButton:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+	f:SetScript("PostClick", function()
+		if not (InCombatLockdown() then
+			this:SetAttribute("unit", "target")
+		end
+	end);
+end
+
+
+------------------------------------------------------------------------------------------------------
+-- MENU DES DEMONS
+------------------------------------------------------------------------------------------------------
+
+-- Creaton du bouton d'ouverture du menu
+local frame = CreateFrame("Button", "NecrosisPetMenuButton", UIParent, "SecureAnchorUpDownTemplate");
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetWidth(34);
+frame:SetHeight(34);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\PetMenuButton-01");
+frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\PetMenuButton-02");
+frame:RegisterForDrag("LeftButton");
+frame:RegisterForClicks("AnyUp");
+frame:Hide();
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Pet", "ANCHOR_RIGHT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function()
+	if not NecrosisLockServ then
+		Necrosis_OnDragStart(this);
+	end
+end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+-- Header du bouton
+_ = CreateFrame("Frame", "NecrosisPetMenu0", NecrosisPetMenuButton, "SecureStateHeaderTemplate");
+
+-- Boutons du menu des démons
+local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Infernal", "Doomguard", "Enslave", "Sacrifice", "Felguard"};
+for i, v in ipairs(PetName) do
+	-- Creaton du bouton
+	local frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate");
+
+	-- Définition de ses attributs
+	frame:SetMovable(true);
+	frame:EnableMouse(true);
+	frame:SetWidth(40);
+	frame:SetHeight(40);
+	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-01");
+	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-02");
+	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+	frame:Hide();
+
+	-- Edition des scripts associés au bouton
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, v, "ANCHOR_RIGHT"); end);
+	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+end
+
+
+------------------------------------------------------------------------------------------------------
+-- MENU DES MALEDICTIONS
+------------------------------------------------------------------------------------------------------
+
+-- Creaton du bouton d'ouverture du menu
+local frame = CreateFrame("Button", "NecrosisCurseMenuButton", UIParent, "SecureAnchorUpDownTemplate");
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetWidth(34);
+frame:SetHeight(34);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\CurseMenuButton-01");
+frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\CurseMenuButton-02");
+frame:RegisterForDrag("LeftButton");
+frame:RegisterForClicks("AnyUp");
+frame:Hide();
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Curse", "ANCHOR_RIGHT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function()
+	if not NecrosisLockServ then
+		Necrosis_OnDragStart(this);
+	end
+end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+-- Header du bouton
+_ = CreateFrame("Frame", "NecrosisCurseMenu0", NecrosisCurseMenuButton, "SecureStateHeaderTemplate");
+
+-- Boutons du menu des malédictions
+local CurseName = {"Amplify", "Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"};
+for i, v in ipairs(CurseName) do
+	-- Creaton du bouton
+	local frame = CreateFrame("Button", "NecrosisCurseMenu"..i, UIParent, "SecureActionButtonTemplate");
+
+	-- Définition de ses attributs
+	frame:SetMovable(true);
+	frame:EnableMouse(true);
+	frame:SetWidth(40);
+	frame:SetHeight(40);
+	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-01");
+	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..v.."-02");
+	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+	frame:Hide();
+
+	-- Edition des scripts associés au bouton
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, v, "ANCHOR_RIGHT"); end);
+	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+end
+
+
+------------------------------------------------------------------------------------------------------
+-- BOUTONS SPECIAUX POPUP
+------------------------------------------------------------------------------------------------------
+
+-- Creation du bouton de ShadowTrance
+local frame = CreateFrame("Button", "NecrosisShadowTranceButton", UIParent);
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetFrameStrata("BACKGROUND");
+frame:SetWidth(40);
+frame:SetHeight(40);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowTrance-Icon");
+frame:RegisterForDrag("LeftButton");
+frame:RegisterForClicks("AnyUp");
+frame:Hide();
+
+-- Création du compte à rebours
+local FontString = frame:CreateFontString("NecrosisShadowTranceTimer", nil, "GameFontNormal");
+
+-- Définition de ses attributs
+FontString:SetPoint("CENTER");
+FontString:SetTextColor(1, 1, 1);
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "ShadowTrance", "ANCHOR_RIGHT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+
+-- Creation du bouton de BackLash
+local frame = CreateFrame("Button", "NecrosisBacklashButton", UIParent);
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetFrameStrata("BACKGROUND");
+frame:SetWidth(40);
+frame:SetHeight(40);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Backlash-Icon");
+frame:RegisterForDrag("LeftButton");
+frame:Hide();
+
+-- Création du compte à rebours
+local FontString = frame:CreateFontString("NecrosisBacklashTimer", nil, "GameFontNormal");
+
+-- Définition de ses attributs
+FontString:SetPoint("CENTER");
+FontString:SetTextColor(1, 1, 1);
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Backlash", "ANCHOR_RIGHT"); end);
+frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+
+-- Creation du bouton de détection des cibles banissables / asservissables
+local frame = CreateFrame("Button", "NecrosisCreatureAlertButton", UIParent);
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetFrameStrata("BACKGROUND");
+frame:SetWidth(40);
+frame:SetHeight(40);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ElemAlert");
+frame:RegisterForDrag("LeftButton");
+frame:Hide();
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
+
+
+-- Creation du bouton de détection des cibles protégées contre la peur
+local frame = CreateFrame("Button", "NecrosisAntiFearButton", UIParent);
+
+-- Définition de ses attributs
+frame:SetMovable(true);
+frame:EnableMouse(true);
+frame:SetFrameStrata("BACKGROUND");
+frame:SetWidth(40);
+frame:SetHeight(40);
+frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\AntiFear-1");
+frame:RegisterForDrag("LeftButton");
+frame:Hide();
+
+-- Edition des scripts associés au bouton
+frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
+frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
+frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);

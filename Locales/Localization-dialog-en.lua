@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ function Necrosis_Localization_Dialog_En()
 		["Armor"] = {
 			Label = "|c00FFFFFFDemon Armor|r"
 		},
-		["Fel Armor"] = {
+		["FelArmor"] = {
 			Label = "|c00FFFFFFFel Armor|r"
 		},
 		["Invisible"] = {
@@ -136,13 +136,13 @@ function Necrosis_Localization_Dialog_En()
 		["Imp"] = {
 			Label = "|c00FFFFFFImp|r"
 		},
-		["Void"] = {
+		["Voidwalker"] = {
 			Label = "|c00FFFFFFVoidwalker|r"
 		},
 		["Succubus"] = {
 			Label = "|c00FFFFFFSuccubus|r"
 		},
-		["Fel"] = {
+		["Felhunter"] = {
 			Label = "|c00FFFFFFFelhunter|r"
 		},
 		["Felguard"] = {
