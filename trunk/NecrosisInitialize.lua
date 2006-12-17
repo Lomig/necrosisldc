@@ -86,7 +86,6 @@ function Necrosis_Initialize()
 	-----------------------------------------------------------
 	-- Exécution des fonctions de démarrage
 	-----------------------------------------------------------
-
 	-- Affichage d'un message sur la console
 	Necrosis_Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER");
 	-- Création de la liste des sorts disponibles
@@ -95,6 +94,12 @@ function Necrosis_Initialize()
 	Necrosis_SoulshardSetup();
 	-- Création des menus de buff et d'invocation
 	Necrosis_CreateMenu();
+	-- Les boutons sont-ils vérouillés sur le Shard ?
+	Necrosis_ButtonSetup();
+
+	-- Enregistrement de la commande console
+	SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler;
+	SLASH_NecrosisCommand1 = "/necro"
 
 	-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
 	if (NecrosisConfig.SoulshardSort) then NecrosisSoulshardSort_Button:SetChecked(1); end
@@ -195,7 +200,6 @@ function Necrosis_Initialize()
 	NecrosisListSpells:ClearAllPoints();
 	NecrosisListSpells:SetJustifyH(NecrosisConfig.SpellTimerJust);
 	NecrosisListSpells:SetPoint("TOP"..NecrosisConfig.SpellTimerJust, "NecrosisSpellTimerButton", "CENTER", NecrosisConfig.SpellTimerPos * 23, 5);
-	ShowUIPanel(NecrosisButton);
 
 	-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
 	if NecrosisConfig.SpellTimerJust == -23 then
@@ -215,8 +219,7 @@ function Necrosis_Initialize()
 		NecrosisSpellTimerButton:RegisterForDrag("LeftButton");
 	end
 
-	-- Les boutons sont-ils vérouillés sur le Shard ?
-	Necrosis_ButtonSetup();
+
 
 	-- Si pas d'objet en distance, on tente d'en équiper un
 	Necrosis_MoneyToggle();

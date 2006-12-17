@@ -97,7 +97,7 @@
 						NecrosisConfig.NecrosisAngle = this:GetValue()
 						local x, y = NecrosisButton:GetCenter()
 						GameTooltip:SetText(this:GetValue())
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -130,7 +130,7 @@
 							NecrosisConfig.NecrosisButtonScale = this:GetValue()
 							NecrosisButton:SetPoint("CENTER", "UIParent", "BOTTOMLEFT", NBx / (NecrosisConfig.NecrosisButtonScale / 100), NBy / (NecrosisConfig.NecrosisButtonScale / 100))
 							NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale / 100)
-							Necrosis_UpdateButtonsScale()
+							Necrosis_ButtonSetup()
 						end
 					</OnValueChanged>
 				</Scripts>
@@ -255,7 +255,7 @@
 						if (this:GetChecked()) then
 							NecrosisConfig.NecrosisLockServ = true
 							Necrosis_ClearAllPoints()
-							Necrosis_UpdateButtonsScale()
+							Necrosis_ButtonSetup()
 							Necrosis_NoDrag()
 							if not NecrosisConfig.NoDragAll then
 								NecrosisButton:RegisterForDrag("LeftButton")

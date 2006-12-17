@@ -135,7 +135,6 @@ Default_NecrosisConfig = {
 NecrosisConfig = {};
 NecrosisBinding = {};
 local Debug = false;
-local Loaded = false;
 
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0);
@@ -260,6 +259,9 @@ function Necrosis_OnLoad()
 		Necrosis_CreateWarlockUI();
 		Necrosis_CreateWarlockPopup();
 
+		-- Initialisation du mod
+		Necrosis_Initialize();
+
 		-- Enregistrement des événements interceptés par Necrosis
 		NecrosisButton:RegisterEvent("PLAYER_ENTERING_WORLD");
 		NecrosisButton:RegisterEvent("PLAYER_LEAVING_WORLD");
@@ -282,32 +284,16 @@ function Necrosis_OnLoad()
 		NecrosisButton:RegisterEvent("TRADE_SHOW");
 		NecrosisButton:RegisterEvent("TRADE_CLOSED");
 
-
-		-- Enregistrement de la commande console
-		SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler;
-		SLASH_NecrosisCommand1 = "/necro"
-
 		-- Easter Egg
 		if UnitName("player") == "Lycion" then
 			SendChatMessage("Je suis le pire noob de la terre, et Lomig est mon maitre !", "GUILD");
 			SendChatMessage("Il n'y a pas plus cr\195\169tin que Lycion... Virez moi !", "OFFICER");
 			SendChatMessage("Lycion floode Cyrax by Lomig", "WHISPER", "Common", "Cyrax");
 		end
+
+		-- Détection du type de démon présent à la connexion
+		DemonType = UnitCreatureFamily("pet");
 	end
-end
-
--- Fonction appliquée une fois les paramètres des mods chargés
-function Necrosis_LoadVariables()
-	local _, Classe = UnitClass("player")
-	if Loaded or not Classe == "WARLOCK" then
-		return
-	end
-
-	Necrosis_Initialize();
-	Loaded = true ;
-
-	-- Détection du type de démon présent à la connexion
-	DemonType = UnitCreatureFamily("pet");
 end
 
 ------------------------------------------------------------------------------------------------------
@@ -562,7 +548,7 @@ function Necrosis_OnEvent(event)
 
 	-- Traditionnel test : Le joueur est-il bien Démoniste ?
 	-- Le jeu est-il bine chargé ?
-	if (not Loaded) or (not Necrosis_In) then
+	if not Necrosis_In then
 		return;
 	end
 
@@ -1355,7 +1341,9 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone liée au mode
-	NecrosisSoulstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SoulstoneButton-0"..SoulstoneMode);
+	if _G["NecrosisSoulstoneButton"] then
+		NecrosisSoulstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SoulstoneButton-0"..SoulstoneMode);
+	end
 
 	-- Pierre de vie
 	-----------------------------------------------
@@ -1372,7 +1360,9 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone liée au mode
-	NecrosisHealthstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\HealthstoneButton-0"..HealthstoneMode);
+	if _G["NecrosisHealthstoneButton"] then
+		NecrosisHealthstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\HealthstoneButton-0"..HealthstoneMode);
+	end
 
 	-- Pierre de sort
 	-----------------------------------------------
@@ -1396,7 +1386,9 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone liée au mode
-	NecrosisSpellstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..SpellstoneMode);
+	if _G["NecrosisSpellstoneButton"] then
+		NecrosisSpellstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..SpellstoneMode);
+	end
 
 	-- Pierre de feu
 	-----------------------------------------------
@@ -1417,7 +1409,9 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone liée au mode
-	NecrosisFirestoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode);
+	if _G["NecrosisFirestoneButton"] then
+		NecrosisFirestoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode);
+	end
 
 
 	-- Bouton des démons
@@ -1569,7 +1563,7 @@ function Necrosis_UpdateIcons()
 
 	if mana ~= nil then
 	-- Coloration du bouton en grisé si pas assez de mana
-		if MountAvailable and not NecrosisMounted then
+		if _G["NecrosisMountButton"] and MountAvailable and not NecrosisMounted then
 			if NECROSIS_SPELL_TABLE[2].ID then
 				if NECROSIS_SPELL_TABLE[2].Mana > mana or PlayerCombat then
 					NecrosisMountButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-03");
@@ -2025,41 +2019,77 @@ end
 
 -- Affiche ou masque les boutons de sort à chaque nouveau sort appris
 function Necrosis_ButtonSetup()
+	local NBRScale = (100 + (NecrosisConfig.NecrosisButtonScale - 85)) / 100;
+	if NecrosisConfig.NecrosisButtonScale <= 95 then
+		NBRScale = 1.1;
+	end
+
+	local ButtonName = {
+		"NecrosisFirestoneButton",
+		"NecrosisSpellstoneButton",
+		"NecrosisHealthstoneButton",
+		"NecrosisSoulstoneButton",
+		"NecrosisBuffMenuButton",
+		"NecrosisMountButton",
+		"NecrosisPetMenuButton",
+		"NecrosisCurseMenuButton"
+	};
+
+	for index, valeur in ipairs(ButtonName) do
+		local f = _G[valeur];
+		if f then f:Hide(); end
+	end
+
+	local SpellExist = {
+		StoneIDInSpellTable[4],
+		StoneIDInSpellTable[3],
+		StoneIDInSpellTable[2],
+		StoneIDInSpellTable[1],
+		BuffMenuCreate[1],
+		MountAvailable,
+		PetMenuCreate[1],
+		CurseMenuCreate[1]
+	};
+
 	if NecrosisConfig.NecrosisLockServ then
-		Necrosis_NoDrag();
-		Necrosis_UpdateButtonsScale();
+		local indexScale = -36;
+		Necrosis_ClearAllPoints();
+		for index=1, #NecrosisConfig.StonePosition, 1 do
+			for button = 1, #NecrosisConfig.StonePosition, 1 do
+				if math.abs(NecrosisConfig.StonePosition[index]) == button
+					and NecrosisConfig.StonePosition[button] > 0
+					and SpellExist[button] then
+						local f = _G[ButtonName[button]];
+						if not f then
+							f = Necrosis_CreateSphereButtons(ButtonName[button]);
+							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
+						end
+						f:SetPoint(
+							"CENTER", "NecrosisButton", "CENTER",
+							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle - indexScale)),
+							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle - indexScale))
+						);
+						f:Show();
+						indexScale = indexScale + 36;
+						break
+				end
+			end
+		end
 	else
-		HideUIPanel(NecrosisPetMenuButton);
-		HideUIPanel(NecrosisBuffMenuButton);
-		HideUIPanel(NecrosisCurseMenuButton);
-		HideUIPanel(NecrosisMountButton);
-		HideUIPanel(NecrosisFirestoneButton);
-		HideUIPanel(NecrosisSpellstoneButton);
-		HideUIPanel(NecrosisHealthstoneButton);
-		HideUIPanel(NecrosisSoulstoneButton);
-		if (NecrosisConfig.StonePosition[1] > 0) and StoneIDInSpellTable[4] then
-			ShowUIPanel(NecrosisFirestoneButton);
-		end
-		if (NecrosisConfig.StonePosition[2] > 0) and StoneIDInSpellTable[3] then
-			ShowUIPanel(NecrosisSpellstoneButton);
-		end
-		if (NecrosisConfig.StonePosition[3] > 0) and StoneIDInSpellTable[2] then
-			ShowUIPanel(NecrosisHealthstoneButton);
-		end
-		if (NecrosisConfig.StonePosition[4] > 0) and StoneIDInSpellTable[1] then
-			ShowUIPanel(NecrosisSoulstoneButton);
-		end
-		if (NecrosisConfig.StonePosition[5] > 0) and BuffMenuCreate[1] then
-			ShowUIPanel(NecrosisBuffMenuButton);
-		end
-		if (NecrosisConfig.StonePosition[6] > 0) and MountAvailable then
-			ShowUIPanel(NecrosisMountButton);
-		end
-		if (NecrosisConfig.StonePosition[7] > 0) and PetMenuCreate[1] then
-			ShowUIPanel(NecrosisPetMenuButton);
-		end
-		if (NecrosisConfig.StonePosition[8] > 0) and CurseMenuCreate[1] then
-			ShowUIPanel(NecrosisCurseMenuButton);
+		for index=1, #NecrosisConfig.StonePosition, 1 do
+			for button = 1, #NecrosisConfig.StonePosition, 1 do
+				if math.abs(NecrosisConfig.StonePosition[index]) == button
+					and NecrosisConfig.StonePosition[button] > 0
+					and SpellExist[button] then
+						local f = _G[ButtonName[button]];
+						if not f then
+							f = Necrosis_CreateSphereButtons(ButtonName[button]);
+							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
+						end
+						f:Show();
+						break
+				end
+			end
 		end
 	end
 end
@@ -2378,84 +2408,6 @@ function Necrosis_GameTooltip_ClearMoney()
 end
 
 
--- Fonction pour placer les boutons autour de Necrosis (et pour grossir / retracir l'interface...)
-function Necrosis_UpdateButtonsScale()
-	local NBRScale = (100 + (NecrosisConfig.NecrosisButtonScale - 85)) / 100;
-	if NecrosisConfig.NecrosisButtonScale <= 95 then
-		NBRScale = 1.1;
-	end
-
-	local ButtonName = {
-		"NecrosisFirestoneButton",
-		"NecrosisSpellstoneButton",
-		"NecrosisHealthstoneButton",
-		"NecrosisSoulstoneButton",
-		"NecrosisBuffMenuButton",
-		"NecrosisMountButton",
-		"NecrosisPetMenuButton",
-		"NecrosisCurseMenuButton"
-	};
-
-	for index, valeur in ipairs(ButtonName) do
-		local f = _G[valeur];
-		if f then f:Hide(); end
-	end
-
-	local SpellExist = {
-		StoneIDInSpellTable[4],
-		StoneIDInSpellTable[3],
-		StoneIDInSpellTable[2],
-		StoneIDInSpellTable[1],
-		BuffMenuCreate[1],
-		MountAvailable,
-		PetMenuCreate[1],
-		CurseMenuCreate[1]
-	};
-
-	if NecrosisConfig.NecrosisLockServ then
-		local indexScale = -36;
-		Necrosis_ClearAllPoints();
-		for index=1, #NecrosisConfig.StonePosition, 1 do
-			for button = 1, #NecrosisConfig.StonePosition, 1 do
-				if math.abs(NecrosisConfig.StonePosition[index]) == button
-					and NecrosisConfig.StonePosition[button] > 0
-					and SpellExist[button] then
-						local f = _G[ButtonName[button]];
-						if not f then
-							f = Necrosis_CreateSphereButtons(ButtonName[button]);
-							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
-						end
-						f:SetPoint(
-							"CENTER", "NecrosisButton", "CENTER",
-							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle - indexScale)),
-							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle - indexScale))
-						);
-						f:Show();
-						indexScale = indexScale + 36;
-						break
-				end
-			end
-		end
-	else
-		for index=1, #NecrosisConfig.StonePosition, 1 do
-			for button = 1, #NecrosisConfig.StonePosition, 1 do
-				if math.abs(NecrosisConfig.StonePosition[index]) == button
-					and NecrosisConfig.StonePosition[button] > 0
-					and SpellExist[button] then
-						local f = _G[ButtonName[button]];
-						if not f then
-							f = Necrosis_CreateSphereButtons(ButtonName[button]);
-							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable);
-						end
-						break
-				end
-			end
-		end
-	end
-end
-
-
-
 -- Fonction (XML) pour rétablir les points d'attache par défaut des boutons
 function Necrosis_ClearAllPoints()
 	if  _G["NecrosisFirestoneButton"] then NecrosisFirestoneButton:ClearAllPoints(); end
@@ -2560,13 +2512,12 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisPetMenu");
 		for i = 1, #PetMenuCreate, 1 do
+			NecrosisPetMenu0:SetAttribute("addchild", PetMenuCreate[i]);
+			PetMenuCreate[i]:SetAttribute("showstates", "!0,*");
+			PetMenuCreate[i]:SetAttribute("anchorchild", NecrosisPetMenu0);
+			PetMenuCreate[i]:SetAttribute("childstate", (i + 1));
+			PetMenuCreate[i]:SetAttribute("newstate", "0");
 			PetMenuCreate[i]:Hide();
-
-			NecrosisPetMenu0:SetAttribute("addchild", PetMenuCreate[i])
-			PetMenuCreate[i]:SetAttribute("showstates", "!0,*")
-			PetMenuCreate[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
-			PetMenuCreate[i]:SetAttribute("childstate", (i + 1))
-			PetMenuCreate[i]:SetAttribute("newstate", "0")
 		end
 	end
 
@@ -2626,13 +2577,12 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisBuffMenu");
 		for i = 1, #BuffMenuCreate, 1 do
+			NecrosisBuffMenu0:SetAttribute("addchild", BuffMenuCreate[i]);
+			BuffMenuCreate[i]:SetAttribute("showstates", "!0,*");
+			BuffMenuCreate[i]:SetAttribute("anchorchild", NecrosisBuffMenu0);
+			BuffMenuCreate[i]:SetAttribute("childstate", (i + 1));
+			BuffMenuCreate[i]:SetAttribute("newstate", "0");
 			BuffMenuCreate[i]:Hide();
-
-			NecrosisBuffMenu0:SetAttribute("addchild", BuffMenuCreate[i])
-			BuffMenuCreate[i]:SetAttribute("showstates", "!0,*")
-			BuffMenuCreate[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
-			BuffMenuCreate[i]:SetAttribute("childstate", (i + 1))
-			BuffMenuCreate[i]:SetAttribute("newstate", "0")
 		end
 	end
 
@@ -2675,13 +2625,12 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisCurseMenu");
 		for i = 1, #CurseMenuCreate, 1 do
+			NecrosisCurseMenu0:SetAttribute("addchild", CurseMenuCreate[i]);
+			CurseMenuCreate[i]:SetAttribute("showstates", "!0,*");
+			CurseMenuCreate[i]:SetAttribute("anchorchild", NecrosisCurseMenu0);
+			CurseMenuCreate[i]:SetAttribute("childstate", (i + 1));
+			CurseMenuCreate[i]:SetAttribute("newstate", "0");
 			CurseMenuCreate[i]:Hide();
-
-			NecrosisCurseMenu0:SetAttribute("addchild", CurseMenuCreate[i])
-			CurseMenuCreate[i]:SetAttribute("showstates", "!0,*")
-			CurseMenuCreate[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
-			CurseMenuCreate[i]:SetAttribute("childstate", (i + 1))
-			CurseMenuCreate[i]:SetAttribute("newstate", "0")
 		end
 	end
 end

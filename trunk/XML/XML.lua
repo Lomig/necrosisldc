@@ -53,7 +53,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal");
 	frame:SetPushedTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Pushed");
 	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Highlight");
-	frame:Hide();
+	frame:Show();
 
 	-- Création de la liste des Timers Textes
 	local FontString = frame:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
@@ -91,7 +91,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Shard");
 	frame:RegisterForDrag("LeftButton");
 	frame:RegisterForClicks("AnyUp");
-	frame:Hide();
+	frame:Show();
 
 	-- Création du compteur de fragments d'âme
 	local FontString = frame:CreateFontString("NecrosisShardCount", nil, "GameFontNormal");
@@ -136,7 +136,7 @@ local function Necrosis_CreateStoneButton(stone)
 	end
 	frame:RegisterForDrag("LeftButton");
 	frame:RegisterForClicks("AnyUp");
-	frame:Hide();
+	frame:Show();
 
 	-- Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, stone, "ANCHOR_LEFT"); end);
@@ -185,7 +185,7 @@ local function Necrosis_CreateMenuButton(button)
 	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..button.."Button-02");
 	frame:RegisterForDrag("LeftButton");
 	frame:RegisterForClicks("AnyUp");
-	frame:Hide();
+	frame:Show();
 
 	-- Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, button, "ANCHOR_RIGHT"); end);
@@ -405,10 +405,10 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Necrosis_CreateSphereButtons(ButtonName)
-	ButtonName = string.gsub(string.gsub(ButtonName, "Necrosis", ""), "Button", "");
-	if ButtonName == "BuffMenu" or ButtonName == "PetMenu" or ButtonName == "CurseMenu" then
-		return Necrosis_CreateMenuButton(ButtonName);
+	local ShortButtonName = string.gsub(string.gsub(ButtonName, "Necrosis", ""), "Button", "");
+	if ShortButtonName == "BuffMenu" or ShortButtonName == "PetMenu" or ShortButtonName == "CurseMenu" then
+		return Necrosis_CreateMenuButton(ShortButtonName);
 	else
-		return Necrosis_CreateStoneButton(ButtonName);
+		return Necrosis_CreateStoneButton(ShortButtonName);
 	end
 end
