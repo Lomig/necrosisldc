@@ -1,12 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Frame name="Necrosis_Variable_Frame" hidden="false">
 		<Scripts>
-			<OnUpdate>
-				Necrosis_LoadVariables()
-			</OnUpdate>
 			<OnLoad>
-				Necrosis_OnLoad()
+				this:RegisterEvent("PLAYER_LOGIN")
+				this:RegisterEvent("VARIABLES_LOADED")
 			</OnLoad>
+			<OnEvent>
+				Necrosis_OnLoad()
+			</OnEvent>
 		</Scripts>
 	</Frame>
 

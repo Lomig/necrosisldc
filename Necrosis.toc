@@ -10,7 +10,15 @@
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: NecrosisConfig
+Necrosis.xml
+
 NecrosisGeneral.xml
+NecrosisTimer.xml
+NecrosisShardMenu.xml
+NecrosisMessageMenu.xml
+NecrosisButtonMenu.xml
+NecrosisTimerMenu.xml
+NecrosisGraphOptionMenu.xml
 
 Localization.lua
 
@@ -29,7 +37,6 @@ Speech-en.lua
 Speech-de.lua
 Speech-es.lua
 
-Necrosis.lua
 NecrosisInitialize.lua
 NecrosisMessage.lua
 NecrosisTimerFunction.lua
@@ -38,12 +45,7 @@ NecrosisGraphicalTimer.lua
 XML\Attributes.lua
 XML\XML.lua
 
-Necrosis.xml
-NecrosisTimer.xml
-NecrosisShardMenu.xml
-NecrosisMessageMenu.xml
-NecrosisButtonMenu.xml
-NecrosisTimerMenu.xml
-NecrosisGraphOptionMenu.xml
-
 ClickBinder.lua
+
+Necrosis.lua
+
