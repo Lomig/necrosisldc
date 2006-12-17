@@ -402,3 +402,7 @@ function Necrosis_CreateSphereButtons(ButtonName)
 		return Necrosis_CreateStoneButton(ButtonName);
 	end
 end
+
+Necrosis_CreateMenuButton("BuffMenu");
+Necrosis_CreateMenuButton("PetMenu");
+Necrosis_CreateMenuButton("CurseMenu");

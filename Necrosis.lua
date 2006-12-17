@@ -2398,7 +2398,7 @@ function Necrosis_UpdateButtonsScale()
 		Necrosis_ClearAllPoints();
 		for index, valeur in ipairs(ButtonName) do
 			local f = _G[valeur];
-			f:Hide();
+			if f then f:Hide(); end
 		end
 		local indexScale = -36;
 		local SpellExist = {
@@ -2438,38 +2438,38 @@ end
 
 -- Fonction (XML) pour rétablir les points d'attache par défaut des boutons
 function Necrosis_ClearAllPoints()
-	NecrosisFirestoneButton:ClearAllPoints();
-	NecrosisSpellstoneButton:ClearAllPoints();
-	NecrosisHealthstoneButton:ClearAllPoints();
-	NecrosisSoulstoneButton:ClearAllPoints();
-	NecrosisMountButton:ClearAllPoints();
-	NecrosisPetMenuButton:ClearAllPoints();
-	NecrosisBuffMenuButton:ClearAllPoints();
-	NecrosisCurseMenuButton:ClearAllPoints();
+	if  _G["NecrosisFirestoneButton"] then NecrosisFirestoneButton:ClearAllPoints(); end
+	if  _G["NecrosisSpellstoneButton"] then NecrosisSpellstoneButton:ClearAllPoints(); end
+	if  _G["NecrosisHealthstoneButton"] then NecrosisHealthstoneButton:ClearAllPoints(); end
+	if  _G["NecrosisSoulstoneButton"] then NecrosisSoulstoneButton:ClearAllPoints(); end
+	if  _G["NecrosisMountButton"] then NecrosisMountButton:ClearAllPoints(); end
+	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:ClearAllPoints(); end
+	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:ClearAllPoints(); end
+	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:ClearAllPoints(); end
 end
 
 -- Fonction (XML) pour étendre la propriété NoDrag() du bouton principal de Necrosis sur tout ses boutons
 function Necrosis_NoDrag()
-	NecrosisFirestoneButton:RegisterForDrag("");
-	NecrosisSpellstoneButton:RegisterForDrag("");
-	NecrosisHealthstoneButton:RegisterForDrag("");
-	NecrosisSoulstoneButton:RegisterForDrag("");
-	NecrosisMountButton:RegisterForDrag("");
-	NecrosisPetMenuButton:RegisterForDrag("");
-	NecrosisBuffMenuButton:RegisterForDrag("");
-	NecrosisCurseMenuButton:RegisterForDrag("");
+	if  _G["NecrosisFirestoneButton"] then NecrosisFirestoneButton:RegisterForDrag(""); end
+	if  _G["NecrosisSpellstoneButton"] then NecrosisSpellstoneButton:RegisterForDrag(""); end
+	if  _G["NecrosisHealthstoneButton"] then NecrosisHealthstoneButton:RegisterForDrag(""); end
+	if  _G["NecrosisSoulstoneButton"] then NecrosisSoulstoneButton:RegisterForDrag("");end 
+	if  _G["NecrosisMountButton"] then NecrosisMountButton:RegisterForDrag(""); end
+	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:RegisterForDrag(""); end
+	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:RegisterForDrag(""); end
+	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:RegisterForDrag(""); end
 end
 
 -- Fonction (XML) inverse de celle du dessus
 function Necrosis_Drag()
-	NecrosisFirestoneButton:RegisterForDrag("LeftButton");
-	NecrosisSpellstoneButton:RegisterForDrag("LeftButton");
-	NecrosisHealthstoneButton:RegisterForDrag("LeftButton");
-	NecrosisSoulstoneButton:RegisterForDrag("LeftButton");
-	NecrosisMountButton:RegisterForDrag("LeftButton");
-	NecrosisPetMenuButton:RegisterForDrag("LeftButton");
-	NecrosisBuffMenuButton:RegisterForDrag("LeftButton");
-	NecrosisCurseMenuButton:RegisterForDrag("LeftButton");
+	if  _G["NecrosisFirestoneButton"] then NecrosisFirestoneButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisSpellstoneButton"] then NecrosisSpellstoneButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisHealthstoneButton"] then NecrosisHealthstoneButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisSoulstoneButton"] then NecrosisSoulstoneButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisMountButton"] then NecrosisMountButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:RegisterForDrag("LeftButton"); end
+	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:RegisterForDrag("LeftButton"); end
 end
 
 
@@ -2504,23 +2504,25 @@ function Necrosis_CreateMenu()
 
 	local MenuID = {15, 3, 4, 5, 6, 7, 8, 30, 35, 44};
 	local ButtonID = {1, 2, 3, 4, 5, 10, 6, 7, 8, 9};
-	-- On ordonne et on affiche les boutons dans le menu des démons
-	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
-		for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
-				and NecrosisConfig.DemonSpellPosition[sort] > 0
-				and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
-					menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]];
-					menuVariable:ClearAllPoints();
-					menuVariable:SetPoint(
-						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
-						NecrosisConfig.PetMenuPos.x * 32,
-						NecrosisConfig.PetMenuPos.y * 32
-					);
-					PetButtonPosition = ButtonID[sort];
-					table.insert(PetMenuCreate, menuVariable);
-					break;
+	if  _G["NecrosisPetMenuButton"] then
+		-- On ordonne et on affiche les boutons dans le menu des démons
+		for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+			-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
+			for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+				if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
+					and NecrosisConfig.DemonSpellPosition[sort] > 0
+					and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
+						menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]];
+						menuVariable:ClearAllPoints();
+						menuVariable:SetPoint(
+							"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
+							NecrosisConfig.PetMenuPos.x * 32,
+							NecrosisConfig.PetMenuPos.y * 32
+						);
+						PetButtonPosition = ButtonID[sort];
+						table.insert(PetMenuCreate, menuVariable);
+						break;
+				end
 			end
 		end
 	end
@@ -2548,6 +2550,7 @@ function Necrosis_CreateMenu()
 	-- On ordonne et on affiche les boutons dans le menu des buffs
 	local MenuID = {47, 32, 33, 34, 37, 39, 38, 43, 35, 9};
 	local ButtonID = {10, 2, 3, 4, 5, 6, 7, 8, 11, 9};
+	if  _G["NecrosisBuffMenuButton"] then
 	for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		-- Si le buff existe, on affiche le bouton dans le menu des buffs
 		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
@@ -2581,6 +2584,7 @@ function Necrosis_CreateMenu()
 			end
 		end
 	end
+	end
 
 	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
 	if BuffMenuCreate[1] then
@@ -2605,6 +2609,7 @@ function Necrosis_CreateMenu()
 	-- On ordonne et on affiche les boutons dans le menu des malédictions
 	-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 	local MenuID = {42, 23, 22, 24, 25, 40, 26, 27, 16};
+	if  _G["NecrosisCurseMenuButton"] then
 	for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
@@ -2623,6 +2628,7 @@ function Necrosis_CreateMenu()
 					break
 			end
 		end
+	end
 	end
 
 	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles

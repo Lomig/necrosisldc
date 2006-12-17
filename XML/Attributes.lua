@@ -42,6 +42,7 @@ local _G = getfenv(0);
 
 -- On crée le menu sécurisé pour les différents sorts
 function Necrosis_MenuAttribute()
+	if  _G["NecrosisBuffMenuButton"] then
 	-- Déclaration sécurisée du bouton des buffs
 	NecrosisBuffMenuButton:SetAttribute("*childraise*", true);
 
@@ -71,8 +72,9 @@ function Necrosis_MenuAttribute()
 	NecrosisBuffMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
 	NecrosisBuffMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	NecrosisBuffMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	end
 
-
+	if  _G["NecrosisPetMenuButton"] then
 	-- Déclaration sécurisée du bouton des démons
 	NecrosisPetMenuButton:SetAttribute("*childraise*", true);
 
@@ -102,8 +104,9 @@ function Necrosis_MenuAttribute()
 	NecrosisPetMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
 	NecrosisPetMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	NecrosisPetMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	end
 
-
+	if  _G["NecrosisCurseMenuButton"] then
 	-- Déclaration sécurisée du bouton des malédictions
 	NecrosisCurseMenuButton:SetAttribute("*childraise*", true);
 
@@ -133,6 +136,7 @@ function Necrosis_MenuAttribute()
 	NecrosisCurseMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
 	NecrosisCurseMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	NecrosisCurseMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	end
 end
 
 
@@ -250,22 +254,24 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 	local itemName = {"Soulstone", "Healthstone", "Spellstone", "Firestone" };
 	for i = 1, #StoneIDInSpellTable, 1 do
 		local f = _G["Necrosis"..itemName[i].."Button"];
-		f:SetAttribute("type2", "spell");
-		f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name.."("..NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Rank..")");
+		if f then
+			f:SetAttribute("type2", "spell");
+			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name.."("..NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Rank..")");
 
-		-- On prépare le tableau des raccourcis claviers
-		table.insert(
-			NecrosisBinding,
-			{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name, "CLICK Necrosis"..itemName[i].."Button:RightButton"}
-		);
-		table.insert(
-			NecrosisBinding,
-			{NECROSIS_ITEM[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
-		);
+			-- On prépare le tableau des raccourcis claviers
+			table.insert(
+				NecrosisBinding,
+				{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name, "CLICK Necrosis"..itemName[i].."Button:RightButton"}
+			);
+			table.insert(
+				NecrosisBinding,
+				{NECROSIS_ITEM[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
+			);
+		end
 	end
 
 	-- Pour la monture
-	if Steed then
+	if Steed and  _G["NecrosisMountButton"] then
 		NecrosisMountButton:SetAttribute("type1", "spell");
 		NecrosisMountButton:SetAttribute("type2", "spell");
 		-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
