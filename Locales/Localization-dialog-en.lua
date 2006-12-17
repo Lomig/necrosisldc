@@ -188,15 +188,15 @@ function Necrosis_Localization_Dialog_En()
 			Label = "|c00FFFFFFSteed|r",
 			Text = "Right click to cast Rank 1"
 		},
-		["Buff"] = {
+		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpell Menu|r",
 			Text = "Right click to keep the menu open"
 		},
-		["Pet"] = {
+		["PetMenu"] = {
 			Label = "|c00FFFFFFDemon Menu|r",
 			Text = "Right click to keep the menu open"
 		},
-		["Curse"] = {
+		["CurseMenu"] = {
 			Label = "|c00FFFFFFCurse Menu|r",
 			Text = "Right click to keep the menu open"
 		},

@@ -188,15 +188,15 @@ function Necrosis_Localization_Dialog_De()
 			Label = "|c00FFFFFFMount|r",
 			Text = "Rechtsklick f\195\188r Rang 1"
 		},
-		["Buff"] = {
+		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpruch Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
 		},
-		["Pet"] = {
+		["PetMenu"] = {
 			Label = "|c00FFFFFFD\195\164monen Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
 		},
-		["Curse"] = {
+		["CurseMenu"] = {
 			Label = "|c00FFFFFFFluch Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
 		},

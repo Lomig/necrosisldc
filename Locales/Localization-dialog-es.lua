@@ -188,15 +188,15 @@ function Necrosis_Localization_Dialog_Es()
 			Label = "|c00FFFFFFCorcel|r",
 			Text = "Right click to cast Rank 1"
 		},
-		["Buff"] = {
+		["BuffMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Hechizos|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto"
 		},
-		["Pet"] = {
+		["PetMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Demonio|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto"
 		},
-		["Curse"] = {
+		["CurseMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Maldici\195\179n|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto"
 		},
