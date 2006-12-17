@@ -187,15 +187,15 @@ function Necrosis_Localization_Dialog_Fr()
 			Label = "|c00FFFFFFMonture|r",
 			Text = "Clic droit pour Rang 1"
 		},
-		["Buff"] = {
+		["BuffMenu"] = {
 			Label = "|c00FFFFFFMenu des sorts|r",
 			Text = "Clic droit pour laisser ouvert",
 		},
-		["Pet"] = {
+		["PetMenu"] = {
 			Label = "|c00FFFFFFMenu des d\195\169mons|r",
 			Text = "Clic droit pour laisser ouvert",
 		},
-		["Curse"] = {
+		["CurseMenu"] = {
 			Label = "|c00FFFFFFMenu des mal\195\169dictions|r",
 			Text = "Clic droit pour laisser ouvert",
 		},

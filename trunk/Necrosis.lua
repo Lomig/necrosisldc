@@ -252,10 +252,10 @@ local Necrosis_In = true;
 ------------------------------------------------------------------------------------------------------
 
 
--- Fonction appliqu? au chargement
+-- Fonction appliquée au chargement
 function Necrosis_OnLoad()
 
-	-- Enregistrement des ??ements intercept? par Necrosis
+	-- Enregistrement des éléments interceptés par Necrosis
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
 	this:RegisterEvent("PLAYER_LEAVING_WORLD");
 	NecrosisButton:RegisterEvent("BAG_UPDATE");
@@ -292,7 +292,7 @@ function Necrosis_OnLoad()
 	end
 end
 
--- Fonction appliqu? une fois les param?res des mods charg?
+-- Fonction appliquée une fois les paramètres des mods chargés
 function Necrosis_LoadVariables()
 	if Loaded or UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		return
@@ -301,7 +301,7 @@ function Necrosis_LoadVariables()
 	Necrosis_Initialize();
 	Loaded = true ;
 
-	-- D?ection du type de d?on pr?ent ?la connexion
+	-- Détection du type de démon présent à la connexion
 	DemonType = UnitCreatureFamily("pet");
 end
 
@@ -2417,10 +2417,13 @@ function Necrosis_UpdateButtonsScale()
 					and NecrosisConfig.StonePosition[button] > 0
 					and SpellExist[button] then
 						local f = _G[ButtonName[button]];
+						if not f then
+							f = Necrosis_CreateSphereButtons(ButtonName[button]);
+						end
 						f:SetPoint(
 							"CENTER", "NecrosisButton", "CENTER",
-							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)),
-							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale))
+							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle - indexScale)),
+							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle - indexScale))
 						);
 						f:Show();
 						indexScale = indexScale + 36;
