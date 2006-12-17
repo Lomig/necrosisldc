@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ function Necrosis_Localization_Dialog_De()
 		["Armor"] = {
 			Label = "|c00FFFFFFD\195\164monenr\195\188stung|r"
 		},
-		["Fel Armor"] = {
+		["FelArmor"] = {
 			Label = "|c00FFFFFFTeufelsr\195\188stung|r"
 		},
 		["Invisible"] = {
@@ -136,13 +136,13 @@ function Necrosis_Localization_Dialog_De()
 		["Imp"] = {
 			Label = "|c00FFFFFFWichtel|r"
 		},
-		["Void"] = {
+		["Voidwalker"] = {
 			Label = "|c00FFFFFFLeerwandler|r"
 		},
 		["Succubus"] = {
 			Label = "|c00FFFFFFSukkubus|r"
 		},
-		["Fel"] = {
+		["Felhunter"] = {
 			Label = "|c00FFFFFFTeufelsj\195\164ger|r"
 		},
 		["Felguard"] = {
@@ -290,7 +290,7 @@ function Necrosis_Localization_Dialog_De()
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Knopfes",		
+		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Knopfes",
 		["ShowCount"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
 		["CountType"] = "Stein Typ gez\195\164hlt",
 		["Circle"] = "Anzeige in der grafischen Sph\195\164re",
@@ -300,7 +300,7 @@ function Necrosis_Localization_Dialog_De()
 		["ShowSteedSummon"] = "Zuf\195\164llige Spr\195\188che (Mount)",
 		["ChatType"] = "Necrosis Nachrichten als\nSystem-Nachrichten anzeigen",
 		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
-		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",		
+		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 		["TranseSize"] = "Gr\195\182\195\159e des versteckten Buttons",
 		["Skin"] = "Aussehen der Necrosis Sph\195\164re",
 		["Show"] = {

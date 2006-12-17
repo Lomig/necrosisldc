@@ -24,14 +24,14 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Fran?ises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements sp?iaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version 09.12.2006-3
 ------------------------------------------------------------------------------------------------------
 
--- Configuration par défaut
+-- Configuration par d?aut
 -- Se charge en cas d'absence de configuration ou de changement de version
 Default_NecrosisConfig = {
 	Version = NecrosisData.Version;
@@ -51,13 +51,13 @@ Default_NecrosisConfig = {
 		-- 4 = Ame
 		-- 5 = Buff
 		-- 6 = Monture
-		-- 7 = Démon
-		-- 8 = Malédictions
+		-- 7 = D?on
+		-- 8 = Mal?ictions
 	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		-- 1 = Malédiction amplifiée
+		-- 1 = Mal?iction amplifi?
 		-- 2 = Faiblesse
 		-- 3 = Agonie
-		-- 4 = Témérité
+		-- 4 = T??it?
 		-- 5 = Langage
 		-- 6 = Fatigue
 		-- 7 = Elements
@@ -78,11 +78,11 @@ Default_NecrosisConfig = {
 		-- 1 = Armure
 		-- 2 = Gangrarmure
 		-- 3 = Respiration
-		-- 4 = Invisibilité
+		-- 4 = Invisibilit?
 		-- 5 = Kilrogg
 		-- 6 = TP
 		-- 7 = Radar
-		-- 8 = Lien Spirituel
+		-- 8 = SoulLink Spirituel
 		-- 9 = Protection contre l'ombre
 		-- 10 = Asservissement
 		-- 11 = Bannir
@@ -137,13 +137,13 @@ NecrosisBinding = {};
 local Debug = false;
 local Loaded = false;
 
--- On définit G comme étant le tableau contenant toutes les frames existantes.
+-- On d?init G comme ?ant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0);
 
--- Détection des initialisations du mod
+-- D?ection des initialisations du mod
 local NecrosisRL = true;
 
--- Initialisation des variables utilisées par Necrosis pour la gestion des sorts lancés
+-- Initialisation des variables utilis?s par Necrosis pour la gestion des sorts lanc?
 local SpellCastName = nil;
 local SpellCastUnit = nil;
 local SpellCastRank = nil;
@@ -151,9 +151,9 @@ local SpellTargetName = nil;
 local SpellTargetLevel = nil;
 local SpellCastTime = 0;
 
--- Initialisation des tableaux gérant les Timers
--- Un pour les sorts à timer, l'autre pour les groupes de mobs
--- Le dernier permet l'association d'un timer à une frame graphique
+-- Initialisation des tableaux g?ant les Timers
+-- Un pour les sorts ?timer, l'autre pour les groupes de mobs
+-- Le dernier permet l'association d'un timer ?une frame graphique
 SpellTimer = {};
 local SpellGroup = {
 	Name = {"Rez", "Main", "Cooldown"},
@@ -166,24 +166,24 @@ for i = 1, 30, 1 do
 	TimerTable[i] = false;
 end
 
--- Liste des boutons disponible pour le démoniste dans chaque menu
+-- Liste des boutons disponible pour le d?oniste dans chaque menu
 local PetMenuCreate = {};
 local BuffMenuCreate = {};
 local CurseMenuCreate = {};
 
--- Variables utilisées pour la gestion des montures
+-- Variables utilis?s pour la gestion des montures
 local MountAvailable = false;
 local NecrosisMounted = false;
 local PlayerCombat = false;
 
--- Variables utilisées pour la gestion des transes de l'ombre
+-- Variables utilis?s pour la gestion des transes de l'ombre
 local ShadowTrance = false;
 local Backlash = false;
 local AntiFearInUse = false;
 local ShadowTranceID = -1;
 local BacklashID = -1;
 
--- Variables utilisées pour la gestion des fragments d'âme
+-- Variables utilis?s pour la gestion des fragments d'?e
 -- (principalement comptage)
 local SoulshardsCount = 0;
 local SoulshardContainer = 4;
@@ -192,13 +192,13 @@ local SoulshardSlotID = 1;
 local SoulshardMP = 0;
 local SoulshardTime = 0;
 
--- Variables utilisées pour la gestion des composants d'invocation
+-- Variables utilis?s pour la gestion des composants d'invocation
 -- (principalement comptage)
 local InfernalStoneCount = 0;
 local DemoniacStoneCount = 0;
 
 
--- Variables utilisées pour la gestion des boutons d'invocation et d'utilisation des pierres
+-- Variables utilis?s pour la gestion des boutons d'invocation et d'utilisation des pierres
 local StoneIDInSpellTable = {0, 0, 0, 0}
 local SoulstoneOnHand = false;
 local SoulstoneLocation = {nil,nil};
@@ -214,23 +214,23 @@ local SpellstoneMode = 1;
 local HearthstoneOnHand = false;
 local HearthstoneLocation = {nil,nil};
 
--- Variables utilisées dans la gestion des démons
+-- Variables utilis?s dans la gestion des d?ons
 local DemonType = nil;
 local DemonEnslaved = false;
 
--- Variables utilisées pour l'anti-fear
+-- Variables utilis?s pour l'anti-fear
 local AFblink1, AFBlink2 = 0;
 local AFImageType = { "", "Immu", "Prot"}; -- Fear warning button filename variations
 local AFCurrentTargetImmune = false;
 local CurrentTargetBan = false;
 
--- Variables utilisées pour les échanges de pierre avec les joueurs
+-- Variables utilis?s pour les ?hanges de pierre avec les joueurs
 local NecrosisTradeRequest = false;
 
--- Gestion des sacs à fragment d'âme
+-- Gestion des sacs ?fragment d'?e
 local BagIsSoulPouch = {nil, nil, nil, nil, nil};
 
--- Variable contenant les derniers messages invoqués
+-- Variable contenant les derniers messages invoqu?
 local PetMess = 0
 local SteedMess = 0
 local RezMess = 0
@@ -242,7 +242,7 @@ local DemonSummoned = {};
 local DemonSacrified = {};
 local DemonName = nil;
 
--- Permet la gestion des tooltips dans Necrosis (sans la frame des pièces de monnaie)
+-- Permet la gestion des tooltips dans Necrosis (sans la frame des pi?es de monnaie)
 local lOriginal_GameTooltip_ClearMoney;
 
 local Necrosis_In = true;
@@ -252,10 +252,10 @@ local Necrosis_In = true;
 ------------------------------------------------------------------------------------------------------
 
 
--- Fonction appliquée au chargement
+-- Fonction appliqu? au chargement
 function Necrosis_OnLoad()
 
-	-- Enregistrement des événements interceptés par Necrosis
+	-- Enregistrement des ??ements intercept? par Necrosis
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
 	this:RegisterEvent("PLAYER_LEAVING_WORLD");
 	NecrosisButton:RegisterEvent("BAG_UPDATE");
@@ -292,7 +292,7 @@ function Necrosis_OnLoad()
 	end
 end
 
--- Fonction appliquée une fois les paramètres des mods chargés
+-- Fonction appliqu? une fois les param?res des mods charg?
 function Necrosis_LoadVariables()
 	if Loaded or UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		return
@@ -301,7 +301,7 @@ function Necrosis_LoadVariables()
 	Necrosis_Initialize();
 	Loaded = true ;
 
-	-- Détection du type de démon présent à la connexion
+	-- D?ection du type de d?on pr?ent ?la connexion
 	DemonType = UnitCreatureFamily("pet");
 end
 
@@ -309,17 +309,17 @@ end
 -- FONCTIONS NECROSIS
 ------------------------------------------------------------------------------------------------------
 
--- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
+-- Fonction lanc? ?la mise ?jour de l'interface (main) -- toutes les 0,1 secondes environ
 function Necrosis_OnUpdate()
 
-	-- La fonction n'est utilisée que si Necrosis est initialisé et le joueur un Démoniste --
+	-- La fonction n'est utilis? que si Necrosis est initialis?et le joueur un D?oniste --
 	if (not Loaded) and UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		return;
 	end
-	-- La fonction n'est utilisée que si Necrosis est initialisé et le joueur un Démoniste --
+	-- La fonction n'est utilis? que si Necrosis est initialis?et le joueur un D?oniste --
 
 
-	-- Gestion des fragments d'âme : Tri des fragment toutes les secondes
+	-- Gestion des fragments d'?e : Tri des fragment toutes les secondes
 	local curTime = GetTime();
 	if ((curTime-SoulshardTime) >= 1) then
 		SoulshardTime = curTime;
@@ -329,12 +329,12 @@ function Necrosis_OnUpdate()
 	end
 
 	----------------------------------------------------------
-	-- Gestion des sorts du Démoniste
+	-- Gestion des sorts du D?oniste
 	----------------------------------------------------------
 
 
 
-	-- Gestion du talent "Crépuscule" et "Contrecoup"
+	-- Gestion du talent "Cr?uscule" et "Contrecoup"
 	if NecrosisConfig.ShadowTranceAlert then
 		local Actif = false;
 		local TimeLeft = 0;
@@ -472,31 +472,31 @@ function Necrosis_OnUpdate()
 		for index = 1, #SpellTimer, 1 do
 			if SpellTimer[index] then
 				if (GetTime() <= SpellTimer[index].TimeMax) then
-					-- Création de l'affichage des timers
+					-- Cr?tion de l'affichage des timers
 					display, SpellGroup, GraphicalTimer, TimerTable = Necrosis_DisplayTimer(display, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable);
 				end
 				-- Action toutes les secondes
 				if (update) then
-					-- On enlève les timers terminés
+					-- On enl?e les timers termin?
 					local TimeLocal = GetTime();
 					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
-						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
+						-- Si le timer ?ait celui de la Pierre d'?e, on pr?ient le D?oniste
 						if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd);
 							SpellTimer[index].Target = "";
 							SpellTimer[index].TimeMax = -1;
 							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd); end
 							Necrosis_RemoveFrame(SpellTimer[index].Gtimer, TimerTable);
-							-- On met à jour l'apparence du bouton de la pierre d'âme
+							-- On met ?jour l'apparence du bouton de la pierre d'?e
 							Necrosis_UpdateIcons();
-						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
+						-- Sinon on enl?e le timer silencieusement (mais pas en cas d'enslave)
 						elseif SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
 							index = 0;
 							break;
 						end
 					end
-					-- Si le Démoniste n'est plus sous l'emprise du Sacrifice
+					-- Si le D?oniste n'est plus sous l'emprise du Sacrifice
 					if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then -- Sacrifice
 						if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax ~= nil then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
@@ -504,11 +504,11 @@ function Necrosis_OnUpdate()
 							break;
 						end
 					end
-					-- Si la cible visée n'est plus atteinte par un sort lancé [résists]
+					-- Si la cible vis? n'est plus atteinte par un sort lanc?[r?ists]
 					if SpellTimer and (SpellTimer[index].Type == 4 or SpellTimer[index].Type == 5 or SpellTimer[index].Type == 6)
 						and SpellTimer[index].Target == UnitName("target")
 						then
-						-- On triche pour laisser le temps au mob de bien sentir qu'il est débuffé ^^
+						-- On triche pour laisser le temps au mob de bien sentir qu'il est d?uff?^^
 						if TimeLocal >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 1.5)
 							and SpellTimer[index] ~= 6 then
 							if not Necrosis_UnitHasEffect("target", SpellTimer[index].Name) then
@@ -551,7 +551,7 @@ function Necrosis_OnUpdate()
 	end
 end
 
--- Fonction lancée selon l'événement intercepté
+-- Fonction lanc? selon l'??ement intercept?
 function Necrosis_OnEvent(event)
 	if (event == "PLAYER_ENTERING_WORLD") then
 		Necrosis_In = true;
@@ -559,26 +559,26 @@ function Necrosis_OnEvent(event)
 		Necrosis_In = false;
 	end
 
-	-- Traditionnel test : Le joueur est-il bien Démoniste ?
-	-- Le jeu est-il bine chargé ?
+	-- Traditionnel test : Le joueur est-il bien D?oniste ?
+	-- Le jeu est-il bine charg??
 	if (not Loaded) or (not Necrosis_In) or UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		return;
 	end
 
-	-- Si le contenu des sacs a changé, on vérifie que les Fragments d'âme sont toujours dans le bon sac
+	-- Si le contenu des sacs a chang? on v?ifie que les Fragments d'?e sont toujours dans le bon sac
 	if (event == "BAG_UPDATE") then
 		Necrosis_BagExplore(arg1);
 		if (NecrosisConfig.SoulshardSort) then
 			Necrosis_SoulshardSwitch("CHECK");
 		end
-	-- Gestion de l'incantation des sorts réussie
+	-- Gestion de l'incantation des sorts r?ssie
 	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
 		SpellCastUnit, SpellCastName = arg1, arg2
 		if SpellCastUnit == "player" then
 			Necrosis_SpellManagement();
 		end
-	-- Quand le démoniste commence à incanter un sort, on intercepte le nom de celui-ci
-	-- On sauve également le nom de la cible du sort ainsi que son niveau
+	-- Quand le d?oniste commence ?incanter un sort, on intercepte le nom de celui-ci
+	-- On sauve ?alement le nom de la cible du sort ainsi que son niveau
 	elseif (event == "UNIT_SPELLCAST_SENT") then
 		_, SpellCastName, SpellCastRank, SpellTargetName = arg1, arg2, arg3, arg4;
 		if (not SpellTargetName or SpellTargetName == "") and UnitName("target") then
@@ -627,7 +627,7 @@ function Necrosis_OnEvent(event)
 			AlphaBuffMenu = 1;
 			AlphaBuffVar = GetTime() + 3;
 		end
-	-- Quand le démoniste stoppe son incantation, on relache le nom de celui-ci
+	-- Quand le d?oniste stoppe son incantation, on relache le nom de celui-ci
 	elseif (event == "UNIT_SPELLCAST_FAILED") or (event == "UNIT_SPELLCAST_INTERRUPTED") then
 		if arg1 == "player" then
 			SpellCastName = nil;
@@ -651,12 +651,10 @@ function Necrosis_OnEvent(event)
 				CurrentTargetBan = true;
 				if UnitCreatureType("target") == NECROSIS_UNIT.Demon then
 					NecrosisCreatureAlertButton:Show();
-					NecrosisCreatureAlertButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\DemonAlert-01");
-					NecrosisCreatureAlertButton:SetHighlightTexture("Interface\\Addons\\Necrosis\\UI\\DemonAlert-02");
+					NecrosisCreatureAlertButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\DemonAlert");
 				elseif UnitCreatureType("target") == NECROSIS_UNIT.Elemental then
 					NecrosisCreatureAlertButton:Show();
-					NecrosisCreatureAlertButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ElemAlert-01");
-					NecrosisCreatureAlertButton:SetHighlightTexture("Interface\\Addons\\Necrosis\\UI\\ElemAlert-02");
+					NecrosisCreatureAlertButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ElemAlert");
 				end
 		elseif CurrentTargetBan then
 			CurrentTargetBan = false;
@@ -674,8 +672,8 @@ function Necrosis_OnEvent(event)
 				end
 			end
 		end
-	-- Si le Démoniste apprend un nouveau sort / rang de sort, on récupère la nouvelle liste des sorts
-	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
+	-- Si le D?oniste apprend un nouveau sort / rang de sort, on r?up?e la nouvelle liste des sorts
+	-- Si le D?oniste apprend un nouveau sort de buff ou d'invocation, on recr? les boutons
 	elseif (event == "LEARNED_SPELL_IN_TAB") then
 		for index in ipairs(NECROSIS_SPELL_TABLE) do
 			NECROSIS_SPELL_TABLE[index].ID = nil;
@@ -684,8 +682,8 @@ function Necrosis_OnEvent(event)
 		Necrosis_CreateMenu();
 		Necrosis_ButtonSetup();
 
-	-- A la fin du combat, on arrête de signaler le Crépuscule
-	-- On enlève les timers de sorts ainsi que les noms des mobs
+	-- A la fin du combat, on arr?e de signaler le Cr?uscule
+	-- On enl?e les timers de sorts ainsi que les noms des mobs
 	elseif (event == "PLAYER_REGEN_ENABLED") then
 		PlayerCombat = false;
 		SpellGroup, SpellTimer, TimerTable = Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable);
@@ -695,11 +693,11 @@ function Necrosis_OnEvent(event)
 				frameItem:Hide();
 			end
 		end
-		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
+		-- On red?init les attributs des boutons de sorts de mani?e situationnelle
 		Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable) ;
 		Necrosis_UpdateIcons();
 
-	-- Quand le démoniste change de démon
+	-- Quand le d?oniste change de d?on
 	elseif (event == "UNIT_PET" and arg1 == "player") then
 		Necrosis_ChangeDemon();
 	-- Actions personnelles -- "Buffs"
@@ -711,7 +709,7 @@ function Necrosis_OnEvent(event)
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		PlayerCombat = true;
 
-		-- On annule les attributs des boutons de sorts de manière situationnelle
+		-- On annule les attributs des boutons de sorts de mani?e situationnelle
 		Necrosis_InCombatAttribute();
 	end
 	return;
@@ -722,10 +720,10 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Events : PLAYER_ENTERING_WORLD et PLAYER_LEAVING_WORLD
--- Fonction appliquée à chaque écran de chargement
--- Quand on sort d'une zone, on arrête de surveiller les envents
+-- Fonction appliqu? ?chaque ?ran de chargement
+-- Quand on sort d'une zone, on arr?e de surveiller les envents
 -- Quand on rentre dans une zone, on reprend la surveillance
--- Cela permet d'éviter un temps de chargement trop long du mod
+-- Cela permet d'?iter un temps de chargement trop long du mod
 function Necrosis_RegisterManagement(RegistrationType)
 	if RegistrationType == "IN" then
 		NecrosisButton:RegisterEvent("BAG_UPDATE");
@@ -770,17 +768,17 @@ function Necrosis_RegisterManagement(RegistrationType)
 end
 
 -- event : UNIT_PET
--- Permet de timer les asservissements, ainsi que de prévenir pour les ruptures d'asservissement
--- Change également le nom du pet au remplacement de celui-ci
+-- Permet de timer les asservissements, ainsi que de pr?enir pour les ruptures d'asservissement
+-- Change ?alement le nom du pet au remplacement de celui-ci
 function Necrosis_ChangeDemon()
-	-- Si le nouveau démon est un démon asservi, on place un timer de 5 minutes
+	-- Si le nouveau d?on est un d?on asservi, on place un timer de 5 minutes
 	if (Necrosis_UnitHasEffect("pet", NECROSIS_SPELL_TABLE[10].Name)) then
 		if (not DemonEnslaved) then
 			DemonEnslaved = true;
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerParTable(10, "","", SpellGroup, SpellTimer, TimerTable);
 		end
 	else
-		-- Quand le démon asservi est perdu, on retire le Timer et on prévient le Démoniste
+		-- Quand le d?on asservi est perdu, on retire le Timer et on pr?ient le D?oniste
 		if (DemonEnslaved) then
 			DemonEnslaved = false;
 			SpellTimer, TimerTable = Necrosis_RetraitTimerParNom(NECROSIS_SPELL_TABLE[10].Name, SpellTimer, TimerTable);
@@ -789,7 +787,7 @@ function Necrosis_ChangeDemon()
 		end
 	end
 
-	-- Si le démon n'est pas asservi on définit son titre, et on met à jour son nom dans Necrosis
+	-- Si le d?on n'est pas asservi on d?init son titre, et on met ?jour son nom dans Necrosis
 	DemonType = UnitCreatureFamily("pet");
 	for i = 1, 5, 1 do
 		if DemonType == NECROSIS_PET_LOCAL_NAME[i] and NecrosisConfig.PetName[i] == " " and UnitName("pet") ~= UNKNOWNOBJECT then
@@ -803,37 +801,37 @@ function Necrosis_ChangeDemon()
 end
 
 -- events : CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS, CHAT_MSG_SPELL_AURA_GONE_SELF et CHAT_MSG_SPELL_BREAK_AURA
--- Permet de gérer les effets apparaissants et disparaissants sur le démoniste
--- Basé sur le CombatLog
+-- Permet de g?er les effets apparaissants et disparaissants sur le d?oniste
+-- Bas?sur le CombatLog
 function Necrosis_SelfEffect(action)
 	if action == "BUFF" then
-		-- Insertion d'un timer quand le Démoniste subit "Sacrifice"
+		-- Insertion d'un timer quand le D?oniste subit "Sacrifice"
 		if arg1 == NECROSIS_TRANSLATION.SacrificeGain then
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerParTable(17, "", "", SpellGroup, SpellTimer, TimerTable);
 		end
 
-		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
+		-- Changement du bouton de la domination corrompue si celle-ci est activ? + Timer de cooldown
 		if  string.find(arg1, NECROSIS_SPELL_TABLE[15].Name) and NECROSIS_SPELL_TABLE[15].ID ~= nil then
 			DominationUp = true;
 			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02");
 		end
-		-- Changement du bouton de la malédiction amplifiée si celle-ci est activée + Timer de cooldown
+		-- Changement du bouton de la mal?iction amplifi? si celle-ci est activ? + Timer de cooldown
 		if  string.find(arg1, NECROSIS_SPELL_TABLE[42].Name) and NECROSIS_SPELL_TABLE[42].ID ~= nil then
 			AmplifyUp = true;
 			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-02");
 		end
 	else
-		-- Changement du bouton de monture quand le Démoniste est démonté
+		-- Changement du bouton de monture quand le D?oniste est d?ont?
 		if string.find(arg1, NECROSIS_SPELL_TABLE[1].Name) or  string.find(arg1, NECROSIS_SPELL_TABLE[2].Name) then
 			NecrosisMounted = false;
 			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01");
 		end
-		-- Changement du bouton de Domination quand le Démoniste n'est plus sous son emprise
+		-- Changement du bouton de Domination quand le D?oniste n'est plus sous son emprise
 		if  string.find(arg1, NECROSIS_SPELL_TABLE[15].Name) and NECROSIS_SPELL_TABLE[15].ID ~= nil then
 			DominationUp = false;
 			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01");
 		end
-		-- Changement du bouton de la malédiction amplifiée quand le Démoniste n'est plus sous son emprise
+		-- Changement du bouton de la mal?iction amplifi? quand le D?oniste n'est plus sous son emprise
 		if  string.find(arg1, NECROSIS_SPELL_TABLE[42].Name) and NECROSIS_SPELL_TABLE[42].ID ~= nil then
 			AmplifyUp = false;
 			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01");
@@ -843,30 +841,30 @@ function Necrosis_SelfEffect(action)
 end
 
 -- event : SPELLCAST_STOP
--- Permet de gérer tout ce qui touche aux sorts une fois leur incantation réussie
+-- Permet de g?er tout ce qui touche aux sorts une fois leur incantation r?ssie
 function Necrosis_SpellManagement()
 	local SortActif = false;
 	if (SpellCastName) then
-		-- Messages Posts Cast (Démons et TP)
+		-- Messages Posts Cast (D?ons et TP)
 		PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, NecrosisMounted = Necrosis_Speech_Then(SpellCastName, SpellTargetName, DemonName, PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, NecrosisMounted);
 
-		-- Si le sort lancé à été une Résurrection de Pierre d'âme, on place un timer
+		-- Si le sort lanc????une R?urrection de Pierre d'?e, on place un timer
 		if (SpellCastName == NECROSIS_SPELL_TABLE[11].Name) then
 			if SpellTargetName == UnitName("player") then
 				SpellTargetName = "";
 			end
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerParTable(11, SpellTargetName, "", SpellGroup, SpellTimer, TimerTable);
-		-- Si le sort était une pierre de soin
+		-- Si le sort ?ait une pierre de soin
 		elseif string.find(SpellCastName, NECROSIS_ITEM.Healthstone) and not string.find(SpellCastName, NECROSIS_CREATE[2]) then
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("Healthstone", nil, nil, SpellGroup, SpellTimer, TimerTable);
-		-- Si le sort était une pierre de sort
+		-- Si le sort ?ait une pierre de sort
 		elseif string.find(SpellCastName, NECROSIS_ITEM.Spellstone) and not string.find(SpellCastName, NECROSIS_CREATE[3]) then
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("Spellstone", nil, nil, SpellGroup, SpellTimer, TimerTable);
-		-- Pour les autres sorts castés, tentative de timer si valable
+		-- Pour les autres sorts cast?, tentative de timer si valable
 		else
 			for spell=1, #NECROSIS_SPELL_TABLE, 1 do
 				if SpellCastName == NECROSIS_SPELL_TABLE[spell].Name and not (spell == 10) then
-					-- Si le timer existe déjà sur la cible, on le met à jour
+					-- Si le timer existe d??sur la cible, on le met ?jour
 					for thisspell=1, #SpellTimer, 1 do
 						if SpellTimer[thisspell].Name == SpellCastName
 							and SpellTimer[thisspell].Target == SpellTargetName
@@ -875,7 +873,7 @@ function Necrosis_SpellManagement()
 							and NECROSIS_SPELL_TABLE[spell].Type ~= 5
 							and spell ~= 16
 							then
-							-- Si c'est sort lancé déjà présent sur un mob, on remet le timer à fond
+							-- Si c'est sort lanc?d??pr?ent sur un mob, on remet le timer ?fond
 							if spell ~= 9 or (spell == 9 and not Necrosis_UnitHasEffect("target", SpellCastName)) then
 								SpellTimer[thisspell].Time = NECROSIS_SPELL_TABLE[spell].Length;
 								SpellTimer[thisspell].TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[spell].Length);
@@ -887,7 +885,7 @@ function Necrosis_SpellManagement()
 							SortActif = true;
 							break;
 						end
-						-- Si c'est un banish sur une nouvelle cible, on supprime le timer précédent
+						-- Si c'est un banish sur une nouvelle cible, on supprime le timer pr??ent
 						if SpellTimer[thisspell].Name == SpellCastName and spell == 9
 							and
 								(SpellTimer[thisspell].Target ~= SpellTargetName
@@ -898,7 +896,7 @@ function Necrosis_SpellManagement()
 							break;
 						end
 
-						-- Si c'est un fear, on supprime le timer du fear précédent
+						-- Si c'est un fear, on supprime le timer du fear pr??ent
 						if SpellTimer[thisspell].Name == SpellCastName and spell == 13 then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable);
 							SortActif = false;
@@ -906,10 +904,10 @@ function Necrosis_SpellManagement()
 						end
 						if SortActif then break; end
 					end
-					-- Si le timer est une malédiction, on enlève la précédente malédiction sur la cible
+					-- Si le timer est une mal?iction, on enl?e la pr??ente mal?iction sur la cible
 					if (NECROSIS_SPELL_TABLE[spell].Type == 4) or (spell == 16) then
 						for thisspell=1, #SpellTimer, 1 do
-							-- Mais on garde le cooldown de la malédiction funeste
+							-- Mais on garde le cooldown de la mal?iction funeste
 							if SpellTimer[thisspell].Name == NECROSIS_SPELL_TABLE[16].Name then
 								SpellTimer[thisspell].Target = "";
 								SpellTimer[thisspell].TargetLevel = "";
@@ -924,7 +922,7 @@ function Necrosis_SpellManagement()
 						end
 						SortActif = false;
 					end
-					-- Si le timer est une corruption, on enlève la précédente corruption sur la cible
+					-- Si le timer est une corruption, on enl?e la pr??ente corruption sur la cible
 					if (NECROSIS_SPELL_TABLE[spell].Type == 5) then
 						for thisspell=1, #SpellTimer, 1 do
 							if SpellTimer[thisspell].Type == 5
@@ -966,13 +964,13 @@ end
 -- FONCTIONS DE L'INTERFACE -- LIENS XML
 ------------------------------------------------------------------------------------------------------
 
--- Fonction permettant le déplacement d'éléments de Necrosis sur l'écran
+-- Fonction permettant le d?lacement d'??ents de Necrosis sur l'?ran
 function Necrosis_OnDragStart(button)
 	if (button == "NecrosisIcon") then GameTooltip:Hide(); end
 	button:StartMoving();
 end
 
--- Fonction arrêtant le déplacement d'éléments de Necrosis sur l'écran
+-- Fonction arr?ant le d?lacement d'??ents de Necrosis sur l'?ran
 function Necrosis_OnDragStop(button)
 	if (button == "NecrosisIcon") then Necrosis_BuildTooltip("OVERALL"); end
 	button:StopMovingOrSizing();
@@ -999,15 +997,15 @@ function Necrosis_HideGraphTimer()
 	end
 end
 
--- Fonction gérant les bulles d'aide
+-- Fonction g?ant les bulles d'aide
 function Necrosis_BuildTooltip(button, type, anchor)
 
-	-- Si l'affichage des bulles d'aide est désactivé, Bye bye !
+	-- Si l'affichage des bulles d'aide est d?activ? Bye bye !
 	if not NecrosisConfig.NecrosisToolTip then
 		return;
 	end
 
-	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
+	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de mal?iction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, start4, duration4
 	if NECROSIS_SPELL_TABLE[15].ID then
 		start, duration = GetSpellCooldown(NECROSIS_SPELL_TABLE[15].ID, BOOKTYPE_SPELL);
@@ -1034,7 +1032,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		duration4 = 1;
 	end
 
-	-- Création des bulles d'aides....
+	-- Cr?tion des bulles d'aides....
 	GameTooltip:SetOwner(button, anchor);
 	GameTooltip:SetText(NecrosisTooltipData[type].Label);
 	-- ..... pour le bouton principal
@@ -1052,15 +1050,15 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		if FirestoneOnHand then FireOnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Soulstone..NecrosisTooltipData[type].Stone[SoulOnHand]);
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Healthstone..NecrosisTooltipData[type].Stone[HealthOnHand]);
-		-- On vérifie si une pierre de sort n'est pas équipée
+		-- On v?ifie si une pierre de sort n'est pas ?uip?
 		NecrosisTooltip:SetInventoryItem("player", 18);
 		local rightHand = tostring(NecrosisTooltipTextLeft1:GetText());
 		if string.find(rightHand, NECROSIS_ITEM.Spellstone) then SpellstoneOnHand = true; end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Spellstone..NecrosisTooltipData[type].Stone[SpellOnHand]);
-		-- De même pour la pierre de feu
+		-- De m?e pour la pierre de feu
 		if string.find(rightHand, NECROSIS_ITEM.Firestone) then FirestoneOnHand = true; end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Firestone..NecrosisTooltipData[type].Stone[FireOnHand]);
-		-- Affichage du nom du démon, ou s'il est asservi, ou "Aucun" si aucun démon n'est présent
+		-- Affichage du nom du d?on, ou s'il est asservi, ou "Aucun" si aucun d?on n'est pr?ent
 		if (DemonType) then
 			GameTooltip:AddLine(NecrosisTooltipData.Main.CurrentDemon..DemonType);
 		elseif DemonEnslaved then
@@ -1070,7 +1068,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		end
 	-- ..... pour les boutons de pierre
 	elseif (string.find(type, "stone")) then
-		-- Pierre d'âme
+		-- Pierre d'?e
 		if (type == "Soulstone") then
 			-- On affiche le nom de la pierre et l'action que produira le clic sur le bouton
 			-- Et aussi le Temps de recharge
@@ -1143,7 +1141,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 	-- ..... pour le bouton de la Transe de l'ombre
 	elseif (type == "ShadowTrance") or (type == "Backlash") then
 		GameTooltip:SetText(NecrosisTooltipData[type].Label.."          |CFF808080"..NECROSIS_SPELL_TABLE[45].Rank.."|r");
-	-- ..... pour les autres buffs et démons, le coût en mana...
+	-- ..... pour les autres buffs et d?ons, le cot en mana...
 	elseif (type == "Enslave") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[35].Mana.." Mana");
 		if SoulshardsCount == 0 then
@@ -1162,7 +1160,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		else
 			GameTooltip:AddLine(NECROSIS_SPELL_TABLE[36].Mana.." Mana");
 		end
-	elseif (type == "Fel Armor") then
+	elseif (type == "FelArmor") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[47].Mana.." Mana");
 	elseif (type == "Invisible") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[33].Mana.." Mana");
@@ -1257,7 +1255,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 			GameTooltip:AddLine(NecrosisTooltipData.DominationCooldown);
 		end
 
-	elseif (type == "Void") then
+	elseif (type == "Voidwalker") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[4].Mana.." Mana");
 		if SoulshardsCount == 0 then
 			GameTooltip:AddLine("|c00FF4444"..NecrosisTooltipData.Main.Soulshard..SoulshardsCount.."|r");
@@ -1271,7 +1269,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		elseif not (start > 0 and duration > 0) then
 			GameTooltip:AddLine(NecrosisTooltipData.DominationCooldown);
 		end
-	elseif (type == "Fel") then
+	elseif (type == "Felhunter") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[6].Mana.." Mana");
 		if SoulshardsCount == 0 then
 			GameTooltip:AddLine("|c00FF4444"..NecrosisTooltipData.Main.Soulshard..SoulshardsCount.."|r");
@@ -1304,12 +1302,12 @@ function Necrosis_BuildTooltip(button, type, anchor)
 	GameTooltip:Show();
 end
 
--- Fonction mettant à jour les boutons Necrosis et donnant l'état du bouton de la pierre d'âme
+-- Fonction mettant ?jour les boutons Necrosis et donnant l'?at du bouton de la pierre d'?e
 function Necrosis_UpdateIcons()
-	-- Pierre d'âme
+	-- Pierre d'?e
 	-----------------------------------------------
 
-	-- On se renseigne pour savoir si une pierre d'âme a été utilisée --> vérification dans les timers
+	-- On se renseigne pour savoir si une pierre d'?e a ??utilis? --> v?ification dans les timers
 	local SoulstoneInUse = false;
 	if SpellTimer then
 		for index = 1, #SpellTimer, 1 do
@@ -1320,12 +1318,12 @@ function Necrosis_UpdateIcons()
 		end
 	end
 
-	-- Si la Pierre n'a pas été utilisée, et qu'il n'y a pas de pierre en inventaire -> Mode 1
+	-- Si la Pierre n'a pas ??utilis?, et qu'il n'y a pas de pierre en inventaire -> Mode 1
 	if not (SoulstoneOnHand or SoulstoneInUse) then
 		SoulstoneMode = 1;
 	end
 
-	-- Si la Pierre n'a pas été utilisée, mais qu'il y a une pierre en inventaire
+	-- Si la Pierre n'a pas ??utilis?, mais qu'il y a une pierre en inventaire
 	if SoulstoneOnHand and (not SoulstoneInUse) then
 		-- Si la pierre en inventaire contient un timer, et qu'on sort d'un RL --> Mode 4
 		local start, duration = GetContainerItemCooldown(SoulstoneLocation[1],SoulstoneLocation[2]);
@@ -1340,22 +1338,22 @@ function Necrosis_UpdateIcons()
 		end
 	end
 
-	-- Si la Pierre a été utilisée mais qu'il n'y a pas de pierre en inventaire --> Mode 3
+	-- Si la Pierre a ??utilis? mais qu'il n'y a pas de pierre en inventaire --> Mode 3
 	if (not SoulstoneOnHand) and SoulstoneInUse then
 		SoulstoneMode = 3;
 	end
 
-	-- Si la Pierre a été utilisée et qu'il y a une pierre en inventaire
+	-- Si la Pierre a ??utilis? et qu'il y a une pierre en inventaire
 	if SoulstoneOnHand and SoulstoneInUse then
 			SoulstoneMode = 4;
 	end
 
-	-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+	-- Si hors combat et qu'on peut cr?r une pierre, on associe le bouton gauche ?cr?r une pierre.
 	if StoneIDInSpellTable[1]  and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
 		Necrosis_SoulstoneUpdateAttribute(StoneIDInSpellTable);
 	end
 
-	-- Affichage de l'icone liée au mode
+	-- Affichage de l'icone li? au mode
 	NecrosisSoulstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SoulstoneButton-0"..SoulstoneMode);
 
 	-- Pierre de vie
@@ -1366,19 +1364,19 @@ function Necrosis_UpdateIcons()
 		HealthstoneMode = 2;
 	else
 		HealthstoneMode = 1;
-		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+		-- Si hors combat et qu'on peut cr?r une pierre, on associe le bouton gauche ?cr?r une pierre.
 		if StoneIDInSpellTable[2] and NecrosisConfig.ItemSwitchCombat[4] then
 			Necrosis_HealthstoneUpdateAttribute(StoneIDInSpellTable);
 		end
 	end
 
-	-- Affichage de l'icone liée au mode
+	-- Affichage de l'icone li? au mode
 	NecrosisHealthstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\HealthstoneButton-0"..HealthstoneMode);
 
 	-- Pierre de sort
 	-----------------------------------------------
 
-	-- Si la pierre est équipée, mode 3
+	-- Si la pierre est ?uip?, mode 3
 	local rightHand = GetInventoryItemTexture("player", 18);
 	if (rightHand == "Interface\\Icons\\INV_Misc_Gem_Sapphire_01") then
 		SpellstoneMode = 3;
@@ -1389,20 +1387,20 @@ function Necrosis_UpdateIcons()
 		-- Pierre inexistante, mode 1
 		else
 			SpellstoneMode = 1;
-			-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+			-- Si hors combat et qu'on peut cr?r une pierre, on associe le bouton gauche ?cr?r une pierre.
 			if StoneIDInSpellTable[3] and NecrosisConfig.ItemSwitchCombat[1] then
 				Necrosis_SpellstoneUpdateAttribute(StoneIDInSpellTable);
 			end
 		end
 	end
 
-	-- Affichage de l'icone liée au mode
+	-- Affichage de l'icone li? au mode
 	NecrosisSpellstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..SpellstoneMode);
 
 	-- Pierre de feu
 	-----------------------------------------------
 
-	-- Pierre équipée = mode 3
+	-- Pierre ?uip? = mode 3
 	if (rightHand == "Interface\\Icons\\INV_Misc_Gem_Bloodstone_02") then
 		FirestoneMode = 3;
 	-- Pierre dans l'inventaire = mode 2
@@ -1411,17 +1409,17 @@ function Necrosis_UpdateIcons()
 	-- Pierre inexistante = mode 1
 	else
 		FirestoneMode = 1;
-		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
+		-- Si hors combat et qu'on peut cr?r une pierre, on associe le bouton gauche ?cr?r une pierre.
 		if StoneIDInSpellTable[4] and NecrosisConfig.ItemSwitchCombat[2] then
 			Necrosis_FirestoneUpdateAttribute(StoneIDInSpellTable);
 		end
 	end
 
-	-- Affichage de l'icone liée au mode
+	-- Affichage de l'icone li? au mode
 	NecrosisFirestoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode);
 
 
-	-- Bouton des démons
+	-- Bouton des d?ons
 	-----------------------------------------------
 	local mana = UnitMana("player");
 
@@ -1441,13 +1439,13 @@ function Necrosis_UpdateIcons()
 	if NECROSIS_SPELL_TABLE[43].ID then
 		local start2, duration2 = GetSpellCooldown(NECROSIS_SPELL_TABLE[43].ID, "spell");
 		if start2 > 0 and duration2 > 0 then
-			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowWard-03");
+			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowProtection-03");
 		else
-			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowWard-01");
+			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowProtection-01");
 		end
 	end
 
-	-- Si cooldown de la malédiction amplifiée on grise
+	-- Si cooldown de la mal?iction amplifi? on grise
 	if NECROSIS_SPELL_TABLE[42].ID and not AmplifyUp then
 		local start3, duration3 = GetSpellCooldown(NECROSIS_SPELL_TABLE[42].ID, "spell");
 		if start3 > 0 and duration3 > 0 then
@@ -1458,7 +1456,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	if mana ~= nil then
-	-- Coloration du bouton en grisé si pas assez de mana
+	-- Coloration du bouton en gris?si pas assez de mana
 		if NECROSIS_SPELL_TABLE[3].ID then
 			if NECROSIS_SPELL_TABLE[3].Mana > mana then
 				for i = 1, 7, 1 do
@@ -1484,7 +1482,7 @@ function Necrosis_UpdateIcons()
 		end
 	end
 
-	-- Coloration du bouton en grisé si pas de pierre pour l'invocation
+	-- Coloration du bouton en gris?si pas de pierre pour l'invocation
 	if SoulshardsCount == 0 then
 		for i = 2, 5, 1 do
 			ManaPet[i] = "3";
@@ -1569,7 +1567,7 @@ function Necrosis_UpdateIcons()
 	-----------------------------------------------
 
 	if mana ~= nil then
-	-- Coloration du bouton en grisé si pas assez de mana
+	-- Coloration du bouton en gris?si pas assez de mana
 		if MountAvailable and not NecrosisMounted then
 			if NECROSIS_SPELL_TABLE[2].ID then
 				if NECROSIS_SPELL_TABLE[2].Mana > mana or PlayerCombat then
@@ -1596,15 +1594,15 @@ function Necrosis_UpdateIcons()
 		end
 		if NECROSIS_SPELL_TABLE[31].ID then
 			if NECROSIS_SPELL_TABLE[31].Mana > mana then
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ArmureDemo-03");
+				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-03");
 			else
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ArmureDemo-01");
+				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-01");
 			end
 		elseif NECROSIS_SPELL_TABLE[36].ID then
 			if NECROSIS_SPELL_TABLE[36].Mana > mana then
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ArmureDemo-03");
+				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-03");
 			else
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ArmureDemo-01");
+				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[47].ID then
@@ -1637,23 +1635,23 @@ function Necrosis_UpdateIcons()
 		end
 		if NECROSIS_SPELL_TABLE[37].ID then
 			if NECROSIS_SPELL_TABLE[37].Mana > mana or SoulshardsCount == 0 then
-				NecrosisBuffMenu5:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\TPButton-05");
+				NecrosisBuffMenu5:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\TP-05");
 			else
-				NecrosisBuffMenu5:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\TPButton-01");
+				NecrosisBuffMenu5:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\TP-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[38].ID then
 			if NECROSIS_SPELL_TABLE[38].Mana > mana then
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Lien-03");
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SoulLink-03");
 			else
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Lien-01");
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SoulLink-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[43].ID then
 			if NECROSIS_SPELL_TABLE[43].Mana > mana then
-				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-03");
+				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowProtection-03");
 			else
-				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-01");
+				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowProtection-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[9].ID then
@@ -1677,7 +1675,7 @@ function Necrosis_UpdateIcons()
 	-----------------------------------------------
 
 	if mana ~= nil then
-	-- Coloration du bouton en grisé si pas assez de mana
+	-- Coloration du bouton en gris?si pas assez de mana
 		if NECROSIS_SPELL_TABLE[23].ID then
 			if NECROSIS_SPELL_TABLE[23].Mana > mana then
 				NecrosisCurseMenu2:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Weakness-03");
@@ -1766,10 +1764,10 @@ function Necrosis_SoulshardSetup()
 end
 
 
--- Fonction qui fait l'inventaire des éléments utilisés en démonologie : Pierres, Fragments, Composants d'invocation
+-- Fonction qui fait l'inventaire des ??ents utilis? en d?onologie : Pierres, Fragments, Composants d'invocation
 function Necrosis_BagExplore(arg)
 	local soulshards = SoulshardsCount
-	-- Ca n'est pas à proprement parlé un sac, mais bon, on regarde si on a une pierre de sort / feu équipée
+	-- Ca n'est pas ?proprement parl?un sac, mais bon, on regarde si on a une pierre de sort / feu ?uip?
 	NecrosisTooltip:SetInventoryItem("player", 18);
 	local rightHand = tostring(NecrosisTooltipTextLeft1:GetText());
 	Necrosis_MoneyToggle();
@@ -1794,8 +1792,8 @@ function Necrosis_BagExplore(arg)
 				Necrosis_MoneyToggle();
 				NecrosisTooltip:SetBagItem(container, slot);
 				local itemName = tostring(NecrosisTooltipTextLeft1:GetText());
-				-- Si le sac est le sac défini pour les fragments
-				-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
+				-- Si le sac est le sac d?ini pour les fragments
+				-- hop la valeur du Tableau qui repr?ente le slot du Sac = nil (pas de Shard)
 				if (container == NecrosisConfig.SoulshardContainer) then
 					if itemName ~= NECROSIS_ITEM.Soulshard then
 						SoulshardSlot[slot] = nil;
@@ -1803,7 +1801,7 @@ function Necrosis_BagExplore(arg)
 				end
 				-- Dans le cas d'un emplacement non vide
 				if itemName then
-					-- Si c'est une pierre d'âme, on note son existence et son emplacement
+					-- Si c'est une pierre d'?e, on note son existence et son emplacement
 					if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 						SoulstoneOnHand = container;
 						SoulstoneLocation = {container,slot};
@@ -1811,7 +1809,7 @@ function Necrosis_BagExplore(arg)
 
 						-- On attache des actions au bouton de la pierre
 						Necrosis_SoulstoneUpdateAttribute();
-					-- Même chose pour une pierre de soin
+					-- M?e chose pour une pierre de soin
 					elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
 						HealthstoneOnHand = container;
 						HealthstoneLocation = {container,slot};
@@ -1852,8 +1850,8 @@ function Necrosis_BagExplore(arg)
 			Necrosis_MoneyToggle();
 			NecrosisTooltip:SetBagItem(arg, slot);
 			local itemName = tostring(NecrosisTooltipTextLeft1:GetText());
-			-- Si le sac est le sac défini pour les fragments
-			-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
+			-- Si le sac est le sac d?ini pour les fragments
+			-- hop la valeur du Tableau qui repr?ente le slot du Sac = nil (pas de Shard)
 			if (arg == NecrosisConfig.SoulshardContainer) then
 				if itemName ~= NECROSIS_ITEM.Soulshard then
 					SoulshardSlot[slot] = nil;
@@ -1861,7 +1859,7 @@ function Necrosis_BagExplore(arg)
 			end
 			-- Dans le cas d'un emplacement non vide
 			if itemName then
-				-- Si c'est une pierre d'âme, on note son existence et son emplacement
+				-- Si c'est une pierre d'?e, on note son existence et son emplacement
 				if string.find(itemName, NECROSIS_ITEM.Soulstone) then
 					SoulstoneOnHand = arg;
 					SoulstoneLocation = {arg,slot};
@@ -1869,7 +1867,7 @@ function Necrosis_BagExplore(arg)
 
 					-- On attache des actions au bouton de la pierre
 					Necrosis_SoulstoneUpdateAttribute();
-				-- Même chose pour une pierre de soin
+				-- M?e chose pour une pierre de soin
 				elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
 					HealthstoneOnHand = arg;
 					HealthstoneLocation = {arg,slot};
@@ -1940,10 +1938,10 @@ function Necrosis_BagExplore(arg)
 	else
 		NecrosisShardCount:SetText("");
 	end
-	-- Et on met le tout à jour !
+	-- Et on met le tout ?jour !
 	Necrosis_UpdateIcons();
 
-	-- S'il y a plus de fragment que d'emplacements dans le sac défini, on affiche un message d'avertissement
+	-- S'il y a plus de fragment que d'emplacements dans le sac d?ini, on affiche un message d'avertissement
 	if (SoulshardsCount > soulshards and SoulshardsCount == GetContainerNumSlots(NecrosisConfig.SoulshardContainer)) then
 		if (SoulshardDestroy) then
 			Necrosis_Msg(NECROSIS_MESSAGE.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..NECROSIS_MESSAGE.Bag.FullDestroySuffix);
@@ -1988,7 +1986,7 @@ function Necrosis_SoulshardSwitch(type)
 	end
 end
 
--- Pendant le déplacement des fragments, il faut trouver un nouvel emplacement aux objets déplacés :)
+-- Pendant le d?lacement des fragments, il faut trouver un nouvel emplacement aux objets d?lac? :)
 function Necrosis_FindSlot(shardIndex, shardSlot)
 	local full = true;
 	for slot=1, GetContainerNumSlots(NecrosisConfig.SoulshardContainer), 1 do
@@ -2011,7 +2009,7 @@ function Necrosis_FindSlot(shardIndex, shardSlot)
 			break;
 		end
 	end
-	-- Destruction des fragments en sur-nombre si l'option est activée
+	-- Destruction des fragments en sur-nombre si l'option est activ?
 	if (full and NecrosisConfig.SoulshardDestroy) then
 		PickupContainerItem(shardIndex, shardSlot);
 		if (CursorHasItem()) then DeleteCursorItem(); end
@@ -2024,7 +2022,7 @@ end
 
 
 
--- Affiche ou masque les boutons de sort à chaque nouveau sort appris
+-- Affiche ou masque les boutons de sort ?chaque nouveau sort appris
 function Necrosis_ButtonSetup()
 	if NecrosisConfig.NecrosisLockServ then
 		Necrosis_NoDrag();
@@ -2067,8 +2065,8 @@ end
 
 
 
--- Ma fonction préférée ! Elle fait la liste des sorts connus par le démo, et les classe par rang.
--- Pour les pierres, elle sélectionne le plus haut rang connu
+-- Ma fonction pr??? ! Elle fait la liste des sorts connus par le d?o, et les classe par rang.
+-- Pour les pierres, elle s?ectionne le plus haut rang connu
 function Necrosis_SpellSetup()
 	local StoneType = {NECROSIS_ITEM.Soulstone, NECROSIS_ITEM.Healthstone, NECROSIS_ITEM.Spellstone, NECROSIS_ITEM.Firestone};
 	local StoneMaxRank = {0, 0, 0, 0};
@@ -2089,7 +2087,7 @@ function Necrosis_SpellSetup()
 	local Invisible = 0;
 	local InvisibleID = 0;
 
-	-- On va parcourir tous les sorts possedés par le Démoniste
+	-- On va parcourir tous les sorts possed? par le D?oniste
 	while true do
 		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL);
 
@@ -2097,8 +2095,8 @@ function Necrosis_SpellSetup()
 			do break end
 		end
 
-		-- Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
-		-- Le rang supérieur est conservé
+		-- Pour les sorts avec des rangs num?ot?, on compare pour chaque sort les rangs 1 ?1
+		-- Le rang sup?ieur est conserv?
 		if (string.find(subSpellName, NECROSIS_TRANSLATION.Rank)) then
 			local found = false;
 			local rank = tonumber(strsub(subSpellName, 6, strlen(subSpellName)));
@@ -2112,7 +2110,7 @@ function Necrosis_SpellSetup()
 					break;
 				end
 			end
-			-- Les plus grands rangs de chacun des sorts à rang numérotés sont insérés dans la table
+			-- Les plus grands rangs de chacun des sorts ?rang num?ot? sont ins?? dans la table
 			if (not found) then
 				table.insert(CurrentSpells.ID, spellID);
 				table.insert(CurrentSpells.Name, spellName);
@@ -2120,7 +2118,7 @@ function Necrosis_SpellSetup()
 			end
 		end
 
-		-- Test du Rang de la détection d'invisibilité
+		-- Test du Rang de la d?ection d'invisibilit?
 		if spellName == NECROSIS_TRANSLATION.GreaterInvisible then
 			Invisible = 3;
 			InvisibleID = spellID;
@@ -2132,21 +2130,21 @@ function Necrosis_SpellSetup()
 			InvisibleID = spellID;
 		end
 
-		-- Les pierres n'ont pas de rang numéroté, l'attribut de rang fait partie du nom du sort
+		-- Les pierres n'ont pas de rang num?ot? l'attribut de rang fait partie du nom du sort
 		-- Pour chaque type de pierre, on va donc faire....
 		for stoneID=1, #StoneType, 1 do
-			-- Si le sort étudié est bien une invocation de ce type de pierre et qu'on n'a pas
-			-- déjà assigné un rang maximum à cette dernière
+			-- Si le sort ?udi?est bien une invocation de ce type de pierre et qu'on n'a pas
+			-- d??assign?un rang maximum ?cette derni?e
 			if (string.find(spellName, StoneType[stoneID]))
 				and StoneMaxRank[stoneID] ~= #NECROSIS_STONE_RANK
 				then
-				-- Récupération de la fin du nom de la pierre, contenant son rang
+				-- R?up?ation de la fin du nom de la pierre, contenant son rang
 				local stoneSuffix = string.sub(spellName, string.len(NECROSIS_CREATE[stoneID]) + 1);
-				-- Reste à trouver la correspondance de son rang
+				-- Reste ?trouver la correspondance de son rang
 				for rankID=1, #NECROSIS_STONE_RANK, 1 do
-					-- Si la fin du nom de la pierre correspond à une taille de pierre, on note le rang !
+					-- Si la fin du nom de la pierre correspond ?une taille de pierre, on note le rang !
 					if string.lower(stoneSuffix) == string.lower(NECROSIS_STONE_RANK[rankID]) then
-						-- On a une pierre, on a son rang, reste à vérifier si c'est la plus puissante,
+						-- On a une pierre, on a son rang, reste ?v?ifier si c'est la plus puissante,
 						-- et si oui, l'enregistrer
 						if rankID > StoneMaxRank[stoneID] then
 							StoneMaxRank[stoneID] = rankID;
@@ -2163,7 +2161,7 @@ function Necrosis_SpellSetup()
 		spellID = spellID + 1;
 	end
 
-	-- On insère dans la table les pierres avec le plus grand rang
+	-- On ins?e dans la table les pierres avec le plus grand rang
 	for stoneID=1, #StoneType, 1 do
 		if StoneMaxRank[stoneID] ~= 0 then
 			table.insert(NECROSIS_SPELL_TABLE, {
@@ -2177,7 +2175,7 @@ function Necrosis_SpellSetup()
 			StoneIDInSpellTable[stoneID] = #NECROSIS_SPELL_TABLE;
 		end
 	end
-	-- On met à jour la liste des sorts avec les nouveaux rangs
+	-- On met ?jour la liste des sorts avec les nouveaux rangs
 	for spell=1, #NECROSIS_SPELL_TABLE, 1 do
 		for index = 1, #CurrentSpells.Name, 1 do
 			if (NECROSIS_SPELL_TABLE[spell].Name == CurrentSpells.Name[index])
@@ -2215,7 +2213,7 @@ function Necrosis_SpellSetup()
 		end
 	end
 
-	-- Insertion du plus haut rang de détection d'invisibilité connu
+	-- Insertion du plus haut rang de d?ection d'invisibilit?connu
 	if Invisible >= 1 then
 		NECROSIS_SPELL_TABLE[33].ID = InvisibleID;
 		NECROSIS_SPELL_TABLE[33].Rank = " ";
@@ -2227,8 +2225,8 @@ function Necrosis_SpellSetup()
 		NECROSIS_SPELL_TABLE[33].Mana = tonumber(ManaCost);
 	end
 
-	-- Maintenant qu'on connait tous les sorts, on recupère leur véritable nom coté client
-	-- (utile pour les pierres invoquées ou l'invisibilité par exemple)
+	-- Maintenant qu'on connait tous les sorts, on recup?e leur v?itable nom cot?client
+	-- (utile pour les pierres invoqu?s ou l'invisibilit?par exemple)
 		for spellID=1, #NECROSIS_SPELL_TABLE, 1 do
 		if NECROSIS_SPELL_TABLE[spellID].ID then
 			local spellName, spellRank = GetSpellName(NECROSIS_SPELL_TABLE[spellID].ID, "spell");
@@ -2237,7 +2235,7 @@ function Necrosis_SpellSetup()
 		end
 	end
 
-	-- On met à jour la durée de chaque sort en fonction de son rang
+	-- On met ?jour la dur? de chaque sort en fonction de son rang
 	-- Peur
 	if NECROSIS_SPELL_TABLE[13].ID ~= nil then
 		NECROSIS_SPELL_TABLE[13].Length = string.find(NECROSIS_SPELL_TABLE[13].Rank, "(%d+)") * 5 + 5;
@@ -2247,8 +2245,8 @@ function Necrosis_SpellSetup()
 		NECROSIS_SPELL_TABLE[14].Length = string.find(NECROSIS_SPELL_TABLE[14].Rank, "(%d+)") * 3 + 9;
 	end
 
-	-- WoW 2.0 : Les boutons doivent être sécurisés pour être utilisés.
-	-- Chaque utilisation passe par la définition d'attributs au bouton, l'UI se chargeant de gérer l'event de clic.
+	-- WoW 2.0 : Les boutons doivent ?re s?uris? pour ?re utilis?.
+	-- Chaque utilisation passe par la d?inition d'attributs au bouton, l'UI se chargeant de g?er l'event de clic.
 
 	-- Association du sort de monture correct au bouton
 	if NECROSIS_SPELL_TABLE[1].ID or NECROSIS_SPELL_TABLE[2].ID then
@@ -2281,7 +2279,7 @@ end
 -- FONCTIONS DIVERSES
 ------------------------------------------------------------------------------------------------------
 
--- Fonction pour savoir si une unité subit un effet
+-- Fonction pour savoir si une unit?subit un effet
 -- F(string, string)->bool
 function Necrosis_UnitHasEffect(unit, effect)
 	local index = 1;
@@ -2317,7 +2315,7 @@ function Necrosis_UnitHasBuff(unit, effect)
 end
 
 
--- Permet de reconnaitre quand le joueur gagne Crépuscule / Transe de l'ombre
+-- Permet de reconnaitre quand le joueur gagne Cr?uscule / Transe de l'ombre
 function Necrosis_UnitHasTrance()
 	local ID = -1;
 	for buffID = 1, 25, 1 do
@@ -2345,9 +2343,9 @@ function Necrosis_UnitHasBacklash()
 	BacklashID = ID;
 end
 
--- Fonction pour gérer l'échange de pierre (hors combat)
+-- Fonction pour g?er l'?hange de pierre (hors combat)
 function Necrosis_TradeStone()
-		-- Dans ce cas si un pj allié est sélectionné, on lui donne la pierre
+		-- Dans ce cas si un pj alli?est s?ectionn? on lui donne la pierre
 		-- Sinon, on l'utilise
 		if NecrosisTradeRequest and HealthstoneOnHand then
 			PickupContainerItem(HealthstoneLocation[1], HealthstoneLocation[2]);
@@ -2435,7 +2433,7 @@ end
 
 
 
--- Fonction (XML) pour rétablir les points d'attache par défaut des boutons
+-- Fonction (XML) pour r?ablir les points d'attache par d?aut des boutons
 function Necrosis_ClearAllPoints()
 	NecrosisFirestoneButton:ClearAllPoints();
 	NecrosisSpellstoneButton:ClearAllPoints();
@@ -2447,7 +2445,7 @@ function Necrosis_ClearAllPoints()
 	NecrosisCurseMenuButton:ClearAllPoints();
 end
 
--- Fonction (XML) pour étendre la propriété NoDrag() du bouton principal de Necrosis sur tout ses boutons
+-- Fonction (XML) pour ?endre la propri??NoDrag() du bouton principal de Necrosis sur tout ses boutons
 function Necrosis_NoDrag()
 	NecrosisFirestoneButton:RegisterForDrag("");
 	NecrosisSpellstoneButton:RegisterForDrag("");
@@ -2472,7 +2470,7 @@ function Necrosis_Drag()
 end
 
 
--- A chaque changement du livre des sorts, au démarrage du mod, ainsi qu'au changement de sens du menu on reconstruit les menus des sorts
+-- A chaque changement du livre des sorts, au d?arrage du mod, ainsi qu'au changement de sens du menu on reconstruit les menus des sorts
 function Necrosis_CreateMenu()
 	PetMenuCreate = {};
 	CurseMenuCreate = {};
@@ -2482,7 +2480,7 @@ function Necrosis_CreateMenu()
 	local BuffButtonPosition = 0;
 	local CurseButtonPosition = 0;
 
-	-- On cache toutes les icones des démons
+	-- On cache toutes les icones des d?ons
 	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		menuVariable = _G["NecrosisPetMenu"..i];
 		menuVariable:ClearAllPoints();
@@ -2503,7 +2501,7 @@ function Necrosis_CreateMenu()
 
 	local MenuID = {15, 3, 4, 5, 6, 7, 8, 30, 35, 44};
 	local ButtonID = {1, 2, 3, 4, 5, 10, 6, 7, 8, 9};
-	-- On ordonne et on affiche les boutons dans le menu des démons
+	-- On ordonne et on affiche les boutons dans le menu des d?ons
 	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
 		for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
@@ -2525,7 +2523,7 @@ function Necrosis_CreateMenu()
 	end
 
 
-	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
+	-- Maintenant que tous les boutons de pet sont plac? les uns ?c??des autres, on affiche les disponibles
 	if PetMenuCreate[1] then
 		PetMenuCreate[1]:ClearAllPoints();
 		PetMenuCreate[1]:SetPoint(
@@ -2549,7 +2547,7 @@ function Necrosis_CreateMenu()
 	local ButtonID = {10, 2, 3, 4, 5, 6, 7, 8, 11, 9};
 	for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		-- Si le buff existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1 
+		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
 			and NecrosisConfig.BuffSpellPosition[1] > 0
 			and (NECROSIS_SPELL_TABLE[31].ID or NECROSIS_SPELL_TABLE[36].ID) then
 				menuVariable = _G["NecrosisBuffMenu1"];
@@ -2581,7 +2579,7 @@ function Necrosis_CreateMenu()
 		end
 	end
 
-	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
+	-- Maintenant que tous les boutons de buff sont plac? les uns ?c??des autres, on affiche les disponibles
 	if BuffMenuCreate[1] then
 		BuffMenuCreate[1]:ClearAllPoints();
 		BuffMenuCreate[1]:SetPoint(
@@ -2601,12 +2599,12 @@ function Necrosis_CreateMenu()
 	end
 
 
-	-- On ordonne et on affiche les boutons dans le menu des malédictions
+	-- On ordonne et on affiche les boutons dans le menu des mal?ictions
 	-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 	local MenuID = {42, 23, 22, 24, 25, 40, 26, 27, 16};
 	for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
-		-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
+		-- Si la Mal?iction existe, on affiche le bouton dans le menu des curses
 			if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
 				and NecrosisConfig.CurseSpellPosition[sort] > 0
 				and NECROSIS_SPELL_TABLE[MenuID[sort]].ID then
@@ -2624,7 +2622,7 @@ function Necrosis_CreateMenu()
 		end
 	end
 
-	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles
+	-- Maintenant que tous les boutons de curse sont plac? les uns ?c??des autres, on affiche les disponibles
 	if CurseMenuCreate[1] then
 		CurseMenuCreate[1]:ClearAllPoints();
 		CurseMenuCreate[1]:SetPoint(
@@ -2644,7 +2642,7 @@ function Necrosis_CreateMenu()
 	end
 end
 
--- Fonction permettant l'affichage des différentes pages du livre des configurations
+-- Fonction permettant l'affichage des diff?entes pages du livre des configurations
 function NecrosisGeneralTab_OnClick(id)
 	local TabName;
 	for index=1, 5, 1 do
@@ -2713,7 +2711,7 @@ function NecrosisTimer(nom, duree)
 	SpellGroup, SpellTimer, TimerTable = NecrosisTimerX(nom, duree, truc, Cible, Niveau, SpellGroup, SpellTimer, TimerTable);
 end
 
--- Time l'équipement de la pierre de sort.
+-- Time l'?uipement de la pierre de sort.
 function Necrosis_EquipSpellStone()
 	if SpellstoneMode == 2 then
 		SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("SpellstoneIn", nil, nil, SpellGroup, SpellTimer, TimerTable);
@@ -2735,8 +2733,8 @@ function Necrosis_SearchWand(bool)
 			local itemSwitch2 = tostring(NecrosisTooltipTextRight4:GetText());
 			-- Dans le cas d'un emplacement non vide
 			if itemName then
-				-- On note aussi la présence ou non des objets "main gauche"
-				-- Plus tard ce sera utilisé pour remplacer automatiquement une pierre absente
+				-- On note aussi la pr?ence ou non des objets "main gauche"
+				-- Plus tard ce sera utilis?pour remplacer automatiquement une pierre absente
 				if (itemSwitch == NECROSIS_ITEM.Ranged or itemSwitch2 == NECROSIS_ITEM.Ranged)
 					and (itemName2 == NECROSIS_ITEM.Soulbound or itemName3 == NECROSIS_ITEM.Soulbound)
 					then
