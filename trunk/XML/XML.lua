@@ -152,7 +152,7 @@ NecrosisSoulstoneButton:SetScript("PreClick", function()
 	end
 end);
 NecrosisSoulstoneButton:SetScript("PostClick", function()
-	if not (InCombatLockdown() then
+	if not InCombatLockdown() then
 		this:SetAttribute("unit", "target")
 	end
 end);
@@ -221,7 +221,7 @@ for i = 2, 3, 1 do
 		end
 	end);
 	f:SetScript("PostClick", function()
-		if not (InCombatLockdown() then
+		if not InCombatLockdown() then
 			this:SetAttribute("unit", "target")
 		end
 	end);
