@@ -2398,7 +2398,7 @@ function Necrosis_UpdateButtonsScale()
 
 	for index, valeur in ipairs(ButtonName) do
 		local f = _G[valeur];
-		if f then f:Hide(); endLua-isation de toutes les Frames principales
+		if f then f:Hide(); end
 	end
 
 	local SpellExist = {
@@ -2560,7 +2560,7 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisPetMenu");
 		for i = 1, #PetMenuCreate, 1 do
-			PetMenuCreate[i]:Show();
+			PetMenuCreate[i]:Hide();
 
 			NecrosisPetMenu0:SetAttribute("addchild", PetMenuCreate[i])
 			PetMenuCreate[i]:SetAttribute("showstates", "!0,*")
@@ -2626,7 +2626,7 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisBuffMenu");
 		for i = 1, #BuffMenuCreate, 1 do
-			BuffMenuCreate[i]:Show();
+			BuffMenuCreate[i]:Hide();
 
 			NecrosisBuffMenu0:SetAttribute("addchild", BuffMenuCreate[i])
 			BuffMenuCreate[i]:SetAttribute("showstates", "!0,*")
@@ -2675,7 +2675,7 @@ function Necrosis_CreateMenu()
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		Necrosis_MenuAttribute("NecrosisCurseMenu");
 		for i = 1, #CurseMenuCreate, 1 do
-			CurseMenuCreate[i]:Show();
+			CurseMenuCreate[i]:Hide();
 
 			NecrosisCurseMenu0:SetAttribute("addchild", CurseMenuCreate[i])
 			CurseMenuCreate[i]:SetAttribute("showstates", "!0,*")
