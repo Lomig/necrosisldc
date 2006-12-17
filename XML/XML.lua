@@ -32,13 +32,7 @@
 ------------------------------------------------------------------------------------------------------
 
 -- Création du bouton de Timer des sorts
-local SpellTimerButton = CreateFrame
-	(
-		"Button",
-		"NecrosisSpellTimerButton",
-		UIParent,
-		"SecureActionButtonTemplate"
-	);
+local SpellTimerButton = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
 
 SpellTimerButton:SetFrameStrata("MEDIUM");
 SpellTimerButton:SetMovable(true);
@@ -52,25 +46,20 @@ SpellTimerButton:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTime
 SpellTimerButton:Hide();
 
 -- Création de la liste des Timers Textes
-local TextTimer = SpellTimerButton:CreateFontString
-	(
-		"NecrosisListSpells",
-		nil,
-		"GameFontNormalSmall"
-	);
+local TextTimer = SpellTimerButton:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
 
 TextTimer:SetJustifyH("LEFT");
 TextTimer:SetPoint("LEFT", "NecrosisSpellTimerButton", "LEFT", 23, 0);
 TextTimer:SetTextColor(1, 1, 1);
 
 -- Edition des scripts associés au bouton
-SpellTimerButton:SetScript
-	("OnLoad", function()
+SpellTimerButton:SetScript("OnLoad",
+	function()
 		this:RegisterForDrag("LeftButton");
 		this:RegisterForClicks("RightButtonUp");
 	end);
-SpellTimerButton:SetScript
-	("OnEnter", function()
+SpellTimerButton:SetScript("OnEnter",
+	function()
 		Necrosis_BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip);
 	end);
 SpellTimerButton:SetScript("OnLeave", function() GameTooltip:Hide(); end);
