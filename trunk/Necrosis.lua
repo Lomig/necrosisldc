@@ -964,7 +964,6 @@ function Necrosis_OnDragStop(button)
 	-- On sauvegarde l'emplacement du bouton
 	local NomBouton = button:GetName();
 	local AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY = button:GetPoint();
-	BoutonParent = BoutonParent:GetName();
 	NecrosisConfig.FramePosition[NomBouton] = {AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY};
 end
 
@@ -1541,6 +1540,7 @@ function Necrosis_UpdateIcons()
 				else
 					NecrosisBuffMenu11:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Enslave-01");
 				end
+			end
 		end
 		if _G["NecrosisBuffMenu1"] and NECROSIS_SPELL_TABLE[31].ID then
 			if NECROSIS_SPELL_TABLE[31].Mana > mana then
@@ -2387,6 +2387,7 @@ function Necrosis_CreateMenu()
 			PetMenuCreate[i]:SetAttribute("anchorchild", NecrosisPetMenu0);
 			PetMenuCreate[i]:SetAttribute("childstate", (i + 1));
 			PetMenuCreate[i]:SetAttribute("newstate", "0");
+			PetMenuCreate[i]:Hide();
 		end
 		Necrosis_PetSpellAttribute();
 	end
@@ -2458,6 +2459,7 @@ function Necrosis_CreateMenu()
 			BuffMenuCreate[i]:SetAttribute("anchorchild", NecrosisBuffMenu0);
 			BuffMenuCreate[i]:SetAttribute("childstate", (i + 1));
 			BuffMenuCreate[i]:SetAttribute("newstate", "0");
+			BuffMenuCreate[i]:Hide();
 		end
 		Necrosis_BuffSpellAttribute();
 	end
@@ -2509,6 +2511,7 @@ function Necrosis_CreateMenu()
 			CurseMenuCreate[i]:SetAttribute("anchorchild", NecrosisCurseMenu0);
 			CurseMenuCreate[i]:SetAttribute("childstate", (i + 1));
 			CurseMenuCreate[i]:SetAttribute("newstate", "0");
+			CurseMenuCreate[i]:Hide();
 		end
 		Necrosis_CurseSpellAttribute();
 	end

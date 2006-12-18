@@ -194,7 +194,6 @@ function Necrosis_Initialize()
 	NecrosisBacklashButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
 	NecrosisAntiFearButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
 	NecrosisCreatureAlertButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
-	NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale/100);
 
 	-- On définit l'affichage des Timers à gauche ou à droite du bouton
 	NecrosisListSpells:ClearAllPoints();
