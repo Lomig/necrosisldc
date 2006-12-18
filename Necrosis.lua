@@ -304,9 +304,6 @@ end
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
 function Necrosis_OnUpdate()
 
-	-- La fonction n'est utilisée que si Necrosis est initialisé
-	if not Loaded then return end
-
 	-- Gestion des fragments d'âme : Tri des fragment toutes les secondes
 	local curTime = GetTime();
 	if ((curTime-SoulshardTime) >= 1) then

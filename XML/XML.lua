@@ -534,7 +534,7 @@ function Necrosis_CreateWarlockPopup()
 	frame:SetFrameStrata("BACKGROUND");
 	frame:SetWidth(40);
 	frame:SetHeight(40);
-	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\AntiFear-1");
+	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\AntiFear-01");
 	frame:RegisterForDrag("LeftButton");
 	frame:Hide();
 
