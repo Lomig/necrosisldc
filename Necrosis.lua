@@ -1501,9 +1501,9 @@ function Necrosis_UpdateIcons()
 	for i = 1, #PetButtonNumber, 1 do
 		local PetManaButton = _G["NecrosisPetMenu"..PetButtonNumber[i]];
 		if PetManaButton and DemonType == NECROSIS_PET_LOCAL_NAME[i] then
-			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"PetNameHere[i].."2");
+			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i].."2");
 		elseif PetManaButton then
-			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"PetNameHere[i]..ManaPet[i]);
+			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i]..ManaPet[i]);
 		end
 	end
 
@@ -1559,7 +1559,7 @@ function Necrosis_UpdateIcons()
 		local BoutonNumber = {10, 2, 3, 4, 5, 7, 8, 9};
 		local BoutonTexture = {"FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Banish"};
 		local SortNumber = {47, 32, 33, 34, 37, 38, 43, 9}
-		for i = 1, #SortNumber, 1, do
+		for i = 1, #SortNumber, 1 do
 			local f = _G["NecrosisBuffMenu"..BoutonNumber[i]];
 			if f and NECROSIS_SPELL_TABLE[SortNumber[i]].ID then
 				if NECROSIS_SPELL_TABLE[SortNumber[i]].Mana > mana then
