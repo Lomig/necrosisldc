@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 07.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -37,8 +37,6 @@
 ------------------------------------------------
 
 if ( GetLocale() == "deDE" ) then
-
-NECROSIS_UNIT_WARLOCK = "Hexenmeister";
 
 NECROSIS_ANTI_FEAR_SPELL = {
 	-- Buffs die temporäre Immunität gegenüber Furcht geben
@@ -55,7 +53,7 @@ NECROSIS_ANTI_FEAR_SPELL = {
 		"Gottesschild",			-- Paladin Holy buff
 		"Totem des Erdsto\195\159es",	-- Shaman totem
 		"Abolish Magic"			-- Majordomo (NPC) spell
-		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.		
+		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.
 	},
 
 	-- Debuffs and curses giving temporary immunity to fear effects
@@ -78,7 +76,7 @@ NECROSIS_ANTI_FEAR_SRCH = "(.+) war ein Fehlschlag. (.+) ist immun."
 NECROSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Teufelsross beschw\195\182ren",		Length = 0,	Type = 0},
-	[2] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil, 
+	[2] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Schreckensross herbeirufen",		Length = 0,	Type = 0},
 	[3] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Wichtel beschw\195\182ren",		Length = 0,	Type = 0},
@@ -198,7 +196,7 @@ NECROSIS_ITEM = {
 	["InfernalStone"] = "H\195\182llenstein",
 	["DemoniacStone"] = "D\195\164monenstatuette",
 	["Hearthstone"] = "Ruhestein",
-	["SoulPouch"] = {"Seelenbeutel", "Teufelsstofftasche", "Kernteufelsstofftasche"}	
+	["SoulPouch"] = {"Seelenbeutel", "Teufelsstofftasche", "Kernteufelsstofftasche"}
 };
 
 
@@ -236,7 +234,7 @@ NECROSIS_PET_LOCAL_NAME = {
 NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Ruhestein",
-	["Rank"] = "Rang",	 
+	["Rank"] = "Rang",
 	["Invisible"] = "Unsichtbarkeit entdecken",
 	["LesserInvisible"] = "Geringe Unsichtbarkeit entdecken",
 	["GreaterInvisible"] = "Gro\195\159e Unsichtbarkeit entdecken",

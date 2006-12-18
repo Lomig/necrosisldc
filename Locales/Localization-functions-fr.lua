@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -38,8 +38,6 @@
 ------------------------------------------------
 
 if ( GetLocale() == "frFR" ) then
-
-NECROSIS_UNIT_WARLOCK = "D\195\169moniste";
 
 NECROSIS_ANTI_FEAR_SPELL = {
 	-- Buffs giving temporary immunity to fear effects
@@ -56,7 +54,7 @@ NECROSIS_ANTI_FEAR_SPELL = {
 		"Bouclier divin",				-- Paladin Holy buff
 		"Totem de s\195\169isme",			-- Shaman totem
 		"Abolir la magie"				-- Majordomo (NPC) spell
-		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.		
+		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.
 	},
 
 	-- Debuffs and curses giving temporary immunity to fear effects
@@ -79,7 +77,7 @@ NECROSIS_ANTI_FEAR_SRCH = "Votre (.+) rate. (.+) y est insensible."
 NECROSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Invocation d'un palefroi corrompu",			Length = 0,	Type = 0},
-	[2] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil, 
+	[2] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Invocation d'un destrier de l'effroi",			Length = 0,	Type = 0},
 	[3] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Invocation d'un diablotin",				Length = 0,	Type = 0},

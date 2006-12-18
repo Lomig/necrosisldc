@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -37,8 +37,6 @@
 ------------------------------------------------
 
 if ( GetLocale() == "esES" ) then
-
-NECROSIS_UNIT_WARLOCK = "Brujo";
 
 NECROSIS_ANTI_FEAR_SPELL = {
 	-- Bufos que dan inmunidad temporal a los efectos de miedo
@@ -55,7 +53,7 @@ NECROSIS_ANTI_FEAR_SPELL = {
 		"Escudo divino",			-- Paladin Holy buff
 		"T\195\179tem de tremor",		-- Shaman totem
 		"Suprimir magia"			-- Majordomo (NPC) spell
-		--  "T\195\179tem derribador" is not considerated, as it can remove other spell than fear, and only one each 10 sec.		
+		--  "T\195\179tem derribador" is not considerated, as it can remove other spell than fear, and only one each 10 sec.
 	},
 
 	-- Debufos y maldiciones que dan inmunidad temporal a los efectos de miedo
@@ -198,7 +196,7 @@ NECROSIS_ITEM = {
 	["InfernalStone"] = "Piedra infernal",
 	["DemoniacStone"] = "Figura demoniaca",
 	["Hearthstone"] = "Piedra de hogar",
-	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela de inferi", "Bolsa de tela de inferi del n\195\186cleo"}	
+	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela de inferi", "Bolsa de tela de inferi del n\195\186cleo"}
 };
 
 
