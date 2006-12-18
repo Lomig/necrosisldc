@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 04.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -37,8 +37,6 @@
 ------------------------------------------------
 
 if ( GetLocale() == "enUS" ) or ( GetLocale() == "enGB" ) then
-
-NECROSIS_UNIT_WARLOCK = "Warlock"
 
 NECROSIS_ANTI_FEAR_SPELL = {
 	-- Buffs giving temporary immunity to fear effects

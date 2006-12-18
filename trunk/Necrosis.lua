@@ -176,12 +176,12 @@ local MountAvailable = false;
 local NecrosisMounted = false;
 local PlayerCombat = false;
 
--- Variables utilisées pour la gestion des transes de l'ombre
-local ShadowTrance = false;
-local Backlash = false;
+-- Variables utilisées pour la gestion des transes de l'ombre / Backlash
+local NecrosisProc = {
+	{"ShadowTrance", false, -1},
+	{"Backlash", false, -1}
+};
 local AntiFearInUse = false;
-local ShadowTranceID = -1;
-local BacklashID = -1;
 
 -- Variables utilisées pour la gestion des fragments d'âme
 -- (principalement comptage)
@@ -304,136 +304,26 @@ end
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
 function Necrosis_OnUpdate()
 
-	-- Gestion des fragments d'âme : Tri des fragment toutes les secondes
 	local curTime = GetTime();
-	if ((curTime-SoulshardTime) >= 1) then
-		SoulshardTime = curTime;
-		if (SoulshardMP > 0) then
-			Necrosis_SoulshardSwitch("MOVE");
+
+	-- Si configuré, tri des fragment toutes les secondes
+	if NecrosisConfig.SoulshardSort then
+		if (curTime-SoulshardTime) >= 1 then
+			SoulshardTime = curTime;
+			if (SoulshardMP > 0) then
+				Necrosis_SoulshardSwitch("MOVE");
+			end
 		end
 	end
 
-	----------------------------------------------------------
-	-- Gestion des sorts du Démoniste
-	----------------------------------------------------------
-
-
-
-	-- Gestion du talent "Crépuscule" et "Contrecoup"
+	-- Si configuré, affichage des avertissements de Crépuscule et Contrecoup
 	if NecrosisConfig.ShadowTranceAlert then
-		local Actif = false;
-		local TimeLeft = 0;
-		Necrosis_UnitHasTrance();
-   		if ShadowTranceID ~= -1 then Actif = true; end
-		if Actif and not ShadowTrance then
-			ShadowTrance = true;
-			Necrosis_Msg(NECROSIS_PROC_TEXT.ShadowTrance, "USER");
-			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.ShadowTrance); end
-			local ShadowTranceIndex, cancel = GetPlayerBuff(ShadowTranceID,"HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			NecrosisShadowTranceTimer:SetText(TimeLeft);
-			ShowUIPanel(NecrosisShadowTranceButton);
-		end
-		if not Actif and ShadowTrance then
-			HideUIPanel(NecrosisShadowTranceButton);
-			ShadowTrance = false;
-		end
-		if Actif and ShadowTrance then
-			local ShadowTranceIndex, cancel = GetPlayerBuff(ShadowTranceID,"HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			NecrosisShadowTranceTimer:SetText(TimeLeft);
-		end
-
-		Actif = false;
-		TimeLeft = 0;
-		Necrosis_UnitHasBacklash();
-   		if BacklashID ~= -1 then Actif = true; end
-		if Actif and not Backlash then
-			Backlash = true;
-			Necrosis_Msg(NECROSIS_PROC_TEXT.Backlash, "USER");
-			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.Backlash); end
-			local BacklashIndex, cancel = GetPlayerBuff(BacklashID,"HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(BacklashIndex));
-			NecrosisBacklashTimer:SetText(TimeLeft);
-			ShowUIPanel(NecrosisBacklashButton);
-		end
-		if not Actif and Backlash then
-			HideUIPanel(NecrosisBacklashButton);
-			Backlash = false;
-		end
-		if Actif and Backlash then
-			local BacklashIndex, cancel = GetPlayerBuff(BacklashID,"HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(BacklashIndex));
-			NecrosisBacklashTimer:SetText(TimeLeft);
-		end
+		Necrosis_ShowTranceWarning();
 	end
 
-	-- Gestion des Antifears
+	-- Si configuré, affichage des avertissements d'Antifear
 	if NecrosisConfig.AntiFearAlert then
-		local Actif = false; -- must be False, or a number from 1 to AFImageType[] max element.
-
-		-- Checking if we have a target. Any fear need a target to be casted on
-		if UnitExists("target") and UnitCanAttack("player", "target") and not UnitIsDead("target") then
-			-- Checking if the target has natural immunity (only NPC target)
-			if not UnitIsPlayer("target") then
-				for index=1, #NECROSIS_UNIT.Undead, 1 do
-					if (UnitCreatureType("target") == NECROSIS_UNIT.Undead[index] ) then
-						Actif = 2; -- Immun
-						break;
-					end
-				end
-			end
-
-			-- We'll start to parse the target buffs, as his class doesn't give him natural permanent immunity
-			if not Actif then
-				for index=1, #NECROSIS_ANTI_FEAR_SPELL.Buff, 1 do
-					if Necrosis_UnitHasBuff("target",NECROSIS_ANTI_FEAR_SPELL.Buff[index]) then
-						Actif = 3; -- Prot
-						break;
-					end
-				end
-
-				-- No buff found, let's try the debuffs
-				for index=1, #NECROSIS_ANTI_FEAR_SPELL.Debuff, 1 do
-					if Necrosis_UnitHasEffect("target",NECROSIS_ANTI_FEAR_SPELL.Debuff[index]) then
-						Actif = 3; -- Prot
-						break;
-					end
-				end
-			end
-
-			-- an immunity has been detected before, but we still don't know why => show the button anyway
-			if AFCurrentTargetImmune and not Actif then
-				Actif = 1;
-			end
-		end
-
-		if Actif then
-			-- Antifear button is currently not visible, we have to change that
-			if not AntiFearInUse then
-				AntiFearInUse = true;
-				Necrosis_Msg(NECROSIS_MESSAGE.Information.FearProtect, "USER");
-				NecrosisAntiFearButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\AntiFear"..AFImageType[Actif].."-02");
-				if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.Fear); end
-				ShowUIPanel(NecrosisAntiFearButton);
-				AFBlink1 = GetTime() + 0.6;
-				AFBlink2 = 2;
-
-			-- Timer to make the button blink
-			elseif GetTime() >= AFBlink1 then
-				if AFBlink2 == 1 then
-					AFBlink2 = 2;
-				else
-					AFBlink2 = 1;
-				end
-				AFBlink1 = GetTime() + 0.4;
-				NecrosisAntiFearButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\AntiFear"..AFImageType[Actif].."-0"..AFBlink2);
-			end
-
-		elseif AntiFearInUse then	-- No antifear on target, but the button is still visible => gonna hide it
-			AntiFearInUse = false;
-			HideUIPanel(NecrosisAntiFearButton);
-		end
+		Necrosis_ShowAntiFearWarning();
 	end
 
 	-- Gestion du Timer des sorts
@@ -688,9 +578,11 @@ function Necrosis_OnEvent(event)
 	-- Actions personnelles -- "Buffs"
 	elseif (event == "CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS") then
 		Necrosis_SelfEffect("BUFF");
+		Necrosis_UnitHasTrance();
 	-- Actions personnelles -- "Debuffs"
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
 		Necrosis_SelfEffect("DEBUFF");
+		Necrosis_UnitHasTrance();
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		PlayerCombat = true;
 
@@ -2213,32 +2105,120 @@ function Necrosis_UnitHasBuff(unit, effect)
 end
 
 
--- Permet de reconnaitre quand le joueur gagne Crépuscule / Transe de l'ombre
+-- Permet de reconnaitre quand le joueur gagne Crépuscule / Transe de l'ombre / Backlash
 function Necrosis_UnitHasTrance()
-	local ID = -1;
+	local IDTrance = -1;
+	local IDBacklash = -1;
 	for buffID = 1, 25, 1 do
 		local buffTexture = GetPlayerBuffTexture(buffID);
 		if buffTexture == nil then break end
 		if strfind(buffTexture, "Spell_Shadow_Twilight") then
-			ID = buffID;
+			IDTrance = buffID;
+		elseif strfind(buffTexture, "Spell_Fire_PlayingWithFire") then
+			IDBacklash = buffID;
+		end
+		if not (IDTrance == -1 or IDBacklash == -1) then
 			break
 		end
 	end
-	ShadowTranceID = ID;
+	NecrosisProc[1][3] = IDTrance;
+	NecrosisProc[2][3] = IDBacklash;
 end
 
--- Permet de reconnaitre quand le joueur gagne Contrecoup
-function Necrosis_UnitHasBacklash()
-	local ID = -1;
-	for buffID = 1, 25, 1 do
-		local buffTexture = GetPlayerBuffTexture(buffID);
-		if buffTexture == nil then break end
-		if strfind(buffTexture, "Spell_Fire_PlayingWithFire") then
-			ID = buffID;
-			break
+-- Affiche ou cache les boutons de Transe / Contrecoup suivant les procs.
+function Necrosis_ShowTranceWarning()
+	for i = 1, 2, 1 do
+		local Actif = true;
+		local TimeLeft = 0;
+		if NecrosisProc[i][3] == -1 then Actif = false; end
+		if Actif and not NecrosisProc[i][2] then
+			NecrosisProc[i][2] = true;
+			Necrosis_Msg(NECROSIS_PROC_TEXT[NecrosisProc[i][1]], "USER");
+			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND[NecrosisProc[i][1]]); end
+			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
+			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
+			local f = _G["Necrosis"..truc[i][1].."Timer"];
+			f:SetText(TimeLeft);
+			f:Show()
+			_G["Necrosis"..truc[i][1].."Button"]:Show();
+		elseif Actif and NecrosisProc[i][2] then
+			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
+			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
+			local f = _G["Necrosis"..truc[i][1].."Timer"];
+			f:SetText(TimeLeft);
+		elseif not Actif and NecrosisProc[i][2] then
+			_G["Necrosis"..truc[i][1].."Button"]:Hide();
+			NecrosisProc[i][2] = false;
 		end
 	end
-	BacklashID = ID;
+end
+
+-- Affiche ou cache le bouton de détection de la peur suivant la cible.
+function Necrosis_ShowAntiFearWarning()
+	local Actif = false; -- must be False, or a number from 1 to AFImageType[] max element.
+
+	-- Checking if we have a target. Any fear need a target to be casted on
+	if UnitExists("target") and UnitCanAttack("player", "target") and not UnitIsDead("target") then
+		-- Checking if the target has natural immunity (only NPC target)
+		if not UnitIsPlayer("target") then
+			for index=1, #NECROSIS_UNIT.Undead, 1 do
+				if (UnitCreatureType("target") == NECROSIS_UNIT.Undead[index] ) then
+					Actif = 2; -- Immun
+					break;
+				end
+			end
+		end
+
+		-- We'll start to parse the target buffs, as his class doesn't give him natural permanent immunity
+		if not Actif then
+			for index=1, #NECROSIS_ANTI_FEAR_SPELL.Buff, 1 do
+				if Necrosis_UnitHasBuff("target",NECROSIS_ANTI_FEAR_SPELL.Buff[index]) then
+					Actif = 3; -- Prot
+					break;
+				end
+			end
+
+			-- No buff found, let's try the debuffs
+			for index=1, #NECROSIS_ANTI_FEAR_SPELL.Debuff, 1 do
+				if Necrosis_UnitHasEffect("target",NECROSIS_ANTI_FEAR_SPELL.Debuff[index]) then
+					Actif = 3; -- Prot
+					break;
+				end
+			end
+		end
+
+		-- an immunity has been detected before, but we still don't know why => show the button anyway
+		if AFCurrentTargetImmune and not Actif then
+			Actif = 1;
+		end
+	end
+
+	if Actif then
+		-- Antifear button is currently not visible, we have to change that
+		if not AntiFearInUse then
+			AntiFearInUse = true;
+			Necrosis_Msg(NECROSIS_MESSAGE.Information.FearProtect, "USER");
+			NecrosisAntiFearButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\AntiFear"..AFImageType[Actif].."-02");
+			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.Fear); end
+			ShowUIPanel(NecrosisAntiFearButton);
+			AFBlink1 = GetTime() + 0.6;
+			AFBlink2 = 2;
+
+		-- Timer to make the button blink
+		elseif GetTime() >= AFBlink1 then
+			if AFBlink2 == 1 then
+				AFBlink2 = 2;
+			else
+				AFBlink2 = 1;
+			end
+			AFBlink1 = GetTime() + 0.4;
+			NecrosisAntiFearButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\AntiFear"..AFImageType[Actif].."-0"..AFBlink2);
+		end
+
+	elseif AntiFearInUse then	-- No antifear on target, but the button is still visible => gonna hide it
+		AntiFearInUse = false;
+		HideUIPanel(NecrosisAntiFearButton);
+	end
 end
 
 -- Fonction pour gérer l'échange de pierre (hors combat)
