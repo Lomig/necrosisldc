@@ -2137,17 +2137,17 @@ function Necrosis_ShowTranceWarning()
 			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND[NecrosisProc[i][1]]); end
 			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
 			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			local f = _G["Necrosis"..truc[i][1].."Timer"];
+			local f = _G["Necrosis"..NecrosisProc[i][1].."Timer"];
 			f:SetText(TimeLeft);
 			f:Show()
-			_G["Necrosis"..truc[i][1].."Button"]:Show();
+			_G["Necrosis"..NecrosisProc[i][1].."Button"]:Show();
 		elseif Actif and NecrosisProc[i][2] then
 			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
 			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			local f = _G["Necrosis"..truc[i][1].."Timer"];
+			local f = _G["Necrosis"..NecrosisProc[i][1].."Timer"];
 			f:SetText(TimeLeft);
 		elseif not Actif and NecrosisProc[i][2] then
-			_G["Necrosis"..truc[i][1].."Button"]:Hide();
+			_G["Necrosis"..NecrosisProc[i][1].."Button"]:Hide();
 			NecrosisProc[i][2] = false;
 		end
 	end
