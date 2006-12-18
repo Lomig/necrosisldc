@@ -107,7 +107,7 @@ NECROSIS_SPELL_TABLE = {
 	[16] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Fluch der Verdammnis",			Length = 60,	Type = 3},
 	[17] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Opferung",				Length = 30,	Type = 3},
+		Name = "Schattenfurie",				Length = 20,	Type = 3},
 	[18] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Seelenfeuer",				Length = 60,	Type = 3},
 	[19] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -174,8 +174,6 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Seele brechen",				Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual der Seelen",			Length = 300,	Type = 3},
-	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Schattenfurie",				Length = 20,	Type = 3},
 };
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -210,7 +208,7 @@ NECROSIS_STONE_RANK = {
 };
 
 NECROSIS_NIGHTFALL = {
-	["BoltName"] = "blitz",
+	["Backlash"] = "Heimzahlen",
 	["ShadowTrance"] = "Schattentrance"
 };
 
@@ -239,7 +237,6 @@ NECROSIS_TRANSLATION = {
 	["LesserInvisible"] = "Geringe Unsichtbarkeit entdecken",
 	["GreaterInvisible"] = "Gro\195\159e Unsichtbarkeit entdecken",
 	["SoulLinkGain"] = "Du bekommst Seelenverbindung.",
-	["SacrificeGain"] = "Du bekommst Opferung.",
 };
 
 end

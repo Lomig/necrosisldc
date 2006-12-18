@@ -130,7 +130,14 @@ Default_NecrosisConfig = {
 	CurseBlock = false;
 	PetBlock = false;
 	BuffBlock = false;
-	FramePosition = {};
+	FramePosition = {
+		["NecrosisSpellTimerButton"] = {"CENTER", nil, "CENTER", 100, 300},
+		["NecrosisButton"] = {"CENTER", nil, "CENTER", 0, -200},
+		["NecrosisCreatureAlertButton"] = {"CENTER", nil, "CENTER", -60, 0},
+		["NecrosisAntiFearButton"] = {"CENTER", nil, "CENTER", -20, 0},
+		["NecrosisShadowTranceButton"] = {"CENTER", nil, "CENTER", 20, 0},
+		["NecrosisBacklashButton"] = {"CENTER", nil, "CENTER", 60, 0}
+	};
 };
 
 NecrosisConfig = {};
@@ -246,6 +253,8 @@ local DemonName = nil;
 local lOriginal_GameTooltip_ClearMoney;
 
 local Necrosis_In = true;
+local LastUpdate = 0;
+local LastUpdate2 = 0;
 
 ------------------------------------------------------------------------------------------------------
 -- FONCTIONS NECROSIS APPLIQUEES A L'ENTREE DANS LE JEU
@@ -257,8 +266,6 @@ function Necrosis_OnLoad()
 
 	local _, Classe = UnitClass("player");
 	if Classe == "WARLOCK" then
-		Necrosis_CreateWarlockUI();
-		Necrosis_CreateWarlockPopup();
 
 		-- Initialisation du mod
 		Necrosis_Initialize();
@@ -267,9 +274,7 @@ function Necrosis_OnLoad()
 		NecrosisButton:RegisterEvent("PLAYER_ENTERING_WORLD");
 		NecrosisButton:RegisterEvent("PLAYER_LEAVING_WORLD");
 		NecrosisButton:RegisterEvent("BAG_UPDATE");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
+		NecrosisButton:RegisterEvent("COMBAT_TEXT_UPDATE");
 		NecrosisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
 		NecrosisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
 		NecrosisButton:RegisterEvent("UNIT_PET");
@@ -302,29 +307,29 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
-function Necrosis_OnUpdate()
+function Necrosis_OnUpdate(elapsed)
+	LastUpdate = LastUpdate + elapsed;
+	LastUpdate2 = LastUpdate2 + elapsed;
+
+	-- Toutes les secondes
+	if LastUpdate > 1 then
+	-- Si configuré, tri des fragment toutes les secondes
+		if NecrosisConfig.SoulshardSort and SoulshardMP > 0  then
+			Necrosis_SoulshardSwitch("MOVE");
+		end
+		LastUpdate = 0;
+	end
+
+	-- Toutes les demies secondes
+	if LastUpdate2 > 0.5 then
+		-- Si configuré, affichage des avertissements d'Antifear
+		if NecrosisConfig.AntiFearAlert then
+			Necrosis_ShowAntiFearWarning();
+		end
+		LastUpdate2 = 0;
+	end
 
 	local curTime = GetTime();
-
-	-- Si configuré, tri des fragment toutes les secondes
-	if NecrosisConfig.SoulshardSort then
-		if (curTime-SoulshardTime) >= 1 then
-			SoulshardTime = curTime;
-			if (SoulshardMP > 0) then
-				Necrosis_SoulshardSwitch("MOVE");
-			end
-		end
-	end
-
-	-- Si configuré, affichage des avertissements de Crépuscule et Contrecoup
-	if NecrosisConfig.ShadowTranceAlert then
-		Necrosis_ShowTranceWarning();
-	end
-
-	-- Si configuré, affichage des avertissements d'Antifear
-	if NecrosisConfig.AntiFearAlert then
-		Necrosis_ShowAntiFearWarning();
-	end
 
 	-- Gestion du Timer des sorts
 	if (not NecrosisSpellTimerButton:IsVisible()) then
@@ -575,14 +580,14 @@ function Necrosis_OnEvent(event)
 	-- Quand le démoniste change de démon
 	elseif (event == "UNIT_PET" and arg1 == "player") then
 		Necrosis_ChangeDemon();
-	-- Actions personnelles -- "Buffs"
-	elseif (event == "CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS") then
-		Necrosis_SelfEffect("BUFF");
-		Necrosis_UnitHasTrance();
-	-- Actions personnelles -- "Debuffs"
-	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
-		Necrosis_SelfEffect("DEBUFF");
-		Necrosis_UnitHasTrance();
+	-- uand le démoniste gagne ou perd un buff.
+	elseif event == "COMBAT_TEXT_UPDATE" then
+		local Effet, NomEffet = arg1, arg2;
+		if Effet == "AURA_START" then
+			Necrosis_SelfEffect("BUFF", NomEffet);
+		elseif Effet == "AURA_END" then
+			Necrosis_SelfEffect("DEBUFF", NomEffet);
+		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		PlayerCombat = true;
 
@@ -604,9 +609,7 @@ end
 function Necrosis_RegisterManagement(RegistrationType)
 	if RegistrationType == "IN" then
 		NecrosisButton:RegisterEvent("BAG_UPDATE");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-		NecrosisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
+		NecrosisButton:RegisterEvent("COMBAT_TEXT_UPDATE");
 		NecrosisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
 		NecrosisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
 		NecrosisButton:RegisterEvent("UNIT_PET");
@@ -623,9 +626,7 @@ function Necrosis_RegisterManagement(RegistrationType)
 		NecrosisButton:RegisterEvent("TRADE_CLOSED");
 	else
 		NecrosisButton:UnregisterEvent("BAG_UPDATE");
-		NecrosisButton:UnregisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-		NecrosisButton:UnregisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-		NecrosisButton:UnregisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
+		NecrosisButton:UnRegisterEvent("COMBAT_TEXT_UPDATE");
 		NecrosisButton:UnregisterEvent("PLAYER_REGEN_DISABLED");
 		NecrosisButton:UnregisterEvent("PLAYER_REGEN_ENABLED");
 		NecrosisButton:UnregisterEvent("UNIT_PET");
@@ -680,38 +681,60 @@ end
 -- events : CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS, CHAT_MSG_SPELL_AURA_GONE_SELF et CHAT_MSG_SPELL_BREAK_AURA
 -- Permet de gérer les effets apparaissants et disparaissants sur le démoniste
 -- Basé sur le CombatLog
-function Necrosis_SelfEffect(action)
+function Necrosis_SelfEffect(action, nom)
 	if action == "BUFF" then
-		-- Insertion d'un timer quand le Démoniste subit "Sacrifice"
-		if arg1 == NECROSIS_TRANSLATION.SacrificeGain then
-			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerParTable(17, "", "", SpellGroup, SpellTimer, TimerTable);
-		end
-
+		-- Changement du bouton de monture quand le Démoniste est démonté
+		if nom == NECROSIS_SPELL_TABLE[1].Name or  nom == NECROSIS_SPELL_TABLE[2].Name then
+			NecrosisMounted = true;
+			if _G["NecrosisMountButton"] then
+				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02");
+			end
 		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
-		if  string.find(arg1, NECROSIS_SPELL_TABLE[15].Name) and NECROSIS_SPELL_TABLE[15].ID ~= nil then
+		elseif  nom == NECROSIS_SPELL_TABLE[15].Name then
 			DominationUp = true;
-			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02");
-		end
+			if _G["NecrosisPetMenu1"] then
+				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02");
+			end
 		-- Changement du bouton de la malédiction amplifiée si celle-ci est activée + Timer de cooldown
-		if  string.find(arg1, NECROSIS_SPELL_TABLE[42].Name) and NECROSIS_SPELL_TABLE[42].ID ~= nil then
+		elseif  nom == NECROSIS_SPELL_TABLE[42].Name then
 			AmplifyUp = true;
-			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-02");
+			if _G["NecrosisCurseMenu1"] then
+				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-02");
+			end
+		-- si Contrecoup, pouf on affiche l'icone et on proc le son
+		elseif nom == NECROSIS_NIGHTFALL.Backlash then
+			Necrosis_Msg(NECROSIS_PROC_TEXT.Backlash, "USER");
+			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.Backlash); end
+			NecrosisBacklashButton:Show();
+		-- si Crépuscule, pouf on affiche l'icone et on proc le son
+		elseif nom == NECROSIS_NIGHTFALL.ShadowTrance then
+			Necrosis_Msg(NECROSIS_PROC_TEXT.ShadowTrance, "USER");
+			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.ShadowTrance); end
+			NecrosisShadowTranceButton:Show();
 		end
 	else
 		-- Changement du bouton de monture quand le Démoniste est démonté
-		if string.find(arg1, NECROSIS_SPELL_TABLE[1].Name) or  string.find(arg1, NECROSIS_SPELL_TABLE[2].Name) then
+		if nom == NECROSIS_SPELL_TABLE[1].Name or  nom == NECROSIS_SPELL_TABLE[2].Name then
 			NecrosisMounted = false;
-			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01");
-		end
+			if _G["NecrosisMountButton"] then
+				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01");
+			end
 		-- Changement du bouton de Domination quand le Démoniste n'est plus sous son emprise
-		if  string.find(arg1, NECROSIS_SPELL_TABLE[15].Name) and NECROSIS_SPELL_TABLE[15].ID ~= nil then
+		elseif  nom == NECROSIS_SPELL_TABLE[15].Name then
 			DominationUp = false;
-			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01");
-		end
+			if _G["NecrosisPetMenu1"] then
+				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01");
+			end
 		-- Changement du bouton de la malédiction amplifiée quand le Démoniste n'est plus sous son emprise
-		if  string.find(arg1, NECROSIS_SPELL_TABLE[42].Name) and NECROSIS_SPELL_TABLE[42].ID ~= nil then
+		elseif  nom == NECROSIS_SPELL_TABLE[42].Name then
 			AmplifyUp = false;
-			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01");
+			if _G["NecrosisCurseMenu1"] then
+				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01");
+			end
+		-- On cache les boutons de ShadowTrance quand one st plus sous son emprise
+		elseif nom == NECROSIS_NIGHTFALL.ShadowTrance or nom == NECROSIS_NIGHTFALL.Backlash then
+			NecrosisShadowTranceButton:Hide();
+			NecrosisBacklashButton:Hide();
 		end
 	end
 	return;
@@ -2105,54 +2128,6 @@ function Necrosis_UnitHasBuff(unit, effect)
 end
 
 
--- Permet de reconnaitre quand le joueur gagne Crépuscule / Transe de l'ombre / Backlash
-function Necrosis_UnitHasTrance()
-	local IDTrance = -1;
-	local IDBacklash = -1;
-	for buffID = 1, 25, 1 do
-		local buffTexture = GetPlayerBuffTexture(buffID);
-		if buffTexture == nil then break end
-		if strfind(buffTexture, "Spell_Shadow_Twilight") then
-			IDTrance = buffID;
-		elseif strfind(buffTexture, "Spell_Fire_PlayingWithFire") then
-			IDBacklash = buffID;
-		end
-		if not (IDTrance == -1 or IDBacklash == -1) then
-			break
-		end
-	end
-	NecrosisProc[1][3] = IDTrance;
-	NecrosisProc[2][3] = IDBacklash;
-end
-
--- Affiche ou cache les boutons de Transe / Contrecoup suivant les procs.
-function Necrosis_ShowTranceWarning()
-	for i = 1, 2, 1 do
-		local Actif = true;
-		local TimeLeft = 0;
-		if NecrosisProc[i][3] == -1 then Actif = false; end
-		if Actif and not NecrosisProc[i][2] then
-			NecrosisProc[i][2] = true;
-			Necrosis_Msg(NECROSIS_PROC_TEXT[NecrosisProc[i][1]], "USER");
-			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND[NecrosisProc[i][1]]); end
-			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			local f = _G["Necrosis"..NecrosisProc[i][1].."Timer"];
-			f:SetText(TimeLeft);
-			f:Show()
-			_G["Necrosis"..NecrosisProc[i][1].."Button"]:Show();
-		elseif Actif and NecrosisProc[i][2] then
-			local ShadowTranceIndex, cancel = GetPlayerBuff(NecrosisProc[i][3], "HELPFUL|HARMFUL|PASSIVE");
-			TimeLeft = floor(GetPlayerBuffTimeLeft(ShadowTranceIndex));
-			local f = _G["Necrosis"..NecrosisProc[i][1].."Timer"];
-			f:SetText(TimeLeft);
-		elseif not Actif and NecrosisProc[i][2] then
-			_G["Necrosis"..NecrosisProc[i][1].."Button"]:Hide();
-			NecrosisProc[i][2] = false;
-		end
-	end
-end
-
 -- Affiche ou cache le bouton de détection de la peur suivant la cible.
 function Necrosis_ShowAntiFearWarning()
 	local Actif = false; -- must be False, or a number from 1 to AFImageType[] max element.
@@ -2491,6 +2466,33 @@ function Necrosis_CreateMenu()
 			CurseMenuCreate[i]:Hide();
 		end
 		Necrosis_CurseSpellAttribute();
+	end
+end
+
+-- Fonction pour ramener tout au centre de l'écran
+function Necrosis_Recall()
+	local ui = {
+		"NecrosisButton",
+		"NecrosisSpellTimerButton", 
+		"NecrosisAntiFearButton",
+		"NecrosisCreatureAlertButton",
+		"NecrosisBacklashButton",
+		"NecrosisShadowTranceButton"
+	};
+	local pos = {
+		{0, -100};
+		{0, 100};
+		{20, 0};
+		{60, 0};
+		{-60, 0};
+		{-20, 0};
+	};
+	for i = 1, #ui, 1 do
+		local f = _G[ui[i]];
+		f:ClearAllPoints();
+		f:SetPoint("CENTER", "UIParent", "CENTER", pos[i][1], pos[i][2]);
+		f:Show();
+		Necrosis_OnDragStop(f);
 	end
 end
 

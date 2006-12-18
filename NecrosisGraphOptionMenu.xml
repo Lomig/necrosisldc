@@ -148,6 +148,7 @@
 				</Anchors>
 				<Scripts>
 					<OnEnter>
+						Necrosis_CreateWarlockPopup();
 						STx, STy = NecrosisShadowTranceButton:GetCenter()
 						STx = STx * (NecrosisConfig.ShadowTranceScale / 100)
 						STy = STy * (NecrosisConfig.ShadowTranceScale / 100)
@@ -268,10 +269,10 @@
 							NecrosisSpellstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -87,-100)
 							NecrosisHealthstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100)
 							NecrosisSoulstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -17,-100)
-							NecrosisBuffMenu0:SetPoint("CENTER", "UIParent", "CENTER", 17,-100)
+							NecrosisBuffMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 17,-100)
 							NecrosisMountButton:SetPoint("CENTER", "UIParent", "CENTER", 53,-100)
-							NecrosisPetMenu0:SetPoint("CENTER", "UIParent", "CENTER", 87,-100)
-							NecrosisCurseMenu0:SetPoint("CENTER", "UIParent", "CENTER", 121,-100)
+							NecrosisPetMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 87,-100)
+							NecrosisCurseMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 121,-100)
 							Necrosis_Drag()
 							NecrosisConfig.NoDragAll = false
 							NecrosisLock_Button:SetChecked(false)
