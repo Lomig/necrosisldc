@@ -33,6 +33,10 @@
 
 
 
+
+-- On définit G comme étant le tableau contenant toutes les frames existantes.
+local _G = getfenv(0);
+
 ------------------------------------------------------------------------------------------------------
 -- FONCTION D'INITIALISATION
 ------------------------------------------------------------------------------------------------------
@@ -66,19 +70,7 @@ function Necrosis_Initialize()
 		NecrosisConfig = {};
 		NecrosisConfig = Default_NecrosisConfig;
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER");
-		NecrosisButton:ClearAllPoints();
-		NecrosisShadowTranceButton:ClearAllPoints();
-		NecrosisBacklashButton:ClearAllPoints();
-		NecrosisAntiFearButton:ClearAllPoints();
-		NecrosisCreatureAlertButton:ClearAllPoints();
-		NecrosisSpellTimerButton:ClearAllPoints();
-		NecrosisButton:SetPoint("CENTER", "UIParent", "CENTER",0,-100);
-		NecrosisShadowTranceButton:SetPoint("CENTER", "UIParent", "CENTER",100,-30);
-		NecrosisBacklashButton:SetPoint("CENTER", "UIParent", "CENTER",100,-90);
-		NecrosisAntiFearButton:SetPoint("CENTER", "UIParent", "CENTER",100,30);
-		NecrosisCreatureAlertButton:SetPoint("CENTER", "UIParent", "CENTER",100,90);
-		NecrosisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",120,340);
-
+		Necrosis_Recall()
 	else
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER");
 	end
@@ -318,18 +310,7 @@ function Necrosis_SlashHandler(arg1)
 		return;
 	end
 	if string.find(string.lower(arg1), "recall") then
-		NecrosisButton:ClearAllPoints();
-		NecrosisButton:SetPoint("CENTER", "UIParent", "CENTER",0,0);
-		NecrosisSpellTimerButton:ClearAllPoints();
-		NecrosisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",0,0);
-		NecrosisAntiFearButton:ClearAllPoints();
-		NecrosisAntiFearButton:SetPoint("CENTER", "UIParent", "CENTER",20,0);
-		NecrosisCreatureAlertButton:ClearAllPoints();
-		NecrosisCreatureAlertButton:SetPoint("CENTER", "UIParent", "CENTER",60,0);
-		NecrosisBacklashButton:ClearAllPoints();
-		NecrosisBacklashButton:SetPoint("CENTER", "UIParent", "CENTER",-60,0);
-		NecrosisShadowTranceButton:ClearAllPoints();
-		NecrosisShadowTranceButton:SetPoint("CENTER", "UIParent", "CENTER",-20,0);
+		Necrosis_Recall();
 	elseif string.find(string.lower(arg1), "sm") then
 		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
 			NecrosisConfig.SM = false;
@@ -361,4 +342,30 @@ function Necrosis_SlashHandler(arg1)
 	end
 end
 
+
+function Necrosis_Recall()
+	local ui = {
+		"NecrosisButton",
+		"NecrosisSpellTimerButton", 
+		"NecrosisAntiFearButton",
+		"NecrosisCreatureAlertButton",
+		"NecrosisBacklashButton",
+		"NecrosisShadowTranceButton"
+	};
+	local pos = {
+		{0, -100};
+		{0, 100};
+		{20, 0};
+		{60, 0};
+		{-60, 0};
+		{-20, 0};
+	};
+	for i = 1, #ui, 1 do
+		local f = _G[ui[i]];
+		f:ClearAllPoints();
+		f:SetPoint("CENTER", "UIParent", "CENTER", pos[i][1], pos[i][2]);
+		f:Show();
+		Necrosis_OnDragStop(f);
+	end
+end
 
