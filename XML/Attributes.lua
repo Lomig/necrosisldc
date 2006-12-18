@@ -120,8 +120,8 @@ function Necrosis_BuffSpellAttribute()
 				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
 			);
 			-- Création du tableau des raccourcis claviers
-			if not CryolysisAlreadyBind["NecrosisBuffMenu"..i] then
-				CryolysisAlreadyBind["NecrosisBuffMenu"..i] = true;
+			if not NecrosisAlreadyBind["NecrosisBuffMenu"..i] then
+				NecrosisAlreadyBind["NecrosisBuffMenu"..i] = true;
 				table.insert(
 					NecrosisBinding,
 					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
@@ -137,8 +137,8 @@ function Necrosis_BuffSpellAttribute()
 		NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")");
 		NecrosisBuffMenu9:SetAttribute("type2", "spell");
 		NecrosisBuffMenu9:SetAttribute("spell2", NECROSIS_SPELL_TABLE[9].Name.."("..string.gsub(NECROSIS_SPELL_TABLE[9].Rank, "2", "1")..")");
-		if not CryolysisAlreadyBind["NecrosisBuffMenu9Right"] then
-			CryolysisAlreadyBind["NecrosisBuffMenu9Right"] = true;
+		if not NecrosisAlreadyBind["NecrosisBuffMenu9Right"] then
+			NecrosisAlreadyBind["NecrosisBuffMenu9Right"] = true;
 			table.insert(
 				NecrosisBinding,
 				{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
@@ -244,8 +244,8 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name.."("..NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Rank..")");
 
 			-- On prépare le tableau des raccourcis claviers
-			if not CryolysisAlreadyBind["Necrosis"..itemName[i].."Button"] then
-				CryolysisAlreadyBind["Necrosis"..itemName[i].."Button"] = true;
+			if not NecrosisAlreadyBind["Necrosis"..itemName[i].."Button"] then
+				NecrosisAlreadyBind["Necrosis"..itemName[i].."Button"] = true;
 				table.insert(
 					NecrosisBinding,
 					{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name, "CLICK Necrosis"..itemName[i].."Button:RightButton"}
@@ -270,8 +270,8 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 		else
 			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[1].Rank..")");
 		end
-		if not CryolysisAlreadyBind["NecrosisMountButton"] then
-			CryolysisAlreadyBind["NecrosisMountButton"] = true;
+		if not NecrosisAlreadyBind["NecrosisMountButton"] then
+			NecrosisAlreadyBind["NecrosisMountButton"] = true;
 			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[2].Name, "CLICK NecrosisMountButton:LeftButton"});
 		end
 	end
@@ -297,8 +297,8 @@ function Necrosis_MainButtonAttribute()
 	if NECROSIS_SPELL_TABLE[41].ID then
 		NecrosisButton:SetAttribute("type1", "spell");
 		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name.."("..NECROSIS_SPELL_TABLE[41].Rank..")");
-		if not CryolysisAlreadyBind["NecrosisButton"] then
-			CryolysisAlreadyBind["NecrosisButton"] = true;
+		if not NecrosisAlreadyBind["NecrosisButton"] then
+			NecrosisAlreadyBind["NecrosisButton"] = true;
 			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"});
 		end
 	end

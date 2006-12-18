@@ -42,7 +42,10 @@ function Necrosis_CreateWarlockUI()
 ------------------------------------------------------------------------------------------------------
 
 	-- Création du bouton de Timer des sorts
-	local frame = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
+	local frame = _G["NecrosisSpellTimerButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
+	end
 
 	-- Définition de ses attributs
 	frame:SetFrameStrata("MEDIUM");
@@ -56,7 +59,10 @@ function Necrosis_CreateWarlockUI()
 	frame:Show();
 
 	-- Création de la liste des Timers Textes
-	local FontString = frame:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
+	local FontString = _G["NecrosisListSpells"];
+	if not FontString then
+		FontString = frame:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
+	end
 
 	-- Définition de ses attributs
 	FontString:SetJustifyH("LEFT");
@@ -75,18 +81,20 @@ function Necrosis_CreateWarlockUI()
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
-	if NecrosisConfig.FramePosition["NecrosisSpellTimerButton"] then
-		frame:ClearAllPoints();
-		frame:SetPoint(
-			NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][1],
-			NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][2],
-			NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][3],
-			NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][4],
-			NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][5]
-		);
+	if NecrosisConfig.FramePosition then
+		if NecrosisConfig.FramePosition["NecrosisSpellTimerButton"] then
+			frame:ClearAllPoints();
+			frame:SetPoint(
+				NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][1],
+				NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][2],
+				NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][3],
+				NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][4],
+				NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][5]
+			);
+		end
 	else
-		frame:ClearAllPoints();
-		frame:SetPoint("CENTER", UIParent, "CENTER", 120, 340);
+			frame:ClearAllPoints();
+			frame:SetPoint("CENTER", UIParent, "CENTER", 120, 340);
 	end
 
 ------------------------------------------------------------------------------------------------------
@@ -94,7 +102,10 @@ function Necrosis_CreateWarlockUI()
 ------------------------------------------------------------------------------------------------------
 
 	-- Création du bouton principal de Necrosis
-	local frame = CreateFrame("Button", "NecrosisButton", UIParent, "SecureActionButtonTemplate");
+	local frame = _G["NecrosisButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisButton", UIParent, "SecureActionButtonTemplate");
+	end
 
 	-- Définition de ses attributs
 	frame:SetFrameLevel(1);
@@ -108,7 +119,10 @@ function Necrosis_CreateWarlockUI()
 	frame:Show();
 
 	-- Création du compteur de fragments d'âme
-	local FontString = frame:CreateFontString("NecrosisShardCount", nil, "GameFontNormal");
+	local FontString = _G["NecrosisShardCount"];
+	if not FontString then
+		FontString = frame:CreateFontString("NecrosisShardCount", nil, "GameFontNormal");
+	end
 
 	-- Définition de ses attributs
 	FontString:SetText("00");
@@ -125,15 +139,17 @@ function Necrosis_CreateWarlockUI()
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
-	if NecrosisConfig.FramePosition["NecrosisButton"] then
-		frame:ClearAllPoints();
-		frame:SetPoint(
-			NecrosisConfig.FramePosition["NecrosisButton"][1],
-			NecrosisConfig.FramePosition["NecrosisButton"][2],
-			NecrosisConfig.FramePosition["NecrosisButton"][3],
-			NecrosisConfig.FramePosition["NecrosisButton"][4],
-			NecrosisConfig.FramePosition["NecrosisButton"][5]
-		);
+	if NecrosisConfig.FramePosition then
+		if NecrosisConfig.FramePosition["NecrosisButton"] then
+			frame:ClearAllPoints();
+			frame:SetPoint(
+				NecrosisConfig.FramePosition["NecrosisButton"][1],
+				NecrosisConfig.FramePosition["NecrosisButton"][2],
+				NecrosisConfig.FramePosition["NecrosisButton"][3],
+				NecrosisConfig.FramePosition["NecrosisButton"][4],
+				NecrosisConfig.FramePosition["NecrosisButton"][5]
+			);
+		end
 	else
 		frame:ClearAllPoints();
 		frame:SetPoint("CENTER", UIParent, "CENTER", 0, -200);
@@ -296,6 +312,12 @@ function Necrosis_CreateMenuBuff(i)
 			end
 		end);
 	end
+
+	-- Attributes spéciaux pour notre ami le sort de Bannissement
+	if i == 9 then
+		frame:SetScale(NecrosisConfig.BanishScale/100);
+	end
+
 	return frame
 end
 
@@ -305,7 +327,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Boutons du menu des démons
-function Necrosis_CreateMenuBuff(i)
+function Necrosis_CreateMenuPet(i)
 	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Infernal", "Doomguard", "Enslave", "Sacrifice", "Felguard"};
 
 	-- Creaton du bouton
@@ -333,7 +355,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Boutons du menu des malédictions
-function Necrosis_CreateMenuBuff(i)
+function Necrosis_CreateMenuCurse(i)
 	local CurseName = {"Amplify", "Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"};
 
 	-- Creaton du bouton
@@ -362,7 +384,10 @@ end
 
 function Necrosis_CreateWarlockPopup()
 	-- Creation du bouton de ShadowTrance
-	local frame = CreateFrame("Button", "NecrosisShadowTranceButton", UIParent);
+	local frame = _G["NecrosisShadowTranceButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisShadowTranceButton", UIParent);
+	end
 
 	-- Définition de ses attributs
 	frame:SetMovable(true);
@@ -376,7 +401,10 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide();
 
 	-- Création du compte à rebours
-	local FontString = frame:CreateFontString("NecrosisShadowTranceTimer", nil, "GameFontNormal");
+	local FontString = _G["NecrosisShadowTranceTimer"];
+	if not FontString then
+		FontString = frame:CreateFontString("NecrosisShadowTranceTimer", nil, "GameFontNormal");
+	end
 
 	-- Définition de ses attributs
 	FontString:SetPoint("CENTER");
@@ -405,7 +433,10 @@ function Necrosis_CreateWarlockPopup()
 	end
 
 	-- Creation du bouton de BackLash
-	local frame = CreateFrame("Button", "NecrosisBacklashButton", UIParent);
+	local frame = _G["NecrosisBacklashButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisBacklashButton", UIParent);
+	end
 
 	-- Définition de ses attributs
 	frame:SetMovable(true);
@@ -418,7 +449,10 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide();
 
 	-- Création du compte à rebours
-	local FontString = frame:CreateFontString("NecrosisBacklashTimer", nil, "GameFontNormal");
+	local FontString = _G["NecrosisBacklashTimer"];
+	if not FontString then
+		FontString = frame:CreateFontString("NecrosisBacklashTimer", nil, "GameFontNormal");
+	end
 
 	-- Définition de ses attributs
 	FontString:SetPoint("CENTER");
@@ -447,7 +481,10 @@ function Necrosis_CreateWarlockPopup()
 	end
 
 	-- Creation du bouton de détection des cibles banissables / asservissables
-	local frame = CreateFrame("Button", "NecrosisCreatureAlertButton", UIParent);
+	local frame = _G["NecrosisCreatureAlertButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisCreatureAlertButton", UIParent);
+	end
 
 	-- Définition de ses attributs
 	frame:SetMovable(true);
@@ -480,7 +517,10 @@ function Necrosis_CreateWarlockPopup()
 	end
 
 	-- Creation du bouton de détection des cibles protégées contre la peur
-	local frame = CreateFrame("Button", "NecrosisAntiFearButton", UIParent);
+	local frame = _G["NecrosisAntiFearButton"];
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisAntiFearButton", UIParent);
+	end
 
 	-- Définition de ses attributs
 	frame:SetMovable(true);
