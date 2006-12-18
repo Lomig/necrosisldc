@@ -70,10 +70,12 @@ function Necrosis_Initialize()
 		NecrosisConfig = {};
 		NecrosisConfig = Default_NecrosisConfig;
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER");
-		Necrosis_Recall()
 	else
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER");
 	end
+
+	Necrosis_CreateWarlockUI();
+	Necrosis_CreateWarlockPopup();
 
 	-----------------------------------------------------------
 	-- Exécution des fonctions de démarrage
@@ -227,7 +229,9 @@ function Necrosis_Initialize()
 	Necrosis_BagExplore();
 
 	-- On vérifie que les fragments sont dans le sac défini par le Démoniste
-	Necrosis_SoulshardSwitch("CHECK");
+	if NecrosisConfig.SoulshardSort then
+		Necrosis_SoulshardSwitch("CHECK");
+	end
 
 	-- Initialisation des fichiers de langues -- Mise en place éventuelle du SMS
 	Necrosis_LanguageInitialize();
@@ -305,10 +309,6 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Necrosis_SlashHandler(arg1)
-	-- Blah blah blah, le joueur est-il bien un Démoniste ? On finira par le savoir !
-	if UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
-		return;
-	end
 	if string.find(string.lower(arg1), "recall") then
 		Necrosis_Recall();
 	elseif string.find(string.lower(arg1), "sm") then
@@ -335,37 +335,10 @@ function Necrosis_SlashHandler(arg1)
 			if NecrosisConfig.SM then
 				Necrosis_Msg("!!! Short Messages : <brightGreen>On", "USER");
 			end
-			ShowUIPanel(NecrosisGeneralFrame);
+			NecrosisGeneralFrame:Show();
 			NecrosisGeneralTab_OnClick(1);
 			return;
 		end
-	end
-end
-
-
-function Necrosis_Recall()
-	local ui = {
-		"NecrosisButton",
-		"NecrosisSpellTimerButton", 
-		"NecrosisAntiFearButton",
-		"NecrosisCreatureAlertButton",
-		"NecrosisBacklashButton",
-		"NecrosisShadowTranceButton"
-	};
-	local pos = {
-		{0, -100};
-		{0, 100};
-		{20, 0};
-		{60, 0};
-		{-60, 0};
-		{-20, 0};
-	};
-	for i = 1, #ui, 1 do
-		local f = _G[ui[i]];
-		f:ClearAllPoints();
-		f:SetPoint("CENTER", "UIParent", "CENTER", pos[i][1], pos[i][2]);
-		f:Show();
-		Necrosis_OnDragStop(f);
 	end
 end
 

@@ -107,7 +107,7 @@ NECROSIS_SPELL_TABLE = {
 	[16] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Curse of Doom",			Length = 60,	Type = 3},
 	[17] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Sacrifice",			Length = 30,	Type = 3},
+		Name = "Shadowfury",			Length = 20,	Type = 3},
 	[18] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Soul Fire",			Length = 60,	Type = 3},
 	[19] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -174,8 +174,6 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Soulshatter",			Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual of Souls",		Length = 300,	Type = 3},
-	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Shadowfury",			Length = 20,	Type = 3},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -210,7 +208,7 @@ NECROSIS_STONE_RANK = {
 }
 
 NECROSIS_NIGHTFALL = {
-	["BoltName"] = "Bolt",
+	["Backlash"] = "Backlash",
 	["ShadowTrance"] = "Shadow Trance"
 }
 
@@ -239,7 +237,6 @@ NECROSIS_TRANSLATION = {
 	["LesserInvisible"] = "Detect Lesser Invisibility",
 	["GreaterInvisible"] = "Detect Greater Invisibility",
 	["SoulLinkGain"] = "You gain Soul Link.",
-	["SacrificeGain"] = "You gain Sacrifice.",
 }
 
 end

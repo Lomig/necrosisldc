@@ -108,7 +108,7 @@ NECROSIS_SPELL_TABLE = {
 	[16] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Mal\195\169diction funeste",				Length = 60,	Type = 3},
 	[17] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Sacrifice",						Length = 30,	Type = 3},
+		Name = "Furie de l'ombre",					Length = 20,	Type = 3},
 	[18] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Feu de l'\195\162me",					Length = 60,	Type = 3},
 	[19] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -175,8 +175,6 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Brise-\195\162me",					Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
-	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Furie de l'ombre",					Length = 20,	Type = 3},
 };
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -211,7 +209,7 @@ NECROSIS_STONE_RANK = {
 };
 
 NECROSIS_NIGHTFALL = {
-	["BoltName"] = "Trait",
+	["Backlash"] = "Contrecoup",
 	["ShadowTrance"] = "Transe de l'ombre",
 };
 
@@ -240,7 +238,6 @@ NECROSIS_TRANSLATION = {
 	["LesserInvisible"] = "D\195\169tection de l'invisibilit\195\169 inf\195\169rieure",
 	["GreaterInvisible"] = "D\195\169tection de l'invisibilit\195\169 sup\195\169rieure",
 	["SoulLinkGain"] = "Vous gagnez Lien spirituel.",
-	["SacrificeGain"] = "Vous gagnez Sacrifice.",
 };
 
 end
