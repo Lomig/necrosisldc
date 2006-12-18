@@ -87,13 +87,22 @@ end
 
 -- On associe les buffs au clic sur le bouton concerné
 function Necrosis_BuffSpellAttribute()
+	if InCombatLockdown() then
+		return
+	end
 
 	-- Association de l'armure demoniaque si le sort est disponible
-	NecrosisBuffMenu1:SetAttribute("type", "spell");
-	if not NECROSIS_SPELL_TABLE[31].ID then
-		NecrosisBuffMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")");
-	else
-		NecrosisBuffMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")");
+	if _G["NecrosisBuffMenu1"] then
+		NecrosisBuffMenu1:SetAttribute("type", "spell");
+		if not NECROSIS_SPELL_TABLE[31].ID then
+			NecrosisBuffMenu1:SetAttribute("spell",
+				NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")"
+			);
+		else
+			NecrosisBuffMenu1:SetAttribute("spell",
+				NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")"
+			);
+		end
 	end
 
 
@@ -101,48 +110,61 @@ function Necrosis_BuffSpellAttribute()
 	local buffID = {31, 32, 33, 34, 37, 39, 38, 43, 9, 47, 35};
 	for i = 2, #buffID, 1 do
 		local f = _G["NecrosisBuffMenu"..i];
-		f:SetAttribute("type", "spell");
-		-- Si le sort nécessite une cible, on lui en associe une
-		if not (i == 4 or i == 6 or i == 7 or i == 8) then
-			f:SetAttribute("unit", "target");
+		if f then
+			f:SetAttribute("type", "spell");
+			-- Si le sort nécessite une cible, on lui en associe une
+			if not (i == 4 or i == 6 or i == 7 or i == 8) then
+				f:SetAttribute("unit", "target");
+			end
+			f:SetAttribute("spell",
+				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			);
+			-- Création du tableau des raccourcis claviers
+			if not CryolysisAlreadyBind["NecrosisBuffMenu"..i] then
+				CryolysisAlreadyBind["NecrosisBuffMenu"..i] = true;
+				table.insert(
+					NecrosisBinding,
+					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
+				);
+			end
 		end
-		f:SetAttribute("spell", NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")");
-		-- Création du tableau des raccourcis claviers
-		table.insert(
-			NecrosisBinding,
-			{NECROSIS_SPELL_TABLE[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
-		);
 	end
 
 
 	-- Cas particulier : Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
-	if string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
+	if _G["NecrosisBuffMenu9"] and string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
 		NecrosisBuffMenu9:SetAttribute("type1", "spell");
 		NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")");
 		NecrosisBuffMenu9:SetAttribute("type2", "spell");
 		NecrosisBuffMenu9:SetAttribute("spell2", NECROSIS_SPELL_TABLE[9].Name.."("..string.gsub(NECROSIS_SPELL_TABLE[9].Rank, "2", "1")..")");
-		table.insert(
-			NecrosisBinding,
-			{NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu9:LeftButton"}
-		);
-		table.insert(
-			NecrosisBinding,
-			{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
-		);
+		if not CryolysisAlreadyBind["NecrosisBuffMenu9Right"] then
+			CryolysisAlreadyBind["NecrosisBuffMenu9Right"] = true;
+			table.insert(
+				NecrosisBinding,
+				{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
+			);
+		end
 	end
 end
 
 -- On associe les démons au clic sur le bouton concerné
 function Necrosis_PetSpellAttribute()
+	if InCombatLockdown() then
+		return
+	end
 
 	-- Démons maitrisés
 	local buttonID = {2, 3, 4, 5, 10};
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]];
-		f:SetAttribute("type1", "spell");
-		f:SetAttribute("type2", "macro");
-		f:SetAttribute("spell", NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")");
-		f:SetAttribute("macrotext", "/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")");
+		if f then
+			f:SetAttribute("type1", "spell");
+			f:SetAttribute("type2", "macro");
+			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")");
+			f:SetAttribute("macrotext",
+				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")"
+			);
+		end
 	end
 
 	-- Autres sorts démoniaques
@@ -150,30 +172,45 @@ function Necrosis_PetSpellAttribute()
 	local BuffID = {15, 8, 30, 35, 44};
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]];
-		f:SetAttribute("type", "spell");
-		f:SetAttribute("spell", NECROSIS_SPELL_TABLE[ BuffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank..")");
+		if f then
+			f:SetAttribute("type", "spell");
+			f:SetAttribute("spell",
+				NECROSIS_SPELL_TABLE[ BuffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank..")"
+			);
+		end
 	end
 end
 
 -- On associe les malédictions au clic sur le bouton concerné
 function Necrosis_CurseSpellAttribute()
+	if InCombatLockdown() then
+		return
+	end
 
 	-- Malédiction amplifiée
-	NecrosisCurseMenu1:SetAttribute("type", "spell");
-	NecrosisCurseMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[42].Name);
+	if _G["NecrosisCurseMenu1"] then
+		NecrosisCurseMenu1:SetAttribute("type", "spell");
+		NecrosisCurseMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[42].Name);
+	end
 
 	-- Malédictions amplifiables
 	local buttonID = {2, 3, 6};
 	local buffID = {23, 22, 40};
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]];
-		f:SetAttribute("harmbutton1", "debuff");
-		f:SetAttribute("type-debuff", "spell");
-		f:SetAttribute("unit", "target");
-		f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")");
-		f:SetAttribute("harmbutton2", "amplif");
-		f:SetAttribute("type-amplif", "macro");
-		f:SetAttribute("macrotext-amplif", "/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")");
+		if f then
+			f:SetAttribute("harmbutton1", "debuff");
+			f:SetAttribute("type-debuff", "spell");
+			f:SetAttribute("unit", "target");
+			f:SetAttribute("spell-debuff",
+				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			);
+			f:SetAttribute("harmbutton2", "amplif");
+			f:SetAttribute("type-amplif", "macro");
+			f:SetAttribute("macrotext-amplif",
+				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			);
+		end
 	end
 
 	-- Autres malédictions
@@ -181,10 +218,14 @@ function Necrosis_CurseSpellAttribute()
 	local buffID = {24,25,26,27,16};
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]];
-		f:SetAttribute("harmbutton", "debuff");
-		f:SetAttribute("type-debuff", "spell");
-		f:SetAttribute("unit", "target");
-		f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")");
+		if f then
+			f:SetAttribute("harmbutton", "debuff");
+			f:SetAttribute("type-debuff", "spell");
+			f:SetAttribute("unit", "target");
+			f:SetAttribute("spell-debuff",
+				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			);
+		end
 	end
 end
 
@@ -203,14 +244,17 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name.."("..NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Rank..")");
 
 			-- On prépare le tableau des raccourcis claviers
-			table.insert(
-				NecrosisBinding,
-				{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name, "CLICK Necrosis"..itemName[i].."Button:RightButton"}
-			);
-			table.insert(
-				NecrosisBinding,
-				{NECROSIS_ITEM[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
-			);
+			if not CryolysisAlreadyBind["Necrosis"..itemName[i].."Button"] then
+				CryolysisAlreadyBind["Necrosis"..itemName[i].."Button"] = true;
+				table.insert(
+					NecrosisBinding,
+					{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name, "CLICK Necrosis"..itemName[i].."Button:RightButton"}
+				);
+				table.insert(
+					NecrosisBinding,
+					{NECROSIS_ITEM[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
+				);
+			end
 		end
 	end
 
@@ -226,7 +270,10 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 		else
 			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[1].Rank..")");
 		end
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[2].Name, "CLICK NecrosisMountButton:LeftButton"});
+		if not CryolysisAlreadyBind["NecrosisMountButton"] then
+			CryolysisAlreadyBind["NecrosisMountButton"] = true;
+			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[2].Name, "CLICK NecrosisMountButton:LeftButton"});
+		end
 	end
 
 	-- Pour la pierre de foyer
@@ -250,7 +297,10 @@ function Necrosis_MainButtonAttribute()
 	if NECROSIS_SPELL_TABLE[41].ID then
 		NecrosisButton:SetAttribute("type1", "spell");
 		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name.."("..NECROSIS_SPELL_TABLE[41].Rank..")");
-		table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"});
+		if not CryolysisAlreadyBind["NecrosisButton"] then
+			CryolysisAlreadyBind["NecrosisButton"] = true;
+			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"});
+		end
 	end
 end
 
