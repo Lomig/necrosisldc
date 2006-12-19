@@ -248,6 +248,7 @@ function Necrosis_LanguageInitialize()
 
 	-- Localisation du XML
 	NecrosisVersion:SetText(NecrosisData.Label);
+	NecrosisCredits:SetText("Developed by Lomig, Liadora & Eliah");
 	NecrosisShardsInventory_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu);
 	NecrosisShardsCount_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu2);
 	NecrosisSoulshardSort_Option:SetText(NECROSIS_CONFIGURATION.ShardMove);

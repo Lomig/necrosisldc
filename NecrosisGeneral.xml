@@ -95,6 +95,18 @@
 					</Anchors>
 					<Color r="1" g="0.8" b="0" />
 				</FontString>
+				<FontString name="NecrosisCredits" inherits="GameFontNormal">
+					<Size>
+						<AbsDimension x="300" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="NecrosisGeneralFrame" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-25" y="-48"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
 				<FontString name="NecrosisGeneralPageText" inherits="GameFontNormal">
 					<Size>
 						<AbsDimension x="102" y="0" />

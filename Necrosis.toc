@@ -1,7 +1,7 @@
 ## Interface: 20000
 ## Title: Necrosis
 ## Title-frFR: Necrosis
-## Author: Lomig & Liadora
+## Author: Lomig, Liadora & Eliah
 ## Version: 2.0
 ## Notes: Shard managment UI
 ## Notes-frFR: Gestion graphique des shards.
@@ -10,6 +10,7 @@
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: NecrosisConfig
+#
 Necrosis.xml
 
 NecrosisGeneral.xml
