@@ -148,7 +148,7 @@
 							NecrosisConfig.StonePosition[1] = - math.abs(NecrosisConfig.StonePosition[1])
 							HideUIPanel(NecrosisFirestoneButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -172,7 +172,7 @@
 							NecrosisConfig.StonePosition[2] = - math.abs(NecrosisConfig.StonePosition[2])
 							HideUIPanel(NecrosisSpellstoneButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -196,7 +196,7 @@
 							NecrosisConfig.StonePosition[3] = - math.abs(NecrosisConfig.StonePosition[3])
 							HideUIPanel(NecrosisHealthstoneButton)	
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -220,7 +220,7 @@
 							NecrosisConfig.StonePosition[4] = - math.abs(NecrosisConfig.StonePosition[4])
 							HideUIPanel(NecrosisSoulstoneButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -244,7 +244,7 @@
 							NecrosisConfig.StonePosition[5] = - math.abs(NecrosisConfig.StonePosition[5])
 							HideUIPanel(NecrosisBuffMenuButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -268,7 +268,7 @@
 							NecrosisConfig.StonePosition[6] = - math.abs(NecrosisConfig.StonePosition[6])
 							HideUIPanel(NecrosisMountButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -292,7 +292,7 @@
 							NecrosisConfig.StonePosition[7] = - math.abs(NecrosisConfig.StonePosition[7])
 							HideUIPanel(NecrosisPetMenuButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -316,7 +316,7 @@
 							NecrosisConfig.StonePosition[8] = - math.abs(NecrosisConfig.StonePosition[8])
 							HideUIPanel(NecrosisCurseMenuButton)
 						end
-						Necrosis_UpdateButtonsScale()
+						Necrosis_ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
