@@ -64,7 +64,7 @@ function Necrosis_Localization_Speech_Fr()
 			"<after>(Cliquez vite sur le portail sinon je continue...)",
 			"<after>C'EST <target> ! <target> ! <target> !",
 		},
-	};
+	}
 
 	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
 		[1] = {
@@ -99,7 +99,7 @@ function Necrosis_Localization_Speech_Fr()
 			"<after>Sur <target> poser une belle pierre d'\195\162me,",
 			"<after>Voil\195\160 qui peut ma foi \195\169viter bien des drames !",
 		},
-	};
+	}
 
 	NECROSIS_PET_MESSAGE = {
 		-- Diablotin
@@ -113,7 +113,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"Attendez, je sors mon briquet !",
 			},
-		};
+		},
 		-- Marcheur éthéré
 		[2] = {
 			[1] = {
@@ -125,7 +125,7 @@ function Necrosis_Localization_Speech_Fr()
 				"GRAOUbouhhhhh GROUAHOUhououhhaahpfffROUAH !",
 				"(Non je ne suis pas dingue, j'imite le bruit du marcheur en rut !)",
 			},
-		};
+		},
 		-- Succube
 		[3] = {
 			[1] = {
@@ -137,7 +137,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"<pet> ? Viens ici ma louloutte !",
 			},
-		};
+		},
 		-- Chasseur corrompu
 		[4] = {
 			[1] = {
@@ -150,7 +150,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"Une minute, je sors le caniche et j'arrive !",
 			},
-		};
+		},
 		-- Gangregarde
 		[5] = {
 			[1] = {
@@ -160,7 +160,7 @@ function Necrosis_Localization_Speech_Fr()
 				"<after><emote>fouille dans son sac, puis lance un cristal \195\160 <pet>",
 				"<sacrifice>Retourne dans les limbes et donne moi de ta puissance, D\195\169mon !"
 			},
-		};
+		},
 		-- Phrase pour la première invocation de pet (quand Necrosis ne connait pas encore leur nom)
 		[6] = {
 			[1] = {
@@ -180,7 +180,7 @@ function Necrosis_Localization_Speech_Fr()
 				"<after>Regardez, ceci par exemple !",
 			},
 
-		};
+		},
 		-- Phrase pour la monture
 		[7] = {
 			[1] = {
@@ -199,14 +199,14 @@ function Necrosis_Localization_Speech_Fr()
 			[5] = {
 				"Vous savez, depuis que j'ai mis une selle ignifug\195\169e, je n'ai plus de probl\195\168me de culotte !"
 			},
-		};
+		},
 
-	};
+	}
 
 	NECROSIS_SHORT_MESSAGES = {
 		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
 		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}}
-	};
+	}
 
 end
 

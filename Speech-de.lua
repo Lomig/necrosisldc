@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 09.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ function Necrosis_Localization_Speech_De()
 			"<after>Wenn Du nicht m\195\182chtest, dass eine auf dem Boden kriechende, schleimige und einfach gr\195\164ssliche Kreatur aus diesem Portal kommt,",
 			"<after>klicke drauf und hilf <target>, so schnell wie m\195\182glich einen Weg zur H\195\182lle zu finden!",
 		},
-	};
+	}
 
 	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
 		[1] = {
@@ -58,13 +58,13 @@ function Necrosis_Localization_Speech_De()
 		[2] = {
 			"<after><target> kann afk gehen um eine Tasse Kaffee oder so zu trinken, denn er wird Dank dieses Seelensteins in der Lage sein, unseren Tod zu \195\188berleben",
 		},
-};
+	}
 
-	
+
 	NECROSIS_SHORT_MESSAGES = {
 		{{"<after>--> <target> hat nun einen Seelenstein aktiv f\195\188r 30 Minuten <--"}},
 		{{"<after><Portal> Ich beschw\195\182re <target>, bitte klickt auf das Tor <Portal>"}}
-	};
+	}
 
 	NECROSIS_PET_MESSAGE = {
 		-- Wichtel
@@ -75,26 +75,26 @@ function Necrosis_Localization_Speech_De()
 			[2] = {
 				"<pet> ! SCHWING DIE BEINE ! JETZT SOFORT !",
 			},
-		};
+		}
 		-- Leerwandler
 		[2] = {
 			[1] = {
 				"Huuuch, anscheinend brauch ich einen Idioten, der f\195\188r mich die R\195\188be hinh\195\164lt...",
 				"<pet>, hilf mir !",
 			},
-		};
+		},
 		-- Sukkubus
 		[3] = {
 			[1] = {
 				"<pet>, Baby, sei ein Schatzi und hilf mir!",
 			},
-		};
+		},
 		-- Teufelsjäger
 		[4] = {
 			[1] = {
 				"<pet> ! <pet> ! Bei Fu\195\159, mein Guter, bei Fu\195\159 ! <pet> !",
 			},
-		};
+		},
 		-- Felguard
 		[5] = {
 			[1] = {
@@ -104,7 +104,7 @@ function Necrosis_Localization_Speech_De()
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
 				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
-		};
+		},
 		-- Sätze für die erste Beschwörung : Wenn Necrosis den Namen Deines Dämons noch nicht kennt
 		[6] = {
 			[1] = {
@@ -115,7 +115,7 @@ function Necrosis_Localization_Speech_De()
 				"Nichtsdestotrotz hasse ich Euch alle ! Ich brauche Euch nicht, ich habe Freunde.... M\195\164chtige Freunde !",
 				"KOMM ZU MIR, KREATUR, DIE DU KOMMST AUS DER H\195\150LLE UND ENDLOSEN ALPTR\195\132UMEN !",
 			},
-		};
+		},
 		-- Sprüche zur Beschwörung des Mounts
 		[7] = {
 			[1] = {
@@ -125,8 +125,8 @@ function Necrosis_Localization_Speech_De()
 				"Ich beschw\195\182re ein Reittier, das einem Alptraum entspringt!",
 				"AH AHA HA HA AH AH !",
 			},
-		};
-	};
+		},
+	}
 
 end
 

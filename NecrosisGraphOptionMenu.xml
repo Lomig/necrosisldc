@@ -148,7 +148,6 @@
 				</Anchors>
 				<Scripts>
 					<OnEnter>
-						Necrosis_CreateWarlockPopup();
 						STx, STy = NecrosisShadowTranceButton:GetCenter()
 						STx = STx * (NecrosisConfig.ShadowTranceScale / 100)
 						STy = STy * (NecrosisConfig.ShadowTranceScale / 100)
@@ -324,9 +323,9 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if (this:GetChecked()) and (NecrosisConfig.BuffMenuPos.x >0 or NecrosisConfig.BuffMenuPos.y > 0) then
-							NecrosisConfig.BuffMenuPos.x = - NecrosisConfig.BuffMenuPos.x
-							NecrosisConfig.BuffMenuPos.y = - NecrosisConfig.BuffMenuPos.y
+						if (this:GetChecked()) then
+							NecrosisConfig.BuffMenuPos.x = - math.abs(NecrosisConfig.BuffMenuPos.x)
+							NecrosisConfig.BuffMenuPos.y = - math.abs(NecrosisConfig.BuffMenuPos.y)
 						else
 							NecrosisConfig.BuffMenuPos.x = math.abs(NecrosisConfig.BuffMenuPos.x)
 							NecrosisConfig.BuffMenuPos.y = math.abs(NecrosisConfig.BuffMenuPos.y)
@@ -348,9 +347,9 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if (this:GetChecked()) and (NecrosisConfig.PetMenuPos.x >0 or NecrosisConfig.PetMenuPos.y > 0) then
-							NecrosisConfig.PetMenuPos.x = - NecrosisConfig.PetMenuPos.x
-							NecrosisConfig.PetMenuPos.y = - NecrosisConfig.PetMenuPos.y
+						if (this:GetChecked()) then
+							NecrosisConfig.PetMenuPos.x = - math.abs(NecrosisConfig.PetMenuPos.x)
+							NecrosisConfig.PetMenuPos.y = - math.abs(NecrosisConfig.PetMenuPos.y)
 						else
 							NecrosisConfig.PetMenuPos.x = math.abs(NecrosisConfig.PetMenuPos.x)
 							NecrosisConfig.PetMenuPos.y = math.abs(NecrosisConfig.PetMenuPos.y)
@@ -372,9 +371,9 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if (this:GetChecked()) and (NecrosisConfig.CurseMenuPos.x >0 or NecrosisConfig.CurseMenuPos.y > 0) then
-							NecrosisConfig.CurseMenuPos.x = - NecrosisConfig.CurseMenuPos.x
-							NecrosisConfig.CurseMenuPos.y = - NecrosisConfig.CurseMenuPos.y
+						if (this:GetChecked()) then
+							NecrosisConfig.CurseMenuPos.x = - math.abs(NecrosisConfig.CurseMenuPos.x)
+							NecrosisConfig.CurseMenuPos.y = - math.abs(NecrosisConfig.CurseMenuPos.y)
 						else
 							NecrosisConfig.CurseMenuPos.x = math.abs(NecrosisConfig.CurseMenuPos.x)
 							NecrosisConfig.CurseMenuPos.y = math.abs(NecrosisConfig.CurseMenuPos.y)
