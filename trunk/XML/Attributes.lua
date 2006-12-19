@@ -277,7 +277,7 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 	end
 
 	-- Pour la pierre de foyer
-	NecrosisSpellTimerButton:SetAttribute("type", "item");
+	NecrosisSpellTimerButton:SetAttribute("type2", "item");
 	NecrosisSpellTimerButton:SetAttribute("item", NECROSIS_ITEM.Hearthstone);
 
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.

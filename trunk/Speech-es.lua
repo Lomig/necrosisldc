@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 09.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ function Necrosis_Localization_Speech_Es()
 		[4] = {
 			"<after>\194\161 Si no quieres que una criatura espatarrada, parecida a un escupitajo y asm\195\161tica aparezca de este portal, cliquea en \195\169l para ayudar a <target> a encontrar un camino en el Infierno tan r\195\161pido como sea posible!",
 		},
-	};
+	}
 
 	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
 		[1] = {
@@ -57,7 +57,7 @@ function Necrosis_Localization_Speech_Es()
 		[2]= {
 			"<after><target> puede ponerse ausente para irse a tomar una tacita de caf\195\169 o lo que sea, la piedra de alma est\195\161 preparada para el wipe...",
 		},
-	};
+	}
 
 	NECROSIS_PET_MESSAGE = {
 		-- Imp
@@ -68,26 +68,26 @@ function Necrosis_Localization_Speech_Es()
 			[2] = {
 				"\194\161<pet>! \194\161 A MIS PIES ! \194\161 YA !",
 			},
-		};
+		},
 		-- Voidwalker
 		[2] = {
 			[1] = {
 				"Ups, Probablemente necesitar\195\169 a un idiota para que le zurren en mi lugar...",
 				"\194\161 <pet>, por favor ayuda !",
 			},
-		};
+		},
 		-- Succubus
 		[3] = {
 			[1] = {
 				"\194\161 <pet> nena, por favor ay\195\186dame coraz\195\179n !",
 			},
-		};
+		},
 		-- Felhunter
 		[4] = {
 			[1] = {
 				"\194\161 <pet> ! \194\161 <pet> ! \194\161 Ven chico, ven aqu\195\173 ! \194\161 <pet> !",
 			},
-		};
+		},
 		-- Felguard
 		[5] = {
 			[1] = {
@@ -97,7 +97,7 @@ function Necrosis_Localization_Speech_Es()
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
 				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
-		};
+		},
 		-- Sentences for the first summon : When Necrosis do not know the name of your demons yet
 		[6] = {
 			[1] = {
@@ -108,7 +108,7 @@ function Necrosis_Localization_Speech_Es()
 				"\194\161 De todas formas os odio a todos ! No os necesito, tengo amigos.... \194\161 Poderosos amigos !",
 				"\194\161 VEN A MI, CRIATURA DE INFIERNO Y PESADILLA !",
 			},
-		};
+		},
 		-- Sentences for the stead summon
 		[7] = {
 			[1] = {
@@ -118,13 +118,13 @@ function Necrosis_Localization_Speech_Es()
 				"\194\161 Estoy invocando a un corcel de pesadilla !",
 				"\194\161 MUAHAHAHAHA !",
 			},
-		};
-	};
-	
+		},
+	}
+
 	NECROSIS_SHORT_MESSAGES = {
 		{{"<after>--> <target> ha recibido la piedra del alma durante 30 minutos <--"}},
 		{{"<after><TP> Invocando a <target>, por favor cliquead en el portal <TP>"}},
-	};
+	}
 
 end
 

@@ -57,6 +57,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal");
 	frame:SetPushedTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Pushed");
 	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Highlight");
+	frame:RegisterForClicks("RightButtonUp");
 	frame:Show();
 
 	-- Création de la liste des Timers Textes
@@ -198,7 +199,7 @@ local function Necrosis_CreateStoneButton(stone)
 	end
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
-	if not NecrosisConfig.NecrosisLockServ then	
+	if not NecrosisConfig.NecrosisLockServ then
 		frame:ClearAllPoints();
 		frame:SetPoint(
 			NecrosisConfig.FramePosition[frame:GetName()][1],
@@ -373,7 +374,7 @@ end
 function Necrosis_CreateWarlockPopup()
 
 	-- Creation du bouton de ShadowTrance
-	local frame = nil;	
+	local frame = nil;
 	frame = _G["NecrosisShadowTranceButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisShadowTranceButton", UIParent);
@@ -441,7 +442,7 @@ function Necrosis_CreateWarlockPopup()
 	);
 
 	-- Creation du bouton de détection des cibles banissables / asservissables
-	frame = nil;	
+	frame = nil;
 	frame = _G["NecrosisCreatureAlertButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisCreatureAlertButton", UIParent);
@@ -463,7 +464,7 @@ function Necrosis_CreateWarlockPopup()
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
-	if NecrosisConfig.FramePosition then	
+	if NecrosisConfig.FramePosition then
 		if NecrosisConfig.FramePosition["NecrosisCreatureAlertButton"] then
 			frame:ClearAllPoints();
 			frame:SetPoint(
@@ -501,7 +502,7 @@ function Necrosis_CreateWarlockPopup()
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
-	if NecrosisConfig.FramePosition then	
+	if NecrosisConfig.FramePosition then
 		if NecrosisConfig.FramePosition["NecrosisAntiFearButton"] then
 			frame:ClearAllPoints();
 			frame:SetPoint(

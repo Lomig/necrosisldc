@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 09.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ function Necrosis_Localization_Speech_Fr()
 		[11] = {
 			"<after>Si vous cliquez mal sur le cercle d'invocation, l'\195\162me de <target> se perdra en chemin dans les Cercles de l'Enfer, et vous ne pr\195\169f\195\169rez pas savoir ce qui va sortir \195\160 sa place ! ",
 		},
-	};
+	}
 
 	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
 		[1] = {
@@ -116,7 +116,7 @@ function Necrosis_Localization_Speech_Fr()
 			"...",
 			"....... Non, non, je d\195\169conne, en fait c'est <target>, rassurez vous :P",
 		},
-	};
+	}
 
 	NECROSIS_PET_MESSAGE = {
 		-- Diablotin
@@ -130,7 +130,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"Attendez, je sors mon briquet !",
 			},
-		};
+		},
 		-- Marcheur éthéré
 		[2] = {
 			-- Phrase aléatoire 1
@@ -143,7 +143,7 @@ function Necrosis_Localization_Speech_Fr()
 				"GRAOUbouhhhhh GROUAHOUhououhhaahpfffROUAH !",
 				"(Non je ne suis pas dingue, j'imite le bruit du marcheur en rut !)",
 			},
-		};
+		},
 		-- Succube
 		[3] = {
 			[1] = {
@@ -155,7 +155,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"<pet> ? Viens ici ma louloutte !",
 			},
-		};
+		},
 		-- Chasseur corrompu
 		[4] = {
 			[1] = {
@@ -168,7 +168,7 @@ function Necrosis_Localization_Speech_Fr()
 			[3] = {
 				"Une minute, je sors le caniche et j’arrive !",
 			},
-		};
+		},
 		-- Gangregarde
 		[5] = {
 			[1] = {
@@ -178,7 +178,7 @@ function Necrosis_Localization_Speech_Fr()
 				"<after><emote>fouille dans son sac, puis lance un cristal \195\160 <pet>",
 				"<sacrifice>Retourne dans les limbes et donne moi de ta puissance, D\195\169mon !"
 			},
-		};
+		},
 		-- Phrase pour la première invocation de pet (quand Necrosis ne connait pas encore leur nom)
 		[6] = {
 			[1] = {
@@ -195,8 +195,8 @@ function Necrosis_Localization_Speech_Fr()
 			[4] = {
 				"En farfouillant dans le monde abyssal, on trouve de ces trucs... Regardez, ceci par exemple !",
 			},
-				
-		};
+
+		},
 		-- Sentences for the stead summon
 		[7] = {
 			[1] = {
@@ -215,13 +215,13 @@ function Necrosis_Localization_Speech_Fr()
 			[5] = {
 				"Vous savez, depuis que j’ai mis une selle ignifug\195\169e, je n'ai plus de probl\195\168me de culotte !"
 			},
-		};
-	};
+		},
+	}
 
 	NECROSIS_SHORT_MESSAGES = {
 		{{"--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
 		{{"<TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}}
-	};
+	}
 
 end
 
