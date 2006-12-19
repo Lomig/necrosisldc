@@ -89,6 +89,7 @@ Default_NecrosisConfig = {
 	NecrosisToolTip = true;
 	NoDragAll = false;
 
+	AutomaticMenu = false;
 	PetMenuPos = {x=1, y=0};
 	PetMenuDecalage = {x=1, y=26};
 
