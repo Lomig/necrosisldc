@@ -191,17 +191,17 @@ function Necrosis_Localization_Dialog_De()
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpruch Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Automatischer Modus: Wird beim verlassen des Kampfes geschlossen",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFD\195\164monen Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Automatischer Modus: Wird beim verlassen des Kampfes geschlossen",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFFluch Men\195\188|r",
 			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Automatischer Modus: Wird beim verlassen des Kampfes geschlossen",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\164monen sp\195\188ren|r"
@@ -330,7 +330,7 @@ function Necrosis_Localization_Dialog_De()
 		["To"] = " an ",
 		["Yes"] = "Ja",
 		["No"] = "Nein",
-		["InCombat"] = "Sorry, du kannst Tastenk\195\188rzel nicht im Kampf binden..",
+		["InCombat"] = "Es tut mir leid, du kannst Tastenk\195\188rzel nicht im Kampf binden..",
 		["Binding"] = "Tastenk\195\188rzel",
 		["Unbind"] = "Verbindung l\195\182sen",
 		["Cancel"] = "Abbrechen",
