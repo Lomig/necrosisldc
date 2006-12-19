@@ -51,32 +51,32 @@ function Necrosis_MenuAttribute(menu)
 
 	menuButton:SetAttribute("*childraise*", true);
 
-	menu0:SetAttribute("statemap-anchor", "$input");
-	menu0:SetAttribute("delaystatemap-anchor", "0");
-	menu0:SetAttribute("delaytimemap-anchor", "8");
-	menu0:SetAttribute("delayhovermap-anchor", "true");
+	menuButton:SetAttribute("onmousedownbutton1", "down1");
+	menuButton:SetAttribute("onmousedownbutton2", "down2");
+	menuButton:SetAttribute("*anchorchild-down1", menu0);
+	menuButton:SetAttribute("*anchorchild-down2", menu0);
 
-	menuButton:SetAttribute("onmouseupbutton", "mup");
-	menuButton:SetAttribute("onmousedownbutton", "mdn");
-	menuButton:SetAttribute("*anchorchild-mdn", menu0);
-	menuButton:SetAttribute("*childofsx-mdn", 0);
-	menuButton:SetAttribute("*childofsy-mdn", 0);
-	menuButton:SetAttribute("*childpoint-mdn", "CENTER");
-	menuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
-	menuButton:SetAttribute("*childstate-mdn", "^mousedown");
-	menuButton:SetAttribute("*childreparent-mdn", "true");
+	menuButton:SetAttribute("*childofsx-down1", 0);
+	menuButton:SetAttribute("*childofsy-down1", 0);
+	menuButton:SetAttribute("*childofsx-down2", 0);
+	menuButton:SetAttribute("*childofsy-down2", 0);
+	menuButton:SetAttribute("*childpoint-down1", "CENTER");
+	menuButton:SetAttribute("*childpoint-down2", "CENTER");
+	menuButton:SetAttribute("*childrelpoint-down1", "CENTER");
+	menuButton:SetAttribute("*childrelpoint-down2", "CENTER");
 
-	menuButton:SetAttribute("*anchorchild-mup", menu0);
-	menuButton:SetAttribute("*childstate-mup", "mouseup");
-	menuButton:SetAttribute("*childverify-mup", true);
+	menuButton:SetAttribute("*childstate-down1", "^mousedown1");
+	menuButton:SetAttribute("*childstate-down2", "^mousedown2");
+	menuButton:SetAttribute("*childreparent-down1", "true");
+	menuButton:SetAttribute("*childreparent-down2", "true");
 
 	menu0:SetAttribute("state", 0)
 
-	menu0:SetAttribute("statemap-anchor-mousedown", "1-0");
-	menu0:SetAttribute("statemap-anchor-mouseup", "!0:");
-	menu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	menu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
-	menu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	menu0:SetAttribute("statemap-anchor-mousedown1", "0:1;1:0;3:3");
+	menu0:SetAttribute("statemap-anchor-mousedown2", "0:1;1:0;3:3");
+	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3;*:0");
+	menu0:SetAttribute("delaytimemap-anchor-mousedown1", "8");
+	menu0:SetAttribute("delayhovermap-anchor-mousedown1", "true");
 end
 
 
@@ -311,6 +311,14 @@ end
 
 function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable)
 
+	-- Si on veut que le menu s'engage automatiquement en combat
+	-- Et se désengage à la fin
+	if NecrosisConfig.AutomaticMenu then
+		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0"); end
+		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0"); end
+		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0"); end
+	end
+
 	-- Si la pierre de sort est équipée, et qu'on connait une baguette,
 	-- Alors cliquer milieu sur la pierre de sort équipe la baguette.
 	if SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] then
@@ -338,6 +346,13 @@ function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 end
 
 function Necrosis_InCombatAttribute()
+
+	-- Si on veut que le menu s'engage automatiquement en combat
+	if NecrosisConfig.AutomaticMenu then
+		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "3"); end
+		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "3"); end
+		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "3"); end
+	end
 
 	-- Si on connait le nom de la pierre de sort,
 	-- Alors le clic gauche utiliser la pierre

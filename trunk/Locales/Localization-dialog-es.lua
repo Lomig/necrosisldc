@@ -190,15 +190,18 @@ function Necrosis_Localization_Dialog_Es()
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Hechizos|r",
-			Text = "Click Derecho para mantener el men\195\186 abierto"
+			Text = "Click Derecho para mantener el men\195\186 abierto",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Demonio|r",
-			Text = "Click Derecho para mantener el men\195\186 abierto"
+			Text = "Click Derecho para mantener el men\195\186 abierto",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Maldici\195\179n|r",
-			Text = "Click Derecho para mantener el men\195\186 abierto"
+			Text = "Click Derecho para mantener el men\195\186 abierto",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFCaptar Demonios|r"

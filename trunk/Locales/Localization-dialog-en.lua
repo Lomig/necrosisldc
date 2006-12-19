@@ -190,15 +190,18 @@ function Necrosis_Localization_Dialog_En()
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpell Menu|r",
-			Text = "Right click to keep the menu open"
+			Text = "Right click to keep the menu open",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFDemon Menu|r",
-			Text = "Right click to keep the menu open"
+			Text = "Right click to keep the menu open",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFCurse Menu|r",
-			Text = "Right click to keep the menu open"
+			Text = "Right click to keep the menu open",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFSense Demons|r"

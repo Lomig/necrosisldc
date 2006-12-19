@@ -77,7 +77,7 @@ function Necrosis_Localization_Dialog_Fr()
 			Label = "|c0066FF33Pierre de soins|r",
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser"},
 			Text2 = "Clic du milieu ou Ctrl+clic gauche pour \195\169changer",
-			Ritual = "|c00FFFFFFShift+Clic pour le rituel des âmes|r"
+			Ritual = "|c00FFFFFFShift+Clic pour le rituel des \195\162mes|r"
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPierre de sort|r",
@@ -190,14 +190,17 @@ function Necrosis_Localization_Dialog_Fr()
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFMenu des sorts|r",
 			Text = "Clic droit pour laisser ouvert",
+			Text2 = "Mode automatique : Fermeture \195\160 la fin du combat",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFMenu des d\195\169mons|r",
 			Text = "Clic droit pour laisser ouvert",
+			Text2 = "Mode automatique : Fermeture \195\160 la fin du combat",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFMenu des mal\195\169dictions|r",
 			Text = "Clic droit pour laisser ouvert",
+			Text2 = "Mode automatique : Fermeture \195\160 la fin du combat",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\169tection des d\195\169mons|r"

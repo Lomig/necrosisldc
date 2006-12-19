@@ -190,15 +190,18 @@ function Necrosis_Localization_Dialog_De()
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpruch Men\195\188|r",
-			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
+			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFD\195\164monen Men\195\188|r",
-			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
+			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFFluch Men\195\188|r",
-			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen"
+			Text = "Rechtsklick um das Men\195\188 zu \195\182ffnen",
+			Text2 = "Automatic Mode : Closing when leave combat",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\164monen sp\195\188ren|r"
