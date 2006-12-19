@@ -1200,6 +1200,24 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		else
 			GameTooltip:AddLine(NecrosisTooltipData.Main.DemoniacStone..DemoniacStoneCount);
 		end
+	elseif (type == "BuffMenu") then
+		if PlayerCombat and NecrosisConfig.AutomaticMenu then
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text2);
+		else
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text);
+		end
+	elseif (type == "CurseMenu") then
+		if PlayerCombat and NecrosisConfig.AutomaticMenu then
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text2);
+		else
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text);
+		end
+	elseif (type == "PetMenu") then
+		if PlayerCombat and NecrosisConfig.AutomaticMenu then
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text2);
+		else
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text);
+		end
 	end
 	-- Et hop, affichage !
 	GameTooltip:Show();
@@ -2280,17 +2298,29 @@ function Necrosis_CreateMenu()
 	-- On cache toutes les icones des démons
 	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		menuVariable = _G["NecrosisPetMenu"..i];
-		if menuVariable then menuVariable:Hide(); end
+		if menuVariable then
+			menuVariable:Hide();
+			menuVariable:ClearAllPoints();
+			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000);
+		end
 	end
 	-- On cache toutes les icones des sorts
 	for i = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		menuVariable = _G["NecrosisBuffMenu"..i];
-		if menuVariable then menuVariable:Hide(); end
+		if menuVariable then 
+			menuVariable:Hide();
+			menuVariable:ClearAllPoints();
+			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000);
+		end
 	end
 	-- On cache toutes les icones des curses
 	for i = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		menuVariable = _G["NecrosisCurseMenu"..i];
-		if menuVariable then menuVariable:Hide(); end
+		if menuVariable then
+			menuVariable:Hide();
+			menuVariable:ClearAllPoints();
+			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000);
+		end
 	end
 
 	local MenuID = {15, 3, 4, 5, 6, 7, 8, 30, 35, 44};
@@ -2337,8 +2367,6 @@ function Necrosis_CreateMenu()
 			NecrosisPetMenu0:SetAttribute("addchild", PetMenuCreate[i]);
 			PetMenuCreate[i]:SetAttribute("showstates", "!0,*");
 			PetMenuCreate[i]:SetAttribute("anchorchild", NecrosisPetMenu0);
-			PetMenuCreate[i]:SetAttribute("childstate", (i + 1));
-			PetMenuCreate[i]:SetAttribute("newstate", "0");
 			PetMenuCreate[i]:Hide();
 		end
 		Necrosis_PetSpellAttribute();
@@ -2409,8 +2437,6 @@ function Necrosis_CreateMenu()
 			NecrosisBuffMenu0:SetAttribute("addchild", BuffMenuCreate[i]);
 			BuffMenuCreate[i]:SetAttribute("showstates", "!0,*");
 			BuffMenuCreate[i]:SetAttribute("anchorchild", NecrosisBuffMenu0);
-			BuffMenuCreate[i]:SetAttribute("childstate", (i + 1));
-			BuffMenuCreate[i]:SetAttribute("newstate", "0");
 			BuffMenuCreate[i]:Hide();
 		end
 		Necrosis_BuffSpellAttribute();
@@ -2461,8 +2487,6 @@ function Necrosis_CreateMenu()
 			NecrosisCurseMenu0:SetAttribute("addchild", CurseMenuCreate[i]);
 			CurseMenuCreate[i]:SetAttribute("showstates", "!0,*");
 			CurseMenuCreate[i]:SetAttribute("anchorchild", NecrosisCurseMenu0);
-			CurseMenuCreate[i]:SetAttribute("childstate", (i + 1));
-			CurseMenuCreate[i]:SetAttribute("newstate", "0");
 			CurseMenuCreate[i]:Hide();
 		end
 		Necrosis_CurseSpellAttribute();
