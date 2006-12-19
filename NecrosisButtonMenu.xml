@@ -109,9 +109,11 @@
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 						GameTooltip:SetText(this:GetValue().." %")
-						NecrosisBuffMenu9:Show()
-						NecrosisBuffMenu9:ClearAllPoints()
-						NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+						if getglobal("NecrosisBuffMenu9") then
+							NecrosisBuffMenu9:Show();
+							NecrosisBuffMenu9:ClearAllPoints();
+							NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+						end
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide()
@@ -121,9 +123,11 @@
 						if this:GetValue() ~= NecrosisConfig.BanishScale then
 							GameTooltip:SetText(this:GetValue().." %")
 							NecrosisConfig.BanishScale = this:GetValue()
-							NecrosisBuffMenu9:ClearAllPoints()
-							NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale / 100)
-							NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+							if getglobal("NecrosisBuffMenu9") then
+								NecrosisBuffMenu9:ClearAllPoints();
+								NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale / 100);
+								NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+							end
 						end
 					</OnValueChanged>
 				</Scripts>
@@ -143,10 +147,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[1] = math.abs(NecrosisConfig.StonePosition[1])
-							ShowUIPanel(NecrosisFirestoneButton)
 						else
 							NecrosisConfig.StonePosition[1] = - math.abs(NecrosisConfig.StonePosition[1])
-							HideUIPanel(NecrosisFirestoneButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -167,10 +169,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[2] = math.abs(NecrosisConfig.StonePosition[2])
-							ShowUIPanel(NecrosisSpellstoneButton)
 						else
 							NecrosisConfig.StonePosition[2] = - math.abs(NecrosisConfig.StonePosition[2])
-							HideUIPanel(NecrosisSpellstoneButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -191,10 +191,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[3] = math.abs(NecrosisConfig.StonePosition[3])
-							ShowUIPanel(NecrosisHealthstoneButton)
 						else
 							NecrosisConfig.StonePosition[3] = - math.abs(NecrosisConfig.StonePosition[3])
-							HideUIPanel(NecrosisHealthstoneButton)	
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -215,10 +213,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[4] = math.abs(NecrosisConfig.StonePosition[4])
-							ShowUIPanel(NecrosisSoulstoneButton)
 						else
 							NecrosisConfig.StonePosition[4] = - math.abs(NecrosisConfig.StonePosition[4])
-							HideUIPanel(NecrosisSoulstoneButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -239,10 +235,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[5] = math.abs(NecrosisConfig.StonePosition[5])
-							ShowUIPanel(NecrosisBuffMenuButton)
 						else
 							NecrosisConfig.StonePosition[5] = - math.abs(NecrosisConfig.StonePosition[5])
-							HideUIPanel(NecrosisBuffMenuButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -263,10 +257,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[6] = math.abs(NecrosisConfig.StonePosition[6])
-							ShowUIPanel(NecrosisMountButton)
 						else
 							NecrosisConfig.StonePosition[6] = - math.abs(NecrosisConfig.StonePosition[6])
-							HideUIPanel(NecrosisMountButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -287,10 +279,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[7] = math.abs(NecrosisConfig.StonePosition[7])
-							ShowUIPanel(NecrosisPetMenuButton)
 						else
 							NecrosisConfig.StonePosition[7] = - math.abs(NecrosisConfig.StonePosition[7])
-							HideUIPanel(NecrosisPetMenuButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
@@ -311,10 +301,8 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.StonePosition[8] = math.abs(NecrosisConfig.StonePosition[8])
-							ShowUIPanel(NecrosisCurseMenuButton)
 						else
 							NecrosisConfig.StonePosition[8] = - math.abs(NecrosisConfig.StonePosition[8])
-							HideUIPanel(NecrosisCurseMenuButton)
 						end
 						Necrosis_ButtonSetup()
 					</OnClick>
