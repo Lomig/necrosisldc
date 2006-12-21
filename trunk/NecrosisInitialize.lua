@@ -83,6 +83,9 @@ function Necrosis_Initialize()
 	-- Affichage d'un message sur la console
 	Necrosis_Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER");
 	-- Création de la liste des sorts disponibles
+	for index in ipairs(NECROSIS_SPELL_TABLE) do
+		NECROSIS_SPELL_TABLE[index].ID = nil
+	end
 	Necrosis_SpellSetup();
 	-- Création de la liste des emplacements des fragments
 	Necrosis_SoulshardSetup();
