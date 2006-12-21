@@ -1,7 +1,7 @@
 --[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
-    
+
     This file is part of Necrosis LdC.
 
     NecrosisLdC is free software; you can redistribute it and/or modify
@@ -27,11 +27,14 @@
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
--- 
+--
 -- Version 09.12.2006-1
 ------------------------------------------------------------------------------------------------------
 
 
+
+-- On définit G comme étant le tableau contenant toutes les frames existantes.
+local _G = getfenv(0)
 
 ------------------------------------------------------------------------------------------------------
 -- FONCTIONS D'AFFICHAGE (CONSOLE, CHAT, MESSAGE SYSTEME)
@@ -297,7 +300,9 @@ function Necrosis_Speech_Then(SpellCastName, SpellTargetName, DemonName, PlayerS
 		end
 		SteedSummoned = {};
 		NecrosisMounted = true;
-		NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02");
+		if _G["NecrosisMountButton"] then
+			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02");
+		end
 	-- Si le sort était un cast de Rez et qu'il y avait quelque chose à faire dire après le cast, on y va !
 	elseif SpellCastName == NECROSIS_SPELL_TABLE[11].Name then
 		for i in ipairs(PlayerSoulstoned) do
