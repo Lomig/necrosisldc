@@ -75,7 +75,7 @@ function Necrosis_Localization_Speech_De()
 			[2] = {
 				"<pet> ! SCHWING DIE BEINE ! JETZT SOFORT !",
 			},
-		}
+		},
 		-- Leerwandler
 		[2] = {
 			[1] = {

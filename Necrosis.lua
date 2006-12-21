@@ -463,7 +463,7 @@ function Necrosis_OnEvent(event)
 	-- Si le joueur meurt, on cache éventuellement les boutons de Crépuscule ou Contrecoup.
 	elseif (event == "PLAYER_DEAD") then
 		NecrosisShadowTranceButton:Hide()
-		NecrosisBacklashButton:Hide():
+		NecrosisBacklashButton:Hide()
 	-- Gestion de l'incantation des sorts réussie
 	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
 		SpellCastUnit, SpellCastName = arg1, arg2
@@ -2477,11 +2477,11 @@ function Necrosis_Recall()
 		"NecrosisShadowTranceButton"
 	}
 	local pos = {
-		{0, -100}
-		{0, 100}
-		{20, 0}
-		{60, 0}
-		{-60, 0}
+		{0, -100},
+		{0, 100},
+		{20, 0},
+		{60, 0},
+		{-60, 0},
 		{-20, 0}
 	}
 	for i = 1, #ui, 1 do
