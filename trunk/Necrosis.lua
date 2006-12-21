@@ -327,60 +327,26 @@ function Necrosis_OnUpdate(elapsed)
 		if NecrosisConfig.SoulshardSort and SoulshardMP > 0  then
 			Necrosis_SoulshardSwitch("MOVE")
 		end
-		LastUpdate = 0
-	end
 
-	-- Toutes les demies secondes
-	if LastUpdate2 > 0.5 then
-		-- Si configuré, affichage des avertissements d'Antifear
-		if NecrosisConfig.AntiFearAlert then
-			Necrosis_ShowAntiFearWarning()
-		end
-		LastUpdate2 = 0
-	end
-
-	local curTime = GetTime()
-
-	-- Gestion du Timer des sorts
-	if (not NecrosisSpellTimerButton:IsVisible()) then
-		ShowUIPanel(NecrosisSpellTimerButton)
-	end
-	local display = ""
-
-	if NecrosisConfig.CountType == 3 then
-		NecrosisShardCount:SetText("")
-	end
-	local update = false
-	if ((curTime - SpellCastTime) >= 1) then
-		SpellCastTime = curTime
-		update = true
-	end
-
-	-- Parcours du tableau des Timers
-	local GraphicalTimer = {texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {}}
-	if SpellTimer then
-		for index = 1, #SpellTimer, 1 do
-			if SpellTimer[index] then
-				if (GetTime() <= SpellTimer[index].TimeMax) then
-					-- Création de l'affichage des timers
-					display, SpellGroup, GraphicalTimer, TimerTable = Necrosis_DisplayTimer(display, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable)
-				end
-				-- Action toutes les secondes
-				if (update) then
+		-- Parcours du tableau des Timers
+		if SpellTimer then
+			for index = 1, #SpellTimer, 1 do
+				if SpellTimer[index] then
 					-- On enlève les timers terminés
 					local TimeLocal = GetTime()
 					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
-							SpellTimer[index].Target = ""
-							SpellTimer[index].TimeMax = -1
+	--						SpellTimer[index].Target = ""
+	--						SpellTimer[index].TimeMax = -1
 							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd) end
 							Necrosis_RemoveFrame(SpellTimer[index].Gtimer, TimerTable)
 							-- On met à jour l'apparence du bouton de la pierre d'âme
 							Necrosis_UpdateIcons()
+						end
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
-						elseif SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
+						if SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
 							index = 0
 							break
@@ -411,33 +377,17 @@ function Necrosis_OnUpdate(elapsed)
 				end
 			end
 		end
-	else
-		for i = 1, 10, 1 do
-			local frameItem = _G["NecrosisTarget"..i.."Text"]
-			if frameItem:IsShown() then
-				frameItem:Hide()
-			end
-		end
+		NecrosisUpdateTimer(SpellTimer)
+		LastUpdate = 0
 	end
 
-	if NecrosisConfig.ShowSpellTimers or NecrosisConfig.Graphical then
-		-- Si affichage de timer texte
-		if not NecrosisConfig.Graphical then
-			-- Coloration de l'affichage des timers
-			display = Necrosis_MsgAddColor(display)
-			-- Affichage des timers
-			NecrosisListSpells:SetText(display)
-		else
-			NecrosisListSpells:SetText("")
+	-- Toutes les demies secondes
+	if LastUpdate2 > 0.5 then
+		-- Si configuré, affichage des avertissements d'Antifear
+		if NecrosisConfig.AntiFearAlert then
+			Necrosis_ShowAntiFearWarning()
 		end
-		for i = 4, #SpellGroup.Name do
-			SpellGroup.Visible[i] = false
-		end
-	else
-		if (NecrosisSpellTimerButton:IsVisible()) then
-			NecrosisListSpells:SetText("")
-			HideUIPanel(NecrosisSpellTimerButton)
-		end
+		LastUpdate2 = 0
 	end
 end
 
