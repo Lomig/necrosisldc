@@ -264,14 +264,31 @@
 						else
 							NecrosisConfig.NecrosisLockServ = false
 							Necrosis_ClearAllPoints()
-							NecrosisFirestoneButton:SetPoint("CENTER", "UIParent", "CENTER", -121,-100)
-							NecrosisSpellstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -87,-100)
-							NecrosisHealthstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100)
-							NecrosisSoulstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -17,-100)
-							NecrosisBuffMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 17,-100)
-							NecrosisMountButton:SetPoint("CENTER", "UIParent", "CENTER", 53,-100)
-							NecrosisPetMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 87,-100)
-							NecrosisCurseMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 121,-100)
+							local _G = getfenv(0)
+							if _G["NecrosisFirestoneButton"] then
+								NecrosisFirestoneButton:SetPoint("CENTER", "UIParent", "CENTER", -121,-100)
+							end
+							if _G["NecrosisSpellstoneButton"] then
+								NecrosisSpellstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -87,-100)
+							end
+							if _G["NecrosisHealthstoneButton"] then
+								NecrosisHealthstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100)
+							end
+							if _G["NecrosisSoulstoneButton"] then
+								NecrosisSoulstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -17,-100)
+							end
+							if _G["NecrosisBuffMenuButton"] then
+								NecrosisBuffMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 17,-100)
+							end
+							if _G["NecrosisMountButton"] then
+								NecrosisMountButton:SetPoint("CENTER", "UIParent", "CENTER", 53,-100)
+							end
+							if _G["NecrosisPetMenuButton"] then
+								NecrosisPetMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 87,-100)
+							end
+							if _G["NecrosisPetMenuButton"] then
+								NecrosisCurseMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 121,-100)
+							end
 							Necrosis_Drag()
 							NecrosisConfig.NoDragAll = false
 							NecrosisLock_Button:SetChecked(false)
