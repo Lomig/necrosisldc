@@ -80,7 +80,7 @@ function Necrosis_Localization_Speech_Fr()
 			"<after>Gr\195\162ce \195\160 sa pierre d'\195\162me, <target> est pass\195\169 en mode Easy wipe",
 		},
 		[5] = {
-			"<after><target> peut d\195\169sormais revenir d'entre les morts, histoire d’organiser le prochain wipe",
+			"<after><target> peut d\195\169sormais revenir d'entre les morts, histoire d'organiser le prochain wipe",
 		},
 		[6] = {
 			"<after>Les hindous croient \195\160 l'immortalit\195\169, <target> aussi depuis que je lui ai pos\195\169 une pierre d'\195\162me",
