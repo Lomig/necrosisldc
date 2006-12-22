@@ -72,9 +72,9 @@ function Necrosis_MenuAttribute(menu)
 
 	menu0:SetAttribute("state", 0)
 
-	menu0:SetAttribute("statemap-anchor-mousedown1", "0:11:03:3")
-	menu0:SetAttribute("statemap-anchor-mousedown2", "0:11:03:3")
-	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3*:0")
+	menu0:SetAttribute("statemap-anchor-mousedown1", "0:1;1:0;3:3")
+	menu0:SetAttribute("statemap-anchor-mousedown2", "0:1;1:0;3:3")
+	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3;*:0")
 	menu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
 	menu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
 end
