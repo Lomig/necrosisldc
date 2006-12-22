@@ -60,7 +60,7 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, SpellGrou
 	-- Association d'un timer graphique au timer
 	-- Si il y a une frame timer de libérée, on l'associe au timer
 	local TimerLibre = nil
-	for (index, valeur) in ipairs(TimerTable) do
+	for index, valeur in ipairs(TimerTable) do
 		if not valeur then
 			TimerLibre = index
 			TimerTable[index] = true
@@ -157,7 +157,7 @@ function Necrosis_InsertTimerStone(Stone, start, duration, SpellGroup, SpellTime
 	-- Association d'un timer graphique au timer
 	-- Si il y a une frame timer de libérée, on l'associe au timer
 	local TimerLibre = nil
-	for (index, valeur) in ipairs(TimerTable) do
+	for index, valeur in ipairs(TimerTable) do
 		if not valeur then
 			TimerLibre = index
 			TimerTable[index] = true
@@ -206,7 +206,7 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, SpellGroup, Spell
 	-- Association d'un timer graphique au timer
 	-- Si il y a une frame timer de libérée, on l'associe au timer
 	local TimerLibre = nil
-	for (index, valeur) in ipairs(TimerTable) do
+	for index, valeur in ipairs(TimerTable) do
 		if not valeur then
 			TimerLibre = index
 			TimerTable[index] = true

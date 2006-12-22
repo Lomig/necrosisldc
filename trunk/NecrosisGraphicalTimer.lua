@@ -106,12 +106,13 @@ function Necrosis_AddFrame(FrameName)
 	end
 
 	-- Définition de la barre colorée
-	local StatusBar = CreateFrame("StatusBar", FrameName.."Bar", FrameName)
+	local StatusBar = CreateFrame("StatusBar", FrameName.."Bar", frame)
 
 	StatusBar:SetWidth(150)
 	StatusBar:SetHeight(10)
 	StatusBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
 	StatusBar:SetStatusBarColor(1, 1, 0)
+	StatusBar:SetFrameLevel(StatusBar:GetFrameLevel() - 1)
 	StatusBar:ClearAllPoints()
 	StatusBar:SetPoint(NecrosisConfig.SpellTimerJust, FrameName, NecrosisConfig.SpellTimerJust, 0, 0)
 	StatusBar:Show()
@@ -122,6 +123,7 @@ function Necrosis_AddFrame(FrameName)
 	texture:SetWidth(32)
 	texture:SetHeight(32)
 	texture:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
+	texture:SetBlendMode("ADD")
 	texture:ClearAllPoints()
 	texture:SetPoint("CENTER", StatusBar, "LEFT", 0, 0)
 	texture:Show()
@@ -141,16 +143,16 @@ function NecrosisUpdateTimer(tableau, Changement)
 	end
 
 	local LastPoint = {}
-	local LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = NecrosisSpellTimerButton:GetPoint()
+	LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = NecrosisSpellTimerButton:GetPoint()
 	LastPoint[4] = LastPoint[4] + 10
 	local yPosition = 0
 
-	for index =  1, #tableau.texte, 1 do
+	for index =  1, #tableau, 1 do
 		-- Sélection des frames du timer qui varient en fonction du temps
-		local Frame = _G["NecrosisTimerFrame"..tableau.Gtimer[index]]
-		local StatusBar = _G["NecrosisTimerFrame"..tableau.Gtimer[index].."Bar"]
-		local Spark = _G["NecrosisTimerFrame"..tableau.Gtimer[index].."Spark"]
-		local Text = _G["NecrosisTimerFrame"..tableau.Gtimer[index].."OutText"]
+		local Frame = _G["NecrosisTimerFrame"..tableau[index].Gtimer]
+		local StatusBar = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."Bar"]
+		local Spark = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."Spark"]
+		local Text = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."OutText"]
 
 		-- Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
 		if Changement then
@@ -161,7 +163,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Création de la couleur des timers en fonction du temps
 		local r, g;
 		local b = 37/255;
-		local PercentColor = (tableau.TimeMax[index] - floor(GetTime())) / tableau.Time[index]
+		local PercentColor = (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
 		if PercentColor > 0.5 then
 			r = (207/255) - (1 - PercentColor) * 2 * (207/255)
 			g = 1
@@ -171,11 +173,11 @@ function NecrosisUpdateTimer(tableau, Changement)
 		end
 
 		-- Calcul de la position de l'étincelle sur la barre de status
-		local sparkPosition = 150 * (tableau.TimeMax[index] - floor(GetTime())) / tableau.Time[index]
+		local sparkPosition = 150 * (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
 		if sparkPosition < 1 then sparkPosition = 1 end
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
-		StatusBar:SetValue(2 * tableau.TimeMax[index] - (tableau.Time[index] + floor(GetTime())))
+		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + floor(GetTime())))
 		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
@@ -184,7 +186,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		local minutes, secondes, affichage = 0, 0, nil
 		secondes = tableau[index].TimeMax - floor(GetTime())
 		minutes = floor(secondes / 60 )
-		secondes = math.mod(secondes, 60)
+		secondes = mod(secondes, 60)
 
 		if minutes > 9 then
 			affichage = minutes..":"
