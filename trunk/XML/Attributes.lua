@@ -96,11 +96,11 @@ function Necrosis_BuffSpellAttribute()
 		NecrosisBuffMenu1:SetAttribute("type", "spell")
 		if not NECROSIS_SPELL_TABLE[31].ID then
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")"
+				NECROSIS_SPELL_TABLE[36].Name
 			)
 		else
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")"
+				NECROSIS_SPELL_TABLE[31].Name
 			)
 		end
 		-- Création du tableau des raccourcis claviers
@@ -125,7 +125,7 @@ function Necrosis_BuffSpellAttribute()
 				f:SetAttribute("unit", "target")
 			end
 			f:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+				NECROSIS_SPELL_TABLE[ buffID[i] ].Name
 			)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisBuffMenu"..i] then
@@ -142,7 +142,7 @@ function Necrosis_BuffSpellAttribute()
 	-- Cas particulier : Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
 	if _G["NecrosisBuffMenu9"] and string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
 		NecrosisBuffMenu9:SetAttribute("type1", "spell")
-		NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")")
+		NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name)
 		NecrosisBuffMenu9:SetAttribute("type2", "spell")
 		NecrosisBuffMenu9:SetAttribute("spell2", NECROSIS_SPELL_TABLE[9].Name.."("..string.gsub(NECROSIS_SPELL_TABLE[9].Rank, "2", "1")..")")
 		if not NecrosisAlreadyBind["NecrosisBuffMenu9Right"] then
@@ -168,9 +168,9 @@ function Necrosis_PetSpellAttribute()
 		if f then
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
-			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")")
+			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[i+2].Name)
 			f:SetAttribute("macrotext",
-				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[i+2].Name.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")"
+				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[i+2].Name
 			)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] then
@@ -190,9 +190,7 @@ function Necrosis_PetSpellAttribute()
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
 			f:SetAttribute("type", "spell")
-			f:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[ BuffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank..")"
-			)
+			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[ BuffID[i] ].Name)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] then
 				NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] = true
@@ -234,13 +232,11 @@ function Necrosis_CurseSpellAttribute()
 			f:SetAttribute("harmbutton1", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff",
-				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
-			)
+			f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name)
 			f:SetAttribute("harmbutton2", "amplif")
 			f:SetAttribute("type-amplif", "macro")
 			f:SetAttribute("macrotext-amplif",
-				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[ buffID[i] ].Name
 			)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
@@ -265,9 +261,7 @@ function Necrosis_CurseSpellAttribute()
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff",
-				NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
-			)
+			f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
 				NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true
@@ -318,11 +312,11 @@ function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
 		NecrosisMountButton:SetAttribute("type2", "spell")
 		-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
 		if NECROSIS_SPELL_TABLE[2].ID then
-			NecrosisMountButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[2].Name.."("..NECROSIS_SPELL_TABLE[2].Rank..")")
-			NecrosisMountButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[2].Rank..")")
+			NecrosisMountButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[2].Name)
+			NecrosisMountButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[1].Name)
 
 		else
-			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name.."("..NECROSIS_SPELL_TABLE[1].Rank..")")
+			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name)
 		end
 		if not NecrosisAlreadyBind["NecrosisMountButton"] then
 			NecrosisAlreadyBind["NecrosisMountButton"] = true
@@ -350,7 +344,7 @@ function Necrosis_MainButtonAttribute()
 
 	if NECROSIS_SPELL_TABLE[41].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
-		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name.."("..NECROSIS_SPELL_TABLE[41].Rank..")")
+		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name)
 		if not NecrosisAlreadyBind["NecrosisButton"] then
 			NecrosisAlreadyBind["NecrosisButton"] = true
 			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"})
@@ -448,7 +442,7 @@ end
 
 function Necrosis_SoulstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
-	if ( InCombatLockdown() ) then
+	if InCombatLockdown() or not _G["NecrosisSoulstoneButton"] then
 		return
 	end
 
@@ -469,7 +463,7 @@ end
 
 function Necrosis_HealthstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
-	if ( InCombatLockdown() ) then
+	if InCombatLockdown() or not _G["NecrosisHealthstoneButton"] then
 		return
 	end
 
@@ -490,7 +484,7 @@ end
 
 function Necrosis_SpellstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
-	if ( InCombatLockdown() ) then
+	if InCombatLockdown() or not _G["NecrosisSpellstoneButton"] then
 		return
 	end
 
@@ -516,7 +510,7 @@ end
 
 function Necrosis_FirestoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
-	if ( InCombatLockdown() ) then
+	if InCombatLockdown() or not _G["NecrosisFirestoneButton"] then
 		return
 	end
 
@@ -541,7 +535,7 @@ end
 
 function Necrosis_RangedUpdateAttribute()
 	-- Si le démoniste est en combat, on ne fait rien :)
-	if ( InCombatLockdown() ) then
+	if InCombatLockdown() then
 		return
 	end
 
@@ -549,24 +543,24 @@ function Necrosis_RangedUpdateAttribute()
 	if IsEquippedItemType("Wand") then
 		-- Si on connait la pierre de sort,
 		-- Alors le bouton du milieu équipe la pierre de sort
-		if NecrosisConfig.ItemSwitchCombat[1] then
+		if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
 			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1])
 			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
 		end
 		-- Si on connait la pierre de feu,
 		-- Alors cliquer équipe la pierre de feu
-		if NecrosisConfig.ItemSwitchCombat[2] then
+		if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
 			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
 			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
 		end
 	-- Sinon, si le démoniste à une pierre de sort d'équipée et qu'on connait une baguette,
 	-- Cliquer milieu rééquipe la baguette
-	elseif SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] then
+	elseif SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisSpellstoneButton"] then
 		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[3])
 		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1","/equip "..NecrosisConfig.ItemSwitchCombat[3])
 	-- Sinon, si le démoniste a une pierre de feu d'équipée et qu'on connait une baguette,
 	-- Cliquer rééquipe la baguette
-	elseif FirestoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] then
+	elseif FirestoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisFirestoneButton"] then
 		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
 		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
 	end
