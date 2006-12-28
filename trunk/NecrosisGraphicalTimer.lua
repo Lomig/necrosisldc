@@ -38,6 +38,45 @@ local _G = getfenv(0)
 -- FONCTIONS DE CREATION DES FRAMES
 ------------------------------------------------------------------------------------------------------
 
+--Création des entêtes des groupes de timers
+function Necrosis_CreateGroup(SpellGroup, index)
+
+	if _G[NecrosisSpellTimer..index] then
+		local f = _G["NecrosisSpellTimer"..index]
+		local FontString = _G["NecrosisSpellTimer"..index.."Text"]
+		FontString:SetText(SpellGroup.Name[index].." - "..SpellGroup.SubName[index])
+		f:Show()
+		return f
+	end
+
+	local frame = CreateFrame("Frame", "NecrosisSpellTimer"..index, NecrosisSpellTimer0)
+
+	-- Définition de ses attributs
+	frame:SetWidth(150)
+	frame:SetHeight(10)
+	frame:ClearAllPoints()
+	frame:SetPoint("CENTER", UIParent, "CENTER", 3000, 3000)
+	frame:Show()
+
+	-- Définition de la Frame du texte
+	local FontString = frame:CreateFontString("NecrosisSpellTimer"..index.."Text", "OVERLAY", "TextStatusBarText")
+
+	FontString:SetWidth(150)
+	FontString:SetHeight(10)
+	FontString:SetJustifyH("CENTER")
+	FontString:SetJustifyV("MIDDLE")
+	FontString:SetTextColor(1, 1, 1)
+	FontString:ClearAllPoints()
+	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
+	FontString:Show()
+
+	-- Définition du texte
+	FontString:SetText(SpellGroup.Name[index].." - "..SpellGroup.SubName[index])
+
+	return frame
+end
+
+-- Création des timers
 function Necrosis_AddFrame(FrameName)
 
 	if _G[FrameName] then
@@ -52,7 +91,6 @@ function Necrosis_AddFrame(FrameName)
 	local frame = CreateFrame("Frame", FrameName, UIParent)
 
 	-- Définition de ses attributs
-	frame:SetMovable(true)
 	frame:SetWidth(150)
 	frame:SetHeight(10)
 	frame:ClearAllPoints()
@@ -95,8 +133,10 @@ function Necrosis_AddFrame(FrameName)
 	FontString:SetWidth(150)
 	FontString:SetHeight(10)
 	FontString:SetJustifyH("LEFT")
+	FontString:SetJustifyV("MIDDLE")
 	FontString:ClearAllPoints()
-	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 1.5)
+--	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 1.5) -- Enlevé pour test avec le justify MIDDLE
+	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
 	FontString:Show()
 
 	if NecrosisConfig.Yellow then
@@ -144,8 +184,9 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 	local LastPoint = {}
 	LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = NecrosisSpellTimerButton:GetPoint()
-	LastPoint[4] = LastPoint[4] + 10
-	local yPosition = 0
+	LastPoint[4] = LastPoint[4] + 50
+	local yPosition = - NecrosisConfig.SensListe * 12
+	local LastGroup = 0
 
 	for index =  1, #tableau, 1 do
 		-- Sélection des frames du timer qui varient en fonction du temps
@@ -156,6 +197,15 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 		-- Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
 		if Changement then
+			-- Si les Frames appartiennent à un groupe de mob, et qu'on doit changer de groupe
+			if (not tableau[index].Group == LastGroup) and tableau[index].Group > 3 then
+				local f = Necrosis_CreateGroup(Changement, tableau[index].Group)
+				f:ClearAllPoints()
+				f:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] + 1.2 * yPosition)
+				LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = f:GetPoint()
+				LastPoint[5] = LastPoint[5] + 0.2 * yPosition
+				LastGroup = tableau[index].Group
+			end
 			Frame:ClearAllPoints()
 			Frame:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] + yPosition)
 		end
@@ -217,7 +267,6 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Update des variables
 		if Changement then
 			LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = Frame:GetPoint()
-			yPosition = yPosition - NecrosisConfig.SensListe * 12
 		end
 	end
 end

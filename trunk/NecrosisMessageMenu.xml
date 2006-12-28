@@ -226,7 +226,6 @@
 							NecrosisConfig.NecrosisToolTip = false
 							Necrosis_Msg(NECROSIS_MESSAGE.Interface.TooltipOff, "USER")
 						end
-						Necrosis_UpdateButtonsScale()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
