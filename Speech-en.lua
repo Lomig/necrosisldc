@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Fran�ises : Eliah, Ner'zhul
+-- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements sp�iaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version 09.12.2006-1
 ------------------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ function Necrosis_Localization_Speech_En()
 		[5] =  {
 			"<after>Arcane Taxi Cab for <target>, please click the portal for the slacker please.",
 		},
-	};
+	}
 
 	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
 		[1] = {
@@ -66,7 +66,7 @@ function Necrosis_Localization_Speech_En()
 		[4]= {
 			"<after><target> is Stoned... duuuude heavy!",
 		},
-	};
+	}
 
 	NECROSIS_PET_MESSAGE = {
 		-- Imp
@@ -77,26 +77,26 @@ function Necrosis_Localization_Speech_En()
 			[2] = {
 				"<pet>! HEEL! NOW!",
 			},
-		};
+		},
 		-- Voidwalker
 		[2] = {
 			[1] = {
 				"Oops, I'll probably need an idiot to be knocked for me...",
 				"<pet>, please help!",
 			},
-		};
+		},
 		-- Succubus
 		[3] = {
 			[1] = {
 				"<pet> baby, please help me sweetheart!",
 			},
-		};
+		},
 		-- Felhunter
 		[4] = {
 			[1] = {
 				"<pet> ! <pet>! Come on boy, come here! <pet>!",
 			},
-		};
+		},
 		-- Felguard
 		[5] = {
 			[1] = {
@@ -106,7 +106,7 @@ function Necrosis_Localization_Speech_En()
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
 				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange!"
 			},
-		};
+		},
 		-- Sentences for the first summon : When Necrosis do not know the name of your demons yet
 		[6] = {
 			[1] = {
@@ -118,7 +118,7 @@ function Necrosis_Localization_Speech_En()
 				"Anyway I hate you all! I don't need you, I have friends.... powerful friends!",
 				"COME TO ME, CREATURE OF HELL AND NIGHTMARE!",
 			},
-		};
+		},
 		-- Sentences for the stead summon
 		[7] = {
 			[1] = {
@@ -127,15 +127,17 @@ function Necrosis_Localization_Speech_En()
 			[2] = {
 				"<emote> is giggling gloomily...",
 				"<yell>I am summoning a steed from nightmare!",
-				"<after>AH AHA HA HA AH AH !",
 			},
-		};
-	};
+			[3] = {
+				"I call forth the flames of feet to make my travels swift!",
+			},
+		}
+	}
 
 	NECROSIS_SHORT_MESSAGES = {
 		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
 		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
-	};
+	}
 
 end
 

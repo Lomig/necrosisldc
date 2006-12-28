@@ -85,7 +85,7 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, SpellGrou
 	SpellGroup, SpellTimer = Necrosis_Parsing(SpellGroup, SpellTimer)
 
 	-- On met à jour l'affichage
-	NecrosisUpdateTimer(SpellTimer, "Changement")
+	NecrosisUpdateTimer(SpellTimer, SpellGroup)
 
 	return SpellGroup, SpellTimer, TimerTable
 end
@@ -182,7 +182,7 @@ function Necrosis_InsertTimerStone(Stone, start, duration, SpellGroup, SpellTime
 	SpellGroup, SpellTimer = Necrosis_Parsing(SpellGroup, SpellTimer)
 
 	-- On met à jour l'affichage
-	NecrosisUpdateTimer(SpellTimer, "Changement")
+	NecrosisUpdateTimer(SpellTimer, SpellGroup)
 
 	return SpellGroup, SpellTimer, TimerTable
 end
@@ -232,7 +232,7 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, SpellGroup, Spell
 	SpellGroup, SpellTimer = Necrosis_Parsing(SpellGroup, SpellTimer)
 
 	-- On met à jour l'affichage
-	NecrosisUpdateTimer(SpellTimer, "Changement")
+	NecrosisUpdateTimer(SpellTimer, SpellGroup)
 
 	return SpellGroup, SpellTimer, TimerTable
 end
@@ -242,29 +242,38 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Connaissant l'index du Timer dans la liste, on le supprime
-function Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+function Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 	-- Suppression du timer graphique
 	TimerTable[SpellTimer[index].Gtimer] = false
 	_G["NecrosisTimerFrame"..SpellTimer[index].Gtimer]:Hide()
+
+	-- Suppression du timer du groupe de mob
+	SpellGroup.Visible[SpellTimer[index].Gtimer]] = SpellGroup.Visible[SpellTimer[index].Gtimer]] - 1
+
+	-- On cache la Frame des groupes si elle est vide
+	if SpellGroup.Visible[SpellTimer[index].Gtimer]] <= 0 then
+		local frameGroup = _G["NecrosisSpellTimer"..SpellTimer[index].Gtimer]
+		if frameGroup then frameGroup:Hide() end
+	end
 
 	-- On enlève le timer de la liste
 	table.remove(SpellTimer, index)
 
 	-- On met à jour l'affichage
-	NecrosisUpdateTimer(SpellTimer, "Changement")
+	NecrosisUpdateTimer(SpellTimer, SpellGroup)
 
-	return SpellTimer, TimerTable
+	return SpellTimer, TimerTable, SpellGroup
 end
 
 -- Si on veut supprimer spécifiquement un Timer...
-function Necrosis_RetraitTimerParNom(name, SpellTimer, TimerTable)
+function Necrosis_RetraitTimerParNom(name, SpellTimer, TimerTable, SpellGroup)
 	for index = 1, #SpellTimer, 1 do
 		if SpellTimer[index].Name == name then
-			SpellTimer = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+			SpellTimer = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 			break
 		end
 	end
-	return SpellTimer, TimerTable
+	return SpellTimer, TimerTable, SpellGroup
 end
 
 -- Fonction pour enlever les timers de combat lors de la regen
@@ -278,7 +287,7 @@ function Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
 			end
 			-- Enlevage des timers de combat
 			if ((SpellTimer[index].Type == 4) or (SpellTimer[index].Type == 5)) then
-				SpellTimer = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+				SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 			end
 		end
 	end
@@ -325,6 +334,7 @@ function Necrosis_Parsing(SpellGroup, SpellTimer)
 				then
 				GroupeOK = true
 				SpellTimer[index].Group = i
+				SpellGroup.Visible[i] = SpellGroup.Visible[i] + 1
 				break
 			end
 		end
@@ -332,7 +342,7 @@ function Necrosis_Parsing(SpellGroup, SpellTimer)
 		if not GroupeOK then
 			table.insert(SpellGroup.Name, SpellTimer[index].Target)
 			table.insert(SpellGroup.SubName, SpellTimer[index].TargetLevel)
-			table.insert(SpellGroup.Visible, false)
+			table.insert(SpellGroup.Visible, 1)
 			SpellTimer[index].Group = #SpellGroup.Name
 		end
 	end

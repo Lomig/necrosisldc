@@ -174,7 +174,7 @@ SpellTimer = {}
 local SpellGroup = {
 	Name = {"Rez", "Main", "Cooldown"},
 	SubName = {" ", " ", " "},
-	Visible = {true, true, true}
+	Visible = {1, 1, 1}
 }
 
 local TimerTable = {}
@@ -944,11 +944,13 @@ function Necrosis_BuildTooltip(button, type, anchor)
 			if SpellstoneMode == 3 then
 				Necrosis_MoneyToggle()
 				NecrosisTooltip:SetInventoryItem("player", 18)
-				local itemName = tostring(NecrosisTooltipTextLeft9:GetText())
-				local itemStone = tostring(NecrosisTooltipTextLeft1:GetText())
-				if (string.find(itemStone, NECROSIS_ITEM.Spellstone)
-					and string.find(itemName, NECROSIS_TRANSLATION.Cooldown)) then
-						GameTooltip:AddLine(itemName)
+				if _G["NecrosisTooltipTextLeft9"] then
+					local itemName = tostring(NecrosisTooltipTextLeft9:GetText())
+					local itemStone = tostring(NecrosisTooltipTextLeft1:GetText())
+					if (string.find(itemStone, NECROSIS_ITEM.Spellstone)
+						and string.find(itemName, NECROSIS_TRANSLATION.Cooldown)) then
+							GameTooltip:AddLine(itemName)
+					end
 				end
 			end
 		-- Pierre de feu
@@ -1235,7 +1237,7 @@ function Necrosis_UpdateIcons()
 	if (SpellstoneOnHand) then
 		SpellstoneMode = 2
 	-- Pierre inexistante, mode 1
-	else
+	elseif not SpellstoneMode == 3
 		SpellstoneMode = 1
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if StoneIDInSpellTable[3] and NecrosisConfig.ItemSwitchCombat[1] then
@@ -1255,7 +1257,7 @@ function Necrosis_UpdateIcons()
 	if (FirestoneOnHand) then
 		FirestoneMode = 2
 	-- Pierre inexistante = mode 1
-	else
+	elseif not FirestoneMode == 3
 		FirestoneMode = 1
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if StoneIDInSpellTable[4] and NecrosisConfig.ItemSwitchCombat[2] then
