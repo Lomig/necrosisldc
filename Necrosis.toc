@@ -14,6 +14,7 @@
 Necrosis.xml
 
 NecrosisGeneral.xml
+NecrosisTimer.xml
 NecrosisShardMenu.xml
 NecrosisMessageMenu.xml
 NecrosisButtonMenu.xml
@@ -26,11 +27,13 @@ Locales\Localization-functions-fr.lua
 Locales\Localization-functions-en.lua
 Locales\Localization-functions-de.lua
 Locales\Localization-functions-es.lua
+Locales\Localization-functions-tw.lua
 
 Locales\Localization-dialog-fr.lua
 Locales\Localization-dialog-en.lua
 Locales\Localization-dialog-de.lua
 Locales\Localization-dialog-es.lua
+Locales\Localization-dialog-tw.lua
 
 Speech-fr.lua
 Speech-en.lua

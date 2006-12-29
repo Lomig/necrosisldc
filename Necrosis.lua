@@ -334,7 +334,7 @@ function Necrosis_OnUpdate(elapsed)
 				if SpellTimer[index] then
 					-- On enlève les timers terminés
 					local TimeLocal = GetTime()
-					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
+					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and not SpellTimer[index].TimeMax == -1 then
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
@@ -346,15 +346,15 @@ function Necrosis_OnUpdate(elapsed)
 							Necrosis_UpdateIcons()
 						end
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
-						if SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
+						if not SpellTimer[index].Name == NECROSIS_SPELL_TABLE[10].Name then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
 							index = 0
 							break
 						end
 					end
 					-- Si le Démoniste n'est plus sous l'emprise du Sacrifice
-					if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then -- Sacrifice
-						if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax ~= nil then
+					if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then
+						if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
 							index = 0
 							break
@@ -366,7 +366,7 @@ function Necrosis_OnUpdate(elapsed)
 						then
 						-- On triche pour laisser le temps au mob de bien sentir qu'il est débuffé ^^
 						if TimeLocal >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 1.5)
-							and SpellTimer[index] ~= 6 then
+							and not SpellTimer[index] == 6 then
 							if not Necrosis_UnitHasEffect("target", SpellTimer[index].Name) then
 								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
 								index = 0
@@ -472,7 +472,7 @@ function Necrosis_OnEvent(event)
 	-- AntiFear immunity on cast detection
 	elseif event == "CHAT_MSG_SPELL_SELF_DAMAGE" then
 		if NecrosisConfig.AntiFearAlert then
-			for spell, creatureName in string.gmatch(arg1, NECROSIS_ANTI_FEAR_SRCH) do
+			for spell, creatureName in arg1:gmatch(NECROSIS_ANTI_FEAR_SRCH) do
 				-- We check if the casted spell on the immune target is Fear or Death Coil
 				if spell == NECROSIS_SPELL_TABLE[13].Name or spell == NECROSIS_SPELL_TABLE[19].Name then
 					AFCurrentTargetImmune = true
@@ -598,7 +598,7 @@ function Necrosis_ChangeDemon()
 	-- Si le démon n'est pas asservi on définit son titre, et on met à jour son nom dans Necrosis
 	DemonType = UnitCreatureFamily("pet")
 	for i = 1, 5, 1 do
-		if DemonType == NECROSIS_PET_LOCAL_NAME[i] and NecrosisConfig.PetName[i] == " " and UnitName("pet") ~= UNKNOWNOBJECT then
+		if DemonType == NECROSIS_PET_LOCAL_NAME[i] and NecrosisConfig.PetName[i] == " " and not UnitName("pet") == UNKNOWNOBJECT then
 			NecrosisConfig.PetName[i] = UnitName("pet")
 			NecrosisLocalization()
 			break
@@ -685,10 +685,10 @@ function Necrosis_SpellManagement()
 			end
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerParTable(11, SpellTargetName, "", SpellGroup, SpellTimer, TimerTable)
 		-- Si le sort était une pierre de soin
-		elseif string.find(SpellCastName, NECROSIS_ITEM.Healthstone) and not string.find(SpellCastName, NECROSIS_CREATE[2]) then
+		elseif SpellCastName:find(NECROSIS_ITEM.Healthstone) and not SpellCastName:find(NECROSIS_CREATE[2]) then
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("Healthstone", nil, nil, SpellGroup, SpellTimer, TimerTable)
 		-- Si le sort était une pierre de sort
-		elseif string.find(SpellCastName, NECROSIS_ITEM.Spellstone) and not string.find(SpellCastName, NECROSIS_CREATE[3]) then
+		elseif SpellCastName:find(NECROSIS_ITEM.Spellstone) and not SpellCastName:find(NECROSIS_CREATE[3]) then
 			SpellGroup, SpellTimer, TimerTable = Necrosis_InsertTimerStone("Spellstone", nil, nil, SpellGroup, SpellTimer, TimerTable)
 		-- Pour les autres sorts castés, tentative de timer si valable
 		else
@@ -699,15 +699,15 @@ function Necrosis_SpellManagement()
 						if SpellTimer[thisspell].Name == SpellCastName
 							and SpellTimer[thisspell].Target == SpellTargetName
 							and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
-							and NECROSIS_SPELL_TABLE[spell].Type ~= 4
-							and NECROSIS_SPELL_TABLE[spell].Type ~= 5
-							and spell ~= 16
+							and not NECROSIS_SPELL_TABLE[spell].Type == 4
+							and not NECROSIS_SPELL_TABLE[spell].Type == 5
+							and not spell == 16
 							then
 							-- Si c'est sort lancé déjà présent sur un mob, on remet le timer à fond
-							if spell ~= 9 or (spell == 9 and not Necrosis_UnitHasEffect("target", SpellCastName)) then
+							if not spell == 9 or (spell == 9 and not Necrosis_UnitHasEffect("target", SpellCastName)) then
 								SpellTimer[thisspell].Time = NECROSIS_SPELL_TABLE[spell].Length
 								SpellTimer[thisspell].TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[spell].Length)
-								if spell == 9 and string.find(SpellCastRank, "1") then
+								if spell == 9 and SpellCastRank:find("1") then
 									SpellTimer[thisspell].Time = 20
 									SpellTimer[thisspell].TimeMax = floor(GetTime() + 20)
 								end
@@ -717,9 +717,9 @@ function Necrosis_SpellManagement()
 						end
 						-- Si c'est un banish sur une nouvelle cible, on supprime le timer précédent
 						if SpellTimer[thisspell].Name == SpellCastName and spell == 9
-							and
-								(SpellTimer[thisspell].Target ~= SpellTargetName
-								or SpellTimer[thisspell].TargetLevel ~= SpellTargetLevel)
+							and not
+								(SpellTimer[thisspell].Target == SpellTargetName
+								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel)
 							then
 							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable)
 							SortActif = false
@@ -766,12 +766,12 @@ function Necrosis_SpellManagement()
 						SortActif = false
 					end
 					if not SortActif
-						and NECROSIS_SPELL_TABLE[spell].Type ~= 0
-						and spell ~= 10
+						and not NECROSIS_SPELL_TABLE[spell].Type == 0
+						and not spell == 10
 						then
 
 						if spell == 9 then
-							if string.find(SpellCastRank, "1") then
+							if SpellCastRank:find("1") then
 								NECROSIS_SPELL_TABLE[spell].Length = 20
 							else
 								NECROSIS_SPELL_TABLE[spell].Length = 30
@@ -886,10 +886,10 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		-- On vérifie si une pierre de sort n'est pas équipée
 		NecrosisTooltip:SetInventoryItem("player", 18)
 		local rightHand = tostring(NecrosisTooltipTextLeft1:GetText())
-		if string.find(rightHand, NECROSIS_ITEM.Spellstone) then SpellstoneOnHand = true end
+		if rightHand:find(NECROSIS_ITEM.Spellstone) then SpellstoneOnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Spellstone..NecrosisTooltipData[type].Stone[SpellOnHand])
 		-- De même pour la pierre de feu
-		if string.find(rightHand, NECROSIS_ITEM.Firestone) then FirestoneOnHand = true end
+		if rightHand:find(NECROSIS_ITEM.Firestone) then FirestoneOnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Firestone..NecrosisTooltipData[type].Stone[FireOnHand])
 		-- Affichage du nom du démon, ou s'il est asservi, ou "Aucun" si aucun démon n'est présent
 		if (DemonType) then
@@ -900,7 +900,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 			GameTooltip:AddLine(NecrosisTooltipData.Main.NoCurrentDemon)
 		end
 	-- ..... pour les boutons de pierre
-	elseif (string.find(type, "stone")) then
+	elseif type:find("stone") then
 		-- Pierre d'âme
 		if (type == "Soulstone") then
 			-- On affiche le nom de la pierre et l'action que produira le clic sur le bouton
@@ -912,7 +912,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 			NecrosisTooltip:SetBagItem(SoulstoneLocation[1], SoulstoneLocation[2])
 			local itemName = tostring(NecrosisTooltipTextLeft6:GetText())
 			GameTooltip:AddLine(NecrosisTooltipData[type].Text[SoulstoneMode])
-			if string.find(itemName, NECROSIS_TRANSLATION.Cooldown) then
+			if itemName:find(NECROSIS_TRANSLATION.Cooldown) then
 			GameTooltip:AddLine(itemName)
 			end
 		-- Pierre de vie
@@ -928,7 +928,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 			if HealthstoneMode == 2 then
 				GameTooltip:AddLine(NecrosisTooltipData[type].Text2)
 			end
-			if string.find(itemName, NECROSIS_TRANSLATION.Cooldown) then
+			if itemName:find(NECROSIS_TRANSLATION.Cooldown) then
 				GameTooltip:AddLine(itemName)
 			end
 			if  SoulshardsCount > 0 and not (start4 > 0 and duration4 > 0) then
@@ -947,8 +947,8 @@ function Necrosis_BuildTooltip(button, type, anchor)
 				if _G["NecrosisTooltipTextLeft9"] then
 					local itemName = tostring(NecrosisTooltipTextLeft9:GetText())
 					local itemStone = tostring(NecrosisTooltipTextLeft1:GetText())
-					if (string.find(itemStone, NECROSIS_ITEM.Spellstone)
-						and string.find(itemName, NECROSIS_TRANSLATION.Cooldown)) then
+					if itemStone:find(NECROSIS_ITEM.Spellstone)
+						and itemName:find(NECROSIS_TRANSLATION.Cooldown) then
 							GameTooltip:AddLine(itemName)
 					end
 				end
@@ -967,7 +967,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		NecrosisTooltip:SetBagItem(HearthstoneLocation[1], HearthstoneLocation[2])
 		local itemName = tostring(NecrosisTooltipTextLeft5:GetText())
 		GameTooltip:AddLine(NecrosisTooltipData[type].Text)
-		if string.find(itemName, NECROSIS_TRANSLATION.Cooldown) then
+		if itemName:find(NECROSIS_TRANSLATION.Cooldown) then
 			GameTooltip:AddLine(NECROSIS_TRANSLATION.Hearth.." - "..itemName)
 		else
 			GameTooltip:AddLine(NecrosisTooltipData[type].Right..GetBindLocation())
@@ -1005,7 +1005,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[34].Mana.." Mana")
 	elseif (type == "Banish") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[9].Mana.." Mana")
-		if string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
+		if NECROSIS_SPELL_TABLE[9].Rank:find("2") then
 		GameTooltip:AddLine(NecrosisTooltipData[type].Text)
 		end
 	elseif (type == "Weakness") then
@@ -1307,7 +1307,7 @@ function Necrosis_UpdateIcons()
 		end
 	end
 
-	if mana ~= nil then
+	if mana then
 	-- Coloration du bouton en grisé si pas assez de mana
 		if NECROSIS_SPELL_TABLE[3].ID then
 			if NECROSIS_SPELL_TABLE[3].Mana > mana then
@@ -1489,13 +1489,13 @@ function Necrosis_BagExplore(arg)
 	NecrosisTooltip:SetInventoryItem("player", 18)
 	local rightHand = tostring(NecrosisTooltipTextLeft1:GetText())
 	Necrosis_MoneyToggle()
-	if string.find(rightHand, NECROSIS_ITEM.Spellstone) then
+	if rightHand:find(NECROSIS_ITEM.Spellstone) then
 		if not InCombatLockdown() then
 			NecrosisSpellstoneButton:SetAttribute("type1", "item")
 			NecrosisSpellstoneButton:SetAttribute("item", rightHand)
 		end
 		SpellstoneMode = 3
-	elseif string.find(rightHand, NECROSIS_ITEM.Firestone) then
+	elseif rightHand:find(NECROSIS_ITEM.Firestone) then
 		FirestoneMode = 3
 	end
 
@@ -1515,14 +1515,14 @@ function Necrosis_BagExplore(arg)
 				-- Si le sac est le sac défini pour les fragments
 				-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
 				if (container == NecrosisConfig.SoulshardContainer) then
-					if itemName ~= NECROSIS_ITEM.Soulshard then
+					if not itemName == NECROSIS_ITEM.Soulshard then
 						SoulshardSlot[slot] = nil
 					end
 				end
 				-- Dans le cas d'un emplacement non vide
 				if itemName then
 					-- Si c'est une pierre d'âme, on note son existence et son emplacement
-					if string.find(itemName, NECROSIS_ITEM.Soulstone) then
+					if itemName:find(NECROSIS_ITEM.Soulstone) then
 						SoulstoneOnHand = container
 						SoulstoneLocation = {container,slot}
 						NecrosisConfig.ItemSwitchCombat[5] = itemName
@@ -1530,7 +1530,7 @@ function Necrosis_BagExplore(arg)
 						-- On attache des actions au bouton de la pierre
 						Necrosis_SoulstoneUpdateAttribute()
 					-- Même chose pour une pierre de soin
-					elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
+					elseif itemName:find(NECROSIS_ITEM.Healthstone) then
 						HealthstoneOnHand = container
 						HealthstoneLocation = {container,slot}
 						NecrosisConfig.ItemSwitchCombat[4] = itemName
@@ -1538,7 +1538,7 @@ function Necrosis_BagExplore(arg)
 						-- On attache des actions au bouton de la pierre
 						Necrosis_HealthstoneUpdateAttribute()
 					-- Et encore pour la pierre de sort
-					elseif string.find(itemName, NECROSIS_ITEM.Spellstone) then
+					elseif itemName:find(NECROSIS_ITEM.Spellstone) then
 						SpellstoneOnHand = container
 						SpellstoneLocation = {container,slot}
 						NecrosisConfig.ItemSwitchCombat[1] = itemName
@@ -1546,14 +1546,14 @@ function Necrosis_BagExplore(arg)
 						-- On attache des actions au bouton de la pierre
 						Necrosis_SpellstoneUpdateAttribute()
 					-- La pierre de feu maintenant
-					elseif string.find(itemName, NECROSIS_ITEM.Firestone) then
+					elseif itemName:find(NECROSIS_ITEM.Firestone) then
 						FirestoneOnHand = container
 						NecrosisConfig.ItemSwitchCombat[2] = itemName
 
 						-- On attache des actions au bouton de la pierre
 						Necrosis_FirestoneUpdateAttribute()
 					-- et enfin la pierre de foyer
-					elseif string.find(itemName, NECROSIS_ITEM.Hearthstone) then
+					elseif itemName:find(NECROSIS_ITEM.Hearthstone) then
 						HearthstoneOnHand = container
 						HearthstoneLocation = {container,slot}
 					end
@@ -1573,14 +1573,14 @@ function Necrosis_BagExplore(arg)
 			-- Si le sac est le sac défini pour les fragments
 			-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
 			if (arg == NecrosisConfig.SoulshardContainer) then
-				if itemName ~= NECROSIS_ITEM.Soulshard then
+				if not itemName == NECROSIS_ITEM.Soulshard then
 					SoulshardSlot[slot] = nil
 				end
 			end
 			-- Dans le cas d'un emplacement non vide
 			if itemName then
 				-- Si c'est une pierre d'âme, on note son existence et son emplacement
-				if string.find(itemName, NECROSIS_ITEM.Soulstone) then
+				if itemName:find(NECROSIS_ITEM.Soulstone) then
 					SoulstoneOnHand = arg
 					SoulstoneLocation = {arg,slot}
 					NecrosisConfig.ItemSwitchCombat[5] = itemName
@@ -1588,7 +1588,7 @@ function Necrosis_BagExplore(arg)
 					-- On attache des actions au bouton de la pierre
 					Necrosis_SoulstoneUpdateAttribute()
 				-- Même chose pour une pierre de soin
-				elseif string.find(itemName, NECROSIS_ITEM.Healthstone) then
+				elseif itemName:find(NECROSIS_ITEM.Healthstone) then
 					HealthstoneOnHand = arg
 					HealthstoneLocation = {arg,slot}
 					NecrosisConfig.ItemSwitchCombat[4] = itemName
@@ -1596,7 +1596,7 @@ function Necrosis_BagExplore(arg)
 					-- On attache des actions au bouton de la pierre
 					Necrosis_HealthstoneUpdateAttribute()
 				-- Et encore pour la pierre de sort
-				elseif string.find(itemName, NECROSIS_ITEM.Spellstone) then
+				elseif itemName:find(NECROSIS_ITEM.Spellstone) then
 					SpellstoneOnHand = arg
 					SpellstoneLocation = {arg,slot}
 					NecrosisConfig.ItemSwitchCombat[1] = itemName
@@ -1604,14 +1604,14 @@ function Necrosis_BagExplore(arg)
 					-- On attache des actions au bouton de la pierre
 					Necrosis_SpellstoneUpdateAttribute()
 				-- La pierre de feu maintenant
-				elseif string.find(itemName, NECROSIS_ITEM.Firestone) then
+				elseif itemName:find(NECROSIS_ITEM.Firestone) then
 					FirestoneOnHand = arg
 					NecrosisConfig.ItemSwitchCombat[2] = itemName
 
 					-- On attache des actions au bouton de la pierre
 					Necrosis_FirestoneUpdateAttribute()
 				-- et enfin la pierre de foyer
-				elseif string.find(itemName, NECROSIS_ITEM.Hearthstone) then
+				elseif itemName:find(NECROSIS_ITEM.Hearthstone) then
 					HearthstoneOnHand = arg
 					HearthstoneLocation = {arg,slot}
 				end
@@ -1688,8 +1688,8 @@ function Necrosis_SoulshardSwitch(type)
 	end
 	for container = 0, 4, 1 do
 		if BagIsSoulPouch[container+1] then break end
-		if container ~= NecrosisConfig.SoulshardContainer then
-			for slot=1, GetContainerNumSlots(container), 1 do
+		if not container == NecrosisConfig.SoulshardContainer then
+			for slot = 1, GetContainerNumSlots(container), 1 do
 				Necrosis_MoneyToggle()
 				NecrosisTooltip:SetBagItem(container, slot)
 				local itemInfo = tostring(NecrosisTooltipTextLeft1:GetText())
@@ -1712,8 +1712,8 @@ function Necrosis_FindSlot(shardIndex, shardSlot)
 	for slot=1, GetContainerNumSlots(NecrosisConfig.SoulshardContainer), 1 do
 		Necrosis_MoneyToggle()
  		NecrosisTooltip:SetBagItem(NecrosisConfig.SoulshardContainer, slot)
- 		local itemInfo = tostring(NecrosisTooltipTextLeft1:GetText())
-		if string.find(itemInfo, NECROSIS_ITEM.Soulshard) == nil then
+ 		local itemInfo = NecrosisTooltipTextLeft1:GetText():tostring()
+		if not itemInfo:find(NECROSIS_ITEM.Soulshard) then
 			PickupContainerItem(shardIndex, shardSlot)
 			PickupContainerItem(NecrosisConfig.SoulshardContainer, slot)
 			SoulshardSlot[SoulshardSlotID] = slot
@@ -1853,9 +1853,10 @@ function Necrosis_SpellSetup()
 
 		-- Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
 		-- Le rang supérieur est conservé
-		if (string.find(subSpellName, NECROSIS_TRANSLATION.Rank)) then
+		if subSpellName:find(NECROSIS_TRANSLATION.Rank) then
 			local found = false
-			local rank = tonumber(strsub(subSpellName, 6, strlen(subSpellName)))
+			local _, _, rank = subSpellName:find("(%d+)")
+			rank = tonumber(rank)
 			for index=1, #CurrentSpells.Name, 1 do
 				if (CurrentSpells.Name[index] == spellName) then
 			found = true
@@ -1878,10 +1879,10 @@ function Necrosis_SpellSetup()
 		if spellName == NECROSIS_TRANSLATION.GreaterInvisible then
 			Invisible = 3
 			InvisibleID = spellID
-		elseif spellName == NECROSIS_TRANSLATION.Invisible and Invisible ~= 3 then
+		elseif spellName == NECROSIS_TRANSLATION.Invisible and not Invisible == 3 then
 			Invisible = 2
 			InvisibleID = spellID
-		elseif spellName == NECROSIS_TRANSLATION.LesserInvisible and Invisible ~= 3 and Invisible ~= 2 then
+		elseif spellName == NECROSIS_TRANSLATION.LesserInvisible and not (Invisible == 3 or Invisible == 2) then
 			Invisible = 1
 			InvisibleID = spellID
 		end
@@ -1891,15 +1892,13 @@ function Necrosis_SpellSetup()
 		for stoneID=1, #StoneType, 1 do
 			-- Si le sort étudié est bien une invocation de ce type de pierre et qu'on n'a pas
 			-- déjà assigné un rang maximum à cette dernière
-			if (string.find(spellName, StoneType[stoneID]))
-				and StoneMaxRank[stoneID] ~= #NECROSIS_STONE_RANK
-				then
+			if spellName:find(StoneType[stoneID]) and not StoneMaxRank[stoneID] == #NECROSIS_STONE_RANK then
 				-- Récupération de la fin du nom de la pierre, contenant son rang
-				local stoneSuffix = string.sub(spellName, string.len(NECROSIS_CREATE[stoneID]) + 1)
+				local stoneSuffix = spellName:sub(NECROSIS_CREATE[stoneID]:len + 1)
 				-- Reste à trouver la correspondance de son rang
 				for rankID=1, #NECROSIS_STONE_RANK, 1 do
 					-- Si la fin du nom de la pierre correspond à une taille de pierre, on note le rang !
-					if string.lower(stoneSuffix) == string.lower(NECROSIS_STONE_RANK[rankID]) then
+					if stoneSuffix:lower() == NECROSIS_STONE_RANK[rankID]:lower() then
 						-- On a une pierre, on a son rang, reste à vérifier si c'est la plus puissante,
 						-- et si oui, l'enregistrer
 						if rankID > StoneMaxRank[stoneID] then
@@ -1919,7 +1918,7 @@ function Necrosis_SpellSetup()
 
 	-- On insère dans la table les pierres avec le plus grand rang
 	for stoneID=1, #StoneType, 1 do
-		if StoneMaxRank[stoneID] ~= 0 then
+		if not StoneMaxRank[stoneID] == 0 then
 			table.insert(NECROSIS_SPELL_TABLE, {
 				ID = CurrentStone.ID[stoneID],
 				Name = CurrentStone.Name[stoneID],
@@ -1935,10 +1934,11 @@ function Necrosis_SpellSetup()
 	for spell=1, #NECROSIS_SPELL_TABLE, 1 do
 		for index = 1, #CurrentSpells.Name, 1 do
 			if (NECROSIS_SPELL_TABLE[spell].Name == CurrentSpells.Name[index])
-				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[1]
-				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[2]
-				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[3]
-				and NECROSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[4]
+				and not
+					(NECROSIS_SPELL_TABLE[spell].ID == StoneIDInSpellTable[1]
+					or NECROSIS_SPELL_TABLE[spell].ID == StoneIDInSpellTable[2]
+					or NECROSIS_SPELL_TABLE[spell].ID == StoneIDInSpellTable[3]
+					or NECROSIS_SPELL_TABLE[spell].ID == StoneIDInSpellTable[4])
 				then
 					NECROSIS_SPELL_TABLE[spell].ID = CurrentSpells.ID[index]
 					NECROSIS_SPELL_TABLE[spell].Rank = CurrentSpells.subName[index]
@@ -1946,14 +1946,14 @@ function Necrosis_SpellSetup()
 		end
 	end
 
-	for spellID=1, MAX_SPELLS, 1 do
+	for spellID = 1, MAX_SPELLS, 1 do
         local spellName, subSpellName = GetSpellName(spellID, "spell")
 		if (spellName) then
-			for index=1, #NECROSIS_SPELL_TABLE, 1 do
+			for index = 1, #NECROSIS_SPELL_TABLE, 1 do
 				if NECROSIS_SPELL_TABLE[index].Name == spellName then
 					Necrosis_MoneyToggle()
 					NecrosisTooltip:SetSpell(spellID, 1)
-					local _, _, ManaCost = string.find(NecrosisTooltipTextLeft2:GetText(), "(%d+)")
+					local _, _, ManaCost = NecrosisTooltipTextLeft2:GetText():find("(%d+)")
 					if not NECROSIS_SPELL_TABLE[index].ID then
 						NECROSIS_SPELL_TABLE[index].ID = spellID
 					end
@@ -1977,7 +1977,7 @@ function Necrosis_SpellSetup()
 		NECROSIS_SPELL_TABLE[33].Length = 0
 		Necrosis_MoneyToggle()
 		NecrosisTooltip:SetSpell(InvisibleID, 1)
-		local _, _, ManaCost = string.find(NecrosisTooltipTextLeft2:GetText(), "(%d+)")
+		local _, _, ManaCost = NecrosisTooltipTextLeft2:GetText():find("(%d+)")
 		NECROSIS_SPELL_TABLE[33].Mana = tonumber(ManaCost)
 	end
 
@@ -1993,12 +1993,15 @@ function Necrosis_SpellSetup()
 
 	-- On met à jour la durée de chaque sort en fonction de son rang
 	-- Peur
-	if NECROSIS_SPELL_TABLE[13].ID ~= nil then
-		NECROSIS_SPELL_TABLE[13].Length = string.find(NECROSIS_SPELL_TABLE[13].Rank, "(%d+)") * 5 + 5
+	if NECROSIS_SPELL_TABLE[13].ID then
+		local _, _, lengtH = NECROSIS_SPELL_TABLE[13].Rank:find("(%d+)")
+		NECROSIS_SPELL_TABLE[13].Length = tonumber(lengtH) * 5 + 5
 	end
 	-- Corruption
-	if NECROSIS_SPELL_TABLE[14].ID ~= nil and string.find(NECROSIS_SPELL_TABLE[14].Rank, "(%d+)") <= 2 then
-		NECROSIS_SPELL_TABLE[14].Length = string.find(NECROSIS_SPELL_TABLE[14].Rank, "(%d+)") * 3 + 9
+	local _, _, ranK = NECROSIS_SPELL_TABLE[14].Rank:find("(%d+)")
+	if ranK then ranK = tonumber(ranK) end
+	if NECROSIS_SPELL_TABLE[14].ID and ranK <= 2 then
+		NECROSIS_SPELL_TABLE[14].Length = ranK * 3 + 9
 	end
 
 	-- WoW 2.0 : Les boutons doivent être sécurisés pour être utilisés.
@@ -2026,7 +2029,7 @@ end
 -- F(type=string, string, int) -> Spell=table
 function Necrosis_FindSpellAttribute(type, attribute, array)
 	for index=1, #NECROSIS_SPELL_TABLE, 1 do
-		if string.find(NECROSIS_SPELL_TABLE[index][type], attribute) then return NECROSIS_SPELL_TABLE[index][array] end
+		if NECROSIS_SPELL_TABLE[index][type]:find(attribute) then return NECROSIS_SPELL_TABLE[index][array] end
 	end
 	return nil
 end
@@ -2043,7 +2046,7 @@ function Necrosis_UnitHasEffect(unit, effect)
 		Necrosis_MoneyToggle()
 		NecrosisTooltip:SetUnitDebuff(unit, index)
 		local DebuffName = tostring(NecrosisTooltipTextLeft1:GetText())
-   		if (string.find(DebuffName, effect)) then
+   		if DebuffName:find(effect) then
 			return true
 		end
 		index = index+1
@@ -2062,7 +2065,7 @@ function Necrosis_UnitHasBuff(unit, effect)
 		Necrosis_MoneyToggle()
 		NecrosisTooltip:SetUnitBuff(unit, index)
 		local BuffName = tostring(NecrosisTooltipTextLeft1:GetText())
-   		if (string.find(BuffName, effect)) then
+   		if BuffName:find(effect) then
 			return true
 		end
 		index = index+1
@@ -2148,12 +2151,13 @@ function Necrosis_TradeStone()
 			ClickTradeButton(1)
 			NecrosisTradeRequest = false
 			return
-		elseif (UnitExists("target") and UnitIsPlayer("target") and (not UnitCanAttack("player", "target")) and UnitName("target") ~= UnitName("player")) then
-			PickupContainerItem(HealthstoneLocation[1], HealthstoneLocation[2])
-        		if ( CursorHasItem() ) then
-            			DropItemOnUnit("target")
-			end
-			return
+		elseif UnitExists("target") and UnitIsPlayer("target")
+			and not (UnitCanAttack("player", "target") or UnitName("target") == UnitName("player")) then
+				PickupContainerItem(HealthstoneLocation[1], HealthstoneLocation[2])
+				if CursorHasItem() then
+					DropItemOnUnit("target")
+				end
+				return
 		end
 end
 
