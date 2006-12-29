@@ -129,13 +129,15 @@
 					<OnEnter>
 					GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 						if (this:GetValue() == 1) then
-							GameTooltip:SetText("Francais")
+							GameTooltip:SetText("Français")
 						elseif (this:GetValue() == 2) then
 							GameTooltip:SetText("English")
 						elseif (this:GetValue() == 3) then
 							GameTooltip:SetText("Deutsch")
+						elseif (this:GetValue() == 4) then
+							GameTooltip:SetText("繁體中文")
 						else
-							GameTooltip:SetText("Espanol")
+							GameTooltip:SetText("Español")
 						end
 					</OnEnter>
 					<OnLeave>
@@ -144,7 +146,7 @@
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue())
 						if (this:GetValue() == 1) then
-							GameTooltip:SetText("Francais")
+							GameTooltip:SetText("Français")
 							NecrosisConfig.NecrosisLanguage = "frFR"
 							Necrosis_Localization_Dialog_Fr()
 						elseif (this:GetValue() == 2) then
@@ -155,8 +157,12 @@
 							GameTooltip:SetText("Deutsch")
 							NecrosisConfig.NecrosisLanguage = "deDE"
 							Necrosis_Localization_Dialog_De()
+						elseif (this:GetValue() == 4) then
+							GameTooltip:SetText("繁體中文")
+							NecrosisConfig.NecrosisLanguage = "zhTW"
+							Necrosis_Localization_Dialog_Tw()
 						else
-							GameTooltip:SetText("Espanol")
+							GameTooltip:SetText("Español")
 							NecrosisConfig.NecrosisLanguage = "esES"
 							Necrosis_Localization_Dialog_Es()
 						end
