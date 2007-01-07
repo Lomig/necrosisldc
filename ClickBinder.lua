@@ -29,11 +29,11 @@
 	"Title" is only used as a header in the window. (your mod name)
 	table is the table defined above.
 
-	You can have different 
+	You can have different
 
 ]]
 
-local VERSION = 0.7 -- change this value always
+local VERSION = 900.7 -- change this value always
 
 if not ClickBinder or ClickBinder.version<VERSION then
 
@@ -157,7 +157,9 @@ if not ClickBinder or ClickBinder.version<VERSION then
 		bindFrame:SetScript("OnShow",ClickBinder.HideButtons)
 		bindFrame:SetScript("OnHide",ClickBinder.ShowButtons)
 		bindFrame:SetScript("OnKeyDown",ClickBinder.BindKeyDown)
+		bindFrame:SetScript("OnMouseDown",ClickBinder.BindKeyDown)
 		bindFrame:EnableKeyboard(1)
+		bindFrame:EnableMouse(1)
 		local press = bindFrame:CreateFontString(nil,"ARTWORK","GameFontNormalLarge")
 		press:SetPoint("CENTER",bindFrame,"CENTER",0,32)
 		press:SetText(NECROSIS_BINDING.Press)
@@ -168,7 +170,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 		current:SetPoint("CENTER",bindFrame,"CENTER",0,-16)
 		current:SetTextColor(.8,.8,.8)
 		table.insert(UISpecialFrames,"ClickBinderFrame")
-		-- buttons	
+		-- buttons
 		local cancel = CreateFrame("Button","ClickBinderBindCancel",bindFrame,"UIPanelButtonTemplate2")
 		cancel:SetWidth(80)
 		cancel:SetHeight(26)
@@ -190,7 +192,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 		closeb:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
 		closeb:SetScript("OnClick",function() ClickBinderFrame:Hide() end)
 	end
-	
+
 	function ClickBinder.StartBinding()
 		ClickBinder.HideButtons()
 		ClickBinderBindFrame:Show()
@@ -199,7 +201,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 		ClickBinderAction:SetText(ClickBinderBindFrame.description)
 		ClickBinderCurrent:SetText(NECROSIS_BINDING.Now..(GetBindingKey(ClickBinderBindFrame.action) or NECROSIS_BINDING.NotBound))
 	end
-	
+
 	function ClickBinder.BindKeyDown()
 		if arg1=="ESCAPE" then
 			ClickBinderBindFrame:Hide()
@@ -266,7 +268,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 			end
 		end
 	end
-	
+
 	function ClickBinder.SetKeyBinding()
 		if not InCombatLockdown() then
 			local _,_,bindType,bindee = string.find(ClickBinderBindFrame.action,"^(%w+) (.+)$")
@@ -291,13 +293,13 @@ if not ClickBinder or ClickBinder.version<VERSION then
 		ClickBinder.DisplayBindings()
 		ClickBinderBindFrame:Hide()
 	end
-	
+
 	function ClickBinder.ResetBindFrame()
 		ClickBinderBindFrame:EnableKeyboard(1)
 		ClickBinderBindCancel:Enable()
 		ClickBinderBindUnbind:Enable()
 	end
-	
+
 	function ClickBinder.UnbindKey()
 		if not InCombatLockdown() and ClickBinderBindFrame.action then
 			while GetBindingKey(ClickBinderBindFrame.action) do
