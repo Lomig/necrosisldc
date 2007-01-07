@@ -28,7 +28,7 @@
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version 09.12.2006-1
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
