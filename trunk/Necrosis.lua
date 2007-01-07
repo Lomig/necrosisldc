@@ -242,6 +242,7 @@ local CurrentTargetBan = false
 
 -- Variables utilisées pour les échanges de pierre avec les joueurs
 local NecrosisTradeRequest = false
+local NecrosisTradeComplete = false
 
 -- Gestion des sacs à fragment d'âme
 local BagIsSoulPouch = {nil, nil, nil, nil, nil}
@@ -297,6 +298,7 @@ function Necrosis_OnLoad()
 		NecrosisButton:RegisterEvent("PLAYER_TARGET_CHANGED")
 		NecrosisButton:RegisterEvent("TRADE_REQUEST")
 		NecrosisButton:RegisterEvent("TRADE_REQUEST_CANCEL")
+		NecrosisButton:RegisterEvent("TRADE_ACCEPT_UPDATE")
 		NecrosisButton:RegisterEvent("TRADE_SHOW")
 		NecrosisButton:RegisterEvent("TRADE_CLOSED")
 
@@ -448,6 +450,12 @@ function Necrosis_OnEvent(event)
 		NecrosisTradeRequest = true
 	elseif event == "TRADE_REQUEST_CANCEL" or event == "TRADE_CLOSED" then
 		NecrosisTradeRequest = false
+	elseif event=="TRADE_ACCEPT_UPDATE" then
+		if NecrosisTradeRequest and NecrosisTradeComplete then
+			AcceptTrade()
+			NecrosisTradeRequest = false
+			NecrosisTradeComplete = false
+		end
 	-- AntiFear button hide on target change
 	elseif event == "PLAYER_TARGET_CHANGED" then
 		if NecrosisConfig.AntiFearAlert and AFCurrentTargetImmune then
@@ -551,6 +559,7 @@ function Necrosis_RegisterManagement(RegistrationType)
 		NecrosisButton:RegisterEvent("PLAYER_TARGET_CHANGED")
 		NecrosisButton:RegisterEvent("TRADE_REQUEST")
 		NecrosisButton:RegisterEvent("TRADE_REQUEST_CANCEL")
+		NecrosisButton:RegisterEvent("TRADE_ACCEPT_UPDATE")
 		NecrosisButton:RegisterEvent("TRADE_SHOW")
 		NecrosisButton:RegisterEvent("TRADE_CLOSED")
 	else
@@ -569,6 +578,7 @@ function Necrosis_RegisterManagement(RegistrationType)
 		NecrosisButton:UnregisterEvent("PLAYER_TARGET_CHANGED")
 		NecrosisButton:UnregisterEvent("TRADE_REQUEST")
 		NecrosisButton:UnregisterEvent("TRADE_REQUEST_CANCEL")
+		NecrosisButton:RegisterEvent("TRADE_ACCEPT_UPDATE")
 		NecrosisButton:UnregisterEvent("TRADE_SHOW")
 		NecrosisButton:UnregisterEvent("TRADE_CLOSED")
 	end
@@ -1791,8 +1801,8 @@ function Necrosis_ButtonSetup()
 						end
 						f:SetPoint(
 							"CENTER", "NecrosisButton", "CENTER",
-							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle - indexScale)),
-							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle - indexScale))
+							((40 * NBRScale) * math.cos(NecrosisConfig.NecrosisAngle - indexScale)),
+							((40 * NBRScale) * math.sin(NecrosisConfig.NecrosisAngle - indexScale))
 						)
 						f:Show()
 						indexScale = indexScale + 36
@@ -1859,7 +1869,7 @@ function Necrosis_SpellSetup()
 			rank = tonumber(rank)
 			for index=1, #CurrentSpells.Name, 1 do
 				if (CurrentSpells.Name[index] == spellName) then
-			found = true
+					found = true
 					if (CurrentSpells.subName[index] < rank) then
 						CurrentSpells.ID[index] = spellID
 						CurrentSpells.subName[index] = rank
@@ -2146,16 +2156,17 @@ end
 function Necrosis_TradeStone()
 		-- Dans ce cas si un pj allié est sélectionné, on lui donne la pierre
 		-- Sinon, on l'utilise
-		if NecrosisTradeRequest and HealthstoneOnHand then
+		if NecrosisTradeRequest and HealthstoneOnHand and not NecrosisTradeComplete then
 			PickupContainerItem(HealthstoneLocation[1], HealthstoneLocation[2])
 			ClickTradeButton(1)
-			NecrosisTradeRequest = false
+			NecrosisTradeComplete = true
 			return
 		elseif UnitExists("target") and UnitIsPlayer("target")
-			and not (UnitCanAttack("player", "target") or UnitName("target") == UnitName("player")) then
+		and not (UnitCanAttack("player", "target") or UnitName("target") == UnitName("player")) then
 				PickupContainerItem(HealthstoneLocation[1], HealthstoneLocation[2])
 				if CursorHasItem() then
 					DropItemOnUnit("target")
+					NecrosisTradeComplete = true
 				end
 				return
 		end

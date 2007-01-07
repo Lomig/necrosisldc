@@ -213,7 +213,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Création de la couleur des timers en fonction du temps
 		local r, g;
 		local b = 37/255;
-		local PercentColor = (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
+		local PercentColor = (tableau[index].TimeMax - math.floor(GetTime())) / tableau[index].Time
 		if PercentColor > 0.5 then
 			r = (207/255) - (1 - PercentColor) * 2 * (207/255)
 			g = 1
@@ -223,20 +223,20 @@ function NecrosisUpdateTimer(tableau, Changement)
 		end
 
 		-- Calcul de la position de l'étincelle sur la barre de status
-		local sparkPosition = 150 * (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
+		local sparkPosition = 150 * (tableau[index].TimeMax - math.floor(GetTime())) / tableau[index].Time
 		if sparkPosition < 1 then sparkPosition = 1 end
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
-		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + floor(GetTime())))
+		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + math.floor(GetTime())))
 		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
 
 		-- Affichage du chrono extérieur
 		local minutes, secondes, affichage = 0, 0, nil
-		secondes = tableau[index].TimeMax - floor(GetTime())
-		minutes = floor(secondes / 60 )
-		secondes = mod(secondes, 60)
+		secondes = tableau[index].TimeMax - math.floor(GetTime())
+		minutes = math.floor(secondes / 60 )
+		secondes = math.fmod(secondes, 60)
 
 		if minutes > 9 then
 			affichage = minutes..":"
