@@ -28,14 +28,15 @@
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version 08.12.2006-1
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
 
-NecrosisData = {};
-NecrosisData.Version = "2.0 Beta1.12";
-NecrosisData.AppName = "Necrosis LdC";
-NecrosisData.Label = NecrosisData.AppName.." "..NecrosisData.Version;
+NecrosisData = {}
+NecrosisData.Version = "2.0 Beta2.0.1"
+NecrosisData.AppName = "Necrosis LdC"
+NecrosisData.Label = NecrosisData.AppName.." "..NecrosisData.Version
+NecrosisData.LastConfig = 20070107.1
 
 

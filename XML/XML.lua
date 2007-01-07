@@ -28,7 +28,7 @@
 -- Version Allemande par Arne Meier et Halisstra, Lothar
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version 15.12.2006-1
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
