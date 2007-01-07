@@ -4,18 +4,18 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    NecrosisLdC is free software you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation either version 2 of the License, or
     (at your option) any later version.
 
     Necrosis LdC is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    but WITHOUT ANY WARRANTY without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Necrosis LdC; if not, write to the Free Software
+    along with Necrosis LdC if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
@@ -41,10 +41,21 @@ local _G = getfenv(0)
 --Création des entêtes des groupes de timers
 function Necrosis_CreateGroup(SpellGroup, index)
 
-	if _G[NecrosisSpellTimer..index] then
+	if _G["NecrosisSpellTimer"..index] then
 		local f = _G["NecrosisSpellTimer"..index]
 		local FontString = _G["NecrosisSpellTimer"..index.."Text"]
-		FontString:SetText(SpellGroup.Name[index].." - "..SpellGroup.SubName[index])
+		local texte = ""
+		if SpellGroup.Name[index] then
+			texte = SpellGroup.Name[index]
+		else
+			texte = "?"
+		end
+		if SpellGroup.SubName[index] then
+			texte = texte.." - "..SpellGroup.SubName[index]
+		else
+			texte = texte.." - ?"
+		end
+		FontString:SetText(texte)
 		f:Show()
 		return f
 	end
@@ -67,7 +78,7 @@ function Necrosis_CreateGroup(SpellGroup, index)
 	FontString:SetJustifyV("MIDDLE")
 	FontString:SetTextColor(1, 1, 1)
 	FontString:ClearAllPoints()
-	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
+	FontString:SetPoint("LEFT", frame, "LEFT", 0, 0)
 	FontString:Show()
 
 	-- Définition du texte
@@ -114,7 +125,7 @@ function Necrosis_AddFrame(FrameName)
 	FontString:SetWidth(150)
 	FontString:SetHeight(10)
 	FontString:SetTextColor(1, 1, 1)
-	FontString:ClearAllPoints();
+	FontString:ClearAllPoints()
 
 	if NecrosisConfig.SpellTimerPos == -1 then
 		FontString:SetPoint("RIGHT", FrameName, "LEFT", -5, 1)
@@ -135,7 +146,6 @@ function Necrosis_AddFrame(FrameName)
 	FontString:SetJustifyH("LEFT")
 	FontString:SetJustifyV("MIDDLE")
 	FontString:ClearAllPoints()
---	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 1.5) -- Enlevé pour test avec le justify MIDDLE
 	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
 	FontString:Show()
 
@@ -177,16 +187,15 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function NecrosisUpdateTimer(tableau, Changement)
-
-	if not tableau then
+	if not tableau[1] then
 		return
 	end
 
 	local LastPoint = {}
-	LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = NecrosisSpellTimerButton:GetPoint()
-	LastPoint[4] = LastPoint[4] + 50
-	local yPosition = - NecrosisConfig.SensListe * 12
+	LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = NecrosisTimerFrame0:GetPoint()
 	local LastGroup = 0
+
+	local yPosition = - NecrosisConfig.SensListe * 12
 
 	for index =  1, #tableau, 1 do
 		-- Sélection des frames du timer qui varient en fonction du temps
@@ -198,22 +207,23 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
 		if Changement then
 			-- Si les Frames appartiennent à un groupe de mob, et qu'on doit changer de groupe
-			if (not tableau[index].Group == LastGroup) and tableau[index].Group > 3 then
+			if not (tableau[index].Group == LastGroup) and tableau[index].Group > 3 then
 				local f = Necrosis_CreateGroup(Changement, tableau[index].Group)
+				LastPoint[5] = LastPoint[5] + 1.2 * yPosition
 				f:ClearAllPoints()
-				f:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] + 1.2 * yPosition)
-				LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = f:GetPoint()
+				f:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5])
 				LastPoint[5] = LastPoint[5] + 0.2 * yPosition
 				LastGroup = tableau[index].Group
 			end
 			Frame:ClearAllPoints()
-			Frame:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] + yPosition)
+			LastPoint[5] = LastPoint[5] + yPosition
+			Frame:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5])
 		end
 
 		-- Création de la couleur des timers en fonction du temps
-		local r, g;
-		local b = 37/255;
-		local PercentColor = (tableau[index].TimeMax - math.floor(GetTime())) / tableau[index].Time
+		local r, g
+		local b = 37/255
+		local PercentColor = (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
 		if PercentColor > 0.5 then
 			r = (207/255) - (1 - PercentColor) * 2 * (207/255)
 			g = 1
@@ -223,20 +233,20 @@ function NecrosisUpdateTimer(tableau, Changement)
 		end
 
 		-- Calcul de la position de l'étincelle sur la barre de status
-		local sparkPosition = 150 * (tableau[index].TimeMax - math.floor(GetTime())) / tableau[index].Time
+		local sparkPosition = 150 * (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
 		if sparkPosition < 1 then sparkPosition = 1 end
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
-		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + math.floor(GetTime())))
+		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + floor(GetTime())))
 		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
 
 		-- Affichage du chrono extérieur
 		local minutes, secondes, affichage = 0, 0, nil
-		secondes = tableau[index].TimeMax - math.floor(GetTime())
-		minutes = math.floor(secondes / 60 )
-		secondes = math.fmod(secondes, 60)
+		secondes = tableau[index].TimeMax - floor(GetTime())
+		minutes = floor(secondes / 60 )
+		secondes = mod(secondes, 60)
 
 		if minutes > 9 then
 			affichage = minutes..":"
@@ -263,10 +273,5 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 		Text:SetText(affichage)
 
-		-- Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
-		-- Update des variables
-		if Changement then
-			LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5] = Frame:GetPoint()
-		end
 	end
 end

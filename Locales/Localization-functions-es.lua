@@ -139,7 +139,7 @@ NECROSIS_SPELL_TABLE = {
 	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Aliento inagotable",				Length = 0,	Type = 0},
 	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Invisibilidad",					Length = 0,	Type = 0},
+		Name = "Detectar invisibilidad",					Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ojo de Kilrogg",				Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -199,12 +199,12 @@ NECROSIS_ITEM = {
 
 
 NECROSIS_STONE_RANK = {
-	[1] = " (Menor)",	-- Rank Minor
-	[2] = " (Inferior)",	-- Rank Lesser
-	[3] = "",		-- Rank Intermediate, no name
-	[4] = " (Superior)",	-- Rank Greater
-	[5] = " (Sublime)",	-- Rank Major
-	[6] = " (Master)",	-- Rank Master
+	[1] = "Menor",	-- Rank Minor
+	[2] = "Inferior",	-- Rank Lesser
+	[3] = "Lomig is cute",		-- Rank Intermediate, no name
+	[4] = "Superior",	-- Rank Greater
+	[5] = "Sublime",	-- Rank Major
+	[6] = "Master",	-- Rank Master
 };
 
 NECROSIS_NIGHTFALL = {
@@ -233,9 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Tiempo de regeneraci\195\179n restante",
 	["Hearth"] = "Piedra de hogar",
 	["Rank"] = "Rango",
-	["Invisible"] = "Detectar invisibilidad",
-	["LesserInvisible"] = "Detectar invisibilidad inferior",
-	["GreaterInvisible"] = "Detectar invisibilidad superior",
 	["SoulLinkGain"] = "Ganas Enlace de Alma.",
 };
 

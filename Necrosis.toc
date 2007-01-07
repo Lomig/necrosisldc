@@ -28,17 +28,22 @@ Locales\Localization-functions-en.lua
 Locales\Localization-functions-de.lua
 Locales\Localization-functions-es.lua
 Locales\Localization-functions-tw.lua
+Locales\Localization-functions-cn.lua
+
 
 Locales\Localization-dialog-fr.lua
 Locales\Localization-dialog-en.lua
 Locales\Localization-dialog-de.lua
 Locales\Localization-dialog-es.lua
 Locales\Localization-dialog-tw.lua
+Locales\Localization-dialog-cn.lua
 
-Speech-fr.lua
-Speech-en.lua
-Speech-de.lua
-Speech-es.lua
+Speech\Speech-fr.lua
+Speech\Speech-en.lua
+Speech\Speech-de.lua
+Speech\Speech-es.lua
+Speech\Speech-tw.lua
+Speech\Speech-cn.lua
 
 NecrosisInitialize.lua
 NecrosisMessage.lua

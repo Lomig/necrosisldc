@@ -139,7 +139,7 @@ NECROSIS_SPELL_TABLE = {
 	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Unending Breath",		Length = 0,	Type = 0},
 	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Invisibility",			Length = 0,	Type = 0},
+		Name = "Detect Invisibility",			Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Eye of Kilrogg",		Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -199,12 +199,12 @@ NECROSIS_ITEM = {
 
 
 NECROSIS_STONE_RANK = {
-	[1] = " (Minor)",	-- Rank Minor
-	[2] = " (Lesser)",	-- Rank Lesser
-	[3] = "",		-- Rank Intermediate, no name
-	[4] = " (Greater)",	-- Rank Greater
-	[5] = " (Major)",	-- Rank Major
-	[6] = " (Master)",	-- Rank Master
+	[1] = "Minor",	-- Rank Minor
+	[2] = "Lesser",	-- Rank Lesser
+	[3] = "Lomig is cute",		-- Rank Intermediate, no name
+	[4] = "Greater",	-- Rank Greater
+	[5] = "Major",	-- Rank Major
+	[6] = "Master",	-- Rank Master
 }
 
 NECROSIS_NIGHTFALL = {
@@ -233,9 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Hearthstone",
 	["Rank"] = "Rank",
-	["Invisible"] = "Detect Invisibility",
-	["LesserInvisible"] = "Detect Lesser Invisibility",
-	["GreaterInvisible"] = "Detect Greater Invisibility",
 	["SoulLinkGain"] = "You gain Soul Link.",
 }
 

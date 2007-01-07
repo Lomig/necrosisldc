@@ -140,7 +140,7 @@ NECROSIS_SPELL_TABLE = {
 	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Respiration interminable",				Length = 0,	Type = 0},
 	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Invisibilit\195\169",					Length = 0,	Type = 0},
+		Name = "D\195\169tection de l'invisibilit\195\169",					Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Oeil de Kilrogg",					Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -200,12 +200,12 @@ NECROSIS_ITEM = {
 
 
 NECROSIS_STONE_RANK = {
-	[1] = " (mineure)",			-- Rank Minor
-	[2] = " (inf\195\169rieure)",		-- Rank Lesser
-	[3] = "",				-- Rank Intermediate, no name
-	[4] = " (sup\195\169rieure)",		-- Rank Greater
-	[5] = " (majeure)",			-- Rank Major
-	[6] = " (magistrale)",			-- Rank Master
+	[1] = "mineure",			-- Rank Minor
+	[2] = "inf\195\169rieure",		-- Rank Lesser
+	[3] = "ksdfxcjkl",				-- Rank Intermediate, no name
+	[4] = "sup\195\169rieure",		-- Rank Greater
+	[5] = "majeure",			-- Rank Major
+	[6] = "magistrale",			-- Rank Master
 };
 
 NECROSIS_NIGHTFALL = {
@@ -234,9 +234,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Temps",
 	["Hearth"] = "Pierre de foyer",
 	["Rank"] = "Rang",
-	["Invisible"] = "D\195\169tection de l'invisibilit\195\169",
-	["LesserInvisible"] = "D\195\169tection de l'invisibilit\195\169 inf\195\169rieure",
-	["GreaterInvisible"] = "D\195\169tection de l'invisibilit\195\169 sup\195\169rieure",
 	["SoulLinkGain"] = "Vous gagnez Lien spirituel.",
 };
 

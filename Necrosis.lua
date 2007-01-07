@@ -331,12 +331,12 @@ function Necrosis_OnUpdate(elapsed)
 		end
 
 		-- Parcours du tableau des Timers
-		if SpellTimer then
+		if SpellTimer[1] then
 			for index = 1, #SpellTimer, 1 do
 				if SpellTimer[index] then
 					-- On enlève les timers terminés
 					local TimeLocal = GetTime()
-					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and not SpellTimer[index].TimeMax == -1 then
+					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and not (SpellTimer[index].TimeMax == -1) then
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
@@ -348,8 +348,8 @@ function Necrosis_OnUpdate(elapsed)
 							Necrosis_UpdateIcons()
 						end
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
-						if not SpellTimer[index].Name == NECROSIS_SPELL_TABLE[10].Name then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+						if not (SpellTimer[index].Name == NECROSIS_SPELL_TABLE[10].Name) then
+							SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 							index = 0
 							break
 						end
@@ -357,7 +357,7 @@ function Necrosis_OnUpdate(elapsed)
 					-- Si le Démoniste n'est plus sous l'emprise du Sacrifice
 					if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then
 						if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+							SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 							index = 0
 							break
 						end
@@ -368,9 +368,9 @@ function Necrosis_OnUpdate(elapsed)
 						then
 						-- On triche pour laisser le temps au mob de bien sentir qu'il est débuffé ^^
 						if TimeLocal >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 1.5)
-							and not SpellTimer[index] == 6 then
+							and not (SpellTimer[index] == 6) then
 							if not Necrosis_UnitHasEffect("target", SpellTimer[index].Name) then
-								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+								SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 								index = 0
 								break
 							end
@@ -379,12 +379,12 @@ function Necrosis_OnUpdate(elapsed)
 				end
 			end
 		end
-		NecrosisUpdateTimer(SpellTimer)
 		LastUpdate = 0
 	end
 
 	-- Toutes les demies secondes
 	if LastUpdate2 > 0.5 then
+			NecrosisUpdateTimer(SpellTimer)
 		-- Si configuré, affichage des avertissements d'Antifear
 		if NecrosisConfig.AntiFearAlert then
 			Necrosis_ShowAntiFearWarning()
@@ -503,12 +503,7 @@ function Necrosis_OnEvent(event)
 	elseif (event == "PLAYER_REGEN_ENABLED") then
 		PlayerCombat = false
 		SpellGroup, SpellTimer, TimerTable = Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
-		for i = 1, 10, 1 do
-			local frameItem = _G["NecrosisTarget"..i.."Text"]
-			if frameItem:IsShown() then
-				frameItem:Hide()
-			end
-		end
+		
 		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
 		Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable)
 		Necrosis_UpdateIcons()
@@ -599,7 +594,7 @@ function Necrosis_ChangeDemon()
 		-- Quand le démon asservi est perdu, on retire le Timer et on prévient le Démoniste
 		if (DemonEnslaved) then
 			DemonEnslaved = false
-			SpellTimer, TimerTable = Necrosis_RetraitTimerParNom(NECROSIS_SPELL_TABLE[10].Name, SpellTimer, TimerTable)
+			SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParNom(NECROSIS_SPELL_TABLE[10].Name, SpellTimer, TimerTable, SpellGroup)
 			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.EnslaveEnd) end
 			Necrosis_Msg(NECROSIS_MESSAGE.Information.EnslaveBreak, "USER")
 		end
@@ -705,79 +700,80 @@ function Necrosis_SpellManagement()
 			for spell=1, #NECROSIS_SPELL_TABLE, 1 do
 				if SpellCastName == NECROSIS_SPELL_TABLE[spell].Name and not (spell == 10) then
 					-- Si le timer existe déjà sur la cible, on le met à jour
-					for thisspell=1, #SpellTimer, 1 do
-						if SpellTimer[thisspell].Name == SpellCastName
-							and SpellTimer[thisspell].Target == SpellTargetName
-							and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
-							and not NECROSIS_SPELL_TABLE[spell].Type == 4
-							and not NECROSIS_SPELL_TABLE[spell].Type == 5
-							and not spell == 16
-							then
-							-- Si c'est sort lancé déjà présent sur un mob, on remet le timer à fond
-							if not spell == 9 or (spell == 9 and not Necrosis_UnitHasEffect("target", SpellCastName)) then
-								SpellTimer[thisspell].Time = NECROSIS_SPELL_TABLE[spell].Length
-								SpellTimer[thisspell].TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[spell].Length)
-								if spell == 9 and SpellCastRank:find("1") then
-									SpellTimer[thisspell].Time = 20
-									SpellTimer[thisspell].TimeMax = floor(GetTime() + 20)
+					if SpellTimer[1] then
+						for thisspell=1, #SpellTimer, 1 do
+							if SpellTimer[thisspell].Name == SpellCastName
+								and SpellTimer[thisspell].Target == SpellTargetName
+								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
+								and not (NECROSIS_SPELL_TABLE[spell].Type == 4)
+								and not (NECROSIS_SPELL_TABLE[spell].Type == 5)
+								and not (spell == 16)
+								then
+								-- Si c'est sort lancé déjà présent sur un mob, on remet le timer à fond
+								if not (spell == 9) or (spell == 9 and not Necrosis_UnitHasEffect("target", SpellCastName)) then
+									SpellTimer[thisspell].Time = NECROSIS_SPELL_TABLE[spell].Length
+									SpellTimer[thisspell].TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[spell].Length)
+									if spell == 9 and SpellCastRank:find("1") then
+										SpellTimer[thisspell].Time = 20
+										SpellTimer[thisspell].TimeMax = floor(GetTime() + 20)
+									end
+								end
+								SortActif = true
+								break
+							end
+							-- Si c'est un banish sur une nouvelle cible, on supprime le timer précédent
+							if SpellTimer[thisspell].Name == SpellCastName and spell == 9
+								and not
+									(SpellTimer[thisspell].Target == SpellTargetName
+									and SpellTimer[thisspell].TargetLevel == SpellTargetLevel)
+								then
+								SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable, SpellGroup)
+								SortActif = false
+								break
+							end
+
+							-- Si c'est un fear, on supprime le timer du fear précédent
+							if SpellTimer[thisspell].Name == SpellCastName and spell == 13 then
+								SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable, SpellGroup)
+								SortActif = false
+								break
+							end
+							if SortActif then break end
+						end
+						-- Si le timer est une malédiction, on enlève la précédente malédiction sur la cible
+						if (NECROSIS_SPELL_TABLE[spell].Type == 4) or (spell == 16) then
+							for thisspell=1, #SpellTimer, 1 do
+								-- Mais on garde le cooldown de la malédiction funeste
+								if SpellTimer[thisspell].Name == NECROSIS_SPELL_TABLE[16].Name then
+									SpellTimer[thisspell].Target = ""
+									SpellTimer[thisspell].TargetLevel = ""
+								end
+								if SpellTimer[thisspell].Type == 4
+									and SpellTimer[thisspell].Target == SpellTargetName
+									and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
+									then
+									SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable, SpellGroup)
+									break
 								end
 							end
-							SortActif = true
-							break
-						end
-						-- Si c'est un banish sur une nouvelle cible, on supprime le timer précédent
-						if SpellTimer[thisspell].Name == SpellCastName and spell == 9
-							and not
-								(SpellTimer[thisspell].Target == SpellTargetName
-								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel)
-							then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable)
 							SortActif = false
-							break
-						end
-
-						-- Si c'est un fear, on supprime le timer du fear précédent
-						if SpellTimer[thisspell].Name == SpellCastName and spell == 13 then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable)
+						-- Si le timer est une corruption, on enlève la précédente corruption sur la cible
+						elseif (NECROSIS_SPELL_TABLE[spell].Type == 5) then
+							for thisspell=1, #SpellTimer, 1 do
+								if SpellTimer[thisspell].Type == 5
+									and SpellTimer[thisspell].Target == SpellTargetName
+									and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
+									then
+									SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable, SpellGroup)
+									break
+								end
+							end
 							SortActif = false
-							break
 						end
-						if SortActif then break end
-					end
-					-- Si le timer est une malédiction, on enlève la précédente malédiction sur la cible
-					if (NECROSIS_SPELL_TABLE[spell].Type == 4) or (spell == 16) then
-						for thisspell=1, #SpellTimer, 1 do
-							-- Mais on garde le cooldown de la malédiction funeste
-							if SpellTimer[thisspell].Name == NECROSIS_SPELL_TABLE[16].Name then
-								SpellTimer[thisspell].Target = ""
-								SpellTimer[thisspell].TargetLevel = ""
-							end
-							if SpellTimer[thisspell].Type == 4
-								and SpellTimer[thisspell].Target == SpellTargetName
-								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
-								then
-								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable)
-								break
-							end
-						end
-						SortActif = false
-					end
-					-- Si le timer est une corruption, on enlève la précédente corruption sur la cible
-					if (NECROSIS_SPELL_TABLE[spell].Type == 5) then
-						for thisspell=1, #SpellTimer, 1 do
-							if SpellTimer[thisspell].Type == 5
-								and SpellTimer[thisspell].Target == SpellTargetName
-								and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
-								then
-								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable)
-								break
-							end
-						end
-						SortActif = false
 					end
 					if not SortActif
-						and not NECROSIS_SPELL_TABLE[spell].Type == 0
-						and not spell == 10
+						and not (NECROSIS_SPELL_TABLE[spell].Type == 0)
+						and not (spell == 10)
 						then
 
 						if spell == 9 then
@@ -817,27 +813,6 @@ function Necrosis_OnDragStop(button)
 	local NomBouton = button:GetName()
 	local AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY = button:GetPoint()
 	NecrosisConfig.FramePosition[NomBouton] = {AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY}
-end
-
--- Fonction alternant Timers graphiques et Timers textes
-function Necrosis_HideGraphTimer()
-	for i = 1, 30, 1 do
-		local elements = {"Text", "Bar", "Texture", "OutText"}
-		if NecrosisConfig.Graphical then
-			if TimerTable[i] then
-				for j = 1, 4, 1 do
-					frameItem = _G["NecrosisTimer"..i..elements[j]]
-					frameItem:Show()
-				end
-			end
-		else
-			for j = 1, 4, 1 do
-				frameName = "NecrosisTimer"..i..elements[j]
-				frameItem = _G["NecrosisTimer"..i..elements[j]]
-				frameItem:Hide()
-			end
-		end
-	end
 end
 
 -- Fonction gérant les bulles d'aide
@@ -1212,7 +1187,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-	if StoneIDInSpellTable[1]  and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
+	if StoneIDInSpellTable[1] and NecrosisConfig.ItemSwitchCombat[5] and (SoulstoneMode == 1 or SoulstoneMode == 3) then
 		Necrosis_SoulstoneUpdateAttribute(StoneIDInSpellTable)
 	end
 
@@ -1247,7 +1222,7 @@ function Necrosis_UpdateIcons()
 	if (SpellstoneOnHand) then
 		SpellstoneMode = 2
 	-- Pierre inexistante, mode 1
-	elseif not SpellstoneMode == 3
+	elseif not (SpellstoneMode == 3) then
 		SpellstoneMode = 1
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if StoneIDInSpellTable[3] and NecrosisConfig.ItemSwitchCombat[1] then
@@ -1267,7 +1242,7 @@ function Necrosis_UpdateIcons()
 	if (FirestoneOnHand) then
 		FirestoneMode = 2
 	-- Pierre inexistante = mode 1
-	elseif not FirestoneMode == 3
+	elseif not (FirestoneMode == 3) then
 		FirestoneMode = 1
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if StoneIDInSpellTable[4] and NecrosisConfig.ItemSwitchCombat[2] then
@@ -1525,7 +1500,7 @@ function Necrosis_BagExplore(arg)
 				-- Si le sac est le sac défini pour les fragments
 				-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
 				if (container == NecrosisConfig.SoulshardContainer) then
-					if not itemName == NECROSIS_ITEM.Soulshard then
+					if not (itemName == NECROSIS_ITEM.Soulshard) then
 						SoulshardSlot[slot] = nil
 					end
 				end
@@ -1583,7 +1558,7 @@ function Necrosis_BagExplore(arg)
 			-- Si le sac est le sac défini pour les fragments
 			-- hop la valeur du Tableau qui représente le slot du Sac = nil (pas de Shard)
 			if (arg == NecrosisConfig.SoulshardContainer) then
-				if not itemName == NECROSIS_ITEM.Soulshard then
+				if not (itemName == NECROSIS_ITEM.Soulshard) then
 					SoulshardSlot[slot] = nil
 				end
 			end
@@ -1698,7 +1673,7 @@ function Necrosis_SoulshardSwitch(type)
 	end
 	for container = 0, 4, 1 do
 		if BagIsSoulPouch[container+1] then break end
-		if not container == NecrosisConfig.SoulshardContainer then
+		if not (container == NecrosisConfig.SoulshardContainer) then
 			for slot = 1, GetContainerNumSlots(container), 1 do
 				Necrosis_MoneyToggle()
 				NecrosisTooltip:SetBagItem(container, slot)
@@ -1788,7 +1763,6 @@ function Necrosis_ButtonSetup()
 
 	if NecrosisConfig.NecrosisLockServ then
 		local indexScale = -36
-		Necrosis_ClearAllPoints()
 		for index=1, #NecrosisConfig.StonePosition, 1 do
 			for button = 1, #NecrosisConfig.StonePosition, 1 do
 				if math.abs(NecrosisConfig.StonePosition[index]) == button
@@ -1799,10 +1773,11 @@ function Necrosis_ButtonSetup()
 							f = Necrosis_CreateSphereButtons(ButtonName[button])
 							Necrosis_StoneAttribute(StoneIDInSpellTable, MountAvailable)
 						end
+						f:ClearAllPoints()
 						f:SetPoint(
 							"CENTER", "NecrosisButton", "CENTER",
-							((40 * NBRScale) * math.cos(NecrosisConfig.NecrosisAngle - indexScale)),
-							((40 * NBRScale) * math.sin(NecrosisConfig.NecrosisAngle - indexScale))
+							((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle - indexScale)),
+							((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle - indexScale))
 						)
 						f:Show()
 						indexScale = indexScale + 36
@@ -1837,11 +1812,7 @@ function Necrosis_SpellSetup()
 	local StoneType = {NECROSIS_ITEM.Soulstone, NECROSIS_ITEM.Healthstone, NECROSIS_ITEM.Spellstone, NECROSIS_ITEM.Firestone}
 	local StoneMaxRank = {0, 0, 0, 0}
 
-	local CurrentStone = {
-		ID = {},
-		Name = {},
-		subName = {}
-	}
+	local CurrentStone = {ID = {}, Name = {}}
 
 	local CurrentSpells = {
 		ID = {},
@@ -1863,16 +1834,18 @@ function Necrosis_SpellSetup()
 
 		-- Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
 		-- Le rang supérieur est conservé
-		if subSpellName:find(NECROSIS_TRANSLATION.Rank) then
+		if subSpellName and not (subSpellName == " " or subSpellName == "") then
 			local found = false
 			local _, _, rank = subSpellName:find("(%d+)")
 			rank = tonumber(rank)
 			for index=1, #CurrentSpells.Name, 1 do
 				if (CurrentSpells.Name[index] == spellName) then
 					found = true
-					if (CurrentSpells.subName[index] < rank) then
+					local _, _, CurrentRank = CurrentSpells.subName[index]:find("(%d+)")
+					CurrentRank = tonumber(CurrentRank)
+					if CurrentRank < rank then
 						CurrentSpells.ID[index] = spellID
-						CurrentSpells.subName[index] = rank
+						CurrentSpells.subName[index] = subSpellName
 					end
 					break
 				end
@@ -1881,58 +1854,49 @@ function Necrosis_SpellSetup()
 			if (not found) then
 				table.insert(CurrentSpells.ID, spellID)
 				table.insert(CurrentSpells.Name, spellName)
-				table.insert(CurrentSpells.subName, rank)
+				table.insert(CurrentSpells.subName, subSpellName)
 			end
-		end
-
-		-- Test du Rang de la détection d'invisibilité
-		if spellName == NECROSIS_TRANSLATION.GreaterInvisible then
-			Invisible = 3
-			InvisibleID = spellID
-		elseif spellName == NECROSIS_TRANSLATION.Invisible and not Invisible == 3 then
-			Invisible = 2
-			InvisibleID = spellID
-		elseif spellName == NECROSIS_TRANSLATION.LesserInvisible and not (Invisible == 3 or Invisible == 2) then
-			Invisible = 1
-			InvisibleID = spellID
-		end
-
 		-- Les pierres n'ont pas de rang numéroté, l'attribut de rang fait partie du nom du sort
-		-- Pour chaque type de pierre, on va donc faire....
-		for stoneID=1, #StoneType, 1 do
-			-- Si le sort étudié est bien une invocation de ce type de pierre et qu'on n'a pas
-			-- déjà assigné un rang maximum à cette dernière
-			if spellName:find(StoneType[stoneID]) and not StoneMaxRank[stoneID] == #NECROSIS_STONE_RANK then
-				-- Récupération de la fin du nom de la pierre, contenant son rang
-				local stoneSuffix = spellName:sub(NECROSIS_CREATE[stoneID]:len + 1)
-				-- Reste à trouver la correspondance de son rang
-				for rankID=1, #NECROSIS_STONE_RANK, 1 do
-					-- Si la fin du nom de la pierre correspond à une taille de pierre, on note le rang !
-					if stoneSuffix:lower() == NECROSIS_STONE_RANK[rankID]:lower() then
-						-- On a une pierre, on a son rang, reste à vérifier si c'est la plus puissante,
-						-- et si oui, l'enregistrer
-						if rankID > StoneMaxRank[stoneID] then
-							StoneMaxRank[stoneID] = rankID
-							CurrentStone.Name[stoneID] = spellName
-							CurrentStone.subName[stoneID] = NECROSIS_STONE_RANK[rankID]
-							CurrentStone.ID[stoneID] = spellID
+		else
+			-- Pour chaque type de pierre, on va donc faire....
+			for stoneID = 1, #StoneType, 1 do
+				-- Si le sort étudié est bien une invocation de ce type de pierre et qu'on n'a pas
+				-- déjà assigné un rang maximum à cette dernière
+				if spellName:find(StoneType[stoneID]) then
+					local found = false
+					-- Reste à trouver la correspondance de son rang
+					for rankID = 1, #NECROSIS_STONE_RANK, 1 do
+						-- Si la fin du nom de la pierre correspond à une taille de pierre, on note le rang !
+						if spellName:find(NECROSIS_STONE_RANK[rankID]) then
+							-- On a une pierre, on a son rang, reste à vérifier si c'est la plus puissante,
+							-- et si oui, l'enregistrer
+							if rankID > StoneMaxRank[stoneID] then
+								StoneMaxRank[stoneID] = rankID
+								CurrentStone.Name[stoneID] = spellName
+								CurrentStone.ID[stoneID] = spellID
+							end
+							found = true
+							break
 						end
-						break
+					end
+					if StoneMaxRank[stoneID] <= 3 and not found then
+								StoneMaxRank[stoneID] = 3
+								CurrentStone.Name[stoneID] = spellName
+								CurrentStone.ID[stoneID] = spellID
 					end
 				end
 			end
 		end
-
 		spellID = spellID + 1
 	end
 
 	-- On insère dans la table les pierres avec le plus grand rang
-	for stoneID=1, #StoneType, 1 do
-		if not StoneMaxRank[stoneID] == 0 then
+	for stoneID = 1, #StoneType, 1 do
+		if StoneMaxRank[stoneID] > 0 then
 			table.insert(NECROSIS_SPELL_TABLE, {
 				ID = CurrentStone.ID[stoneID],
 				Name = CurrentStone.Name[stoneID],
-				Rank = 0,
+				Rank = "",
 				CastTime = 0,
 				Length = 0,
 				Type = 0,
@@ -1976,28 +1940,6 @@ function Necrosis_SpellSetup()
 	for i=1, 4, 1 do
 		if StoneIDInSpellTable[i] == 0 then
 			StoneIDInSpellTable[i] = nil
-		end
-	end
-
-	-- Insertion du plus haut rang de détection d'invisibilité connu
-	if Invisible >= 1 then
-		NECROSIS_SPELL_TABLE[33].ID = InvisibleID
-		NECROSIS_SPELL_TABLE[33].Rank = " "
-		NECROSIS_SPELL_TABLE[33].CastTime = 0
-		NECROSIS_SPELL_TABLE[33].Length = 0
-		Necrosis_MoneyToggle()
-		NecrosisTooltip:SetSpell(InvisibleID, 1)
-		local _, _, ManaCost = NecrosisTooltipTextLeft2:GetText():find("(%d+)")
-		NECROSIS_SPELL_TABLE[33].Mana = tonumber(ManaCost)
-	end
-
-	-- Maintenant qu'on connait tous les sorts, on recupère leur véritable nom coté client
-	-- (utile pour les pierres invoquées ou l'invisibilité par exemple)
-		for spellID=1, #NECROSIS_SPELL_TABLE, 1 do
-		if NECROSIS_SPELL_TABLE[spellID].ID then
-			local spellName, spellRank = GetSpellName(NECROSIS_SPELL_TABLE[spellID].ID, "spell")
-			NECROSIS_SPELL_TABLE[spellID].Name = spellName
-			NECROSIS_SPELL_TABLE[spellID].Rank = spellRank
 		end
 	end
 
@@ -2458,6 +2400,53 @@ function Necrosis_Recall()
 		f:Show()
 		Necrosis_OnDragStop(f)
 	end
+end
+
+-- Fonction permettant le renversement des timers sur la gauche / la droite
+function Necrosis_SymetrieTimer(bool)
+	local num
+	if bool then
+		NecrosisConfig.SpellTimerPos = -1
+		NecrosisConfig.SpellTimerJust = "RIGHT"
+		AnchorSpellTimerTooltip = "ANCHOR_LEFT"
+		
+		num = 1
+		while _G["NecrosisTimerFrame"..num.."OutText"] do
+			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
+			_G["NecrosisTimerFrame"..num.."OutText"]:SetPoint(
+				"RIGHT",
+				_G["NecrosisTimerFrame"..num],
+				"LEFT",
+				-5, 1
+			)
+			_G["NecrosisTimerFrame"..num.."OutText"]:SetJustifyH("RIGHT")
+			num = num + 1
+		end
+	else
+		NecrosisConfig.SpellTimerPos = 1
+		NecrosisConfig.SpellTimerJust = "LEFT"
+		AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
+		
+		num = 1
+		while _G["NecrosisTimerFrame"..num.."OutText"] do
+			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
+			_G["NecrosisTimerFrame"..num.."OutText"]:SetPoint(
+				"LEFT",
+				_G["NecrosisTimerFrame"..num],
+				"RIGHT",
+				5, 1
+			)
+			_G["NecrosisTimerFrame"..num.."OutText"]:SetJustifyH("LEFT")
+			num = num + 1
+		end	
+	end
+	NecrosisTimerFrame0:ClearAllPoints()
+	NecrosisTimerFrame0:SetPoint(
+		NecrosisConfig.SpellTimerJust,
+		NecrosisSpellTimerButton,
+		"CENTER",
+		NecrosisConfig.SpellTimerPos * 20, 0
+	)
 end
 
 -- Fonction permettant l'affichage des différentes pages du livre des configurations
