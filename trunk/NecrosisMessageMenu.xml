@@ -160,11 +160,11 @@
 							NecrosisConfig.NecrosisLanguage = "deDE"
 							Necrosis_Localization_Dialog_De()
 						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText("繁體中文")
+							GameTooltip:SetText("zhTW")
 							NecrosisConfig.NecrosisLanguage = "zhTW"
 							Necrosis_Localization_Dialog_Tw()
 						elseif (this:GetValue() == 5) then
-							GameTooltip:SetText("简体中文")
+							GameTooltip:SetText("zhCN")
 							NecrosisConfig.NecrosisLanguage = "zhCN"
 							Necrosis_Localization_Dialog_Cn()
 						else
