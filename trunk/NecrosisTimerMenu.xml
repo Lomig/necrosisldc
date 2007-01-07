@@ -108,19 +108,8 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if (this:GetChecked()) then
-							NecrosisConfig.SpellTimerPos = -1
-							NecrosisConfig.SpellTimerJust = "RIGHT"
-							AnchorSpellTimerTooltip = "ANCHOR_LEFT"
-						else
-							NecrosisConfig.SpellTimerPos = 1
-							NecrosisConfig.SpellTimerJust = "LEFT"
-							AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
-						end
-						NecrosisListSpells:ClearAllPoints()
-						NecrosisListSpells:SetJustifyH(NecrosisConfig.SpellTimerJust)
-						NecrosisListSpells:SetPoint("TOP"..NecrosisConfig.SpellTimerJust, "NecrosisSpellTimerButton", "CENTER", NecrosisConfig.SpellTimerPos * 23, 10)
-					</OnClick>
+						Necrosis_SymetrieTimer(this:GetChecked())
+						</OnClick>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="NecrosisGraphicalTimer_Button" inherits="UICheckButtonTemplate" enableMouse="true">
@@ -137,7 +126,6 @@
 				<Scripts>
 					<OnClick>
 						NecrosisConfig.Graphical = this:GetChecked()
-						Necrosis_HideGraphTimer()
 					</OnClick>
 				</Scripts>
 			</CheckButton>

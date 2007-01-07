@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -36,7 +36,7 @@
 
 ------------------------------------------------
 -- Chinese Traditional VERSION FUNCTIONS      --
---  2006/12/29
+--  2007/01/02
 --  艾娜羅沙@奧妮克希亞
 ------------------------------------------------
 
@@ -91,7 +91,7 @@ NECROSIS_SPELL_TABLE = {
 	[6] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "召喚地獄獵犬",		Length = 0,	Type = 0},
 	[7] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Summon Felguard",	Length = 0,	Type = 0},
+		Name = "召喚地獄守衛",	Length = 0,	Type = 0},
 	[8] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "地獄火",			Length = 3600,	Type = 3},
 	[9] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -151,10 +151,7 @@ NECROSIS_SPELL_TABLE = {
 	[36] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "惡魔皮膚",		Length = 0,	Type = 0},
 	[37] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚儀式",		Lengthelseif (this:GetValue() == 4) then
-							GameTooltip:SetText("繁體中文")
-							NecrosisConfig.NecrosisLanguage = "zhTW"
-							Necrosis_Localization_Dialog_Tw() = 0,	Type = 0},
+		Name = "召喚儀式",		Length = 0,	Type = 0},
 	[38] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "靈魂鏈結",		Length = 0,	Type = 0},
 	[39] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -172,16 +169,17 @@ NECROSIS_SPELL_TABLE = {
 	[45] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "暗影箭",			Length = 0,	Type = 0},
 	[46] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Unstable Affliction",	Length = 18,	Type = 6},
+		Name = "痛苦動盪",	Length = 18,	Type = 6},
 	[47] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Fel Armor",		Length = 0,	Type = 0},
+		Name = "獄甲術",		Length = 0,	Type = 0},
 	[48] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Seed of Corruption",	Length = 18,	Type = 5},
+		Name = "腐蝕種子",	Length = 18,	Type = 5},
 	[49] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Soulshatter",		Length = 300,	Type = 3},
+		Name = "靈魂",		Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Ritual of Souls",	Length = 300,	Type = 3},
+		Name = "靈魂典禮",	Length = 300,	Type = 3},
 }
+
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
@@ -197,7 +195,7 @@ NECROSIS_ITEM = {
 	["Spellstone"] = "法術石",
 	["Firestone"] = "火焰石",
 	["Ranged"] = "魔杖",
-	["Soulbound"] = "捨取後綁定",
+	["Soulbound"] = "舍取后绑定",
 	["InfernalStone"] = "地獄火石",
 	["DemoniacStone"] = "惡魔雕像",
 	["Hearthstone"] = "爐石",
@@ -208,14 +206,14 @@ NECROSIS_ITEM = {
 NECROSIS_STONE_RANK = {
 	[1] = "初級",		-- Rank Minor
 	[2] = "次級",		-- Rank Lesser
-	[3] = "",		-- Rank Intermediate, no name
+	[3] = "Lomig is cute",		-- Rank Intermediate, no name
 	[4] = "強效",		-- Rank Greater
-	[5] = "極效"		-- Rank Major
-	[6] = " (Master)",	-- Rank Master
+	[5] = "極效",		-- Rank Major
+	[6] = "Master",	-- Rank Master
 }
 
 NECROSIS_NIGHTFALL = {
-	["BoltName"] = "箭",
+	["Backlash"] = "反衝",
 	["ShadowTrance"] = "暗影冥思"
 }
 --NECROSIS_STONE_CREATE = "製造";
@@ -232,8 +230,8 @@ NECROSIS_PET_LOCAL_NAME = {
 	[3] = "魅魔",
 	[4] = "地獄獵犬",
 	[5] = "地獄火",
-	[6] = "末日守衛"
-	[7] = "Doomguard"
+	[6] = "末日守衛",
+	[7] = "厄運守衛"
 }
 
 NECROSIS_TRANSLATION = {

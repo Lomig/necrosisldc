@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -34,7 +34,7 @@
 
 ------------------------------------------------
 -- CHINESE TRADITIONAL VERSION TEXTS          --
---  2006/12/29
+--  2007/01/02
 --  艾娜羅沙@奧妮克希亞
 ------------------------------------------------
 
@@ -78,9 +78,9 @@ function Necrosis_Localization_Dialog_Tw()
 		},
 		["Healthstone"] = {
 			Label = "|c0066FF33治療石|r",
-			Text = {"製造","使用"}
+			Text = {"製造","使用"},
 			Text2 = "按中鍵或是Ctrl-左鍵交易",
-			Ritual = "|c00FFFFFFShift+左鍵施放Ritual of Souls|r"
+			Ritual = "|c00FFFFFFShift+左鍵施放靈魂儀式|r"
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFF法術石|r",
@@ -99,7 +99,7 @@ function Necrosis_Localization_Dialog_Tw()
 			Label = "|c00FFFFFF暗影冥思|r"
 		},
 		["Backlash"] = {
-			Label = "|c00FFFFFFBacklash|r"
+			Label = "|c00FFFFFF反衝|r"
 		},
 		["Domination"] = {
 			Label = "|c00FFFFFF惡魔支配|r"
@@ -111,7 +111,7 @@ function Necrosis_Localization_Dialog_Tw()
 			Label = "|c00FFFFFF魔甲術|r"
 		},
 		["FelArmor"] = {
-			Label = "|c00FFFFFFFel Armor|r"
+			Label = "|c00FFFFFF獄甲術|r"
 		},
 		["Invisible"] = {
 			Label = "|c00FFFFFF偵測隱形|r"
@@ -123,7 +123,7 @@ function Necrosis_Localization_Dialog_Tw()
 			Label = "|c00FFFFFF基爾羅格之眼|r"
 		},
 		["Banish"] = {
-			Label = "|c00FFFFFF放逐術|r"
+			Label = "|c00FFFFFF放逐術|r",
 			Text = "按右鍵施放等級1"
 		},
 		["TP"] = {
@@ -148,7 +148,7 @@ function Necrosis_Localization_Dialog_Tw()
 			Label = "|c00FFFFFF地獄獵犬|r"
 		},
 		["Felguard"] = {
-			Label = "|c00FFFFFFFelguard|r"
+			Label = "|c00FFFFFF地獄守衛|r"
 		},
 		["Infernal"] = {
 			Label = "|c00FFFFFF地獄火|r"
@@ -187,21 +187,21 @@ function Necrosis_Localization_Dialog_Tw()
 			Label = "|c00FFFFFF厄運詛咒|r"
 		},
 		["Mount"] = {
-			Label = "|c00FFFFFF坐騎|r"
+			Label = "|c00FFFFFF坐騎|r",
 			Text = "右鍵施放等級1"
 		},
 		["BuffMenu"] = {
-			Label = "|c00FFFFFF法術選單|r"
+			Label = "|c00FFFFFF法術選單|r",
 			Text = "右鍵保持選單開啟",
 			Text2 = "自動模式：脫離戰鬥後自動關閉",
 		},
 		["PetMenu"] = {
-			Label = "|c00FFFFFF惡魔選單|r"
+			Label = "|c00FFFFFF惡魔選單|r",
 			Text = "右鍵保持選單開啟",
 			Text2 = "自動模式：脫離戰鬥後自動關閉",
 		},
 		["CurseMenu"] = {
-			Label = "|c00FFFFFF詛咒選單|r"
+			Label = "|c00FFFFFF詛咒選單|r",
 			Text = "右鍵保持選單開啟",
 			Text2 = "自動模式：脫離戰鬥後自動關閉",
 		},
@@ -217,7 +217,7 @@ function Necrosis_Localization_Dialog_Tw()
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-En.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-En.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-En.mp3",
-		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
+		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-En.mp3",
 	}
 
 	NECROSIS_NIGHTFALL_TEXT = {

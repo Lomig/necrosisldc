@@ -42,7 +42,6 @@ local _G = getfenv(0)
 
 -- La table des timers est là pour ça !
 function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, SpellGroup, SpellTimer, TimerTable)
-
 	-- Insertion de l'entrée dans le tableau
 	table.insert(SpellTimer,
 		{
@@ -248,12 +247,15 @@ function Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup
 	_G["NecrosisTimerFrame"..SpellTimer[index].Gtimer]:Hide()
 
 	-- Suppression du timer du groupe de mob
-	SpellGroup.Visible[SpellTimer[index].Gtimer]] = SpellGroup.Visible[SpellTimer[index].Gtimer]] - 1
-
-	-- On cache la Frame des groupes si elle est vide
-	if SpellGroup.Visible[SpellTimer[index].Gtimer]] <= 0 then
-		local frameGroup = _G["NecrosisSpellTimer"..SpellTimer[index].Gtimer]
-		if frameGroup then frameGroup:Hide() end
+	if SpellGroup.Visible[SpellTimer[index].Group] then
+		SpellGroup.Visible[SpellTimer[index].Group] = SpellGroup.Visible[SpellTimer[index].Group] - 1
+		-- On cache la Frame des groupes si elle est vide
+		if SpellGroup.Visible[SpellTimer[index].Group] <= 0 then
+			local frameGroup = _G["NecrosisSpellTimer"..SpellTimer[index].Group]
+			if frameGroup then frameGroup:Hide() end
+		end
+	elseif _G["NecrosisSpellTimer"..SpellTimer[index].Group] then
+		_G["NecrosisSpellTimer"..SpellTimer[index].Group]:Hide()
 	end
 
 	-- On enlève le timer de la liste
@@ -269,7 +271,7 @@ end
 function Necrosis_RetraitTimerParNom(name, SpellTimer, TimerTable, SpellGroup)
 	for index = 1, #SpellTimer, 1 do
 		if SpellTimer[index].Name == name then
-			SpellTimer = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
+			SpellTimer, TimerTable, SpellGroup = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable, SpellGroup)
 			break
 		end
 	end
@@ -294,6 +296,7 @@ function Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
 
 	if #SpellGroup.Name >= 4 then
 		for index = 4, #SpellGroup.Name, 1 do
+			_G["NecrosisSpellTimer"..index]:Hide()
 			table.remove(SpellGroup.Name)
 			table.remove(SpellGroup.SubName)
 			table.remove(SpellGroup.Visible)
@@ -324,26 +327,27 @@ end
 
 -- On définit les groupes de chaque Timer
 function Necrosis_Parsing(SpellGroup, SpellTimer)
-	local GroupeOK = false
 	for index = 1, #SpellTimer, 1 do
-		local GroupeOK = false
-		for i = 1, #SpellGroup.Name, 1 do
-			if ((SpellTimer[index].Type == i) and (i <= 3)) or
-			   (SpellTimer[index].Target == SpellGroup.Name[i]
-				and SpellTimer[index].TargetLevel == SpellGroup.SubName[i])
-				then
-				GroupeOK = true
-				SpellTimer[index].Group = i
-				SpellGroup.Visible[i] = SpellGroup.Visible[i] + 1
-				break
+		if SpellTimer[index].Group == 0 then
+			local GroupeOK = false
+			for i = 1, #SpellGroup.Name, 1 do
+				if ((SpellTimer[index].Type == i) and (i <= 3)) or
+				   (SpellTimer[index].Target == SpellGroup.Name[i]
+					and SpellTimer[index].TargetLevel == SpellGroup.SubName[i])
+					then
+					GroupeOK = true
+					SpellTimer[index].Group = i
+					SpellGroup.Visible[i] = SpellGroup.Visible[i] + 1
+					break
+				end
 			end
-		end
-		-- Si le groupe n'existe pas, on en crée un nouveau
-		if not GroupeOK then
-			table.insert(SpellGroup.Name, SpellTimer[index].Target)
-			table.insert(SpellGroup.SubName, SpellTimer[index].TargetLevel)
-			table.insert(SpellGroup.Visible, 1)
-			SpellTimer[index].Group = #SpellGroup.Name
+			-- Si le groupe n'existe pas, on en crée un nouveau
+			if not GroupeOK then
+				table.insert(SpellGroup.Name, SpellTimer[index].Target)
+				table.insert(SpellGroup.SubName, SpellTimer[index].TargetLevel)
+				table.insert(SpellGroup.Visible, 1)
+				SpellTimer[index].Group = #SpellGroup.Name
+			end
 		end
 	end
 

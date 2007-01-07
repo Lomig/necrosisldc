@@ -139,7 +139,7 @@ NECROSIS_SPELL_TABLE = {
 	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Unendlicher Atem",			Length = 0,	Type = 0},
 	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Unsichtbarkeit",			Length = 0,	Type = 0},
+		Name = "Unsichtbarkeit entdecken",			Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Auge von Kilrogg",			Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -199,12 +199,12 @@ NECROSIS_ITEM = {
 
 
 NECROSIS_STONE_RANK = {
-	[1] = " (schwach)",	-- Rank Minor
-	[2] = " (gering)",	-- Rank Lesser
-	[3] = "",		-- Rank Intermediate, no name
-	[4] = " (gro\195\159)",	-- Rank Greater
-	[5] = " (erheblich)",	-- Rank Major
-	[6] = " (meisterlich)",	-- Rank Master
+	[1] = "schwach",	-- Rank Minor
+	[2] = "gering",	-- Rank Lesser
+	[3] = "Lomig ist schön",		-- Rank Intermediate, no name
+	[4] = "gro\195\159",	-- Rank Greater
+	[5] = "erheblich",	-- Rank Major
+	[6] = "meisterlich",	-- Rank Master
 };
 
 NECROSIS_NIGHTFALL = {
@@ -233,9 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Ruhestein",
 	["Rank"] = "Rang",
-	["Invisible"] = "Unsichtbarkeit entdecken",
-	["LesserInvisible"] = "Geringe Unsichtbarkeit entdecken",
-	["GreaterInvisible"] = "Gro\195\159e Unsichtbarkeit entdecken",
 	["SoulLinkGain"] = "Du bekommst Seelenverbindung.",
 };
 
