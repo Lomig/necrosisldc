@@ -244,18 +244,20 @@ end
 function Necrosis_RetraitTimerParIndex(index, Timer)
 	-- Suppression du timer graphique
 	Timer.TimerTable[Timer.SpellTimer[index].Gtimer] = false
-	_G["NecrosisTimerFrame"..SpellTimer[index].Gtimer]:Hide()
+	_G["NecrosisTimerFrame"..Timer.SpellTimer[index].Gtimer]:Hide()
 
 	-- Suppression du timer du groupe de mob
-	if Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible then
-		Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible = Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible - 1
-		-- On cache la Frame des groupes si elle est vide
-		if Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible <= 0 then
-			local frameGroup = _G["NecrosisSpellTimer"..SpellTimer[index].Group]
-			if frameGroup then frameGroup:Hide() end
+	if Timer.SpellTimer[index].Group and Timer.SpellGroup[Timer.SpellTimer[index].Group] then
+		if Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible  then
+			Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible = Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible - 1
+			-- On cache la Frame des groupes si elle est vide
+			if Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible <= 0 then
+				local frameGroup = _G["NecrosisSpellTimer"..Timer.SpellTimer[index].Group]
+				if frameGroup then frameGroup:Hide() end
+			end
 		end
-	elseif _G["NecrosisSpellTimer"..SpellTimer[index].Group] then
-		_G["NecrosisSpellTimer"..SpellTimer[index].Group]:Hide()
+--	elseif _G["NecrosisSpellTimer"..Timer.SpellTimer[index].Group] then
+	--	_G["NecrosisSpellTimer"..Timer.SpellTimer[index].Group]:Hide()
 	end
 
 	-- On enlève le timer de la liste
@@ -288,8 +290,11 @@ function Necrosis_RetraitTimerCombat(Timer)
 				Timer.SpellTimer[index].TargetLevel = ""
 			end
 			-- Enlevage des timers de combat
-			if ((Timer.SpellTimer[index].Type == 4) or (Timer.SpellTimer[index].Type == 5)) then
-				Timer = Necrosis_RetraitTimerParIndex(index, Timer)
+			if Timer.SpellTimer[index].Type == 4
+				or Timer.SpellTimer[index].Type == 5
+				or Timer.SpellTimer[index].Type == 6
+				then
+					Timer = Necrosis_RetraitTimerParIndex(index, Timer)
 			end
 		end
 	end
