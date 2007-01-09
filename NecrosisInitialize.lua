@@ -41,19 +41,19 @@ local _G = getfenv(0)
 -- FONCTION D'INITIALISATION
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_Initialize()
+function Necrosis_Initialize(Config)
 
 	-- Initilialisation des Textes (VO / VF / VA / VCT / VCS / VE)
-	if NecrosisConfig ~= {} then
-		if (NecrosisConfig.NecrosisLanguage == "enUS") or (NecrosisConfig.NecrosisLanguage == "enGB") then
+	if NecrosisConfig.Version then
+		if (NecrosisConfig.Language == "enUS") or (NecrosisConfig.Language == "enGB") then
 			Necrosis_Localization_Dialog_En()
-		elseif (NecrosisConfig.NecrosisLanguage == "deDE") then
+		elseif (NecrosisConfig.Language == "deDE") then
 			Necrosis_Localization_Dialog_De()
-		elseif (NecrosisConfig.NecrosisLanguage == "zhTW") then
+		elseif (NecrosisConfig.Language == "zhTW") then
 			Necrosis_Localization_Dialog_Tw()
-		elseif (NecrosisConfig.NecrosisLanguage == "zhCN") then
+		elseif (NecrosisConfig.Language == "zhCN") then
 			Necrosis_Localization_Dialog_Cn()
-		elseif (NecrosisConfig.NecrosisLanguage == "esES") then
+		elseif (NecrosisConfig.Language == "esES") then
 			Necrosis_Localization_Dialog_Es()
 		else
 			Necrosis_Localization_Dialog_Fr()
@@ -74,10 +74,10 @@ function Necrosis_Initialize()
 
 
 	-- On charge (ou on crée la configuration pour le joueur et on l'affiche sur la console
-	if not NecrosisConfig.LastConfig or NecrosisData.LastConfig > NecrosisConfig.LastConfig then
+	if not NecrosisConfig.Version or NecrosisData.LastConfig > NecrosisConfig.Version then
 		NecrosisConfig = {}
-		NecrosisConfig = Default_NecrosisConfig
-		NecrosisConfig.LastConfig = NecrosisData.LastConfig
+		NecrosisConfig = Config
+		NecrosisConfig.Version = NecrosisData.LastConfig
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER")
 	else
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER")
@@ -143,15 +143,15 @@ function Necrosis_Initialize()
 	NecrosisButtonRotate_SliderLow:SetText("0")
 	NecrosisButtonRotate_SliderHigh:SetText("360")
 
-	if NecrosisConfig.NecrosisLanguage == "esES" then
+	if NecrosisConfig.Language == "esES" then
 		NecrosisLanguage_Slider:SetValue(6)
-	elseif NecrosisConfig.NecrosisLanguage == "zhCN" then
+	elseif NecrosisConfig.Language == "zhCN" then
 		NecrosisLanguage_Slider:SetValue(5)
-	elseif NecrosisConfig.NecrosisLanguage == "zhTW" then
+	elseif NecrosisConfig.Language == "zhTW" then
 		NecrosisLanguage_Slider:SetValue(4)
-	elseif NecrosisConfig.NecrosisLanguage == "deDE" then
+	elseif NecrosisConfig.Language == "deDE" then
 		NecrosisLanguage_Slider:SetValue(3)
-	elseif NecrosisConfig.NecrosisLanguage == "enUS" then
+	elseif NecrosisConfig.Language == "enUS" then
 		NecrosisLanguage_Slider:SetValue(2)
 	else
 		NecrosisLanguage_Slider:SetValue(1)

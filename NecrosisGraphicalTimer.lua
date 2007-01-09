@@ -41,17 +41,17 @@ local _G = getfenv(0)
 --Création des entêtes des groupes de timers
 function Necrosis_CreateGroup(SpellGroup, index)
 
+	local texte = ""
 	if _G["NecrosisSpellTimer"..index] then
 		local f = _G["NecrosisSpellTimer"..index]
 		local FontString = _G["NecrosisSpellTimer"..index.."Text"]
-		local texte = ""
-		if SpellGroup.Name[index] then
-			texte = SpellGroup.Name[index]
+		if SpellGroup[index] and SpellGroup[index].Name then
+			texte = SpellGroup[index].Name
 		else
 			texte = "?"
 		end
-		if SpellGroup.SubName[index] then
-			texte = texte.." - "..SpellGroup.SubName[index]
+		if SpellGroup[index] and SpellGroup[index].SubName then
+			texte = texte.." - "..SpellGroup[index].SubName
 		else
 			texte = texte.." - ?"
 		end
@@ -82,7 +82,17 @@ function Necrosis_CreateGroup(SpellGroup, index)
 	FontString:Show()
 
 	-- Définition du texte
-	FontString:SetText(SpellGroup.Name[index].." - "..SpellGroup.SubName[index])
+	if SpellGroup[index] and SpellGroup[index].Name then
+		texte = SpellGroup[index].Name
+	else
+		texte = "?"
+	end
+	if SpellGroup[index] and SpellGroup[index].SubName then
+		texte = texte.." - "..SpellGroup[index].SubName
+	else
+		texte = texte.." - ?"
+	end
+	FontString:SetText(texte)
 
 	return frame
 end
