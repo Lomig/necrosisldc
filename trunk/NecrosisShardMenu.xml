@@ -169,7 +169,7 @@
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
-			<Slider name="NecrosisColor_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="6" valueStep="1">
+			<Slider name="NecrosisColor_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="7" valueStep="1">
 				<Size>
 					<AbsDimension x="150" y="16" />
 				</Size>
@@ -193,6 +193,8 @@
 							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Turquoise)
 						elseif (this:GetValue() == 5) then
 							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Purple)
+						elseif (this:GetValue() == 6) then
+							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.666)
 						else
 							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.X)
 						end
@@ -223,6 +225,10 @@
 							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Purple)
 							NecrosisConfig.NecrosisColor = "Violet"
 							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Violet\\Shard16")
+						elseif (this:GetValue() == 6) then
+							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.666)
+							NecrosisConfig.NecrosisColor = "666"
+							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\666\\Shard16")
 						else
 							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.X)
 							NecrosisConfig.NecrosisColor = "X"

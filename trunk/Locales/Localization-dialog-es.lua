@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½ises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spï¿½iaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -262,6 +262,7 @@ function Necrosis_Localization_Dialog_Es()
 		["Pink"] = "Rosa",
 		["Orange"] = "Naranja",
 		["Turquoise"] = "Turquesa",
+		["666"] = "666",
 		["X"] = "X"
 	};
 
