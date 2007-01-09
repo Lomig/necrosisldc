@@ -403,14 +403,11 @@ function Necrosis_OnUpdate(elapsed)
 				if Local.TimerManagement.SpellTimer[index] then
 					-- On enlève les timers terminés
 					local TimeLocal = GetTime()
-					if TimeLocal >= (Local.TimerManagement.SpellTimer[index].TimeMax - 0.5) then -- and not (Local.TimerManagement.SpellTimer[index].TimeMax == -1) then
+					if TimeLocal >= (Local.TimerManagement.SpellTimer[index].TimeMax - 0.5) then
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if Local.TimerManagement.SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
-	--						Local.TimerManagement.SpellTimer[index].Target = ""
-	--						Local.TimerManagement.SpellTimer[index].TimeMax = -1
 							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd) end
-	--						Necrosis_RemoveFrame(Local.TimerManagement.SpellTimer[index].Gtimer, Local.TimerManagement.TimerTable)
 							-- On met à jour l'apparence du bouton de la pierre d'âme
 							Necrosis_UpdateIcons()
 						end
@@ -1898,7 +1895,7 @@ function Necrosis_SpellSetup()
 		0, 0, 0, 0
 	)
 
-	local CurrentStone = new{"hash",
+	local CurrentStone = new("hash",
 		"ID", {},
 		"Name", {}
 	)
@@ -1907,7 +1904,7 @@ function Necrosis_SpellSetup()
 		"ID", {},
 		"Name", {},
 		"subName", {}
-	}
+	)
 
 	local spellID = 1
 	local Invisible = 0
@@ -2500,14 +2497,14 @@ function Necrosis_Recall()
 		"NecrosisBacklashButton",
 		"NecrosisShadowTranceButton"
 	)
-	local pos =new("array",
+	local pos = new("array",
 		{0, -100},
 		{0, 100},
 		{20, 0},
 		{60, 0},
 		{-60, 0},
 		{-20, 0}
-	}
+	)
 	for i = 1, #ui, 1 do
 		local f = _G[ui[i]]
 		f:ClearAllPoints()
