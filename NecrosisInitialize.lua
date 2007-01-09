@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -108,7 +108,7 @@ function Necrosis_Initialize()
 	SLASH_NecrosisCommand1 = "/necro"
 
 	-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
-	if (NecrosisConfig.SoulshardSort) then NecrosisSoulshardSort_Button:SetChecked(1) end
+	NecrosisSoulshardSort_Button:SetChecked(NecrosisConfig.SoulshardSort)
 	if (NecrosisConfig.SoulshardDestroy) then NecrosisSoulshardDestroy_Button:SetChecked(1) end
 	if (NecrosisConfig.ShadowTranceAlert) then NecrosisShadowTranceAlert_Button:SetChecked(1) end
 	if (NecrosisConfig.ShowSpellTimers) then NecrosisShowSpellTimers_Button:SetChecked(1) end
@@ -186,8 +186,10 @@ function Necrosis_Initialize()
 		NecrosisColor_Slider:SetValue(4)
 	elseif (NecrosisConfig.NecrosisColor == "Violet") then
 		NecrosisColor_Slider:SetValue(5)
-	else
+	elseif (NecrosisConfig.NecrosisColor == "666") then
 		NecrosisColor_Slider:SetValue(6)
+	else
+		NecrosisColor_Slider:SetValue(7)
 	end
 	NecrosisColor_SliderLow:SetText("")
 	NecrosisColor_SliderHigh:SetText("")
@@ -212,7 +214,7 @@ function Necrosis_Initialize()
 	NecrosisTimerFrame0:SetPoint(NecrosisConfig.SpellTimerJust, NecrosisSpellTimerButton, "CENTER", NecrosisConfig.SpellTimerPos * 20, 0)
 
 	-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
-	if NecrosisConfig.SpellTimerJust == -23 then
+	if NecrosisConfig.SpellTimerJust == "RIGHT" then
 		AnchorSpellTimerTooltip = "ANCHOR_LEFT"
 	else
 		AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
@@ -237,8 +239,8 @@ function Necrosis_Initialize()
 	local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
 	Necrosis_MoneyToggle()
 	if (not GetInventoryItemLink("player", 18))
-		or string.find(itemName, NECROSIS_ITEM.Spellstone)
-		or string.find(itemName, NECROSIS_ITEM.Firestone) then
+		or itemName:find(NECROSIS_ITEM.Spellstone)
+		or itemName:find(NECROSIS_ITEM.Firestone) then
 			Necrosis_SearchWand()
 	end
 
@@ -327,9 +329,12 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Necrosis_SlashHandler(arg1)
-	if string.find(string.lower(arg1), "recall") then
+	if arg1:lower():find("recall") then
 		Necrosis_Recall()
-	elseif string.find(string.lower(arg1), "sm") then
+	elseif arg1:lower():find("reset") then
+		NecrosisConfig = {}
+		ReloadUI()
+	elseif arg1:lower():find("sm") then
 		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
 			NecrosisConfig.SM = false
 			NecrosisLocalization()
@@ -340,23 +345,24 @@ function Necrosis_SlashHandler(arg1)
 			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
 			Necrosis_Msg("Short Messages : <brightGreen>On", "USER")
 		end
-	else
-		if NECROSIS_MESSAGE.Help ~= nil then
-			for i = 1, table.getn(NECROSIS_MESSAGE.Help), 1 do
-				Necrosis_Msg(NECROSIS_MESSAGE.Help[i], "USER")
-			end
-		end
-		if (NecrosisGeneralFrame:IsVisible()) then
-			HideUIPanel(NecrosisGeneralFrame)
-			return
+	elseif arg1:lower():find("am") then
+		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
+	elseif arg1:lower():find("bm") then
+		if NecrosisConfig.BlockedMenu then
+			NecrosisConfig.BlockedMenu = false
+			local State = 0
+			if NecrosisConfig.AutomaticMenu then State = 3 end
+			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
+			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
+			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
 		else
-			if NecrosisConfig.SM then
-				Necrosis_Msg("!!! Short Messages : <brightGreen>On", "USER")
-			end
-			NecrosisGeneralFrame:Show()
-			NecrosisGeneralTab_OnClick(1)
-			return
+			NecrosisConfig.BlockedMenu = true
+			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
 		end
+	else
+		NecrosisButton:Open()
 	end
 end
 

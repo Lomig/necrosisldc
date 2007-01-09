@@ -89,7 +89,11 @@ Default_NecrosisConfig = {
 	NecrosisToolTip = true,
 	NoDragAll = false,
 
+	MainSpell = 41,
+
 	AutomaticMenu = false,
+	BlockedMenu = false,
+
 	PetMenuPos = {x=1, y=0},
 	PetMenuDecalage = {x=1, y=26},
 
@@ -503,7 +507,7 @@ function Necrosis_OnEvent(event)
 	elseif (event == "PLAYER_REGEN_ENABLED") then
 		PlayerCombat = false
 		SpellGroup, SpellTimer, TimerTable = Necrosis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
-		
+
 		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
 		Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable)
 		Necrosis_UpdateIcons()
@@ -2409,7 +2413,7 @@ function Necrosis_SymetrieTimer(bool)
 		NecrosisConfig.SpellTimerPos = -1
 		NecrosisConfig.SpellTimerJust = "RIGHT"
 		AnchorSpellTimerTooltip = "ANCHOR_LEFT"
-		
+
 		num = 1
 		while _G["NecrosisTimerFrame"..num.."OutText"] do
 			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
@@ -2426,7 +2430,7 @@ function Necrosis_SymetrieTimer(bool)
 		NecrosisConfig.SpellTimerPos = 1
 		NecrosisConfig.SpellTimerJust = "LEFT"
 		AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
-		
+
 		num = 1
 		while _G["NecrosisTimerFrame"..num.."OutText"] do
 			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
@@ -2438,7 +2442,7 @@ function Necrosis_SymetrieTimer(bool)
 			)
 			_G["NecrosisTimerFrame"..num.."OutText"]:SetJustifyH("LEFT")
 			num = num + 1
-		end	
+		end
 	end
 	NecrosisTimerFrame0:ClearAllPoints()
 	NecrosisTimerFrame0:SetPoint(

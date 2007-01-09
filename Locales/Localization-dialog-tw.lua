@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -263,6 +263,7 @@ function Necrosis_Localization_Dialog_Tw()
 		["Pink"] = "粉紅色",
 		["Orange"] = "橘色",
 		["Turquoise"] = "青綠色",
+		["666"] = "666",
 		["X"] = "X"
 	}
 

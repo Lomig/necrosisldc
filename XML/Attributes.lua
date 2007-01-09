@@ -72,11 +72,14 @@ function Necrosis_MenuAttribute(menu)
 
 	menu0:SetAttribute("state", 0)
 
-	menu0:SetAttribute("statemap-anchor-mousedown1", "0:1;1:0;3:3")
-	menu0:SetAttribute("statemap-anchor-mousedown2", "0:1;1:0;3:3")
-	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3;*:0")
+	menu0:SetAttribute("statemap-anchor-mousedown1", "0:1;1:0;3:3;4:4")
+	menu0:SetAttribute("statemap-anchor-mousedown2", "0:1;1:0;3:3;4:4")
+	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3;4:4;*:0")
 	menu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
 	menu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
+
+	-- On bloque le menu en position ouverte si configuré
+	if NecrosisConfig.BlockedMenu then menu0:SetAttribute("state", "4") end
 end
 
 
@@ -115,7 +118,7 @@ function Necrosis_BuffSpellAttribute()
 
 
 	-- Association des autres buffs aux boutons
-	local buffID = {31, 32, 33, 34, 37, 39, 38, 43, 9, 47, 35}
+	local buffID = {31, 32, 33, 34, 37, 39, 38, 43, 47, 35}
 	for i = 2, #buffID, 1 do
 		local f = _G["NecrosisBuffMenu"..i]
 		if f then
@@ -139,19 +142,48 @@ function Necrosis_BuffSpellAttribute()
 	end
 
 
-	-- Cas particulier : Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
-	if _G["NecrosisBuffMenu9"] and string.find(NECROSIS_SPELL_TABLE[9].Rank, "2") then
-		NecrosisBuffMenu9:SetAttribute("type1", "spell")
-		NecrosisBuffMenu9:SetAttribute("spell1", NECROSIS_SPELL_TABLE[9].Name)
-		NecrosisBuffMenu9:SetAttribute("type2", "spell")
-		NecrosisBuffMenu9:SetAttribute("spell2", NECROSIS_SPELL_TABLE[9].Name.."("..string.gsub(NECROSIS_SPELL_TABLE[9].Rank, "2", "1")..")")
-		if not NecrosisAlreadyBind["NecrosisBuffMenu9Right"] then
-			NecrosisAlreadyBind["NecrosisBuffMenu9Right"] = true
+	-- Cas particulier : Bouton de Banish
+	if _G["NecrosisBuffMenu9"] then
+		-- Association du sort au clic gauche
+		NecrosisBuffMenu9:SetAttribute("unit", "target")
+		NecrosisBuffMenu9:SetAttribute("type", "macro")
+		NecrosisBuffMenu9:SetAttribute("macrotext", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name)
+
+		-- Si le démoniste control + click le bouton de banish
+		-- On rebanish la dernière cible bannie
+		NecrosisBuffMenu9:SetAttribute("ctrl-type", "macro")
+		NecrosisBuffMenu9:SetAttribute("ctrl-macrotext", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name)
+
+		-- Création du tableau des raccourcis claviers
+		if not NecrosisAlreadyBind["NecrosisBuffMenu9Left"] then
+			NecrosisAlreadyBind["NecrosisBuffMenu9Left"] = true
 			table.insert(
 				NecrosisBinding,
-				{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
+				{NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu9:LeftButton"}
 			)
 		end
+		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
+		if NECROSIS_SPELL_TABLE[9].Rank:find("2") then
+			NecrosisBuffMenu9:SetAttribute("type1", "macro")
+			NecrosisBuffMenu9:SetAttribute("macrotext1", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name)
+			NecrosisBuffMenu9:SetAttribute("type2", "macro")
+			NecrosisBuffMenu9:SetAttribute("macrotext2", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank:gsub("2", "1")..")")
+
+			NecrosisBuffMenu9:SetAttribute("ctrl-type1", "macro")
+			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext1", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name)
+			NecrosisBuffMenu9:SetAttribute("ctrl-type2", "macro")
+			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext2", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank:gsub("2", "1")..")")
+
+			if not NecrosisAlreadyBind["NecrosisBuffMenu9Right"] then
+				NecrosisAlreadyBind["NecrosisBuffMenu9Right"] = true
+				table.insert(
+					NecrosisBinding,
+					{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
+				)
+			end
+		end
+
+
 	end
 end
 
@@ -337,17 +369,33 @@ end
 
 -- Association de la Connexion au bouton central si le sort est disponible
 function Necrosis_MainButtonAttribute()
-
 	-- Le clic droit ouvre le Menu des options
-	NecrosisButton:SetAttribute("type2", "macro")
-	NecrosisButton:SetAttribute("macrotext2", "/necro")
+	NecrosisButton:SetAttribute("type2", "Open")
+	NecrosisButton.Open = function()
+		if NECROSIS_MESSAGE.Help[1] then
+			for i = 1, #NECROSIS_MESSAGE.Help, 1 do
+				Necrosis_Msg(NECROSIS_MESSAGE.Help[i], "USER")
+			end
+		end
+		if (NecrosisGeneralFrame:IsVisible()) then
+			NecrosisGeneralFrame:Hide()
+			return
+		else
+			if NecrosisConfig.SM then
+				Necrosis_Msg("!!! Short Messages : <brightGreen>On", "USER")
+			end
+			NecrosisGeneralFrame:Show()
+			NecrosisGeneralTab_OnClick(1)
+			return
+		end
+	end
 
-	if NECROSIS_SPELL_TABLE[41].ID then
+	if NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
-		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[41].Name)
+		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].Name)
 		if not NecrosisAlreadyBind["NecrosisButton"] then
 			NecrosisAlreadyBind["NecrosisButton"] = true
-			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[41].Name, "CLICK NecrosisButton:LeftButton"})
+			table.insert(NecrosisBinding, {NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].Name, "CLICK NecrosisButton:LeftButton"})
 		end
 	end
 end
@@ -361,7 +409,7 @@ function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	-- Et se désengage à la fin
-	if NecrosisConfig.AutomaticMenu then
+	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
 		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
 		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
 		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
@@ -396,7 +444,7 @@ end
 function Necrosis_InCombatAttribute()
 
 	-- Si on veut que le menu s'engage automatiquement en combat
-	if NecrosisConfig.AutomaticMenu then
+	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
 		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "3") end
 		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "3") end
 		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "3") end

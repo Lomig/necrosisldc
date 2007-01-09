@@ -34,9 +34,9 @@
 
 
 NecrosisData = {}
-NecrosisData.Version = "2.0 Beta2.0.1"
+NecrosisData.Version = "2.0 Beta 2.1"
 NecrosisData.AppName = "Necrosis LdC"
 NecrosisData.Label = NecrosisData.AppName.." "..NecrosisData.Version
-NecrosisData.LastConfig = 20070107.1
+NecrosisData.LastConfig = 20070109.1
 
 

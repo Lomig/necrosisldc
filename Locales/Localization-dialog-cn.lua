@@ -100,7 +100,7 @@ function Necrosis_Localization_Dialog_Cn()
 		},
 		["Backlash"] = {
 			Label = "|c00FFFFFF反冲|r"
-		},			
+		},
 		["Domination"] = {
 			Label = "|c00FFFFFF恶魔支配|r"
 		},
@@ -263,9 +263,10 @@ function Necrosis_Localization_Dialog_Cn()
 		["Pink"] = "粉红色",
 		["Orange"] = "橙色",
 		["Turquoise"] = "青绿色",
+		["666"] = "666",
 		["X"] = "X"
 	}
-	
+
 	NECROSIS_CONFIGURATION = {
 		["Menu1"] = "碎片设置",
 		["Menu2"] = "信息设置",
@@ -278,14 +279,14 @@ function Necrosis_Localization_Dialog_Cn()
 		["ShardMove"] = "将碎片放入选择的包。",
 		["ShardDestroy"] = "如果包满摧毁所有新的碎片。",
 		["SpellMenu1"] = "|CFFB700B7法术|CFFFFC4FF :",--"|CFFB700B7S|CFFFF00FFp|CFFFF50FFe|CFFFF99FFl|CFFFFC4FFls :",
-		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",		
+		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
 		["TimerMenu"] = "|CFFB700B7图形计时器|CFFFF99FF :",--"|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFc|CFFFF00FFa|CFFB700B7l T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFrs :",
 		["TimerColor"] = "显示计时器文字为白色(代替黄色)",
 		["TimerDirection"] = "计时器向上升",
 		["TranseWarning"] = "当我获得暗影冥思效果时提醒我。",
 		["SpellTime"] = "打开法术计时器。",
 		["AntiFearWarning"] = "当我的目标免疫恐惧时提醒我。",
-		["GraphicalTimer"] = "显示图形计时器",	
+		["GraphicalTimer"] = "显示图形计时器",
 		["TranceButtonView"] = "显示隐藏的按钮以拖动它。",
 		["ButtonLock"] = "锁定 Necrosis球体周围的按钮。",
 		["MainLock"] = "锁定 Necrosis球体及周围的按钮。",

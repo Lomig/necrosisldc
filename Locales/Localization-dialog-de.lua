@@ -263,6 +263,7 @@ function Necrosis_Localization_Dialog_De()
 		["Pink"] = "Pink",
 		["Orange"] = "Orange",
 		["Turquoise"] = "T\195\188rkis",
+		["666"] = "666",
 		["X"] = "X"
 	};
 
