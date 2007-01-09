@@ -243,8 +243,11 @@ function Necrosis_Localization_Dialog_En()
 			["UserConfig"] = "<lightYellow>Configuration loaded."
 		},
 		["Help"] = {
-			"/necro recall -- Center Necrosis and all buttons in the middle of the screen",
-			"/necro sm -- Replace Soulstoning and summoning messages with a short raid-ready version"
+			"/necro <lightOrange>recall<white> -- <lightBlue>Center Necrosis and all buttons in the middle of the screen",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>sm<white> -- <lightBlue>Replace Soulstoning and summoning messages with a short raid-ready version",
+			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 		},
 		["Information"] = {
 			["FearProtect"] = "Your target has got fear protection!",

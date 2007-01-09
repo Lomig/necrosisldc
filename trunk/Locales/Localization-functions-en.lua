@@ -233,7 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Hearthstone",
 	["Rank"] = "Rank",
-	["SoulLinkGain"] = "You gain Soul Link.",
 }
 
 end

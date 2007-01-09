@@ -66,7 +66,7 @@ NECROSIS_UNIT = {
 	["Undead"] = {
 		"No-muerto"
 	};
-	["Demon"] = "Demon";
+	["Demon"] = "Demonio";
 	["Elemental"] = "Elemental";
 }
 
@@ -194,7 +194,7 @@ NECROSIS_ITEM = {
 	["InfernalStone"] = "Piedra infernal",
 	["DemoniacStone"] = "Figura demoniaca",
 	["Hearthstone"] = "Piedra de hogar",
-	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela de inferi", "Bolsa de tela de inferi del n\195\186cleo"}
+	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela vil", "Bolsa de tela vil del N\195\186cleo"}
 };
 
 
@@ -215,7 +215,7 @@ NECROSIS_NIGHTFALL = {
 NECROSIS_CREATE = {
 	[1] = "Crear piedra de alma",
 	[2] = "Crear piedra de salud",
-	[3] = "Crear piedra de hechizos",
+	[3] = "Crear piedra de hechizo",
 	[4] = "Crear pirorroca"
 };
 
@@ -233,7 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Tiempo de regeneraci\195\179n restante",
 	["Hearth"] = "Piedra de hogar",
 	["Rank"] = "Rango",
-	["SoulLinkGain"] = "Ganas Enlace de Alma.",
 };
 
 end

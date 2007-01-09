@@ -109,34 +109,34 @@ function Necrosis_Initialize()
 
 	-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
 	NecrosisSoulshardSort_Button:SetChecked(NecrosisConfig.SoulshardSort)
-	if (NecrosisConfig.SoulshardDestroy) then NecrosisSoulshardDestroy_Button:SetChecked(1) end
-	if (NecrosisConfig.ShadowTranceAlert) then NecrosisShadowTranceAlert_Button:SetChecked(1) end
-	if (NecrosisConfig.ShowSpellTimers) then NecrosisShowSpellTimers_Button:SetChecked(1) end
-	if (NecrosisConfig.AntiFearAlert) then NecrosisAntiFearAlert_Button:SetChecked(1) end
-	if (NecrosisConfig.NecrosisLockServ) then NecrosisIconsLock_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[1] > 0) then NecrosisShowFirestone_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[2] > 0) then NecrosisShowSpellstone_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[3] > 0) then NecrosisShowHealthStone_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[4] > 0) then NecrosisShowSoulstone_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[5] > 0) then NecrosisShowBuffMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[6] > 0) then NecrosisShowMount_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[7] > 0) then NecrosisShowPetMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.StonePosition[8] > 0) then NecrosisShowCurseMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.NecrosisToolTip) then NecrosisShowTooltips_Button:SetChecked(1) end
-	if (NecrosisConfig.Sound) then NecrosisSound_Button:SetChecked(1) end
-	if (NecrosisConfig.ShowCount) then NecrosisShowCount_Button:SetChecked(1) end
-	if (NecrosisConfig.BuffMenuPos.x < 0 or NecrosisConfig.BuffMenuPos.y < 0) then NecrosisBuffMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.PetMenuPos.x < 0 or NecrosisConfig.PetMenuPos.y < 0) then NecrosisPetMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.CurseMenuPos.x < 0 or NecrosisConfig.CurseMenuPos.y < 0) then NecrosisCurseMenu_Button:SetChecked(1) end
-	if (NecrosisConfig.NoDragAll) then NecrosisLock_Button:SetChecked(1) end
-	if (NecrosisConfig.SpellTimerPos == -1) then NecrosisSTimer_Button:SetChecked(1) end
-	if (NecrosisConfig.ChatMsg) then NecrosisShowMessage_Button:SetChecked(1) end
-	if (NecrosisConfig.DemonSummon) then NecrosisShowDemonSummon_Button:SetChecked(1) end
-	if (NecrosisConfig.SteedSummon) then NecrosisShowSteedSummon_Button:SetChecked(1) end
-	if not (NecrosisConfig.ChatType) then NecrosisChatType_Button:SetChecked(1) end
-	if (NecrosisConfig.Graphical) then NecrosisGraphicalTimer_Button:SetChecked(1) end
-	if not (NecrosisConfig.Yellow) then NecrosisTimerColor_Button:SetChecked(1) end
-	if (NecrosisConfig.SensListe == -1) then NecrosisTimerDirection_Button:SetChecked(1) end
+	NecrosisSoulshardDestroy_Button:SetChecked(NecrosisConfig.SoulshardDestroy)
+	NecrosisShadowTranceAlert_Button:SetChecked(NecrosisConfig.ShadowTranceAlert)
+	NecrosisShowSpellTimers_Button:SetChecked(NecrosisConfig.ShowSpellTimers)
+	NecrosisAntiFearAlert_Button:SetChecked(NecrosisConfig.AntiFearAlert)
+	NecrosisIconsLock_Button:SetChecked(NecrosisConfig.NecrosisLockServ)
+	NecrosisShowFirestone_Button:SetChecked(NecrosisConfig.StonePosition[1] > 0)
+	NecrosisShowSpellstone_Button:SetChecked(NecrosisConfig.StonePosition[2] > 0)
+	NecrosisShowHealthStone_Button:SetChecked(NecrosisConfig.StonePosition[3] > 0)
+	NecrosisShowSoulstone_Button:SetChecked(NecrosisConfig.StonePosition[4] > 0)
+	NecrosisShowBuffMenu_Button:SetChecked(NecrosisConfig.StonePosition[5] > 0)
+	NecrosisShowMount_Button:SetChecked(NecrosisConfig.StonePosition[6] > 0)
+	NecrosisShowPetMenu_Button:SetChecked(NecrosisConfig.StonePosition[7] > 0)
+	NecrosisShowCurseMenu_Button:SetChecked(NecrosisConfig.StonePosition[8] > 0)
+	NecrosisShowTooltips_Button:SetChecked(NecrosisConfig.NecrosisToolTip)
+	NecrosisSound_Button:SetChecked(NecrosisConfig.Sound)
+	NecrosisShowCount_Button:SetChecked(NecrosisConfig.ShowCount)
+	NecrosisBuffMenu_Button:SetChecked(NecrosisConfig.BuffMenuPos.x < 0 or NecrosisConfig.BuffMenuPos.y < 0)
+	NecrosisPetMenu_Button:SetChecked(NecrosisConfig.PetMenuPos.x < 0 or NecrosisConfig.PetMenuPos.y < 0)
+	NecrosisCurseMenu_Button:SetChecked(NecrosisConfig.CurseMenuPos.x < 0 or NecrosisConfig.CurseMenuPos.y < 0)
+	NecrosisLock_Button:SetChecked(NecrosisConfig.NoDragAll)
+	NecrosisSTimer_Button:SetChecked(NecrosisConfig.SpellTimerPos == -1)
+	NecrosisShowMessage_Button:SetChecked(NecrosisConfig.ChatMsg)
+	NecrosisShowDemonSummon_Button:SetChecked(NecrosisConfig.DemonSummon)
+	NecrosisShowSteedSummon_Button:SetChecked(NecrosisConfig.SteedSummon)
+	NecrosisChatType_Button:SetChecked(NecrosisConfig.ChatType)
+	NecrosisGraphicalTimer_Button:SetChecked(NecrosisConfig.Graphical)
+	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
+	NecrosisTimerDirection_Button:SetChecked(NecrosisConfig.SensListe == -1)
 
 	-- Paramètres des glissières
 	NecrosisButtonRotate_Slider:SetValue(NecrosisConfig.NecrosisAngle)
@@ -176,20 +176,11 @@ function Necrosis_Initialize()
 	ShadowTranceScale_SliderLow:SetText("50%")
 	ShadowTranceScale_SliderHigh:SetText("150%")
 
-	if (NecrosisConfig.NecrosisColor == "Rose") then
-		NecrosisColor_Slider:SetValue(1)
-	elseif (NecrosisConfig.NecrosisColor == "Bleu") then
-		NecrosisColor_Slider:SetValue(2)
-	elseif (NecrosisConfig.NecrosisColor == "Orange") then
-		NecrosisColor_Slider:SetValue(3)
-	elseif (NecrosisConfig.NecrosisColor == "Turquoise") then
-		NecrosisColor_Slider:SetValue(4)
-	elseif (NecrosisConfig.NecrosisColor == "Violet") then
-		NecrosisColor_Slider:SetValue(5)
-	elseif (NecrosisConfig.NecrosisColor == "666") then
-		NecrosisColor_Slider:SetValue(6)
-	else
-		NecrosisColor_Slider:SetValue(7)
+	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
+	for index, valeur in ipairs(couleur) do
+		if NecrosisConfig.NecrosisColor == valeur then
+			NecrosisColor_Slider:SetValue(index)
+		end
 	end
 	NecrosisColor_SliderLow:SetText("")
 	NecrosisColor_SliderHigh:SetText("")
@@ -331,36 +322,37 @@ end
 function Necrosis_SlashHandler(arg1)
 	if arg1:lower():find("recall") then
 		Necrosis_Recall()
-	elseif arg1:lower():find("reset") then
+	elseif arg1:lower():find("reset") and not InCombatLockDown() then
 		NecrosisConfig = {}
 		ReloadUI()
 	elseif arg1:lower():find("sm") then
+		NecrosisConfig.SM = not NecrosisConfig.SM
 		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
-			NecrosisConfig.SM = false
 			NecrosisLocalization()
-			Necrosis_Msg("Short Messages : <red>Off", "USER")
+			Necrosis_Msg("Short Messages : <red>Off")
 		else
-			NecrosisConfig.SM = true
 			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
 			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
-			Necrosis_Msg("Short Messages : <brightGreen>On", "USER")
+			Necrosis_Msg("Short Messages : <brightGreen>On")
 		end
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
+		Necrosis_Msg("Automatic Menus : <lightBlue>Toggled")
 	elseif arg1:lower():find("bm") then
 		if NecrosisConfig.BlockedMenu then
-			NecrosisConfig.BlockedMenu = false
 			local State = 0
 			if NecrosisConfig.AutomaticMenu then State = 3 end
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
+			Necrosis_Msg("Blocked Menus : <red>Off")
 		else
-			NecrosisConfig.BlockedMenu = true
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
+			Necrosis_Msg("Blocked Menus : <brightGreen>On")
 		end
+		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
 	else
 		NecrosisButton:Open()
 	end

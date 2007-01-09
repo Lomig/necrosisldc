@@ -127,6 +127,7 @@ Default_NecrosisConfig = {
 	},
 	DominationUp = false,
 	AmplifyUp = false,
+	SoulLinkUp = false,
 	SM = false,
 	SteedSummon = false,
 	DemonSummon = true,
@@ -267,8 +268,7 @@ local DemonName = nil
 local lOriginal_GameTooltip_ClearMoney
 
 local Necrosis_In = true
-local LastUpdate = 0
-local LastUpdate2 = 0
+local LastUpdate = {0, 0, 0}
 
 ------------------------------------------------------------------------------------------------------
 -- FONCTIONS NECROSIS APPLIQUEES A L'ENTREE DANS LE JEU
@@ -324,11 +324,16 @@ end
 
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
 function Necrosis_OnUpdate(elapsed)
-	LastUpdate = LastUpdate + elapsed
-	LastUpdate2 = LastUpdate2 + elapsed
+	LastUpdate[1] = LastUpdate[1] + elapsed
+	LastUpdate[2] = LastUpdate[2] + elapsed
+	LastUpdate[3] = LastUpdate[3] + elapsed
 
+	-- Toutes les cinq secondes, on update les boutons de mana, éventuellement.
+	if LastUpdate[1] > 5 then
+		Necrosis_UpdateMana()
+		LastUpdate[1] = 0
 	-- Toutes les secondes
-	if LastUpdate > 1 then
+	elseif LastUpdate[2] > 1 then
 	-- Si configuré, tri des fragment toutes les secondes
 		if NecrosisConfig.SoulshardSort and SoulshardMP > 0  then
 			Necrosis_SoulshardSwitch("MOVE")
@@ -383,17 +388,15 @@ function Necrosis_OnUpdate(elapsed)
 				end
 			end
 		end
-		LastUpdate = 0
-	end
-
+		LastUpdate[2] = 0
 	-- Toutes les demies secondes
-	if LastUpdate2 > 0.5 then
-			NecrosisUpdateTimer(SpellTimer)
+	elseif LastUpdate[3] > 0.5 then
+		NecrosisUpdateTimer(SpellTimer)
 		-- Si configuré, affichage des avertissements d'Antifear
 		if NecrosisConfig.AntiFearAlert then
 			Necrosis_ShowAntiFearWarning()
 		end
-		LastUpdate2 = 0
+		LastUpdate[3] = 0
 	end
 end
 
@@ -525,7 +528,10 @@ function Necrosis_OnEvent(event)
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		PlayerCombat = true
-
+		-- On ferme le menu des options
+		if _G["NecrosisGeneralFrame"] and NecrosisGeneralFrame:IsVisible() then
+			NecrosisGeneralFrame:Hide()
+		end
 		-- On annule les attributs des boutons de sorts de manière situationnelle
 		Necrosis_InCombatAttribute()
 	end
@@ -627,18 +633,28 @@ function Necrosis_SelfEffect(action, nom)
 			NecrosisMounted = true
 			if _G["NecrosisMountButton"] then
 				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
+				NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
 			end
 		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
 		elseif  nom == NECROSIS_SPELL_TABLE[15].Name then
 			DominationUp = true
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02")
+				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(nil)
 			end
 		-- Changement du bouton de la malédiction amplifiée si celle-ci est activée + Timer de cooldown
 		elseif  nom == NECROSIS_SPELL_TABLE[42].Name then
 			AmplifyUp = true
 			if _G["NecrosisCurseMenu1"] then
 				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-02")
+				NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(nil)
+			end
+		-- Changement du bouton du lien spirituel si celui-ci est activé
+		elseif nom == NECROSIS_SPELL_TABLE[38].Name then
+			SoulLinkUp = true
+			if _G["NecrosisBuffMenu7"] then
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-02")
+				NecrosisBuffMenu7:GetNormalTexture():SetDesaturated(nil)
 			end
 		-- si Contrecoup, pouf on affiche l'icone et on proc le son
 		elseif nom == NECROSIS_NIGHTFALL.Backlash then
@@ -669,6 +685,12 @@ function Necrosis_SelfEffect(action, nom)
 			AmplifyUp = false
 			if _G["NecrosisCurseMenu1"] then
 				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01")
+			end
+		-- Changement du bouton du Lien Spirituel quand le Démoniste n'est plus sous son emprise
+		elseif nom == NECROSIS_SPELL_TABLE[38].Name then
+			SoulLinkUp = false
+			if _G["NecrosisBuffMenu7"] then
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-01")
 			end
 		-- On cache les boutons de ShadowTrance quand one st plus sous son emprise
 		elseif nom == NECROSIS_NIGHTFALL.ShadowTrance or nom == NECROSIS_NIGHTFALL.Backlash then
@@ -1258,21 +1280,25 @@ function Necrosis_UpdateIcons()
 	if _G["NecrosisFirestoneButton"] then
 		NecrosisFirestoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode)
 	end
+	
+	Necrosis_UpdateMana()
+end
 
-
+-- Update des boutons en fonction de la mana
+function Necrosis_UpdateMana()
 	-- Bouton des démons
 	-----------------------------------------------
 	local mana = UnitMana("player")
 
-	local ManaPet = {"1", "1", "1", "1", "1", "1", "1"}
+	local ManaPet = {true, true, true, true, true, true, true}
 
 	-- Si cooldown de domination corrompue on grise
 	if _G["NecrosisPetMenu1"] and NECROSIS_SPELL_TABLE[15].ID and not DominationUp then
 		local start, duration = GetSpellCooldown(NECROSIS_SPELL_TABLE[15].ID, "spell")
 		if start > 0 and duration > 0 then
-			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-03")
+			NecrosisPetMenu1:GetNormalTexture():SetDesaturated(1)
 		else
-			NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01")
+			NecrosisPetMenu1:GetNormalTexture():SetDesaturated(nil)
 		end
 	end
 
@@ -1280,9 +1306,9 @@ function Necrosis_UpdateIcons()
 	if _G["NecrosisBuffMenu8"] and NECROSIS_SPELL_TABLE[43].ID then
 		local start2, duration2 = GetSpellCooldown(NECROSIS_SPELL_TABLE[43].ID, "spell")
 		if start2 > 0 and duration2 > 0 then
-			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowProtection-03")
+			NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(1)
 		else
-			NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\ShadowProtection-01")
+			NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(nil)
 		end
 	end
 
@@ -1290,9 +1316,9 @@ function Necrosis_UpdateIcons()
 	if _G["NecrosisCurseMenu1"] and NECROSIS_SPELL_TABLE[42].ID and not AmplifyUp then
 		local start3, duration3 = GetSpellCooldown(NECROSIS_SPELL_TABLE[42].ID, "spell")
 		if start3 > 0 and duration3 > 0 then
-			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-03")
+			NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(1)
 		else
-			NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01")
+			NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(nil)
 		end
 	end
 
@@ -1301,21 +1327,21 @@ function Necrosis_UpdateIcons()
 		if NECROSIS_SPELL_TABLE[3].ID then
 			if NECROSIS_SPELL_TABLE[3].Mana > mana then
 				for i = 1, 7, 1 do
-					ManaPet[i] = "3"
+					ManaPet[i] = false
 				end
 			elseif NECROSIS_SPELL_TABLE[4].ID then
 				if NECROSIS_SPELL_TABLE[4].Mana > mana then
 					for i = 2, 7, 1 do
-						ManaPet[i] = "3"
+						ManaPet[i] = false
 					end
 				elseif NECROSIS_SPELL_TABLE[8].ID then
 					if NECROSIS_SPELL_TABLE[8].Mana > mana then
 						for i = 6, 7, 1 do
-							ManaPet[i] = "3"
+							ManaPet[i] = false
 						end
 					elseif NECROSIS_SPELL_TABLE[30].ID then
 						if NECROSIS_SPELL_TABLE[30].Mana > mana then
-							ManaPet[7] = "3"
+							ManaPet[7] = false
 						end
 					end
 				end
@@ -1326,14 +1352,14 @@ function Necrosis_UpdateIcons()
 	-- Coloration du bouton en grisé si pas de pierre pour l'invocation
 	if SoulshardsCount == 0 then
 		for i = 2, 5, 1 do
-			ManaPet[i] = "3"
+			ManaPet[i] = false
 		end
 	end
 	if InfernalStoneCount == 0 then
-		ManaPet[6] = "3"
+		ManaPet[6] = false
 	end
 	if DemoniacStoneCount == 0 then
-		ManaPet[7] = "3"
+		ManaPet[7] = false
 	end
 
 	-- Texturage des boutons de pet
@@ -1343,8 +1369,10 @@ function Necrosis_UpdateIcons()
 		local PetManaButton = _G["NecrosisPetMenu"..PetButtonNumber[i]]
 		if PetManaButton and DemonType == NECROSIS_PET_LOCAL_NAME[i] then
 			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i].."2")
+		elseif PetManaButton and ManaPet[i] then
+			PetManaButton:GetNormalTexture():SetDesaturated(nil)
 		elseif PetManaButton then
-			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i]..ManaPet[i])
+			PetManaButton:GetNormalTexture():SetDesaturated(1)
 		end
 	end
 
@@ -1357,66 +1385,71 @@ function Necrosis_UpdateIcons()
 		if _G["NecrosisMountButton"] and MountAvailable and not NecrosisMounted then
 			if NECROSIS_SPELL_TABLE[2].ID then
 				if NECROSIS_SPELL_TABLE[2].Mana > mana or PlayerCombat then
-					NecrosisMountButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-03")
+					NecrosisMountButton:GetNormalTexture():SetDesaturated(1)
 				else
-					NecrosisMountButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-01")
+					NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
 				end
 			else
 				if NECROSIS_SPELL_TABLE[1].Mana > mana or PlayerCombat then
-					NecrosisMountButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-03")
+					NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
 				else
-					NecrosisMountButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-01")
+					NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
 				end
 			end
 		end
 		if NECROSIS_SPELL_TABLE[35].ID then
 			if _G["NecrosisPetMenu8"] then
 				if NECROSIS_SPELL_TABLE[35].Mana > mana or SoulshardsCount == 0 then
-					NecrosisPetMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Enslave-03")
+					NecrosisPetMenu8:GetNormalTexture():SetDesaturated(1)
 				else
-					NecrosisPetMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Enslave-01")
+					NecrosisPetMenu8:GetNormalTexture():SetDesaturated(nil)
 				end
 			elseif _G["NecrosisBuffMenu11"] then
 				if NECROSIS_SPELL_TABLE[35].Mana > mana or SoulshardsCount == 0 then
-					NecrosisBuffMenu11:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Enslave-03")
+					NecrosisBuffMenu11:GetNormalTexture():SetDesaturated(1)
 				else
-					NecrosisBuffMenu11:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Enslave-01")
+					NecrosisBuffMenu11:GetNormalTexture():SetDesaturated(nil)
 				end
 			end
 		end
 		if _G["NecrosisBuffMenu1"] and NECROSIS_SPELL_TABLE[31].ID then
 			if NECROSIS_SPELL_TABLE[31].Mana > mana then
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-03")
+				NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(1)
 			else
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-01")
+				NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(nil)
 			end
 		elseif _G["NecrosisBuffMenu1"] and NECROSIS_SPELL_TABLE[36].ID then
 			if NECROSIS_SPELL_TABLE[36].Mana > mana then
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-03")
+				NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(1)
 			else
-				NecrosisBuffMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Armor-01")
+				NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(nil)
+			end
+		elseif _G["NecrosisBuffMenu7"] and NECROSIS_SPELL_TABLE[38].ID and not SoulLinkUp then
+			if NECROSIS_SPELL_TABLE[38].Mana > mana then
+				NecrosisBuffMenu7:GetNormalTexture():SetDesaturated(1)
+			else
+				NecrosisBuffMenu7:GetNormalTexture():SetDesaturated(nil)
 			end
 		end
 
-		local BoutonNumber = {10, 2, 3, 4, 5, 7, 8, 9}
-		local BoutonTexture = {"FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Banish"}
-		local SortNumber = {47, 32, 33, 34, 37, 38, 43, 9}
+		local BoutonNumber = {10, 2, 3, 4, 5, 8, 9}
+		local SortNumber = {47, 32, 33, 34, 37, 43, 9}
 		for i = 1, #SortNumber, 1 do
 			local f = _G["NecrosisBuffMenu"..BoutonNumber[i]]
 			if f and NECROSIS_SPELL_TABLE[SortNumber[i]].ID then
 				if NECROSIS_SPELL_TABLE[SortNumber[i]].Mana > mana then
-					f:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..BoutonTexture[i].."-03")
+					f:GetNormalTexture():SetDesaturated(1)
 				else
-					f:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..BoutonTexture[i].."-01")
+					f:GetNormalTexture():SetDesaturated(nil)
 				end
 			end
 		end
 
 		if _G["NecrosisPetMenu9"] and NECROSIS_SPELL_TABLE[44].ID then
 			if (NECROSIS_SPELL_TABLE[44].Mana > mana) or (not UnitExists("Pet")) then
-				NecrosisPetMenu9:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Sacrifice-03")
+				NecrosisPetMenu9:GetNormalTexture():SetDesaturated(1)
 			else
-				NecrosisPetMenu9:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Sacrifice-01")
+				NecrosisPetMenu9:GetNormalTexture():SetDesaturated(nil)
 			end
 		end
 
@@ -1427,15 +1460,14 @@ function Necrosis_UpdateIcons()
 
 	if mana then
 		local SpellMana = {23, 22, 24, 25, 40, 26, 27, 16}
-		local NameMana = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"}
 		-- Coloration du bouton en grisé si pas assez de mana
 		for i = 1, #SpellMana, 1 do
 			local f = _G["NecrosisCurseMenu"..i+1]
 			if f and NECROSIS_SPELL_TABLE[SpellMana[i]].ID then
 				if NECROSIS_SPELL_TABLE[SpellMana[i]].Mana > mana then
-					f:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..NameMana[i].."-03")
+					f:GetNormalTexture():SetDesaturated(1)
 				else
-					f:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..NameMana[i].."-01")
+					f:GetNormalTexture():SetDesaturated(nil)
 				end
 			end
 		end
@@ -1447,9 +1479,9 @@ function Necrosis_UpdateIcons()
 	if HearthstoneLocation[1] then
 		local start, duration, enable = GetContainerItemCooldown(HearthstoneLocation[1], HearthstoneLocation[2])
 		if duration > 20 and start > 0 then
-			NecrosisSpellTimerButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Cooldown")
+			NecrosisSpellTimerButton:GetNormalTexture():SetDesaturated(1)
 		else
-			NecrosisSpellTimerButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal")
+			NecrosisSpellTimerButton:GetNormalTexture():SetDesaturated(nil)
 		end
 	end
 end
@@ -2376,6 +2408,13 @@ function Necrosis_CreateMenu()
 			CurseMenuCreate[i]:Hide()
 		end
 		Necrosis_CurseSpellAttribute()
+	end
+	
+	-- On bloque le menu en position ouverte si configuré
+	if NecrosisConfig.BlockedMenu then
+		NecrosisBuffMenu0:SetAttribute("state", "4")
+		NecrosisPetMenu0:SetAttribute("state", "4")
+		NecrosisCurseMenu0:SetAttribute("state", "4")
 	end
 end
 

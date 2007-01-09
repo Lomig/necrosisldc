@@ -245,7 +245,9 @@ local function Necrosis_CreateMenuButton(button)
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
 	-- Header du bouton
-	_ = CreateFrame("Frame", "Necrosis"..button.."0", frame, "SecureStateHeaderTemplate");
+	local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureStateHeaderTemplate");
+	b:ClearAllPoints()
+	b:SetAllPoints(frame)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if not NecrosisConfig.NecrosisLockServ then

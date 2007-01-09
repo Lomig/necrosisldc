@@ -244,8 +244,11 @@ function Necrosis_Localization_Dialog_De()
 			["UserConfig"] = "<lightYellow>Einstellungen geladen."
 		},
 		["Help"] = {
-			"/necro recall -- Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
-			"/necro sm -- Ersetze Seelenstein- und Beschw\195\182rungs-Zufallsnachrichten durch eine kurze, raidgeeignete Version"
+			"/necro <lightOrange>recall<white> -- <lightBlue>Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>sm<white> -- <lightBlue>Ersetze Seelenstein- und Beschw\195\182rungs-Zufallsnachrichten durch eine kurze, raidgeeignete Version",
+			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",

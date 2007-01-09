@@ -233,7 +233,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Ruhestein",
 	["Rank"] = "Rang",
-	["SoulLinkGain"] = "Du bekommst Seelenverbindung.",
 };
 
 end

@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Fran�ises : Eliah, Ner'zhul
+-- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements sp�iaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -43,110 +43,110 @@ function Necrosis_Localization_Dialog_Es()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Spellstone equiped",
-		["Spellstone"] = "Spellstone Cooldown",
-		["Healthstone"] = "Healthstone Cooldown"
+		["SpellstoneIn"] = "Piedra de Hechizo equipada",
+		["Spellstone"] = "Tiempo de regeneraci\195\179n Piedra de Hechizo",
+		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud"
 	}
 
 	NecrosisTooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
-				[true] = "Yes",
+				[true] = "S\195\173",
 				[false] = "No",
 			},
 			Hellspawn = {
 				[true] = "On",
 				[false] = "Off",
 			},
-			["Soulshard"] = "Soul Shard(s): ",
-			["InfernalStone"] = "Infernal Stone(s): ",
-			["DemoniacStone"] = "Demonic Figurine(s): ",
-			["Soulstone"] = "\nSoulstone: ",
-			["Healthstone"] = "Healthstone: ",
-			["Spellstone"] = "Spellstone: ",
-			["Firestone"] = "Firestone: ",
-			["CurrentDemon"] = "Demon: ",
-			["EnslavedDemon"] = "Demon: Enslaved",
-			["NoCurrentDemon"] = "Demon: None",
+			["Soulshard"] = "Fragmento(s) de Alma: ",
+			["InfernalStone"] = "Piedra(s) Infernal(es): ",
+			["DemoniacStone"] = "Figura(s) Demoníaca(s): ",
+			["Soulstone"] = "\nPiedra de Alma: ",
+			["Healthstone"] = "Piedra de Salud: ",
+			["Spellstone"] = "Piedra de Hechizo: ",
+			["Firestone"] = "Piedra de Fuego: ",
+			["CurrentDemon"] = "Demonio: ",
+			["EnslavedDemon"] = "Demonio: Esclavizado ",
+			["NoCurrentDemon"] = "Demonio: Ninguno",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FFSoulstone|r",
-			Text = {"Right click to create","Left click to use","Used\nRight click to recreate","Waiting"}
+			Label = "|c00FF99FFPiedra de Alma|r",
+			Text = {"Click derecho para crear","Click izquierdo para usar","Usada\nClick derecho para recrear","Esperando"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33Healthstone|r",
-			Text = {"Right click to create","Left click to use"},
-			Text2 = "Middle click or Ctrl+left click to trade",
-			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Souls|r"
+			Label = "|c0066FF33Piedra de Salud|r",
+			Text = {"Click derecho para crear","Click izquierdo para usar"},
+			Text2 = "Click central or Ctrl+Click izquierdo para comerciar",
+			Ritual = "|c00FFFFFFShift+Click para empezar Ritual de Almas|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFFPiedra de hechizo|r",
-			Text = {"Right click to create","In Inventory\nMiddle click or Ctrl+left click to equip","Held in hand\nLeft click to user\nShift+clic to unequip"}
+			Label = "|c0099CCFFPiedra de Hechizo|r",
+			Text = {"Click derecho para crear","En el inventario\nClick central or Ctrl+Click izquierdo para equipar ","Equipado - Click izquierdo para usar\n Shift+Click para desequipar"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444Pirorroca|r",
-			Text = {"Right click to create","In Inventory\nLeft click to equip","Held in hand\nShift+clic to unequip"}
+			Label = "|c00FF4444Piedra de Fuego|r",
+			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para equipar","Equipado - Shift+Click para desequipar"}
 		},
 		["SpellTimer"] = {
-			Label = "|c00FFFFFFSpell Durations|r",
-			Text = "Active Spells on the target",
-			Right = "Right click for Hearthstone to "
+			Label = "|c00FFFFFFDuración de Hechizos|r",
+			Text = "Hechizos activos en el objetivo",
+			Right = "Click derecho para usar Piedra de Hogar a "
 		},
 		["ShadowTrance"] = {
-			Label = "|c00FFFFFFShadow Trance|r"
+			Label = "|c00FFFFFFTrance de las Sombras|r"
 		},
 		["Backlash"] = {
 			Label = "|c00FFFFFFBacklash|r"
 		},
 		["Domination"] = {
-			Label = "|c00FFFFFFFel Domination|r"
+			Label = "|c00FFFFFFDominio de lo Maldito|r"
 		},
 		["Enslave"] = {
-			Label = "|c00FFFFFFEnslave|r"
+			Label = "|c00FFFFFFEsclavizar|r"
 		},
 		["Armor"] = {
-			Label = "|c00FFFFFFDemon Armor|r"
+			Label = "|c00FFFFFFArmadura Demon\195\173aca|r"
 		},
 		["FelArmor"] = {
 			Label = "|c00FFFFFFFel Armor|r"
 		},
 		["Invisible"] = {
-			Label = "|c00FFFFFFDetect Invisibility|r"
+			Label = "|c00FFFFFFDetectar Invisibilidad|r"
 		},
 		["Aqua"] = {
-			Label = "|c00FFFFFFUnending Breath|r"
+			Label = "|c00FFFFFFAliento Inagotable|r"
 		},
 		["Kilrogg"] = {
-			Label = "|c00FFFFFFEye of Kilrogg|r"
+			Label = "|c00FFFFFFOjo de Kilrogg|r"
 		},
 		["Banish"] = {
 			Label = "|c00FFFFFFDesterrar|r",
-			Text = "Right click to cast Rank 1"
+			Text = "Click derecho para lanzar Rango 1"
 		},
 		["TP"] = {
-			Label = "|c00FFFFFFRitual of Summoning|r"
+			Label = "|c00FFFFFFRitual de Invocaci\195\179n|r"
 		},
 		["SoulLink"] = {
-			Label = "|c00FFFFFFSoul Link|r"
+			Label = "|c00FFFFFFEnlace de Alma|r"
 		},
 		["ShadowProtection"] = {
-			Label = "|c00FFFFFFShadow Ward|r"
+			Label = "|c00FFFFFFResguardo contra las Sombras|r"
 		},
 		["Imp"] = {
-			Label = "|c00FFFFFFImp|r"
+			Label = "|c00FFFFFFDiablillo|r"
 		},
 		["Voidwalker"] = {
-			Label = "|c00FFFFFFVoidwalker|r"
+			Label = "|c00FFFFFFAbisario|r"
 		},
 		["Succubus"] = {
-			Label = "|c00FFFFFFSuccubus|r"
+			Label = "|c00FFFFFFS\195\186cubo|r"
 		},
 		["Felhunter"] = {
 			Label = "|c00FFFFFFMan\195\161fago|r"
 		},
 		["Felguard"] = {
-			Label = "|c00FFFFFFFelguard|r"
+			Label = "|c00FFFFFFGuardia maldito|r"
 		},
 		["Infernal"] = {
 			Label = "|c00FFFFFFInferno|r"
@@ -186,22 +186,22 @@ function Necrosis_Localization_Dialog_Es()
 		},
 		["Mount"] = {
 			Label = "|c00FFFFFFCorcel|r",
-			Text = "Right click to cast Rank 1"
+			Text = "Click derecho para lanzar Rango 1"
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Hechizos|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Modo automático: Se cierra cuando sales de combate",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Demonio|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Modo automático: Se cierra cuando sales de combate",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Maldici\195\179n|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Automatic Mode : Closing when leave combat",
+			Text2 = "Modo automático: Se cierra cuando sales de combate",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFCaptar Demonios|r"
@@ -243,11 +243,14 @@ function Necrosis_Localization_Dialog_Es()
 			["UserConfig"] = "<lightYellow>Configuraci\195\179n cargada."
 		},
 		["Help"] = {
-			"/necro recall -- Centrar Necrosis y todos los botones en el medio de la pantalla",
-			"/necro sm -- Reemplazar los mensajes de Piedra de Alma e invocaci\195\179n por una versi\195\179n breve para Banda"
+			"/necro <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>sm<white> -- <lightBlue>Reemplazar los mensajes de Piedra de Alma e invocaci\195\179n por una versi\195\179n breve para Banda",
+			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 		},
 		["Information"] = {
-			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!!",
+			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!",
 			["EnslaveBreak"] = "Tu demonio rompi\195\179 sus cadenas...",
 			["SoulstoneEnd"] = "<lightYellow>Tu Piedra de Alma se ha disipado."
 		}
@@ -273,24 +276,24 @@ function Necrosis_Localization_Dialog_Es()
 		["Menu4"] = "Opciones de Temporizador",
 		["Menu5"] = "Opci\195\179nes Gr\195\161ficas",
 		["MainRotation"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
-		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o :",
-		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s :",
+		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
+		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s:",
 		["ShardMove"] = "Poner los Fragmentos en la bolsa seleccionada.",
 		["ShardDestroy"] = "Destruir nuevos fragmentos si la bolsa est\195\161 llena",
-		["SpellMenu1"] = "|CFFFF00FFH|CFFFF50FFe|CFFFF99FFc|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFz|CFFFF00FFo|CFFB700B7s :",
-		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r :",
-		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs :",
+		["SpellMenu1"] = "|CFFFF00FFH|CFFFF50FFe|CFFFF99FFc|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFz|CFFFF00FFo|CFFB700B7s:",
+		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r:",
+		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs:",
 		["TimerColor"] = "Textos de temporizador blancos en vez de amarillos",
 		["TimerDirection"] = "Los temporizadores se incrementan ascendentemente",
 		["TranseWarning"] = "Al\195\169rtame cuando entre en un Trance de las Sombras",
 		["SpellTime"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
-		["AntiFearWarning"] = "Prevenme cuando mi objetivo no pueda ser asustado",
+		["AntiFearWarning"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
 		["GraphicalTimer"] = "Mostrar temporizadores gr\195\161ficos en lugar de textos",
 		["TranceButtonView"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos.",
 		["ButtonLock"] = "Bloquear los botones alrededor de la Esfera Necrosis.",
 		["MainLock"] = "Bloquear los botones y la Esfera Necrosis.",
 		["BagSelect"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",
-		["BuffMenu"] = "Poner el men\195\186 de bufos a la izquierda",
+		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascota a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179n a la izquierda",
 		["STimerLeft"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
@@ -304,10 +307,10 @@ function Necrosis_Localization_Dialog_Es()
 		["ChatType"] = "Mensajes de Necrosis como mensajes de sistema",
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
-		["TranseSize"] = "Tama\195\177o de los hidden botones",
+		["TranseSize"] = "Tama\195\177o de los botones de aviso",
 		["Skin"] = "Piel de la Esfera Necrosis",
 		["Show"] = {
-			["Firestone"] = "Mostrar bot\195\179n Pirorroca",
+			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",
 			["Spellstone"] = "Mostrar bot\195\179n Piedra de Hechizo",
 			["Healthstone"] = "Mostrar bot\195\179n Piedra de Salud",
 			["Soulstone"] = "Mostrar bot\195\179n Piedra de Alma",
@@ -325,18 +328,18 @@ function Necrosis_Localization_Dialog_Es()
 	};
 
 	NECROSIS_BINDING = {
-		["Current"] = " is currently bound to ",
-		["Confirm"] = "Do you want to bind ",
-		["To"] = " to ",
-		["Yes"] = "Yes",
+		["Current"] = " est\195\161 actualmente asignado a ",
+		["Confirm"] = "¿Quieres asignar ",
+		["To"] = " a ",
+		["Yes"] = "S\195\173",
 		["No"] = "No",
-		["InCombat"] = "Sorry, you can't change key bindings while in combat.",
-		["Binding"] = "Bindings",
-		["Unbind"] = "Unbind",
-		["Cancel"] = "Cancel",
-		["Press"] = "Press a key to bind...\n\n",
-		["Now"] = "Currently: ",
-		["NotBound"] = "Not Bound",
+		["InCombat"] = "Lo siento, no puedes cambiar la asignaci\195\179n de teclas mientras est\195\169s en combate.",
+		["Binding"] = "Asignaciones",
+		["Unbind"] = "Desasignar",
+		["Cancel"] = "Cancelar",
+		["Press"] = "Presiona la tecla a asignar...\n\n",
+		["Now"] = "Actualmente: ",
+		["NotBound"] = "No asignado",
 	};
 
 end

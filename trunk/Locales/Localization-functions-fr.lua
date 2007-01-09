@@ -234,7 +234,6 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Temps",
 	["Hearth"] = "Pierre de foyer",
 	["Rank"] = "Rang",
-	["SoulLinkGain"] = "Vous gagnez Lien spirituel.",
 };
 
 end
