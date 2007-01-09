@@ -245,8 +245,11 @@ function Necrosis_Localization_Dialog_Tw()
 			["UserConfig"] = "<lightYellow>配置已載入。"
 		},
 		["Help"] = {
-			"/necro recall -- 將Necrosis和所有按鈕置於螢幕中央",
-			"/necro sm -- 在團隊中，使用較短的靈魂綁定和召喚儀式訊息"
+			"/necro <lightOrange>recall<white> -- <lightBlue>將Necrosis和所有按鈕置於螢幕中央",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>sm<white> -- <lightBlue>在團隊中，使用較短的靈魂綁定和召喚儀式訊息",
+			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目標對恐懼免疫！",

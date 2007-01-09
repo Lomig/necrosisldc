@@ -78,8 +78,6 @@ function Necrosis_MenuAttribute(menu)
 	menu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
 	menu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
 
-	-- On bloque le menu en position ouverte si configuré
-	if NecrosisConfig.BlockedMenu then menu0:SetAttribute("state", "4") end
 end
 
 
@@ -99,11 +97,11 @@ function Necrosis_BuffSpellAttribute()
 		NecrosisBuffMenu1:SetAttribute("type", "spell")
 		if not NECROSIS_SPELL_TABLE[31].ID then
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[36].Name
+				NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")"
 			)
 		else
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[31].Name
+				NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")"
 			)
 		end
 		-- Création du tableau des raccourcis claviers
@@ -127,9 +125,11 @@ function Necrosis_BuffSpellAttribute()
 			if not (i == 4 or i == 6 or i == 7 or i == 8) then
 				f:SetAttribute("unit", "target")
 			end
-			f:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[ buffID[i] ].Name
-			)
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
+			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			end
+			f:SetAttribute("spell", SpellName_Rank)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisBuffMenu"..i] then
 				NecrosisAlreadyBind["NecrosisBuffMenu"..i] = true
@@ -144,15 +144,16 @@ function Necrosis_BuffSpellAttribute()
 
 	-- Cas particulier : Bouton de Banish
 	if _G["NecrosisBuffMenu9"] then
+		local SpellName_Rank = NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")"
 		-- Association du sort au clic gauche
 		NecrosisBuffMenu9:SetAttribute("unit", "target")
 		NecrosisBuffMenu9:SetAttribute("type", "macro")
-		NecrosisBuffMenu9:SetAttribute("macrotext", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name)
+		NecrosisBuffMenu9:SetAttribute("macrotext", "/focus\n/cast "..SpellName_Rank)
 
 		-- Si le démoniste control + click le bouton de banish
 		-- On rebanish la dernière cible bannie
 		NecrosisBuffMenu9:SetAttribute("ctrl-type", "macro")
-		NecrosisBuffMenu9:SetAttribute("ctrl-macrotext", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name)
+		NecrosisBuffMenu9:SetAttribute("ctrl-macrotext", "/cast [target=focus] "..SpellName_Rank)
 
 		-- Création du tableau des raccourcis claviers
 		if not NecrosisAlreadyBind["NecrosisBuffMenu9Left"] then
@@ -165,14 +166,14 @@ function Necrosis_BuffSpellAttribute()
 		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
 		if NECROSIS_SPELL_TABLE[9].Rank:find("2") then
 			NecrosisBuffMenu9:SetAttribute("type1", "macro")
-			NecrosisBuffMenu9:SetAttribute("macrotext1", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name)
+			NecrosisBuffMenu9:SetAttribute("macrotext1", "/focus\n/cast "..SpellName_Rank)
 			NecrosisBuffMenu9:SetAttribute("type2", "macro")
-			NecrosisBuffMenu9:SetAttribute("macrotext2", "/focus\n/cast "..NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank:gsub("2", "1")..")")
+			NecrosisBuffMenu9:SetAttribute("macrotext2", "/focus\n/cast "..SpellName_Rank:gsub("2", "1"))
 
 			NecrosisBuffMenu9:SetAttribute("ctrl-type1", "macro")
-			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext1", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name)
+			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext1", "/cast [target=focus] "..SpellName_Rank)
 			NecrosisBuffMenu9:SetAttribute("ctrl-type2", "macro")
-			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext2", "/cast [target=focus] "..NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank:gsub("2", "1")..")")
+			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext2", "/cast [target=focus] "..SpellName_Rank:gsub("2", "1"))
 
 			if not NecrosisAlreadyBind["NecrosisBuffMenu9Right"] then
 				NecrosisAlreadyBind["NecrosisBuffMenu9Right"] = true
@@ -198,11 +199,15 @@ function Necrosis_PetSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[i+2].Name
+			if NECROSIS_SPELL_TABLE[i+2].Rank and not (NECROSIS_SPELL_TABLE[i+2].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")"
+			end
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
-			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[i+2].Name)
+			f:SetAttribute("spell", SpellName_Rank)
 			f:SetAttribute("macrotext",
-				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[i+2].Name
+				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] then
@@ -221,8 +226,12 @@ function Necrosis_PetSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[ BuffID[i] ].Name
+			if NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank..")"
+			end
 			f:SetAttribute("type", "spell")
-			f:SetAttribute("spell", NECROSIS_SPELL_TABLE[ BuffID[i] ].Name)
+			f:SetAttribute("spell", SpellName_Rank)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] then
 				NecrosisAlreadyBind["NecrosisPetMenu"..buttonID[i]] = true
@@ -261,14 +270,18 @@ function Necrosis_CurseSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
+			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			end
 			f:SetAttribute("harmbutton1", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name)
+			f:SetAttribute("spell-debuff", SpellName_Rank)
 			f:SetAttribute("harmbutton2", "amplif")
 			f:SetAttribute("type-amplif", "macro")
 			f:SetAttribute("macrotext-amplif",
-				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..NECROSIS_SPELL_TABLE[ buffID[i] ].Name
+				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
@@ -290,10 +303,14 @@ function Necrosis_CurseSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
+			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			end
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff", NECROSIS_SPELL_TABLE[ buffID[i] ].Name)
+			f:SetAttribute("spell-debuff", SpellName_Rank)
 			-- Création du tableau des raccourcis claviers
 			if not NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
 				NecrosisAlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true

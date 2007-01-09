@@ -241,7 +241,6 @@ NECROSIS_TRANSLATION = {
 	["Invisible"] = "侦测隐形",
 	["LesserInvisible"] = "侦测次级隐形",
 	["GreaterInvisible"] = "侦测强效隐形",
-	["SoulLinkGain"] = "你获得了灵魂链接的效果。",
 }
 
 end

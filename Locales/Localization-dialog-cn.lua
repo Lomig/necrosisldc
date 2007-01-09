@@ -245,8 +245,11 @@ function Necrosis_Localization_Dialog_Cn()
 			["UserConfig"] = "<lightYellow>配置已加载。",
 		},
 		["Help"] = {
-			"/necro recall -- 将Necrosis和所有按钮置于屏幕中间",
-			"/necro sm -- 用a short raid-ready version代替灵魂绑定和召唤信息"
+			"/necro <lightOrange>recall<white> -- <lightBlue>将Necrosis和所有按钮置于屏幕中间",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>sm<white> -- <lightBlue>用a short raid-ready version代替灵魂绑定和召唤信息",
+			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目标对恐惧免疫!!!!",
