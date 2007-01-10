@@ -174,7 +174,15 @@ NECROSIS_SPELL_TABLE = {
 	[49] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Brise-\195\162me",					Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
+		Name = "Rituel des \195\162mes",					Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Cr\195\169ation de Pierre d'\195\162me",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Cr\195\169ation de Pierre de soins",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Cr\195\169ation de Pierre de sort",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Cr\195\169ation de Pierre de feu",			Length = 0,		Type = 0},
 };
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -198,26 +206,9 @@ NECROSIS_ITEM = {
 	["SoulPouch"] = {"Bourse d'\195\162me", "Sac en gangr\195\169toffe", "Sac en gangr\195\169toffe du Magma"}
 };
 
-
-NECROSIS_STONE_RANK = {
-	[1] = "mineure",			-- Rank Minor
-	[2] = "inf\195\169rieure",		-- Rank Lesser
-	[3] = "ksdfxcjkl",				-- Rank Intermediate, no name
-	[4] = "sup\195\169rieure",		-- Rank Greater
-	[5] = "majeure",			-- Rank Major
-	[6] = "magistrale",			-- Rank Master
-};
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Contrecoup",
 	["ShadowTrance"] = "Transe de l'ombre",
-};
-
-NECROSIS_CREATE = {
-	[1] = "Cr\195\169ation de Pierre d'\195\162me",
-	[2] = "Cr\195\169ation de Pierre de soins",
-	[3] = "Cr\195\169ation de Pierre de sort",
-	[4] = "Cr\195\169ation de Pierre de feu"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

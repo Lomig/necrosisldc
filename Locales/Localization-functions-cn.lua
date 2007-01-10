@@ -178,6 +178,14 @@ NECROSIS_SPELL_TABLE = {
 		Name = "灵魂",		Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "灵魂典礼",	Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "灵魂石",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "治疗石",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "法术石",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "火焰石",			Length = 0,		Type = 0},
 }
 
 -- Type 0 = No Timer
@@ -203,25 +211,9 @@ NECROSIS_ITEM = {
 }
 
 
-NECROSIS_STONE_RANK = {
-	[1] = "初级",		-- Rank Minor
-	[2] = "次级",		-- Rank Lesser
-	[3] = "Lomig is cute",		-- Rank Intermediate, no name
-	[4] = "强效",	-- Rank Greater
-	[5] = "特效",		-- Rank Major
-	[6] = "Master",	-- Rank Master	
-}
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "反冲",
 	["ShadowTrance"] = "暗影冥思"
-}
---NECROSIS_STONE_CREATE = "制造";
-NECROSIS_CREATE = {
-	[1] = "灵魂石",
-	[2] = "治疗石",
-	[3] = "法术石",
-	[4] = "火焰石"
 }
 
 NECROSIS_PET_LOCAL_NAME = {

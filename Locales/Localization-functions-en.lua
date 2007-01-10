@@ -174,6 +174,14 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Soulshatter",			Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual of Souls",		Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Create Soulstone",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Create Healthstone",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Create Spellstone",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Create Firestone",			Length = 0,		Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -198,25 +206,9 @@ NECROSIS_ITEM = {
 }
 
 
-NECROSIS_STONE_RANK = {
-	[1] = "Minor",	-- Rank Minor
-	[2] = "Lesser",	-- Rank Lesser
-	[3] = "Lomig is cute",		-- Rank Intermediate, no name
-	[4] = "Greater",	-- Rank Greater
-	[5] = "Major",	-- Rank Major
-	[6] = "Master",	-- Rank Master
-}
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Backlash",
 	["ShadowTrance"] = "Shadow Trance"
-}
-
-NECROSIS_CREATE = {
-	[1] = "Create Soulstone",
-	[2] = "Create Healthstone",
-	[3] = "Create Spellstone",
-	[4] = "Create Firestone"
 }
 
 NECROSIS_PET_LOCAL_NAME = {

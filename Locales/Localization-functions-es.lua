@@ -174,6 +174,14 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Despedazar alma",				Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual de almas",				Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Crear piedra de alma",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Crear piedra de salud",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Crear piedra de hechizo",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Crear piedra de fuego",			Length = 0,		Type = 0},
 };
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -198,25 +206,9 @@ NECROSIS_ITEM = {
 };
 
 
-NECROSIS_STONE_RANK = {
-	[1] = "Menor",	-- Rank Minor
-	[2] = "Inferior",	-- Rank Lesser
-	[3] = "Lomig is cute",		-- Rank Intermediate, no name
-	[4] = "Superior",	-- Rank Greater
-	[5] = "Sublime",	-- Rank Major
-	[6] = "Master",	-- Rank Master
-};
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Backlash",
 	["ShadowTrance"] = "Trance de las Sombras"
-};
-
-NECROSIS_CREATE = {
-	[1] = "Crear piedra de alma",
-	[2] = "Crear piedra de salud",
-	[3] = "Crear piedra de hechizo",
-	[4] = "Crear pirorroca"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

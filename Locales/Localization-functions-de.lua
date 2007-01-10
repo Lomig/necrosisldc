@@ -174,6 +174,14 @@ NECROSIS_SPELL_TABLE = {
 		Name = "Seele brechen",				Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual der Seelen",			Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Seelenstein herstellen",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Gesundheitsstein herstellen",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Zauberstein herstellen",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "Feuerstein herstellen",			Length = 0,		Type = 0},
 };
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -198,25 +206,9 @@ NECROSIS_ITEM = {
 };
 
 
-NECROSIS_STONE_RANK = {
-	[1] = "schwach",	-- Rank Minor
-	[2] = "gering",	-- Rank Lesser
-	[3] = "Lomig ist schön",		-- Rank Intermediate, no name
-	[4] = "gro\195\159",	-- Rank Greater
-	[5] = "erheblich",	-- Rank Major
-	[6] = "meisterlich",	-- Rank Master
-};
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Heimzahlen",
 	["ShadowTrance"] = "Schattentrance"
-};
-
-NECROSIS_CREATE = {
-	[1] = "Seelenstein herstellen",
-	[2] = "Gesundheitsstein herstellen",
-	[3] = "Zauberstein herstellen",
-	[4] = "Feuerstein herstellen"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

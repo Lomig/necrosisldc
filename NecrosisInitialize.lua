@@ -74,7 +74,7 @@ function Necrosis_Initialize(Config)
 
 
 	-- On charge (ou on crée la configuration pour le joueur et on l'affiche sur la console
-	if not NecrosisConfig.Version or Necrosis.Data.LastConfig > NecrosisConfig.Version then
+	if not NecrosisConfig.Version or type(NecrosisConfig.Version) == "string" or Necrosis.Data.LastConfig > NecrosisConfig.Version then
 		NecrosisConfig = {}
 		NecrosisConfig = Config
 		NecrosisConfig.Version = Necrosis.Data.LastConfig
@@ -204,7 +204,7 @@ function Necrosis_Initialize(Config)
 	NecrosisTimerFrame0:SetPoint(NecrosisConfig.SpellTimerJust, NecrosisSpellTimerButton, "CENTER", NecrosisConfig.SpellTimerPos * 20, 0)
 
 	--On affiche ou on cache le bouton, d'ailleurs !
-	if not ShowSpellTimers then NecrosisSpellTimerButton:Hide() end
+	if not NecrosisConfig.ShowSpellTimers then NecrosisSpellTimerButton:Hide() end
 
 	-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
 	if NecrosisConfig.SpellTimerJust == "RIGHT" then
@@ -324,7 +324,7 @@ end
 function Necrosis_SlashHandler(arg1)
 	if arg1:lower():find("recall") then
 		Necrosis_Recall()
-	elseif arg1:lower():find("reset") and not InCombatLockDown() then
+	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
 	elseif arg1:lower():find("sm") then
