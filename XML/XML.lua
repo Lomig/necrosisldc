@@ -63,7 +63,7 @@ function Necrosis_CreateWarlockUI()
 	-- Création de l'ancre invisible des timers
 	local f = _G["NecrosisTimerFrame0"];
 	if not f then
-		f = CreateFrame("Frame", "NecrosisTimerFrame0", NecrosisSpellTimerButton)
+		f = CreateFrame("Frame", "NecrosisTimerFrame0", UIParent)
 		f:SetWidth(150);
 		f:SetHeight(10);
 		f:Show()

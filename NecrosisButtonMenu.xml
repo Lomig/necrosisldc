@@ -318,11 +318,11 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						ClickBinder.Open("Necrosis - "..NECROSIS_BINDING.Binding, NecrosisBinding)
+						ClickBinder.Open("Necrosis - "..NECROSIS_BINDING.Binding, Necrosis.Binding)
 					</OnClick>
 				</Scripts>
 			</Button>
-			
+
 		</Frames>
 	</Frame>
 </Ui>
