@@ -74,10 +74,10 @@ function Necrosis_Initialize(Config)
 
 
 	-- On charge (ou on crée la configuration pour le joueur et on l'affiche sur la console
-	if not NecrosisConfig.Version or NecrosisData.LastConfig > NecrosisConfig.Version then
+	if not NecrosisConfig.Version or Necrosis.Data.LastConfig > NecrosisConfig.Version then
 		NecrosisConfig = {}
 		NecrosisConfig = Config
-		NecrosisConfig.Version = NecrosisData.LastConfig
+		NecrosisConfig.Version = Necrosis.Data.LastConfig
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER")
 	else
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER")
@@ -96,11 +96,9 @@ function Necrosis_Initialize(Config)
 		NECROSIS_SPELL_TABLE[index].ID = nil
 	end
 	Necrosis_SpellSetup()
-	-- Création de la liste des emplacements des fragments
-	Necrosis_SoulshardSetup()
 	-- Création des menus de buff et d'invocation
 	Necrosis_CreateMenu()
-	-- Les boutons sont-ils vérouillés sur le Shard ?
+	-- Les boutons sont-ils verrouillés sur le Shard ?
 	Necrosis_ButtonSetup()
 
 	-- Enregistrement de la commande console
@@ -182,6 +180,7 @@ function Necrosis_Initialize(Config)
 			NecrosisColor_Slider:SetValue(index)
 		end
 	end
+	couleur = nil
 	NecrosisColor_SliderLow:SetText("")
 	NecrosisColor_SliderHigh:SetText("")
 
@@ -203,6 +202,9 @@ function Necrosis_Initialize(Config)
 	-- On définit l'affichage des Timers à gauche ou à droite du bouton
 	NecrosisTimerFrame0:ClearAllPoints()
 	NecrosisTimerFrame0:SetPoint(NecrosisConfig.SpellTimerJust, NecrosisSpellTimerButton, "CENTER", NecrosisConfig.SpellTimerPos * 20, 0)
+
+	--On affiche ou on cache le bouton, d'ailleurs !
+	if not ShowSpellTimers then NecrosisSpellTimerButton:Hide() end
 
 	-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
 	if NecrosisConfig.SpellTimerJust == "RIGHT" then
@@ -257,7 +259,7 @@ function Necrosis_LanguageInitialize()
 	NecrosisLocalization()
 
 	-- Localisation du XML
-	NecrosisVersion:SetText(NecrosisData.Label)
+	NecrosisVersion:SetText(Necrosis.Data.Label)
 	NecrosisCredits:SetText("Developed by Lomig, Liadora & Eliah")
 	NecrosisShardsInventory_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu)
 	NecrosisShardsCount_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu2)

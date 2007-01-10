@@ -160,19 +160,19 @@ end
 -- FONCTION D'AFFICHAGE DES MESSAGES EN COURS DE CAST
 ------------------------------------------------------------------------------------------------------
 
-function  Necrosis_Speech_It(SpellCastName, SpellTargetName, DemonName, PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, PetMess, TPMess, SteedMess, RezMess)
+function  Necrosis_Speech_It(Spell, Speeches)
 	-- Affichage des messages d'invocation de monture
-	if (SpellCastName == NECROSIS_SPELL_TABLE[1].Name or SpellCastName == NECROSIS_SPELL_TABLE[2].Name) then
-		SteedSummoned = {}
+	if (Spell.Name == NECROSIS_SPELL_TABLE[1].Name or Spell.Name == NECROSIS_SPELL_TABLE[2].Name) then
+		Speeches.SpellSucceed.Steed = {}
 		if NecrosisConfig.SteedSummon and NecrosisConfig.ChatMsg and NECROSIS_PET_MESSAGE[7] and not NecrosisConfig.SM then
 			local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[7])
-			while tempnum == SteedMess and #NECROSIS_PET_MESSAGE[7] >= 2 do
+			while tempnum == Speeches.LastSpeech.Steed and #NECROSIS_PET_MESSAGE[7] >= 2 do
 				tempnum = math.random(1, #NECROSIS_PET_MESSAGE[7])
 			end
-			SteedMess = tempnum
+			Speeches.LastSpeech.Steed = tempnum
 			for i in ipairs(NECROSIS_PET_MESSAGE[7][tempnum]) do
 				if NECROSIS_PET_MESSAGE[7][tempnum][i]:find("<after>") then
-					table.insert(SteedSummoned, NECROSIS_PET_MESSAGE[7][tempnum][i])
+					Speeches.SpellSucceed.Steed:insert(NECROSIS_PET_MESSAGE[7][tempnum][i])
 				elseif NECROSIS_PET_MESSAGE[7][tempnum][i]:find("<emote>") then
 					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[7][tempnum][i]), "EMOTE")
 				elseif NECROSIS_PET_MESSAGE[7][tempnum][i]:find("<yell>") then
@@ -183,44 +183,44 @@ function  Necrosis_Speech_It(SpellCastName, SpellTargetName, DemonName, PlayerSo
 			end
 		end
 	-- Affichage des messages de rez
-	elseif SpellCastName == NECROSIS_SPELL_TABLE[11].Name and not SpellTargetName == UnitName("player") then
-		PlayerSoulstoned = {}
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name and not Spell.TargetName == UnitName("player") then
+		Speeches.SpellSucceed.Rez = {}
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NECROSIS_SOULSTONE_ALERT_MESSAGE then
 			local tempnum = math.random(1, #NECROSIS_SOULSTONE_ALERT_MESSAGE)
-			while tempnum == RezMess and #NECROSIS_SOULSTONE_ALERT_MESSAGE >= 2 do
+			while tempnum == Speeches.LastSpeech.Rez and #NECROSIS_SOULSTONE_ALERT_MESSAGE >= 2 do
 			tempnum = math.random(1, #NECROSIS_SOULSTONE_ALERT_MESSAGE)
 			end
-			RezMess = tempnum
+			Speeches.LastSpeech.Rez = tempnum
 			for i in ipairs(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum]) do
 				if NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i]:find("<after>") then
-					table.insert(PlayerSoulstoned, NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i])
+					Speeches.SpellSucceed.Rez:insert(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i])
 				elseif NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i]:find("<emote>") then
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], SpellTargetName), "EMOTE")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], Spell.TargetName), "EMOTE")
 				elseif NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i]:find("<yell>") then
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], SpellTargetName), "YELL")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], Spell.TargetName), "YELL")
 				else
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], SpellTargetName), "WORLD")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_SOULSTONE_ALERT_MESSAGE[tempnum][i], Spell.TargetName), "WORLD")
 				end
 			end
 		end
 	-- Affichage des messages d'invocation de joueurs
-	elseif SpellCastName == NECROSIS_SPELL_TABLE[37].Name then
-		PlayerSummoned = {}
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[37].Name then
+		Speeches.SpellSucceed.TP = {}
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NECROSIS_INVOCATION_MESSAGES then
 			local tempnum = math.random(1, #NECROSIS_INVOCATION_MESSAGES)
-			while tempnum == TPMess and #NECROSIS_INVOCATION_MESSAGES >= 2 do
+			while tempnum == Speeches.LastSpeech.TP and #NECROSIS_INVOCATION_MESSAGES >= 2 do
 				tempnum = math.random(1, #NECROSIS_INVOCATION_MESSAGES)
 			end
-			TPMess = tempnum
+			Speeches.LastSpeech.TP = tempnum
 			for i in ipairs(NECROSIS_INVOCATION_MESSAGES[tempnum]) do
 				if NECROSIS_INVOCATION_MESSAGES[tempnum][i]:find("<after>") then
-					table.insert(PlayerSummoned, NECROSIS_INVOCATION_MESSAGES[tempnum][i])
+					Speeches.SpellSucceed.TP:insert(NECROSIS_INVOCATION_MESSAGES[tempnum][i])
 				elseif NECROSIS_INVOCATION_MESSAGES[tempnum][i]:find("<emote>") then
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], SpellTargetName), "EMOTE")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], Spell.TargetName), "EMOTE")
 				elseif NECROSIS_INVOCATION_MESSAGES[tempnum][i]:find("<yell>") then
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], SpellTargetName), "YELL")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], Spell.TargetName), "YELL")
 				else
-					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], SpellTargetName), "WORLD")
+					Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_INVOCATION_MESSAGES[tempnum][i], Spell.TargetName), "WORLD")
 				end
 			end
 		end
@@ -228,22 +228,22 @@ function  Necrosis_Speech_It(SpellCastName, SpellTargetName, DemonName, PlayerSo
 		AlphaBuffVar = GetTime() + 3
 	-- Affichage des messages d'invocations de démon
 	else for type = 3, 7, 1 do
-		if SpellCastName == NECROSIS_SPELL_TABLE[type].Name then
-			DemonSummoned = {}
-			DemonSacrified = {}
-			DemonName = type - 2
+		if Spell.Name == NECROSIS_SPELL_TABLE[type].Name then
+			Speeches.SpellSucceed.Pet = {}
+			Speeches.SpellSucceed.Sacrifice = {}
+			Speeches.DemonName = type - 2
 			if NecrosisConfig.DemonSummon and NecrosisConfig.ChatMsg and not NecrosisConfig.SM then
-				if NecrosisConfig.PetName[DemonName] == " " and NECROSIS_PET_MESSAGE[6] then
+				if NecrosisConfig.PetName[Speeches.DemonName] and NECROSIS_PET_MESSAGE[6] then
 					local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[6])
-					while tempnum == PetMess and #NECROSIS_PET_MESSAGE[6] >= 2 do
+					while tempnum == Speeches.LastSpeech.Pet and #NECROSIS_PET_MESSAGE[6] >= 2 do
 						tempnum = math.random(1, #NECROSIS_PET_MESSAGE[6])
 					end
-					PetMess = tempnum
+					Speeches.LastSpeech.Pet = tempnum
 					for i in ipairs(NECROSIS_PET_MESSAGE[6][tempnum]) do
 						if NECROSIS_PET_MESSAGE[6][tempnum][i]:find("<after>") then
-							table.insert(DemonSummoned, NECROSIS_PET_MESSAGE[6][tempnum][i])
+							Speeches.SpellSucceed.Pet:insert(NECROSIS_PET_MESSAGE[6][tempnum][i])
 						elseif NECROSIS_PET_MESSAGE[6][tempnum][i]:find("<sacrifice>")then
-							table.insert(DemonSacrified, NECROSIS_PET_MESSAGE[6][tempnum][i])
+							Speeches.SpellSucceed.Sacrifice:insert(NECROSIS_PET_MESSAGE[6][tempnum][i])
 						elseif NECROSIS_PET_MESSAGE[6][tempnum][i]:find("<emote>") then
 							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[6][tempnum][i]), "EMOTE")
 						elseif NECROSIS_PET_MESSAGE[6][tempnum][i]:find("<yell>") then
@@ -252,23 +252,27 @@ function  Necrosis_Speech_It(SpellCastName, SpellTargetName, DemonName, PlayerSo
 							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[6][tempnum][i]), "SAY")
 						end
 					end
-				elseif NECROSIS_PET_MESSAGE[DemonName] then
-					local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[DemonName])
-					while tempnum == PetMess and #NECROSIS_PET_MESSAGE[DemonName] >= 2 do
-						tempnum = math.random(1, #NECROSIS_PET_MESSAGE[DemonName])
+				elseif NECROSIS_PET_MESSAGE[Speeches.DemonName] then
+					local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[Speeches.DemonName])
+					while tempnum == Speeches.LastSpeech.Pet and #NECROSIS_PET_MESSAGE[Speeches.DemonName] >= 2 do
+						tempnum = math.random(1, #NECROSIS_PET_MESSAGE[Speeches.DemonName])
 					end
-					PetMess = tempnum
-					for i in ipairs(NECROSIS_PET_MESSAGE[DemonName][tempnum]) do
-						if NECROSIS_PET_MESSAGE[DemonName][tempnum][i]:find("<after>") then
-							table.insert(DemonSummoned, NECROSIS_PET_MESSAGE[DemonName][tempnum][i])
-						elseif NECROSIS_PET_MESSAGE[DemonName][tempnum][i]:find("<sacrifice>")then
-							table.insert(DemonSacrified, NECROSIS_PET_MESSAGE[DemonName][tempnum][i])
-						elseif NECROSIS_PET_MESSAGE[DemonName][tempnum][i]:find("<emote>") then
-							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[DemonName][tempnum][i], nil , DemonName), "EMOTE")
-						elseif NECROSIS_PET_MESSAGE[DemonName][tempnum][i]:find("<yell>") then
-							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[DemonName][tempnum][i], nil , DemonName), "YELL")
+					Speeches.LastSpeech.Pet = tempnum
+					for i in ipairs(NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum]) do
+						if NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]:find("<after>") then
+							Speeches.SpellSucceed.Pet:insert(
+								NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]
+							)
+						elseif NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]:find("<sacrifice>")then
+							Speeches.SpellSucceed.Sacrifice:insert(
+								NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]
+							)
+						elseif NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]:find("<emote>") then
+							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i], nil , Speeches.DemonName), "EMOTE")
+						elseif NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i]:find("<yell>") then
+							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i], nil , Speeches.DemonName), "YELL")
 						else
-							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[DemonName][tempnum][i], nil , DemonName), "SAY")
+							Necrosis_Msg(Necrosis_MsgReplace(NECROSIS_PET_MESSAGE[Speeches.DemonName][tempnum][i], nil , Speeches.DemonName), "SAY")
 						end
 					end
 				end
@@ -277,7 +281,7 @@ function  Necrosis_Speech_It(SpellCastName, SpellTargetName, DemonName, PlayerSo
 			AlphaPetVar = GetTime() + 3
 		end
 	end end
-	return DemonName, PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, PetMess, TPMess, SteedMess, RezMess
+	return Speeches
 end
 
 
@@ -286,78 +290,77 @@ end
 -- FONCTION D'AFFICHAGE DES MESSAGES EN FIN DE CAST
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_Speech_Then(SpellCastName, SpellTargetName, DemonName, PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, NecrosisMounted)
+function Necrosis_Speech_Then(Spell, DemonName, Speech)
 	-- Si le sort était un un cast de monture et qu'il y avait quelque chose à faire dire après le cast, on y va !
-	if (SpellCastName == NECROSIS_SPELL_TABLE[1].Name or SpellCastName == NECROSIS_SPELL_TABLE[2].Name) then
-		for i in ipairs(SteedSummoned) do
-			if SteedSummoned[i]:find("<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "EMOTE")
-			elseif SteedSummoned[i]:find("<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "YELL")
+	if (Spell.Name == NECROSIS_SPELL_TABLE[1].Name or Spell.Name == NECROSIS_SPELL_TABLE[2].Name) then
+		for i in ipairs(Speech.Steed) do
+			if Speech.Steed[i]:find("<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Steed[i]), "EMOTE")
+			elseif Speech.Steed[i]:find("<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Steed[i]), "YELL")
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(SteedSummoned[i]), "WORLD")
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Steed[i]), "WORLD")
 			end
 		end
-		SteedSummoned = {}
-		NecrosisMounted = true
+		Speech.Steed = {}
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
 		end
 	-- Si le sort était un cast de Rez et qu'il y avait quelque chose à faire dire après le cast, on y va !
-	elseif SpellCastName == NECROSIS_SPELL_TABLE[11].Name then
-		for i in ipairs(PlayerSoulstoned) do
-			if PlayerSoulstoned[i]:find("<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "EMOTE")
-			elseif PlayerSoulstoned[i]:find("<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "YELL")
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name then
+		for i in ipairs(Speech.Rez) do
+			if Speech.Rez[i]:find("<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Rez[i], Spell.TargetName), "EMOTE")
+			elseif Speech.Rez[i]:find("<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Rez[i], Spell.TargetName), "YELL")
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSoulstoned[i], SpellTargetName), "WORLD")
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Rez[i], Spell.TargetName), "WORLD")
 			end
 		end
-		PlayerSoulstoned = {}
+		Speech.Rez = {}
 	-- Si le sort était un cast de TP et qu'il y avait quelque chose à faire dire après le cast, on y va !
-	elseif (SpellCastName == NECROSIS_SPELL_TABLE[37].Name) then
-		for i in ipairs(PlayerSummoned) do
-			if PlayerSummoned[i]:find("<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "EMOTE")
-			elseif PlayerSummoned[i]:find("<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "YELL")
+	elseif (Spell.Name == NECROSIS_SPELL_TABLE[37].Name) then
+		for i in ipairs(Speech.TP) do
+			if Speech.TP[i]:find("<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.TP[i], Spell.TargetName), "EMOTE")
+			elseif Speech.TP[i]:find("<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.TP[i], Spell.TargetName), "YELL")
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(PlayerSummoned[i], SpellTargetName), "WORLD")
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.TP[i], Spell.TargetName), "WORLD")
 			end
 		end
-		PlayerSummoned = {}
+		Speech.TP = {}
 	-- Si le sort était un sacrifice de démon et qu'il y avait quelque chose à faire dire à sa mort, on y va !
-	elseif SpellCastName == NECROSIS_SPELL_TABLE[44].Name then
-		for i in ipairs(DemonSacrified) do
-			if DemonSacrified[i]:find("<emote>") then
-				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "EMOTE")
-			elseif DemonSacrified[i]:find("<yell>") then
-				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "YELL")
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[44].Name then
+		for i in ipairs(Speech.Sacrifice) do
+			if Speech.Sacrifice[i]:find("<emote>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Sacrifice[i], nil, DemonName), "EMOTE")
+			elseif Speech.Sacrifice[i]:find("<yell>") then
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Sacrifice[i], nil, DemonName), "YELL")
 			else
-				Necrosis_Msg(Necrosis_MsgReplace(DemonSacrified[i], nil, DemonName), "SAY")
+				Necrosis_Msg(Necrosis_MsgReplace(Speech.Sacrifice[i], nil, DemonName), "SAY")
 			end
 		end
-		DemonSacrified = {}
+		Speech.Sacrifice = {}
 	-- Si le sort était un cast de démon et qu'il y avait quelque chose à faire dire après le cast, on y va !
-	elseif SpellCastName == NECROSIS_SPELL_TABLE[3].Name
-			or SpellCastName == NECROSIS_SPELL_TABLE[4].Name
-			or SpellCastName == NECROSIS_SPELL_TABLE[5].Name
-			or SpellCastName == NECROSIS_SPELL_TABLE[6].Name
-			or SpellCastName == NECROSIS_SPELL_TABLE[7].Name
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[3].Name
+			or Spell.Name == NECROSIS_SPELL_TABLE[4].Name
+			or Spell.Name == NECROSIS_SPELL_TABLE[5].Name
+			or Spell.Name == NECROSIS_SPELL_TABLE[6].Name
+			or Spell.Name == NECROSIS_SPELL_TABLE[7].Name
 			then
-				for i in ipairs(DemonSummoned) do
-					if DemonSummoned[i]:find("<emote>") then
-						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "EMOTE")
-					elseif DemonSummoned[i]:find("<yell>") then
-						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "YELL")
+				for i in ipairs(Speech.Pet) do
+					if Speech.Pet[i]:find("<emote>") then
+						Necrosis_Msg(Necrosis_MsgReplace(Speech.Pet[i], nil, DemonName), "EMOTE")
+					elseif Speech.Pet[i]:find("<yell>") then
+						Necrosis_Msg(Necrosis_MsgReplace(Speech.Pet[i], nil, DemonName), "YELL")
 					else
-						Necrosis_Msg(Necrosis_MsgReplace(DemonSummoned[i], nil, DemonName), "SAY")
+						Necrosis_Msg(Necrosis_MsgReplace(Speech.Pet[i], nil, DemonName), "SAY")
 					end
 				end
-				DemonSummoned = {}
+				Speech.Pet = {}
 	end
 
-	return PlayerSoulstoned, SteedSummoned, PlayerSummoned, DemonSummoned, DemonSacrified, NecrosisMounted
+	return Speech
 end
 

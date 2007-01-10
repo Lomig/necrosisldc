@@ -1,4 +1,4 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Frame name="NecrosisTimerMenu" hidden="true" parent="NecrosisGeneralFrame" movable="false" frameStrata="DIALOG" enableMouse="true">
 		<Size>
 			<AbsDimension x="350" y="452" />
@@ -89,8 +89,10 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.ShowSpellTimers = true
+							NecrosisSpellTimerButton:Show()
 						else
 							NecrosisConfig.ShowSpellTimers = false
+							NecrosisSpellTimerButton:Hide()
 						end
 					</OnClick>
 				</Scripts>

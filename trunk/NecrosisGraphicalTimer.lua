@@ -197,7 +197,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function NecrosisUpdateTimer(tableau, Changement)
-	if not tableau[1] then
+	if not (NecrosisConfig.Graphical and tableau[1]) then
 		return
 	end
 
@@ -256,7 +256,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		local minutes, secondes, affichage = 0, 0, nil
 		secondes = tableau[index].TimeMax - floor(GetTime())
 		minutes = floor(secondes / 60 )
-		secondes = mod(secondes, 60)
+		secondes = math.fmod(secondes, 60)
 
 		if minutes > 9 then
 			affichage = minutes..":"
