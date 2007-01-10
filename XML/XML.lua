@@ -385,7 +385,7 @@ function Necrosis_CreateWarlockPopup()
 	-- Définition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
-	frame:SetFrameStrata("OVERLAY");
+	frame:SetFrameStrata("HIGH");
 	frame:SetWidth(40);
 	frame:SetHeight(40);
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowTrance-Icon");
@@ -419,7 +419,7 @@ function Necrosis_CreateWarlockPopup()
 	-- Définition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
-	frame:SetFrameStrata("OVERLAY");
+	frame:SetFrameStrata("HIGH");
 	frame:SetWidth(40);
 	frame:SetHeight(40);
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Backlash-Icon");
@@ -453,7 +453,7 @@ function Necrosis_CreateWarlockPopup()
 	-- Définition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
-	frame:SetFrameStrata("OVERLAY");
+	frame:SetFrameStrata("HIGH");
 	frame:SetWidth(40);
 	frame:SetHeight(40);
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ElemAlert");
@@ -491,7 +491,7 @@ function Necrosis_CreateWarlockPopup()
 	-- Définition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
-	frame:SetFrameStrata("OVERLAY");
+	frame:SetFrameStrata("HIGH");
 	frame:SetWidth(40);
 	frame:SetHeight(40);
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\AntiFear-01");
