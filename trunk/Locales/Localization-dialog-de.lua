@@ -285,7 +285,7 @@ function Necrosis_Localization_Dialog_De()
 		["SpellMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFi|CFFFF99FFe|CFFFFC4FFl|CFFFF99FFe|CFFFF50FFr :",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFs|CFFFF00FFc|CFFB700B7he T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFF00FFr :",
 		["TranseWarning"] = "Warnung, wenn Schattentrance eintritt",
-		["SpellTime"] = "Show the Spell Timer Button",
+		["SpellTime"] = "Zeige den Timer Button",
 		["AntiFearWarning"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["GraphicalTimer"] = "Spruchdauer anzeigen",

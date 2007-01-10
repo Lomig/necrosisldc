@@ -107,7 +107,7 @@ function Necrosis_BuffSpellAttribute()
 		-- Création du tableau des raccourcis claviers
 		if not Necrosis.AlreadyBind["NecrosisBuffMenu1"] then
 			Necrosis.AlreadyBind["NecrosisBuffMenu1"] = true
-			Necrosis.Binding:Insert({NECROSIS_SPELL_TABLE[31].Name, "CLICK NecrosisBuffMenu1:LeftButton"})
+			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[31].Name, "CLICK NecrosisBuffMenu1:LeftButton"})
 		end
 	end
 
@@ -170,7 +170,9 @@ function Necrosis_BuffSpellAttribute()
 
 			if not Necrosis.AlreadyBind["NecrosisBuffMenu9Right"] then
 				Necrosis.AlreadyBind["NecrosisBuffMenu9Right"] = true
-				Necrosis.Binding:({NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"})
+				Necrosis.Binding:insert(
+					{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
+				)
 			end
 		end
 
@@ -306,24 +308,25 @@ function Necrosis_CurseSpellAttribute()
 end
 
 -- Association de la monture au bouton, et de la création des pierres sur un clic droit
-function Necrosis_StoneAttribute(StoneIDInSpellTable, Steed)
+function Necrosis_StoneAttribute(Steed)
 	if InCombatLockdown() then
 		return
 	end
 
 	-- Pour les pierres
 	local itemName = {"Soulstone", "Healthstone", "Spellstone", "Firestone" }
-	for i = 1, #StoneIDInSpellTable, 1 do
+	local buffID = {51,52,53,54}
+	for i = 1, #itemName, 1 do
 		local f = _G["Necrosis"..itemName[i].."Button"]
 		if f then
 			f:SetAttribute("type2", "spell")
-			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name.."("..NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Rank..")")
+			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")")
 
 			-- On prépare le tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] then
 				Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[ StoneIDInSpellTable[i] ].Name,
+					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name,
 					"CLICK Necrosis"..itemName[i].."Button:RightButton"}
 				)
 				Necrosis.Binding:insert(
@@ -402,7 +405,7 @@ end
 -- DEFINITION DES ATTRIBUTS DES SORTS EN FONCTION DU COMBAT / REGEN
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, StoneIDInSpellTable)
+function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode)
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	-- Et se désengage à la fin
@@ -495,7 +498,7 @@ function Necrosis_SoulstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSoulstoneButton:SetAttribute("type1", "spell")
-		NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[nostone[1]].Name.."("..NECROSIS_SPELL_TABLE[nostone[1]].Rank..")")
+		NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[51].Name.."("..NECROSIS_SPELL_TABLE[51].Rank..")")
 		return
 	end
 
@@ -516,7 +519,7 @@ function Necrosis_HealthstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisHealthstoneButton:SetAttribute("type1", "spell")
-		NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[nostone[2]].Name.."("..NECROSIS_SPELL_TABLE[nostone[2]].Rank..")")
+		NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[52].Name.."("..NECROSIS_SPELL_TABLE[52].Rank..")")
 		return
 	end
 
@@ -537,7 +540,7 @@ function Necrosis_SpellstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSpellstoneButton:SetAttribute("type1", "spell")
-		NecrosisSpellstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[nostone[3]].Name.."("..NECROSIS_SPELL_TABLE[nostone[3]].Rank..")")
+		NecrosisSpellstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[53].Name.."("..NECROSIS_SPELL_TABLE[53].Rank..")")
 		return
 	end
 
@@ -563,7 +566,7 @@ function Necrosis_FirestoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisFirestoneButton:SetAttribute("type1", "spell")
-		NecrosisFirestoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[nostone[4]].Name.."("..NECROSIS_SPELL_TABLE[nostone[4]].Rank..")")
+		NecrosisFirestoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[54].Name.."("..NECROSIS_SPELL_TABLE[54].Rank..")")
 		return
 	end
 

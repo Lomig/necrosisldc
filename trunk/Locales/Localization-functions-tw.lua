@@ -178,6 +178,14 @@ NECROSIS_SPELL_TABLE = {
 		Name = "靈魂",		Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "靈魂典禮",	Length = 300,	Type = 3},
+	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "靈魂石",	Length = 0,		Type = 0},
+	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "治療石",		Length = 0,		Type = 0},
+	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "法術石",			Length = 0,		Type = 0},
+	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
+		Name = "火焰石",			Length = 0,		Type = 0},
 }
 
 -- Type 0 = Pas de Timer
@@ -202,26 +210,9 @@ NECROSIS_ITEM = {
 	["SoulPouch"] = {"靈魂袋", "惡魔布包", "熔火惡魔布包"}
 }
 
-
-NECROSIS_STONE_RANK = {
-	[1] = "初級",		-- Rank Minor
-	[2] = "次級",		-- Rank Lesser
-	[3] = "Lomig is cute",		-- Rank Intermediate, no name
-	[4] = "強效",		-- Rank Greater
-	[5] = "極效",		-- Rank Major
-	[6] = "Master",	-- Rank Master
-}
-
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "反衝",
 	["ShadowTrance"] = "暗影冥思"
-}
---NECROSIS_STONE_CREATE = "製造";
-NECROSIS_CREATE = {
-	[1] = "靈魂石",
-	[2] = "治療石",
-	[3] = "法術石",
-	[4] = "火焰石"
 }
 
 NECROSIS_PET_LOCAL_NAME = {
