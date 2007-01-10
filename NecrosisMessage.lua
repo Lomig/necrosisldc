@@ -150,7 +150,7 @@ function Necrosis_MsgReplace(msg, target, pet)
 	if target then
 		msg = msg:gsub("<target>", target)
 	end
-	if pet then
+	if pet and NecrosisConfig.PetName[pet] then
 		msg = msg:gsub("<pet>", NecrosisConfig.PetName[pet])
 	end
 	return msg
@@ -233,7 +233,7 @@ function  Necrosis_Speech_It(Spell, Speeches)
 			Speeches.SpellSucceed.Sacrifice = {}
 			Speeches.DemonName = type - 2
 			if NecrosisConfig.DemonSummon and NecrosisConfig.ChatMsg and not NecrosisConfig.SM then
-				if NecrosisConfig.PetName[Speeches.DemonName] and NECROSIS_PET_MESSAGE[6] then
+				if not NecrosisConfig.PetName[Speeches.DemonName] and NECROSIS_PET_MESSAGE[6] then
 					local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[6])
 					while tempnum == Speeches.LastSpeech.Pet and #NECROSIS_PET_MESSAGE[6] >= 2 do
 						tempnum = math.random(1, #NECROSIS_PET_MESSAGE[6])
