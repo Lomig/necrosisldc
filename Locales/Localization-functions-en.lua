@@ -65,9 +65,9 @@ NECROSIS_ANTI_FEAR_SPELL = {
 NECROSIS_UNIT = {
 	["Undead"] = {
 		"Undead"
-	};
-	["Demon"] = "Demon";
-	["Elemental"] = "Elemental";
+	},
+	["Demon"] = "Demon",
+	["Elemental"] = "Elemental"
 }
 
 -- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
@@ -177,11 +177,11 @@ NECROSIS_SPELL_TABLE = {
 	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Create Soulstone",	Length = 0,		Type = 0},
 	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Create Healthstone",		Length = 0,		Type = 0},
+		Name = "Create Healthstone",		Length = 0,	Type = 0},
 	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Create Spellstone",			Length = 0,		Type = 0},
+		Name = "Create Spellstone",		Length = 0,	Type = 0},
 	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Create Firestone",			Length = 0,		Type = 0},
+		Name = "Create Firestone",		Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
@@ -225,6 +225,7 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Hearthstone",
 	["Rank"] = "Rank",
+	["Create"] = "Create"
 }
 
 end

@@ -60,14 +60,14 @@ NECROSIS_ANTI_FEAR_SPELL = {
 	["Debuff"] = {
 		"Fluch der Tollk\195\188hnheit"		-- Warlock curse
 	}
-};
+}
 
 NECROSIS_UNIT = {
 	["Undead"] = {
 		"Untoter"
-	};
-	["Demon"] = "D\195\164mon";
-	["Elemental"] = "Elementar";
+	},
+	["Demon"] = "D\195\164mon",
+	["Elemental"] = "Elementar",
 }
 
 -- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
@@ -175,14 +175,14 @@ NECROSIS_SPELL_TABLE = {
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual der Seelen",			Length = 300,	Type = 3},
 	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Seelenstein herstellen",	Length = 0,		Type = 0},
+		Name = "Seelenstein herstellen",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Gesundheitsstein herstellen",		Length = 0,		Type = 0},
+		Name = "Gesundheitsstein herstellen",		Length = 0,	Type = 0},
 	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Zauberstein herstellen",			Length = 0,		Type = 0},
+		Name = "Zauberstein herstellen",		Length = 0,	Type = 0},
 	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Feuerstein herstellen",			Length = 0,		Type = 0},
-};
+		Name = "Feuerstein herstellen",			Length = 0,	Type = 0},
+}
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
@@ -203,13 +203,13 @@ NECROSIS_ITEM = {
 	["DemoniacStone"] = "D\195\164monenstatuette",
 	["Hearthstone"] = "Ruhestein",
 	["SoulPouch"] = {"Seelenbeutel", "Teufelsstofftasche", "Kernteufelsstofftasche"}
-};
+}
 
 
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Heimzahlen",
 	["ShadowTrance"] = "Schattentrance"
-};
+}
 
 NECROSIS_PET_LOCAL_NAME = {
 	[1] = "Wichtel",
@@ -219,12 +219,13 @@ NECROSIS_PET_LOCAL_NAME = {
 	[5] = "Teufelswache",
 	[6] = "H\195\182llenbestie",
 	[7] = "Verdammniswache"
-};
+}
 
 NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Ruhestein",
 	["Rank"] = "Rang",
-};
+	["Create"] = "herstellen"
+}
 
 end

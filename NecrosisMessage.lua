@@ -160,10 +160,10 @@ end
 -- FONCTION D'AFFICHAGE DES MESSAGES EN COURS DE CAST
 ------------------------------------------------------------------------------------------------------
 
-function  Necrosis_Speech_It(Spell, Speeches)
+function  Necrosis_Speech_It(Spell, Speeches, metatable)
 	-- Affichage des messages d'invocation de monture
 	if (Spell.Name == NECROSIS_SPELL_TABLE[1].Name or Spell.Name == NECROSIS_SPELL_TABLE[2].Name) then
-		Speeches.SpellSucceed.Steed = {}
+		Speeches.SpellSucceed.Steed = setmetatable({}, metatable)
 		if NecrosisConfig.SteedSummon and NecrosisConfig.ChatMsg and NECROSIS_PET_MESSAGE[7] and not NecrosisConfig.SM then
 			local tempnum = math.random(1, #NECROSIS_PET_MESSAGE[7])
 			while tempnum == Speeches.LastSpeech.Steed and #NECROSIS_PET_MESSAGE[7] >= 2 do
@@ -184,7 +184,7 @@ function  Necrosis_Speech_It(Spell, Speeches)
 		end
 	-- Affichage des messages de rez
 	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name and not Spell.TargetName == UnitName("player") then
-		Speeches.SpellSucceed.Rez = {}
+		Speeches.SpellSucceed.Rez = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NECROSIS_SOULSTONE_ALERT_MESSAGE then
 			local tempnum = math.random(1, #NECROSIS_SOULSTONE_ALERT_MESSAGE)
 			while tempnum == Speeches.LastSpeech.Rez and #NECROSIS_SOULSTONE_ALERT_MESSAGE >= 2 do
@@ -205,7 +205,7 @@ function  Necrosis_Speech_It(Spell, Speeches)
 		end
 	-- Affichage des messages d'invocation de joueurs
 	elseif Spell.Name == NECROSIS_SPELL_TABLE[37].Name then
-		Speeches.SpellSucceed.TP = {}
+		Speeches.SpellSucceed.TP = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NECROSIS_INVOCATION_MESSAGES then
 			local tempnum = math.random(1, #NECROSIS_INVOCATION_MESSAGES)
 			while tempnum == Speeches.LastSpeech.TP and #NECROSIS_INVOCATION_MESSAGES >= 2 do
@@ -229,8 +229,8 @@ function  Necrosis_Speech_It(Spell, Speeches)
 	-- Affichage des messages d'invocations de démon
 	else for type = 3, 7, 1 do
 		if Spell.Name == NECROSIS_SPELL_TABLE[type].Name then
-			Speeches.SpellSucceed.Pet = {}
-			Speeches.SpellSucceed.Sacrifice = {}
+			Speeches.SpellSucceed.Pet = setmetatable({}, metatable)
+			Speeches.SpellSucceed.Sacrifice = setmetatable({}, metatable)
 			Speeches.DemonName = type - 2
 			if NecrosisConfig.DemonSummon and NecrosisConfig.ChatMsg and not NecrosisConfig.SM then
 				if not NecrosisConfig.PetName[Speeches.DemonName] and NECROSIS_PET_MESSAGE[6] then

@@ -223,20 +223,20 @@ Local.DefaultConfig = {
 	BanishScale = 100,
 	ItemSwitchCombat = {},
 	FramePosition = {
-		["NecrosisSpellTimerButton"] = {"CENTER", nil, "CENTER", 100, 300},
-		["NecrosisButton"] = {"CENTER", nil, "CENTER", 0, -200},
-		["NecrosisCreatureAlertButton"] = {"CENTER", nil, "CENTER", -60, 0},
-		["NecrosisAntiFearButton"] = {"CENTER", nil, "CENTER", -20, 0},
-		["NecrosisShadowTranceButton"] = {"CENTER", nil, "CENTER", 20, 0},
-		["NecrosisBacklashButton"] = {"CENTER", nil, "CENTER", 60, 0},
-		["NecrosisFirestoneButton"] = {"CENTER", nil, "CENTER", -121,-100},
-		["NecrosisSpellstoneButton"] = {"CENTER", nil, "CENTER", -87,-100},
-		["NecrosisHealthstoneButton"] = {"CENTER", nil, "CENTER", -53,-100},
-		["NecrosisSoulstoneButton"] = {"CENTER", nil, "CENTER", -17,-100},
-		["NecrosisBuffMenuButton"] = {"CENTER", nil, "CENTER", 17,-100},
-		["NecrosisMountButton"] = {"CENTER", nil, "CENTER", 53,-100},
-		["NecrosisPetMenuButton"] = {"CENTER", nil, "CENTER", 87,-100},
-		["NecrosisCurseMenuButton"] = {"CENTER", nil, "CENTER", 121,-100},
+		["NecrosisSpellTimerButton"] = {"CENTER", UIParent, "CENTER", 100, 300},
+		["NecrosisButton"] = {"CENTER", UIParent, "CENTER", 0, -200},
+		["NecrosisCreatureAlertButton"] = {"CENTER", UIParent, "CENTER", -60, 0},
+		["NecrosisAntiFearButton"] = {"CENTER", UIParent, "CENTER", -20, 0},
+		["NecrosisShadowTranceButton"] = {"CENTER", UIParent, "CENTER", 20, 0},
+		["NecrosisBacklashButton"] = {"CENTER", UIParent, "CENTER", 60, 0},
+		["NecrosisFirestoneButton"] = {"CENTER", UIParent, "CENTER", -121,-100},
+		["NecrosisSpellstoneButton"] = {"CENTER", UIParent, "CENTER", -87,-100},
+		["NecrosisHealthstoneButton"] = {"CENTER", UIParent, "CENTER", -53,-100},
+		["NecrosisSoulstoneButton"] = {"CENTER", UIParent, "CENTER", -17,-100},
+		["NecrosisBuffMenuButton"] = {"CENTER", UIParent, "CENTER", 17,-100},
+		["NecrosisMountButton"] = {"CENTER", UIParent, "CENTER", 53,-100},
+		["NecrosisPetMenuButton"] = {"CENTER", UIParent, "CENTER", 87,-100},
+		["NecrosisCurseMenuButton"] = {"CENTER", UIParent, "CENTER", 121,-100},
 	},
 }
 
@@ -484,7 +484,7 @@ function Necrosis_OnEvent(event)
 		if not Local.SpellCasted.TargetLevel then
 			Local.SpellCasted.TargetLevel = ""
 		end
-		Local.SpeechManagement = Necrosis_Speech_It(Local.SpellCasted, Local.SpeechManagement)
+		Local.SpeechManagement = Necrosis_Speech_It(Local.SpellCasted, Local.SpeechManagement, metatable)
 
 	-- Quand le démoniste stoppe son incantation, on relache le nom de celui-ci
 	elseif (event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_INTERRUPTED") and arg1 == player then
@@ -723,10 +723,10 @@ function Necrosis_SpellManagement()
 			end
 			Local.TimerManagement = Necrosis_InsertTimerParTable(11, Local.SpellCasted.TargetName, "", Local.TimerManagement)
 		-- Si le sort était une pierre de soin
-		elseif Local.SpellCasted.Name:find(NECROSIS_ITEM.Healthstone) and not Local.SpellCasted.Name:find(NECROSIS_CREATE[2]) then
+		elseif Local.SpellCasted.Name:find(NECROSIS_ITEM.Healthstone) and not Local.SpellCasted.Name:find(NECROSIS_TRANSLATION.Create) then
 			Local.TimerManagement = Necrosis_InsertTimerStone("Healthstone", nil, nil, Local.TimerManagement)
 		-- Si le sort était une pierre de sort
-		elseif Local.SpellCasted.Name:find(NECROSIS_ITEM.Spellstone) and not Local.SpellCasted.Name:find(NECROSIS_CREATE[3]) then
+		elseif Local.SpellCasted.Name:find(NECROSIS_ITEM.Spellstone) and not Local.SpellCasted.Name:find(NECROSIS_TRANSLATION.Create) then
 			Local.TimerManagement = Necrosis_InsertTimerStone("Spellstone", nil, nil, Local.TimerManagement)
 		-- Pour les autres sorts castés, tentative de timer si valable
 		else
@@ -2158,9 +2158,9 @@ end
 
 -- A chaque changement du livre des sorts, au démarrage du mod, ainsi qu'au changement de sens du menu on reconstruit les menus des sorts
 function Necrosis_CreateMenu()
-	Local.Menu.Pet = setmetatable({}, metatable) 
-	Local.Menu.Curse = setmetatable({}, metatable) 
-	Local.Menu.Buff = setmetatable({}, metatable) 
+	Local.Menu.Pet = setmetatable({}, metatable)
+	Local.Menu.Curse = setmetatable({}, metatable)
+	Local.Menu.Buff = setmetatable({}, metatable)
 	local menuVariable = nil
 	local PetButtonPosition = 0
 	local BuffButtonPosition = 0
