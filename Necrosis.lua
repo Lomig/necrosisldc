@@ -223,20 +223,20 @@ Local.DefaultConfig = {
 	BanishScale = 100,
 	ItemSwitchCombat = {},
 	FramePosition = {
-		["NecrosisSpellTimerButton"] = {"CENTER", UIParent, "CENTER", 100, 300},
-		["NecrosisButton"] = {"CENTER", UIParent, "CENTER", 0, -200},
-		["NecrosisCreatureAlertButton"] = {"CENTER", UIParent, "CENTER", -60, 0},
-		["NecrosisAntiFearButton"] = {"CENTER", UIParent, "CENTER", -20, 0},
-		["NecrosisShadowTranceButton"] = {"CENTER", UIParent, "CENTER", 20, 0},
-		["NecrosisBacklashButton"] = {"CENTER", UIParent, "CENTER", 60, 0},
-		["NecrosisFirestoneButton"] = {"CENTER", UIParent, "CENTER", -121,-100},
-		["NecrosisSpellstoneButton"] = {"CENTER", UIParent, "CENTER", -87,-100},
-		["NecrosisHealthstoneButton"] = {"CENTER", UIParent, "CENTER", -53,-100},
-		["NecrosisSoulstoneButton"] = {"CENTER", UIParent, "CENTER", -17,-100},
-		["NecrosisBuffMenuButton"] = {"CENTER", UIParent, "CENTER", 17,-100},
-		["NecrosisMountButton"] = {"CENTER", UIParent, "CENTER", 53,-100},
-		["NecrosisPetMenuButton"] = {"CENTER", UIParent, "CENTER", 87,-100},
-		["NecrosisCurseMenuButton"] = {"CENTER", UIParent, "CENTER", 121,-100},
+		["NecrosisSpellTimerButton"] = {"CENTER", "UIParent", "CENTER", 100, 300},
+		["NecrosisButton"] = {"CENTER", "UIParent", "CENTER", 0, -200},
+		["NecrosisCreatureAlertButton"] = {"CENTER", "UIParent", "CENTER", -60, 0},
+		["NecrosisAntiFearButton"] = {"CENTER", "UIParent", "CENTER", -20, 0},
+		["NecrosisShadowTranceButton"] = {"CENTER", "UIParent", "CENTER", 20, 0},
+		["NecrosisBacklashButton"] = {"CENTER", "UIParent", "CENTER", 60, 0},
+		["NecrosisFirestoneButton"] = {"CENTER", "UIParent", "CENTER", -121,-100},
+		["NecrosisSpellstoneButton"] = {"CENTER", "UIParent", "CENTER", -87,-100},
+		["NecrosisHealthstoneButton"] = {"CENTER", "UIParent", "CENTER", -53,-100},
+		["NecrosisSoulstoneButton"] = {"CENTER", "UIParent", "CENTER", -17,-100},
+		["NecrosisBuffMenuButton"] = {"CENTER", "UIParent", "CENTER", 17,-100},
+		["NecrosisMountButton"] = {"CENTER", "UIParent", "CENTER", 53,-100},
+		["NecrosisPetMenuButton"] = {"CENTER", "UIParent", "CENTER", 87,-100},
+		["NecrosisCurseMenuButton"] = {"CENTER", "UIParent", "CENTER", 121,-100},
 	},
 }
 
@@ -617,9 +617,10 @@ function Necrosis_ChangeDemon()
 	end
 
 	-- Si le démon n'est pas asservi on définit son titre, et on met à jour son nom dans Necrosis
+	Local.Summon.LastDemonType = Local.Summon.DemonType
 	Local.Summon.DemonType = UnitCreatureFamily("pet")
-	for i = 1, 5, 1 do
-		if Local.Summon.DemonType == NECROSIS_PET_LOCAL_NAME[i] and not (NecrosisConfig.PetName[i] or UnitName("pet") == UNKNOWNOBJECT) then
+	for i = 1, #NECROSIS_PET_LOCAL_NAME, 1 do
+		if Local.Summon.DemonType == NECROSIS_PET_LOCAL_NAME[i] and not (NecrosisConfig.PetName[i] or (UnitName("pet") == UNKNOWNOBJECT)) then
 			NecrosisConfig.PetName[i] = UnitName("pet")
 			NecrosisLocalization()
 			break
@@ -844,6 +845,11 @@ function Necrosis_OnDragStop(button)
 	-- On sauvegarde l'emplacement du bouton
 	local NomBouton = button:GetName()
 	local AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY = button:GetPoint()
+	if not BoutonParent then
+		BoutonParent = "UIParent"
+	else
+		BoutonParent = BoutonParent:GetName()
+	end
 	NecrosisConfig.FramePosition[NomBouton] = {AncreBouton, BoutonParent, AncreParent, BoutonX, BoutonY}
 end
 
@@ -1346,12 +1352,11 @@ function Necrosis_UpdateMana()
 					end
 				elseif NECROSIS_SPELL_TABLE[8].ID then
 					if NECROSIS_SPELL_TABLE[8].Mana > mana then
-						for i = 6, 7, 1 do
-							ManaPet[i] = false
-						end
+							ManaPet[7] = false
+							ManaPet[8] = false
 					elseif NECROSIS_SPELL_TABLE[30].ID then
 						if NECROSIS_SPELL_TABLE[30].Mana > mana then
-							ManaPet[7] = false
+							ManaPet[8] = false
 						end
 					end
 				end
@@ -1373,23 +1378,30 @@ function Necrosis_UpdateMana()
 	end
 
 	-- Texturage des boutons de pet
-	local PetButtonNumber = new("array",
-		2, 3, 4, 5, 10, 6, 7
-	)
 	local PetNameHere = new("array",
 		"Imp-0", "Voidwalker-0", "Succubus-0", "Felhunter-0", "Felguard-0", "Infernal-0", "Doomguard-0"
 	)
-	for i = 1, #PetButtonNumber, 1 do
-		local PetManaButton = _G["NecrosisPetMenu"..PetButtonNumber[i]]
-		if PetManaButton and Local.Summon.DemonType == NECROSIS_PET_LOCAL_NAME[i] then
-			PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i].."2")
+	for i = 1, #PetNameHere, 1 do
+		local PetManaButton = _G["NecrosisPetMenu"..(i + 1)]
+		if PetManaButton
+			and Local.Summon.LastDemonType
+			and Local.Summon.LastDemonType == NECROSIS_PET_LOCAL_NAME[i]
+			and not (Local.Summon.LastDemonType == Local.Summon.DemonType)
+			then
+				PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i].."1")
+				Local.Summon.LastDemonType = nil
+		end
+		if PetManaButton
+			and Local.Summon.DemonType
+			and Local.Summon.DemonType == NECROSIS_PET_LOCAL_NAME[i]
+			then
+				PetManaButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\"..PetNameHere[i].."2")
 		elseif PetManaButton and ManaPet[i] then
 			PetManaButton:GetNormalTexture():SetDesaturated(nil)
 		elseif PetManaButton then
 			PetManaButton:GetNormalTexture():SetDesaturated(1)
 		end
 	end
-	del(PetButtonNumber)
 	del(PetNameHere)
 	del(ManaPet)
 
@@ -1837,6 +1849,14 @@ function Necrosis_ButtonSetup()
 							f = Necrosis_CreateSphereButtons(ButtonName[button])
 							Necrosis_StoneAttribute(Local.Summon.SteedAvailable)
 						end
+						f:ClearAllPoints()
+						f:SetPoint(
+							NecrosisConfig.FramePosition[ButtonName[button]][1],
+							NecrosisConfig.FramePosition[ButtonName[button]][2],
+							NecrosisConfig.FramePosition[ButtonName[button]][3],
+							NecrosisConfig.FramePosition[ButtonName[button]][4],
+							NecrosisConfig.FramePosition[ButtonName[button]][5]						
+						)
 						f:Show()
 						break
 				end
@@ -2197,23 +2217,20 @@ function Necrosis_CreateMenu()
 	local MenuID = new("array",
 		15, 3, 4, 5, 6, 7, 8, 30, 35, 44
 	)
-	local ButtonID = new("array",
-		1, 2, 3, 4, 5, 10, 6, 7, 8, 9
-	)
 	-- On ordonne et on affiche les boutons dans le menu des démons
 	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
-		for sort = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == sort
-				and NecrosisConfig.DemonSpellPosition[sort] > 0
-				and NECROSIS_SPELL_TABLE[ MenuID[sort] ].ID then
+		for spell = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == spell
+				and NecrosisConfig.DemonSpellPosition[spell] > 0
+				and NECROSIS_SPELL_TABLE[ MenuID[spell] ].ID then
 					-- Création à la demande du bouton du menu des démons
 					if not _G["NecrosisPetMenuButton"] then
 						_ = Necrosis_CreateSphereButtons("PetMenu")
 					end
-					menuVariable = _G["NecrosisPetMenu"..ButtonID[sort]]
+					menuVariable = _G["NecrosisPetMenu"..spell]
 					if not menuVariable then
-						menuVariable = Necrosis_CreateMenuPet(ButtonID[sort])
+						menuVariable = Necrosis_CreateMenuPet(spell)
 					end
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
@@ -2221,14 +2238,13 @@ function Necrosis_CreateMenu()
 						NecrosisConfig.PetMenuPos.x * 32,
 						NecrosisConfig.PetMenuPos.y * 32
 					)
-					PetButtonPosition = ButtonID[sort]
+					PetButtonPosition = spell
 					Local.Menu.Pet:insert(menuVariable)
 					break
 			end
 		end
 	end
 	del(MenuID)
-	del(ButtonID)
 
 	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
 	if Local.Menu.Pet[1] then

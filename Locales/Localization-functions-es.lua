@@ -65,7 +65,7 @@ NECROSIS_ANTI_FEAR_SPELL = {
 NECROSIS_UNIT = {
 	["Undead"] = {
 		"No-muerto"
-	}
+	},
 	["Demon"] = "Demonio",
 	["Elemental"] = "Elemental",
 }
