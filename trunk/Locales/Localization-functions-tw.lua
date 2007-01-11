@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -179,13 +179,13 @@ NECROSIS_SPELL_TABLE = {
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "靈魂典禮",	Length = 300,	Type = 3},
 	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂石",	Length = 0,		Type = 0},
+		Name = "靈魂石",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "治療石",		Length = 0,		Type = 0},
+		Name = "治療石",		Length = 0,	Type = 0},
 	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "法術石",			Length = 0,		Type = 0},
+		Name = "法術石",		Length = 0,	Type = 0},
 	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "火焰石",			Length = 0,		Type = 0},
+		Name = "火焰石",		Length = 0,	Type = 0},
 }
 
 -- Type 0 = Pas de Timer
@@ -229,9 +229,7 @@ NECROSIS_TRANSLATION = {
 	["Cooldown"] = "冷卻時間",
 	["Hearth"] = "爐石",
 	["Rank"] = "等級",
-	["Invisible"] = "偵測隱形",
-	["LesserInvisible"] = "偵測次級隱形",
-	["GreaterInvisible"] = "偵測強效隱形",
+	["Create"] = ""
 }
 
 end

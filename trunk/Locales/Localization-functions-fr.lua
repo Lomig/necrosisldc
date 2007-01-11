@@ -61,15 +61,15 @@ NECROSIS_ANTI_FEAR_SPELL = {
 	["Debuff"] = {
 		"Mal\195\169diction de t\195\169m\195\169rit\195\169"		-- Warlock curse
 	}
-};
+}
 
 NECROSIS_UNIT = {
 	["Undead"] = {
 		"Mort-vivant"
-	};
-	["Demon"] = "D\195\169mon";
-	["Elemental"] = "El\195\169mentaire";
-};
+	},
+	["Demon"] = "D\195\169mon",
+	["Elemental"] = "El\195\169mentaire",
+}
 
 -- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
 NECROSIS_ANTI_FEAR_SRCH = "Votre (.+) rate. (.+) y est insensible."
@@ -140,7 +140,7 @@ NECROSIS_SPELL_TABLE = {
 	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Respiration interminable",				Length = 0,	Type = 0},
 	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "D\195\169tection de l'invisibilit\195\169",					Length = 0,	Type = 0},
+		Name = "D\195\169tection de l'invisibilit\195\169",		Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Oeil de Kilrogg",					Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -174,16 +174,16 @@ NECROSIS_SPELL_TABLE = {
 	[49] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Brise-\195\162me",					Length = 300,	Type = 3},
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Rituel des \195\162mes",					Length = 300,	Type = 3},
+		Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
 	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Cr\195\169ation de Pierre d'\195\162me",	Length = 0,		Type = 0},
+		Name = "Cr\195\169ation de Pierre d'\195\162me",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Cr\195\169ation de Pierre de soins",		Length = 0,		Type = 0},
+		Name = "Cr\195\169ation de Pierre de soins",			Length = 0,	Type = 0},
 	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Cr\195\169ation de Pierre de sort",			Length = 0,		Type = 0},
+		Name = "Cr\195\169ation de Pierre de sort",			Length = 0,	Type = 0},
 	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Cr\195\169ation de Pierre de feu",			Length = 0,		Type = 0},
-};
+		Name = "Cr\195\169ation de Pierre de feu",			Length = 0,	Type = 0},
+}
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
@@ -204,12 +204,12 @@ NECROSIS_ITEM = {
 	["DemoniacStone"] = "Figurine d\195\169moniaque",
 	["Hearthstone"] = "Pierre de foyer",
 	["SoulPouch"] = {"Bourse d'\195\162me", "Sac en gangr\195\169toffe", "Sac en gangr\195\169toffe du Magma"}
-};
+}
 
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Contrecoup",
 	["ShadowTrance"] = "Transe de l'ombre",
-};
+}
 
 NECROSIS_PET_LOCAL_NAME = {
 	[1] = "Diablotin",
@@ -219,12 +219,13 @@ NECROSIS_PET_LOCAL_NAME = {
 	[5] = "Gangregarde",
 	[6] = "Infernal",
 	[7] = "Garde funeste"
-};
+}
 
 NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Temps",
 	["Hearth"] = "Pierre de foyer",
 	["Rank"] = "Rang",
-};
+	["Create"] = "Cr\195\169ation"
+}
 
 end

@@ -60,14 +60,14 @@ NECROSIS_ANTI_FEAR_SPELL = {
 	["Debuff"] = {
 		"Maldici\195\179n de Temeridad"		-- Warlock curse
 	}
-};
+}
 
 NECROSIS_UNIT = {
 	["Undead"] = {
 		"No-muerto"
-	};
-	["Demon"] = "Demonio";
-	["Elemental"] = "Elemental";
+	}
+	["Demon"] = "Demonio",
+	["Elemental"] = "Elemental",
 }
 
 -- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
@@ -175,14 +175,14 @@ NECROSIS_SPELL_TABLE = {
 	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Ritual de almas",				Length = 300,	Type = 3},
 	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Crear piedra de alma",	Length = 0,		Type = 0},
+		Name = "Crear piedra de alma",				Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Crear piedra de salud",		Length = 0,		Type = 0},
+		Name = "Crear piedra de salud",				Length = 0,	Type = 0},
 	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Crear piedra de hechizo",			Length = 0,		Type = 0},
+		Name = "Crear piedra de hechizo",			Length = 0,	Type = 0},
 	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Crear piedra de fuego",			Length = 0,		Type = 0},
-};
+		Name = "Crear piedra de fuego",				Length = 0,	Type = 0},
+}
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
@@ -203,13 +203,13 @@ NECROSIS_ITEM = {
 	["DemoniacStone"] = "Figura demoniaca",
 	["Hearthstone"] = "Piedra de hogar",
 	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela vil", "Bolsa de tela vil del N\195\186cleo"}
-};
+}
 
 
 NECROSIS_NIGHTFALL = {
 	["Backlash"] = "Backlash",
 	["ShadowTrance"] = "Trance de las Sombras"
-};
+}
 
 NECROSIS_PET_LOCAL_NAME = {
 	[1] = "Diablillo",
@@ -219,12 +219,13 @@ NECROSIS_PET_LOCAL_NAME = {
 	[5] = "Guardia maldito",
 	[6] = "Inferno",
 	[7] = "Guardia apocal\195\173ptico"
-};
+}
 
 NECROSIS_TRANSLATION = {
 	["Cooldown"] = "Tiempo de regeneraci\195\179n restante",
 	["Hearth"] = "Piedra de hogar",
 	["Rank"] = "Rango",
-};
+	["Create"] = "Crear"
+}
 
 end
