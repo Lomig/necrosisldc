@@ -77,12 +77,12 @@ function Necrosis_Localization_Dialog_Es()
 		["Healthstone"] = {
 			Label = "|c0066FF33Piedra de Salud|r",
 			Text = {"Click derecho para crear","Click izquierdo para usar"},
-			Text2 = "Click central or Ctrl+Click izquierdo para comerciar",
-			Ritual = "|c00FFFFFFShift+Click para empezar Ritual de Almas|r"
+			Text2 = "Click central o Ctrl+Click izquierdo para comerciar",
+			Ritual = "|c00FFFFFFShift+Click para empezar el Ritual de Almas|r"
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPiedra de Hechizo|r",
-			Text = {"Click derecho para crear","En el inventario\nClick central or Ctrl+Click izquierdo para equipar ","Equipado - Click izquierdo para usar\n Shift+Click para desequipar"}
+			Text = {"Click derecho para crear","En el inventario\nClick central o Ctrl+Click izquierdo para equipar ","Equipado - Click izquierdo para usar\n Shift+Click para desequipar"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Piedra de Fuego|r",
