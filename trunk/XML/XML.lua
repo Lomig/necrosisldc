@@ -248,6 +248,7 @@ local function Necrosis_CreateMenuButton(button)
 	local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureStateHeaderTemplate");
 	b:ClearAllPoints()
 	b:SetAllPoints(frame)
+	b:Show()
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if not NecrosisConfig.NecrosisLockServ then
@@ -319,7 +320,7 @@ end
 
 -- Boutons du menu des démons
 function Necrosis_CreateMenuPet(i)
-	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Infernal", "Doomguard", "Enslave", "Sacrifice", "Felguard"};
+	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice"}
 
 	-- Creaton du bouton
 	local frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate");

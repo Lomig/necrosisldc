@@ -187,13 +187,12 @@ function Necrosis_PetSpellAttribute()
 	end
 
 	-- Démons maitrisés
-	local buttonID = {2, 3, 4, 5, 10}
-	for i = 1, #buttonID, 1 do
-		local f = _G["NecrosisPetMenu"..buttonID[i]]
+	for i = 2, 6, 1 do
+		local f = _G["NecrosisPetMenu"..i]
 		if f then
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[i+2].Name
-			if NECROSIS_SPELL_TABLE[i+2].Rank and not (NECROSIS_SPELL_TABLE[i+2].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[i+2].Rank..")"
+			local SpellName_Rank = NECROSIS_SPELL_TABLE[i+1].Name
+			if NECROSIS_SPELL_TABLE[i+1].Rank and not (NECROSIS_SPELL_TABLE[i+1].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[i+1].Rank..")"
 			end
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
@@ -202,17 +201,17 @@ function Necrosis_PetSpellAttribute()
 				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] then
-				Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] = true
+			if not Necrosis.AlreadyBind["NecrosisPetMenu"..i] then
+				Necrosis.AlreadyBind["NecrosisPetMenu"..i] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[i+2].Name, "CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"}
+					{NECROSIS_SPELL_TABLE[i+2].Name, "CLICK NecrosisPetMenu"..i..":LeftButton"}
 				)
 			end
 		end
 	end
 
 	-- Autres sorts démoniaques
-	local buttonID = {1, 6, 7, 8, 9}
+	local buttonID = {1, 7, 8, 9, 10}
 	local BuffID = {15, 8, 30, 35, 44}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
