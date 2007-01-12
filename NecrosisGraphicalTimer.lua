@@ -55,8 +55,12 @@ function Necrosis_CreateGroup(SpellGroup, index)
 		else
 			texte = texte.." - ?"
 		end
-		FontString:SetText(texte)
-		f:Show()
+		if texte == "? - ?" then
+			f:Hide()
+		else
+			FontString:SetText(texte)
+			f:Show()
+		end
 		return f
 	end
 
@@ -74,6 +78,7 @@ function Necrosis_CreateGroup(SpellGroup, index)
 
 	FontString:SetWidth(150)
 	FontString:SetHeight(10)
+	FontString:SetTextHeight(10)
 	FontString:SetJustifyH("CENTER")
 	FontString:SetJustifyV("MIDDLE")
 	FontString:SetTextColor(1, 1, 1)
@@ -92,7 +97,12 @@ function Necrosis_CreateGroup(SpellGroup, index)
 	else
 		texte = texte.." - ?"
 	end
-	FontString:SetText(texte)
+	if texte == "? - ?" then
+		f:Hide()
+	else
+		FontString:SetText(texte)
+		f:Show()
+	end
 
 	return frame
 end
@@ -272,8 +282,8 @@ function NecrosisUpdateTimer(tableau, Changement)
 			affichage = affichage.."0"..secondes
 		end
 
-		if (tableau[index].Type == 1 or tableau[index].Name == NECROSIS_SPELL_TABLE[16].Name)
-		and tableau[index].Target then
+		if (tableau[index].Type == 1 or tableau[index].Type == 3 or tableau[index].Name == NECROSIS_SPELL_TABLE[16].Name)
+		and tableau[index].Target and not (tableau[index].Target == "") then
 			if NecrosisConfig.SpellTimerPos == 1 then
 				affichage = affichage.." - "..tableau[index].Target
 			else

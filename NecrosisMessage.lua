@@ -24,16 +24,16 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
 
--- On définit G comme étant le tableau contenant toutes les frames existantes.
+-- On dÃ©finit G comme Ã©tant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0)
 
 ------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ local _G = getfenv(0)
 
 function Necrosis_Msg(msg, type)
 	if msg then
-		-- Si le type du message est "WORLD", le message sera envoyé en raid, à défaut en groupe, et à défaut en chat local
+		-- Si le type du message est "WORLD", le message sera envoyÃ© en raid, Ã  dÃ©faut en groupe, et Ã  dÃ©faut en chat local
 		if (type == "WORLD") then
 			if (GetNumRaidMembers() > 0) then
 				SendChatMessage(msg, "RAID")
@@ -51,30 +51,30 @@ function Necrosis_Msg(msg, type)
 			else
 				SendChatMessage(msg, "SAY")
 			end
-		-- Si le type du message est "PARTY", le message sera envoyé en groupe
+		-- Si le type du message est "PARTY", le message sera envoyÃ© en groupe
 		elseif (type == "PARTY") then
 			SendChatMessage(msg, "PARTY")
-		-- Si le type du message est "RAID", le message sera envoyé en raid
+		-- Si le type du message est "RAID", le message sera envoyÃ© en raid
 		elseif (type == "RAID") then
 			SendChatMessage(msg, "RAID")
 		elseif (type == "SAY") then
-		-- Si le type du message est "SAY", le message sera envoyé en chat local
+		-- Si le type du message est "SAY", le message sera envoyÃ© en chat local
 			SendChatMessage(msg, "SAY")
 		elseif (type == "EMOTE") then
-		-- Si le type du message est "EMOTE", le message sera envoyé en /e
+		-- Si le type du message est "EMOTE", le message sera envoyÃ© en /e
 			SendChatMessage(msg, "EMOTE")
 		elseif (type == "YELL") then
-		-- Si le type du message est "YELL", le message sera envoyé en /y
+		-- Si le type du message est "YELL", le message sera envoyÃ© en /y
 			SendChatMessage(msg, "YELL")
 		else
 			-- On colorise astucieusement notre message :D
 			msg = Necrosis_MsgAddColor(msg)
 			local Intro = "|CFFFF00FFNe|CFFFF50FFcr|CFFFF99FFos|CFFFFC4FFis|CFFFFFFFF: "
 			if NecrosisConfig.ChatType then
-				-- ...... sur la première fenêtre de chat
+				-- ...... sur la premiÃ¨re fenÃªtre de chat
 				ChatFrame1:AddMessage(Intro..msg, 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
 			else
-				-- ...... ou au milieu de l'écran
+				-- ...... ou au milieu de l'Ã©cran
 				UIErrorsFrame:AddMessage(Intro..msg, 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
 			end
 		end
@@ -86,7 +86,7 @@ end
 -- ... ET LE COLORAMA FUT !
 ------------------------------------------------------------------------------------------------------
 
--- Remplace dans les chaines les codes de coloration par les définitions de couleur associées
+-- Remplace dans les chaines les codes de coloration par les dÃ©finitions de couleur associÃ©es
 function Necrosis_MsgAddColor(msg)
 	msg = msg:gsub("<white>", "|CFFFFFFFF")
 	msg = msg:gsub("<lightBlue>", "|CFF99CCFF")
@@ -112,7 +112,7 @@ function Necrosis_MsgAddColor(msg)
 end
 
 
--- Insère dans les timers des codes de coloration en fonction du pourcentage de temps restant
+-- InsÃ¨re dans les timers des codes de coloration en fonction du pourcentage de temps restant
 function NecrosisTimerColor(percent)
 	local color = "<brightGreen>"
 	if (percent < 10) then
@@ -226,7 +226,7 @@ function  Necrosis_Speech_It(Spell, Speeches, metatable)
 		end
 		AlphaBuffMenu = 1
 		AlphaBuffVar = GetTime() + 3
-	-- Affichage des messages d'invocations de démon
+	-- Affichage des messages d'invocations de dÃ©mon
 	else for type = 3, 7, 1 do
 		if Spell.Name == NECROSIS_SPELL_TABLE[type].Name then
 			Speeches.SpellSucceed.Pet = setmetatable({}, metatable)
@@ -291,7 +291,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Necrosis_Speech_Then(Spell, DemonName, Speech)
-	-- Si le sort était un un cast de monture et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- Si le sort Ã©tait un un cast de monture et qu'il y avait quelque chose Ã  faire dire aprÃ¨s le cast, on y va !
 	if (Spell.Name == NECROSIS_SPELL_TABLE[1].Name or Spell.Name == NECROSIS_SPELL_TABLE[2].Name) then
 		for i in ipairs(Speech.Steed) do
 			if Speech.Steed[i]:find("<emote>") then
@@ -306,7 +306,7 @@ function Necrosis_Speech_Then(Spell, DemonName, Speech)
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
 		end
-	-- Si le sort était un cast de Rez et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- Si le sort Ã©tait un cast de Rez et qu'il y avait quelque chose Ã  faire dire aprÃ¨s le cast, on y va !
 	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name then
 		for i in ipairs(Speech.Rez) do
 			if Speech.Rez[i]:find("<emote>") then
@@ -318,7 +318,7 @@ function Necrosis_Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.Rez = {}
-	-- Si le sort était un cast de TP et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- Si le sort Ã©tait un cast de TP et qu'il y avait quelque chose Ã  faire dire aprÃ¨s le cast, on y va !
 	elseif (Spell.Name == NECROSIS_SPELL_TABLE[37].Name) then
 		for i in ipairs(Speech.TP) do
 			if Speech.TP[i]:find("<emote>") then
@@ -330,7 +330,7 @@ function Necrosis_Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.TP = {}
-	-- Si le sort était un sacrifice de démon et qu'il y avait quelque chose à faire dire à sa mort, on y va !
+	-- Si le sort Ã©tait un sacrifice de dÃ©mon et qu'il y avait quelque chose Ã  faire dire Ã  sa mort, on y va !
 	elseif Spell.Name == NECROSIS_SPELL_TABLE[44].Name then
 		for i in ipairs(Speech.Sacrifice) do
 			if Speech.Sacrifice[i]:find("<emote>") then
@@ -342,7 +342,7 @@ function Necrosis_Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.Sacrifice = {}
-	-- Si le sort était un cast de démon et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- Si le sort Ã©tait un cast de dÃ©mon et qu'il y avait quelque chose Ã  faire dire aprÃ¨s le cast, on y va !
 	elseif Spell.Name == NECROSIS_SPELL_TABLE[3].Name
 			or Spell.Name == NECROSIS_SPELL_TABLE[4].Name
 			or Spell.Name == NECROSIS_SPELL_TABLE[5].Name

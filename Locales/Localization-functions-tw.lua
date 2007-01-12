@@ -74,9 +74,6 @@ NECROSIS_ANTI_FEAR_UNIT = {
 	["Elemental"] = "元素"
 }
 
--- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
-NECROSIS_ANTI_FEAR_SRCH = "你的(.+)施放失敗。(.+)對此免疫。"
-
 NECROSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "召喚地獄戰馬",		Length = 0,	Type = 0},
@@ -97,7 +94,7 @@ NECROSIS_SPELL_TABLE = {
 	[9] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "放逐術",			Length = 30,	Type = 2},
 	[10] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "奴役惡魔",		Length = 30000,	Type = 2},
+		Name = "奴役惡魔",		Length = 3000,	Type = 2},
 	[11] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "靈魂石復活",		Length = 1800,	Type = 1},
 	[12] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,

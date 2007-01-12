@@ -250,6 +250,7 @@ function Necrosis_Localization_Dialog_Cn()
 			"/necro <lightOrange>sm<white> -- <lightBlue>用a short raid-ready version代替灵魂绑定和召唤信息",
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
+			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目标对恐惧免疫!!!!",

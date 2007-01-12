@@ -71,9 +71,6 @@ NECROSIS_UNIT = {
 	["Elemental"] = "El\195\169mentaire",
 }
 
--- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
-NECROSIS_ANTI_FEAR_SRCH = "Votre (.+) rate. (.+) y est insensible."
-
 NECROSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Invocation d'un palefroi corrompu",			Length = 0,	Type = 0},
@@ -94,7 +91,7 @@ NECROSIS_SPELL_TABLE = {
 	[9] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Bannir",						Length = 30,	Type = 2},
 	[10] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Asservir d\195\169mon",					Length = 30000,	Type = 2},
+		Name = "Asservir d\195\169mon",					Length = 3000,	Type = 2},
 	[11] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "R\195\169surrection de Pierre d'\195\162me",		Length = 1800,	Type = 1},
 	[12] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,

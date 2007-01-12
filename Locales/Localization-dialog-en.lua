@@ -248,6 +248,7 @@ function Necrosis_Localization_Dialog_En()
 			"/necro <lightOrange>sm<white> -- <lightBlue>Replace Soulstoning and summoning messages with a short raid-ready version",
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
+			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 		},
 		["Information"] = {
 			["FearProtect"] = "Your target has got fear protection!",

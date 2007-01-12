@@ -24,14 +24,14 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
--- On définit G comme étant le tableau contenant toutes les frames existantes.
+-- On dÃ©finit G comme Ã©tant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0);
 
 
@@ -41,14 +41,14 @@ function Necrosis_CreateWarlockUI()
 -- BOUTON DU TIMER DES SORTS
 ------------------------------------------------------------------------------------------------------
 
-	-- Création du bouton de Timer des sorts
+	-- CrÃ©ation du bouton de Timer des sorts
 	local frame = nil;
 	frame = _G["NecrosisSpellTimerButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisSpellTimerButton", UIParent, "SecureActionButtonTemplate");
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetFrameStrata("MEDIUM");
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
@@ -60,7 +60,7 @@ function Necrosis_CreateWarlockUI()
 	frame:RegisterForClicks("RightButtonUp");
 	frame:Show();
 
-	-- Création de l'ancre invisible des timers
+	-- CrÃ©ation de l'ancre invisible des timers
 	local f = _G["NecrosisTimerFrame0"];
 	if not f then
 		f = CreateFrame("Frame", "NecrosisTimerFrame0", UIParent)
@@ -71,7 +71,7 @@ function Necrosis_CreateWarlockUI()
 		f:SetPoint("LEFT", NecrosisSpellTimerButton, "CENTER", 50, 0)
 	end
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnLoad", function()
 		this:RegisterForDrag("LeftButton");
 		this:RegisterForClicks("RightButtonUp");
@@ -82,7 +82,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	frame:ClearAllPoints();
 	frame:SetPoint(
 		NecrosisConfig.FramePosition["NecrosisSpellTimerButton"][1],
@@ -97,14 +97,14 @@ function Necrosis_CreateWarlockUI()
 -- SPHERE NECROSIS
 ------------------------------------------------------------------------------------------------------
 
-	-- Création du bouton principal de Necrosis
+	-- CrÃ©ation du bouton principal de Necrosis
 	frame = nil;
 	frame = _G["NecrosisButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisButton", UIParent, "SecureActionButtonTemplate");
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetFrameLevel(1);
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
@@ -115,18 +115,18 @@ function Necrosis_CreateWarlockUI()
 	frame:RegisterForClicks("AnyUp");
 	frame:Show();
 
-	-- Création du compteur de fragments d'âme
+	-- CrÃ©ation du compteur de fragments d'Ã¢me
 	local FontString = _G["NecrosisShardCount"];
 	if not FontString then
 		FontString = frame:CreateFontString("NecrosisShardCount", nil, "GameFontNormal");
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	FontString:SetText("00");
 	FontString:SetPoint("CENTER");
 	FontString:SetTextColor(1, 1, 1);
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEvent", function() Necrosis_OnEvent(event); end);
 	frame:SetScript("OnUpdate", function() Necrosis_OnUpdate(arg1); end);
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Main", "ANCHOR_LEFT"); end);
@@ -135,7 +135,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	frame:ClearAllPoints();
 	frame:SetPoint(
 		NecrosisConfig.FramePosition["NecrosisButton"][1],
@@ -152,10 +152,10 @@ end
 ------------------------------------------------------------------------------------------------------
 
 local function Necrosis_CreateStoneButton(stone)
-	-- Création du bouton de la pierre
+	-- CrÃ©ation du bouton de la pierre
 	local frame = CreateFrame("Button", "Necrosis"..stone.."Button", UIParent, "SecureActionButtonTemplate");
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetWidth(34);
@@ -172,7 +172,7 @@ local function Necrosis_CreateStoneButton(stone)
 	frame:RegisterForClicks("AnyUp");
 	frame:Show();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, stone, "ANCHOR_LEFT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
@@ -183,7 +183,7 @@ local function Necrosis_CreateStoneButton(stone)
 	end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Attributs spécifiques à la pierre d'âme
+	-- Attributs spÃ©cifiques Ã  la pierre d'Ã¢me
 	-- Ils permettent de caster la pierre sur soi si pas de cible et hors combat
 	if stone == "Soulstone" then
 		frame:SetScript("PreClick", function()
@@ -198,7 +198,7 @@ local function Necrosis_CreateStoneButton(stone)
 		end);
 	end
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	if not NecrosisConfig.NecrosisLockServ then
 		frame:ClearAllPoints();
 		frame:SetPoint(
@@ -222,7 +222,7 @@ local function Necrosis_CreateMenuButton(button)
 	-- Creaton du bouton d'ouverture du menu
 	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureAnchorUpDownTemplate");
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetWidth(34);
@@ -233,7 +233,7 @@ local function Necrosis_CreateMenuButton(button)
 	frame:RegisterForClicks("AnyUp");
 	frame:Show();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, button, "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
@@ -250,7 +250,7 @@ local function Necrosis_CreateMenuButton(button)
 	b:SetAllPoints(frame)
 	b:Show()
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	if not NecrosisConfig.NecrosisLockServ then
 		frame:ClearAllPoints();
 		frame:SetPoint(
@@ -272,12 +272,12 @@ end
 
 -- Boutons du menu des buffs
 function Necrosis_CreateMenuBuff(i)
-	local BuffName = {"Armor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Banish", "FelArmor", "Enslave"};
+	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Enslave", "Banish"};
 
 	-- Creaton du bouton
 	local frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate");
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetWidth(40);
@@ -287,11 +287,11 @@ function Necrosis_CreateMenuBuff(i)
 	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 
-	-- Attributs spéciaux pour les buffs castables sur les autres joueurs
+	-- Attributs spÃ©ciaux pour les buffs castables sur les autres joueurs
 	if i == 2 or i == 3 then
 		frame:SetScript("PreClick", function()
 			if not (InCombatLockdown() or UnitIsFriend("player","target")) then
@@ -305,7 +305,7 @@ function Necrosis_CreateMenuBuff(i)
 		end);
 	end
 
-	-- Attributes spéciaux pour notre ami le sort de Bannissement
+	-- Attributes spÃ©ciaux pour notre ami le sort de Bannissement
 	if i == 9 then
 		frame:SetScale(NecrosisConfig.BanishScale/100);
 	end
@@ -318,14 +318,14 @@ end
 -- MENU DES DEMONS
 ------------------------------------------------------------------------------------------------------
 
--- Boutons du menu des démons
+-- Boutons du menu des dÃ©mons
 function Necrosis_CreateMenuPet(i)
 	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice"}
 
 	-- Creaton du bouton
 	local frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate");
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetWidth(40);
@@ -335,7 +335,7 @@ function Necrosis_CreateMenuPet(i)
 	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, PetName[i], "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	return frame
@@ -346,14 +346,14 @@ end
 -- MENU DES MALEDICTIONS
 ------------------------------------------------------------------------------------------------------
 
--- Boutons du menu des malédictions
+-- Boutons du menu des malÃ©dictions
 function Necrosis_CreateMenuCurse(i)
 	local CurseName = {"Amplify", "Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"};
 
 	-- Creaton du bouton
 	local frame = CreateFrame("Button", "NecrosisCurseMenu"..i, UIParent, "SecureActionButtonTemplate");
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetWidth(40);
@@ -363,7 +363,7 @@ function Necrosis_CreateMenuCurse(i)
 	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, CurseName[i], "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	return frame
@@ -383,7 +383,7 @@ function Necrosis_CreateWarlockPopup()
 		frame = CreateFrame("Button", "NecrosisShadowTranceButton", UIParent);
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetFrameStrata("HIGH");
@@ -394,14 +394,14 @@ function Necrosis_CreateWarlockPopup()
 	frame:RegisterForClicks("AnyUp");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "ShadowTrance", "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	frame:ClearAllPoints();
 	frame:SetPoint(
 		NecrosisConfig.FramePosition["NecrosisShadowTranceButton"][1],
@@ -417,7 +417,7 @@ function Necrosis_CreateWarlockPopup()
 		frame = CreateFrame("Button", "NecrosisBacklashButton", UIParent);
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetFrameStrata("HIGH");
@@ -427,14 +427,14 @@ function Necrosis_CreateWarlockPopup()
 	frame:RegisterForDrag("LeftButton");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Backlash", "ANCHOR_RIGHT"); end);
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	frame:ClearAllPoints();
 	frame:SetPoint(
 		NecrosisConfig.FramePosition["NecrosisBacklashButton"][1],
@@ -444,14 +444,14 @@ function Necrosis_CreateWarlockPopup()
 		NecrosisConfig.FramePosition["NecrosisBacklashButton"][5]
 	);
 
-	-- Creation du bouton de détection des cibles banissables / asservissables
+	-- Creation du bouton de dÃ©tection des cibles banissables / asservissables
 	frame = nil;
 	frame = _G["NecrosisCreatureAlertButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisCreatureAlertButton", UIParent);
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetFrameStrata("HIGH");
@@ -461,12 +461,12 @@ function Necrosis_CreateWarlockPopup()
 	frame:RegisterForDrag("LeftButton");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	if NecrosisConfig.FramePosition then
 		if NecrosisConfig.FramePosition["NecrosisCreatureAlertButton"] then
 			frame:ClearAllPoints();
@@ -483,13 +483,13 @@ function Necrosis_CreateWarlockPopup()
 		frame:SetPoint("CENTER", UIParent, "CENTER", -50, 0);
 	end
 
-	-- Creation du bouton de détection des cibles protégées contre la peur
+	-- Creation du bouton de dÃ©tection des cibles protÃ©gÃ©es contre la peur
 	local frame = _G["NecrosisAntiFearButton"];
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisAntiFearButton", UIParent);
 	end
 
-	-- Définition de ses attributs
+	-- DÃ©finition de ses attributs
 	frame:SetMovable(true);
 	frame:EnableMouse(true);
 	frame:SetFrameStrata("HIGH");
@@ -499,12 +499,12 @@ function Necrosis_CreateWarlockPopup()
 	frame:RegisterForDrag("LeftButton");
 	frame:Hide();
 
-	-- Edition des scripts associés au bouton
+	-- Edition des scripts associÃ©s au bouton
 	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this); end);
 	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this); end);
 	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this); end);
 
-	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
+	-- Placement de la fenÃªtre Ã  l'endroit sauvegardÃ© ou Ã  l'emplacement par dÃ©faut
 	if NecrosisConfig.FramePosition then
 		if NecrosisConfig.FramePosition["NecrosisAntiFearButton"] then
 			frame:ClearAllPoints();
