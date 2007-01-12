@@ -78,7 +78,7 @@ function Necrosis_CreateGroup(SpellGroup, index)
 
 	FontString:SetWidth(150)
 	FontString:SetHeight(10)
-	FontString:SetTextHeight(10)
+	FontString:SetTextHeight(14)
 	FontString:SetJustifyH("CENTER")
 	FontString:SetJustifyV("MIDDLE")
 	FontString:SetTextColor(1, 1, 1)
@@ -98,10 +98,10 @@ function Necrosis_CreateGroup(SpellGroup, index)
 		texte = texte.." - ?"
 	end
 	if texte == "? - ?" then
-		f:Hide()
+		frame:Hide()
 	else
 		FontString:SetText(texte)
-		f:Show()
+		frame:Show()
 	end
 
 	return frame

@@ -109,10 +109,10 @@
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 						GameTooltip:SetText(this:GetValue().." %")
-						if getglobal("NecrosisBuffMenu9") then
-							NecrosisBuffMenu9:Show();
-							NecrosisBuffMenu9:ClearAllPoints();
-							NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+						if getglobal("NecrosisBuffMenu11") then
+							NecrosisBuffMenu11:Show();
+							NecrosisBuffMenu11:ClearAllPoints();
+							NecrosisBuffMenu11:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
 						end
 					</OnEnter>
 					<OnLeave>
@@ -124,9 +124,9 @@
 							GameTooltip:SetText(this:GetValue().." %")
 							NecrosisConfig.BanishScale = this:GetValue()
 							if getglobal("NecrosisBuffMenu9") then
-								NecrosisBuffMenu9:ClearAllPoints();
-								NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale / 100);
-								NecrosisBuffMenu9:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+								NecrosisBuffMenu11:ClearAllPoints();
+								NecrosisBuffMenu11:SetScale(NecrosisConfig.BanishScale / 100);
+								NecrosisBuffMenu11:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
 							end
 						end
 					</OnValueChanged>
