@@ -113,13 +113,13 @@ function Necrosis_BuffSpellAttribute()
 
 
 	-- Association des autres buffs aux boutons
-	local buffID = {31, 32, 33, 34, 37, 39, 38, 43, 47, 35}
-	for i = 2, #buffID, 1 do
+	local buffID = {31, 47, 32, 33, 34, 37, 39, 38, 43, 35, 9}
+	for i = 2, #buffID - 1, 1 do
 		local f = _G["NecrosisBuffMenu"..i]
 		if f then
 			f:SetAttribute("type", "spell")
 			-- Si le sort nécessite une cible, on lui en associe une
-			if not (i == 4 or i == 6 or i == 7 or i == 8) then
+			if not (i == 5 or i == 7 or i == 8 or i == 9) then
 				f:SetAttribute("unit", "target")
 			end
 			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
@@ -139,39 +139,44 @@ function Necrosis_BuffSpellAttribute()
 
 
 	-- Cas particulier : Bouton de Banish
-	if _G["NecrosisBuffMenu9"] then
+	if _G["NecrosisBuffMenu11"] then
 		local SpellName_Rank = NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")"
+		local Rank1 = SpellName_Rank:gsub("2", "1")
 		-- Association du sort au clic gauche
-		NecrosisBuffMenu9:SetAttribute("unit", "target")
-		NecrosisBuffMenu9:SetAttribute("type", "macro")
-		NecrosisBuffMenu9:SetAttribute("macrotext", "/focus\n/cast "..SpellName_Rank)
+		NecrosisBuffMenu11:SetAttribute("unit*", "target")
+		NecrosisBuffMenu11:SetAttribute("type*", "macro")
+		NecrosisBuffMenu11:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
 
 		-- Si le démoniste control + click le bouton de banish
 		-- On rebanish la dernière cible bannie
-		NecrosisBuffMenu9:SetAttribute("ctrl-type", "macro")
-		NecrosisBuffMenu9:SetAttribute("ctrl-macrotext", "/cast [target=focus] "..SpellName_Rank)
+		NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
+		NecrosisBuffMenu11:SetAttribute("ctrl-type*", "spell")
+		NecrosisBuffMenu11:SetAttribute("ctrl-spell*", SpellName_Rank)
 
 		-- Création du tableau des raccourcis claviers
-		if not Necrosis.AlreadyBind["NecrosisBuffMenu9Left"] then
-			Necrosis.AlreadyBind["NecrosisBuffMenu9Left"] = true
-			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu9:LeftButton"})
+		if not Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] then
+			Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] = true
+			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu11:LeftButton"})
 		end
 		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
 		if NECROSIS_SPELL_TABLE[9].Rank:find("2") then
-			NecrosisBuffMenu9:SetAttribute("type1", "macro")
-			NecrosisBuffMenu9:SetAttribute("macrotext1", "/focus\n/cast "..SpellName_Rank)
-			NecrosisBuffMenu9:SetAttribute("type2", "macro")
-			NecrosisBuffMenu9:SetAttribute("macrotext2", "/focus\n/cast "..SpellName_Rank:gsub("2", "1"))
+			NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
+			NecrosisBuffMenu11:SetAttribute("harmbutton*", "banish")
+			NecrosisBuffMenu11:SetAttribute("unit*", "target")
+			NecrosisBuffMenu11:SetAttribute("type-banish1", "macro")
+			NecrosisBuffMenu11:SetAttribute("macrotext-banish1", "/focus\n/cast "..SpellName_Rank)
+			NecrosisBuffMenu11:SetAttribute("type-banish2", "macro")
+			NecrosisBuffMenu11:SetAttribute("macrotext-banish2", "/focus\n/cast "..Rank1)
 
-			NecrosisBuffMenu9:SetAttribute("ctrl-type1", "macro")
-			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext1", "/cast [target=focus] "..SpellName_Rank)
-			NecrosisBuffMenu9:SetAttribute("ctrl-type2", "macro")
-			NecrosisBuffMenu9:SetAttribute("ctrl-macrotext2", "/cast [target=focus] "..SpellName_Rank:gsub("2", "1"))
+			NecrosisBuffMenu11:SetAttribute("ctrl-type1", "spell")
+			NecrosisBuffMenu11:SetAttribute("ctrl-spell1", SpellName_Rank)
+			NecrosisBuffMenu11:SetAttribute("ctrl-type2", "spell")
+			NecrosisBuffMenu11:SetAttribute("ctrl-spell2", Rank1)
 
-			if not Necrosis.AlreadyBind["NecrosisBuffMenu9Right"] then
-				Necrosis.AlreadyBind["NecrosisBuffMenu9Right"] = true
+			if not Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] then
+				Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu9:RightButton"}
+					{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu11:RightButton"}
 				)
 			end
 		end
@@ -251,8 +256,8 @@ function Necrosis_CurseSpellAttribute()
 	end
 
 	-- Malédictions amplifiables
-	local buttonID = {2, 3, 6}
-	local buffID = {23, 22, 40}
+	local buttonID = {3, 6, 9}
+	local buffID = {22, 40, 16}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
@@ -281,8 +286,8 @@ function Necrosis_CurseSpellAttribute()
 	end
 
 	-- Autres malédictions
-	local buttonID = {4, 5, 7, 8, 9}
-	local buffID = {24,25,26,27,16}
+	local buttonID = {2, 4, 5, 7, 8, 9}
+	local buffID = {23, 24, 25, 26, 27, 16}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
@@ -354,6 +359,9 @@ function Necrosis_StoneAttribute(Steed)
 	end
 
 	-- Pour la pierre de foyer
+	NecrosisSpellTimerButton:SetAttribute("unit1", "target")
+	NecrosisSpellTimerButton:SetAttribute("type1", "macro")
+	NecrosisSpellTimerButton:SetAttribute("macrotext", "/focus")
 	NecrosisSpellTimerButton:SetAttribute("type2", "item")
 	NecrosisSpellTimerButton:SetAttribute("item", NECROSIS_ITEM.Hearthstone)
 
@@ -417,25 +425,25 @@ function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	-- Si la pierre de sort est équipée, et qu'on connait une baguette,
 	-- Alors cliquer milieu sur la pierre de sort équipe la baguette.
 	if SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[3])
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	-- Sinon, si la pierre de feu est équipée, et qu'on connait une baguette,
 	-- Alors cliquer sur la pierre de feu équipe la baguette
 	elseif FirestoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisFirestoneButton"] then
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	else
 		-- Si on connait l'emplacement de la pierre de sort,
 		-- Alors cliquer sur le bouton de pierre de sort l'équipe.
 		if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1])
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
+			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
 		end
 		-- Si on connait l'emplacement de la pierre de feu,
 		-- Alors cliquer sur le bouton de pierre de feu l'équipe.
 		if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
+			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
 		end
 	end
 end
@@ -455,16 +463,16 @@ function Necrosis_InCombatAttribute()
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
 		NecrosisSpellstoneButton:SetAttribute("type1", "item")
 		NecrosisSpellstoneButton:SetAttribute("item", NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
+		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
 	end
 
 	-- Si on connait le nom de la pierre de feu,
 	-- Alors le clic sur le bouton équipera la pierre
 	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
 		NecrosisFirestoneButton:SetAttribute("type1", "macro")
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
+		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
 	end
 
 	-- Si on connait le nom de la pierre de soin,
@@ -548,10 +556,10 @@ function Necrosis_SpellstoneUpdateAttribute(nostone)
 	NecrosisSpellstoneButton:SetAttribute("ctrl-type1", "macro")
 	NecrosisSpellstoneButton:SetAttribute("shift-type1", "macro")
 	NecrosisSpellstoneButton:SetAttribute("type3", "macro")
-	NecrosisSpellstoneButton:SetAttribute("macrotext3", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
-	NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
+	NecrosisSpellstoneButton:SetAttribute("macrotext3", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+	NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
 	if NecrosisConfig.ItemSwitchCombat[3] then
-		NecrosisSpellstoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisSpellstoneButton:SetAttribute("shift-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	end
 end
 
@@ -573,10 +581,10 @@ function Necrosis_FirestoneUpdateAttribute(nostone)
 	NecrosisFirestoneButton:SetAttribute("shift-type1", "macro")
 	NecrosisFirestoneButton:SetAttribute("type1", "macro")
 	NecrosisFirestoneButton:SetAttribute("type3", "macro")
-	NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
-	NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
+	NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+	NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
 	if NecrosisConfig.ItemSwitchCombat[3] then
-		NecrosisFirestoneButton:SetAttribute("shift-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisFirestoneButton:SetAttribute("shift-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	end
 end
 
@@ -591,24 +599,24 @@ function Necrosis_RangedUpdateAttribute()
 		-- Si on connait la pierre de sort,
 		-- Alors le bouton du milieu équipe la pierre de sort
 		if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[1])
-			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[1])
+			NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+			NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
 		end
 		-- Si on connait la pierre de feu,
 		-- Alors cliquer équipe la pierre de feu
 		if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
-			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
-			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[2])
+			NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+			NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
 		end
 	-- Sinon, si le démoniste à une pierre de sort d'équipée et qu'on connait une baguette,
 	-- Cliquer milieu rééquipe la baguette
 	elseif SpellstoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equip "..NecrosisConfig.ItemSwitchCombat[3])
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1","/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	-- Sinon, si le démoniste a une pierre de feu d'équipée et qu'on connait une baguette,
 	-- Cliquer rééquipe la baguette
 	elseif FirestoneMode == 3 and NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisFirestoneButton"] then
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equip "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[3])
 	end
 end

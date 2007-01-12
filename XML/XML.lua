@@ -57,7 +57,7 @@ function Necrosis_CreateWarlockUI()
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Normal");
 	frame:SetPushedTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Pushed");
 	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SpellTimerButton-Highlight");
-	frame:RegisterForClicks("RightButtonUp");
+	frame:RegisterForClicks("AnyUp");
 	frame:Show();
 
 	-- Création de l'ancre invisible des timers
@@ -292,7 +292,7 @@ function Necrosis_CreateMenuBuff(i)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 
 	-- Attributs spéciaux pour les buffs castables sur les autres joueurs
-	if i == 2 or i == 3 then
+	if i == 3 or i == 4 then
 		frame:SetScript("PreClick", function()
 			if not (InCombatLockdown() or UnitIsFriend("player","target")) then
 				this:SetAttribute("unit", "player");
@@ -306,7 +306,7 @@ function Necrosis_CreateMenuBuff(i)
 	end
 
 	-- Attributes spéciaux pour notre ami le sort de Bannissement
-	if i == 9 then
+	if i == 11 then
 		frame:SetScale(NecrosisConfig.BanishScale/100);
 	end
 

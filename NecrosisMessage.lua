@@ -183,7 +183,7 @@ function  Necrosis_Speech_It(Spell, Speeches, metatable)
 			end
 		end
 	-- Affichage des messages de rez
-	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name and not Spell.TargetName == UnitName("player") then
+	elseif Spell.Name == NECROSIS_SPELL_TABLE[11].Name and not (Spell.TargetName == UnitName("player")) then
 		Speeches.SpellSucceed.Rez = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NECROSIS_SOULSTONE_ALERT_MESSAGE then
 			local tempnum = math.random(1, #NECROSIS_SOULSTONE_ALERT_MESSAGE)
