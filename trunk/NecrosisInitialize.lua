@@ -327,16 +327,6 @@ function Necrosis_SlashHandler(arg1)
 	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
-	elseif arg1:lower():find("sm") then
-		NecrosisConfig.SM = not NecrosisConfig.SM
-		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
-			NecrosisLocalization()
-			Necrosis_Msg("Short Messages : <red>Off")
-		else
-			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
-			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
-			Necrosis_Msg("Short Messages : <brightGreen>On")
-		end
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
 		Necrosis_Msg("Automatic Menus : <lightBlue>Toggled")
@@ -355,6 +345,19 @@ function Necrosis_SlashHandler(arg1)
 			Necrosis_Msg("Blocked Menus : <brightGreen>On")
 		end
 		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
+	elseif arg1:lower():find("cm") then
+		NecrosisConfig.ClosingMenu = not NecrosisConfig.ClosingMenu
+		Necrosis_Msg("Close Menus on click : <lightBlue>Toggled")
+	elseif arg1:lower():find("sm") then
+		NecrosisConfig.SM = not NecrosisConfig.SM
+		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
+			NecrosisLocalization()
+			Necrosis_Msg("Short Messages : <red>Off")
+		else
+			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
+			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
+			Necrosis_Msg("Short Messages : <brightGreen>On")
+		end
 	else
 		NecrosisButton:Open()
 	end

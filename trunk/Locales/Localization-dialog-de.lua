@@ -249,6 +249,7 @@ function Necrosis_Localization_Dialog_De()
 			"/necro <lightOrange>sm<white> -- <lightBlue>Ersetze Seelenstein -und Beschw\195\182rungs- Zufallsnachrichten durch eine kurze, raidgeeignete Version",
 			"/necro <lightOrange>am<white> -- <lightBlue>Erlaubt den Men\195\188s sich automatisch zu \195\182ffnen, wenn man einen Kampf betritt",
 			"/necro <lightOrange>bm<white> -- <lightBlue>H\195\164lt die Men\195\188s dauerhaft offen",
+			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",

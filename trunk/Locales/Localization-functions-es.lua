@@ -70,9 +70,6 @@ NECROSIS_UNIT = {
 	["Elemental"] = "Elemental",
 }
 
--- Word to search for spell immunity. First (.+) replace the spell's name, 2nd (.+) replace the creature's name
-NECROSIS_ANTI_FEAR_SRCH = "Your (.+) failed. (.+) is immune."
-
 NECROSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Invocar a corcel vil",				Length = 0,	Type = 0},
@@ -93,7 +90,7 @@ NECROSIS_SPELL_TABLE = {
 	[9] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Desterrar",					Length = 30,	Type = 2},
 	[10] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Esclavizar demonio",				Length = 30000,	Type = 2},
+		Name = "Esclavizar demonio",				Length = 3000,	Type = 2},
 	[11] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Resurrecci\195\179n con piedra de alma",	Length = 1800,	Type = 1},
 	[12] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,

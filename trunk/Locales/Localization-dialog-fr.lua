@@ -244,9 +244,10 @@ function Necrosis_Localization_Dialog_Fr()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centre Necrosis and tous les boutons au milieu de l'\195\169cran",
 			"/necro <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
-			"/necro <lightOrange>sm<white> -- <lightBlue>Remplace les messages de pierre d'\195\162me et d'invocation par des versions courtes spéciales raid",
+			"/necro <lightOrange>sm<white> -- <lightBlue>Remplace les messages de pierre d'\195\162me et d'invocation par des versions courtes sp\195\169ciales raid",
 			"/necro <lightOrange>am<white> -- <lightBlue>Permet aux menus de s'ouvrir automatiquement en d\195\169but de combat, et de se refermer pendant la r\195\169g\195\169n\195\169ration",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Permet aux menus de rester bloqu\195\169s en position ouverte",
+			"/necro <lightOrange>cm<white> -- <lightBlue>ferme les menus lorsqu'on clique sur un de leurs boutons",
 		},
 		["Information"] = {
 			["FearProtect"] = "La cible est prot\195\168g\195\169e contre la peur !!!!",
