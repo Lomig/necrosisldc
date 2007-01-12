@@ -35,7 +35,7 @@
 Necrosis = {}
 
 Necrosis.Data = {
-	Version = "2.0 Beta 2.4.3",
+	Version = "2.0 Beta 2.5",
 	AppName = "Necrosis LdC",
 	LastConfig = 20070110.3
 }
