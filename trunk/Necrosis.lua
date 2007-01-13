@@ -895,13 +895,25 @@ function Necrosis_OnDragStop(button)
 end
 
 -- Fonction gérant les bulles d'aide
-function Necrosis_BuildTooltip(button, Type, anchor)
+function Necrosis_BuildTooltip(button, Type, anchor, sens)
 
 	-- Si l'affichage des bulles d'aide est désactivé, Bye bye !
 	if not NecrosisConfig.NecrosisToolTip then
 		return
 	end
 
+	-- Si la bulle d'aide est associée à un bouton de menu, on change l'ancrage de la tooltip suivant son sens
+	if sens then
+		if (sens == "Pet" and NecrosisConfig.PetMenuPos.x < 0)
+			or 
+				(sens == "Buff" and NecrosisConfig.BuffMenuPos.x < 0)
+			or 
+				(sens == "Curse" and NecrosisConfig.CurseMenuPos.x < 0)
+			then
+				anchor = "ANCHOR_LEFT"
+		end
+	end
+	
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, start4, duration4
 	if NECROSIS_SPELL_TABLE[15].ID then
@@ -2364,10 +2376,7 @@ function Necrosis_CreateMenu()
 					if not _G["NecrosisPetMenuButton"] then
 						_ = Necrosis_CreateSphereButtons("PetMenu")
 					end
-					menuVariable = _G["NecrosisPetMenu"..spell]
-					if not menuVariable then
-						menuVariable = Necrosis_CreateMenuPet(spell)
-					end
+					menuVariable = Necrosis_CreateMenuPet(spell)
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
@@ -2419,10 +2428,7 @@ function Necrosis_CreateMenu()
 				if not _G["NecrosisBuffMenuButton"] then
 					_ = Necrosis_CreateSphereButtons("BuffMenu")
 				end
-				menuVariable = _G["NecrosisBuffMenu1"]
-				if not menuVariable then
-					menuVariable = Necrosis_CreateMenuBuff(1)
-				end
+				menuVariable = Necrosis_CreateMenuBuff(1)
 				menuVariable:ClearAllPoints()
 				menuVariable:SetPoint(
 					"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
@@ -2440,10 +2446,7 @@ function Necrosis_CreateMenu()
 						if not _G["NecrosisBuffMenuButton"] then
 							_ = Necrosis_CreateSphereButtons("BuffMenu")
 						end
-						menuVariable = _G["NecrosisBuffMenu"..spell]
-						if not menuVariable then
-							menuVariable = Necrosis_CreateMenuBuff(spell)
-						end
+						menuVariable = Necrosis_CreateMenuBuff(spell)
 						menuVariable:ClearAllPoints()
 						menuVariable:SetPoint(
 							"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
@@ -2499,10 +2502,7 @@ function Necrosis_CreateMenu()
 					if not _G["NecrosisCurseMenuButton"] then
 						_ = Necrosis_CreateSphereButtons("CurseMenu")
 					end
-					menuVariable = _G["NecrosisCurseMenu"..sort]
-					if not menuVariable then
-						menuVariable = Necrosis_CreateMenuCurse(sort)
-					end
+					menuVariable = Necrosis_CreateMenuCurse(sort)
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",

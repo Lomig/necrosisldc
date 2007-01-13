@@ -302,20 +302,24 @@ function Necrosis_CreateMenuBuff(i)
 	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Enslave", "Banish"}
 
 	-- Creaton du bouton
-	local frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate")
+	local frame = _G["NecrosisBuffMenu"..i]
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate")
 
-	-- Définition de ses attributs
-	frame:SetMovable(true)
-	frame:EnableMouse(true)
-	frame:SetWidth(40)
-	frame:SetHeight(40)
+		-- Définition de ses attributs
+		frame:SetMovable(true)
+		frame:EnableMouse(true)
+		frame:SetWidth(40)
+		frame:SetHeight(40)
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..BuffName[i].."-02")
+		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	end
+
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..BuffName[i].."-01")
-	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..BuffName[i].."-02")
-	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	frame:Hide()
-
+	
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 	-- Attributs spéciaux pour les buffs castables sur les autres joueurs
@@ -350,20 +354,24 @@ function Necrosis_CreateMenuPet(i)
 	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice"}
 
 	-- Creaton du bouton
-	local frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate")
+	local frame = _G["NecrosisPetMenu"..i]
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate")
 
-	-- Définition de ses attributs
-	frame:SetMovable(true)
-	frame:EnableMouse(true)
-	frame:SetWidth(40)
-	frame:SetHeight(40)
+		-- Définition de ses attributs
+		frame:SetMovable(true)
+		frame:EnableMouse(true)
+		frame:SetWidth(40)
+		frame:SetHeight(40)
+		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..PetName[i].."-02")
+	end
+
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..PetName[i].."-01")
-	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..PetName[i].."-02")
-	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, PetName[i], "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, PetName[i], "ANCHOR_RIGHT", "Pet") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
@@ -378,20 +386,24 @@ function Necrosis_CreateMenuCurse(i)
 	local CurseName = {"Amplify", "Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"}
 
 	-- Creaton du bouton
-	local frame = CreateFrame("Button", "NecrosisCurseMenu"..i, UIParent, "SecureActionButtonTemplate")
+	local frame = _G["NecrosisCurseMenu"..i]
+	if not frame then
+		frame = CreateFrame("Button", "NecrosisCurseMenu"..i, UIParent, "SecureActionButtonTemplate")
 
-	-- Définition de ses attributs
-	frame:SetMovable(true)
-	frame:EnableMouse(true)
-	frame:SetWidth(40)
-	frame:SetHeight(40)
+		-- Définition de ses attributs
+		frame:SetMovable(true)
+		frame:EnableMouse(true)
+		frame:SetWidth(40)
+		frame:SetHeight(40)
+		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..CurseName[i].."-02")
+		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	end
+
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..CurseName[i].."-01")
-	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..CurseName[i].."-02")
-	frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, CurseName[i], "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
