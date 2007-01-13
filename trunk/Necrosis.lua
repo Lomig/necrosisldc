@@ -909,6 +909,8 @@ function Necrosis_BuildTooltip(button, Type, anchor, sens)
 				(sens == "Buff" and NecrosisConfig.BuffMenuPos.x < 0)
 			or 
 				(sens == "Curse" and NecrosisConfig.CurseMenuPos.x < 0)
+			or
+				(sens == "Timer" and NecrosisConfig.SpellTimerJust == "RIGHT")
 			then
 				anchor = "ANCHOR_LEFT"
 		end
@@ -1038,7 +1040,7 @@ function Necrosis_BuildTooltip(button, Type, anchor, sens)
 			GameTooltip:AddLine(NecrosisTooltipData[Type].Text[Local.Stone.Fire.Mode])
 		end
 	-- ..... pour le bouton des Timers
-	elseif (Type == "Local.TimerManagement.SpellTimer") then
+	elseif (Type == "SpellTimer") then
 		Necrosis_MoneyToggle()
 		NecrosisTooltip:SetBagItem(Local.Stone.Hearth.Location[1], Local.Stone.Hearth.Location[2])
 		local itemName = tostring(NecrosisTooltipTextLeft5:GetText())
@@ -2584,8 +2586,6 @@ function Necrosis_SymetrieTimer(bool)
 	if bool then
 		NecrosisConfig.SpellTimerPos = -1
 		NecrosisConfig.SpellTimerJust = "RIGHT"
-		AnchorSpellTimerTooltip = "ANCHOR_LEFT"
-
 		num = 1
 		while _G["NecrosisTimerFrame"..num.."OutText"] do
 			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
@@ -2601,8 +2601,6 @@ function Necrosis_SymetrieTimer(bool)
 	else
 		NecrosisConfig.SpellTimerPos = 1
 		NecrosisConfig.SpellTimerJust = "LEFT"
-		AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
-
 		num = 1
 		while _G["NecrosisTimerFrame"..num.."OutText"] do
 			_G["NecrosisTimerFrame"..num.."OutText"]:ClearAllPoints()
