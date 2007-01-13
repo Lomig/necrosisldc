@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -41,35 +41,35 @@ local _G = getfenv(0)
 -- FONCTION D'INITIALISATION
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_Initialize(Config)
+function Necrosis:Initialize(Config)
 
 	-- Initilialisation des Textes (VO / VF / VA / VCT / VCS / VE)
 	if NecrosisConfig.Version then
 		if (NecrosisConfig.Language == "enUS") or (NecrosisConfig.Language == "enGB") then
-			Necrosis_Localization_Dialog_En()
+			self:Localization_Dialog_En()
 		elseif (NecrosisConfig.Language == "deDE") then
-			Necrosis_Localization_Dialog_De()
+			self:Localization_Dialog_De()
 		elseif (NecrosisConfig.Language == "zhTW") then
-			Necrosis_Localization_Dialog_Tw()
+			self:Localization_Dialog_Tw()
 		elseif (NecrosisConfig.Language == "zhCN") then
-			Necrosis_Localization_Dialog_Cn()
+			self:Localization_Dialog_Cn()
 		elseif (NecrosisConfig.Language == "esES") then
-			Necrosis_Localization_Dialog_Es()
+			self:Localization_Dialog_Es()
 		else
-			Necrosis_Localization_Dialog_Fr()
+			self:Localization_Dialog_Fr()
 		end
 	elseif GetLocale() == "enUS" or GetLocale() == "enGB" then
-		Necrosis_Localization_Dialog_En()
+		self:Localization_Dialog_En()
 	elseif GetLocale() == "deDE" then
-		Necrosis_Localization_Dialog_De()
+		self:Localization_Dialog_De()
 	elseif GetLocale() == "zhTW" then
-		Necrosis_Localization_Dialog_Tw()
+		self:Localization_Dialog_Tw()
 	elseif GetLocale() == "zhCN" then
-		Necrosis_Localization_Dialog_Cn()
+		self:Localization_Dialog_Cn()
 	elseif  GetLocale() == "esES" then
-		Necrosis_Localization_Dialog_Es()
+		self:Localization_Dialog_Es()
 	else
-		Necrosis_Localization_Dialog_Fr()
+		self:Localization_Dialog_Fr()
 	end
 
 
@@ -78,28 +78,28 @@ function Necrosis_Initialize(Config)
 		NecrosisConfig = {}
 		NecrosisConfig = Config
 		NecrosisConfig.Version = Necrosis.Data.LastConfig
-		Necrosis_Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER")
+		self:Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER")
 	else
-		Necrosis_Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER")
+		self:Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER")
 	end
 
-	Necrosis_CreateWarlockUI()
-	Necrosis_CreateWarlockPopup()
+	self:CreateWarlockUI()
+	self:CreateWarlockPopup()
 
 	-----------------------------------------------------------
 	-- Exécution des fonctions de démarrage
 	-----------------------------------------------------------
 	-- Affichage d'un message sur la console
-	Necrosis_Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER")
+	self:Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER")
 	-- Création de la liste des sorts disponibles
 	for index in ipairs(NECROSIS_SPELL_TABLE) do
 		NECROSIS_SPELL_TABLE[index].ID = nil
 	end
-	Necrosis_SpellSetup()
+	self:SpellSetup()
 	-- Création des menus de buff et d'invocation
-	Necrosis_CreateMenu()
+	self:CreateMenu()
 	-- Les boutons sont-ils verrouillés sur le Shard ?
-	Necrosis_ButtonSetup()
+	self:ButtonSetup()
 
 	-- Enregistrement de la commande console
 	SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler
@@ -229,11 +229,11 @@ function Necrosis_Initialize(Config)
 
 	-- Le Shard est-il verrouillé sur l'interface ?
 	if NecrosisConfig.NoDragAll then
-		Necrosis_NoDrag()
+		self:NoDrag()
 		NecrosisButton:RegisterForDrag("")
 		NecrosisSpellTimerButton:RegisterForDrag("")
 	else
-		Necrosis_Drag()
+		self:Drag()
 		NecrosisButton:RegisterForDrag("LeftButton")
 		NecrosisSpellTimerButton:RegisterForDrag("LeftButton")
 	end
@@ -241,33 +241,33 @@ function Necrosis_Initialize(Config)
 
 
 	-- Si pas d'objet en distance, on tente d'en équiper un
-	Necrosis_MoneyToggle()
+	self:MoneyToggle()
 	NecrosisTooltip:SetInventoryItem("player", 18)
 	local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
-	Necrosis_MoneyToggle()
+	self:MoneyToggle()
 	if (not GetInventoryItemLink("player", 18))
 		or itemName:find(NECROSIS_ITEM.Spellstone)
 		or itemName:find(NECROSIS_ITEM.Firestone) then
-			Necrosis_SearchWand()
+			self:SearchWand()
 	end
 
 	-- Inventaire des pierres et des fragments possedés par le Démoniste
-	Necrosis_BagExplore()
+	self:BagExplore()
 
 	-- On vérifie que les fragments sont dans le sac défini par le Démoniste
 	if NecrosisConfig.SoulshardSort then
-		Necrosis_SoulshardSwitch("CHECK")
+		self:SoulshardSwitch("CHECK")
 	end
 
 	-- Initialisation des fichiers de langues -- Mise en place ponctuelle du SMS
-	Necrosis_LanguageInitialize()
+	self:LanguageInitialize()
 	if NecrosisConfig.SM then
 		NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
 		NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
 	end
 end
 
-function Necrosis_LanguageInitialize()
+function Necrosis:LanguageInitialize()
 
 	-- Localisation du speech.lua
 	NecrosisLocalization()
@@ -335,19 +335,19 @@ end
 -- FONCTION GERANT LA COMMANDE CONSOLE /NECRO
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_SlashHandler(arg1)
+function Necrosis:SlashHandler(arg1)
 	if arg1:lower():find("recall") then
-		Necrosis_Recall()
+		self:Recall()
 	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
 	elseif arg1:lower():find("tt") then
 		NecrosisConfig.Textual = not NecrosisConfig.Textual
-		Necrosis:CreateTimerAnchor()
-		Necrosis_Msg("Text Timers : <lightBlue>Toggled")
+		self:CreateTimerAnchor()
+		self:Msg("Text Timers : <lightBlue>Toggled")
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
-		Necrosis_Msg("Automatic Menus : <lightBlue>Toggled")
+		self:Msg("Automatic Menus : <lightBlue>Toggled")
 	elseif arg1:lower():find("bm") then
 		if NecrosisConfig.BlockedMenu then
 			local State = 0
@@ -355,28 +355,31 @@ function Necrosis_SlashHandler(arg1)
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
-			Necrosis_Msg("Blocked Menus : <red>Off")
+			self:Msg("Blocked Menus : <red>Off")
 		else
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
-			Necrosis_Msg("Blocked Menus : <brightGreen>On")
+			self:Msg("Blocked Menus : <brightGreen>On")
 		end
 		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
 	elseif arg1:lower():find("cm") then
 		NecrosisConfig.ClosingMenu = not NecrosisConfig.ClosingMenu
-		Necrosis_CreateMenu()
-		Necrosis_Msg("Close Menus on click : <lightBlue>Toggled")
+		self:CreateMenu()
+		self:Msg("Close Menus on click : <lightBlue>Toggled")
 	elseif arg1:lower():find("sm") then
 		NecrosisConfig.SM = not NecrosisConfig.SM
 		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
 			NecrosisLocalization()
-			Necrosis_Msg("Short Messages : <red>Off")
+			self:Msg("Short Messages : <red>Off")
 		else
 			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
 			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
-			Necrosis_Msg("Short Messages : <brightGreen>On")
+			self:Msg("Short Messages : <brightGreen>On")
 		end
+	elseif arg1:lower():find("glasofruix") then
+		NecrosisConfig.Smooth = not NecrosisConfig.Smooth
+		self:Msg("SpellTimer smoothing  : <lightBlue>Toggled")
 	else
 		NecrosisButton:Open()
 	end

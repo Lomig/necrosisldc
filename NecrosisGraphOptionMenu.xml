@@ -97,7 +97,7 @@
 						NecrosisConfig.NecrosisAngle = this:GetValue()
 						local x, y = NecrosisButton:GetCenter()
 						GameTooltip:SetText(this:GetValue())
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -130,7 +130,7 @@
 							NecrosisConfig.NecrosisButtonScale = this:GetValue()
 							NecrosisButton:SetPoint("CENTER", "UIParent", "BOTTOMLEFT", NBx / (NecrosisConfig.NecrosisButtonScale / 100), NBy / (NecrosisConfig.NecrosisButtonScale / 100))
 							NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale / 100)
-							Necrosis_ButtonSetup()
+							Necrosis:ButtonSetup()
 						end
 					</OnValueChanged>
 				</Scripts>
@@ -254,16 +254,16 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.NecrosisLockServ = true
-							Necrosis_ClearAllPoints()
-							Necrosis_ButtonSetup()
-							Necrosis_NoDrag()
+							Necrosis:ClearAllPoints()
+							Necrosis:ButtonSetup()
+							Necrosis:NoDrag()
 							if not NecrosisConfig.NoDragAll then
 								NecrosisButton:RegisterForDrag("LeftButton")
 								NecrosisSpellTimerButton:RegisterForDrag("LeftButton")
 							end
 						else
 							NecrosisConfig.NecrosisLockServ = false
-							Necrosis_ClearAllPoints()
+							Necrosis:ClearAllPoints()
 							local _G = getfenv(0)
 							local ButtonName = {
 								"NecrosisFirestoneButton",
@@ -288,7 +288,7 @@
 									}
 								end
 							end
-							Necrosis_Drag()
+							Necrosis:Drag()
 							NecrosisConfig.NoDragAll = false
 							NecrosisLock_Button:SetChecked(false)
 							NecrosisButton:RegisterForDrag("LeftButton")
@@ -311,13 +311,13 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							Necrosis_NoDrag()
+							Necrosis:NoDrag()
 							NecrosisButton:RegisterForDrag("")
 							NecrosisSpellTimerButton:RegisterForDrag("")
 							NecrosisConfig.NoDragAll = true
 						else
 							if not NecrosisConfig.NecrosisLockServ then
-								Necrosis_Drag()
+								Necrosis:Drag()
 							end
 							NecrosisButton:RegisterForDrag("LeftButton")
 							NecrosisSpellTimerButton:RegisterForDrag("LeftButton")
@@ -346,7 +346,7 @@
 							NecrosisConfig.BuffMenuPos.x = math.abs(NecrosisConfig.BuffMenuPos.x)
 							NecrosisConfig.BuffMenuPos.y = math.abs(NecrosisConfig.BuffMenuPos.y)
 						end
-						Necrosis_CreateMenu()
+						Necrosis:CreateMenu()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -370,7 +370,7 @@
 							NecrosisConfig.PetMenuPos.x = math.abs(NecrosisConfig.PetMenuPos.x)
 							NecrosisConfig.PetMenuPos.y = math.abs(NecrosisConfig.PetMenuPos.y)
 						end
-						Necrosis_CreateMenu()
+						Necrosis:CreateMenu()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -394,7 +394,7 @@
 							NecrosisConfig.CurseMenuPos.x = math.abs(NecrosisConfig.CurseMenuPos.x)
 							NecrosisConfig.CurseMenuPos.y = math.abs(NecrosisConfig.CurseMenuPos.y)
 						end
-						Necrosis_CreateMenu()
+						Necrosis:CreateMenu()
 					</OnClick>
 				</Scripts>
 			</CheckButton>

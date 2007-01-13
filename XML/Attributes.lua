@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -41,7 +41,7 @@ local _G = getfenv(0)
 ------------------------------------------------------------------------------------------------------
 
 -- On crée les menus sécurisés pour les différents sorts Buff / Démon / Malédictions
-function Necrosis_MenuAttribute(menu)
+function Necrosis:MenuAttribute(menu)
 	if InCombatLockdown() then
 		return
 	end
@@ -87,7 +87,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- On associe les buffs au clic sur le bouton concerné
-function Necrosis_BuffSpellAttribute()
+function Necrosis:BuffSpellAttribute()
 	if InCombatLockdown() then
 		return
 	end
@@ -186,7 +186,7 @@ function Necrosis_BuffSpellAttribute()
 end
 
 -- On associe les démons au clic sur le bouton concerné
-function Necrosis_PetSpellAttribute()
+function Necrosis:PetSpellAttribute()
 	if InCombatLockdown() then
 		return
 	end
@@ -239,7 +239,7 @@ function Necrosis_PetSpellAttribute()
 end
 
 -- On associe les malédictions au clic sur le bouton concerné
-function Necrosis_CurseSpellAttribute()
+function Necrosis:CurseSpellAttribute()
 	if InCombatLockdown() then
 		return
 	end
@@ -312,7 +312,7 @@ function Necrosis_CurseSpellAttribute()
 end
 
 -- Association de la monture au bouton, et de la création des pierres sur un clic droit
-function Necrosis_StoneAttribute(Steed)
+function Necrosis:StoneAttribute(Steed)
 	if InCombatLockdown() then
 		return
 	end
@@ -373,13 +373,13 @@ function Necrosis_StoneAttribute(Steed)
 end
 
 -- Association de la Connexion au bouton central si le sort est disponible
-function Necrosis_MainButtonAttribute()
+function Necrosis:MainButtonAttribute()
 	-- Le clic droit ouvre le Menu des options
 	NecrosisButton:SetAttribute("type2", "Open")
 	NecrosisButton.Open = function()
 		if NECROSIS_MESSAGE.Help[1] then
 			for i = 1, #NECROSIS_MESSAGE.Help, 1 do
-				Necrosis_Msg(NECROSIS_MESSAGE.Help[i], "USER")
+				self:Msg(NECROSIS_MESSAGE.Help[i], "USER")
 			end
 		end
 		if (NecrosisGeneralFrame:IsVisible()) then
@@ -387,7 +387,7 @@ function Necrosis_MainButtonAttribute()
 			return
 		else
 			if NecrosisConfig.SM then
-				Necrosis_Msg("!!! Short Messages : <brightGreen>On", "USER")
+				self:Msg("!!! Short Messages : <brightGreen>On", "USER")
 			end
 			NecrosisGeneralFrame:Show()
 			NecrosisGeneralTab_OnClick(1)
@@ -412,7 +412,7 @@ end
 -- DEFINITION DES ATTRIBUTS DES SORTS EN FONCTION DU COMBAT / REGEN
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode)
+function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode)
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	-- Et se désengage à la fin
@@ -448,7 +448,7 @@ function Necrosis_NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	end
 end
 
-function Necrosis_InCombatAttribute()
+function Necrosis:InCombatAttribute()
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
@@ -495,7 +495,7 @@ end
 -- DEFINITION SITUATIONNELLE DES ATTRIBUTS DES SORTS
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_SoulstoneUpdateAttribute(nostone)
+function Necrosis:SoulstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
 	if InCombatLockdown() or not _G["NecrosisSoulstoneButton"] then
 		return
@@ -516,7 +516,7 @@ function Necrosis_SoulstoneUpdateAttribute(nostone)
 	NecrosisSoulstoneButton:SetAttribute("item3", NecrosisConfig.ItemSwitchCombat[5])
 end
 
-function Necrosis_HealthstoneUpdateAttribute(nostone)
+function Necrosis:HealthstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
 	if InCombatLockdown() or not _G["NecrosisHealthstoneButton"] then
 		return
@@ -534,10 +534,10 @@ function Necrosis_HealthstoneUpdateAttribute(nostone)
 	NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[4])
 	NecrosisHealthstoneButton:SetAttribute("type3", "Trade")
 	NecrosisHealthstoneButton:SetAttribute("ctrl-type1", "Trade")
-	NecrosisHealthstoneButton.Trade = function () Necrosis_TradeStone() end
+	NecrosisHealthstoneButton.Trade = function () self:TradeStone() end
 end
 
-function Necrosis_SpellstoneUpdateAttribute(nostone)
+function Necrosis:SpellstoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
 	if InCombatLockdown() or not _G["NecrosisSpellstoneButton"] then
 		return
@@ -563,7 +563,7 @@ function Necrosis_SpellstoneUpdateAttribute(nostone)
 	end
 end
 
-function Necrosis_FirestoneUpdateAttribute(nostone)
+function Necrosis:FirestoneUpdateAttribute(nostone)
 	-- Si le démoniste est en combat, on ne fait rien :)
 	if InCombatLockdown() or not _G["NecrosisFirestoneButton"] then
 		return
@@ -588,7 +588,7 @@ function Necrosis_FirestoneUpdateAttribute(nostone)
 	end
 end
 
-function Necrosis_RangedUpdateAttribute()
+function Necrosis:RangedUpdateAttribute()
 	-- Si le démoniste est en combat, on ne fait rien :)
 	if InCombatLockdown() then
 		return

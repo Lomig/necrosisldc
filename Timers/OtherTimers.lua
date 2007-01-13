@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -140,6 +140,6 @@ function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 			display = display.."\n";
 		end
 	end
-	display = Necrosis_MsgAddColor(display)
+	display = self:MsgAddColor(display)
 	NecrosisListSpells:SetText(display)
 end

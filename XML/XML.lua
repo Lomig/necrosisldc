@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -54,7 +54,8 @@ function Necrosis:CreateTimerAnchor()
 			f:ClearAllPoints()
 			f:SetPoint("LEFT", NecrosisSpellTimerButton, "CENTER", 50, 0)
 		end
-	elseif NecrosisConfig.Textual then
+	end
+	if NecrosisConfig.Textual then
 		-- Création de la liste des Timers Textes
 		local FontString = _G["NecrosisListSpells"]
 		if not FontString then
@@ -70,7 +71,7 @@ function Necrosis:CreateTimerAnchor()
 	end
 end
 
-function Necrosis_CreateWarlockUI()
+function Necrosis:CreateWarlockUI()
 
 ------------------------------------------------------------------------------------------------------
 -- BOUTON DU TIMER DES SORTS
@@ -96,18 +97,18 @@ function Necrosis_CreateWarlockUI()
 	frame:Show()
 
 	-- Création des ancres des timers
-	Necrosis:CreateTimerAnchor()
+	self:CreateTimerAnchor()
 	
 	-- Edition des scripts associés au bouton
 	frame:SetScript("OnLoad", function()
 		this:RegisterForDrag("LeftButton")
 		this:RegisterForClicks("RightButtonUp")
 	end)
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "SpellTimer", "ANCHOR_RIGHT", "Timer") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, "SpellTimer", "ANCHOR_RIGHT", "Timer") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -154,13 +155,13 @@ function Necrosis_CreateWarlockUI()
 	FontString:SetTextColor(1, 1, 1)
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEvent", function() Necrosis_OnEvent(event) end)
-	frame:SetScript("OnUpdate", function() Necrosis_OnUpdate(arg1) end)
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Main", "ANCHOR_LEFT") end)
+	frame:SetScript("OnEvent", function() Necrosis:OnEvent(event) end)
+	frame:SetScript("OnUpdate", function() Necrosis:OnUpdate(arg1) end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, "Main", "ANCHOR_LEFT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -178,7 +179,7 @@ end
 -- BOUTON DES PIERRES ET DE LA MONTURE
 ------------------------------------------------------------------------------------------------------
 
-local function Necrosis_CreateStoneButton(stone)
+local function CreateStoneButton(stone)
 	-- Création du bouton de la pierre
 	local frame = CreateFrame("Button", "Necrosis"..stone.."Button", UIParent, "SecureActionButtonTemplate")
 
@@ -200,15 +201,15 @@ local function Necrosis_CreateStoneButton(stone)
 	frame:Show()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, stone, "ANCHOR_LEFT") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, stone, "ANCHOR_LEFT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
 	frame:SetScript("OnDragStart", function()
 		if not NecrosisConfig.NecrosisLockServ then
-			Necrosis_OnDragStart(this)
+			Necrosis:OnDragStart(this)
 		end
 	end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Attributs spécifiques à la pierre d'âme
 	-- Ils permettent de caster la pierre sur soi si pas de cible et hors combat
@@ -245,7 +246,7 @@ end
 -- BOUTONS DES MENUS
 ------------------------------------------------------------------------------------------------------
 
-local function Necrosis_CreateMenuButton(button)
+local function CreateMenuButton(button)
 	-- Creaton du bouton d'ouverture du menu
 	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureAnchorUpDownTemplate")
 
@@ -261,15 +262,15 @@ local function Necrosis_CreateMenuButton(button)
 	frame:Show()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, button, "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, button, "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
 	frame:SetScript("OnDragStart", function()
 		if not NecrosisConfig.NecrosisLockServ then
-			Necrosis_OnDragStart(this)
+			Necrosis:OnDragStart(this)
 		end
 	end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Header du bouton
 	local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureStateHeaderTemplate")
@@ -298,7 +299,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Boutons du menu des buffs
-function Necrosis_CreateMenuBuff(i)
+function Necrosis:CreateMenuBuff(i)
 	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Enslave", "Banish"}
 
 	-- Creaton du bouton
@@ -319,7 +320,7 @@ function Necrosis_CreateMenuBuff(i)
 	frame:Hide()
 	
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 	-- Attributs spéciaux pour les buffs castables sur les autres joueurs
@@ -350,7 +351,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Boutons du menu des démons
-function Necrosis_CreateMenuPet(i)
+function Necrosis:CreateMenuPet(i)
 	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice"}
 
 	-- Creaton du bouton
@@ -371,7 +372,7 @@ function Necrosis_CreateMenuPet(i)
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, PetName[i], "ANCHOR_RIGHT", "Pet") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, PetName[i], "ANCHOR_RIGHT", "Pet") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
@@ -382,7 +383,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Boutons du menu des malédictions
-function Necrosis_CreateMenuCurse(i)
+function Necrosis:CreateMenuCurse(i)
 	local CurseName = {"Amplify", "Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Shadow", "Doom"}
 
 	-- Creaton du bouton
@@ -403,7 +404,7 @@ function Necrosis_CreateMenuCurse(i)
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
@@ -413,7 +414,7 @@ end
 -- BOUTONS SPECIAUX POPUP
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_CreateWarlockPopup()
+function Necrosis:CreateWarlockPopup()
 
 	-- Creation du bouton de ShadowTrance
 	local frame = nil
@@ -434,11 +435,11 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "ShadowTrance", "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, "ShadowTrance", "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -467,11 +468,11 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis_BuildTooltip(this, "Backlash", "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, "Backlash", "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -501,9 +502,9 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if NecrosisConfig.FramePosition then
@@ -539,9 +540,9 @@ function Necrosis_CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edition des scripts associés au bouton
-	frame:SetScript("OnMouseUp", function() Necrosis_OnDragStop(this) end)
-	frame:SetScript("OnDragStart", function() Necrosis_OnDragStart(this) end)
-	frame:SetScript("OnDragStop", function() Necrosis_OnDragStop(this) end)
+	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
+	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(this) end)
+	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if NecrosisConfig.FramePosition then
@@ -566,11 +567,11 @@ end
 -- CREATION DES BOUTONS A LA DEMANDE
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_CreateSphereButtons(ButtonName)
+function Necrosis:CreateSphereButtons(ButtonName)
 	local ShortButtonName = string.gsub(string.gsub(ButtonName, "Necrosis", ""), "Button", "")
 	if ShortButtonName == "BuffMenu" or ShortButtonName == "PetMenu" or ShortButtonName == "CurseMenu" then
-		return Necrosis_CreateMenuButton(ShortButtonName)
+		return CreateMenuButton(ShortButtonName)
 	else
-		return Necrosis_CreateStoneButton(ShortButtonName)
+		return CreateStoneButton(ShortButtonName)
 	end
 end

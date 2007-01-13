@@ -110,7 +110,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						Necrosis_SymetrieTimer(this:GetChecked())
+						Necrosis:SymetrieTimer(this:GetChecked())
 						</OnClick>
 				</Scripts>
 			</CheckButton>

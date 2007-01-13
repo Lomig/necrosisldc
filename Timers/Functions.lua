@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -41,7 +41,7 @@ local _G = getfenv(0)
 ------------------------------------------------------------------------------------------------------
 
 -- La table des timers est là pour ça !
-function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
+function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 	-- Insertion de l'entrée dans le tableau
 	Timer.SpellTimer:insert(
 		{
@@ -74,7 +74,7 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 		end
 		-- Association effective au timer
 		Timer.SpellTimer[#Timer.SpellTimer].Gtimer = TimerLibre
-		local FontString, StatusBar = Necrosis_AddFrame("NecrosisTimerFrame"..TimerLibre)
+		local FontString, StatusBar = self:AddFrame("NecrosisTimerFrame"..TimerLibre)
 		FontString:SetText(Timer.SpellTimer[#Timer.SpellTimer].Name)
 		StatusBar:SetMinMaxValues(
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
@@ -84,10 +84,10 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 	
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
-		Necrosis_Tri(Timer.SpellTimer, "Type")
+		self:Tri(Timer.SpellTimer, "Type")
 
 		-- Création des groupes (noms des mobs) des timers
-		Timer.SpellGroup, Timer.SpellTimer = Necrosis_Parsing(Timer.SpellGroup, Timer.SpellTimer)
+		Timer.SpellGroup, Timer.SpellTimer = self:Parsing(Timer.SpellGroup, Timer.SpellTimer)
 
 		-- On met à jour l'affichage
 		NecrosisUpdateTimer(Timer.SpellTimer, Timer.SpellGroup)
@@ -97,7 +97,7 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 end
 
 -- Et pour insérer le timer de pierres
-function Necrosis_InsertTimerStone(Stone, start, duration, Timer)
+function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 
 	-- Insertion de l'entrée dans le tableau
 	if Stone == "Healthstone" then
@@ -114,11 +114,11 @@ function Necrosis_InsertTimerStone(Stone, start, duration, Timer)
 			}
 		)
 	elseif Stone == "SpellstoneIn" then
-		if Necrosis_TimerExisteDeja(NECROSIS_COOLDOWN.Spellstone, Timer.SpellTimer) then
+		if self:TimerExisteDeja(NECROSIS_COOLDOWN.Spellstone, Timer.SpellTimer) then
 			return Timer
 		end
-		if Necrosis_TimerExisteDeja(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer) then
-			Necrosis_RetraitTimerParNom(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer, Timer.TimerTable)
+		if self:TimerExisteDeja(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer) then
+			self:RetraitTimerParNom(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer, Timer.TimerTable)
 		end
 		Timer.SpellTimer:insert(
 			{
@@ -178,7 +178,7 @@ function Necrosis_InsertTimerStone(Stone, start, duration, Timer)
 		end
 		-- Association effective au timer
 		Timer.SpellTimer[#Timer.SpellTimer].Gtimer = TimerLibre
-		local FontString, StatusBar = Necrosis_AddFrame("NecrosisTimerFrame"..TimerLibre)
+		local FontString, StatusBar = self:AddFrame("NecrosisTimerFrame"..TimerLibre)
 		FontString:SetText(Timer.SpellTimer[#Timer.SpellTimer].Name)
 		StatusBar:SetMinMaxValues(
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
@@ -188,10 +188,10 @@ function Necrosis_InsertTimerStone(Stone, start, duration, Timer)
 	
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
-		Necrosis_Tri(Timer.SpellTimer, "Type")
+		self:Tri(Timer.SpellTimer, "Type")
 
 		-- Création des groupes (noms des mobs) des timers
-		Timer.SpellGroup, Timer.SpellTimer = Necrosis_Parsing(Timer.SpellGroup, Timer.SpellTimer)
+		Timer.SpellGroup, Timer.SpellTimer = self:Parsing(Timer.SpellGroup, Timer.SpellTimer)
 
 		-- On met à jour l'affichage
 		NecrosisUpdateTimer(Timer.SpellTimer, Timer.SpellGroup)
@@ -234,7 +234,7 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, Timer)
 		end
 		-- Association effective au timer
 		Timer.SpellTimer[#Timer.SpellTimer].Gtimer = TimerLibre
-		local FontString, StatusBar = Necrosis_AddFrame("NecrosisTimerFrame"..TimerLibre)
+		local FontString, StatusBar = self:AddFrame("NecrosisTimerFrame"..TimerLibre)
 		FontString:SetText(Timer.SpellTimer[#Timer.SpellTimer].Name)
 		StatusBar:SetMinMaxValues(
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
@@ -244,10 +244,10 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, Timer)
 
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
-		Necrosis_Tri(Timer.SpellTimer, "Type")
+		self:Tri(Timer.SpellTimer, "Type")
 
 		-- Création des groupes (noms des mobs) des timers
-		Timer.SpellGroup, Timer.SpellTimer = Necrosis_Parsing(Timer.SpellGroup, Timer.SpellTimer)
+		Timer.SpellGroup, Timer.SpellTimer = self:Parsing(Timer.SpellGroup, Timer.SpellTimer)
 
 		-- On met à jour l'affichage
 		NecrosisUpdateTimer(Timer.SpellTimer, Timer.SpellGroup)
@@ -261,7 +261,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Connaissant l'index du Timer dans la liste, on le supprime
-function Necrosis_RetraitTimerParIndex(index, Timer)
+function Necrosis:RetraitTimerParIndex(index, Timer)
 
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Suppression du timer graphique
@@ -293,10 +293,10 @@ function Necrosis_RetraitTimerParIndex(index, Timer)
 end
 
 -- Si on veut supprimer spécifiquement un Timer...
-function Necrosis_RetraitTimerParNom(name, Timer)
+function Necrosis:RetraitTimerParNom(name, Timer)
 	for index = 1, #Timer.SpellTimer, 1 do
 		if Timer.SpellTimer[index].Name == name then
-			Timer = Necrosis_RetraitTimerParIndex(index, Timer)
+			Timer = self:RetraitTimerParIndex(index, Timer)
 			break
 		end
 	end
@@ -304,7 +304,7 @@ function Necrosis_RetraitTimerParNom(name, Timer)
 end
 
 -- Fonction pour enlever les timers de combat lors de la regen
-function Necrosis_RetraitTimerCombat(Timer)
+function Necrosis:RetraitTimerCombat(Timer)
 	for index = 1, #Timer.SpellTimer, 1 do
 		if Timer.SpellTimer[index] then
 			-- Si les cooldowns sont nominatifs, on enlève le nom
@@ -317,7 +317,7 @@ function Necrosis_RetraitTimerCombat(Timer)
 				or Timer.SpellTimer[index].Type == 5
 				or Timer.SpellTimer[index].Type == 6
 				then
-					Timer = Necrosis_RetraitTimerParIndex(index, Timer)
+					Timer = self:RetraitTimerParIndex(index, Timer)
 			end
 		end
 	end
@@ -340,7 +340,7 @@ end
 -- FONCTIONS BOOLEENNES
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis_TimerExisteDeja(Nom, SpellTimer)
+function Necrosis:TimerExisteDeja(Nom, SpellTimer)
 	for index = 1, #SpellTimer, 1 do
 		if SpellTimer[index].Name == Nom then
 			return true;
@@ -355,7 +355,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- On définit les groupes de chaque Timer
-function Necrosis_Parsing(SpellGroup, SpellTimer)
+function Necrosis:Parsing(SpellGroup, SpellTimer)
 	for index = 1, #SpellTimer, 1 do
 		if SpellTimer[index].Group == 0 then
 			local GroupeOK = false
@@ -384,12 +384,12 @@ function Necrosis_Parsing(SpellGroup, SpellTimer)
 		end
 	end
 
-	Necrosis_Tri(SpellTimer, "Group")
+	self:Tri(SpellTimer, "Group")
 	return SpellGroup, SpellTimer
 end
 
 -- On trie les timers selon leur groupe
-function Necrosis_Tri(SpellTimer, clef)
+function Necrosis:Tri(SpellTimer, clef)
 	return SpellTimer:sort(
 		function (SubTab1, SubTab2)
 			return SubTab1[clef] < SubTab2[clef]

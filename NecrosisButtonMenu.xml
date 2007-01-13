@@ -117,7 +117,7 @@
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide()
-						Necrosis_CreateMenu()
+						Necrosis:CreateMenu()
 					</OnLeave>
 					<OnValueChanged>
 						if this:GetValue() ~= NecrosisConfig.BanishScale then
@@ -150,7 +150,7 @@
 						else
 							NecrosisConfig.StonePosition[1] = - math.abs(NecrosisConfig.StonePosition[1])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -172,7 +172,7 @@
 						else
 							NecrosisConfig.StonePosition[2] = - math.abs(NecrosisConfig.StonePosition[2])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -194,7 +194,7 @@
 						else
 							NecrosisConfig.StonePosition[3] = - math.abs(NecrosisConfig.StonePosition[3])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -216,7 +216,7 @@
 						else
 							NecrosisConfig.StonePosition[4] = - math.abs(NecrosisConfig.StonePosition[4])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -238,7 +238,7 @@
 						else
 							NecrosisConfig.StonePosition[5] = - math.abs(NecrosisConfig.StonePosition[5])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -260,7 +260,7 @@
 						else
 							NecrosisConfig.StonePosition[6] = - math.abs(NecrosisConfig.StonePosition[6])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -282,7 +282,7 @@
 						else
 							NecrosisConfig.StonePosition[7] = - math.abs(NecrosisConfig.StonePosition[7])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -304,7 +304,7 @@
 						else
 							NecrosisConfig.StonePosition[8] = - math.abs(NecrosisConfig.StonePosition[8])
 						end
-						Necrosis_ButtonSetup()
+						Necrosis:ButtonSetup()
 					</OnClick>
 				</Scripts>
 			</CheckButton>

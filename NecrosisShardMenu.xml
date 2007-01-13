@@ -86,7 +86,7 @@
 					<OnMouseUp>
 						GameTooltip:SetText(5-this:GetValue())
 						NecrosisConfig.SoulshardContainer = 4-this:GetValue()
-						Necrosis_SoulshardSwitch("MOVE")
+						Necrosis:SoulshardSwitch("MOVE")
 					</OnMouseUp>
 					<OnValueChanged>
 						GameTooltip:SetText(5-this:GetValue())
@@ -120,7 +120,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						NecrosisConfig.CountType = this:GetValue()
-						Necrosis_BagExplore()
+						Necrosis:BagExplore()
 					</OnMouseUp>
 					<OnValueChanged>
 						if this:GetValue() == 1 then
@@ -158,7 +158,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						NecrosisConfig.Circle = this:GetValue()
-						Necrosis_BagExplore()
+						Necrosis:BagExplore()
 					</OnMouseUp>
 					<OnValueChanged>
 						if this:GetValue() == 1 then
@@ -201,7 +201,7 @@
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide()
-						Necrosis_BagExplore()
+						Necrosis:BagExplore()
 					</OnLeave>
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue())
@@ -297,7 +297,7 @@
 						else
 							NecrosisConfig.ShowCount = false
 						end
-						Necrosis_BagExplore()
+						Necrosis:BagExplore()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
