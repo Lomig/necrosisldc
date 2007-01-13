@@ -227,13 +227,6 @@ function Necrosis_Initialize(Config)
 	--On affiche ou on cache le bouton, d'ailleurs !
 	if not NecrosisConfig.ShowSpellTimers then NecrosisSpellTimerButton:Hide() end
 
-	-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
-	if NecrosisConfig.SpellTimerJust == "RIGHT" then
-		AnchorSpellTimerTooltip = "ANCHOR_LEFT"
-	else
-		AnchorSpellTimerTooltip = "ANCHOR_RIGHT"
-	end
-
 	-- Le Shard est-il verrouillé sur l'interface ?
 	if NecrosisConfig.NoDragAll then
 		Necrosis_NoDrag()
