@@ -93,6 +93,23 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 		NecrosisUpdateTimer(Timer.SpellTimer, Timer.SpellGroup)
 	end
 
+		-- Détection des resists
+	if not (NECROSIS_SPELL_TABLE[IndexTable].Type == 0) then
+		Timer.LastSpell.Name = NECROSIS_SPELL_TABLE[IndexTable].Name
+		Timer.LastSpell.Target = Target
+		Timer.LastSpell.TargetLevel = LevelTarget
+		Timer.LastSpell.Time = GetTime()
+		for i in ipairs(Timer.SpellTimer) do
+			if Timer.SpellTimer[i].Name == Timer.LastSpell.Name
+				and Timer.SpellTimer[i].Target == Timer.LastSpell.Target
+				and Timer.SpellTimer[i].TargetLevel == Timer.LastSpell.TargetLevel
+				then
+					Timer.LastSpell.Index = i
+					break
+			end
+		end
+	end
+
 	return Timer
 end
 
@@ -265,13 +282,13 @@ function Necrosis:RetraitTimerParIndex(index, Timer)
 
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Suppression du timer graphique
-		if NecrosisConfig.Graphical then
+		if NecrosisConfig.Graphical and Timer.SpellTimer[index] then
 			Timer.TimerTable[Timer.SpellTimer[index].Gtimer] = false
 			_G["NecrosisTimerFrame"..Timer.SpellTimer[index].Gtimer]:Hide()
 		end
 
 		-- Suppression du timer du groupe de mob
-		if Timer.SpellTimer[index].Group and Timer.SpellGroup[Timer.SpellTimer[index].Group] then
+		if Timer.SpellTimer[index] and Timer.SpellGroup[Timer.SpellTimer[index].Group] then
 			if Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible  then
 				Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible = Timer.SpellGroup[Timer.SpellTimer[index].Group].Visible - 1
 				-- On cache la Frame des groupes si elle est vide

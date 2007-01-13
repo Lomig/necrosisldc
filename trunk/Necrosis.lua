@@ -261,7 +261,19 @@ Local.TimerManagement = {
 		},
 		metatable
 	),
-	LastSphereSkin = "Aucune"
+	-- Dernière image utilisée pour le chrono sur la sphere
+	LastSphereSkin = "Aucune",
+	-- Dernier sort casté et regex pour tester les resists
+	LastSpell = {
+		Fail = {
+			SPELLIMMUNESELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
+			SPELLRESISTSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
+			SPELLEVADEDSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
+			SPELLREFLECTSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
+			SPELLMISSSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
+			SPELLLOGABSORBSELFOTHER:gsub("%%%d?$?s", [[(.+)]])
+		}
+	}
 }
 
 -- Variables des messages d'invocation
@@ -408,25 +420,6 @@ function Necrosis:OnUpdate(elapsed)
 							break
 						end
 					end
-					-- Si la cible visée n'est plus atteinte par un sort lancé [résists]
-					if Local.TimerManagement.SpellTimer
-						and (
-							Local.TimerManagement.SpellTimer[index].Type == 4
-							or Local.TimerManagement.SpellTimer[index].Type == 5
-							or Local.TimerManagement.SpellTimer[index].Type == 6
-						)
-						and Local.TimerManagement.SpellTimer[index].Target == UnitName("target")
-						then
-						-- On triche pour laisser le temps au mob de bien sentir qu'il est débuffé ^^
-						if TimeLocal >= ((Local.TimerManagement.SpellTimer[index].TimeMax - Local.TimerManagement.SpellTimer[index].Time) + 1.5)
-							and not (Local.TimerManagement.SpellTimer[index] == 6) then
-							if not self:UnitHasEffect("target", Local.TimerManagement.SpellTimer[index].Name) then
-								Local.TimerManagement = self:RetraitTimerParIndex(index, Local.TimerManagement)
-								index = 0
-								break
-							end
-						end
-					end
 				end
 			end
 		end
@@ -569,17 +562,28 @@ function Necrosis:OnEvent(event)
 			NecrosisCreatureAlertButton:Hide()
 		end
 
-	-- AntiFear immunity on cast detection
+	-- Détection des immunes et des resists
 	elseif event == "CHAT_MSG_SPELL_SELF_DAMAGE" then
-		if NecrosisConfig.AntiFearAlert then
-			local Pattern = SPELLIMMUNEOTHER:gsub("%%%d?$?s", [[(.+)]])
-			for spell in arg1:gmatch(Pattern) do
-				-- We check if the casted spell on the immune target is Fear or Death Coil
-				if spell == NECROSIS_SPELL_TABLE[13].Name or spell == NECROSIS_SPELL_TABLE[19].Name then
-					Local.Warning.Antifear.Immune = true
-					break
+		local Fini = false
+		for i in ipairs(Local.TimerManagement.LastSpell.Fail) do
+			for spell, tgt in arg1:gmatch(Local.TimerManagement.LastSpell.Fail[i]) do
+				if NecrosisConfig.AntiFearAlert
+					and (spell == NECROSIS_SPELL_TABLE[13].Name or spell == NECROSIS_SPELL_TABLE[19].Name)
+					then
+						Local.Warning.Antifear.Immune = true
+						Fini = true
+						break
+				end
+				if spell == Local.TimerManagement.LastSpell.Name
+					or tgt == Local.TimerManagement.LastSpell.Name
+					and GetTime() <= (Local.TimerManagement.LastSpell.Time + 1.5)
+					then
+						self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
+						Fini = true
+						break
 				end
 			end
+			if Fini then break end
 		end
 	-- Si le Démoniste apprend un nouveau sort / rang de sort, on récupère la nouvelle liste des sorts
 	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
@@ -866,7 +870,6 @@ function Necrosis:SpellManagement()
 								NECROSIS_SPELL_TABLE[spell].Length = 30
 							end
 						end
-
 						Local.TimerManagement = self:InsertTimerParTable(spell, Local.SpellCasted.TargetName, Local.SpellCasted.TargetLevel, Local.TimerManagement)
 						break
 					end
