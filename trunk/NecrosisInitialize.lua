@@ -350,7 +350,7 @@ function Necrosis_SlashHandler(arg1)
 		ReloadUI()
 	elseif arg1:lower():find("tt") then
 		NecrosisConfig.Textual = not NecrosisConfig.Textual
-		Necrosis_CreateWarlockUI()
+		Necrosis:CreateTimerAnchor()
 		Necrosis_Msg("Text Timers : <lightBlue>Toggled")
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
@@ -372,6 +372,7 @@ function Necrosis_SlashHandler(arg1)
 		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
 	elseif arg1:lower():find("cm") then
 		NecrosisConfig.ClosingMenu = not NecrosisConfig.ClosingMenu
+		Necrosis_CreateMenu()
 		Necrosis_Msg("Close Menus on click : <lightBlue>Toggled")
 	elseif arg1:lower():find("sm") then
 		NecrosisConfig.SM = not NecrosisConfig.SM
