@@ -23,20 +23,20 @@ NecrosisGraphOptionMenu.xml
 
 Localization.lua
 
-Locales\Localization-functions-fr.lua
-Locales\Localization-functions-en.lua
-Locales\Localization-functions-de.lua
-Locales\Localization-functions-es.lua
-Locales\Localization-functions-tw.lua
-Locales\Localization-functions-cn.lua
+Locales\Functions-fr.lua
+Locales\Functions-en.lua
+Locales\Functions-de.lua
+Locales\Functions-es.lua
+Locales\Functions-tw.lua
+Locales\Functions-cn.lua
 
 
-Locales\Localization-dialog-fr.lua
-Locales\Localization-dialog-en.lua
-Locales\Localization-dialog-de.lua
-Locales\Localization-dialog-es.lua
-Locales\Localization-dialog-tw.lua
-Locales\Localization-dialog-cn.lua
+Locales\Dialog-fr.lua
+Locales\Dialog-en.lua
+Locales\Dialog-de.lua
+Locales\Dialog-es.lua
+Locales\Dialog-tw.lua
+Locales\Dialog-cn.lua
 
 Speech\Speech-fr.lua
 Speech\Speech-en.lua
@@ -47,8 +47,10 @@ Speech\Speech-cn.lua
 
 NecrosisInitialize.lua
 NecrosisMessage.lua
-NecrosisTimerFunction.lua
-NecrosisGraphicalTimer.lua
+
+Timers\Functions.lua
+Timers\GraphicalTimers.lua
+Timers\OtherTimers.lua
 
 XML\Attributes.lua
 XML\XML.lua

@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½ises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spï¿½iaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version 07.12.2006-1
 ------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 if ( GetLocale() == "deDE" ) then
 
 NECROSIS_ANTI_FEAR_SPELL = {
-	-- Buffs die temporäre Immunität gegenüber Furcht geben
+	-- Buffs die temporï¿½e Immunitï¿½ gegenber Furcht geben
 	["Buff"] = {
 		"Furchtzauberschutz",		-- Dwarf priest racial trait
 		"Wille der Verlassenen",	-- Forsaken racial trait
@@ -92,7 +92,7 @@ NECROSIS_SPELL_TABLE = {
 	[10] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "D\195\164monensklave",			Length = 3000,	Type = 2},
 	[11] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Seelenstein-Auferstehung",		Length = 1800,	Type = 1},
+		Name = "Seelensteinauferstehung",		Length = 1800,	Type = 1},
 	[12] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Feuerbrand",				Length = 15,	Type = 6},
 	[13] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
@@ -184,7 +184,7 @@ NECROSIS_SPELL_TABLE = {
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
 -- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
+-- Type 4 = Timer de malï¿½iction
 -- Type 5 = Timer de corruption
 -- Type 6 = Timer de combat
 
