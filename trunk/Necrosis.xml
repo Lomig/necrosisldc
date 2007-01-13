@@ -6,7 +6,7 @@
 				this:RegisterEvent("VARIABLES_LOADED")
 			</OnLoad>
 			<OnEvent>
-				Necrosis_OnLoad()
+				Necrosis:OnLoad()
 			</OnEvent>
 		</Scripts>
 	</Frame>

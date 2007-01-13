@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -39,7 +39,7 @@ local _G = getfenv(0)
 ------------------------------------------------------------------------------------------------------
 
 --Création des entêtes des groupes de timers
-function Necrosis_CreateGroup(SpellGroup, index)
+function Necrosis:CreateGroup(SpellGroup, index)
 
 	local texte = ""
 	if _G["NecrosisSpellTimer"..index] then
@@ -108,7 +108,7 @@ function Necrosis_CreateGroup(SpellGroup, index)
 end
 
 -- Création des timers
-function Necrosis_AddFrame(FrameName)
+function Necrosis:AddFrame(FrameName)
 
 	if _G[FrameName] then
 		f = _G[FrameName]
@@ -217,6 +217,14 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 	local yPosition = - NecrosisConfig.SensListe * 12
 
+	-- *Lisse* l'écoulement des timers si option sélectionnée
+	local Now
+	if NecrosisConfig.Smooth then
+		Now = GetTime()
+	else
+		Now = floor(GetTime())
+	end
+	
 	for index =  1, #tableau, 1 do
 		-- Sélection des frames du timer qui varient en fonction du temps
 		local Frame = _G["NecrosisTimerFrame"..tableau[index].Gtimer]
@@ -228,7 +236,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		if Changement then
 			-- Si les Frames appartiennent à un groupe de mob, et qu'on doit changer de groupe
 			if not (tableau[index].Group == LastGroup) and tableau[index].Group > 3 then
-				local f = Necrosis_CreateGroup(Changement, tableau[index].Group)
+				local f = Necrosis:CreateGroup(Changement, tableau[index].Group)
 				LastPoint[5] = LastPoint[5] + 1.2 * yPosition
 				f:ClearAllPoints()
 				f:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5])
@@ -243,7 +251,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Création de la couleur des timers en fonction du temps
 		local r, g
 		local b = 37/255
-		local PercentColor = (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
+		local PercentColor = (tableau[index].TimeMax - Now) / tableau[index].Time
 		if PercentColor > 0.5 then
 			r = (207/255) - (1 - PercentColor) * 2 * (207/255)
 			g = 1
@@ -253,11 +261,11 @@ function NecrosisUpdateTimer(tableau, Changement)
 		end
 
 		-- Calcul de la position de l'étincelle sur la barre de status
-		local sparkPosition = 150 * (tableau[index].TimeMax - floor(GetTime())) / tableau[index].Time
+		local sparkPosition = 150 * (tableau[index].TimeMax - Now) / tableau[index].Time
 		if sparkPosition < 1 then sparkPosition = 1 end
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
-		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + floor(GetTime())))
+		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + Now))
 		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)

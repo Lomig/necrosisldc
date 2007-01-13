@@ -25,7 +25,7 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
--- Version Allemande par Arne Meier et Halisstra, Lothar
+-- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
@@ -36,10 +36,10 @@
 -- ENGLISH  VERSION TEXTS --
 ------------------------------------------------
 
-function Necrosis_Localization_Dialog_Es()
+function Necrosis:Localization_Dialog_Es()
 
 	function NecrosisLocalization()
-		Necrosis_Localization_Speech_Es()
+		self:Localization_Speech_Es()
 	end
 
 	NECROSIS_COOLDOWN = {

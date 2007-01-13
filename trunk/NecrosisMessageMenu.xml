@@ -150,29 +150,29 @@
 						if (this:GetValue() == 1) then
 							GameTooltip:SetText("Français")
 							NecrosisConfig.NecrosisLanguage = "frFR"
-							Necrosis_Localization_Dialog_Fr()
+							Necrosis:Localization_Dialog_Fr()
 						elseif (this:GetValue() == 2) then
 							GameTooltip:SetText("English")
 							NecrosisConfig.NecrosisLanguage = "enUS"
-							Necrosis_Localization_Dialog_En()
+							Necrosis:Localization_Dialog_En()
 						elseif (this:GetValue() == 3) then
 							GameTooltip:SetText("Deutsch")
 							NecrosisConfig.NecrosisLanguage = "deDE"
-							Necrosis_Localization_Dialog_De()
+							Necrosis:Localization_Dialog_De()
 						elseif (this:GetValue() == 4) then
 							GameTooltip:SetText("zhTW")
 							NecrosisConfig.NecrosisLanguage = "zhTW"
-							Necrosis_Localization_Dialog_Tw()
+							Necrosis:Localization_Dialog_Tw()
 						elseif (this:GetValue() == 5) then
 							GameTooltip:SetText("zhCN")
 							NecrosisConfig.NecrosisLanguage = "zhCN"
-							Necrosis_Localization_Dialog_Cn()
+							Necrosis:Localization_Dialog_Cn()
 						else
 							GameTooltip:SetText("Español")
 							NecrosisConfig.NecrosisLanguage = "esES"
-							Necrosis_Localization_Dialog_Es()
+							Necrosis:Localization_Dialog_Es()
 						end
-						Necrosis_LanguageInitialize()
+						Necrosis:LanguageInitialize()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -233,10 +233,10 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							NecrosisConfig.NecrosisToolTip = true
-							Necrosis_Msg(NECROSIS_MESSAGE.Interface.TooltipOn, "USER")
+							Necrosis:Msg(NECROSIS_MESSAGE.Interface.TooltipOn, "USER")
 						else
 							NecrosisConfig.NecrosisToolTip = false
-							Necrosis_Msg(NECROSIS_MESSAGE.Interface.TooltipOff, "USER")
+							Necrosis:Msg(NECROSIS_MESSAGE.Interface.TooltipOff, "USER")
 						end
 					</OnClick>
 				</Scripts>
@@ -280,7 +280,7 @@
 						else
 							NecrosisConfig.ChatType = true
 						end
-						Necrosis_Msg(NECROSIS_MESSAGE.Interface.MessagePosition, "USER")
+						Necrosis:Msg(NECROSIS_MESSAGE.Interface.MessagePosition, "USER")
 					</OnClick>
 				</Scripts>
 			</CheckButton>

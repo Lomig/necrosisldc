@@ -248,13 +248,13 @@
 				this:RegisterForDrag("LeftButton")
 			</OnLoad>
 			<OnMouseUp>
-				Necrosis_OnDragStop(NecrosisGeneralFrame)
+				Necrosis:OnDragStop(NecrosisGeneralFrame)
 			</OnMouseUp>
 			<OnDragStart>
-				Necrosis_OnDragStart(NecrosisGeneralFrame)
+				Necrosis:OnDragStart(NecrosisGeneralFrame)
 			</OnDragStart>
 			<OnDragStop>
-				Necrosis_OnDragStop(NecrosisGeneralFrame)
+				Necrosis:OnDragStop(NecrosisGeneralFrame)
 			</OnDragStop>
 		</Scripts>
 	</Frame>
