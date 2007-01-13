@@ -128,7 +128,7 @@
 				<Scripts>
 					<OnClick>
 						NecrosisConfig.Graphical = this:GetChecked()
-						Necrosis_CreateWarlockUI()
+						Necrosis:CreateTimerAnchor()
 					</OnClick>
 				</Scripts>
 			</CheckButton>

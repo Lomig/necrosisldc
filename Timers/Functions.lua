@@ -80,7 +80,9 @@ function Necrosis_InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax
 		)
-
+	end
+	
+	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
 		Necrosis_Tri(Timer.SpellTimer, "Type")
 
@@ -182,7 +184,9 @@ function Necrosis_InsertTimerStone(Stone, start, duration, Timer)
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax
 		)
-
+	end
+	
+	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
 		Necrosis_Tri(Timer.SpellTimer, "Type")
 
@@ -236,8 +240,9 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, Timer)
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax - Timer.SpellTimer[#Timer.SpellTimer].Time,
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax
 		)
+	end
 
-
+	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
 		Necrosis_Tri(Timer.SpellTimer, "Type")
 
@@ -257,10 +262,13 @@ end
 
 -- Connaissant l'index du Timer dans la liste, on le supprime
 function Necrosis_RetraitTimerParIndex(index, Timer)
-	if NecrosisConfig.Graphical then
+
+	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Suppression du timer graphique
-		Timer.TimerTable[Timer.SpellTimer[index].Gtimer] = false
-		_G["NecrosisTimerFrame"..Timer.SpellTimer[index].Gtimer]:Hide()
+		if NecrosisConfig.Graphical then
+			Timer.TimerTable[Timer.SpellTimer[index].Gtimer] = false
+			_G["NecrosisTimerFrame"..Timer.SpellTimer[index].Gtimer]:Hide()
+		end
 
 		-- Suppression du timer du groupe de mob
 		if Timer.SpellTimer[index].Group and Timer.SpellGroup[Timer.SpellTimer[index].Group] then
@@ -272,8 +280,6 @@ function Necrosis_RetraitTimerParIndex(index, Timer)
 					if frameGroup then frameGroup:Hide() end
 				end
 			end
-	--	elseif _G["NecrosisSpellTimer"..Timer.SpellTimer[index].Group] then
-		--	_G["NecrosisSpellTimer"..Timer.SpellTimer[index].Group]:Hide()
 		end
 	end
 
@@ -316,10 +322,10 @@ function Necrosis_RetraitTimerCombat(Timer)
 		end
 	end
 
-	if NecrosisConfig.Graphical then
+	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		local index = 4
 		while #Timer.SpellGroup >= 4 do
-			_G["NecrosisSpellTimer"..index]:Hide()
+			if _G["NecrosisSpellTimer"..index] then _G["NecrosisSpellTimer"..index]:Hide() end
 			Timer.SpellGroup:remove()
 			index = index + 1
 		end

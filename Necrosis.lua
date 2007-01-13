@@ -429,6 +429,8 @@ function Necrosis_OnUpdate(elapsed)
 	-- Toutes les demies secondes
 	elseif Local.LastUpdate[2] > 0.5 then
 		NecrosisUpdateTimer(Local.TimerManagement.SpellTimer)
+		Necrosis:TextTimerUpdate(Local.TimerManagement.SpellTimer, Local.TimerManagement.SpellGroup)
+
 		-- Si configuré, affichage des avertissements d'Antifear
 		if NecrosisConfig.AntiFearAlert then
 			Necrosis_ShowAntiFearWarning()
@@ -2396,6 +2398,8 @@ function Necrosis_CreateMenu()
 			Local.Menu.Pet[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
 			if NecrosisConfig.ClosingMenu then
 				Local.Menu.Pet[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+			else
+				Local.Menu.Pet[i]:SetAttribute("newstate", "")
 			end
 			Local.Menu.Pet[i]:Hide()
 		end
@@ -2471,6 +2475,8 @@ function Necrosis_CreateMenu()
 			Local.Menu.Buff[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
 			if NecrosisConfig.ClosingMenu then
 				Local.Menu.Buff[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+			else
+				Local.Menu.Buff[i]:SetAttribute("newstate", "")
 			end
 			Local.Menu.Buff[i]:Hide()
 		end
@@ -2527,6 +2533,8 @@ function Necrosis_CreateMenu()
 			Local.Menu.Curse[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
 			if NecrosisConfig.ClosingMenu then
 				Local.Menu.Curse[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+			else
+				Local.Menu.Curse[i]:SetAttribute("newstate", "")
 			end
 			Local.Menu.Curse[i]:Hide()
 		end
