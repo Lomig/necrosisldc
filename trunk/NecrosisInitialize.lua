@@ -199,9 +199,30 @@ function Necrosis_Initialize(Config)
 	NecrosisAntiFearButton:SetScale(NecrosisConfig.ShadowTranceScale/100)
 	NecrosisCreatureAlertButton:SetScale(NecrosisConfig.ShadowTranceScale/100)
 
-	-- On définit l'affichage des Timers à gauche ou à droite du bouton
-	NecrosisTimerFrame0:ClearAllPoints()
-	NecrosisTimerFrame0:SetPoint(NecrosisConfig.SpellTimerJust, NecrosisSpellTimerButton, "CENTER", NecrosisConfig.SpellTimerPos * 20, 0)
+	-- On définit l'affichage des Timers Graphiques à gauche ou à droite du bouton
+	if _G["NecrosisTimerFrame0"] then
+		NecrosisTimerFrame0:ClearAllPoints()
+		NecrosisTimerFrame0:SetPoint(
+			NecrosisConfig.SpellTimerJust,
+			NecrosisSpellTimerButton,
+			"CENTER",
+			NecrosisConfig.SpellTimerPos * 20,
+			0
+		)
+	end
+
+	-- On définit l'affichage des Timers Textes à gauche ou à droite du bouton
+	if _G["NecrosisListSpells"] then
+		NecrosisListSpells:ClearAllPoints()
+		NecrosisListSpells:SetJustifyH(NecrosisConfig.SpellTimerJust)
+		NecrosisListSpells:SetPoint(
+			"TOP"..NecrosisConfig.SpellTimerJust,
+			"NecrosisSpellTimerButton",
+			"CENTER",
+			NecrosisConfig.SpellTimerPos * 23,
+			5
+		)
+	end
 
 	--On affiche ou on cache le bouton, d'ailleurs !
 	if not NecrosisConfig.ShowSpellTimers then NecrosisSpellTimerButton:Hide() end
@@ -327,6 +348,10 @@ function Necrosis_SlashHandler(arg1)
 	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
+	elseif arg1:lower():find("tt") then
+		NecrosisConfig.Textual = not NecrosisConfig.Textual
+		Necrosis_CreateWarlockUI()
+		Necrosis_Msg("Text Timers : <lightBlue>Toggled")
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
 		Necrosis_Msg("Automatic Menus : <lightBlue>Toggled")

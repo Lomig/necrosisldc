@@ -60,15 +60,28 @@ function Necrosis_CreateWarlockUI()
 	frame:RegisterForClicks("AnyUp");
 	frame:Show();
 
-	-- Création de l'ancre invisible des timers
-	local f = _G["NecrosisTimerFrame0"];
-	if not f then
-		f = CreateFrame("Frame", "NecrosisTimerFrame0", UIParent)
-		f:SetWidth(150);
-		f:SetHeight(10);
-		f:Show()
-		f:ClearAllPoints()
-		f:SetPoint("LEFT", NecrosisSpellTimerButton, "CENTER", 50, 0)
+	if NecrosisConfig.Graphical then
+		-- Création de l'ancre invisible des timers graphiques
+		local f = _G["NecrosisTimerFrame0"];
+		if not f then
+			f = CreateFrame("Frame", "NecrosisTimerFrame0", UIParent)
+			f:SetWidth(150);
+			f:SetHeight(10);
+			f:Show()
+			f:ClearAllPoints()
+			f:SetPoint("LEFT", NecrosisSpellTimerButton, "CENTER", 50, 0)
+		end
+	elseif NecrosisConfig.Textual then
+		-- Création de la liste des Timers Textes
+		local FontString = _G["NecrosisListSpells"];
+		if not FontString then
+			FontString = frame:CreateFontString("NecrosisListSpells", nil, "GameFontNormalSmall");
+		end
+
+		-- Définition de ses attributs
+		FontString:SetJustifyH("LEFT");
+		FontString:SetPoint("LEFT", "NecrosisSpellTimerButton", "LEFT", 23, 0);
+		FontString:SetTextColor(1, 1, 1);
 	end
 
 	-- Edition des scripts associés au bouton
