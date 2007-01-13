@@ -1308,13 +1308,13 @@ function Necrosis_UpdateIcons()
 			Necrosis_SpellstoneUpdateAttribute("NoStone")
 		end
 	end
-	
+
 	-- Timer de la pierre de sort quand on l'équipe
 	if Local.Stone.Spell.Mode == 3 and not Local.Stone.Spell.NeedTimer then
 		Local.Stone.Spell.NeedTimer = true
 		Local.TimerManagement = Necrosis_InsertTimerStone("SpellstoneIn", nil, nil, Local.TimerManagement)
 	end
-	
+
 	-- Affichage de l'icone liée au mode
 	if _G["NecrosisSpellstoneButton"] then
 		NecrosisSpellstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..Local.Stone.Spell.Mode)
@@ -2608,13 +2608,25 @@ function Necrosis_SymetrieTimer(bool)
 			num = num + 1
 		end
 	end
-	NecrosisTimerFrame0:ClearAllPoints()
-	NecrosisTimerFrame0:SetPoint(
-		NecrosisConfig.SpellTimerJust,
-		NecrosisSpellTimerButton,
-		"CENTER",
-		NecrosisConfig.SpellTimerPos * 20, 0
-	)
+	if _G["NecrosisTimerFrame0"] then
+		NecrosisTimerFrame0:ClearAllPoints()
+		NecrosisTimerFrame0:SetPoint(
+			NecrosisConfig.SpellTimerJust,
+			NecrosisSpellTimerButton,
+			"CENTER",
+			NecrosisConfig.SpellTimerPos * 20, 0
+		)
+	end
+	if _G["NecrosisListSpells"] then
+		NecrosisListSpells:ClearAllPoints()
+		NecrosisListSpells:SetJustifyH(NecrosisConfig.SpellTimerJust)
+		NecrosisListSpells:SetPoint(
+			"TOP"..NecrosisConfig.SpellTimerJust,
+			NecrosisSpellTimerButton,
+			"CENTER",
+			NecrosisConfig.SpellTimerPos * 23, 10
+		)
+	end
 end
 
 -- Fonction permettant l'affichage des différentes pages du livre des configurations

@@ -64,7 +64,8 @@ function Necrosis_CreateGroup(SpellGroup, index)
 		return f
 	end
 
-	local frame = CreateFrame("Frame", "NecrosisSpellTimer"..index, NecrosisSpellTimer0)
+	local FrameName = "NecrosisSpellTimer"..index
+	local frame = CreateFrame("Frame", FrameName, NecrosisSpellTimer0)
 
 	-- Définition de ses attributs
 	frame:SetWidth(150)
@@ -74,16 +75,15 @@ function Necrosis_CreateGroup(SpellGroup, index)
 	frame:Show()
 
 	-- Définition de la Frame du texte
-	local FontString = frame:CreateFontString("NecrosisSpellTimer"..index.."Text", "OVERLAY", "TextStatusBarText")
+	local FontString = frame:CreateFontString(FrameName.."Text", "OVERLAY", "TextStatusBarText")
 
 	FontString:SetWidth(150)
 	FontString:SetHeight(10)
-	FontString:SetTextHeight(14)
 	FontString:SetJustifyH("CENTER")
 	FontString:SetJustifyV("MIDDLE")
 	FontString:SetTextColor(1, 1, 1)
 	FontString:ClearAllPoints()
-	FontString:SetPoint("LEFT", frame, "LEFT", 0, 0)
+	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
 	FontString:Show()
 
 	-- Définition du texte
