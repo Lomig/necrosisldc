@@ -141,18 +141,12 @@ function Necrosis:Initialize(Config)
 	NecrosisButtonRotate_SliderLow:SetText("0")
 	NecrosisButtonRotate_SliderHigh:SetText("360")
 
-	if NecrosisConfig.Language == "esES" then
-		NecrosisLanguage_Slider:SetValue(6)
-	elseif NecrosisConfig.Language == "zhCN" then
-		NecrosisLanguage_Slider:SetValue(5)
-	elseif NecrosisConfig.Language == "zhTW" then
-		NecrosisLanguage_Slider:SetValue(4)
-	elseif NecrosisConfig.Language == "deDE" then
-		NecrosisLanguage_Slider:SetValue(3)
-	elseif NecrosisConfig.Language == "enUS" then
-		NecrosisLanguage_Slider:SetValue(2)
-	else
-		NecrosisLanguage_Slider:SetValue(1)
+	local langues = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
+	for i in ipairs(langues) do
+		if NecrosisConfig.Language == langues[i] then
+			NecrosisLanguage_Slider:SetValue(i)
+			break
+		end
 	end
 	NecrosisLanguage_SliderText:SetText("Langue / Language / Sprache / Lengua")
 	NecrosisLanguage_SliderLow:SetText("")
@@ -178,6 +172,7 @@ function Necrosis:Initialize(Config)
 	for index, valeur in ipairs(couleur) do
 		if NecrosisConfig.NecrosisColor == valeur then
 			NecrosisColor_Slider:SetValue(index)
+			break
 		end
 	end
 	couleur = nil
@@ -251,8 +246,13 @@ function Necrosis:Initialize(Config)
 			self:SearchWand()
 	end
 
+
 	-- Inventaire des pierres et des fragments possedés par le Démoniste
 	self:BagExplore()
+
+	-- Si la sphere doit indiquer la vie ou la mana, on y va
+	Necrosis:UpdateHealth()
+	Necrosis:UpdateMana()
 
 	-- On vérifie que les fragments sont dans le sac défini par le Démoniste
 	if NecrosisConfig.SoulshardSort then

@@ -74,7 +74,7 @@ function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 				LastUpdate = "Turquoise\\Shard"..(Minutes - 15)
 				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..LastUpdate)
 			end
-		elseif (Minutes >= 1 or Secondes >= 33)
+		elseif (Minutes >= 1 or Secondes >= 33) then
 			if not (LastUpdate == "Orange\\Shard"..(Minutes + 1)) then
 				LastUpdate = "Orange\\Shard"..(Minutes + 1)
 				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..LastUpdate)

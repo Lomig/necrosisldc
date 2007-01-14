@@ -326,7 +326,7 @@ function Necrosis:Localization_Dialog_Fr()
 			"Pierres d'invocations",
 			"Timer de Rez",
 			"Mana",
-			"Santé"
+			"Sant\195\169"
 		}
 	};
 	NECROSIS_BINDING = {

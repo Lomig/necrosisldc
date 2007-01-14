@@ -114,7 +114,8 @@
 					</OnLeave>
 					<OnMouseUp>
 						NecrosisConfig.CountType = this:GetValue()
-						NecrosisShardCount:SetText("")
+						Necrosis:UpdateHealth()
+						Necrosis:UpdateMana()
 						Necrosis:BagExplore()
 					</OnMouseUp>
 					<OnValueChanged>
@@ -122,7 +123,7 @@
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
-			<Slider name="NecrosisCircle_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="2" valueStep="1">
+			<Slider name="NecrosisCircle_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="4" valueStep="1">
 				<Size>
 					<AbsDimension x="150" y="16" />
 				</Size>
@@ -147,6 +148,8 @@
 					</OnLeave>
 					<OnMouseUp>
 						NecrosisConfig.Circle = this:GetValue()
+						Necrosis:UpdateHealth()
+						Necrosis:UpdateMana()
 						Necrosis:BagExplore()
 					</OnMouseUp>
 					<OnValueChanged>
