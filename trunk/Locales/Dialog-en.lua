@@ -323,9 +323,11 @@ function Necrosis:Localization_Dialog_En()
 			["Tooltips"] = "Show tooltips"
 		},
 		["Count"] = {
-			["Shard"] = "Soulshards",
-			["Inferno"] = "Demon summoning stones",
-			["Rez"] = "Resurrection Timer"
+			"Soulshards",
+			"Demon summoning stones",
+			"Resurrection Timer",
+			"Mana",
+			"Health"
 		}
 	};
 

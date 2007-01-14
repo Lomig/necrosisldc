@@ -93,7 +93,7 @@
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
-			<Slider name="NecrosisCountType_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="3" valueStep="1">
+			<Slider name="NecrosisCountType_Slider" inherits="OptionsSliderTemplate" virtual="true" minValue="1" maxValue="5" valueStep="1">
 				<Size>
 					<AbsDimension x="150" y="16" />
 				</Size>
@@ -107,29 +107,18 @@
 				<Scripts>
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-						if this:GetValue() == 1 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Shard)
-						elseif this:GetValue() == 2 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Inferno)
-						else
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Rez)
-						end
+						GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[this:GetValue()])
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide()
 					</OnLeave>
 					<OnMouseUp>
 						NecrosisConfig.CountType = this:GetValue()
+						NecrosisShardCount:SetText("")
 						Necrosis:BagExplore()
 					</OnMouseUp>
 					<OnValueChanged>
-						if this:GetValue() == 1 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Shard)
-						elseif this:GetValue() == 2 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Inferno)
-						else
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Rez)
-						end
+						GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[this:GetValue()])
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -148,9 +137,9 @@
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 						if this:GetValue() == 1 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Shard)
+							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[1])
 						else
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Rez)
+							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[this:GetValue() + 1])
 						end
 					</OnEnter>
 					<OnLeave>
@@ -162,9 +151,9 @@
 					</OnMouseUp>
 					<OnValueChanged>
 						if this:GetValue() == 1 then
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Shard)
+							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[1])
 						else
-							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count.Rez)
+							GameTooltip:SetText(NECROSIS_CONFIGURATION.Count[this:GetValue() + 1])
 						end
 					</OnValueChanged>
 				</Scripts>

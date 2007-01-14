@@ -69,13 +69,19 @@ function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 	end
 	-- Le timer graphique
 	if NecrosisConfig.Circle == 2 then
-		if (Minutes >= 16) and not (LastUpdate == Minutes - 15) then
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Turquoise\\Shard"..Minutes - 15)
-			LastUpdate = Minutes - 15
-		elseif (Minutes >= 1 or Secondes >= 33) and not (LastUpdate == Minutes + 1) then
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Orange\\Shard"..Minutes + 1);
-		elseif not (LastUpdate == Secondes) then
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Rose\\Shard"..Secondes);
+		if (Minutes >= 16) then
+			if not (LastUpdate == "Turquoise\\Shard"..(Minutes - 15)) then
+				LastUpdate = "Turquoise\\Shard"..(Minutes - 15)
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..LastUpdate)
+			end
+		elseif (Minutes >= 1 or Secondes >= 33)
+			if not (LastUpdate == "Orange\\Shard"..(Minutes + 1)) then
+				LastUpdate = "Orange\\Shard"..(Minutes + 1)
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..LastUpdate)
+			end
+		elseif not (LastUpdate == "Rose\\Shard"..Secondes) then
+			LastUpdate = "Rose\\Shard"..Secondes
+			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..LastUpdate)
 		end
 	end
 

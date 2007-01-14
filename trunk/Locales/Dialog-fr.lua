@@ -322,9 +322,11 @@ function Necrosis:Localization_Dialog_Fr()
 			["Tooltips"] = "Affiche les bulles d'aides"
 		},
 		["Count"] = {
-			["Shard"] = "Fragments d'\195\162me",
-			["Inferno"] = "Pierres d'invocations",
-			["Rez"] = "Timer de Rez"
+			"Fragments d'\195\162me",
+			"Pierres d'invocations",
+			"Timer de Rez",
+			"Mana",
+			"Santé"
 		}
 	};
 	NECROSIS_BINDING = {

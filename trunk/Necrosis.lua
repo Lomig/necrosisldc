@@ -132,6 +132,7 @@ Local.Events = {
 	"UNIT_SPELLCAST_SUCCEEDED",
 	"UNIT_SPELLCAST_SENT",
 	"UNIT_MANA",
+	"UNIT_HEALTH",
 	"LEARNED_SPELL_IN_TAB",
 	"CHAT_MSG_SPELL_SELF_DAMAGE",
 	"PLAYER_TARGET_CHANGED",
@@ -262,8 +263,6 @@ Local.TimerManagement = {
 		},
 		metatable
 	),
-	-- Dernière image utilisée pour le chrono sur la sphere
-	LastSphereSkin = "Aucune",
 	-- Dernier sort casté et regex pour tester les resists
 	LastSpell = {
 		Fail = {
@@ -280,6 +279,9 @@ Local.TimerManagement = {
 		Fade = AURAREMOVEDOTHER:gsub("%%%d?$?s", [[(.+)]])
 	}
 }
+
+-- Dernière image utilisée pour la sphere
+Local.LastSphereSkin = "Aucune"
 
 -- Variables des messages d'invocation
 Local.SpeechManagement = {
@@ -388,7 +390,7 @@ function Necrosis:OnUpdate(elapsed)
 	if NecrosisConfig.Smooth then
 		NecrosisUpdateTimer(Local.TimerManagement.SpellTimer)
 	end
-	
+
 	-- Toutes les secondes
 	if Local.LastUpdate[1] > 1 then
 	-- Si configuré, tri des fragment toutes les secondes
@@ -443,8 +445,8 @@ function Necrosis:OnUpdate(elapsed)
 		if (NecrosisConfig.CountType == 3 or NecrosisConfig.Circle == 2)
 			and (Local.Stone.Soul.Mode == 3 or Local.Stone.Soul.Mode == 4)
 			then
-				Local.TimerManagement.LastSphereSkin = self:RezTimerUpdate(
-					Local.TimerManagement.SpellTimer, Local.TimerManagement.LastSphereSkin
+				Local.LastSphereSkin = self:RezTimerUpdate(
+					Local.TimerManagement.SpellTimer, Local.LastSphereSkin
 				)
 		end
 		Local.LastUpdate[2] = 0
@@ -470,8 +472,32 @@ function Necrosis:OnEvent(event)
 		if (NecrosisConfig.SoulshardSort) then
 			self:SoulshardSwitch("CHECK")
 		end
+	-- Si le joueur gagne ou perd de la mana
 	elseif (event == "UNIT_MANA") and arg1 == "player" then
 		self:UpdateMana()
+	-- Si le joueur gagneou perd de la vie
+	elseif (event == "UNIT_HEALTH") and arg1 == "player" then
+		local health = UnitHealth("player")
+		local healthMax = UnitHealthMax("player")
+		if NecrosisConfig.Circle == 4 then
+			if health == healthMax then
+				if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard32") then
+					Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard32"
+					NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+				end
+			else
+				local taux = math.floor(health / (healthMax / 16))
+				if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..taux) then
+					Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..taux
+					NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+				end
+			end
+		end
+
+		-- Si l'intérieur de la pierre affiche la mana
+		if NecrosisConfig.CountType == 5 then
+			NecrosisShardCount:SetText(health)
+		end
 	-- Si le joueur meurt
 	elseif (event == "PLAYER_DEAD") then
 		-- On cache éventuellement les boutons de Crépuscule ou Contrecoup.
@@ -929,9 +955,9 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	-- Si la bulle d'aide est associée à un bouton de menu, on change l'ancrage de la tooltip suivant son sens
 	if sens then
 		if (sens == "Pet" and NecrosisConfig.PetMenuPos.x < 0)
-			or 
+			or
 				(sens == "Buff" and NecrosisConfig.BuffMenuPos.x < 0)
-			or 
+			or
 				(sens == "Curse" and NecrosisConfig.CurseMenuPos.x < 0)
 			or
 				(sens == "Timer" and NecrosisConfig.SpellTimerJust == "RIGHT")
@@ -939,7 +965,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 				anchor = "ANCHOR_LEFT"
 		end
 	end
-	
+
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, start4, duration4
 	if NECROSIS_SPELL_TABLE[15].ID then
@@ -1390,6 +1416,28 @@ function Necrosis:UpdateMana()
 	end
 
 	local mana = UnitMana("player")
+	local manaMax = (UnitManaMax("player")
+
+	-- Si le pourtour de la pierre affiche la mana
+	if NecrosisConfig.Circle == 3 then
+		if mana == manaMax then
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard32") then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard32"
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+			end
+		else
+			local taux = math.floor(mana / (manaMax / 16))
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..taux) then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..taux
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+			end
+		end
+	end
+
+	-- Si l'intérieur de la pierre affiche la mana
+	if NecrosisConfig.CountType == 4 then
+		NecrosisShardCount:SetText(mana)
+	end
 
 	-- Si cooldown de domination corrompue on grise
 	if _G["NecrosisPetMenu1"] and NECROSIS_SPELL_TABLE[15].ID and not Local.BuffActif.Domination then
@@ -1852,15 +1900,22 @@ function Necrosis:BagExplore(arg)
 	-- Affichage du bouton principal de Necrosis
 	if NecrosisConfig.Circle == 1 then
 		if (Local.Soulshard.Count <= 32) then
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..NecrosisConfig.NecrosisColor.."\\Shard"..Local.Soulshard.Count)
-		else
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..NecrosisConfig.NecrosisColor.."\\Shard32")
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..Local.Soulshard.Count) then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..Local.Soulshard.Count
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+		elseif not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard32") then
+			Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard32"
+			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
 		end
-	elseif Local.Stone.Soul.Mode == 1 or Local.Stone.Soul.Mode == 2 then
+	elseif NecrosisConfig.Circle == 2 and (Local.Stone.Soul.Mode == 1 or Local.Stone.Soul.Mode == 2) then
+
 		if (Local.Soulshard.Count <= 32) then
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Bleu\\Shard"..Local.Soulshard.Count)
-		else
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Bleu\\Shard32")
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor..:gsub("[(Turquoise)(Rose)(Orange)]", "Bleu").."\\Shard"..Local.Soulshard.Count) then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor..:gsub("[(Turquoise)(Rose)(Orange)]", "Bleu").."\\Shard"..Local.Soulshard.Count
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+		elseif not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor..:gsub("[(Turquoise)(Rose)(Orange)]", "Bleu").."\\Shard32") then
+			Local.LastSphereSkin = NecrosisConfig.NecrosisColor..:gsub("[(Turquoise)(Rose)(Orange)]", "Bleu").."\\Shard32"
+			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
 		end
 	end
 	if NecrosisConfig.ShowCount then
