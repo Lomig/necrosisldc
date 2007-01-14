@@ -324,9 +324,11 @@ function Necrosis:Localization_Dialog_Cn()
 			["Tooltips"] = "显示提示"
 		},
 		["Count"] = {
-			["Shard"] = "灵魂碎片",
-			["Inferno"] = "恶魔召唤石",
-			["Rez"] = "灵魂石冷却计时"
+			"灵魂碎片",
+			"恶魔召唤石",
+			"灵魂石冷却计时",
+			"Mana",
+			"Health"
 		}
 	}
 

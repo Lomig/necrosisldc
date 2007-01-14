@@ -324,9 +324,11 @@ function Necrosis:Localization_Dialog_De()
 			["Tooltips"] = "Zeige Tooltips"
 		},
 		["Count"] = {
-			["Shard"] = "Seelensplitter",
-			["Inferno"] = "D\195\164monenen-Beschw\195\182rungs-Steine",
-			["Rez"] = "Wiederbelebungs-Timer"
+			"Seelensplitter",
+			"D\195\164monenen-Beschw\195\182rungs-Steine",
+			"Wiederbelebungs-Timer",
+			"Mana",
+			"Health"
 		}
 	};
 

@@ -56,8 +56,8 @@ function Necrosis:Localization_Dialog_Es()
 				[false] = "No",
 			},
 			Hellspawn = {
-				[true] = "On",
-				[false] = "Off",
+				[true] = "Activar",
+				[false] = "Desactivar",
 			},
 			["Soulshard"] = "Fragmento(s) de Alma: ",
 			["InfernalStone"] = "Piedra(s) Infernal(es): ",
@@ -122,7 +122,7 @@ function Necrosis:Localization_Dialog_Es()
 		},
 		["Banish"] = {
 			Label = "|c00FFFFFFDesterrar|r",
-			Text = "Click derecho para lanzar Rango 1"
+			Text = "Click derecho para invocar Rango 1"
 		},
 		["TP"] = {
 			Label = "|c00FFFFFFRitual de Invocaci\195\179n|r"
@@ -244,10 +244,10 @@ function Necrosis:Localization_Dialog_Es()
 		},
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necro <lightOrange>reset<white> -- <lightBlue>Reinicia Necrosis entero",
 			"/necro <lightOrange>sm<white> -- <lightBlue>Reemplazar los mensajes de Piedra de Alma e invocaci\195\179n por una versi\195\179n breve para Banda",
-			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
-			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
+			"/necro <lightOrange>am<white> -- <lightBlue>Permite que los men\195\186s se abran autom\195\161ticamente cuando entres en combate",
+			"/necro <lightOrange>bm<white> -- <lightBlue>Mantiene los men\195\186s abiertos indefinidamente",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
 		},
@@ -296,11 +296,11 @@ function Necrosis:Localization_Dialog_Es()
 		["MainLock"] = "Bloquear los botones y la Esfera Necrosis.",
 		["BagSelect"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
-		["PetMenu"] = "Poner el men\195\186 de mascota a la izquierda",
-		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179n a la izquierda",
+		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
+		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
 		["STimerLeft"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
-		["ShowCount"] = "Mostrar la contabilizaci\195\179n de Fragmentos Necrosis",
-		["CountType"] = "Contabilizar el tipo de Piedra",
+		["ShowCount"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
+		["CountType"] = "Tipo de Piedra contabilizada",
 		["Circle"] = "Evento mostrado en la esfera gr\195\161fica",
 		["Sound"] = "Activar sonidos",
 		["ShowMessage"] = "Activar discursos aleatorios",
@@ -310,7 +310,7 @@ function Necrosis:Localization_Dialog_Es()
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 		["TranseSize"] = "Tama\195\177o de los botones de aviso",
-		["Skin"] = "Piel de la Esfera Necrosis",
+		["Skin"] = "Color de la Esfera Necrosis",
 		["Show"] = {
 			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",
 			["Spellstone"] = "Mostrar bot\195\179n Piedra de Hechizo",
@@ -323,9 +323,11 @@ function Necrosis:Localization_Dialog_Es()
 			["Tooltips"] = "Mostrar consejos detallados"
 		},
 		["Count"] = {
-			["Shard"] = "Fragmentos de Alma",
-			["Inferno"] = "Piedras de invocaci\195\179n de Demonio",
-			["Rez"] = "Temporizador de Resurrecci\195\179n"
+			"Fragmentos de Alma",
+			"Piedras de invocaci\195\179n de Demonios",
+			"Temporizador de Resurrecci\195\179n",
+			"Mana",
+			"Health"
 		}
 	};
 
