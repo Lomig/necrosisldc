@@ -99,7 +99,7 @@ NECROSIS_SPELL_TABLE = {
 	[13] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Peur",							Length = 15,	Type = 6},
 	[14] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "Corruption",						Length = 17,	Type = 5},
+		Name = "Corruption",						Length = 18,	Type = 5},
 	[15] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
 		Name = "Domination corrompue",					Length = 900,	Type = 3},
 	[16] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,

@@ -140,6 +140,7 @@ Local.Events = {
 	"TRADE_ACCEPT_UPDATE",
 	"TRADE_SHOW",
 	"TRADE_CLOSED",
+	"CHAT_MSG_SPELL_AURA_GONE_OTHER"
 }
 
 -- Configuration par défaut
@@ -273,6 +274,10 @@ Local.TimerManagement = {
 			SPELLMISSSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
 			SPELLLOGABSORBSELFOTHER:gsub("%%%d?$?s", [[(.+)]])
 		}
+	},
+	-- Un timer de Banish en place et regex pour tester le fade
+	Banish = {
+		Fade = AURAREMOVEDOTHER:gsub("%%%d?$?s", [[(.+)]])
 	}
 }
 
@@ -398,25 +403,23 @@ function Necrosis:OnUpdate(elapsed)
 					-- On enlève les timers terminés
 					local TimeLocal = GetTime()
 					if TimeLocal >= (Local.TimerManagement.SpellTimer[index].TimeMax - 0.5) then
+						local StoneFade = false
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if Local.TimerManagement.SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
 							self:Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
 							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd) end
-							-- On met à jour l'apparence du bouton de la pierre d'âme
-							self:UpdateIcons()
+							StoneFade = true
+						elseif Local.TimerManagement.SpellTimer[index].Name == NECROSIS_SPELL_TABLE[9].Name then
+							Local.TimerManagement.Banish.Focus = false
 						end
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
 						if not (Local.TimerManagement.SpellTimer[index].Name == NECROSIS_SPELL_TABLE[10].Name) then
 							Local.TimerManagement = self:RetraitTimerParIndex(index, Local.TimerManagement)
 							index = 0
-							break
-						end
-					end
-					-- Si le Démoniste n'est plus sous l'emprise du Sacrifice
-					if Local.TimerManagement.SpellTimer and Local.TimerManagement.SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then
-						if not self:UnitHasEffect("player", Local.TimerManagement.SpellTimer[index].Name) and Local.TimerManagement.SpellTimer[index].TimeMax then
-							Local.TimerManagement = self:RetraitTimerParIndex(index, Local.TimerManagement)
-							index = 0
+							if StoneFade then
+								-- On met à jour l'apparence du bouton de la pierre d'âme
+								self:UpdateIcons()
+							end
 							break
 						end
 					end
@@ -566,7 +569,7 @@ function Necrosis:OnEvent(event)
 	elseif event == "CHAT_MSG_SPELL_SELF_DAMAGE" then
 		local Fini = false
 		for i in ipairs(Local.TimerManagement.LastSpell.Fail) do
-			for spell, tgt in arg1:gmatch(Local.TimerManagement.LastSpell.Fail[i]) do
+			for spell in arg1:gmatch(Local.TimerManagement.LastSpell.Fail[i]) do
 				if NecrosisConfig.AntiFearAlert
 					and (spell == NECROSIS_SPELL_TABLE[13].Name or spell == NECROSIS_SPELL_TABLE[19].Name)
 					then
@@ -575,7 +578,6 @@ function Necrosis:OnEvent(event)
 						break
 				end
 				if spell == Local.TimerManagement.LastSpell.Name
-					or tgt == Local.TimerManagement.LastSpell.Name
 					and GetTime() <= (Local.TimerManagement.LastSpell.Time + 1.5)
 					then
 						self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
@@ -584,6 +586,16 @@ function Necrosis:OnEvent(event)
 				end
 			end
 			if Fini then break end
+		end
+	-- Tentative de détection du déban
+	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" and Local.TimerManagement.Banish.Focus then
+		for spell in arg1:gmatch(Local.TimerManagement.Banish.Fade) do
+			if spell == NECROSIS_SPELL_TABLE[9] and not self:UnitHasEffect("focus", NECROSIS_SPELL_TABLE[9]) then
+				self:Msg("BAN ! BAN ! BAN !")
+				self:RetraitTimerParNom(NECROSIS_SPELL_TABLE[9], Local.TimerManagement)
+				Local.TimerManagement.Banish.Focus = false
+				break
+			end
 		end
 	-- Si le Démoniste apprend un nouveau sort / rang de sort, on récupère la nouvelle liste des sorts
 	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
@@ -797,7 +809,7 @@ function Necrosis:SpellManagement()
 								and not (spell == 16)
 								then
 								-- Si c'est sort lancé déjà présent sur un mob, on remet le timer à fond
-								if not (spell == 9) or (spell == 9 and not self:UnitHasEffect("target", Local.SpellCasted.Name)) then
+								if not (spell == 9) or (spell == 9 and not self:UnitHasEffect("focus", Local.SpellCasted.Name)) then
 									Local.TimerManagement.SpellTimer[thisspell].Time = NECROSIS_SPELL_TABLE[spell].Length
 									Local.TimerManagement.SpellTimer[thisspell].TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[spell].Length)
 									if spell == 9 and Local.SpellCasted.Rank:find("1") then
@@ -869,6 +881,7 @@ function Necrosis:SpellManagement()
 							else
 								NECROSIS_SPELL_TABLE[spell].Length = 30
 							end
+							Local.TimerManagement.Banish.Focus = true
 						end
 						Local.TimerManagement = self:InsertTimerParTable(spell, Local.SpellCasted.TargetName, Local.SpellCasted.TargetLevel, Local.TimerManagement)
 						break
