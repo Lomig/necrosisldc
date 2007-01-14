@@ -130,6 +130,7 @@ function Necrosis:CreateWarlockUI()
 	frame = _G["NecrosisButton"]
 	if not frame then
 		frame = CreateFrame("Button", "NecrosisButton", UIParent, "SecureActionButtonTemplate")
+		frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Shard")
 	end
 
 	-- Définition de ses attributs
@@ -138,7 +139,6 @@ function Necrosis:CreateWarlockUI()
 	frame:EnableMouse(true)
 	frame:SetWidth(58)
 	frame:SetHeight(58)
-	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Shard")
 	frame:RegisterForDrag("LeftButton")
 	frame:RegisterForClicks("AnyUp")
 	frame:Show()
