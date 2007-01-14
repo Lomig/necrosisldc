@@ -133,7 +133,8 @@ function Necrosis:AddFrame(FrameName)
 
 	texture:SetWidth(150)
 	texture:SetHeight(10)
-	texture:SetTexture(0, 0, 0, 0.5)
+	--texture:SetTexture(0, 0, 0, 0.5)
+	texture:SetTexture("Interface\\Addons\\Necrosis\\Timers\\UI\\Fond")
 	texture:ClearAllPoints()
 	texture:SetPoint(NecrosisConfig.SpellTimerJust, FrameName, NecrosisConfig.SpellTimerJust, 0, 0)
 	texture:Show()
@@ -180,8 +181,9 @@ function Necrosis:AddFrame(FrameName)
 
 	StatusBar:SetWidth(150)
 	StatusBar:SetHeight(10)
-	StatusBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
-	StatusBar:SetStatusBarColor(1, 1, 0)
+	--StatusBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+	--StatusBar:SetStatusBarColor(1, 1, 0)
+	StatusBar:SetStatusBarTexture("Interface\\Addons\\Necrosis\\Timers\\UI\\Violet")
 	StatusBar:SetFrameLevel(StatusBar:GetFrameLevel() - 1)
 	StatusBar:ClearAllPoints()
 	StatusBar:SetPoint(NecrosisConfig.SpellTimerJust, FrameName, NecrosisConfig.SpellTimerJust, 0, 0)
@@ -224,7 +226,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 	else
 		Now = floor(GetTime())
 	end
-	
+
 	for index =  1, #tableau, 1 do
 		-- Sélection des frames du timer qui varient en fonction du temps
 		local Frame = _G["NecrosisTimerFrame"..tableau[index].Gtimer]
@@ -266,7 +268,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
 		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + Now))
-		StatusBar:SetStatusBarColor(r, g, b)
+		-- StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
 
