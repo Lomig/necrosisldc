@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -231,8 +231,6 @@ function Necrosis:Localization_Dialog_Tw()
 			["FullPrefix"] = "你的",
 			["FullSuffix"] = " 滿了！",
 			["FullDestroySuffix"] = "滿了；下個碎片將被摧毀！",
-			["SelectedPrefix"] = "你已經選擇你的",
-			["SelectedSuffix"] = "放你的靈魂碎片。"
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>/necro 顯示設定功能表！",
@@ -262,14 +260,14 @@ function Necrosis:Localization_Dialog_Tw()
 
 	-- Gestion XML - Menu de configuration
 
-	NECROSIS_COLOR_TOOLTIP = {
-		["Purple"] = "紫色",
-		["Blue"] = "藍色",
-		["Pink"] = "粉紅色",
-		["Orange"] = "橘色",
-		["Turquoise"] = "青綠色",
-		["666"] = "666",
-		["X"] = "X"
+	Necrosis.Config.Sphere.Colour = {
+		"粉紅色",
+		"藍色",
+		"橘色",
+		"青綠色",
+		"紫色",
+		"666",
+		"X"
 	}
 
 	NECROSIS_CONFIGURATION = {

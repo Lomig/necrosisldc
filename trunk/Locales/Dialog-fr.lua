@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -228,8 +228,6 @@ function Necrosis:Localization_Dialog_Fr()
 			["FullPrefix"] = "Votre ",
 			["FullSuffix"] = " est plein !",
 			["FullDestroySuffix"] = " est plein ; Les prochains fragments seront detruits !",
-			["SelectedPrefix"] = "Vous avez choisi votre ",
-			["SelectedSuffix"] = " pour stocker vos fragments"
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>/necro pour les options !",
@@ -260,14 +258,14 @@ function Necrosis:Localization_Dialog_Fr()
 
 	-- Gestion XML - Menu de configuration
 
-	NECROSIS_COLOR_TOOLTIP = {
-		["Purple"] = "Violet",
-		["Blue"] = "Bleu",
-		["Pink"] = "Rose",
-		["Orange"] = "Orange",
-		["Turquoise"] = "Turquoise",
-		["666"] = "666",
-		["X"] = "X"
+	Necrosis.Config.Sphere.Colour = {
+		"Rose",
+		"Bleu",
+		"Orange",
+		"Turquoise",
+		"Violet",
+		"666",
+		"X"
 	};
 
 	NECROSIS_CONFIGURATION = {

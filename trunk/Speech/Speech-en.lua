@@ -34,7 +34,7 @@
 
 function Necrosis:Localization_Speech_En()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 			"<after>Arcanum Taxi Cab! I am summoning <target>, please click on the portal.",
 		},
@@ -53,7 +53,7 @@ function Necrosis:Localization_Speech_En()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>If you cherish the idea of a mass suicide, <target> can now self-resurrect, so all should be fine. Go ahead.",
 		},
@@ -68,7 +68,7 @@ function Necrosis:Localization_Speech_En()
 		},
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Imp
 		[1] = {
 			[1] = {
@@ -134,7 +134,7 @@ function Necrosis:Localization_Speech_En()
 		}
 	}
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
 		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
 	}

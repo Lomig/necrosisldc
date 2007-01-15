@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -230,8 +230,6 @@ function Necrosis:Localization_Dialog_De()
 			["FullPrefix"] = "Dein ",
 			["FullSuffix"] = " ist voll !",
 			["FullDestroySuffix"] = " ist voll; folgende Seelensplitter werden zerst\195\182rt !",
-			["SelectedPrefix"] = "Du hast deinen ",
-			["SelectedSuffix"] = " f\195\188r deine Seelensplitter gew\195\164hlt."
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>/necro f\195\188r das Einstellungsmen\195\188.",
@@ -250,7 +248,7 @@ function Necrosis:Localization_Dialog_De()
 			"/necro <lightOrange>am<white> -- <lightBlue>Erlaubt den Men\195\188s sich automatisch zu \195\182ffnen, wenn man einen Kampf betritt",
 			"/necro <lightOrange>bm<white> -- <lightBlue>H\195\164lt die Men\195\188s dauerhaft offen",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Schlie\195\159t das Men\195\188, sobald man auf einen seiner Buttons klickt",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
+			"/necro <lightOrange>tt<white> -- <lightBlue>Zeigt den Texttimer",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",
@@ -262,14 +260,14 @@ function Necrosis:Localization_Dialog_De()
 
 	-- Gestion XML - Menu de configuration
 
-	NECROSIS_COLOR_TOOLTIP = {
-		["Purple"] = "Lila",
-		["Blue"] = "Blau",
-		["Pink"] = "Pink",
-		["Orange"] = "Orange",
-		["Turquoise"] = "T\195\188rkis",
-		["666"] = "666",
-		["X"] = "X"
+	Necrosis.Config.Sphere.Colour = {
+		"Pink",
+		"Blau",
+		"Orange",
+		"T\195\188rkis",
+		"Lila",
+		"666",
+		"X"
 	};
 
 	NECROSIS_CONFIGURATION = {

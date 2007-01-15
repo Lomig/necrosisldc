@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -229,8 +229,6 @@ function Necrosis:Localization_Dialog_En()
 			["FullPrefix"] = "Your ",
 			["FullSuffix"] = " is full!",
 			["FullDestroySuffix"] = " is full; Next shards will be destroyed!",
-			["SelectedPrefix"] = "You have chosen your ",
-			["SelectedSuffix"] = " to keep your shards."
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>/necro to show the setting menu!",
@@ -261,14 +259,14 @@ function Necrosis:Localization_Dialog_En()
 
 	-- Gestion XML - Menu de configuration
 
-	NECROSIS_COLOR_TOOLTIP = {
-		["Purple"] = "Purple",
-		["Blue"] = "Blue",
-		["Pink"] = "Pink",
-		["Orange"] = "Orange",
-		["Turquoise"] = "Turquoise",
-		["666"] = "666",
-		["X"] = "X"
+	Necrosis.Config.Sphere.Colour = {
+		"Pink",
+		"Blue",
+		"Orange",
+		"Turquoise",
+		"Purple",
+		"666",
+		"X"
 	}
 
 	NECROSIS_CONFIGURATION = {

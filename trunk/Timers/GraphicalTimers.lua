@@ -65,7 +65,7 @@ function Necrosis:CreateGroup(SpellGroup, index)
 	end
 
 	local FrameName = "NecrosisSpellTimer"..index
-	local frame = CreateFrame("Frame", FrameName, NecrosisSpellTimer0)
+	local frame = CreateFrame("Frame", FrameName, UIParent)
 
 	-- Définition de ses attributs
 	frame:SetWidth(150)
@@ -133,8 +133,7 @@ function Necrosis:AddFrame(FrameName)
 
 	texture:SetWidth(150)
 	texture:SetHeight(10)
-	--texture:SetTexture(0, 0, 0, 0.5)
-	texture:SetTexture("Interface\\Addons\\Necrosis\\Timers\\UI\\Fond")
+	texture:SetTexture(0, 0, 0, 0.5)
 	texture:ClearAllPoints()
 	texture:SetPoint(NecrosisConfig.SpellTimerJust, FrameName, NecrosisConfig.SpellTimerJust, 0, 0)
 	texture:Show()
@@ -181,9 +180,8 @@ function Necrosis:AddFrame(FrameName)
 
 	StatusBar:SetWidth(150)
 	StatusBar:SetHeight(10)
-	--StatusBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
-	--StatusBar:SetStatusBarColor(1, 1, 0)
-	StatusBar:SetStatusBarTexture("Interface\\Addons\\Necrosis\\Timers\\UI\\Violet")
+	StatusBar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+	StatusBar:SetStatusBarColor(1, 1, 0)
 	StatusBar:SetFrameLevel(StatusBar:GetFrameLevel() - 1)
 	StatusBar:ClearAllPoints()
 	StatusBar:SetPoint(NecrosisConfig.SpellTimerJust, FrameName, NecrosisConfig.SpellTimerJust, 0, 0)
@@ -268,7 +266,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 		-- Définition de la couleur du timer et de la quantitée de jauge remplie
 		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + Now))
-		-- StatusBar:SetStatusBarColor(r, g, b)
+		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
 
@@ -292,7 +290,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 			affichage = affichage.."0"..secondes
 		end
 
-		if (tableau[index].Type == 1 or tableau[index].Type == 3 or tableau[index].Name == NECROSIS_SPELL_TABLE[16].Name)
+		if (tableau[index].Type == 1 or tableau[index].Type == 3 or tableau[index].Name == Necrosis.Spell[16].Name)
 		and tableau[index].Target and not (tableau[index].Target == "") then
 			if NecrosisConfig.SpellTimerPos == 1 then
 				affichage = affichage.." - "..tableau[index].Target

@@ -35,7 +35,7 @@
 
 function Necrosis:Localization_Speech_Fr()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 			"<after>Taxi des Arcanes ! J'invoque <target>, cliquez sur le portail svp !",
 		},
@@ -66,7 +66,7 @@ function Necrosis:Localization_Speech_Fr()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>Si ca vous tente un suicide collectif, <target> s'en fout, la pierre d'\195\162me lui permettra de se relever",
 		},
@@ -80,20 +80,20 @@ function Necrosis:Localization_Speech_Fr()
 			"<after>Gr\195\162ce \195\160 sa pierre d'\195\162me, <target> est pass\195\169 en mode Easy wipe",
 		},
 		[5] = {
-			"<after><target> peut d\195\169sormais revenir d'entre les morts, histoire d’organiser le prochain wipe",
+			"<after><target> peut d\195\169sormais revenir d'entre les morts, histoire d'organiser le prochain wipe",
 		},
 		[6] = {
-			"<after>Les hindous croient \195\160 l'\immortalit\195\169, <target> aussi depuis que je lui ai pos\195\169 une pierre d'\\195\162me",
+			"<after>Les hindous croient \195\160 l'immortalit\195\169, <target> aussi depuis que je lui ai pos\195\169 une pierre d'\195\162me",
 		},
 		[7] = {
 			"Ne bougeons plus !",
 			"<after><target> est d\195\169sormais \195\169quip\195\169 de son kit de survie temporaire.",
 		},
 		[8] = {
-			"<after>Tel le ph\195\169nix, <target> pourra revenir d'\entre les flammes de l'\enfer (Faut dire aussi qu'\il a beaucoup de rf...)",
+			"<after>Tel le ph\195\169nix, <target> pourra revenir d'entre les flammes de l'enfer (Faut dire aussi qu'il a beaucoup de rf...)",
 		},
 		[9] = {
-			"<after>Gr\195\162ce \195\160 sa pierre d'\\195\162me, <target> peut de nouveau faire n'\importe quoi.",
+			"<after>Gr\195\162ce \195\160 sa pierre d'\195\162me, <target> peut de nouveau faire n'importe quoi.",
 		},
 		[10] = {
 			"<after>Sur <target> poser une belle pierre d'\195\162me,",
@@ -101,7 +101,7 @@ function Necrosis:Localization_Speech_Fr()
 		},
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Diablotin
 		[1] = {
 			[1] = {
@@ -203,7 +203,7 @@ function Necrosis:Localization_Speech_Fr()
 
 	}
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
 		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}}
 	}

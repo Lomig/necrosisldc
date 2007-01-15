@@ -43,7 +43,7 @@ local _G = getfenv(0)
 function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 	local Time, TimeMax, Minutes, Secondes
 	for index, valeur in ipairs(SpellTimer) do
-		if valeur.Name == NECROSIS_SPELL_TABLE[11].Name then
+		if valeur.Name == Necrosis.Spell[11].Name then
 			Time = valeur.Time
 			TimeMax = valeur.TimeMax
 			break
@@ -138,7 +138,7 @@ function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 			display = display.."0"..seconds
 		end
 		display = display.." - <close>"..color..SpellTimer[index].Name.."<close>"
-		if (SpellTimer[index].Type == 1 or SpellTimer[index].Name == NECROSIS_SPELL_TABLE[16].Name)
+		if (SpellTimer[index].Type == 1 or SpellTimer[index].Name == Necrosis.Spell[16].Name)
 			and not (SpellTimer[index].Target == "")
 			then
 				display = display.."<white> - "..SpellTimer[index].Target.."<close>\n";

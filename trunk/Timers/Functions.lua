@@ -45,10 +45,10 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 	-- Insertion de l'entrée dans le tableau
 	Timer.SpellTimer:insert(
 		{
-			Name = NECROSIS_SPELL_TABLE[IndexTable].Name,
-			Time = NECROSIS_SPELL_TABLE[IndexTable].Length,
-			TimeMax = floor(GetTime() + NECROSIS_SPELL_TABLE[IndexTable].Length),
-			Type = NECROSIS_SPELL_TABLE[IndexTable].Type,
+			Name = Necrosis.Spell[IndexTable].Name,
+			Time = Necrosis.Spell[IndexTable].Length,
+			TimeMax = floor(GetTime() + Necrosis.Spell[IndexTable].Length),
+			Type = Necrosis.Spell[IndexTable].Type,
 			Target = Target,
 			TargetLevel = LevelTarget,
 			Group = 0,
@@ -81,7 +81,7 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax
 		)
 	end
-	
+
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
 		self:Tri(Timer.SpellTimer, "Type")
@@ -94,8 +94,8 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 	end
 
 		-- Détection des resists
-	if not (NECROSIS_SPELL_TABLE[IndexTable].Type == 0) then
-		Timer.LastSpell.Name = NECROSIS_SPELL_TABLE[IndexTable].Name
+	if not (Necrosis.Spell[IndexTable].Type == 0) then
+		Timer.LastSpell.Name = Necrosis.Spell[IndexTable].Name
 		Timer.LastSpell.Target = Target
 		Timer.LastSpell.TargetLevel = LevelTarget
 		Timer.LastSpell.Time = GetTime()
@@ -165,10 +165,10 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 	elseif Stone == "Soulstone" then
 		Timer.SpellTimer:insert(
 			{
-				Name = NECROSIS_SPELL_TABLE[11].Name,
+				Name = Necrosis.Spell[11].Name,
 				Time = floor(duration - GetTime() + start),
 				TimeMax = floor(start + duration),
-				Type = NECROSIS_SPELL_TABLE[11].Type,
+				Type = Necrosis.Spell[11].Type,
 				Target = "???",
 				TargetLevel = "",
 				Group = 1,
@@ -202,7 +202,7 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 			Timer.SpellTimer[#Timer.SpellTimer].TimeMax
 		)
 	end
-	
+
 	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
 		-- Tri des entrées par type de sort
 		self:Tri(Timer.SpellTimer, "Type")
