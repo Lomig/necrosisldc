@@ -92,8 +92,8 @@ function Necrosis:Initialize(Config)
 	-- Affichage d'un message sur la console
 	self:Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER")
 	-- Création de la liste des sorts disponibles
-	for index in ipairs(NECROSIS_SPELL_TABLE) do
-		NECROSIS_SPELL_TABLE[index].ID = nil
+	for index in ipairs(self.Spell) do
+		self.Spell[index].ID = nil
 	end
 	self:SpellSetup()
 	-- Création des menus de buff et d'invocation
@@ -241,8 +241,8 @@ function Necrosis:Initialize(Config)
 	local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
 	self:MoneyToggle()
 	if (not GetInventoryItemLink("player", 18))
-		or itemName:find(NECROSIS_ITEM.Spellstone)
-		or itemName:find(NECROSIS_ITEM.Firestone) then
+		or itemName:find(Necrosis.Translation.Item.Spellstone)
+		or itemName:find(Necrosis.Translation.Item.Firestone) then
 			self:SearchWand()
 	end
 

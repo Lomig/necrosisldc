@@ -46,5 +46,6 @@ Necrosis.Unit = {}
 Necrosis.Translation = {}
 
 Necrosis.Config = {}
+Necrosis.Config.Sphere = {}
 
 

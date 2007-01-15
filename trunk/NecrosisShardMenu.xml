@@ -186,7 +186,7 @@
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue())
 						GameTooltip:SetText(Necrosis.Config.Sphere.Colour[this:GetValue()])
-						local couleur = {"Rose", "Bleu", "Orange", Turquoise", "Violet", "666", "X"}
+						local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
 						NecrosisConfig.NecrosisColor = couleur[this:GetValue()]
 						NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..couleur[this:GetValue()].."\\Shard16")
 						couleur = nil
