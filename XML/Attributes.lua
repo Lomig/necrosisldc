@@ -334,7 +334,7 @@ function Necrosis:StoneAttribute(Steed)
 					"CLICK Necrosis"..itemName[i].."Button:RightButton"}
 				)
 				Necrosis.Binding:insert(
-					{NECROSIS_ITEM[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
+					{Necrosis.Translation.Item[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
 				)
 			end
 		end
@@ -363,7 +363,7 @@ function Necrosis:StoneAttribute(Steed)
 	NecrosisSpellTimerButton:SetAttribute("type1", "macro")
 	NecrosisSpellTimerButton:SetAttribute("macrotext", "/focus")
 	NecrosisSpellTimerButton:SetAttribute("type2", "item")
-	NecrosisSpellTimerButton:SetAttribute("item", NECROSIS_ITEM.Hearthstone)
+	NecrosisSpellTimerButton:SetAttribute("item", Necrosis.Translation.Item.Hearthstone)
 
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.
 	if _G["NecrosisHealthstoneButton"] and Necrosis.Spell[50].ID then
