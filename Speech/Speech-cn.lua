@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Necrosis LdC
     Copyright (C) 2005-2006  Lom Enfroy
 
@@ -41,7 +41,7 @@
 
 function Necrosis:Localization_Speech_Cn()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 		  "<emote>开始在空中画出一道有着强烈光芒的符咒",
 			"<after>》<player>《正在召唤【<target>】，需要二名队友合作，请按右键点击传送门，召唤期间不要移动。",
@@ -57,7 +57,7 @@ function Necrosis:Localization_Speech_Cn()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>【<target>】灵魂已经被绑定。",
 		},
@@ -69,7 +69,7 @@ function Necrosis:Localization_Speech_Cn()
 		},
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Imp
 		[1] = {
 			[1] = {
@@ -145,7 +145,7 @@ function Necrosis:Localization_Speech_Cn()
 		}
 	}
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>■【<target>】的灵魂，已被绑定３０分钟■"}},
 		{{"<after><TP>正在召唤【<target>】，请帮忙点击传送门<TP>"}},
 	}

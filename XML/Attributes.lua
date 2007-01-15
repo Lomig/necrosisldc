@@ -95,19 +95,19 @@ function Necrosis:BuffSpellAttribute()
 	-- Association de l'armure demoniaque si le sort est disponible
 	if _G["NecrosisBuffMenu1"] then
 		NecrosisBuffMenu1:SetAttribute("type", "spell")
-		if not NECROSIS_SPELL_TABLE[31].ID then
+		if not Necrosis.Spell[31].ID then
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[36].Name.."("..NECROSIS_SPELL_TABLE[36].Rank..")"
+				Necrosis.Spell[36].Name.."("..Necrosis.Spell[36].Rank..")"
 			)
 		else
 			NecrosisBuffMenu1:SetAttribute("spell",
-				NECROSIS_SPELL_TABLE[31].Name.."("..NECROSIS_SPELL_TABLE[31].Rank..")"
+				Necrosis.Spell[31].Name.."("..Necrosis.Spell[31].Rank..")"
 			)
 		end
 		-- Création du tableau des raccourcis claviers
 		if not Necrosis.AlreadyBind["NecrosisBuffMenu1"] then
 			Necrosis.AlreadyBind["NecrosisBuffMenu1"] = true
-			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[31].Name, "CLICK NecrosisBuffMenu1:LeftButton"})
+			Necrosis.Binding:insert({Necrosis.Spell[31].Name, "CLICK NecrosisBuffMenu1:LeftButton"})
 		end
 	end
 
@@ -122,16 +122,16 @@ function Necrosis:BuffSpellAttribute()
 			if not (i == 5 or i == 7 or i == 8 or i == 9) then
 				f:SetAttribute("unit", "target")
 			end
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
-			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
+			if Necrosis.Spell[ buffID[i] ].Rank and not (Necrosis.Spell[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ buffID[i] ].Rank..")"
 			end
 			f:SetAttribute("spell", SpellName_Rank)
 			-- Création du tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["NecrosisBuffMenu"..i] then
 				Necrosis.AlreadyBind["NecrosisBuffMenu"..i] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
+					{Necrosis.Spell[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
 				)
 			end
 		end
@@ -140,7 +140,7 @@ function Necrosis:BuffSpellAttribute()
 
 	-- Cas particulier : Bouton de Banish
 	if _G["NecrosisBuffMenu11"] then
-		local SpellName_Rank = NECROSIS_SPELL_TABLE[9].Name.."("..NECROSIS_SPELL_TABLE[9].Rank..")"
+		local SpellName_Rank = Necrosis.Spell[9].Name.."("..Necrosis.Spell[9].Rank..")"
 		local Rank1 = SpellName_Rank:gsub("2", "1")
 		-- Association du sort au clic gauche
 		NecrosisBuffMenu11:SetAttribute("unit*", "target")
@@ -156,10 +156,10 @@ function Necrosis:BuffSpellAttribute()
 		-- Création du tableau des raccourcis claviers
 		if not Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] then
 			Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] = true
-			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[9].Name, "CLICK NecrosisBuffMenu11:LeftButton"})
+			Necrosis.Binding:insert({Necrosis.Spell[9].Name, "CLICK NecrosisBuffMenu11:LeftButton"})
 		end
 		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
-		if NECROSIS_SPELL_TABLE[9].Rank:find("2") then
+		if Necrosis.Spell[9].Rank:find("2") then
 			NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
 			NecrosisBuffMenu11:SetAttribute("harmbutton*", "banish")
 			NecrosisBuffMenu11:SetAttribute("unit*", "target")
@@ -176,7 +176,7 @@ function Necrosis:BuffSpellAttribute()
 			if not Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] then
 				Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[9].Name.." Rank 1", "CLICK NecrosisBuffMenu11:RightButton"}
+					{Necrosis.Spell[9].Name.." Rank 1", "CLICK NecrosisBuffMenu11:RightButton"}
 				)
 			end
 		end
@@ -195,21 +195,21 @@ function Necrosis:PetSpellAttribute()
 	for i = 2, 6, 1 do
 		local f = _G["NecrosisPetMenu"..i]
 		if f then
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[i+1].Name
-			if NECROSIS_SPELL_TABLE[i+1].Rank and not (NECROSIS_SPELL_TABLE[i+1].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[i+1].Rank..")"
+			local SpellName_Rank = Necrosis.Spell[i+1].Name
+			if Necrosis.Spell[i+1].Rank and not (Necrosis.Spell[i+1].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[i+1].Rank..")"
 			end
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
 			f:SetAttribute("spell", SpellName_Rank)
 			f:SetAttribute("macrotext",
-				"/cast "..NECROSIS_SPELL_TABLE[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
+				"/cast "..Necrosis.Spell[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 			-- Création du tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["NecrosisPetMenu"..i] then
 				Necrosis.AlreadyBind["NecrosisPetMenu"..i] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[i+2].Name, "CLICK NecrosisPetMenu"..i..":LeftButton"}
+					{Necrosis.Spell[i+2].Name, "CLICK NecrosisPetMenu"..i..":LeftButton"}
 				)
 			end
 		end
@@ -221,9 +221,9 @@ function Necrosis:PetSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[ BuffID[i] ].Name
-			if NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ BuffID[i] ].Rank..")"
+			local SpellName_Rank = Necrosis.Spell[ BuffID[i] ].Name
+			if Necrosis.Spell[ BuffID[i] ].Rank and not (Necrosis.Spell[ BuffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ BuffID[i] ].Rank..")"
 			end
 			f:SetAttribute("type", "spell")
 			f:SetAttribute("spell", SpellName_Rank)
@@ -231,7 +231,7 @@ function Necrosis:PetSpellAttribute()
 			if not Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] then
 				Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[BuffID[i]].Name, "CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"}
+					{Necrosis.Spell[BuffID[i]].Name, "CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"}
 				)
 			end
 		end
@@ -247,11 +247,11 @@ function Necrosis:CurseSpellAttribute()
 	-- Malédiction amplifiée
 	if _G["NecrosisCurseMenu1"] then
 		NecrosisCurseMenu1:SetAttribute("type", "spell")
-		NecrosisCurseMenu1:SetAttribute("spell", NECROSIS_SPELL_TABLE[42].Name)
+		NecrosisCurseMenu1:SetAttribute("spell", Necrosis.Spell[42].Name)
 		-- Création du tableau des raccourcis claviers
 		if not Necrosis.AlreadyBind["NecrosisCurseMenu1"] then
 			Necrosis.AlreadyBind["NecrosisCurseMenu1"] = true
-			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[42].Name, "CLICK NecrosisCurseMenu1:LeftButton"})
+			Necrosis.Binding:insert({Necrosis.Spell[42].Name, "CLICK NecrosisCurseMenu1:LeftButton"})
 		end
 	end
 
@@ -261,9 +261,9 @@ function Necrosis:CurseSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
-			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
+			if Necrosis.Spell[ buffID[i] ].Rank and not (Necrosis.Spell[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ buffID[i] ].Rank..")"
 			end
 			f:SetAttribute("harmbutton1", "debuff")
 			f:SetAttribute("type-debuff", "spell")
@@ -272,13 +272,13 @@ function Necrosis:CurseSpellAttribute()
 			f:SetAttribute("harmbutton2", "amplif")
 			f:SetAttribute("type-amplif", "macro")
 			f:SetAttribute("macrotext-amplif",
-				"/cast "..NECROSIS_SPELL_TABLE[42].Name.."\n/stopcasting\n/cast "..SpellName_Rank
+				"/cast "..Necrosis.Spell[42].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 			-- Création du tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
 				Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[buffID[i]].Name,
+					{Necrosis.Spell[buffID[i]].Name,
 					"CLICK NecrosisCurseMenu"..buttonID[i]..":LeftButton"}
 				)
 			end
@@ -291,9 +291,9 @@ function Necrosis:CurseSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then
-			local SpellName_Rank = NECROSIS_SPELL_TABLE[ buffID[i] ].Name
-			if NECROSIS_SPELL_TABLE[ buffID[i] ].Rank and not (NECROSIS_SPELL_TABLE[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")"
+			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
+			if Necrosis.Spell[ buffID[i] ].Rank and not (Necrosis.Spell[ buffID[i] ].Rank == " ") then
+				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ buffID[i] ].Rank..")"
 			end
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
@@ -303,7 +303,7 @@ function Necrosis:CurseSpellAttribute()
 			if not Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
 				Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name,
+					{Necrosis.Spell[ buffID[i] ].Name,
 					"CLICK NecrosisCurseMenu"..buttonID[i]..":LeftButton"}
 				)
 			end
@@ -324,13 +324,13 @@ function Necrosis:StoneAttribute(Steed)
 		local f = _G["Necrosis"..itemName[i].."Button"]
 		if f then
 			f:SetAttribute("type2", "spell")
-			f:SetAttribute("spell2", NECROSIS_SPELL_TABLE[ buffID[i] ].Name.."("..NECROSIS_SPELL_TABLE[ buffID[i] ].Rank..")")
+			f:SetAttribute("spell2", Necrosis.Spell[ buffID[i] ].Name.."("..Necrosis.Spell[ buffID[i] ].Rank..")")
 
 			-- On prépare le tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] then
 				Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] = true
 				Necrosis.Binding:insert(
-					{NECROSIS_SPELL_TABLE[ buffID[i] ].Name,
+					{Necrosis.Spell[ buffID[i] ].Name,
 					"CLICK Necrosis"..itemName[i].."Button:RightButton"}
 				)
 				Necrosis.Binding:insert(
@@ -345,16 +345,16 @@ function Necrosis:StoneAttribute(Steed)
 		NecrosisMountButton:SetAttribute("type1", "spell")
 		NecrosisMountButton:SetAttribute("type2", "spell")
 		-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
-		if NECROSIS_SPELL_TABLE[2].ID then
-			NecrosisMountButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[2].Name)
-			NecrosisMountButton:SetAttribute("spell2", NECROSIS_SPELL_TABLE[1].Name)
+		if Necrosis.Spell[2].ID then
+			NecrosisMountButton:SetAttribute("spell1", Necrosis.Spell[2].Name)
+			NecrosisMountButton:SetAttribute("spell2", Necrosis.Spell[1].Name)
 
 		else
-			NecrosisMountButton:SetAttribute("spell*", NECROSIS_SPELL_TABLE[1].Name)
+			NecrosisMountButton:SetAttribute("spell*", Necrosis.Spell[1].Name)
 		end
 		if not Necrosis.AlreadyBind["NecrosisMountButton"] then
 			Necrosis.AlreadyBind["NecrosisMountButton"] = true
-			Necrosis.Binding:insert({NECROSIS_SPELL_TABLE[2].Name, "CLICK NecrosisMountButton:LeftButton"})
+			Necrosis.Binding:insert({Necrosis.Spell[2].Name, "CLICK NecrosisMountButton:LeftButton"})
 		end
 	end
 
@@ -366,9 +366,9 @@ function Necrosis:StoneAttribute(Steed)
 	NecrosisSpellTimerButton:SetAttribute("item", NECROSIS_ITEM.Hearthstone)
 
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.
-	if _G["NecrosisHealthstoneButton"] and NECROSIS_SPELL_TABLE[50].ID then
+	if _G["NecrosisHealthstoneButton"] and Necrosis.Spell[50].ID then
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell")
-		NecrosisHealthstoneButton:SetAttribute("shift-spell*", NECROSIS_SPELL_TABLE[50].Name)
+		NecrosisHealthstoneButton:SetAttribute("shift-spell*", Necrosis.Spell[50].Name)
 	end
 end
 
@@ -395,13 +395,13 @@ function Necrosis:MainButtonAttribute()
 		end
 	end
 
-	if NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].ID then
+	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
-		NecrosisButton:SetAttribute("spell", NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].Name)
+		NecrosisButton:SetAttribute("spell", Necrosis.Spell[NecrosisConfig.MainSpell].Name)
 		if not Necrosis.AlreadyBind["NecrosisButton"] then
 			Necrosis.AlreadyBind["NecrosisButton"] = true
 			Necrosis.Binding:insert(
-				{NECROSIS_SPELL_TABLE[NecrosisConfig.MainSpell].Name, "CLICK NecrosisButton:LeftButton"}
+				{Necrosis.Spell[NecrosisConfig.MainSpell].Name, "CLICK NecrosisButton:LeftButton"}
 			)
 		end
 	end
@@ -505,7 +505,7 @@ function Necrosis:SoulstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSoulstoneButton:SetAttribute("type1", "spell")
-		NecrosisSoulstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[51].Name.."("..NECROSIS_SPELL_TABLE[51].Rank..")")
+		NecrosisSoulstoneButton:SetAttribute("spell1", Necrosis.Spell[51].Name.."("..Necrosis.Spell[51].Rank..")")
 		return
 	end
 
@@ -526,7 +526,7 @@ function Necrosis:HealthstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisHealthstoneButton:SetAttribute("type1", "spell")
-		NecrosisHealthstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[52].Name.."("..NECROSIS_SPELL_TABLE[52].Rank..")")
+		NecrosisHealthstoneButton:SetAttribute("spell1", Necrosis.Spell[52].Name.."("..Necrosis.Spell[52].Rank..")")
 		return
 	end
 
@@ -547,7 +547,7 @@ function Necrosis:SpellstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSpellstoneButton:SetAttribute("type1", "spell")
-		NecrosisSpellstoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[53].Name.."("..NECROSIS_SPELL_TABLE[53].Rank..")")
+		NecrosisSpellstoneButton:SetAttribute("spell1", Necrosis.Spell[53].Name.."("..Necrosis.Spell[53].Rank..")")
 		return
 	end
 
@@ -573,7 +573,7 @@ function Necrosis:FirestoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisFirestoneButton:SetAttribute("type1", "spell")
-		NecrosisFirestoneButton:SetAttribute("spell1", NECROSIS_SPELL_TABLE[54].Name.."("..NECROSIS_SPELL_TABLE[54].Rank..")")
+		NecrosisFirestoneButton:SetAttribute("spell1", Necrosis.Spell[54].Name.."("..Necrosis.Spell[54].Rank..")")
 		return
 	end
 

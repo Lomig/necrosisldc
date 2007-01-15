@@ -262,8 +262,8 @@ function Necrosis:Initialize(Config)
 	-- Initialisation des fichiers de langues -- Mise en place ponctuelle du SMS
 	self:LanguageInitialize()
 	if NecrosisConfig.SM then
-		NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
-		NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
+		self.Speech.Rez = self.Speech.ShortMessage[1]
+		self.Speech.TP = self.Speech.ShortMessage[2]
 	end
 end
 
@@ -369,12 +369,12 @@ function Necrosis:SlashHandler(arg1)
 		self:Msg("Close Menus on click : <lightBlue>Toggled")
 	elseif arg1:lower():find("sm") then
 		NecrosisConfig.SM = not NecrosisConfig.SM
-		if NECROSIS_SOULSTONE_ALERT_MESSAGE == NECROSIS_SHORT_MESSAGES[1] then
+		if self.Speech.Rez == self.Speech.ShortMessage[1] then
 			NecrosisLocalization()
 			self:Msg("Short Messages : <red>Off")
 		else
-			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1]
-			NECROSIS_INVOCATION_MESSAGES = NECROSIS_SHORT_MESSAGES[2]
+			self.Speech.Rez = self.Speech.ShortMessage[1]
+			self.Speech.TP = self.Speech.ShortMessage[2]
 			self:Msg("Short Messages : <brightGreen>On")
 		end
 	elseif arg1:lower():find("glasofruix") then

@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -33,7 +33,7 @@
 
 
 ------------------------------------------------
--- ENGLISH  VERSION TEXTS --
+-- SPANISH VERSION TEXTS --
 ------------------------------------------------
 
 function Necrosis:Localization_Dialog_Es()
@@ -229,8 +229,6 @@ function Necrosis:Localization_Dialog_Es()
 			["FullPrefix"] = "\194\161 Tu ",
 			["FullSuffix"] = " est\195\161 llena !",
 			["FullDestroySuffix"] = " est\195\161 llena; \194\161 Los pr\195\179ximos Fragmentos de Alma ser\195\161n destruidos !",
-			["SelectedPrefix"] = "Has seleccionado tu ",
-			["SelectedSuffix"] = " para guardar tus fragmentos."
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>\194\161 /necro para mostrar el men\195\186 de preferencias !",
@@ -248,8 +246,8 @@ function Necrosis:Localization_Dialog_Es()
 			"/necro <lightOrange>sm<white> -- <lightBlue>Reemplazar los mensajes de Piedra de Alma e invocaci\195\179n por una versi\195\179n breve para Banda",
 			"/necro <lightOrange>am<white> -- <lightBlue>Permite que los men\195\186s se abran autom\195\161ticamente cuando entres en combate",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Mantiene los men\195\186s abiertos indefinidamente",
-			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
+			"/necro <lightOrange>cm<white> -- <lightBlue>Se cierra el men\195\186 cuando pulsas uno de sus botones ",
+			"/necro <lightOrange>tt<white> -- <lightBlue>Muestra temporizadores en modo texto",
 		},
 		["Information"] = {
 			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!",
@@ -261,12 +259,12 @@ function Necrosis:Localization_Dialog_Es()
 
 	-- Gestion XML - Menu de configuration
 
-	NECROSIS_COLOR_TOOLTIP = {
-		["Purple"] = "P\195\186rpura",
-		["Blue"] = "Azul",
-		["Pink"] = "Rosa",
-		["Orange"] = "Naranja",
-		["Turquoise"] = "Turquesa",
+	Necrosis.Config.Sphere.Colour = {
+		"Rosa",
+		"Azul",
+		"Naranja",
+		"Turquesa",
+		"P\195\186rpura",
 		["666"] = "666",
 		["X"] = "X"
 	};
@@ -326,8 +324,8 @@ function Necrosis:Localization_Dialog_Es()
 			"Fragmentos de Alma",
 			"Piedras de invocaci\195\179n de Demonios",
 			"Temporizador de Resurrecci\195\179n",
-			"Mana",
-			"Health"
+			"Man\195\161",
+			"Salud"
 		}
 	};
 

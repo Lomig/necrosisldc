@@ -35,7 +35,7 @@
 
 function Necrosis:Localization_Speech_Fr()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 			"<after>Taxi des Arcanes ! J'invoque <target>, cliquez sur le portail svp !",
 		},
@@ -66,7 +66,7 @@ function Necrosis:Localization_Speech_Fr()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>Si ca vous tente un suicide collectif, <target> s'en fout, la pierre d'\195\162me lui permettra de se relever",
 		},
@@ -101,7 +101,7 @@ function Necrosis:Localization_Speech_Fr()
 		},
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Diablotin
 		[1] = {
 			[1] = {
@@ -203,7 +203,7 @@ function Necrosis:Localization_Speech_Fr()
 
 	}
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
 		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}}
 	}

@@ -175,57 +175,21 @@
 				<Scripts>
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Pink)
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Blue)
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Orange)
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Turquoise)
-						elseif (this:GetValue() == 5) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Purple)
-						elseif (this:GetValue() == 6) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP["666"])
-						else
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.X)
-						end
+						GameTooltip:SetText(Necrosis.Config.Sphere.Colour[this:GetValue()])
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide()
-						Necrosis:BagExplore()
 					</OnLeave>
+					<OnMouseUp>
+						Necrosis:BagExplore()
+					</OnMouseUp>
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue())
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Pink)
-							NecrosisConfig.NecrosisColor = "Rose"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Rose\\Shard16")
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Blue)
-							NecrosisConfig.NecrosisColor = "Bleu"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Bleu\\Shard16")
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Orange)
-							NecrosisConfig.NecrosisColor = "Orange"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Orange\\Shard16")
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Turquoise)
-							NecrosisConfig.NecrosisColor = "Turquoise"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Turquoise\\Shard16")
-						elseif (this:GetValue() == 5) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.Purple)
-							NecrosisConfig.NecrosisColor = "Violet"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Violet\\Shard16")
-						elseif (this:GetValue() == 6) then
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP["666"])
-							NecrosisConfig.NecrosisColor = "666"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\666\\Shard16")
-						else
-							GameTooltip:SetText(NECROSIS_COLOR_TOOLTIP.X)
-							NecrosisConfig.NecrosisColor = "X"
-							NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\X\\Shard16")
-						end
+						GameTooltip:SetText(Necrosis.Config.Sphere.Colour[this:GetValue()])
+						local couleur = {"Rose", "Bleu", "Orange", Turquoise", "Violet", "666", "X"}
+						NecrosisConfig.NecrosisColor = couleur[this:GetValue()]
+						NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..couleur[this:GetValue()].."\\Shard16")
+						couleur = nil
 					</OnValueChanged>
 				</Scripts>
 			</Slider>

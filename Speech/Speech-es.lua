@@ -33,7 +33,7 @@
 
 function Necrosis:Localization_Speech_Es()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 			"<after>\194\161 Compa\195\177\195\173a de Taxi Arcanum ! Estoy invocando a <target>, por favor cliquead en el portal.",
 		},
@@ -49,7 +49,7 @@ function Necrosis:Localization_Speech_Es()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>Si os agrada la idea de un suicidio en masa, ahora <target> puede auto-resucitar, as\195\173 todos contentos. Adelante.",
 		},
@@ -58,7 +58,7 @@ function Necrosis:Localization_Speech_Es()
 		},
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Imp
 		[1] = {
 			[1] = {
@@ -120,7 +120,7 @@ function Necrosis:Localization_Speech_Es()
 		},
 	}
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>--> <target> ha recibido la piedra del alma durante 30 minutos <--"}},
 		{{"<after><TP> Invocando a <target>, por favor cliquead en el portal <TP>"}},
 	}

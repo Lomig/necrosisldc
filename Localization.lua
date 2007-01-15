@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -35,10 +35,16 @@
 Necrosis = {}
 
 Necrosis.Data = {
-	Version = "2.0 Beta 2.5",
+	Version = "2.0 Beta 2.6",
 	AppName = "Necrosis LdC",
 	LastConfig = 20070110.3
 }
 Necrosis.Data.Label = Necrosis.Data.AppName.." "..Necrosis.Data.Version
+
+Necrosis.Speech = {}
+Necrosis.Unit = {}
+Necrosis.Translation = {}
+
+Necrosis.Config = {}
 
 

@@ -34,7 +34,7 @@
 
 function Necrosis:Localization_Speech_De()
 
-	NECROSIS_INVOCATION_MESSAGES = {
+	self.Speech.TP = {
 		[1] = {
 			"<after>Arcanum Taxi Cab ! Ich beschw\195\182re <target>, bitte klicke auf das Portal.",
 		},
@@ -51,7 +51,7 @@ function Necrosis:Localization_Speech_De()
 		},
 	}
 
-	NECROSIS_SOULSTONE_ALERT_MESSAGE = {
+	self.Speech.Rez = {
 		[1] = {
 			"<after>Solltet Ihr einen Massenselbstmord erw\195\164gen, denkt daran dass <target> sich nun selbst wiederbeleben kann. Alles wird gut werden, auf in den Kampf !",
 		},
@@ -61,12 +61,12 @@ function Necrosis:Localization_Speech_De()
 	}
 
 
-	NECROSIS_SHORT_MESSAGES = {
+	self.Speech.ShortMessage = {
 		{{"<after>--> <target> hat nun einen Seelenstein aktiv f\195\188r 30 Minuten <--"}},
 		{{"<after><Portal> Ich beschw\195\182re <target>, bitte klickt auf das Tor <Portal>"}}
 	}
 
-	NECROSIS_PET_MESSAGE = {
+	self.Speech.Demon = {
 		-- Wichtel
 		[1] = {
 			[1] = {

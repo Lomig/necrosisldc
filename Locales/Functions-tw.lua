@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -42,149 +42,63 @@
 
 if ( GetLocale() == "zhTW" ) then
 
-NECROSIS_ANTI_FEAR_SPELL = {
-	-- Buffs giving temporary immunity to fear effects
-	["Buff"] = {
-		"恐懼防護結界",	-- Dwarf priest racial trait
-		"不死族意志",	-- Forsaken racial trait
-		"反恐懼",	-- Trinket
-		"狂怒",		-- Warrior Fury talent
-		"魯莽",		-- Warrior Fury talent
-		"死亡之願",	-- Warrior Fury talent
-		"狂野怒火",	-- Hunter Beast Mastery talent (pet only)
-		"寒冰屏障",	-- Mage Ice talent
-		"聖佑術",	-- Paladin Holy buff
-		"聖盾術",	-- Paladin Holy buff
-		"戰慄圖騰",	-- Shaman totem
-		"廢除魔法"	-- Majordomo (NPC) spell
-		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.
-	},
-
-	-- Debuffs and curses giving temporary immunity to fear effects
-	["Debuff"] = {
-		"魯莽詛咒"	-- Warlock curse
-	}
+-- Table des sorts du démoniste
+Necrosis.Spell = {
+	[1] = {Name = "召喚地獄戰馬",	Length = 0,	Type = 0},
+	[2] = {Name = "召喚恐懼戰馬",	Length = 0,	Type = 0},
+	[3] = {Name = "召喚小鬼",		Length = 0,	Type = 0},
+	[4] = {Name = "召喚虛空行者",	Length = 0,	Type = 0},
+	[5] = {Name = "召喚魅魔",		Length = 0,	Type = 0},
+	[6] = {Name = "召喚地獄獵犬",	Length = 0,	Type = 0},
+	[7] = {Name = "召喚地獄守衛",	Length = 0,	Type = 0},
+	[8] = {Name = "地獄火",		Length = 3600,	Type = 3},
+	[9] = {Name = "放逐術",		Length = 30,	Type = 2},
+	[10] = {Name = "奴役惡魔",	Length = 3000,	Type = 2},
+	[11] = {Name = "靈魂石復活",	Length = 1800,	Type = 1},
+	[12] = {Name = "獻祭",		Length = 15,	Type = 5},
+	[13] = {Name = "恐懼術",		Length = 15,	Type = 5},
+	[14] = {Name = "腐蝕術",		Length = 18,	Type = 5},
+	[15] = {Name = "惡魔支配",	Length = 900,	Type = 3},
+	[16] = {Name = "厄運詛咒",	Length = 60,	Type = 3},
+	[17] = {Name = "犧牲",		Length = 30,	Type = 3},
+	[18] = {Name = "靈魂之火",	Length = 60,	Type = 3},
+	[19] = {Name = "死亡纏繞",	Length = 120,	Type = 3},
+	[20] = {Name = "暗影灼燒",	Length = 15,	Type = 3},
+	[21] = {Name = "燃燒",		Length = 10,	Type = 3},
+	[22] = {Name = "痛苦詛咒",	Length = 24,	Type = 4},
+	[23] = {Name = "虛弱詛咒",	Length = 120,	Type = 4},
+	[24] = {Name = "魯莽詛咒",	Length = 120,	Type = 4},
+	[25] = {Name = "語言詛咒",	Length = 30,	Type = 4},
+	[26] = {Name = "元素詛咒",	Length = 300,	Type = 4},
+	[27] = {Name = "暗影詛咒",	Length = 300,	Type = 4},
+	[28] = {Name = "生命虹吸",	Length = 30,	Type = 5},
+	[29] = {Name = "恐懼嚎叫",	Length = 40,	Type = 3},
+	[30] = {Name = "末日儀式",	Length = 3600,	Type = 0},
+	[31] = {Name = "魔甲術",		Length = 0,	Type = 0},
+	[32] = {Name = "魔息術",		Length = 0,	Type = 0},
+	[33] = {Name = "隱形",		Length = 0,	Type = 0},
+	[34] = {Name = "基爾羅格之眼",	Length = 0,	Type = 0},
+	[35] = {Name = "奴役惡魔",	Length = 0,	Type = 0},
+	[36] = {Name = "惡魔皮膚",	Length = 0,	Type = 0},
+	[37] = {Name = "召喚儀式",	Length = 0,	Type = 0},
+	[38] = {Name = "靈魂鏈結",	Length = 0,	Type = 0},
+	[39] = {Name = "感知惡魔",	Length = 0,	Type = 0},
+	[40] = {Name = "疲勞詛咒",	Length = 12,	Type = 4},
+	[41] = {Name = "生命分流",	Length = 0,	Type = 0},
+	[42] = {Name = "詛咒增幅",	Length = 180,	Type = 3},
+	[43] = {Name = "防護暗影結界",	Length = 30,	Type = 3},
+	[44] = {Name = "惡魔犧牲",	Length = 0,	Type = 0},
+	[45] = {Name = "暗影箭",		Length = 0,	Type = 0},
+	[46] = {Name = "痛苦動盪",	Length = 18,	Type = 6},
+	[47] = {Name = "獄甲術",		Length = 0,	Type = 0},
+	[48] = {Name = "腐蝕種子",	Length = 18,	Type = 5},
+	[49] = {Name = "靈魂",		Length = 300,	Type = 3},
+	[50] = {Name = "靈魂典禮",	Length = 300,	Type = 3},
+	[51] = {Name = "靈魂石",		Length = 0,	Type = 0},
+	[52] = {Name = "治療石",		Length = 0,	Type = 0},
+	[53] = {Name = "法術石",		Length = 0,	Type = 0},
+	[54] = {Name = "火焰石",		Length = 0,	Type = 0},
 }
-
-NECROSIS_ANTI_FEAR_UNIT = {
-	["Undead"] = {
-		"不死族"
-	},
-	["Demon"] = "惡魔",
-	["Elemental"] = "元素"
-}
-
-NECROSIS_SPELL_TABLE = {
-	[1] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚地獄戰馬",		Length = 0,	Type = 0},
-	[2] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚恐懼戰馬",		Length = 0,	Type = 0},
-	[3] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚小鬼",		Length = 0,	Type = 0},
-	[4] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚虛空行者",		Length = 0,	Type = 0},
-	[5] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚魅魔",		Length = 0,	Type = 0},
-	[6] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚地獄獵犬",		Length = 0,	Type = 0},
-	[7] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚地獄守衛",	Length = 0,	Type = 0},
-	[8] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "地獄火",			Length = 3600,	Type = 3},
-	[9] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "放逐術",			Length = 30,	Type = 2},
-	[10] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "奴役惡魔",		Length = 3000,	Type = 2},
-	[11] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂石復活",		Length = 1800,	Type = 1},
-	[12] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "獻祭",			Length = 15,	Type = 5},
-	[13] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "恐懼術",			Length = 15,	Type = 5},
-	[14] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "腐蝕術",			Length = 18,	Type = 5},
-	[15] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "惡魔支配",		Length = 900,	Type = 3},
-	[16] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "厄運詛咒",		Length = 60,	Type = 3},
-	[17] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "犧牲",			Length = 30,	Type = 3},
-	[18] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂之火",		Length = 60,	Type = 3},
-	[19] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "死亡纏繞",		Length = 120,	Type = 3},
-	[20] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "暗影灼燒",		Length = 15,	Type = 3},
-	[21] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "燃燒",			Length = 10,	Type = 3},
-	[22] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "痛苦詛咒",		Length = 24,	Type = 4},
-	[23] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "虛弱詛咒",		Length = 120,	Type = 4},
-	[24] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "魯莽詛咒",		Length = 120,	Type = 4},
-	[25] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "語言詛咒",		Length = 30,	Type = 4},
-	[26] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "元素詛咒",		Length = 300,	Type = 4},
-	[27] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "暗影詛咒",		Length = 300,	Type = 4},
-	[28] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "生命虹吸",		Length = 30,	Type = 5},
-	[29] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "恐懼嚎叫",		Length = 40,	Type = 3},
-	[30] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "末日儀式",		Length = 3600,	Type = 0},
-	[31] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "魔甲術",			Length = 0,	Type = 0},
-	[32] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "魔息術",			Length = 0,	Type = 0},
-	[33] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "隱形",			Length = 0,	Type = 0},
-	[34] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "基爾羅格之眼",		Length = 0,	Type = 0},
-	[35] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "奴役惡魔",		Length = 0,	Type = 0},
-	[36] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "惡魔皮膚",		Length = 0,	Type = 0},
-	[37] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "召喚儀式",		Length = 0,	Type = 0},
-	[38] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂鏈結",		Length = 0,	Type = 0},
-	[39] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "感知惡魔",		Length = 0,	Type = 0},
-	[40] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "疲勞詛咒",	Length = 12,	Type = 4},
-	[41] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "生命分流",		Length = 0,	Type = 0},
-	[42] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "詛咒增幅",		Length = 180,	Type = 3},
-	[43] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "防護暗影結界",		Length = 30,	Type = 3},
-	[44] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "惡魔犧牲",		Length = 0,	Type = 0},
-	[45] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "暗影箭",			Length = 0,	Type = 0},
-	[46] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "痛苦動盪",	Length = 18,	Type = 6},
-	[47] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "獄甲術",		Length = 0,	Type = 0},
-	[48] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "腐蝕種子",	Length = 18,	Type = 5},
-	[49] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂",		Length = 300,	Type = 3},
-	[50] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂典禮",	Length = 300,	Type = 3},
-	[51] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "靈魂石",		Length = 0,	Type = 0},
-	[52] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "治療石",		Length = 0,	Type = 0},
-	[53] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "法術石",		Length = 0,	Type = 0},
-	[54] = {ID = nil, Rank = " ", CastTime = nil, Mana = nil,
-		Name = "火焰石",		Length = 0,	Type = 0},
-}
-
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
@@ -193,7 +107,36 @@ NECROSIS_SPELL_TABLE = {
 -- Type 5 = Timer de corruption
 -- Type 6 = Timer de combat
 
-NECROSIS_ITEM = {
+for i in ipairs(Necrosis.Spell) do
+	Necrosis.Spell[i].Rank = " "
+end
+
+-- Types d'unité des PnJ utilisés par Necrosis
+Necrosis.Unit = {
+	["Undead"] = "不死族",
+	["Demon"] = "惡魔",
+	["Elemental"] = "元素"
+}
+
+-- Traduction du nom des procs utilisés par Necrosis
+Necrosis.Translation.Proc = {
+	["Backlash"] = "反衝",
+	["ShadowTrance"] = "暗影冥思"
+}
+
+-- Traduction des noms des démons invocables
+Necrosis.Translation.DemonName = {
+	[1] = "小鬼",
+	[2] = "虛空行者",
+	[3] = "魅魔",
+	[4] = "地獄獵犬",
+	[5] = "地獄火",
+	[6] = "末日守衛",
+	[7] = "厄運守衛"
+}
+
+-- Traduction du nom des objets utilisés par Necrosis
+Necrosis.Translation.Item = {
 	["Soulshard"] = "靈魂碎片",
 	["Soulstone"] = "靈魂石",
 	["Healthstone"] = "治療石",
@@ -207,26 +150,34 @@ NECROSIS_ITEM = {
 	["SoulPouch"] = {"靈魂袋", "惡魔布包", "熔火惡魔布包"}
 }
 
-NECROSIS_NIGHTFALL = {
-	["Backlash"] = "反衝",
-	["ShadowTrance"] = "暗影冥思"
-}
-
-NECROSIS_PET_LOCAL_NAME = {
-	[1] = "小鬼",
-	[2] = "虛空行者",
-	[3] = "魅魔",
-	[4] = "地獄獵犬",
-	[5] = "地獄火",
-	[6] = "末日守衛",
-	[7] = "厄運守衛"
-}
-
-NECROSIS_TRANSLATION = {
+-- Traductions diverses
+Necrosis.Translation.Misc = {
 	["Cooldown"] = "冷卻時間",
-	["Hearth"] = "爐石",
 	["Rank"] = "等級",
 	["Create"] = ""
+}
+
+-- Gestion de la détection des cibles protégées contre la peur
+Necrosis.AntiFear = {
+	-- Buffs donnant une immunité temporaire au Fear
+	["Buff"] = {
+		"恐懼防護結界",	-- Dwarf priest racial trait
+		"不死族意志",	-- Forsaken racial trait
+		"反恐懼",	-- Trinket
+		"狂怒",		-- Warrior Fury talent
+		"魯莽",		-- Warrior Fury talent
+		"死亡之願",	-- Warrior Fury talent
+		"狂野怒火",	-- Hunter Beast Mastery talent
+		"寒冰屏障",	-- Mage Ice talent
+		"聖佑術",	-- Paladin Holy buff
+		"聖盾術",	-- Paladin Holy buff
+		"戰慄圖騰",	-- Shaman totem
+		"廢除魔法"	-- Majordomo (NPC) spell
+	},
+	-- Debuffs donnant une immunité temporaire au Fear
+	["Debuff"] = {
+		"魯莽詛咒"	-- Warlock curse
+	}
 }
 
 end
