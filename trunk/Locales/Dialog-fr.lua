@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½ises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spï¿½iaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -259,7 +259,7 @@ function Necrosis:Localization_Dialog_Fr()
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
 		"Configuration des fragments",
-		"Configuration des fragments",
+		"Configuration des messages",
 		"Configuration des boutons",
 		"Configuration des timers",
 		"Configuration graphique"
