@@ -84,7 +84,6 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 0, 325)
 
 		UIDropDownMenu_SetWidth(125, frame)
-		frame:SetScript("OnShow", function() UIDropDownMenu_Initialize(this, Skin_Init) end)
 
 		-- Evenement montré par la sphère
 		frame = CreateFrame("Frame", "NecrosisEventSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -98,7 +97,6 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
 
 		UIDropDownMenu_SetWidth(125, frame)
-		frame:SetScript("OnShow", function() UIDropDownMenu_Initialize(this, Event_Init) end)
 
 		-- Sort associé à la sphère
 		frame = CreateFrame("Frame", "NecrosisSpellSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -112,7 +110,6 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
 
 		UIDropDownMenu_SetWidth(125, frame)
-		frame:SetScript("OnShow", function() UIDropDownMenu_Initialize(this, Spell_Init) end)
 
 		-- Affiche ou masque le compteur numérique
 		frame = CreateFrame("CheckButton", "NecrosisShowCount", NecrosisSphereConfig, "UICheckButtonTemplate")
@@ -146,7 +143,6 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
 
 		UIDropDownMenu_SetWidth(125, frame)
-		frame:SetScript("OnShow", function() UIDropDownMenu_Initialize(this, Count_Init) end)
 	end
 
 	NecrosisRotationText:SetText(self.Config.Sphere["Rotation de Necrosis"])
@@ -191,6 +187,10 @@ function Necrosis:SetSphereConfig()
 	UIDropDownMenu_SetText(Necrosis.Config.Sphere.Count[NecrosisConfig.CountType], NecrosisCountSelection)
 
 	frame:Show()
+	UIDropDownMenu_Initialize(NecrosisSkinSelection, Skin_Init)
+	UIDropDownMenu_Initialize(NecrosisEventSelection, Event_Init)
+	UIDropDownMenu_Initialize(NecrosisSpellSelection, Spell_Init)
+	UIDropDownMenu_Initialize(NecrosisCountSelection, Count_Init)
 end
 
 -- Fonctions du Dropdown des skins
@@ -213,7 +213,7 @@ function Skin_Click()
 end
 
 -- Fonctions du Dropdown des Events de la sphère
-local function Event_Init()
+function Event_Init()
 	local element = {}
 	for i in ipairs(Necrosis.Config.Sphere.Count) do
 		if not (i == 2) then
@@ -234,7 +234,7 @@ local function Event_Click()
 end
 
 -- Fonctions du Dropdown des sorts de la sphère
-local function Spell_Init()
+function Spell_Init()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	local element = {}
 	for i in ipairs(spellName) do
@@ -245,7 +245,7 @@ local function Spell_Init()
 	end
 end
 
-local function Spell_Click()
+function Spell_Click()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, this:GetID())
 	NecrosisConfig.MainSpell = spell[this:GetID()]
@@ -255,8 +255,8 @@ end
 -- Fonctions du Dropdown des Events du compteur
 local function Count_Init()
 	local element = {}
-	for i in ipairs(Necrosis.Config.Sphere.Colour) do
-		element.text = Necrosis.Config.Sphere.Colour[i]
+	for i in ipairs(Necrosis.Config.Sphere.Count) do
+		element.text = Necrosis.Config.Sphere.Count[i]
 		element.checked = nil;
 		element.func = Count_Click()
 		UIDropDownMenu_AddButton(element)
@@ -264,8 +264,8 @@ local function Count_Init()
 end
 
 local function Count_Click()
-	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, this:GetID())
-	NecrosisConfig.Circle = this:GetID()
+	UIDropDownMenu_SetSelectedID(NecrosisCountSelection, this:GetID())
+	NecrosisConfig.Count = this:GetID()
 	Necrosis:UpdateHealth()
 	Necrosis:UpdateMana()
 	Necrosis:BagExplore()
