@@ -257,6 +257,13 @@ function Necrosis:Localization_Dialog_Fr()
 
 
 	-- Gestion XML - Menu de configuration
+	Necrosis.Config.Panel = {
+		"Configuration des fragments",
+		"Configuration des fragments",
+		"Configuration des boutons",
+		"Configuration des timers",
+		"Configuration graphique"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Rose",
@@ -266,14 +273,9 @@ function Necrosis:Localization_Dialog_Fr()
 		"Violet",
 		"666",
 		"X"
-	};
+	}
 
 	NECROSIS_CONFIGURATION = {
-		["Menu1"] = "Configuration des fragments",
-		["Menu2"] = "Configuration des messages",
-		["Menu3"] = "Configuration des boutons",
-		["Menu4"] = "Configuration des timers",
-		["Menu5"] = "Configuration graphique",
 		["MainRotation"] = "Rotation de Necrosis",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFen|CFFFFC4FFt|CFFFF99FFa|CFFFF50FFi|CFFFF00FFr|CFFB700B7e :",
 		["ShardMenu2"] = "|CFFB700B7C|CFFFF00FFo|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFt|CFFFF99FFe|CFFFF50FFu|CFFFF00FFr :",

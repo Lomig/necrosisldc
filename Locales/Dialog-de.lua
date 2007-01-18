@@ -259,6 +259,13 @@ function Necrosis:Localization_Dialog_De()
 
 
 	-- Gestion XML - Menu de configuration
+	Necrosis.Config.Panel = {
+		"Splitter Einstellungen",
+		"Nachrichten Einstellungen",
+		"Buttons Einstellungen",
+		"Timer Einstellungen",
+		"Graphische Einstellungen"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
@@ -268,14 +275,9 @@ function Necrosis:Localization_Dialog_De()
 		"Lila",
 		"666",
 		"X"
-	};
+	}
 
 	NECROSIS_CONFIGURATION = {
-		["Menu1"] = "Splitter Einstellungen",
-		["Menu2"] = "Nachrichten Einstellungen",
-		["Menu3"] = "Buttons Einstellungen",
-		["Menu4"] = "Timer Einstellungen",
-		["Menu5"] = "Graphische Einstellungen",
 		["MainRotation"] = "Necrosis Rotiationseinstellung",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFa|CFFFF00FFr :",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFl|CFFFF99FFi|CFFFFC4FFtt|CFFFF99FFe|CFFFF50FFr :",

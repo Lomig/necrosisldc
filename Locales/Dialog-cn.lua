@@ -259,6 +259,13 @@ function Necrosis:Localization_Dialog_Cn()
 	}
 
 	-- Gestion XML - Menu de configuration
+	Necrosis.Config.Panel = {
+		"碎片设置",
+		"信息设置",
+		"按钮设置",
+		"计时器设置",
+		"图像设置"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"粉红色",
@@ -271,11 +278,6 @@ function Necrosis:Localization_Dialog_Cn()
 	}
 
 	NECROSIS_CONFIGURATION = {
-		["Menu1"] = "碎片设置",
-		["Menu2"] = "信息设置",
-		["Menu3"] = "按钮设置",
-		["Menu4"] = "计时器设置",
-		["Menu5"] = "图像设置",
 		["MainRotation"] = "Necrosis角度选择",
 		["ShardMenu"] = "|CFFB700B7背包|CFFB700B7 :",--"|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y :",
 		["ShardMenu2"] = "|CFFB700B7碎片|CFFB700B7 :",--"|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t :",

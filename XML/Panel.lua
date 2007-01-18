@@ -162,7 +162,7 @@ function Necrosis:OpenConfigPanel()
 
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(NECROSIS_CONFIGURATION.Menu1)
+			GameTooltip:SetText(Necrosis.Config.Panel[1])
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetScript("OnClick", function() Necrosis:SetPanel(1) end)
@@ -199,7 +199,7 @@ function Necrosis:OpenConfigPanel()
 
 			frame:SetScript("OnEnter", function()
 				GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-				GameTooltip:SetText(NECROSIS_CONFIGURATION.Menu..(i + 1)
+				GameTooltip:SetText(Necrosis.Config.Panel[i + 1])
 			end)
 			frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 			frame:SetScript("OnClick", function() Necrosis:SetPanel(i + 1) end)
@@ -223,13 +223,18 @@ function Necrosis:OpenConfigPanel()
 		self:SetPanel(1)
 	else
 
-		if (NecrosisGeneralFrame:IsVisible()) then
-			NecrosisGeneralFrame:Hide()
+		if frame:IsVisible() then
+			frame:Hide()
 		else
-			NecrosisGeneralFrame:Show()
+			frame:Show()
 		end
 	end
 end
+
+
+------------------------------------------------------------------------------------------------------
+-- FONCTIONS LIÉES AU PANNEAU DE CONFIGURATION
+------------------------------------------------------------------------------------------------------
 
 -- Fonction permettant l'affichage des différentes pages du panneau de configuration
 function Necrosis:SetPanel(PanelID)
@@ -242,6 +247,7 @@ function Necrosis:SetPanel(PanelID)
 			TabName:SetChecked(nil)
 		end
 	end
+	NecrosisGeneralPageText:SetText(Necrosis.Config.Panel[PanelID])
 	if PanelID == 1 then
 		ShowUIPanel(NecrosisShardMenu)
 		HideUIPanel(NecrosisMessageMenu)
@@ -249,7 +255,6 @@ function Necrosis:SetPanel(PanelID)
 		HideUIPanel(NecrosisTimerMenu)
 		HideUIPanel(NecrosisGraphOptionMenu)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu1)
 	elseif PanelID == 2 then
 		HideUIPanel(NecrosisShardMenu)
 		ShowUIPanel(NecrosisMessageMenu)
@@ -257,7 +262,6 @@ function Necrosis:SetPanel(PanelID)
 		HideUIPanel(NecrosisTimerMenu)
 		HideUIPanel(NecrosisGraphOptionMenu)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu2)
 	elseif PanelID == 3 then
 		HideUIPanel(NecrosisShardMenu)
 		HideUIPanel(NecrosisMessageMenu)
@@ -265,7 +269,6 @@ function Necrosis:SetPanel(PanelID)
 		HideUIPanel(NecrosisTimerMenu)
 		HideUIPanel(NecrosisGraphOptionMenu)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu3)
 	elseif PanelID == 4 then
 		HideUIPanel(NecrosisShardMenu)
 		HideUIPanel(NecrosisMessageMenu)
@@ -273,7 +276,6 @@ function Necrosis:SetPanel(PanelID)
 		ShowUIPanel(NecrosisTimerMenu)
 		HideUIPanel(NecrosisGraphOptionMenu)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu4)
 	elseif PanelID == 5 then
 		HideUIPanel(NecrosisShardMenu)
 		HideUIPanel(NecrosisMessageMenu)
@@ -281,6 +283,5 @@ function Necrosis:SetPanel(PanelID)
 		HideUIPanel(NecrosisTimerMenu)
 		ShowUIPanel(NecrosisGraphOptionMenu)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu5)
 	end
 end

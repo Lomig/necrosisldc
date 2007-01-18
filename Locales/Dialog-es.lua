@@ -258,6 +258,13 @@ function Necrosis:Localization_Dialog_Es()
 
 
 	-- Gestion XML - Menu de configuration
+	Necrosis.Config.Panel = {
+		"Opci\195\179nes de Fragmento",
+		"Opci\195\179nes de Mensaje",
+		"Opci\195\179nes de Bot\195\179n",
+		"Opci\195\179nes de Temporizador",
+		"Opci\195\179nes Gr\195\161ficas"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Rosa",
@@ -267,14 +274,9 @@ function Necrosis:Localization_Dialog_Es()
 		"P\195\186rpura",
 		["666"] = "666",
 		["X"] = "X"
-	};
+	}
 
 	NECROSIS_CONFIGURATION = {
-		["Menu1"] = "Opciones de Fragmento",
-		["Menu2"] = "Opciones de Mensaje",
-		["Menu3"] = "Opciones de Bot\195\179n",
-		["Menu4"] = "Opciones de Temporizador",
-		["Menu5"] = "Opci\195\179nes Gr\195\161ficas",
 		["MainRotation"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
 		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s:",
