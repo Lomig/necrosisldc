@@ -304,8 +304,7 @@ function Necrosis:Localization_Dialog_De()
 		["SpellTime"] = "Zeige den Timer Button",
 		["AntiFearWarning"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
-		["Graphical		["Skin"] =
-Timer"] = "Spruchdauer anzeigen",
+		["GraphicalTimer"] = "Spruchdauer anzeigen",
 		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
 		["TimerDirection"] = "Neue Timer oberhalb der bestehenden Timer anzeigen",
 		["ButtonLock"] = "Sperre die Buttons um die Necrosis Sph\195\164re",
