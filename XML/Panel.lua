@@ -87,7 +87,7 @@ function Necrosis:OpenConfigPanel()
 		texture:SetTexture("Interface\\Spellbook\\Spellbook-Icon")
 		texture:Show()
 		texture:ClearAllPoints()
-		texture:SetPoint("TOPLEFT", 10, 10)
+		texture:SetPoint("TOPLEFT")
 
 		-- Textures du cadre
 		texture = frame:CreateTexture(nil, "BORDER")
