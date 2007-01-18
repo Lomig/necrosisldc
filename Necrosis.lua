@@ -2603,8 +2603,8 @@ function Necrosis:CreateMenu()
 		Local.Menu.Curse[1]:ClearAllPoints()
 		Local.Menu.Curse[1]:SetPoint(
 			"CENTER", "NecrosisCurseMenuButton", "CENTER",
-			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
-			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
+			NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 		)
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 		self:MenuAttribute("NecrosisCurseMenu")
