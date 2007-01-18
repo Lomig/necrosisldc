@@ -194,7 +194,7 @@ function Necrosis:SetSphereConfig()
 end
 
 -- Fonctions du Dropdown des skins
-local function Skin_Init()
+function Skin_Init()
 	local element = {}
 
 	for i in ipairs(Necrosis.Config.Sphere.Colour) do
@@ -207,8 +207,8 @@ end
 
 function Skin_Click()
 	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
-	UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, this:GetID())
-	NecrosisConfig.NecrosisColor = couleur[this:GetID()]
+	UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, NecrosisSkinSelection:GetID())
+	NecrosisConfig.NecrosisColor = couleur[NecrosisSkinSelection:GetID()]
 	NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..couleur[this:GetID()].."\\Shard16")
 end
 
@@ -225,7 +225,7 @@ function Event_Init()
 	end
 end
 
-local function Event_Click()
+function Event_Click()
 	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, this:GetID())
 	NecrosisConfig.Circle = this:GetID()
 	Necrosis:UpdateHealth()
@@ -237,7 +237,7 @@ end
 function Spell_Init()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	local element = {}
-	for i in ipairs(spellName) do
+	for i in ipairs(spell) do
 		element.text = Necrosis.Spell[spell[i]].Name
 		element.checked = nil;
 		element.func = Spell_Click()
@@ -249,11 +249,11 @@ function Spell_Click()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, this:GetID())
 	NecrosisConfig.MainSpell = spell[this:GetID()]
-	Necrosis:MainButtonAttribute()
+	-- Necrosis:MainButtonAttribute()
 end
 
 -- Fonctions du Dropdown des Events du compteur
-local function Count_Init()
+function Count_Init()
 	local element = {}
 	for i in ipairs(Necrosis.Config.Sphere.Count) do
 		element.text = Necrosis.Config.Sphere.Count[i]
@@ -263,7 +263,7 @@ local function Count_Init()
 	end
 end
 
-local function Count_Click()
+function Count_Click()
 	UIDropDownMenu_SetSelectedID(NecrosisCountSelection, this:GetID())
 	NecrosisConfig.Count = this:GetID()
 	Necrosis:UpdateHealth()
