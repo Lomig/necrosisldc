@@ -65,10 +65,10 @@ function Necrosis:OpenConfigPanel()
 		frame:ClearAllPoints()
 		if NecrosisConfig.FramePosition.NecrosisGeneralFrame then
 			frame:SetPoint(
-				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][1]
-				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][2]
-				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][3]
-				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][4]
+				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][1],
+				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][2],
+				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][3],
+				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][4],
 				NecrosisConfig.FramePosition["NecrosisGeneralFrame"][5]
 			)
 		else
@@ -90,7 +90,7 @@ function Necrosis:OpenConfigPanel()
 		texture:SetPoint("TOPLEFT", 10, 10)
 
 		-- Textures du cadre
-		texture:CreateTexture(nil, "BORDER")
+		texture = frame:CreateTexture(nil, "BORDER")
 		texture:SetWidth(256)
 		texture:SetHeight(256)
 		texture:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft")
@@ -98,7 +98,7 @@ function Necrosis:OpenConfigPanel()
 		texture:ClearAllPoints()
 		texture:SetPoint("TOPLEFT")
 
-		texture:CreateTexture(nil, "BORDER")
+		texture = frame:CreateTexture(nil, "BORDER")
 		texture:SetWidth(128)
 		texture:SetHeight(256)
 		texture:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight")
@@ -106,7 +106,7 @@ function Necrosis:OpenConfigPanel()
 		texture:ClearAllPoints()
 		texture:SetPoint("TOPRIGHT")
 
-		texture:CreateTexture(nil, "BORDER")
+		texture = frame:CreateTexture(nil, "BORDER")
 		texture:SetWidth(256)
 		texture:SetHeight(256)
 		texture:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft")
@@ -114,7 +114,7 @@ function Necrosis:OpenConfigPanel()
 		texture:ClearAllPoints()
 		texture:SetPoint("BOTTOMLEFT")
 
-		texture:CreateTexture(nil, "BORDER")
+		texture = frame:CreateTexture(nil, "BORDER")
 		texture:SetWidth(128)
 		texture:SetHeight(256)
 		texture:SetTexture("Interface\\PaperDollInfoFrame\\UI-Character-General-BottomRight")
@@ -148,12 +148,12 @@ function Necrosis:OpenConfigPanel()
 		FontString:SetPoint("BOTTOM", -14, 96)
 
 		-- Bouton de fermeture de la fenêtre
-		frame:CreateFrame("Button", "NecrosisGeneralCloseButton", "NecrosisGeneralFrame", "UIPanelCloseButton")
+		frame = CreateFrame("Button", "NecrosisGeneralCloseButton", NecrosisGeneralFrame, "UIPanelCloseButton")
 		frame:ClearAllPoints()
 		frame:SetPoint("CENTER", "NecrosisGeneralFrame", "TOPRIGHT", -46, -24)
 
 		-- Premier onglet du panneau de configuration
-		frame:CreateFrame("CheckButton", "NecrosisGeneralTab1", "NecrosisGeneralFrame")
+		frame = CreateFrame("CheckButton", "NecrosisGeneralTab1", NecrosisGeneralFrame)
 		frame:SetWidth(32)
 		frame:SetHeight(32)
 		frame:Show()
@@ -178,9 +178,9 @@ function Necrosis:OpenConfigPanel()
 
 		frame:SetNormalTexture("Interface\\Icons\\INV_Misc_Gem_Amethyst_02")
 		frame:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-		GetHighlightTexture(frame):SetBlendMode("ADD")
+		frame:GetHighlightTexture():SetBlendMode("ADD")
 		frame:SetCheckedTexture("Interface\\Buttons\\CheckButtonHilight")
-		GetCheckedTexture(frame):SetBlendMode("ADD")
+		frame:GetCheckedTexture():SetBlendMode("ADD")
 
 		-- Autres onglets
 		local tex = {
@@ -190,7 +190,7 @@ function Necrosis:OpenConfigPanel()
 			"Ability_Creature_Cursed_04",
 		}
 		for i in ipairs(tex) do
-			frame:CreateFrame("CheckButton", "NecrosisGeneralTab"..(i + 1), "NecrosisGeneralFrame")
+			frame = CreateFrame("CheckButton", "NecrosisGeneralTab"..(i + 1), NecrosisGeneralFrame)
 			frame:SetWidth(32)
 			frame:SetHeight(32)
 			frame:Show()
@@ -215,9 +215,9 @@ function Necrosis:OpenConfigPanel()
 
 			frame:SetNormalTexture("Interface\\Icons\\"..tex[i])
 			frame:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-			GetHighlightTexture(frame):SetBlendMode("ADD")
+			frame:GetHighlightTexture():SetBlendMode("ADD")
 			frame:SetCheckedTexture("Interface\\Buttons\\CheckButtonHilight")
-			GetCheckedTexture(frame):SetBlendMode("ADD")
+			frame:GetCheckedTexture():SetBlendMode("ADD")
 		end
 
 		self:SetPanel(1)
