@@ -98,6 +98,7 @@ Necrosis.Spell = {
 	[52] = {Name = "治療石",		Length = 0,	Type = 0},
 	[53] = {Name = "法術石",		Length = 0,	Type = 0},
 	[54] = {Name = "火焰石",		Length = 0,	Type = 0},
+	[55] = {Name = "Dark Pact",	Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal

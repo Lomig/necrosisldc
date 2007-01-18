@@ -266,7 +266,14 @@ function Necrosis:Localization_Dialog_De()
 		"Timer Einstellungen",
 		"Graphische Einstellungen"
 	}
-
+	Necrosis.Config.Sphere = {
+		["Rotation de Necrosis"] = "Necrosis Rotiationseinstellung",
+		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
+		["Evenement montre par la sphere"] = "Anzeige in der grafischen Sph\195\164re",
+		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Afficher le compteur numerique"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
+		["Type de compteur numerique"] = "Stein Typ gez\195\164hlt"
+	}
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
 		"Blau",
@@ -276,9 +283,16 @@ function Necrosis:Localization_Dialog_De()
 		"666",
 		"X"
 	}
+	Necrosis.Config.Count = {
+		"Seelensplitter",
+		"D\195\164monenen-Beschw\195\182rungs-Steine",
+		"Wiederbelebungs-Timer",
+		"Mana",
+		"Health"
+	}
+
 
 	NECROSIS_CONFIGURATION = {
-		["MainRotation"] = "Necrosis Rotiationseinstellung",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFa|CFFFF00FFr :",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFl|CFFFF99FFi|CFFFFC4FFtt|CFFFF99FFe|CFFFF50FFr :",
 		["ShardMove"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
@@ -290,7 +304,8 @@ function Necrosis:Localization_Dialog_De()
 		["SpellTime"] = "Zeige den Timer Button",
 		["AntiFearWarning"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
-		["GraphicalTimer"] = "Spruchdauer anzeigen",
+		["Graphical		["Skin"] =
+Timer"] = "Spruchdauer anzeigen",
 		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
 		["TimerDirection"] = "Neue Timer oberhalb der bestehenden Timer anzeigen",
 		["ButtonLock"] = "Sperre die Buttons um die Necrosis Sph\195\164re",
@@ -300,9 +315,6 @@ function Necrosis:Localization_Dialog_De()
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
 		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Knopfes",
-		["ShowCount"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
-		["CountType"] = "Stein Typ gez\195\164hlt",
-		["Circle"] = "Anzeige in der grafischen Sph\195\164re",
 		["Sound"] = "Aktiviere Sounds",
 		["ShowMessage"] = "Zuf\195\164llige Spr\195\188che",
 		["ShowDemonSummon"] = "Zuf\195\164llige Spr\195\188che (D\195\164mon)",
@@ -311,7 +323,6 @@ function Necrosis:Localization_Dialog_De()
 		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 		["TranseSize"] = "Gr\195\182\195\159e des versteckten Buttons",
-		["Skin"] = "Aussehen der Necrosis Sph\195\164re",
 		["Show"] = {
 			["Firestone"] = "Zeige den Feuerstein Button",
 			["Spellstone"] = "Zeige den Zauberstein Button",
@@ -323,13 +334,6 @@ function Necrosis:Localization_Dialog_De()
 			["Curse"] = "Zeige den Fluch Men\195\188 Button",
 			["Tooltips"] = "Zeige Tooltips"
 		},
-		["Count"] = {
-			"Seelensplitter",
-			"D\195\164monenen-Beschw\195\182rungs-Steine",
-			"Wiederbelebungs-Timer",
-			"Mana",
-			"Health"
-		}
 	};
 
 	NECROSIS_BINDING = {

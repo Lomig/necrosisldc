@@ -95,6 +95,7 @@ Necrosis.Spell = {
 	[52] = {Name = "Cr\195\169ation de Pierre de soins",			Length = 0,	Type = 0},
 	[53] = {Name = "Cr\195\169ation de Pierre de sort",			Length = 0,	Type = 0},
 	[54] = {Name = "Cr\195\169ation de Pierre de feu",			Length = 0,	Type = 0},
+	[55] = {Name = "Pacte noir",						Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal

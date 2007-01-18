@@ -94,6 +94,7 @@ Necrosis.Spell = {
 	[52] = {Name = "Create Healthstone",		Length = 0,	Type = 0},
 	[53] = {Name = "Create Spellstone",		Length = 0,	Type = 0},
 	[54] = {Name = "Create Firestone",		Length = 0,	Type = 0},
+	[55] = {Name = "Dark Pact",			Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal

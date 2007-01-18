@@ -122,7 +122,6 @@ function Necrosis:Initialize(Config)
 	NecrosisShowCurseMenu_Button:SetChecked(NecrosisConfig.StonePosition[8] > 0)
 	NecrosisShowTooltips_Button:SetChecked(NecrosisConfig.NecrosisToolTip)
 	NecrosisSound_Button:SetChecked(NecrosisConfig.Sound)
-	NecrosisShowCount_Button:SetChecked(NecrosisConfig.ShowCount)
 	NecrosisBuffMenu_Button:SetChecked(NecrosisConfig.BuffMenuPos.x < 0 or NecrosisConfig.BuffMenuPos.y < 0)
 	NecrosisPetMenu_Button:SetChecked(NecrosisConfig.PetMenuPos.x < 0 or NecrosisConfig.PetMenuPos.y < 0)
 	NecrosisCurseMenu_Button:SetChecked(NecrosisConfig.CurseMenuPos.x < 0 or NecrosisConfig.CurseMenuPos.y < 0)
@@ -136,10 +135,6 @@ function Necrosis:Initialize(Config)
 	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
 	NecrosisTimerDirection_Button:SetChecked(NecrosisConfig.SensListe == -1)
 
-	-- Paramètres des glissières
-	NecrosisButtonRotate_Slider:SetValue(NecrosisConfig.NecrosisAngle)
-	NecrosisButtonRotate_SliderLow:SetText("0")
-	NecrosisButtonRotate_SliderHigh:SetText("360")
 
 	local langues = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
 	for i in ipairs(langues) do
@@ -156,28 +151,9 @@ function Necrosis:Initialize(Config)
 	NecrosisBag_SliderLow:SetText("5")
 	NecrosisBag_SliderHigh:SetText("1")
 
-	NecrosisCountType_Slider:SetValue(NecrosisConfig.CountType)
-	NecrosisCountType_SliderLow:SetText("")
-	NecrosisCountType_SliderHigh:SetText("")
-
-	NecrosisCircle_Slider:SetValue(NecrosisConfig.Circle)
-	NecrosisCircle_SliderLow:SetText("")
-	NecrosisCircle_SliderHigh:SetText("")
-
 	ShadowTranceScale_Slider:SetValue(NecrosisConfig.ShadowTranceScale)
 	ShadowTranceScale_SliderLow:SetText("50%")
 	ShadowTranceScale_SliderHigh:SetText("150%")
-
-	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
-	for index, valeur in ipairs(couleur) do
-		if NecrosisConfig.NecrosisColor == valeur then
-			NecrosisColor_Slider:SetValue(index)
-			break
-		end
-	end
-	couleur = nil
-	NecrosisColor_SliderLow:SetText("")
-	NecrosisColor_SliderHigh:SetText("")
 
 	NecrosisButtonScale_Slider:SetValue(NecrosisConfig.NecrosisButtonScale)
 	NecrosisButtonScale_SliderLow:SetText("50 %")
@@ -307,7 +283,6 @@ function Necrosis:LanguageInitialize()
 	NecrosisBuffMenu_Option:SetText(NECROSIS_CONFIGURATION.BuffMenu)
 	NecrosisPetMenu_Option:SetText(NECROSIS_CONFIGURATION.PetMenu)
 	NecrosisCurseMenu_Option:SetText(NECROSIS_CONFIGURATION.CurseMenu)
-	NecrosisShowCount_Option:SetText(NECROSIS_CONFIGURATION.ShowCount)
 	NecrosisSTimer_Option:SetText(NECROSIS_CONFIGURATION.STimerLeft)
 
 	NecrosisSound_Option:SetText(NECROSIS_CONFIGURATION.Sound)
@@ -316,15 +291,11 @@ function Necrosis:LanguageInitialize()
 	NecrosisShowDemonSummon_Option:SetText(NECROSIS_CONFIGURATION.ShowDemonSummon)
 	NecrosisChatType_Option:SetText(NECROSIS_CONFIGURATION.ChatType)
 
-	NecrosisButtonRotate_SliderText:SetText(NECROSIS_CONFIGURATION.MainRotation)
 	NecrosisCountType_SliderText:SetText(NECROSIS_CONFIGURATION.CountType)
-	NecrosisCircle_SliderText:SetText(NECROSIS_CONFIGURATION.Circle)
 	NecrosisBag_SliderText:SetText(NECROSIS_CONFIGURATION.BagSelect)
 	NecrosisButtonScale_SliderText:SetText(NECROSIS_CONFIGURATION.NecrosisSize)
 	NecrosisBanishScale_SliderText:SetText(NECROSIS_CONFIGURATION.BanishSize)
 	ShadowTranceScale_SliderText:SetText(NECROSIS_CONFIGURATION.TranseSize)
-	NecrosisColor_SliderText:SetText(NECROSIS_CONFIGURATION.Skin)
-
 end
 
 

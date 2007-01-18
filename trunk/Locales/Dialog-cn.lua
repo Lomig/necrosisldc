@@ -266,6 +266,14 @@ function Necrosis:Localization_Dialog_Cn()
 		"计时器设置",
 		"图像设置"
 	}
+	Necrosis.Config.Sphere = {
+		["Rotation de Necrosis"] = "Necrosis角度选择",
+		["Skin de la pierre Necrosis"] = "Necrosis球体的皮肤",
+		["Evenement montre par la sphere"] = "图形显示",
+		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Afficher le compteur numerique"] = "显示碎片数量",
+		["Type de compteur numerique"] = "石头类型"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"粉红色",
@@ -276,9 +284,16 @@ function Necrosis:Localization_Dialog_Cn()
 		"666",
 		"X"
 	}
+	Necrosis.Config.Count = {
+		"灵魂碎片",
+		"恶魔召唤石",
+		"灵魂石冷却计时",
+		"Mana",
+		"Health"
+	}
+
 
 	NECROSIS_CONFIGURATION = {
-		["MainRotation"] = "Necrosis角度选择",
 		["ShardMenu"] = "|CFFB700B7背包|CFFB700B7 :",--"|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y :",
 		["ShardMenu2"] = "|CFFB700B7碎片|CFFB700B7 :",--"|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t :",
 		["ShardMove"] = "将碎片放入选择的包。",
@@ -300,9 +315,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
 		["STimerLeft"] = "计时器在按钮左边",
-		["ShowCount"] = "显示碎片数量",
-		["CountType"] = "石头类型",
-		["Circle"] = "图形显示",
 		["Sound"] = "开启声音",
 		["ShowMessage"] = "随机显示召唤的信息",
 		["ShowDemonSummon"] = "激活随机语言 (恶魔)",
@@ -311,7 +323,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["NecrosisSize"] = "Necrosis按钮的大小",
 		["BanishSize"] = "放逐按钮大小",
 		["TranseSize"] = "暗影冥思和反恐按钮的大小",
-		["Skin"] = "Necrosis球体的皮肤",
 		["Show"] = {
 			["Firestone"] = "显示火焰石按钮",
 			["Spellstone"] = "显示法术石按钮",
@@ -323,13 +334,6 @@ function Necrosis:Localization_Dialog_Cn()
 			["Demon"] = "显示恶魔召唤菜单按钮",
 			["Tooltips"] = "显示提示"
 		},
-		["Count"] = {
-			"灵魂碎片",
-			"恶魔召唤石",
-			"灵魂石冷却计时",
-			"Mana",
-			"Health"
-		}
 	}
 
 	NECROSIS_BINDING = {

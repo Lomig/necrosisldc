@@ -94,6 +94,7 @@ NECROSIS_SPELL_TABLE = {
 	[52] = {Name = "Crear piedra de salud",				Length = 0,	Type = 0},
 	[53] = {Name = "Crear piedra de hechizo",			Length = 0,	Type = 0},
 	[54] = {Name = "Crear piedra de fuego",				Length = 0,	Type = 0},
+	[55] = {Name = "Pacto oscuro",					Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal
