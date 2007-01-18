@@ -13,7 +13,6 @@
 #
 Necrosis.xml
 
-NecrosisGeneral.xml
 NecrosisTimer.xml
 NecrosisShardMenu.xml
 NecrosisMessageMenu.xml
@@ -54,6 +53,7 @@ Timers\OtherTimers.lua
 
 XML\Attributes.lua
 XML\XML.lua
+XML\Panel.lua
 
 ClickBinder.lua
 

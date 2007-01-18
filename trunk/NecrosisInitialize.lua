@@ -273,8 +273,6 @@ function Necrosis:LanguageInitialize()
 	NecrosisLocalization()
 
 	-- Localisation du XML
-	NecrosisVersion:SetText(Necrosis.Data.Label)
-	NecrosisCredits:SetText("Developed by Lomig, Liadora & Eliah")
 	NecrosisShardsInventory_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu)
 	NecrosisShardsCount_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu2)
 	NecrosisSoulshardSort_Option:SetText(NECROSIS_CONFIGURATION.ShardMove)
@@ -381,7 +379,7 @@ function Necrosis:SlashHandler(arg1)
 		NecrosisConfig.Smooth = not NecrosisConfig.Smooth
 		self:Msg("SpellTimer smoothing  : <lightBlue>Toggled")
 	else
-		NecrosisButton:Open()
+		self:OpenConfigPanel()
 	end
 end
 

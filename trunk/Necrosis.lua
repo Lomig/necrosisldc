@@ -28,7 +28,7 @@
 -- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version $LastChangedDate$
+-- $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
@@ -2711,60 +2711,6 @@ function Necrosis:SymetrieTimer(bool)
 			"CENTER",
 			NecrosisConfig.SpellTimerPos * 23, 10
 		)
-	end
-end
-
--- Fonction permettant l'affichage des différentes pages du livre des configurations
-function NecrosisGeneralTab_OnClick(id)
-	local TabName
-	for index=1, 5, 1 do
-		TabName = _G["NecrosisGeneralTab"..index]
-		if index == id then
-			TabName:SetChecked(1)
-		else
-			TabName:SetChecked(nil)
-		end
-	end
-	if id == 1 then
-		ShowUIPanel(NecrosisShardMenu)
-		HideUIPanel(NecrosisMessageMenu)
-		HideUIPanel(NecrosisButtonMenu)
-		HideUIPanel(NecrosisTimerMenu)
-		HideUIPanel(NecrosisGraphOptionMenu)
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu1)
-	elseif id == 2 then
-		HideUIPanel(NecrosisShardMenu)
-		ShowUIPanel(NecrosisMessageMenu)
-		HideUIPanel(NecrosisButtonMenu)
-		HideUIPanel(NecrosisTimerMenu)
-		HideUIPanel(NecrosisGraphOptionMenu)
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu2)
-	elseif id == 3 then
-		HideUIPanel(NecrosisShardMenu)
-		HideUIPanel(NecrosisMessageMenu)
-		ShowUIPanel(NecrosisButtonMenu)
-		HideUIPanel(NecrosisTimerMenu)
-		HideUIPanel(NecrosisGraphOptionMenu)
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu3)
-	elseif id == 4 then
-		HideUIPanel(NecrosisShardMenu)
-		HideUIPanel(NecrosisMessageMenu)
-		HideUIPanel(NecrosisButtonMenu)
-		ShowUIPanel(NecrosisTimerMenu)
-		HideUIPanel(NecrosisGraphOptionMenu)
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu4)
-	elseif id == 5 then
-		HideUIPanel(NecrosisShardMenu)
-		HideUIPanel(NecrosisMessageMenu)
-		HideUIPanel(NecrosisButtonMenu)
-		HideUIPanel(NecrosisTimerMenu)
-		ShowUIPanel(NecrosisGraphOptionMenu)
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralPageText:SetText(NECROSIS_CONFIGURATION.Menu5)
 	end
 end
 
