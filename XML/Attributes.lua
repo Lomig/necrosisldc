@@ -119,7 +119,7 @@ function Necrosis:BuffSpellAttribute()
 		if f then
 			f:SetAttribute("type", "spell")
 			-- Si le sort nécessite une cible, on lui en associe une
-			if not (i == 5 or i == 7 or i == 8 or i == 9) then
+			if not (i == 2 or i == 5 or i == 7 or i == 8 or i == 9) then
 				f:SetAttribute("unit", "target")
 			end
 			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
@@ -376,24 +376,7 @@ end
 function Necrosis:MainButtonAttribute()
 	-- Le clic droit ouvre le Menu des options
 	NecrosisButton:SetAttribute("type2", "Open")
-	NecrosisButton.Open = function()
-		if NECROSIS_MESSAGE.Help[1] then
-			for i = 1, #NECROSIS_MESSAGE.Help, 1 do
-				self:Msg(NECROSIS_MESSAGE.Help[i], "USER")
-			end
-		end
-		if (NecrosisGeneralFrame:IsVisible()) then
-			NecrosisGeneralFrame:Hide()
-			return
-		else
-			if NecrosisConfig.SM then
-				self:Msg("!!! Short Messages : <brightGreen>On", "USER")
-			end
-			NecrosisGeneralFrame:Show()
-			NecrosisGeneralTab_OnClick(1)
-			return
-		end
-	end
+	NecrosisButton.Open = function() Necrosis:OpenConfigPanel() end
 
 	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")

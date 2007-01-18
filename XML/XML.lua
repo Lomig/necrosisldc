@@ -4,7 +4,7 @@
 
     This file is part of Necrosis LdC.
 
-    NecrosisLdC is free software; you can redistribute it and/or modify
+    Necrosis LdC is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -28,7 +28,7 @@
 -- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version $LastChangedDate$
+-- $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
@@ -98,7 +98,7 @@ function Necrosis:CreateWarlockUI()
 
 	-- Création des ancres des timers
 	self:CreateTimerAnchor()
-	
+
 	-- Edition des scripts associés au bouton
 	frame:SetScript("OnLoad", function()
 		this:RegisterForDrag("LeftButton")
@@ -318,7 +318,7 @@ function Necrosis:CreateMenuBuff(i)
 
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..BuffName[i].."-01")
 	frame:Hide()
-	
+
 	-- Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)

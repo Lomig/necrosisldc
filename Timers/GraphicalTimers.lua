@@ -169,11 +169,7 @@ function Necrosis:AddFrame(FrameName)
 	FontString:SetPoint("LEFT", FrameName, "LEFT", 0, 0)
 	FontString:Show()
 
-	if NecrosisConfig.Yellow then
-		FontString:SetTextColor(1, 0.8, 0)
-	else
-		FontString:SetTextColor(1, 1, 1)
-	end
+	FontString:SetTextColor(1, 1, 1)
 
 	-- Définition de la barre colorée
 	local StatusBar = CreateFrame("StatusBar", FrameName.."Bar", frame)
