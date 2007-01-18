@@ -28,7 +28,7 @@
 -- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version $LastChangedDate$
+-- Version $LastChangedDate: 2007-01-18 14:46:17 +0100 (jeu, 18 jan 2007) $
 ------------------------------------------------------------------------------------------------------
 
 

@@ -29,7 +29,6 @@ Locales\Functions-es.lua
 Locales\Functions-tw.lua
 Locales\Functions-cn.lua
 
-
 Locales\Dialog-fr.lua
 Locales\Dialog-en.lua
 Locales\Dialog-de.lua
@@ -44,8 +43,8 @@ Speech\Speech-es.lua
 Speech\Speech-tw.lua
 Speech\Speech-cn.lua
 
-NecrosisInitialize.lua
-NecrosisMessage.lua
+Initialize.lua
+Message.lua
 
 Timers\Functions.lua
 Timers\GraphicalTimers.lua

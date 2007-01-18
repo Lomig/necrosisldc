@@ -258,6 +258,13 @@ function Necrosis:Localization_Dialog_En()
 
 
 	-- Gestion XML - Menu de configuration
+	Necrosis.Config.Panel = {
+		"Shard Settings",
+		"Message Settings",
+		"Button Settings",
+		"Timer Settings",
+		"Graphical Settings"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
@@ -270,11 +277,6 @@ function Necrosis:Localization_Dialog_En()
 	}
 
 	NECROSIS_CONFIGURATION = {
-		["Menu1"] = "Shard Settings",
-		["Menu2"] = "Message Settings",
-		["Menu3"] = "Button Settings",
-		["Menu4"] = "Timer Settings",
-		["Menu5"] = "Graphical Settings",
 		["MainRotation"] = "Necrosis Angle Selection",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y:",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t:",
