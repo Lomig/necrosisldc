@@ -81,7 +81,7 @@ function Necrosis:SetSphereConfig()
 		FontString = frame:CreateFontString("NecrosisSkinSelectionText", "ARTWORK", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
+		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 0, 325)
 
 		UIDropDownMenu_SetWidth(125, frame)
 		frame:SetScript("OnShow", function() UIDropDownMenu_Initialize(this, Skin_Init) end)
@@ -153,7 +153,7 @@ function Necrosis:SetSphereConfig()
 	NecrosisRotationLow:SetText("0")
 	NecrosisRotationHigh:SetText("360")
 
-	NecrosisSkinSelection:SetText(self.Config.Sphere["Skin de la pierre Necrosis"])
+	NecrosisSkinSelectionText:SetText(self.Config.Sphere["Skin de la pierre Necrosis"])
 	NecrosisEventSelectionText:SetText(self.Config.Sphere["Evenement montre par la sphere"])
 	NecrosisSpellSelectionText:SetText(self.Config.Sphere["Sort caste par la sphere"])
 	NecrosisShowCountText:SetText(self.Config.Sphere["Afficher le compteur numerique"])
@@ -205,7 +205,7 @@ local function Skin_Init()
 	end
 end
 
-local function Skin_Click()
+function Skin_Click()
 	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
 	UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, this:GetID())
 	NecrosisConfig.NecrosisColor = couleur[this:GetID()]
