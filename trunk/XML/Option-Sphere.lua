@@ -78,7 +78,7 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 325)
 
-		FontString = frame:CreateFontString("NecrosisSkinSelectionText", "ARTWORK", "GameFontNormalSmall")
+		FontString = frame:CreateFontString("NecrosisSkinSelectionText", nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
@@ -129,17 +129,16 @@ function Necrosis:SetSphereConfig()
 		end)
 
 		FontString = frame:CreateFontString("NecrosisShowCountText", nil, "GameFontNormalSmall")
+		FontString:SetTextColor(1, 1, 1)
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
-		FontString:SetTextColor(1, 1, 1)
-
 
 		-- Evenement montré par le compteur
 		frame = CreateFrame("Frame", "NecrosisCountSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 200)
+		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 175)
 
 		FontString = frame:CreateFontString("NecrosisCountSelectionText", "ARTWORK", "GameFontNormalSmall")
 		FontString:Show()
