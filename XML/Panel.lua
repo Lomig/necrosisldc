@@ -257,7 +257,7 @@ function Necrosis:SetPanel(PanelID)
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 2 then
 		HideUIPanel(NecrosisShardMenu)
-		ShowUIPanel(NecrosisMessageMenu)
+		ShowUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisButtonMenu)
 		HideUIPanel(NecrosisTimerMenu)
 		HideUIPanel(NecrosisGraphOptionMenu)

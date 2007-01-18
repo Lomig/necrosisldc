@@ -265,6 +265,14 @@ function Necrosis:Localization_Dialog_Es()
 		"Opci\195\179nes de Temporizador",
 		"Opci\195\179nes Gr\195\161ficas"
 	}
+	Necrosis.Config.Sphere = {
+		["Rotation de Necrosis"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
+		["Skin de la pierre Necrosis"] = "Color de la Esfera Necrosis",
+		["Evenement montre par la sphere"] = "Evento mostrado en la esfera gr\195\161fica",
+		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Afficher le compteur numerique"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
+		["Type de compteur numerique"] = "Tipo de Piedra contabilizada"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Rosa",
@@ -272,12 +280,19 @@ function Necrosis:Localization_Dialog_Es()
 		"Naranja",
 		"Turquesa",
 		"P\195\186rpura",
-		["666"] = "666",
-		["X"] = "X"
+		"666",
+		"X"
+	}
+	Necrosis.Config.Count = {
+		"Fragmentos de Alma",
+		"Piedras de invocaci\195\179n de Demonios",
+		"Temporizador de Resurrecci\195\179n",
+		"Man\195\161",
+		"Salud"
 	}
 
+
 	NECROSIS_CONFIGURATION = {
-		["MainRotation"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
 		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s:",
 		["ShardMove"] = "Poner los Fragmentos en la bolsa seleccionada.",
@@ -299,9 +314,6 @@ function Necrosis:Localization_Dialog_Es()
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
 		["STimerLeft"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
-		["ShowCount"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
-		["CountType"] = "Tipo de Piedra contabilizada",
-		["Circle"] = "Evento mostrado en la esfera gr\195\161fica",
 		["Sound"] = "Activar sonidos",
 		["ShowMessage"] = "Activar discursos aleatorios",
 		["ShowDemonSummon"] = "Activar discursos aleatorios (demonio)",
@@ -310,7 +322,6 @@ function Necrosis:Localization_Dialog_Es()
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 		["TranseSize"] = "Tama\195\177o de los botones de aviso",
-		["Skin"] = "Color de la Esfera Necrosis",
 		["Show"] = {
 			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",
 			["Spellstone"] = "Mostrar bot\195\179n Piedra de Hechizo",
@@ -322,13 +333,6 @@ function Necrosis:Localization_Dialog_Es()
 			["Demon"] = "Mostrar bot\195\179n del men\195\186 Demonio",
 			["Tooltips"] = "Mostrar consejos detallados"
 		},
-		["Count"] = {
-			"Fragmentos de Alma",
-			"Piedras de invocaci\195\179n de Demonios",
-			"Temporizador de Resurrecci\195\179n",
-			"Man\195\161",
-			"Salud"
-		}
 	};
 
 	NECROSIS_BINDING = {

@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Franï¿½ises : Eliah, Ner'zhul
+-- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spï¿½iaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -264,6 +264,14 @@ function Necrosis:Localization_Dialog_Fr()
 		"Configuration des timers",
 		"Configuration graphique"
 	}
+	Necrosis.Config.Sphere = {
+		["Rotation de Necrosis"] = "Rotation de Necrosis",
+		["Skin de la pierre Necrosis"] = "Skin de la sph\195\168re",
+		["Evenement montre par la sphere"] = "Ev\195\168nement montr\195\169 par la sph\195\168re",
+		["Sort caste par la sphere"] = "Sort cast\195\169 par la sph\195\168re",
+		["Afficher le compteur numerique"] = "Afficher le compteur de num\195\169rique",
+		["Type de compteur numerique"] = "Type de compteur num\195\169rique"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Rose",
@@ -274,6 +282,14 @@ function Necrosis:Localization_Dialog_Fr()
 		"666",
 		"X"
 	}
+	Necrosis.Config.Sphere.Count = {
+		"Fragments d'\195\162me",
+		"Pierres d'invocations",
+		"Timer de Rez",
+		"Mana",
+		"Sant\195\169"
+	}
+
 
 	NECROSIS_CONFIGURATION = {
 		["MainRotation"] = "Rotation de Necrosis",
@@ -298,9 +314,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
 		["STimerLeft"] = "Afficher les timers sur la gauche du bouton",
-		["ShowCount"] = "Afficher le compteur de fragments",
-		["CountType"] = "Type de compteur",
-		["Circle"] = "Ev\195\168nement montr\195\169 par la sph\195\168re graphique",
 		["ShowMessage"] = "Active les messages al\195\169atoires d'invocation",
 		["ShowDemonSummon"] = "Active les messages pour les D\195\169mons",
 		["ShowSteedSummon"] = "Active les messages pour la Monture",
@@ -309,7 +322,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["NecrosisSize"] = "Taille de la pierre Necrosis",
 		["BanishSize"] = "Taille du bouton Banish",
 		["TranseSize"] = "Taille des boutons cach\195\169s",
-		["Skin"] = "Skin de la pierre Necrosis",
 		["Show"] = {
 			["Firestone"] = "Afficher le bouton des Pierres de feu",
 			["Spellstone"] = "Afficher le bouton des Pierres de sort",
@@ -321,13 +333,7 @@ function Necrosis:Localization_Dialog_Fr()
 			["Demon"] = "Affiche le bouton d'invocation des D\195\169mons",
 			["Tooltips"] = "Affiche les bulles d'aides"
 		},
-		["Count"] = {
-			"Fragments d'\195\162me",
-			"Pierres d'invocations",
-			"Timer de Rez",
-			"Mana",
-			"Sant\195\169"
-		}
+
 	};
 	NECROSIS_BINDING = {
 		["Current"] = " est actuellement associ\195\169 \195\160 ",

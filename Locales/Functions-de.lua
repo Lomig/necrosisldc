@@ -94,6 +94,7 @@ Necrosis.Spell = {
 	[52] = {Name = "Gesundheitsstein herstellen",		Length = 0,	Type = 0},
 	[53] = {Name = "Zauberstein herstellen",		Length = 0,	Type = 0},
 	[54] = {Name = "Feuerstein herstellen",			Length = 0,	Type = 0},
+	[55] = {Name = "Dunkler Pakt",				Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer
 -- Type 1 = Timer permanent principal

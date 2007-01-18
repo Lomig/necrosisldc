@@ -265,6 +265,14 @@ function Necrosis:Localization_Dialog_En()
 		"Timer Settings",
 		"Graphical Settings"
 	}
+	Necrosis.Config.Sphere = {
+		["Rotation de Necrosis"] = "Necrosis Angle Selection",
+		["Skin de la pierre Necrosis"] = "Skin of the Necrosis Sphere",
+		["Evenement montre par la sphere"] = "Event shown by the graphical sphere",
+		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Afficher le compteur numerique"] = "Show the digital counter",
+		["Type de compteur numerique"] = "Stone type counted"
+	}
 
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
@@ -275,9 +283,16 @@ function Necrosis:Localization_Dialog_En()
 		"666",
 		"X"
 	}
+	Necrosis.Config.Count = {
+		"Soulshards",
+		"Demon summoning stones",
+		"Resurrection Timer",
+		"Mana",
+		"Health"
+	}
+
 
 	NECROSIS_CONFIGURATION = {
-		["MainRotation"] = "Necrosis Angle Selection",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y:",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t:",
 		["ShardMove"] = "Put shards in the selected bag.",
@@ -299,9 +314,6 @@ function Necrosis:Localization_Dialog_En()
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
 		["STimerLeft"] = "Show timers on the left side of the button",
-		["ShowCount"] = "Show the Shard count in Necrosis",
-		["CountType"] = "Stone type counted",
-		["Circle"] = "Event shown by the graphical sphere",
 		["Sound"] = "Activate sounds",
 		["ShowMessage"] = "Activate random speeches",
 		["ShowDemonSummon"] = "Activate random speeches (demon)",
@@ -310,7 +322,6 @@ function Necrosis:Localization_Dialog_En()
 		["NecrosisSize"] = "Size of the Necrosis button",
 		["BanishSize"] = "Size of the Banish button",
 		["TranseSize"] = "Size of hidden buttons",
-		["Skin"] = "Skin of the Necrosis Sphere",
 		["Show"] = {
 			["Firestone"] = "Show Firestone button",
 			["Spellstone"] = "Show Spellstone button",
@@ -322,13 +333,6 @@ function Necrosis:Localization_Dialog_En()
 			["Demon"] = "Show Demon menu button",
 			["Tooltips"] = "Show tooltips"
 		},
-		["Count"] = {
-			"Soulshards",
-			"Demon summoning stones",
-			"Resurrection Timer",
-			"Mana",
-			"Health"
-		}
 	};
 
 	NECROSIS_BINDING = {
