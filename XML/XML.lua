@@ -43,7 +43,7 @@ local _G = getfenv(0)
 
 function Necrosis:CreateTimerAnchor()
 
-	if NecrosisConfig.Graphical then
+	if NecrosisConfig.TimerType == 1 then
 		-- Création de l'ancre invisible des timers graphiques
 		local f = _G["NecrosisTimerFrame0"]
 		if not f then
@@ -54,8 +54,7 @@ function Necrosis:CreateTimerAnchor()
 			f:ClearAllPoints()
 			f:SetPoint("LEFT", NecrosisSpellTimerButton, "CENTER", 50, 0)
 		end
-	end
-	if NecrosisConfig.Textual then
+	elseif NecrosisConfig.TimerType == 2 then
 		-- Création de la liste des Timers Textes
 		local FontString = _G["NecrosisListSpells"]
 		if not FontString then

@@ -172,4 +172,5 @@ function Necrosis.Timer_Click()
 	local ID = this:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, ID)
 	NecrosisConfig.TimerType = ID - 1
+	if not (ID == 1) then Necrosis:CreateTimerAnchor() end
 end
