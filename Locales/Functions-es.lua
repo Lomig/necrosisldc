@@ -148,7 +148,7 @@ Necrosis.Translation.Item = {
 
 -- Traductions diverses
 Necrosis.Translation.Misc = {
-	["Cooldown"] = "Tiempo de regeneraci\195\179n restante",
+	["Cooldown"] = "Tiempo de reutilizaci\195\179n restante",
 	["Rank"] = "Rango",
 	["Create"] = "Crear"
 }

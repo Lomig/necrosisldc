@@ -35,6 +35,10 @@
 local _G = getfenv(0)
 
 
+------------------------------------------------------------------------------------------------------
+-- CREATION DE LA FRAME DES OPTIONS
+------------------------------------------------------------------------------------------------------
+
 -- On crée ou on affiche le panneau de configuration de la sphere
 function Necrosis:SetSphereConfig()
 
@@ -198,6 +202,11 @@ function Necrosis:SetSphereConfig()
 
 	frame:Show()
 end
+
+
+------------------------------------------------------------------------------------------------------
+-- FONCTIONS NECESSAIRES AUX DROPDOWNS
+------------------------------------------------------------------------------------------------------
 
 -- Fonctions du Dropdown des skins
 function Necrosis.Skin_Init()

@@ -266,6 +266,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"计时器设置",
 		"图像设置"
 	}
+
 	Necrosis.Config.Sphere = {
 		["Rotation de Necrosis"] = "Necrosis角度选择",
 		["Skin de la pierre Necrosis"] = "Necrosis球体的皮肤",
@@ -292,6 +293,18 @@ function Necrosis:Localization_Dialog_Cn()
 		"Health"
 	}
 
+	Necrosis.Config.Timers = {
+		["Type de timers"] = "Timer type",
+		["Afficher le bouton des timers"] = "Show the Spell Timer button",
+		["Afficher les timers sur la gauche du bouton"] = "计时器在按钮左边",
+		["Afficher les timers de bas en haut"] = "计时器向上升",
+	}
+	Necrosis.Config.Timers.Type = {
+		"No Timer",
+		"Graphical",
+		"Textual"
+	}
+
 
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7背包|CFFB700B7 :",--"|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y :",
@@ -302,9 +315,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
 		["TimerMenu"] = "|CFFB700B7图形计时器|CFFFF99FF :",
 		["TimerColor"] = "显示计时器文字为白色(代替黄色)",
-		["TimerDirection"] = "计时器向上升",
 		["TranseWarning"] = "当我获得暗影冥思效果时提醒我。",
-		["SpellTime"] = "Show the Spell Timer button",
 		["AntiFearWarning"] = "当我的目标免疫恐惧时提醒我。",
 		["GraphicalTimer"] = "打开法术计时器。",
 		["TranceButtonView"] = "显示隐藏的按钮以拖动它。",
@@ -314,7 +325,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["BuffMenu"] = "buff菜单在按钮左边",
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
-		["STimerLeft"] = "计时器在按钮左边",
 		["Sound"] = "开启声音",
 		["ShowMessage"] = "随机显示召唤的信息",
 		["ShowDemonSummon"] = "激活随机语言 (恶魔)",

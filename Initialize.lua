@@ -28,7 +28,7 @@
 -- Version Allemande par Geschan
 -- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
--- Version $LastChangedDate: 2007-01-18 14:46:17 +0100 (jeu, 18 jan 2007) $
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
@@ -109,7 +109,6 @@ function Necrosis:Initialize(Config)
 	NecrosisSoulshardSort_Button:SetChecked(NecrosisConfig.SoulshardSort)
 	NecrosisSoulshardDestroy_Button:SetChecked(NecrosisConfig.SoulshardDestroy)
 	NecrosisShadowTranceAlert_Button:SetChecked(NecrosisConfig.ShadowTranceAlert)
-	NecrosisShowSpellTimers_Button:SetChecked(NecrosisConfig.ShowSpellTimers)
 	NecrosisAntiFearAlert_Button:SetChecked(NecrosisConfig.AntiFearAlert)
 	NecrosisIconsLock_Button:SetChecked(NecrosisConfig.NecrosisLockServ)
 	NecrosisShowFirestone_Button:SetChecked(NecrosisConfig.StonePosition[1] > 0)
@@ -126,15 +125,12 @@ function Necrosis:Initialize(Config)
 	NecrosisPetMenu_Button:SetChecked(NecrosisConfig.PetMenuPos.x < 0 or NecrosisConfig.PetMenuPos.y < 0)
 	NecrosisCurseMenu_Button:SetChecked(NecrosisConfig.CurseMenuPos.x < 0 or NecrosisConfig.CurseMenuPos.y < 0)
 	NecrosisLock_Button:SetChecked(NecrosisConfig.NoDragAll)
-	NecrosisSTimer_Button:SetChecked(NecrosisConfig.SpellTimerPos == -1)
 	NecrosisShowMessage_Button:SetChecked(NecrosisConfig.ChatMsg)
 	NecrosisShowDemonSummon_Button:SetChecked(NecrosisConfig.DemonSummon)
 	NecrosisShowSteedSummon_Button:SetChecked(NecrosisConfig.SteedSummon)
 	NecrosisChatType_Button:SetChecked(NecrosisConfig.ChatType)
 	NecrosisGraphicalTimer_Button:SetChecked(NecrosisConfig.Graphical)
 	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
-	NecrosisTimerDirection_Button:SetChecked(NecrosisConfig.SensListe == -1)
-
 
 	local langues = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
 	for i in ipairs(langues) do
@@ -273,17 +269,14 @@ function Necrosis:LanguageInitialize()
 	NecrosisShowTooltips_Option:SetText(NECROSIS_CONFIGURATION.Show.Tooltips)
 	Necrosis_Binding:SetText(NECROSIS_BINDING.Binding)
 
-	NecrosisShowSpellTimers_Option:SetText(NECROSIS_CONFIGURATION.SpellTime)
 	NecrosisGraphicalTimer_Section:SetText(NECROSIS_CONFIGURATION.TimerMenu)
 	NecrosisGraphicalTimer_Option:SetText(NECROSIS_CONFIGURATION.GraphicalTimer)
 	NecrosisTimerColor_Option:SetText(NECROSIS_CONFIGURATION.TimerColor)
-	NecrosisTimerDirection_Option:SetText(NECROSIS_CONFIGURATION.TimerDirection)
 
 	NecrosisLock_Option:SetText(NECROSIS_CONFIGURATION.MainLock)
 	NecrosisBuffMenu_Option:SetText(NECROSIS_CONFIGURATION.BuffMenu)
 	NecrosisPetMenu_Option:SetText(NECROSIS_CONFIGURATION.PetMenu)
 	NecrosisCurseMenu_Option:SetText(NECROSIS_CONFIGURATION.CurseMenu)
-	NecrosisSTimer_Option:SetText(NECROSIS_CONFIGURATION.STimerLeft)
 
 	NecrosisSound_Option:SetText(NECROSIS_CONFIGURATION.Sound)
 	NecrosisShowMessage_Option:SetText(NECROSIS_CONFIGURATION.ShowMessage)

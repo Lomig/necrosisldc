@@ -52,8 +52,10 @@ Timers\OtherTimers.lua
 
 XML\Attributes.lua
 XML\XML.lua
+
 XML\Panel.lua
-XML\Option-Sphere.lua
+XML\Options-Sphere.lua
+XML\Options-Timers.lua
 
 ClickBinder.lua
 

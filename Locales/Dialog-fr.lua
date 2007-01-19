@@ -264,6 +264,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Configuration des timers",
 		"Configuration graphique"
 	}
+
 	Necrosis.Config.Sphere = {
 		["Rotation de Necrosis"] = "Rotation de Necrosis",
 		["Skin de la pierre Necrosis"] = "Skin de la sph\195\168re",
@@ -272,7 +273,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Afficher le compteur numerique"] = "Afficher le compteur num\195\169rique",
 		["Type de compteur numerique"] = "Type de compteur num\195\169rique"
 	}
-
 	Necrosis.Config.Sphere.Colour = {
 		"Rose",
 		"Bleu",
@@ -290,6 +290,17 @@ function Necrosis:Localization_Dialog_Fr()
 		"Sant\195\169"
 	}
 
+	Necrosis.Config.Timers = {
+		["Type de timers"] = "Type de timers",
+		["Afficher le bouton des timers"] = "Afficher le bouton des timers",
+		["Afficher les timers sur la gauche du bouton"] = "Afficher les timers sur la gauche du bouton",
+		["Afficher les timers de bas en haut"] = "Afficher les timers de bas en haut",
+	}
+	Necrosis.Config.Timers.Type = {
+		"Aucun",
+		"Graphique",
+		"Text"
+	}
 
 	NECROSIS_CONFIGURATION = {
 		["MainRotation"] = "Rotation de Necrosis",
@@ -301,11 +312,9 @@ function Necrosis:Localization_Dialog_Fr()
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFo|CFFFF50FFu|CFFFF99FFe|CFFFFC4FFu|CFFFF99FFr :",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFr|CFFFF99FFs G|CFFFF50FFr|CFFFF00FFa|CFFB700B7ph|CFFFF00FFi|CFFFF50FFq|CFFFF99FFue|CFFFFC4FFs :",
 		["TranseWarning"] = "M'alerter quand j'entre en Transe",
-		["SpellTime"] = "Affiche le bouton des Timers",
 		["AntiFearWarning"] = "M'alerter quand ma cible \195\160 un 'anti fear'",
 		["GraphicalTimer"] = "Affiche la gestion des dur\195\169es de sorts",
 		["TimerColor"] = "Affiche le texte des timers en blanc",
-		["TimerDirection"] = "Ajouter les timers en haut des pr\195\169c\195\169dents",
 		["TranceButtonView"] = "Affichage des boutons cach\195\169s pour les d\195\169placer",
 		["ButtonLock"] = "Verrouiller les boutons sur la sphere Necrosis",
 		["MainLock"] = "Verrouiller les boutons des Pierres et Necrosis",
@@ -313,7 +322,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
-		["STimerLeft"] = "Afficher les timers sur la gauche du bouton",
 		["ShowMessage"] = "Active les messages al\195\169atoires d'invocation",
 		["ShowDemonSummon"] = "Active les messages pour les D\195\169mons",
 		["ShowSteedSummon"] = "Active les messages pour la Monture",

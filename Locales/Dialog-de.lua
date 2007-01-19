@@ -266,6 +266,7 @@ function Necrosis:Localization_Dialog_De()
 		"Timer Einstellungen",
 		"Graphische Einstellungen"
 	}
+
 	Necrosis.Config.Sphere = {
 		["Rotation de Necrosis"] = "Necrosis Rotiationseinstellung",
 		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
@@ -291,6 +292,17 @@ function Necrosis:Localization_Dialog_De()
 		"Health"
 	}
 
+	Necrosis.Config.Timers = {
+		["Type de timers"] = "Timer type",
+		["Afficher le bouton des timers"] = "Zeige den Timer Button",
+		["Afficher les timers sur la gauche du bouton"] = "Zeige die Timer auf der linken Seite des Knopfes",
+		["Afficher les timers de bas en haut"] = "Neue Timer oberhalb der bestehenden Timer anzeigen",
+	}
+	Necrosis.Config.Timers.Type = {
+		"Kein",
+		"Graphische",
+		"Texttimern"
+	}
 
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFa|CFFFF00FFr :",
@@ -301,19 +313,16 @@ function Necrosis:Localization_Dialog_De()
 		["SpellMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFi|CFFFF99FFe|CFFFFC4FFl|CFFFF99FFe|CFFFF50FFr :",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFs|CFFFF00FFc|CFFB700B7he T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFF00FFr :",
 		["TranseWarning"] = "Warnung, wenn Schattentrance eintritt",
-		["SpellTime"] = "Zeige den Timer Button",
 		["AntiFearWarning"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["GraphicalTimer"] = "Spruchdauer anzeigen",
 		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
-		["TimerDirection"] = "Neue Timer oberhalb der bestehenden Timer anzeigen",
 		["ButtonLock"] = "Sperre die Buttons um die Necrosis Sph\195\164re",
 		["MainLock"] = "Sperre die Buttons und die Necrosis Sph\195\164re",
 		["BagSelect"] = "W\195\164hle die Seelensplitter-Tasche",
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Knopfes",
 		["Sound"] = "Aktiviere Sounds",
 		["ShowMessage"] = "Zuf\195\164llige Spr\195\188che",
 		["ShowDemonSummon"] = "Zuf\195\164llige Spr\195\188che (D\195\164mon)",
