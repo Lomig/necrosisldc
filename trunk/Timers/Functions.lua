@@ -58,7 +58,7 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 
 	-- Association d'un timer graphique au timer
 	-- Si il y a une frame timer de libérée, on l'associe au timer
-	if NecrosisConfig.Graphical then
+	if NecrosisConfig.TimerType == 1 then
 		local TimerLibre = nil
 		for index, valeur in ipairs(Timer.TimerTable) do
 			if not valeur then
@@ -82,7 +82,7 @@ function Necrosis:InsertTimerParTable(IndexTable, Target, LevelTarget, Timer)
 		)
 	end
 
-	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
+	if NecrosisConfig.TimerType > 0 then
 		-- Tri des entrées par type de sort
 		self:Tri(Timer.SpellTimer, "Type")
 
@@ -179,7 +179,7 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 
 	-- Association d'un timer graphique au timer
 	-- Si il y a une frame timer de libérée, on l'associe au timer
-	if NecrosisConfig.Graphical then
+	if NecrosisConfig.TimerType == 1 then
 		local TimerLibre = nil
 		for index, valeur in ipairs(Timer.TimerTable) do
 			if not valeur then
@@ -203,7 +203,7 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 		)
 	end
 
-	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
+	if NecrosisConfig.TimerType > 0 then
 		-- Tri des entrées par type de sort
 		self:Tri(Timer.SpellTimer, "Type")
 
@@ -233,7 +233,7 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, Timer)
 		}
 	)
 
-	if NecrosisConfig.Graphical then
+	if NecrosisConfig.TimerType == 1 then
 		-- Association d'un timer graphique au timer
 		-- Si il y a une frame timer de libérée, on l'associe au timer
 		local TimerLibre = nil
@@ -259,7 +259,7 @@ function NecrosisTimerX(nom, duree, truc, Target, LevelTarget, Timer)
 		)
 	end
 
-	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
+	if NecrosisConfig.TimerType > 0 then
 		-- Tri des entrées par type de sort
 		self:Tri(Timer.SpellTimer, "Type")
 
@@ -280,9 +280,9 @@ end
 -- Connaissant l'index du Timer dans la liste, on le supprime
 function Necrosis:RetraitTimerParIndex(index, Timer)
 
-	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
+	if NecrosisConfig.TimerType > 0 then
 		-- Suppression du timer graphique
-		if NecrosisConfig.Graphical and Timer.SpellTimer[index] then
+		if NecrosisConfig.TimerType == 1 and Timer.SpellTimer[index] then
 			Timer.TimerTable[Timer.SpellTimer[index].Gtimer] = false
 			_G["NecrosisTimerFrame"..Timer.SpellTimer[index].Gtimer]:Hide()
 		end
@@ -339,7 +339,7 @@ function Necrosis:RetraitTimerCombat(Timer)
 		end
 	end
 
-	if NecrosisConfig.Graphical or NecrosisConfig.Textual then
+	if NecrosisConfig.TimerType > 0 then
 		local index = 4
 		while #Timer.SpellGroup >= 4 do
 			if _G["NecrosisSpellTimer"..index] then _G["NecrosisSpellTimer"..index]:Hide() end

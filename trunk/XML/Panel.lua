@@ -188,6 +188,7 @@ function Necrosis:OpenConfigPanel()
 			"Trade_Engineering",
 			"Spell_Nature_TimeStop",
 			"Ability_Creature_Cursed_04",
+			"Ability_Creature_Cursed_04"
 		}
 		for i in ipairs(tex) do
 			frame = CreateFrame("CheckButton", "NecrosisGeneralTab"..(i + 1), NecrosisGeneralFrame)

@@ -203,7 +203,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function NecrosisUpdateTimer(tableau, Changement)
-	if not (NecrosisConfig.Graphical and tableau[1]) then
+	if not (NecrosisConfig.TimerType == 1 and tableau[1]) then
 		return
 	end
 

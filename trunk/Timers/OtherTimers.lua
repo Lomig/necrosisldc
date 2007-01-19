@@ -90,7 +90,7 @@ end
 
 -- Permet l'affichage des timers textuels
 function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
-	if not (NecrosisConfig.Textual and SpellTimer[1]) then
+	if not (NecrosisConfig.TimerType == 2 and SpellTimer[1]) then
 		if _G["NecrosisListSpells"] then NecrosisListSpells:SetText("") end
 		return
 	end
