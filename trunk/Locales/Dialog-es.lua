@@ -265,6 +265,7 @@ function Necrosis:Localization_Dialog_Es()
 		"Opci\195\179nes de Temporizador",
 		"Opci\195\179nes Gr\195\161ficas"
 	}
+
 	Necrosis.Config.Sphere = {
 		["Rotation de Necrosis"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
 		["Skin de la pierre Necrosis"] = "Color de la Esfera Necrosis",
@@ -273,7 +274,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher le compteur numerique"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
 		["Type de compteur numerique"] = "Tipo de Piedra contabilizada"
 	}
-
 	Necrosis.Config.Sphere.Colour = {
 		"Rosa",
 		"Azul",
@@ -291,6 +291,17 @@ function Necrosis:Localization_Dialog_Es()
 		"Salud"
 	}
 
+	Necrosis.Config.Timers = {
+		["Type de timers"] = "Timer type",
+		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
+		["Afficher les timers sur la gauche du bouton"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
+		["Afficher les timers de bas en haut"] = "Los temporizadores se incrementan ascendentemente",
+	}
+	Necrosis.Config.Timers.Type = {
+		"Ninguno",
+		"Modo Gr\195\161fico",
+		"Modo texto"
+	}
 
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
@@ -301,9 +312,7 @@ function Necrosis:Localization_Dialog_Es()
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r:",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs:",
 		["TimerColor"] = "Textos de temporizador blancos en vez de amarillos",
-		["TimerDirection"] = "Los temporizadores se incrementan ascendentemente",
 		["TranseWarning"] = "Al\195\169rtame cuando entre en un Trance de las Sombras",
-		["SpellTime"] = "Show the Spell Timer Button",
 		["AntiFearWarning"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
 		["GraphicalTimer"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
 		["TranceButtonView"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos.",
@@ -313,7 +322,6 @@ function Necrosis:Localization_Dialog_Es()
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
-		["STimerLeft"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
 		["Sound"] = "Activar sonidos",
 		["ShowMessage"] = "Activar discursos aleatorios",
 		["ShowDemonSummon"] = "Activar discursos aleatorios (demonio)",

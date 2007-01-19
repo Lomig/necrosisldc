@@ -280,7 +280,7 @@
 						else
 							NecrosisConfig.ChatType = true
 						end
-						Necrosis:Msg(NECROSIS_MESSAGE.Interface.MessagePosition, "USER")
+						Necrosis:Msg(NECROSIS_MESSAGE.Interface.MessagePosition)
 					</OnClick>
 				</Scripts>
 			</CheckButton>
