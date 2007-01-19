@@ -102,7 +102,7 @@ function Necrosis:Initialize(Config)
 	self:ButtonSetup()
 
 	-- Enregistrement de la commande console
-	SlashCmdList["NecrosisCommand"] = Necrosis_SlashHandler
+	SlashCmdList["NecrosisCommand"] = Necrosis.SlashHandler
 	SLASH_NecrosisCommand1 = "/necro"
 
 	-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
@@ -304,19 +304,19 @@ end
 -- FONCTION GERANT LA COMMANDE CONSOLE /NECRO
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis:SlashHandler(arg1)
+function Necrosis.SlashHandler(arg1)
 	if arg1:lower():find("recall") then
-		self:Recall()
+		Necrosis:Recall()
 	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
 	elseif arg1:lower():find("tt") then
 		NecrosisConfig.Textual = not NecrosisConfig.Textual
-		self:CreateTimerAnchor()
-		self:Msg("Text Timers : <lightBlue>Toggled")
+		Necrosis:CreateTimerAnchor()
+		Necrosis:Msg("Text Timers : <lightBlue>Toggled")
 	elseif arg1:lower():find("am") then
 		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
-		self:Msg("Automatic Menus : <lightBlue>Toggled")
+		Necrosis:Msg("Automatic Menus : <lightBlue>Toggled")
 	elseif arg1:lower():find("bm") then
 		if NecrosisConfig.BlockedMenu then
 			local State = 0
@@ -324,33 +324,33 @@ function Necrosis:SlashHandler(arg1)
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
-			self:Msg("Blocked Menus : <red>Off")
+			Necrosis:Msg("Blocked Menus : <red>Off")
 		else
 			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
 			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
-			self:Msg("Blocked Menus : <brightGreen>On")
+			Necrosis:Msg("Blocked Menus : <brightGreen>On")
 		end
 		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
 	elseif arg1:lower():find("cm") then
 		NecrosisConfig.ClosingMenu = not NecrosisConfig.ClosingMenu
-		self:CreateMenu()
-		self:Msg("Close Menus on click : <lightBlue>Toggled")
+		Necrosis:CreateMenu()
+		Necrosis:Msg("Close Menus on click : <lightBlue>Toggled")
 	elseif arg1:lower():find("sm") then
 		NecrosisConfig.SM = not NecrosisConfig.SM
-		if self.Speech.Rez == self.Speech.ShortMessage[1] then
+		if Necrosis.Speech.Rez == Necrosis.Speech.ShortMessage[1] then
 			NecrosisLocalization()
-			self:Msg("Short Messages : <red>Off")
+			Necrosis:Msg("Short Messages : <red>Off")
 		else
-			self.Speech.Rez = self.Speech.ShortMessage[1]
-			self.Speech.TP = self.Speech.ShortMessage[2]
-			self:Msg("Short Messages : <brightGreen>On")
+			Necrosis.Speech.Rez = Necrosis.Speech.ShortMessage[1]
+			Necrosis.Speech.TP = Necrosis.Speech.ShortMessage[2]
+			Necrosis:Msg("Short Messages : <brightGreen>On")
 		end
 	elseif arg1:lower():find("glasofruix") then
 		NecrosisConfig.Smooth = not NecrosisConfig.Smooth
-		self:Msg("SpellTimer smoothing  : <lightBlue>Toggled")
+		Necrosis:Msg("SpellTimer smoothing  : <lightBlue>Toggled")
 	else
-		self:OpenConfigPanel()
+		Necrosis:OpenConfigPanel()
 	end
 end
 

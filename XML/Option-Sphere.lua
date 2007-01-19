@@ -78,10 +78,11 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 325)
 
-		FontString = frame:CreateFontString("NecrosisSkinSelectionText", "OVERLAY", "GameFontNormalSmall")
+		local FontString = frame:CreateFontString("NecrosisSkinSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 0, 325)
+		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 328)
+		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
@@ -91,10 +92,11 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 300)
 
-		FontString = frame:CreateFontString("NecrosisEventSelectionText", "OVERLAY", "GameFontNormalSmall")
+		FontString = frame:CreateFontString("NecrosisEventSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
+		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 303)
+		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
@@ -104,10 +106,11 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 275)
 
-		FontString = frame:CreateFontString("NecrosisSpellSelectionText", "OVERLAY", "GameFontNormalSmall")
+		FontString = frame:CreateFontString("NecrosisSpellSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
+		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 278)
+		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
@@ -118,7 +121,7 @@ function Necrosis:SetSphereConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 50, 225)
+		frame:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 200)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.ShowCount = this:GetChecked()
@@ -126,10 +129,10 @@ function Necrosis:SetSphereConfig()
 		end)
 
 		FontString = frame:CreateFontString("NecrosisShowCountText", nil, "GameFontNormalSmall")
-		FontString:SetTextColor(1, 1, 1)
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
+		FontString:SetTextColor(1, 1, 1)
 
 		-- Evenement montré par le compteur
 		frame = CreateFrame("Frame", "NecrosisCountSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -137,29 +140,30 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisSphereConfig, "BOTTOMRIGHT", 0, 175)
 
-		FontString = frame:CreateFontString("NecrosisCountSelectionText", "OVERLAY", "GameFontNormalSmall")
+		FontString = frame:CreateFontString("NecrosisCountSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("RIGHT", frame, "LEFT", -50, 0)
+		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 178)
+		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
 	end
 
-	UIDropDownMenu_Initialize(NecrosisSkinSelection, Necrosis:Skin.Init)
-	UIDropDownMenu_Initialize(NecrosisEventSelection, Necrosis:Event.Init)
-	UIDropDownMenu_Initialize(NecrosisSpellSelection, Necrosis:Spell.Init)
-	UIDropDownMenu_Initialize(NecrosisCountSelection, Necrosis:Count.Init)
+	UIDropDownMenu_Initialize(NecrosisSkinSelection, Necrosis.Skin_Init)
+	UIDropDownMenu_Initialize(NecrosisEventSelection, Necrosis.Event_Init)
+	UIDropDownMenu_Initialize(NecrosisSpellSelection, Necrosis.Spell_Init)
+	UIDropDownMenu_Initialize(NecrosisCountSelection, Necrosis.Count_Init)
 
 	NecrosisRotationText:SetText(self.Config.Sphere["Rotation de Necrosis"])
 	NecrosisRotationLow:SetText("0")
 	NecrosisRotationHigh:SetText("360")
 
-	NecrosisSkinSelectionText:SetText(self.Config.Sphere["Skin de la pierre Necrosis"])
-	NecrosisEventSelectionText:SetText(self.Config.Sphere["Evenement montre par la sphere"])
-	NecrosisSpellSelectionText:SetText(self.Config.Sphere["Sort caste par la sphere"])
+	NecrosisSkinSelectionT:SetText(self.Config.Sphere["Skin de la pierre Necrosis"])
+	NecrosisEventSelectionT:SetText(self.Config.Sphere["Evenement montre par la sphere"])
+	NecrosisSpellSelectionT:SetText(self.Config.Sphere["Sort caste par la sphere"])
 	NecrosisShowCountText:SetText(self.Config.Sphere["Afficher le compteur numerique"])
-	NecrosisCountSelectionText:SetText(self.Config.Sphere["Evenement montre par la sphere"])
+	NecrosisCountSelectionT:SetText(self.Config.Sphere["Type de compteur numerique"])
 
 	NecrosisRotation:SetValue(NecrosisConfig.NecrosisAngle)
 	NecrosisShowCount:SetChecked(NecrosisConfig.ShowCount)
@@ -196,18 +200,18 @@ function Necrosis:SetSphereConfig()
 end
 
 -- Fonctions du Dropdown des skins
-function Necrosis:Skin.Init()
+function Necrosis.Skin_Init()
 	local element = {}
 
 	for i in ipairs(Necrosis.Config.Sphere.Colour) do
 		element.text = Necrosis.Config.Sphere.Colour[i]
 		element.checked = false
-		element.func = Necrosis:Skin.Click
+		element.func = Necrosis.Skin_Click
 		UIDropDownMenu_AddButton(element)
 	end
 end
 
-function Necrosis:Skin.Click()
+function Necrosis.Skin_Click()
 	local ID = this:GetID()
 	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
 	UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, ID)
@@ -216,19 +220,19 @@ function Necrosis:Skin.Click()
 end
 
 -- Fonctions du Dropdown des Events de la sphère
-function Necrosis:Event.Init()
+function Necrosis.Event_Init()
 	local element = {}
 	for i in ipairs(Necrosis.Config.Sphere.Count) do
 		if not (i == 2) then
 			element.text = Necrosis.Config.Sphere.Count[i]
 			element.checked = false
-			element.func = Necrosis:Event.Click
+			element.func = Necrosis.Event_Click
 			UIDropDownMenu_AddButton(element)
 		end
 	end
 end
 
-function Necrosis:Event.Click()
+function Necrosis.Event_Click()
 	local ID = this:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, ID)
 	NecrosisConfig.Circle = ID
@@ -238,40 +242,41 @@ function Necrosis:Event.Click()
 end
 
 -- Fonctions du Dropdown des sorts de la sphère
-function Necrosis:Spell.Init()
+function Necrosis.Spell_Init()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	local element = {}
 	for i in ipairs(spell) do
 		element.text = Necrosis.Spell[spell[i]].Name
 		element.checked = false
-		element.func = Necrosis:Spell.Click
+		element.func = Necrosis.Spell_Click
 		UIDropDownMenu_AddButton(element)
 	end
 end
 
-function Necrosis:Spell.Click()
+function Necrosis.Spell_Click()
 	local ID = this:GetID()
 	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, ID)
 	NecrosisConfig.MainSpell = spell[ID]
-	-- Necrosis:MainButtonAttribute()
+	Necrosis.MainButtonAttribute()
 end
 
 -- Fonctions du Dropdown des Events du compteur
-function Necrosis:Count.Init()
+function Necrosis.Count_Init()
 	local element = {}
 	for i in ipairs(Necrosis.Config.Sphere.Count) do
 		element.text = Necrosis.Config.Sphere.Count[i]
 		element.checked = false
-		element.func = Necrosis:Count.Click
+		element.func = Necrosis.Count_Click
 		UIDropDownMenu_AddButton(element)
 	end
 end
 
-function Necrosis:Count.Click()
+function Necrosis.Count_Click()
 	local ID = this:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisCountSelection, ID)
-	NecrosisConfig.Count = ID
+	NecrosisConfig.CountType = ID
+	NecrosisShardCount:SetText("")
 	Necrosis:UpdateHealth()
 	Necrosis:UpdateMana()
 	Necrosis:BagExplore()
