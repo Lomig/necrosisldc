@@ -269,7 +269,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Skin de la pierre Necrosis"] = "Skin de la sph\195\168re",
 		["Evenement montre par la sphere"] = "Ev\195\168nement montr\195\169 par la sph\195\168re",
 		["Sort caste par la sphere"] = "Sort cast\195\169 par la sph\195\168re",
-		["Afficher le compteur numerique"] = "Afficher le compteur de num\195\169rique",
+		["Afficher le compteur numerique"] = "Afficher le compteur num\195\169rique",
 		["Type de compteur numerique"] = "Type de compteur num\195\169rique"
 	}
 

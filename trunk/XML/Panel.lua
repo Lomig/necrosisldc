@@ -82,12 +82,12 @@ function Necrosis:OpenConfigPanel()
 
 		-- Texture en haut à gauche : icone
 		local texture = frame:CreateTexture("NecrosisGeneralIcon", "BACKGROUND")
-		texture:SetWidth(58)
-		texture:SetHeight(58)
+		texture:SetWidth(61)
+		texture:SetHeight(61)
 		texture:SetTexture("Interface\\Spellbook\\Spellbook-Icon")
 		texture:Show()
 		texture:ClearAllPoints()
-		texture:SetPoint("TOPLEFT")
+		texture:SetPoint("TOPLEFT", 8, -6)
 
 		-- Textures du cadre
 		texture = frame:CreateTexture(nil, "BORDER")
@@ -136,7 +136,7 @@ function Necrosis:OpenConfigPanel()
 		FontString:SetText("Developed by Lomig, Liadora & Eliah")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("TOPRIGHT", -25, -48)
+		FontString:SetPoint("TOPLEFT", 85, -48)
 
 		-- Titre de section au bas de la page
 		FontString = frame:CreateFontString("NecrosisGeneralPageText", nil, "GameFontNormal")
