@@ -277,7 +277,7 @@ function Necrosis:SetMessagesConfig()
 
 	UIDropDownMenu_Initialize(NecrosisLanguageSelection, Necrosis.Language_Init)
 
-	local locales = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES")
+	local locales = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
 	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español"}
 	for i in ipairs(locales) do
 		if locales[i] == NecrosisConfig.NecrosisLanguage then
