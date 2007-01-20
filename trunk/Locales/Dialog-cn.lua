@@ -244,7 +244,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>将Necrosis和所有按钮置于屏幕中间",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
-			"/necro <lightOrange>sm<white> -- <lightBlue>用a short raid-ready version代替灵魂绑定和召唤信息",
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
@@ -269,6 +268,14 @@ function Necrosis:Localization_Dialog_Cn()
 		["Position"] = "<- 这儿将显示Necrosis的信息 ->",
 		["Afficher les bulles d'aide"] = "显示提示",
 		["Afficher les messages dans la zone systeme"] = "宣告Necrosis信息作为系统信息",
+		["Activer les messages aleatoires de TP et de Rez"] = "随机显示召唤的信息",
+		["Utiliser des messages courts"] = "Use short messages",
+		["Activer egalement les messages pour les Demons"] = "激活随机语言 (恶魔)",
+		["Activer egalement les messages pour les Montures"] = "激活随机语言 (坐骑)",
+		["Activer les sons"] = "开启声音",
+		["Alerter quand la cible est insensible a la peur"] = "当我的目标免疫恐惧时提醒我。",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["M'alerter quand j'entre en Transe"] = "当我获得暗影冥思效果时提醒我。"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -319,8 +326,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
 		["TimerMenu"] = "|CFFB700B7图形计时器|CFFFF99FF :",
 		["TimerColor"] = "显示计时器文字为白色(代替黄色)",
-		["TranseWarning"] = "当我获得暗影冥思效果时提醒我。",
-		["AntiFearWarning"] = "当我的目标免疫恐惧时提醒我。",
 		["GraphicalTimer"] = "打开法术计时器。",
 		["TranceButtonView"] = "显示隐藏的按钮以拖动它。",
 		["ButtonLock"] = "锁定 Necrosis球体周围的按钮。",
@@ -329,10 +334,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["BuffMenu"] = "buff菜单在按钮左边",
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
-		["Sound"] = "开启声音",
-		["ShowMessage"] = "随机显示召唤的信息",
-		["ShowDemonSummon"] = "激活随机语言 (恶魔)",
-		["ShowSteedSummon"] = "激活随机语言 (坐骑)",
 		["NecrosisSize"] = "Necrosis按钮的大小",
 		["BanishSize"] = "放逐按钮大小",
 		["TranseSize"] = "暗影冥思和反恐按钮的大小",

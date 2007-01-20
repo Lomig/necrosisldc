@@ -242,7 +242,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reinicia Necrosis entero",
-			"/necro <lightOrange>sm<white> -- <lightBlue>Reemplazar los mensajes de Piedra de Alma e invocaci\195\179n por una versi\195\179n breve para Banda",
 			"/necro <lightOrange>am<white> -- <lightBlue>Permite que los men\195\186s se abran autom\195\161ticamente cuando entres en combate",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Mantiene los men\195\186s abiertos indefinidamente",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Se cierra el men\195\186 cuando pulsas uno de sus botones ",
@@ -268,6 +267,14 @@ function Necrosis:Localization_Dialog_Es()
 		["Position"] = "<- Los mensajes de Sistema de Necrosis aparecer\195\161n aqu\195\173 ->",
 		["Afficher les bulles d'aide"] = "Mostrar consejos detallados",
 		["Afficher les messages dans la zone systeme"] = "Mensajes de Necrosis como mensajes de sistema",
+		["Activer les messages aleatoires de TP et de Rez"] = "Activar discursos aleatorios",
+		["Utiliser des messages courts"] = "Use short messages",
+		["Activer egalement les messages pour les Demons"] = "Activar discursos aleatorios (demonio)",
+		["Activer egalement les messages pour les Montures"] = "Activar discursos aleatorios (corcel)",
+		["Activer les sons"] = "Activar sonidos",
+		["Alerter quand la cible est insensible a la peur"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["M'alerter quand j'entre en Transe"] = "Al\195\169rtame cuando entre en un Trance",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -316,8 +323,6 @@ function Necrosis:Localization_Dialog_Es()
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r:",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs:",
 		["TimerColor"] = "Textos de temporizador blancos en vez de amarillos",
-		["TranseWarning"] = "Al\195\169rtame cuando entre en un Trance de las Sombras",
-		["AntiFearWarning"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
 		["GraphicalTimer"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
 		["TranceButtonView"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos.",
 		["ButtonLock"] = "Bloquear los botones alrededor de la Esfera Necrosis.",
@@ -326,10 +331,6 @@ function Necrosis:Localization_Dialog_Es()
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
-		["Sound"] = "Activar sonidos",
-		["ShowMessage"] = "Activar discursos aleatorios",
-		["ShowDemonSummon"] = "Activar discursos aleatorios (demonio)",
-		["ShowSteedSummon"] = "Activar discursos aleatorios (corcel)",
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 		["TranseSize"] = "Tama\195\177o de los botones de aviso",

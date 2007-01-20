@@ -244,7 +244,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>將Necrosis和所有按鈕置於螢幕中央",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
-			"/necro <lightOrange>sm<white> -- <lightBlue>在團隊中，使用較短的靈魂綁定和召喚儀式訊息",
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
@@ -269,6 +268,14 @@ function Necrosis:Localization_Dialog_Tw()
 		["Position"] = "<- 這裡將顯示Necrosis的系統訊息 ->",
 		["Afficher les bulles d'aide"] = "顯示提示",
 		["Afficher les messages dans la zone systeme"] = "宣告Necrosis訊息為系統訊息",
+		["Activer les messages aleatoires de TP et de Rez"] = "顯示隨機訊息",
+		["Utiliser des messages courts"] = "Use short messages",
+		["Activer egalement les messages pour les Demons"] = "啟動隨機訊息 (惡魔)",
+		["Activer egalement les messages pour les Montures"] = "啟動隨機訊息 (坐騎)",
+		["Activer les sons"] = "開啟音效",
+		["Alerter quand la cible est insensible a la peur"] = "當我的目標免疫恐懼時提醒我",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["M'alerter quand j'entre en Transe"] = "當我獲得暗影冥思效果時提醒我"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -317,8 +324,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
 		["TimerMenu"] = "|CFFB700B7圖形計時器|CFFFF99FF :",
 		["TimerColor"] = "計時器以白色來取代黃色文字",
-		["TranseWarning"] = "當我獲得暗影冥思效果時提醒我",
-		["AntiFearWarning"] = "當我的目標免疫恐懼時提醒我",
 		["GraphicalTimer"] = "打開法術計時器。",
 		["TranceButtonView"] = "顯示隱藏的按鈕以便能拖曳它。",
 		["ButtonLock"] = "鎖定Necrosis主體周圍的按鈕。",
@@ -327,10 +332,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["BuffMenu"] = "增益功能表在按鈕左邊",
 		["PetMenu"] = "寵物功能表在按鈕左邊",
 		["CurseMenu"] = "詛咒功能表在按鈕左邊",
-		["Sound"] = "開啟音效",
-		["ShowMessage"] = "顯示隨機訊息",
-		["ShowDemonSummon"] = "啟動隨機訊息 (惡魔)",
-		["ShowSteedSummon"] = "啟動隨機訊息 (坐騎)",
 		["NecrosisSize"] = "Necrosis按鈕的大小",
 		["BanishSize"] = "放逐按鈕大小",
 		["TranseSize"] = "暗影冥思和反恐按鈕的大小",

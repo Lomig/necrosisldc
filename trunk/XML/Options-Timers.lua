@@ -63,8 +63,10 @@ function Necrosis:SetTimersConfig()
 		local FontString = frame:CreateFontString("NecrosisTimerSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 403)
-		FontString:SetTextColor(1, 1, 1)
+		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		frame:SetFontString(FontString)
+		frame:SetTextColor(1, 1, 1)
+		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
@@ -86,11 +88,13 @@ function Necrosis:SetTimersConfig()
 			end
 		end)
 
-		FontString = frame:CreateFontString("NecrosisShowSpellTimerButtonText", nil, "GameFontNormalSmall")
+		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
-		FontString:SetTextColor(1, 1, 1)
+		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		frame:SetFontString(FontString)
+		frame:SetTextColor(1, 1, 1)
+		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Affiche les timers sur la gauche du bouton
 		frame = CreateFrame("CheckButton", "NecrosisTimerOnLeft", NecrosisTimersConfig, "UICheckButtonTemplate")
@@ -105,11 +109,13 @@ function Necrosis:SetTimersConfig()
 			Necrosis:SymetrieTimer(this:GetChecked())
 		end)
 
-		FontString = frame:CreateFontString("NecrosisTimerOnLeftText", nil, "GameFontNormalSmall")
+		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
-		FontString:SetTextColor(1, 1, 1)
+		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		frame:SetFontString(FontString)
+		frame:SetTextColor(1, 1, 1)
+		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Affiche les timers de bas en haut
 		frame = CreateFrame("CheckButton", "NecrosisTimerUpward", NecrosisTimersConfig, "UICheckButtonTemplate")
@@ -131,7 +137,7 @@ function Necrosis:SetTimersConfig()
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
+		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
 		frame:SetFontString(FontString)
 		frame:SetTextColor(1, 1, 1)
 		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
@@ -140,8 +146,8 @@ function Necrosis:SetTimersConfig()
 	UIDropDownMenu_Initialize(NecrosisTimerSelection, Necrosis.Timer_Init)
 
 	NecrosisTimerSelectionT:SetText(self.Config.Timers["Type de timers"])
-	NecrosisShowSpellTimerButtonText:SetText(self.Config.Timers["Afficher le bouton des timers"])
-	NecrosisTimerOnLeftText:SetText(self.Config.Timers["Afficher les timers sur la gauche du bouton"])
+	NecrosisShowSpellTimerButton:SetText(self.Config.Timers["Afficher le bouton des timers"])
+	NecrosisTimerOnLeft:SetText(self.Config.Timers["Afficher les timers sur la gauche du bouton"])
 	NecrosisTimerUpward:SetText(self.Config.Timers["Afficher les timers de bas en haut"])
 
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, (NecrosisConfig.TimerType + 1))
@@ -151,9 +157,15 @@ function Necrosis:SetTimersConfig()
 	NecrosisTimerOnLeft:SetChecked(NecrosisConfig.SpellTimerPos == -1)
 	NecrosisTimerUpward:SetChecked(NecrosisConfig.SensListe == -1)
 
-	if NecrosisConfig.TimerType == 2 then
+	if NecrosisConfig.TimerType == 0 then
 		NecrosisTimerUpward:Disable()
+		NecrosisTimerOnLeft:Disable()
+
+	elseif NecrosisConfig.TimerType == 2 then
+		NecrosisTimerUpward:Disable()
+		NecrosisTimerOnLeft:Enable()
 	else
+		NecrosisTimerOnLeft:Enable()
 		NecrosisTimerUpward:Enable()
 	end
 
@@ -181,9 +193,14 @@ function Necrosis.Timer_Click()
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, ID)
 	NecrosisConfig.TimerType = ID - 1
 	if not (ID == 1) then Necrosis:CreateTimerAnchor() end
-	if ID == 3 then
+	if ID == 1 then
 		NecrosisTimerUpward:Disable()
+		NecrosisTimerOnLeft:Disable()
+	elseif ID == 3 then
+		NecrosisTimerUpward:Disable()
+		NecrosisTimerOnLeft:Enable()
 	else
 		NecrosisTimerUpward:Enable()
+		NecrosisTimerOnLeft:Enable()
 	end
 end

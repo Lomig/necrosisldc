@@ -241,7 +241,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centre Necrosis et tous les boutons au milieu de l'\195\169cran",
 			"/necro <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
-			"/necro <lightOrange>sm<white> -- <lightBlue>Remplace les messages de pierre d'\195\162me et d'invocation par des versions courtes sp\195\169ciales raid",
 			"/necro <lightOrange>am<white> -- <lightBlue>Permet aux menus de s'ouvrir automatiquement en d\195\169but de combat, et de se refermer pendant la r\195\169g\195\169n\195\169ration",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Permet aux menus de rester bloqu\195\169s en position ouverte",
 			"/necro <lightOrange>cm<white> -- <lightBlue>ferme les menus lorsqu'on clique sur un de leurs boutons",
@@ -267,6 +266,14 @@ function Necrosis:Localization_Dialog_Fr()
 		["Position"] = "<- Position des messages systeme Necrosis ->",
 		["Afficher les bulles d'aide"] = "Afficher les bulles d'aide",
 		["Afficher les messages dans la zone systeme"] = "Afficher les messages de Necrosis dans la zone syst\195\168me",
+		["Activer les messages aleatoires de TP et de Rez"] = "Activer les messages al\195\169atoires de TP et de Rez",
+		["Utiliser des messages courts"] = "Utiliser des messages courts",
+		["Activer egalement les messages pour les Demons"] = "Activer \195\169galement les messages pour les D\195\169mons",
+		["Activer egalement les messages pour les Montures"] = "Activer \195\169galement les messages pour les Montures",
+		["Activer les sons"] = "Activer les sons",
+		["Alerter quand la cible est insensible a la peur"] = "Alerter quand la cible est insensible \195\160 la peur",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Alerter quand la cible peut \195\170tre banie ou asservie",
+		["M'alerter quand j'entre en Transe"] = "M'alerter quand j'entre en Transe"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -298,7 +305,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Type de timers"] = "Type de timers",
 		["Afficher le bouton des timers"] = "Afficher le bouton des timers",
 		["Afficher les timers sur la gauche du bouton"] = "Afficher les timers sur la gauche du bouton",
-		["Afficher les timers de bas en haut"] = "Afficher les timers de bas en haut",
+		["Afficher les timers de bas en haut"] = "Afficher les timers de bas en haut"
 	}
 	Necrosis.Config.Timers.Type = {
 		"Aucun",
@@ -315,8 +322,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["SpellMenu1"] = "|CFFB700B7S|CFFFF00FFo|CFFFF50FFr|CFFFF99FFt|CFFFFC4FFs :",
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFo|CFFFF50FFu|CFFFF99FFe|CFFFFC4FFu|CFFFF99FFr :",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFr|CFFFF99FFs G|CFFFF50FFr|CFFFF00FFa|CFFB700B7ph|CFFFF00FFi|CFFFF50FFq|CFFFF99FFue|CFFFFC4FFs :",
-		["TranseWarning"] = "M'alerter quand j'entre en Transe",
-		["AntiFearWarning"] = "M'alerter quand ma cible \195\160 un 'anti fear'",
 		["GraphicalTimer"] = "Affiche la gestion des dur\195\169es de sorts",
 		["TimerColor"] = "Affiche le texte des timers en blanc",
 		["TranceButtonView"] = "Affichage des boutons cach\195\169s pour les d\195\169placer",
@@ -326,10 +331,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
-		["ShowMessage"] = "Active les messages al\195\169atoires d'invocation",
-		["ShowDemonSummon"] = "Active les messages pour les D\195\169mons",
-		["ShowSteedSummon"] = "Active les messages pour la Monture",
-		["Sound"] = "Activer les sons",
 		["NecrosisSize"] = "Taille de la pierre Necrosis",
 		["BanishSize"] = "Taille du bouton Banish",
 		["TranseSize"] = "Taille des boutons cach\195\169s",
