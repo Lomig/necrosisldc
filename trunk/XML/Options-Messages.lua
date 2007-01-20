@@ -314,7 +314,7 @@ function Necrosis:SetMessagesConfig()
 	if not NecrosisConfig.ChatMsg then
 		NecrosisShortMessages:Disable()
 		NecrosisDemonMessages:Disable()
-		NecrosisSteedMessages:Disable()NecrosisSteedMessages
+		NecrosisSteedMessages:Disable()
 	elseif not NecrosisConfig.SM then
 		NecrosisShortMessages:Enable()
 		NecrosisDemonMessages:Disable()
