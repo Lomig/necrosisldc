@@ -58,14 +58,14 @@ function Necrosis:SetMessagesConfig()
 		frame = CreateFrame("Frame", "NecrosisLanguageSelection", NecrosisMessagesConfig, "UIDropDownMenuTemplate")
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMessagesConfig, "BOTTOMRIGHT", 0, 425)
+		frame:SetPoint("RIGHT", NecrosisMessagesConfig, "BOTTOMRIGHT", 0, 400)
 
 		local FontString = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 428)
+		FontString:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 403)
 		FontString:SetTextColor(1, 1, 1)
-		FontString:SetText("Langue / Language / Sprache / Lengua")
+		FontString:SetText("Langue / Language")
 
 		UIDropDownMenu_SetWidth(125, frame)
 
@@ -115,7 +115,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 275)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 300)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.ChatMsg = this:GetChecked()
@@ -140,11 +140,11 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 250)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 275)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.SM = this:GetChecked()
-			if not NecrosisConfig.SM then
+			if NecrosisConfig.SM then
 				NecrosisDemonMessages:Disable()
 				NecrosisSteedMessages:Disable()
 			else
@@ -168,7 +168,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 225)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 250)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.DemonSummon = this:GetChecked() end)
 
@@ -187,7 +187,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 200)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 225)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.SteedSummon = this:GetChecked() end)
 
@@ -206,7 +206,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 125)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 175)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.Sound = this:GetChecked()
@@ -226,7 +226,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.AntiFearAlert = this:GetChecked() end)
 
@@ -244,7 +244,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 75)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 100)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.Banish = this:GetChecked() end)
 
@@ -262,7 +262,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 50)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 75)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.ShadowTranceAlert = this:GetChecked() end)
 
@@ -315,7 +315,7 @@ function Necrosis:SetMessagesConfig()
 		NecrosisShortMessages:Disable()
 		NecrosisDemonMessages:Disable()
 		NecrosisSteedMessages:Disable()
-	elseif not NecrosisConfig.SM then
+	elseif NecrosisConfig.SM then
 		NecrosisShortMessages:Enable()
 		NecrosisDemonMessages:Disable()
 		NecrosisSteedMessages:Disable()
