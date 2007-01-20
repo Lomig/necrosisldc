@@ -132,13 +132,6 @@ function Necrosis:Initialize(Config)
 	NecrosisGraphicalTimer_Button:SetChecked(NecrosisConfig.Graphical)
 	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
 
-	local langues = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
-	for i in ipairs(langues) do
-		if NecrosisConfig.Language == langues[i] then
-			NecrosisLanguage_Slider:SetValue(i)
-			break
-		end
-	end
 
 	NecrosisBag_Slider:SetValue(4 - NecrosisConfig.SoulshardContainer)
 	NecrosisBag_SliderLow:SetText("5")
