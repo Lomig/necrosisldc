@@ -139,9 +139,6 @@ function Necrosis:Initialize(Config)
 			break
 		end
 	end
-	NecrosisLanguage_SliderText:SetText("Langue / Language / Sprache / Lengua")
-	NecrosisLanguage_SliderLow:SetText("")
-	NecrosisLanguage_SliderHigh:SetText("")
 
 	NecrosisBag_Slider:SetValue(4 - NecrosisConfig.SoulshardContainer)
 	NecrosisBag_SliderLow:SetText("5")

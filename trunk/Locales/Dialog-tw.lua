@@ -238,7 +238,6 @@ function Necrosis:Localization_Dialog_Tw()
 			["TooltipOff"] = "關閉提示",
 			["MessageOn"] = "打開聊天訊息通知",
 			["MessageOff"] = "關閉聊天訊息通知",
-			["MessagePosition"] = "<- 這裡將顯示Necrosis的系統訊息 ->",
 			["DefaultConfig"] = "<lightYellow>預設配置已載入。",
 			["UserConfig"] = "<lightYellow>配置已載入。"
 		},
@@ -249,7 +248,6 @@ function Necrosis:Localization_Dialog_Tw()
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目標對恐懼免疫！",
@@ -265,6 +263,12 @@ function Necrosis:Localization_Dialog_Tw()
 		"按鈕設定",
 		"計時器設定",
 		"圖像設定"
+	}
+
+	Necrosis.Config.Messages = {
+		["Position"] = "<- 這裡將顯示Necrosis的系統訊息 ->",
+		["Afficher les bulles d'aide"] = "顯示提示",
+		["Afficher les messages dans la zone systeme"] = "宣告Necrosis訊息為系統訊息",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -284,7 +288,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Count = {
+	Necrosis.Config.Sphere.Count = {
 		"靈魂碎片",
 		"惡魔召喚石",
 		"靈魂石冷卻計時",
@@ -327,7 +331,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["ShowMessage"] = "顯示隨機訊息",
 		["ShowDemonSummon"] = "啟動隨機訊息 (惡魔)",
 		["ShowSteedSummon"] = "啟動隨機訊息 (坐騎)",
-		["ChatType"] = "宣告Necrosis訊息為系統訊息",
 		["NecrosisSize"] = "Necrosis按鈕的大小",
 		["BanishSize"] = "放逐按鈕大小",
 		["TranseSize"] = "暗影冥思和反恐按鈕的大小",
@@ -340,7 +343,6 @@ function Necrosis:Localization_Dialog_Tw()
 			["Buff"] = "顯示法術功能表按鈕",
 			["Curse"] = "顯示詛咒功能表按鈕",
 			["Demon"] = "顯示惡魔召喚功能表按鈕",
-			["Tooltips"] = "顯示提示"
 		},
 	}
 

@@ -236,7 +236,6 @@ function Necrosis:Localization_Dialog_Es()
 			["TooltipOff"] = "Consejos detallados desactivados",
 			["MessageOn"] = "Mensaje Chat activado",
 			["MessageOff"] = "Mensaje Chat desactivado",
-			["MessagePosition"] = "<- Los mensajes de Sistema de Necrosis aparecer\195\161n aqu\195\173 ->",
 			["DefaultConfig"] = "<lightYellow>Configuraci\195\179n por defecto cargada.",
 			["UserConfig"] = "<lightYellow>Configuraci\195\179n cargada."
 		},
@@ -247,7 +246,6 @@ function Necrosis:Localization_Dialog_Es()
 			"/necro <lightOrange>am<white> -- <lightBlue>Permite que los men\195\186s se abran autom\195\161ticamente cuando entres en combate",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Mantiene los men\195\186s abiertos indefinidamente",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Se cierra el men\195\186 cuando pulsas uno de sus botones ",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Muestra temporizadores en modo texto",
 		},
 		["Information"] = {
 			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!",
@@ -264,6 +262,12 @@ function Necrosis:Localization_Dialog_Es()
 		"Opci\195\179nes de Bot\195\179n",
 		"Opci\195\179nes de Temporizador",
 		"Opci\195\179nes Gr\195\161ficas"
+	}
+
+	Necrosis.Config.Messages = {
+		["Position"] = "<- Los mensajes de Sistema de Necrosis aparecer\195\161n aqu\195\173 ->",
+		["Afficher les bulles d'aide"] = "Mostrar consejos detallados",
+		["Afficher les messages dans la zone systeme"] = "Mensajes de Necrosis como mensajes de sistema",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -283,7 +287,7 @@ function Necrosis:Localization_Dialog_Es()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Count = {
+	Necrosis.Config.Sphere.Count = {
 		"Fragmentos de Alma",
 		"Piedras de invocaci\195\179n de Demonios",
 		"Temporizador de Resurrecci\195\179n",
@@ -326,7 +330,6 @@ function Necrosis:Localization_Dialog_Es()
 		["ShowMessage"] = "Activar discursos aleatorios",
 		["ShowDemonSummon"] = "Activar discursos aleatorios (demonio)",
 		["ShowSteedSummon"] = "Activar discursos aleatorios (corcel)",
-		["ChatType"] = "Mensajes de Necrosis como mensajes de sistema",
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 		["TranseSize"] = "Tama\195\177o de los botones de aviso",
@@ -339,7 +342,6 @@ function Necrosis:Localization_Dialog_Es()
 			["Buff"] = "Mostrar bot\195\179n del men\195\186 Hechizos",
 			["Curse"] = "Mostrar bot\195\179n del men\195\186 Maldici\195\179n",
 			["Demon"] = "Mostrar bot\195\179n del men\195\186 Demonio",
-			["Tooltips"] = "Mostrar consejos detallados"
 		},
 	};
 
