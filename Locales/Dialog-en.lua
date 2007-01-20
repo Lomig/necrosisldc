@@ -283,7 +283,7 @@ function Necrosis:Localization_Dialog_En()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Count = {
+	Necrosis.Config.Sphere.Count = {
 		"Soulshards",
 		"Demon summoning stones",
 		"Resurrection Timer",
