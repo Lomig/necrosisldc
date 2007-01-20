@@ -128,11 +128,12 @@ function Necrosis:SetTimersConfig()
 			end
 		end)
 
-		FontString = frame:CreateFontString("NecrosisTimerUpwardText", nil, "GameFontNormalSmall")
+		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
 		FontString:SetTextColor(1, 1, 1)
+		frame:SetFontString(FontString)
 	end
 
 	UIDropDownMenu_Initialize(NecrosisTimerSelection, Necrosis.Timer_Init)
@@ -140,7 +141,7 @@ function Necrosis:SetTimersConfig()
 	NecrosisTimerSelectionT:SetText(self.Config.Timers["Type de timers"])
 	NecrosisShowSpellTimerButtonText:SetText(self.Config.Timers["Afficher le bouton des timers"])
 	NecrosisTimerOnLeftText:SetText(self.Config.Timers["Afficher les timers sur la gauche du bouton"])
-	NecrosisTimerUpwardText:SetText(self.Config.Timers["Afficher les timers de bas en haut"])
+	NecrosisTimerUpward:SetText(self.Config.Timers["Afficher les timers de bas en haut"])
 
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, (NecrosisConfig.TimerType + 1))
 	UIDropDownMenu_SetText(Necrosis.Config.Timers.Type[NecrosisConfig.TimerType + 1], NecrosisTimerSelection)
@@ -148,6 +149,8 @@ function Necrosis:SetTimersConfig()
 	NecrosisShowSpellTimerButton:SetChecked(NecrosisConfig.ShowSpellTimers)
 	NecrosisTimerOnLeft:SetChecked(NecrosisConfig.SpellTimerPos == -1)
 	NecrosisTimerUpward:SetChecked(NecrosisConfig.SensListe == -1)
+
+	if NecrosisConfig.TimerType == 2 then NecrosisTimerUpward:Disable()
 
 end
 

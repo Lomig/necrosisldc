@@ -238,7 +238,6 @@ function Necrosis:Localization_Dialog_Cn()
 			["TooltipOff"] = "关闭提示",
 			["MessageOn"] = "打开聊天信息通知",
 			["MessageOff"] = "关闭聊天信息通知",
-			["MessagePosition"] = "<- 这儿将显示Necrosis的信息 ->",
 			["DefaultConfig"] = "<lightYellow>默认配置已加载。",
 			["UserConfig"] = "<lightYellow>配置已加载。",
 		},
@@ -249,7 +248,6 @@ function Necrosis:Localization_Dialog_Cn()
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目标对恐惧免疫!!!!",
@@ -265,6 +263,12 @@ function Necrosis:Localization_Dialog_Cn()
 		"按钮设置",
 		"计时器设置",
 		"图像设置"
+	}
+
+	Necrosis.Config.Messages = {
+		["Position"] = "<- 这儿将显示Necrosis的信息 ->",
+		["Afficher les bulles d'aide"] = "显示提示",
+		["Afficher les messages dans la zone systeme"] = "宣告Necrosis信息作为系统信息",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -285,7 +289,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Count = {
+	Necrosis.Config.Sphere.Count = {
 		"灵魂碎片",
 		"恶魔召唤石",
 		"灵魂石冷却计时",
@@ -329,7 +333,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["ShowMessage"] = "随机显示召唤的信息",
 		["ShowDemonSummon"] = "激活随机语言 (恶魔)",
 		["ShowSteedSummon"] = "激活随机语言 (坐骑)",
-		["ChatType"] = "宣告Necrosis信息作为系统信息",
 		["NecrosisSize"] = "Necrosis按钮的大小",
 		["BanishSize"] = "放逐按钮大小",
 		["TranseSize"] = "暗影冥思和反恐按钮的大小",
@@ -342,7 +345,6 @@ function Necrosis:Localization_Dialog_Cn()
 			["Buff"] = "显示buff菜单按钮",
 			["Curse"] = "显示诅咒菜单按钮",
 			["Demon"] = "显示恶魔召唤菜单按钮",
-			["Tooltips"] = "显示提示"
 		},
 	}
 

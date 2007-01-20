@@ -236,7 +236,6 @@ function Necrosis:Localization_Dialog_En()
 			["TooltipOff"] = "Tooltips turned off",
 			["MessageOn"] = "Chat messaging turned on",
 			["MessageOff"] = "Chat messaging turned off",
-			["MessagePosition"] = "<- System messages by Necrosis will appear here ->",
 			["DefaultConfig"] = "<lightYellow>Default configuration loaded.",
 			["UserConfig"] = "<lightYellow>Configuration loaded."
 		},
@@ -247,7 +246,6 @@ function Necrosis:Localization_Dialog_En()
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Display textual timers",
 		},
 		["Information"] = {
 			["FearProtect"] = "Your target has got fear protection!",
@@ -264,6 +262,12 @@ function Necrosis:Localization_Dialog_En()
 		"Button Settings",
 		"Timer Settings",
 		"Graphical Settings"
+	}
+
+	Necrosis.Config.Messages = {
+		["Position"] = "<- Necrosis system messages will appear here ->",
+		["Afficher les bulles d'aide"] = "Show tooltips",
+		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -326,7 +330,6 @@ function Necrosis:Localization_Dialog_En()
 		["ShowMessage"] = "Activate random speeches",
 		["ShowDemonSummon"] = "Activate random speeches (demon)",
 		["ShowSteedSummon"] = "Activate random speeches (steed)",
-		["ChatType"] = "Declare Necrosis messages as system messages",
 		["NecrosisSize"] = "Size of the Necrosis button",
 		["BanishSize"] = "Size of the Banish button",
 		["TranseSize"] = "Size of hidden buttons",
@@ -339,7 +342,6 @@ function Necrosis:Localization_Dialog_En()
 			["Buff"] = "Show Spell menu button",
 			["Curse"] = "Show Curse menu button",
 			["Demon"] = "Show Demon menu button",
-			["Tooltips"] = "Show tooltips"
 		},
 	};
 

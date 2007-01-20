@@ -237,7 +237,6 @@ function Necrosis:Localization_Dialog_De()
 			["TooltipOff"] = "Tooltips aus",
 			["MessageOn"] = "Chat Nachrichten an",
 			["MessageOff"] = "Chat Nachrichten aus",
-			["MessagePosition"] = "<- Hier werden Nachrichten von Necrosis erscheinen ->",
 			["DefaultConfig"] = "<lightYellow>Standard-Einstellungen geladen.",
 			["UserConfig"] = "<lightYellow>Einstellungen geladen."
 		},
@@ -248,7 +247,6 @@ function Necrosis:Localization_Dialog_De()
 			"/necro <lightOrange>am<white> -- <lightBlue>Erlaubt den Men\195\188s sich automatisch zu \195\182ffnen, wenn man einen Kampf betritt",
 			"/necro <lightOrange>bm<white> -- <lightBlue>H\195\164lt die Men\195\188s dauerhaft offen",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Schlie\195\159t das Men\195\188, sobald man auf einen seiner Buttons klickt",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Zeigt den Texttimer",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",
@@ -267,11 +265,17 @@ function Necrosis:Localization_Dialog_De()
 		"Graphische Einstellungen"
 	}
 
+	Necrosis.Config.Messages = {
+		["Position"] = "<- Hier werden Nachrichten von Necrosis erscheinen ->",
+		["Afficher les bulles d'aide"] = "Zeige Tooltips",
+		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
+	}
+
 	Necrosis.Config.Sphere = {
 		["Rotation de Necrosis"] = "Necrosis Rotiationseinstellung",
 		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
 		["Evenement montre par la sphere"] = "Anzeige in der grafischen Sph\195\164re",
-		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Sort caste par la sphere"] = "Zauber der durch Klick auf die Sph195\164re gewirkt wird",
 		["Afficher le compteur numerique"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
 		["Type de compteur numerique"] = "Stein Typ gez\195\164hlt"
 	}
@@ -284,7 +288,7 @@ function Necrosis:Localization_Dialog_De()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Count = {
+	Necrosis.Config.Sphere.Count = {
 		"Seelensplitter",
 		"D\195\164monenen-Beschw\195\182rungs-Steine",
 		"Wiederbelebungs-Timer",
@@ -327,7 +331,6 @@ function Necrosis:Localization_Dialog_De()
 		["ShowMessage"] = "Zuf\195\164llige Spr\195\188che",
 		["ShowDemonSummon"] = "Zuf\195\164llige Spr\195\188che (D\195\164mon)",
 		["ShowSteedSummon"] = "Zuf\195\164llige Spr\195\188che (Mount)",
-		["ChatType"] = "Necrosis Nachrichten als\nSystem-Nachrichten anzeigen",
 		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 		["TranseSize"] = "Gr\195\182\195\159e des versteckten Buttons",
@@ -340,7 +343,6 @@ function Necrosis:Localization_Dialog_De()
 			["Buff"] = "Zeige den Spruch Men\195\188 Button",
 			["Demon"] = "Zeige den D\195\164monen Men\195\188 Button",
 			["Curse"] = "Zeige den Fluch Men\195\188 Button",
-			["Tooltips"] = "Zeige Tooltips"
 		},
 	};
 

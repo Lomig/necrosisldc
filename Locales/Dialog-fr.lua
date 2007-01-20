@@ -235,7 +235,6 @@ function Necrosis:Localization_Dialog_Fr()
 			["TooltipOff"] = "Bulles d'aide d\195\169sactiv\195\169es",
 			["MessageOn"] = "Messages Pierre d'\195\162me et Invocation de joueur activ\195\169s",
 			["MessageOff"] = "Messages Pierre d'\195\162me et Invocation de joueur desactiv\195\169s",
-			["MessagePosition"] = "<- position des messages systeme Necrosis ->",
 			["DefaultConfig"] = "<lightYellow>Configuration par defaut charg\195\169e.",
 			["UserConfig"] = "<lightYellow>Configuration charg\195\169e"
 		},
@@ -246,7 +245,6 @@ function Necrosis:Localization_Dialog_Fr()
 			"/necro <lightOrange>am<white> -- <lightBlue>Permet aux menus de s'ouvrir automatiquement en d\195\169but de combat, et de se refermer pendant la r\195\169g\195\169n\195\169ration",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Permet aux menus de rester bloqu\195\169s en position ouverte",
 			"/necro <lightOrange>cm<white> -- <lightBlue>ferme les menus lorsqu'on clique sur un de leurs boutons",
-			"/necro <lightOrange>tt<white> -- <lightBlue>Affiche les timers texte",
 		},
 		["Information"] = {
 			["FearProtect"] = "La cible est prot\195\168g\195\169e contre la peur !!!!",
@@ -256,13 +254,19 @@ function Necrosis:Localization_Dialog_Fr()
 	};
 
 
-	-- Gestion XML - Menu de configuration
+	-- Menus de configuration
 	Necrosis.Config.Panel = {
 		"Configuration des fragments",
 		"Configuration des messages",
 		"Configuration des boutons",
 		"Configuration des timers",
 		"Configuration graphique"
+	}
+
+	Necrosis.Config.Messages = {
+		["Position"] = "<- Position des messages systeme Necrosis ->",
+		["Afficher les bulles d'aide"] = "Afficher les bulles d'aide",
+		["Afficher les messages dans la zone systeme"] = "Afficher les messages de Necrosis dans la zone syst\195\168me",
 	}
 
 	Necrosis.Config.Sphere = {
@@ -325,7 +329,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["ShowMessage"] = "Active les messages al\195\169atoires d'invocation",
 		["ShowDemonSummon"] = "Active les messages pour les D\195\169mons",
 		["ShowSteedSummon"] = "Active les messages pour la Monture",
-		["ChatType"] = "Les messages = des messages syst\195\168mes",
 		["Sound"] = "Activer les sons",
 		["NecrosisSize"] = "Taille de la pierre Necrosis",
 		["BanishSize"] = "Taille du bouton Banish",
@@ -339,7 +342,6 @@ function Necrosis:Localization_Dialog_Fr()
 			["Buff"] = "Affiche le bouton des Buffs",
 			["Curse"] = "Affiche le bouton des Mal\195\169dictions",
 			["Demon"] = "Affiche le bouton d'invocation des D\195\169mons",
-			["Tooltips"] = "Affiche les bulles d'aides"
 		},
 
 	};
