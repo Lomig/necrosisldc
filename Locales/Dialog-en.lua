@@ -242,7 +242,6 @@ function Necrosis:Localization_Dialog_En()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Center Necrosis and all buttons in the middle of the screen",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
-			"/necro <lightOrange>sm<white> -- <lightBlue>Replace Soulstoning and summoning messages with a short raid-ready version",
 			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
 			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
@@ -268,6 +267,14 @@ function Necrosis:Localization_Dialog_En()
 		["Position"] = "<- Necrosis system messages will appear here ->",
 		["Afficher les bulles d'aide"] = "Show tooltips",
 		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
+		["Activer les messages aleatoires de TP et de Rez"] = "Activate random speeches",
+		["Utiliser des messages courts"] = "Use short messages",
+		["Activer egalement les messages pour les Demons"] = "Activate random speeches for demons too",
+		["Activer egalement les messages pour les Montures"] = "Activate random speeches for steeds too",
+		["Activer les sons"] = "Activate sounds",
+		["Alerter quand la cible est insensible a la peur"] = "Warn when the target cannot be feared",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["M'alerter quand j'entre en Transe"] = "Warn me when I enter a Trance State"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -316,8 +323,6 @@ function Necrosis:Localization_Dialog_En()
 		["SpellMenu2"] = "|CFFB700B7P|CFFFF00FFl|CFFFF50FFa|CFFFF99FFy|CFFFFC4FFe|CFFFF99FFr:",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFc|CFFFF00FFa|CFFB700B7l T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFrs:",
 		["TimerColor"] = "Show white instead of yellow timer texts",
-		["TranseWarning"] = "Alert me when I enter a Trance State",
-		["AntiFearWarning"] = "Warn me when my target cannot be feared.",
 		["GraphicalTimer"] = "Turn on the spell durations indicator",
 		["TranceButtonView"] = "Let me see hidden buttons to drag them.",
 		["ButtonLock"] = "Lock the buttons around the Necrosis Sphere.",
@@ -326,10 +331,6 @@ function Necrosis:Localization_Dialog_En()
 		["BuffMenu"] = "Put buff menu on the left",
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
-		["Sound"] = "Activate sounds",
-		["ShowMessage"] = "Activate random speeches",
-		["ShowDemonSummon"] = "Activate random speeches (demon)",
-		["ShowSteedSummon"] = "Activate random speeches (steed)",
 		["NecrosisSize"] = "Size of the Necrosis button",
 		["BanishSize"] = "Size of the Banish button",
 		["TranseSize"] = "Size of hidden buttons",

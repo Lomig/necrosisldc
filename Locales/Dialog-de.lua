@@ -243,7 +243,6 @@ function Necrosis:Localization_Dialog_De()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Setzt Necrosis komplett auf Grundeinstellungen zur\195\188ck",
-			"/necro <lightOrange>sm<white> -- <lightBlue>Ersetze Seelenstein -und Beschw\195\182rungs- Zufallsnachrichten durch eine kurze, raidgeeignete Version",
 			"/necro <lightOrange>am<white> -- <lightBlue>Erlaubt den Men\195\188s sich automatisch zu \195\182ffnen, wenn man einen Kampf betritt",
 			"/necro <lightOrange>bm<white> -- <lightBlue>H\195\164lt die Men\195\188s dauerhaft offen",
 			"/necro <lightOrange>cm<white> -- <lightBlue>Schlie\195\159t das Men\195\188, sobald man auf einen seiner Buttons klickt",
@@ -269,6 +268,14 @@ function Necrosis:Localization_Dialog_De()
 		["Position"] = "<- Hier werden Nachrichten von Necrosis erscheinen ->",
 		["Afficher les bulles d'aide"] = "Zeige Tooltips",
 		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
+		["Activer les messages aleatoires de TP et de Rez"] = "Zuf\195\164llige Spr\195\188che",
+		["Utiliser des messages courts"] = "Use short messages",
+		["Activer egalement les messages pour les Demons"] = "Zuf\195\164llige Spr\195\188che f\195\188r D\195\164monen auch",
+		["Activer egalement les messages pour les Montures"] = "Zuf\195\164llige Spr\195\188che f\195\188r Mount auch",
+		["Activer les sons"] = "Aktiviere Sounds",
+		["Alerter quand la cible est insensible a la peur"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["M'alerter quand j'entre en Transe"] = "Warnung, wenn Trance eintritt"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -316,8 +323,6 @@ function Necrosis:Localization_Dialog_De()
 		["SpellMenu1"] = "|CFFB700B7Z|CFFFF00FFa|CFFFF50FFu|CFFFFC4FFb|CFFFF99FFe|CFFFF50FFr :",
 		["SpellMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFi|CFFFF99FFe|CFFFFC4FFl|CFFFF99FFe|CFFFF50FFr :",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFs|CFFFF00FFc|CFFB700B7he T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFF00FFr :",
-		["TranseWarning"] = "Warnung, wenn Schattentrance eintritt",
-		["AntiFearWarning"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["GraphicalTimer"] = "Spruchdauer anzeigen",
 		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
@@ -327,10 +332,6 @@ function Necrosis:Localization_Dialog_De()
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-		["Sound"] = "Aktiviere Sounds",
-		["ShowMessage"] = "Zuf\195\164llige Spr\195\188che",
-		["ShowDemonSummon"] = "Zuf\195\164llige Spr\195\188che (D\195\164mon)",
-		["ShowSteedSummon"] = "Zuf\195\164llige Spr\195\188che (Mount)",
 		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 		["TranseSize"] = "Gr\195\182\195\159e des versteckten Buttons",
