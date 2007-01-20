@@ -132,8 +132,9 @@ function Necrosis:SetTimersConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 10, 0)
-		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
+		frame:SetTextColor(1, 1, 1)
+		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 	end
 
 	UIDropDownMenu_Initialize(NecrosisTimerSelection, Necrosis.Timer_Init)
@@ -150,7 +151,11 @@ function Necrosis:SetTimersConfig()
 	NecrosisTimerOnLeft:SetChecked(NecrosisConfig.SpellTimerPos == -1)
 	NecrosisTimerUpward:SetChecked(NecrosisConfig.SensListe == -1)
 
-	if NecrosisConfig.TimerType == 2 then NecrosisTimerUpward:Disable()
+	if NecrosisConfig.TimerType == 2 then
+		NecrosisTimerUpward:Disable()
+	else
+		NecrosisTimerUpward:Enable()
+	end
 
 end
 
@@ -176,4 +181,9 @@ function Necrosis.Timer_Click()
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, ID)
 	NecrosisConfig.TimerType = ID - 1
 	if not (ID == 1) then Necrosis:CreateTimerAnchor() end
+	if ID == 3 then
+		NecrosisTimerUpward:Disable()
+	else
+		NecrosisTimerUpward:Enable()
+	end
 end

@@ -302,8 +302,8 @@ function Necrosis:Localization_Dialog_Fr()
 	}
 	Necrosis.Config.Timers.Type = {
 		"Aucun",
-		"Graphique",
-		"Text"
+		"Graphiques",
+		"Textuels"
 	}
 
 	NECROSIS_CONFIGURATION = {
