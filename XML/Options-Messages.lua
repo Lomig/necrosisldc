@@ -121,8 +121,12 @@ function Necrosis:SetMessagesConfig()
 			NecrosisConfig.ChatMsg = this:GetChecked()
 			if not NecrosisConfig.ChatMsg then
 				NecrosisShortMessages:Disable()
+				NecrosisDemonMessages:Disable()
+				NecrosisSteedMessages:Disable()
 			else
 				NecrosisShortMessages:Enable()
+				NecrosisDemonMessages:Enable()
+				NecrosisSteedMessages:Enable()
 			end
 		end)
 
@@ -226,7 +230,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 125)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 150)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.AntiFearAlert = this:GetChecked() end)
 
@@ -244,7 +248,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.Banish = this:GetChecked() end)
 
@@ -262,7 +266,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 75)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 100)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.ShadowTranceAlert = this:GetChecked() end)
 
