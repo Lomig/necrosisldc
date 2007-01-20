@@ -284,7 +284,7 @@ function Necrosis:SetMessagesConfig()
 	local locales = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
 	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español"}
 	for i in ipairs(locales) do
-		if locales[i] == NecrosisConfig.NecrosisLanguage then
+		if locales[i] == NecrosisConfig.Language then
 			UIDropDownMenu_SetSelectedID(NecrosisLanguageSelection, i)
 			UIDropDownMenu_SetText(langues[i], NecrosisLanguageSelection)
 			break
@@ -354,22 +354,22 @@ function Necrosis.Language_Click()
 
 	UIDropDownMenu_SetSelectedID(NecrosisLanguageSelection, ID)
 	if ID == 1 then
-		NecrosisConfig.NecrosisLanguage = "frFR"
+		NecrosisConfig.Language = "frFR"
 		Necrosis:Localization_Dialog_Fr()
 	elseif ID == 2 then
-		NecrosisConfig.NecrosisLanguage = "enUS"
+		NecrosisConfig.Language = "enUS"
 		Necrosis:Localization_Dialog_En()
 	elseif ID == 3 then
-		NecrosisConfig.NecrosisLanguage = "deDE"
+		NecrosisConfig.Language = "deDE"
 		Necrosis:Localization_Dialog_De()
 	elseif ID == 4 then
-		NecrosisConfig.NecrosisLanguage = "zhTW"
+		NecrosisConfig.Language = "zhTW"
 		Necrosis:Localization_Dialog_Tw()
 	elseif ID == 5 then
-		NecrosisConfig.NecrosisLanguage = "zhCN"
+		NecrosisConfig.Language = "zhCN"
 		Necrosis:Localization_Dialog_Cn()
 	else
-		NecrosisConfig.NecrosisLanguage = "esES"
+		NecrosisConfig.Language = "esES"
 		Necrosis:Localization_Dialog_Es()
 	end
 	Necrosis:LanguageInitialize()
