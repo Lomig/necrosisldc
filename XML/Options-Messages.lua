@@ -306,16 +306,16 @@ function Necrosis:SetMessagesConfig()
 	NecrosisTrance:SetChecked(NecrosisConfig.ShadowTranceAlert)
 
 
-	NecrosisShowTooltip:SetText(Necrosis.Config.Messages["Afficher les bulles d'aide"])
-	NecrosisChatType:SetText(Necrosis.Config.Messages["Afficher les messages dans la zone systeme"])
-	NecrosisSpeech:SetText(Necrosis.Config.Messages["Activer les messages aleatoires de TP et de Rez"])
-	NecrosisShortMessages:SetText(Necrosis.Config.Messages["Utiliser des messages courts"])
-	NecrosisDemonMessages:SetText(Necrosis.Config.Messages["Activer egalement les messages pour les Demons"])
-	NecrosisSteedMessages:SetText(Necrosis.Config.Messages["Activer egalement les messages pour les Montures"])
-	NecrosisSound:SetText(Necrosis.Config.Messages["Activer les sons"])
-	NecrosisFear:SetText(Necrosis.Config.Messages["Alerter quand la cible est insensible a la peur"])
-	NecrosisBanish:SetText(Necrosis.Config.Messages["Alerter quand la cible peut etre banie ou asservie"])
-	NecrosisTrance:SetText(Necrosis.Config.Messages["M'alerter quand j'entre en Transe"])
+	NecrosisShowTooltip:SetText(self.Config.Messages["Afficher les bulles d'aide"])
+	NecrosisChatType:SetText(self.Config.Messages["Afficher les messages dans la zone systeme"])
+	NecrosisSpeech:SetText(self.Config.Messages["Activer les messages aleatoires de TP et de Rez"])
+	NecrosisShortMessages:SetText(self.Config.Messages["Utiliser des messages courts"])
+	NecrosisDemonMessages:SetText(self.Config.Messages["Activer egalement les messages pour les Demons"])
+	NecrosisSteedMessages:SetText(self.Config.Messages["Activer egalement les messages pour les Montures"])
+	NecrosisSound:SetText(self.Config.Messages["Activer les sons"])
+	NecrosisFear:SetText(self.Config.Messages["Alerter quand la cible est insensible a la peur"])
+	NecrosisBanish:SetText(self.Config.Messages["Alerter quand la cible peut etre banie ou asservie"])
+	NecrosisTrance:SetText(self.Config.Messages["M'alerter quand j'entre en Transe"])
 
 
 	if not NecrosisConfig.ChatMsg then

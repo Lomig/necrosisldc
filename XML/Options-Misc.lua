@@ -66,9 +66,9 @@ function Necrosis:SetMiscConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.SoulshardSort = this:GetChecked()
 			if NecrosisConfig.SoulshardSort then
-				NecrosisDestroyShard:Enable()
+				NecrosisDestroyShardBag:Enable()
 			else
-				NecrosisDestroyShard:Disable()
+				NecrosisDestroyShardBag:Disable()
 			end
 		end)
 
@@ -144,7 +144,7 @@ function Necrosis:SetMiscConfig()
 		frame:SetFontString(FontString)
 		frame:SetTextColor(1, 1, 1)
 
-		frame = CreateFrame("EditBox", "NecrosisDestroyCount", NecrosisDestroyShard, "InputBoxTemplate")
+		frame = CreateFrame("EditBox", "NecrosisDestroyCount", NecrosisMiscConfig, "InputBoxTemplate")
 		frame:SetNumeric(true)
 		frame:SetFocus(false)
 		frame:EnableMouse(true)
@@ -156,6 +156,8 @@ function Necrosis:SetMiscConfig()
 
 		frame:SetScript("OnTextChanged", function()
 			NecrosisConfig.DestroyCount = this:GetNumber()
+			NecrosisConfig.DestroyShard = false
+			NecrosisDestroyShard:SetChecked(NecrosisConfig.DestroyShard)
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "ChatFontNormal")
@@ -318,18 +320,18 @@ function Necrosis:SetMiscConfig()
 	NecrosisLock:SetChecked(NecrosisConfig.NoDragAll)
 	NecrosisHiddenSize:SetValue(NecrosisConfig.ShadowTranceScale)
 
-	NecrosisMoveShard:SetText(Necrosis.Config.Misc["Deplace les fragments"])
-	NecrosisDestroyShardBag:SetText(Necrosis.Config.Misc["Detruit les fragments si le sac plein"])
-	NecrosisShardBagText:SetText(Necrosis.Config.Misc["Choix du sac contenant les fragments"])
-	NecrosisDestroyShard:SetText(Necrosis.Config.Misc["Nombre maximum de fragments a conserver"])
-	NecrosisLock:SetText(Necrosis.Config.Misc["Verrouiller Necrosis sur l'interface"])
-	NecrosisHiddenButtons:SetText(Necrosis.Config.Misc["Afficher les boutons caches"])
-	NecrosisHiddenSizeText:SetText(Necrosis.Config.Misc["Taille des boutons caches"])
+	NecrosisMoveShard:SetText(self.Config.Misc["Deplace les fragments"])
+	NecrosisDestroyShardBag:SetText(self.Config.Misc["Detruit les fragments si le sac plein"])
+	NecrosisShardBagText:SetText(self.Config.Misc["Choix du sac contenant les fragments"])
+	NecrosisDestroyShard:SetText(self.Config.Misc["Nombre maximum de fragments a conserver"])
+	NecrosisLock:SetText(self.Config.Misc["Verrouiller Necrosis sur l'interface"])
+	NecrosisHiddenButtons:SetText(self.Config.Misc["Afficher les boutons caches"])
+	NecrosisHiddenSizeText:SetText(self.Config.Misc["Taille des boutons caches"])
 
 	if NecrosisConfig.SoulshardSort then
-		NecrosisDestroyShard:Enable()
+		NecrosisDestroyShardBag:Enable()
 	else
-		NecrosisDestroyShard:Disable()
+		NecrosisDestroyShardBag:Disable()
 	end
 
 	frame:Show()

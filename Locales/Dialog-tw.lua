@@ -317,12 +317,14 @@ function Necrosis:Localization_Dialog_Tw()
 	}
 
 	Necrosis.Config.Menus = {
+		["Options Generales"] = "General Options",
+		["Menu des Buffs"] = "Buffs Menu",
+		["Menu des Demons"] = "Demons Menu",
+		["Menu des Maledictions"] = "Curses Menu",
 		["Afficher les menus en permanence"] = "Always show menus",
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
-		["Orientation du menu des Buffs"] = "Buffs menu orientation",
-		["Orientation du menu des Demons"] = "Demons menu orientation",
-		["Orientation du menu des Maledictions"] = "Curses menu orientation",
+		["Orientation du menu"] = "Menu orientation",
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "放逐按鈕大小",
 	}
