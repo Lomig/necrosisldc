@@ -377,6 +377,6 @@ function Necrosis.Language_Click()
 		NecrosisConfig.Language = "esES"
 		Necrosis:Localization_Dialog_Es()
 	end
-	Necrosis:LanguageInitialize()
+	Necrosis:Localization()
 	Necrosis:SetMessagesConfig()
 end

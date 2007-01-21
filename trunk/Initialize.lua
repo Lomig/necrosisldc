@@ -105,48 +105,6 @@ function Necrosis:Initialize(Config)
 	SlashCmdList["NecrosisCommand"] = Necrosis.SlashHandler
 	SLASH_NecrosisCommand1 = "/necro"
 
-	-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
-	NecrosisSoulshardSort_Button:SetChecked(NecrosisConfig.SoulshardSort)
-	NecrosisSoulshardDestroy_Button:SetChecked(NecrosisConfig.SoulshardDestroy)
-	NecrosisShadowTranceAlert_Button:SetChecked(NecrosisConfig.ShadowTranceAlert)
-	NecrosisAntiFearAlert_Button:SetChecked(NecrosisConfig.AntiFearAlert)
-	NecrosisIconsLock_Button:SetChecked(NecrosisConfig.NecrosisLockServ)
-	NecrosisShowFirestone_Button:SetChecked(NecrosisConfig.StonePosition[1] > 0)
-	NecrosisShowSpellstone_Button:SetChecked(NecrosisConfig.StonePosition[2] > 0)
-	NecrosisShowHealthStone_Button:SetChecked(NecrosisConfig.StonePosition[3] > 0)
-	NecrosisShowSoulstone_Button:SetChecked(NecrosisConfig.StonePosition[4] > 0)
-	NecrosisShowBuffMenu_Button:SetChecked(NecrosisConfig.StonePosition[5] > 0)
-	NecrosisShowMount_Button:SetChecked(NecrosisConfig.StonePosition[6] > 0)
-	NecrosisShowPetMenu_Button:SetChecked(NecrosisConfig.StonePosition[7] > 0)
-	NecrosisShowCurseMenu_Button:SetChecked(NecrosisConfig.StonePosition[8] > 0)
-	NecrosisShowTooltips_Button:SetChecked(NecrosisConfig.NecrosisToolTip)
-	NecrosisSound_Button:SetChecked(NecrosisConfig.Sound)
-	NecrosisBuffMenu_Button:SetChecked(NecrosisConfig.BuffMenuPos.x < 0 or NecrosisConfig.BuffMenuPos.y < 0)
-	NecrosisPetMenu_Button:SetChecked(NecrosisConfig.PetMenuPos.x < 0 or NecrosisConfig.PetMenuPos.y < 0)
-	NecrosisCurseMenu_Button:SetChecked(NecrosisConfig.CurseMenuPos.x < 0 or NecrosisConfig.CurseMenuPos.y < 0)
-	NecrosisLock_Button:SetChecked(NecrosisConfig.NoDragAll)
-	NecrosisShowMessage_Button:SetChecked(NecrosisConfig.ChatMsg)
-	NecrosisShowDemonSummon_Button:SetChecked(NecrosisConfig.DemonSummon)
-	NecrosisShowSteedSummon_Button:SetChecked(NecrosisConfig.SteedSummon)
-	NecrosisChatType_Button:SetChecked(NecrosisConfig.ChatType)
-	NecrosisGraphicalTimer_Button:SetChecked(NecrosisConfig.Graphical)
-	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
-
-
-
-
-	ShadowTranceScale_Slider:SetValue(NecrosisConfig.ShadowTranceScale)
-	ShadowTranceScale_SliderLow:SetText("50%")
-	ShadowTranceScale_SliderHigh:SetText("150%")
-
-	NecrosisButtonScale_Slider:SetValue(NecrosisConfig.NecrosisButtonScale)
-	NecrosisButtonScale_SliderLow:SetText("50 %")
-	NecrosisButtonScale_SliderHigh:SetText("150 %")
-
-	NecrosisBanishScale_Slider:SetValue(NecrosisConfig.BanishScale)
-	NecrosisBanishScale_SliderLow:SetText("100 %")
-	NecrosisBanishScale_SliderHigh:SetText("200 %")
-
 	-- On règle la taille de la pierre et des boutons suivant les réglages du SavedVariables
 	NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale/100)
 	NecrosisShadowTranceButton:SetScale(NecrosisConfig.ShadowTranceScale/100)
@@ -220,54 +178,12 @@ function Necrosis:Initialize(Config)
 	end
 
 	-- Initialisation des fichiers de langues -- Mise en place ponctuelle du SMS
-	self:LanguageInitialize()
+	self:Localization()
 	if NecrosisConfig.SM then
 		self.Speech.Rez = self.Speech.ShortMessage[1]
 		self.Speech.TP = self.Speech.ShortMessage[2]
 	end
 end
-
-function Necrosis:LanguageInitialize()
-
-	-- Localisation du speech.lua
-	NecrosisLocalization()
-
-	-- Localisation du XML
-	NecrosisShardsInventory_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu)
-	NecrosisShardsCount_Section:SetText(NECROSIS_CONFIGURATION.ShardMenu2)
-	NecrosisSoulshardSort_Option:SetText(NECROSIS_CONFIGURATION.ShardMove)
-	NecrosisSoulshardDestroy_Option:SetText(NECROSIS_CONFIGURATION.ShardDestroy)
-
-	NecrosisMessageSpell_Section:SetText(NECROSIS_CONFIGURATION.SpellMenu1)
-	NecrosisMessagePlayer_Section:SetText(NECROSIS_CONFIGURATION.SpellMenu2)
-	NecrosisShadowTranceAlert_Option:SetText(NECROSIS_CONFIGURATION.TranseWarning)
-	NecrosisAntiFearAlert_Option:SetText(NECROSIS_CONFIGURATION.AntiFearWarning)
-
-	NecrosisShowTrance_Option:SetText(NECROSIS_CONFIGURATION.TranceButtonView)
-	NecrosisIconsLock_Option:SetText(NECROSIS_CONFIGURATION.ButtonLock)
-
-
-	NecrosisGraphicalTimer_Section:SetText(NECROSIS_CONFIGURATION.TimerMenu)
-	NecrosisGraphicalTimer_Option:SetText(NECROSIS_CONFIGURATION.GraphicalTimer)
-	NecrosisTimerColor_Option:SetText(NECROSIS_CONFIGURATION.TimerColor)
-
-	NecrosisLock_Option:SetText(NECROSIS_CONFIGURATION.MainLock)
-	NecrosisBuffMenu_Option:SetText(NECROSIS_CONFIGURATION.BuffMenu)
-	NecrosisPetMenu_Option:SetText(NECROSIS_CONFIGURATION.PetMenu)
-	NecrosisCurseMenu_Option:SetText(NECROSIS_CONFIGURATION.CurseMenu)
-
-	NecrosisSound_Option:SetText(NECROSIS_CONFIGURATION.Sound)
-	NecrosisShowMessage_Option:SetText(NECROSIS_CONFIGURATION.ShowMessage)
-	NecrosisShowSteedSummon_Option:SetText(NECROSIS_CONFIGURATION.ShowSteedSummon)
-	NecrosisShowDemonSummon_Option:SetText(NECROSIS_CONFIGURATION.ShowDemonSummon)
-	NecrosisChatType_Option:SetText(NECROSIS_CONFIGURATION.ChatType)
-
-	NecrosisCountType_SliderText:SetText(NECROSIS_CONFIGURATION.CountType)
-	NecrosisButtonScale_SliderText:SetText(NECROSIS_CONFIGURATION.NecrosisSize)
-	NecrosisBanishScale_SliderText:SetText(NECROSIS_CONFIGURATION.BanishSize)
-	ShadowTranceScale_SliderText:SetText(NECROSIS_CONFIGURATION.TranseSize)
-end
-
 
 
 ------------------------------------------------------------------------------------------------------

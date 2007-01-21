@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version 08.12.2006-1
 ------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@
 
 function Necrosis:Localization_Dialog_De()
 
-	function NecrosisLocalization()
+	function Necrosis:Localization()
 		self:Localization_Speech_De();
 	end
 
@@ -243,9 +243,6 @@ function Necrosis:Localization_Dialog_De()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Setzt Necrosis komplett auf Grundeinstellungen zur\195\188ck",
-			"/necro <lightOrange>am<white> -- <lightBlue>Erlaubt den Men\195\188s sich automatisch zu \195\182ffnen, wenn man einen Kampf betritt",
-			"/necro <lightOrange>bm<white> -- <lightBlue>H\195\164lt die Men\195\188s dauerhaft offen",
-			"/necro <lightOrange>cm<white> -- <lightBlue>Schlie\195\159t das Men\195\188, sobald man auf einen seiner Buttons klickt",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",
@@ -324,6 +321,8 @@ function Necrosis:Localization_Dialog_De()
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
 		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Orientation du menu des Demons"] = "Demons menu orientation",
+		["Orientation du menu des Maledictions"] = "Curses menu orientation"
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "Gr\195\182\195\159e des Verbannen Button",
 	}
@@ -354,20 +353,6 @@ function Necrosis:Localization_Dialog_De()
 		["Afficher les boutons caches"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["Taille des boutons caches"] = "Gr\195\182\195\159e des versteckten Buttons"
 	}
-
-	NECROSIS_CONFIGURATION = {
-		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFa|CFFFF00FFr :",
-		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFl|CFFFF99FFi|CFFFFC4FFtt|CFFFF99FFe|CFFFF50FFr :",
-		["SpellMenu1"] = "|CFFB700B7Z|CFFFF00FFa|CFFFF50FFu|CFFFFC4FFb|CFFFF99FFe|CFFFF50FFr :",
-		["SpellMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFi|CFFFF99FFe|CFFFFC4FFl|CFFFF99FFe|CFFFF50FFr :",
-		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFs|CFFFF00FFc|CFFB700B7he T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFF00FFr :",
-		["GraphicalTimer"] = "Spruchdauer anzeigen",
-		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
-		["ButtonLock"] = "Sperre die Buttons um die Necrosis Sph\195\164re",
-		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
-		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
-		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-	};
 
 	NECROSIS_BINDING = {
 		["Current"] = "  ist im Moment gebunden an ",
