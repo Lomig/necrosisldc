@@ -44,7 +44,7 @@ function Necrosis:SetMenusConfig()
 	local frame = _G["NecrosisMenusConfig"]
 	if not frame then
 		-- Création de la fenêtre
-		local frame = CreateFrame("Frame", "NecrosisMenusConfig", NecrosisGeneralFrame)
+		frame = CreateFrame("Frame", "NecrosisMenusConfig", NecrosisGeneralFrame)
 		frame:SetFrameStrata("DIALOG")
 		frame:SetMovable(false)
 		frame:EnableMouse(true)
@@ -63,12 +63,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetHeight(452)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("BOTTOMLEFT")
+		frame:SetAllPoints(NecrosisMenusConfig)
 
 		local FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("CENTER", frame, "CENTER", 0, 100)
+		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("1 / 4")
 
 		-- Boutons
@@ -77,7 +77,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenusConfig1, "BOTTOMRIGHT", -25, 100)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig1, "BOTTOMRIGHT", -25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig2:Show()
@@ -89,7 +89,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig4:Show()
@@ -105,12 +105,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetHeight(452)
 		frame:Hide()
 		frame:ClearAllPoints()
-		frame:SetPoint("BOTTOMLEFT")
+		frame:SetAllPoints(NecrosisMenusConfig)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("CENTER", frame, "CENTER", 0, 100)
+		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("2 / 4")
 
 		-- Boutons
@@ -119,7 +119,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", -25, 100)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", -25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig3:Show()
@@ -131,7 +131,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig1:Show()
@@ -147,12 +147,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetHeight(452)
 		frame:Hide()
 		frame:ClearAllPoints()
-		frame:SetPoint("BOTTOMLEFT")
+		frame:SetAllPoints(NecrosisMenusConfig)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("CENTER", frame, "CENTER", 0, 100)
+		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("3 / 4")
 
 		-- Boutons
@@ -161,7 +161,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenusConfig3, "BOTTOMRIGHT", -25, 100)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig3, "BOTTOMRIGHT", -25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig4:Show()
@@ -173,7 +173,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig2:Show()
@@ -189,12 +189,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetHeight(452)
 		frame:Hide()
 		frame:ClearAllPoints()
-		frame:SetPoint("BOTTOMLEFT")
+		frame:SetAllPoints(NecrosisMenusConfig)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("CENTER", frame, "CENTER", 0, 100)
+		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("4 / 4")
 
 		-- Boutons
@@ -203,7 +203,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenusConfig4, "BOTTOMRIGHT", -25, 100)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig4, "BOTTOMRIGHT", -25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig1:Show()
@@ -215,7 +215,7 @@ function Necrosis:SetMenusConfig()
 		frame:EnableMouse(true)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 25, 100)
+		frame:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 25, 125)
 
 		frame:SetScript("OnClick", function()
 			NecrosisMenusConfig3:Show()
@@ -223,13 +223,13 @@ function Necrosis:SetMenusConfig()
 		end)
 
 		-- Afficher les menus en permanence
-		frame = CreateFrame("CheckButton", "NecrosisBlockedMenu", NecrosisMenuConfig1, "UICheckButtonTemplate")
+		frame = CreateFrame("CheckButton", "NecrosisBlockedMenu", NecrosisMenusConfig1, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenuConfig1, "BOTTOMLEFT", 25, 400)
+		frame:SetPoint("LEFT", NecrosisMenusConfig, "BOTTOMLEFT", 25, 400)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.BlockedMenu = this:GetChecked()
@@ -258,13 +258,13 @@ function Necrosis:SetMenusConfig()
 		frame:SetTextColor(1, 1, 1)
 
 		-- Afficher les menus en combat
-		frame = CreateFrame("CheckButton", "NecrosisAutoMenu", NecrosisMenuConfig1, "UICheckButtonTemplate")
+		frame = CreateFrame("CheckButton", "NecrosisAutoMenu", NecrosisMenusConfig1, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenuConfig1, "BOTTOMLEFT", 25, 375)
+		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 375)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.AutomaticMenu = this:GetChecked() end)
 
@@ -277,13 +277,13 @@ function Necrosis:SetMenusConfig()
 		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Cacher les menus sur un click
-		frame = CreateFrame("CheckButton", "NecrosisCloseMenu", NecrosisMenuConfig1, "UICheckButtonTemplate")
+		frame = CreateFrame("CheckButton", "NecrosisCloseMenu", NecrosisMenusConfig1, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenuConfig1, "BOTTOMLEFT", 25, 350)
+		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 350)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.ClosingMenu = this:GetChecked()
@@ -300,27 +300,27 @@ function Necrosis:SetMenusConfig()
 
 		-- BUFF
 		-- Choix de l'orientation du menu
-		frame = CreateFrame("Frame", "NecrosisBuffVector", NecrosisMenuConfig2, "UIDropDownMenuTemplate")
+		frame = CreateFrame("Frame", "NecrosisBuffVector", NecrosisMenusConfig2, "UIDropDownMenuTemplate")
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenuConfig2, "BOTTOMRIGHT", 0, 400)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", 0, 400)
 
 		local FontString = frame:CreateFontString("NecrosisBuffVectorT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 403)
+		FontString:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 403)
 		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 
 		-- Choix du sens du menu
-		frame = CreateFrame("CheckButton", "NecrosisBuffSens", NecrosisMenuConfig2, "UICheckButtonTemplate")
+		frame = CreateFrame("CheckButton", "NecrosisBuffSens", NecrosisMenusConfig2, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenuConfig2, "BOTTOMLEFT", 50, 375)
+		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 50, 375)
 
 		frame:SetScript("OnClick", function()
 			if this:GetChecked() then
@@ -338,15 +338,15 @@ function Necrosis:SetMenusConfig()
 		frame:SetFontString(FontString)
 		frame:SetTextColor(1, 1, 1)
 
-		-- Création du slider de scale de Necrosis
-		frame = CreateFrame("Slider", "NecrosisBanishSize", NecrosisMenuConfig2, "OptionsSliderTemplate")
+		-- Création du slider de scale du Banish
+		frame = CreateFrame("Slider", "NecrosisBanishSize", NecrosisMenusConfig2, "OptionsSliderTemplate")
 		frame:SetMinMaxValues(50, 200)
 		frame:SetValueStep(5)
 		frame:SetWidth(150)
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("CENTER", NecrosisMenuConfig2, "BOTTOMLEFT", 175, 300)
+		frame:SetPoint("CENTER", NecrosisMenusConfig2, "BOTTOMLEFT", 175, 300)
 
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
@@ -377,14 +377,14 @@ function Necrosis:SetMenusConfig()
 		NecrosisBanishSizeHigh:SetText("200 %")
 
 		-- Création du slider d'Offset X
-		frame = CreateFrame("Slider", "NecrosisBuffOx", NecrosisMenuConfig2, "OptionsSliderTemplate")
+		frame = CreateFrame("Slider", "NecrosisBuffOx", NecrosisMenusConfig2, "OptionsSliderTemplate")
 		frame:SetMinMaxValues(-65, 65)
 		frame:SetValueStep(1)
 		frame:SetWidth(140)
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMenuConfig2, "BOTTOMLEFT", 25, 225)
+		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 225)
 
 		local State = 0
 		if NecrosisBlockedMenu then
@@ -411,14 +411,14 @@ function Necrosis:SetMenusConfig()
 		NecrosisBuffOxHigh:SetText("")
 
 		-- Création du slider d'Offset Y
-		frame = CreateFrame("Slider", "NecrosisBuffOy", NecrosisMenuConfig2, "OptionsSliderTemplate")
+		frame = CreateFrame("Slider", "NecrosisBuffOy", NecrosisMenusConfig2, "OptionsSliderTemplate")
 		frame:SetMinMaxValues(-65, 65)
 		frame:SetValueStep(1)
 		frame:SetWidth(140)
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMenuConfig2, "BOTTOMRIGHT", -25, 225)
+		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", -25, 225)
 
 		local State = 0
 		if NecrosisBlockedMenu then
