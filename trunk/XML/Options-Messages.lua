@@ -149,9 +149,12 @@ function Necrosis:SetMessagesConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.SM = this:GetChecked()
 			if NecrosisConfig.SM then
+				Necrosis.Speech.Rez = Necrosis.Speech.ShortMessage[1]
+				Necrosis.Speech.TP = Necrosis.Speech.ShortMessage[2]
 				NecrosisDemonMessages:Disable()
 				NecrosisSteedMessages:Disable()
 			else
+				NecrosisLocalization()
 				NecrosisDemonMessages:Enable()
 				NecrosisSteedMessages:Enable()
 			end

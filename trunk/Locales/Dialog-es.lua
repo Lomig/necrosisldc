@@ -318,6 +318,17 @@ function Necrosis:Localization_Dialog_Es()
 		"Mostrar bot\195\179n del men\195\186 Maldici\195\179n",
 	}
 
+	Necrosis.Config.Menus = {
+		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Taille du bouton Banir"] = "Tama\195\177o del bot\195\179n Desterrar",
+	}
+	Necrosis.Config.Menus.Orientation = {
+		"Horizontal",
+		"Upwards",
+		"Downwards"
+	}
+
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
@@ -352,7 +363,6 @@ function Necrosis:Localization_Dialog_Es()
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
-		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 	};
 
 	NECROSIS_BINDING = {

@@ -317,7 +317,17 @@ function Necrosis:Localization_Dialog_Tw()
 		"顯示戰馬按鈕",
 		"顯示惡魔召喚功能表按鈕",
 		"顯示詛咒功能表按鈕",
+	}
 
+	Necrosis.Config.Menus = {
+		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Taille du bouton Banir"] = "放逐按鈕大小",
+	}
+	Necrosis.Config.Menus.Orientation = {
+		"Horizontal",
+		"Upwards",
+		"Downwards"
 	}
 
 	Necrosis.Config.Timers = {
@@ -355,7 +365,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["BuffMenu"] = "增益功能表在按鈕左邊",
 		["PetMenu"] = "寵物功能表在按鈕左邊",
 		["CurseMenu"] = "詛咒功能表在按鈕左邊",
-		["BanishSize"] = "放逐按鈕大小",
 	}
 
 	NECROSIS_BINDING = {

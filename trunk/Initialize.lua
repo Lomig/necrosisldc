@@ -74,7 +74,7 @@ function Necrosis:Initialize(Config)
 
 
 	-- On charge (ou on crée la configuration pour le joueur et on l'affiche sur la console
-	if not NecrosisConfig.Version or type(NecrosisConfig.Version) == "string" or Necrosis.Data.LastConfig > NecrosisConfig.Version then
+	if not NecrosisConfig.Version or Necrosis.Data.LastConfig > NecrosisConfig.Version then
 		NecrosisConfig = {}
 		NecrosisConfig = Config
 		NecrosisConfig.Version = Necrosis.Data.LastConfig
@@ -280,42 +280,6 @@ function Necrosis.SlashHandler(arg1)
 	elseif arg1:lower():find("reset") and not InCombatLockdown() then
 		NecrosisConfig = {}
 		ReloadUI()
-	elseif arg1:lower():find("tt") then
-		NecrosisConfig.Textual = not NecrosisConfig.Textual
-		Necrosis:CreateTimerAnchor()
-		Necrosis:Msg("Text Timers : <lightBlue>Toggled")
-	elseif arg1:lower():find("am") then
-		NecrosisConfig.AutomaticMenu = not NecrosisConfig.AutomaticMenu
-		Necrosis:Msg("Automatic Menus : <lightBlue>Toggled")
-	elseif arg1:lower():find("bm") then
-		if NecrosisConfig.BlockedMenu then
-			local State = 0
-			if NecrosisConfig.AutomaticMenu then State = 3 end
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
-			Necrosis:Msg("Blocked Menus : <red>Off")
-		else
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
-			Necrosis:Msg("Blocked Menus : <brightGreen>On")
-		end
-		NecrosisConfig.BlockedMenu = not NecrosisConfig.BlockedMenu
-	elseif arg1:lower():find("cm") then
-		NecrosisConfig.ClosingMenu = not NecrosisConfig.ClosingMenu
-		Necrosis:CreateMenu()
-		Necrosis:Msg("Close Menus on click : <lightBlue>Toggled")
-	elseif arg1:lower():find("sm") then
-		NecrosisConfig.SM = not NecrosisConfig.SM
-		if Necrosis.Speech.Rez == Necrosis.Speech.ShortMessage[1] then
-			NecrosisLocalization()
-			Necrosis:Msg("Short Messages : <red>Off")
-		else
-			Necrosis.Speech.Rez = Necrosis.Speech.ShortMessage[1]
-			Necrosis.Speech.TP = Necrosis.Speech.ShortMessage[2]
-			Necrosis:Msg("Short Messages : <brightGreen>On")
-		end
 	elseif arg1:lower():find("glasofruix") then
 		NecrosisConfig.Smooth = not NecrosisConfig.Smooth
 		Necrosis:Msg("SpellTimer smoothing  : <lightBlue>Toggled")
