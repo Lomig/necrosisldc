@@ -38,7 +38,7 @@
 
 function Necrosis:Localization_Dialog_En()
 
-	function NecrosisLocalization()
+	function Necrosis:Localization()
 		self:Localization_Speech_En()
 	end
 
@@ -242,9 +242,6 @@ function Necrosis:Localization_Dialog_En()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Center Necrosis and all buttons in the middle of the screen",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
-			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
-			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
-			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 		},
 		["Information"] = {
 			["FearProtect"] = "Your target has got fear protection!",
@@ -323,6 +320,8 @@ function Necrosis:Localization_Dialog_En()
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
 		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Orientation du menu des Demons"] = "Demons menu orientation",
+		["Orientation du menu des Maledictions"] = "Curses menu orientation"
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "Size of the Banish button",
 	}
@@ -353,20 +352,6 @@ function Necrosis:Localization_Dialog_En()
 		["Afficher les boutons caches"] = "Let me see hidden buttons to drag them",
 		["Taille des boutons caches"] = "Size of hidden buttons"
 	}
-
-	NECROSIS_CONFIGURATION = {
-		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y:",
-		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t:",
-		["SpellMenu1"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFe|CFFFF99FFl|CFFFFC4FFls:",
-		["SpellMenu2"] = "|CFFB700B7P|CFFFF00FFl|CFFFF50FFa|CFFFF99FFy|CFFFFC4FFe|CFFFF99FFr:",
-		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFc|CFFFF00FFa|CFFB700B7l T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFrs:",
-		["TimerColor"] = "Show white instead of yellow timer texts",
-		["GraphicalTimer"] = "Turn on the spell durations indicator",
-		["ButtonLock"] = "Lock the buttons around the Necrosis Sphere.",
-		["BuffMenu"] = "Put buff menu on the left",
-		["PetMenu"] = "Put pet menu on the left",
-		["CurseMenu"] = "Put curse menu on the left",
-	};
 
 	NECROSIS_BINDING = {
 		["Current"] = " is currently bound to ",

@@ -40,7 +40,7 @@
 
 function Necrosis:Localization_Dialog_Cn()
 
-	function NecrosisLocalization()
+	function Necrosis:Localization()
 	self:Localization_Speech_Cn();
 	end
 
@@ -244,9 +244,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>将Necrosis和所有按钮置于屏幕中间",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
-			"/necro <lightOrange>am<white> -- <lightBlue>Allows menus to be opened automatically when entering in combat",
-			"/necro <lightOrange>bm<white> -- <lightBlue>Keep menus opened forever",
-			"/necro <lightOrange>cm<white> -- <lightBlue>Close the menu when you click on one of its buttons",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目标对恐惧免疫!!!!",
@@ -325,6 +322,8 @@ function Necrosis:Localization_Dialog_Cn()
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
 		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Orientation du menu des Demons"] = "Demons menu orientation",
+		["Orientation du menu des Maledictions"] = "Curses menu orientation"
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "放逐按钮大小",
 	}
@@ -356,20 +355,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["Taille des boutons caches"] = "暗影冥思和反恐按钮的大小"
 	}
 
-
-	NECROSIS_CONFIGURATION = {
-		["ShardMenu"] = "|CFFB700B7背包|CFFB700B7 :",--"|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y :",
-		["ShardMenu2"] = "|CFFB700B7碎片|CFFB700B7 :",--"|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t :",
-		["SpellMenu1"] = "|CFFB700B7法术|CFFFFC4FF :",--"|CFFB700B7S|CFFFF00FFp|CFFFF50FFe|CFFFF99FFl|CFFFFC4FFls :",
-		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
-		["TimerMenu"] = "|CFFB700B7图形计时器|CFFFF99FF :",
-		["TimerColor"] = "显示计时器文字为白色(代替黄色)",
-		["GraphicalTimer"] = "打开法术计时器。",
-		["ButtonLock"] = "锁定 Necrosis球体周围的按钮。",
-		["BuffMenu"] = "buff菜单在按钮左边",
-		["PetMenu"] = "宠物菜单在按钮左边",
-		["CurseMenu"] = "诅咒菜单在按钮左边",
-	}
 
 	NECROSIS_BINDING = {
 		["Current"] = "目前设定在",

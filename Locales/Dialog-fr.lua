@@ -37,7 +37,7 @@
 
 function Necrosis:Localization_Dialog_Fr()
 
-	function NecrosisLocalization()
+	function Necrosis:Localization()
 		self:Localization_Speech_Fr();
 	end
 
@@ -241,9 +241,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centre Necrosis et tous les boutons au milieu de l'\195\169cran",
 			"/necro <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
-			"/necro <lightOrange>am<white> -- <lightBlue>Permet aux menus de s'ouvrir automatiquement en d\195\169but de combat, et de se refermer pendant la r\195\169g\195\169n\195\169ration",
-			"/necro <lightOrange>bm<white> -- <lightBlue>Permet aux menus de rester bloqu\195\169s en position ouverte",
-			"/necro <lightOrange>cm<white> -- <lightBlue>ferme les menus lorsqu'on clique sur un de leurs boutons",
 		},
 		["Information"] = {
 			["FearProtect"] = "La cible est prot\195\168g\195\169e contre la peur !!!!",
@@ -322,6 +319,8 @@ function Necrosis:Localization_Dialog_Fr()
 		["Afficher automatiquement les menus en combat"] = "Afficher automatiquement les menus en combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Fermer le menu apres un clic sur un de ses elements",
 		["Orientation du menu des Buffs"] = "Orientation du menu des Buffs",
+		["Orientation du menu des Demons"] = "Orientation du menu des D\195\169mons",
+		["Orientation du menu des Maledictions"] = "Orientation du menu des Mal\195\169dictions",
 		["Changer la symetrie verticale des boutons"] = "Changer la sym\195\169trie verticale des boutons",
 		["Taille du bouton Banir"] = "Taille du bouton Banir",
 	}
@@ -353,19 +352,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Taille des boutons caches"] = "Taille des boutons cach\195\169s"
 	}
 
-	NECROSIS_CONFIGURATION = {
-		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFen|CFFFFC4FFt|CFFFF99FFa|CFFFF50FFi|CFFFF00FFr|CFFB700B7e :",
-		["ShardMenu2"] = "|CFFB700B7C|CFFFF00FFo|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFt|CFFFF99FFe|CFFFF50FFu|CFFFF00FFr :",
-		["SpellMenu1"] = "|CFFB700B7S|CFFFF00FFo|CFFFF50FFr|CFFFF99FFt|CFFFFC4FFs :",
-		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFo|CFFFF50FFu|CFFFF99FFe|CFFFFC4FFu|CFFFF99FFr :",
-		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFr|CFFFF99FFs G|CFFFF50FFr|CFFFF00FFa|CFFB700B7ph|CFFFF00FFi|CFFFF50FFq|CFFFF99FFue|CFFFFC4FFs :",
-		["GraphicalTimer"] = "Affiche la gestion des dur\195\169es de sorts",
-		["TimerColor"] = "Affiche le texte des timers en blanc",
-		["ButtonLock"] = "Verrouiller les boutons sur la sphere Necrosis",
-		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
-		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
-		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
-	};
 	NECROSIS_BINDING = {
 		["Current"] = " est actuellement associ\195\169 \195\160 ",
 		["Confirm"] = "Voulez-vous associer ",

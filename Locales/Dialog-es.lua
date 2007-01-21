@@ -38,7 +38,7 @@
 
 function Necrosis:Localization_Dialog_Es()
 
-	function NecrosisLocalization()
+	function Necrosis:Localization()
 		self:Localization_Speech_Es()
 	end
 
@@ -242,9 +242,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Help"] = {
 			"/necro <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
 			"/necro <lightOrange>reset<white> -- <lightBlue>Reinicia Necrosis entero",
-			"/necro <lightOrange>am<white> -- <lightBlue>Permite que los men\195\186s se abran autom\195\161ticamente cuando entres en combate",
-			"/necro <lightOrange>bm<white> -- <lightBlue>Mantiene los men\195\186s abiertos indefinidamente",
-			"/necro <lightOrange>cm<white> -- <lightBlue>Se cierra el men\195\186 cuando pulsas uno de sus botones ",
 		},
 		["Information"] = {
 			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!",
@@ -323,6 +320,8 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
 		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Orientation du menu des Demons"] = "Demons menu orientation",
+		["Orientation du menu des Maledictions"] = "Curses menu orientation"
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "Tama\195\177o del bot\195\179n Desterrar",
 	}
@@ -353,20 +352,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher les boutons caches"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos",
 		["Taille des boutons caches"] = "Tama\195\177o de los botones de aviso"
 	}
-
-	NECROSIS_CONFIGURATION = {
-		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
-		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s:",
-		["SpellMenu1"] = "|CFFFF00FFH|CFFFF50FFe|CFFFF99FFc|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFz|CFFFF00FFo|CFFB700B7s:",
-		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r:",
-		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs:",
-		["TimerColor"] = "Textos de temporizador blancos en vez de amarillos",
-		["GraphicalTimer"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
-		["ButtonLock"] = "Bloquear los botones alrededor de la Esfera Necrosis.",
-		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
-		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
-		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
-	};
 
 	NECROSIS_BINDING = {
 		["Current"] = " est\195\161 actualmente asignado a ",
