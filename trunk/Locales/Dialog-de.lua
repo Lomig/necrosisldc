@@ -260,7 +260,7 @@ function Necrosis:Localization_Dialog_De()
 		"Nachrichten Einstellungen",
 		"Sph\195\164re Einstellungen",
 		"Buttons Einstellungen",
-		"Graphische Einstellungen",
+		"Men\195\188s Einstellungen",
 		"Timer Einstellungen",
 		"Miscellanious"
 	}
@@ -303,9 +303,20 @@ function Necrosis:Localization_Dialog_De()
 		"Mana",
 		"Health"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"Zeige den Feuerstein Button",
+		"Zeige den Zauberstein Button",
+		"Zeige den Gesundheitsstein Button",
+		"Zeige den Seelenstein Button",
+		"Zeige den Spruch Men\195\188 Button",
+		"Zeige den Mount Button",
+		"Zeige den Fluch Men\195\188 Button",
+		"Zeige den D\195\164monen Men\195\188 Button",
 	}
 
 	Necrosis.Config.Timers = {
@@ -343,16 +354,6 @@ function Necrosis:Localization_Dialog_De()
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
-		["Show"] = {
-			["Firestone"] = "Zeige den Feuerstein Button",
-			["Spellstone"] = "Zeige den Zauberstein Button",
-			["Healthstone"] = "Zeige den Gesundheitsstein Button",
-			["Soulstone"] = "Zeige den Seelenstein Button",
-			["Steed"] = "Zeige den Mount Button",
-			["Buff"] = "Zeige den Spruch Men\195\188 Button",
-			["Demon"] = "Zeige den D\195\164monen Men\195\188 Button",
-			["Curse"] = "Zeige den Fluch Men\195\188 Button",
-		},
 	};
 
 	NECROSIS_BINDING = {

@@ -259,7 +259,7 @@ function Necrosis:Localization_Dialog_Es()
 		"Opci\195\179nes de Mensaje",
 		"Opci\195\179nes de la Esfera",
 		"Opci\195\179nes de Bot\195\179n",
-		"Opci\195\179nes Gr\195\161ficas",
+		"Menus Settings",
 		"Opci\195\179nes de Temporizador",
 		"Miscellanious"
 	}
@@ -302,9 +302,20 @@ function Necrosis:Localization_Dialog_Es()
 		"Man\195\161",
 		"Salud"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"Mostrar bot\195\179n Piedra de Fuego",
+		"Mostrar bot\195\179n Piedra de Hechizo",
+		"Mostrar bot\195\179n Piedra de Salud",
+		"Mostrar bot\195\179n Piedra de Alma",
+		"Mostrar bot\195\179n del men\195\186 Hechizos",
+		"Mostrar bot\195\179n Corcel",
+		"Mostrar bot\195\179n del men\195\186 Demonio",
+		"Mostrar bot\195\179n del men\195\186 Maldici\195\179n",
 	}
 
 	Necrosis.Config.Timers = {
@@ -342,16 +353,6 @@ function Necrosis:Localization_Dialog_Es()
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
-		["Show"] = {
-			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",
-			["Spellstone"] = "Mostrar bot\195\179n Piedra de Hechizo",
-			["Healthstone"] = "Mostrar bot\195\179n Piedra de Salud",
-			["Soulstone"] = "Mostrar bot\195\179n Piedra de Alma",
-			["Steed"] = "Mostrar bot\195\179n Corcel",
-			["Buff"] = "Mostrar bot\195\179n del men\195\186 Hechizos",
-			["Curse"] = "Mostrar bot\195\179n del men\195\186 Maldici\195\179n",
-			["Demon"] = "Mostrar bot\195\179n del men\195\186 Demonio",
-		},
 	};
 
 	NECROSIS_BINDING = {

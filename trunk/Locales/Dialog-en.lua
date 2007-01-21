@@ -259,7 +259,7 @@ function Necrosis:Localization_Dialog_En()
 		"Message Settings",
 		"Sphere Settings",
 		"Button Settings",
-		"Graphical Settings",
+		"Menu Settings",
 		"Timer Settings",
 		"Miscellanious"
 	}
@@ -302,9 +302,20 @@ function Necrosis:Localization_Dialog_En()
 		"Mana",
 		"Health"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"Show Firestone button",
+		"Show Spellstone button",
+		"Show Healthstone button",
+		"Show Soulstone button",
+		"Show Spell menu button",
+		"Show Steed button",
+		"Show Demon menu button",
+		"Show Curse menu button",
 	}
 
 	Necrosis.Config.Timers = {
@@ -342,16 +353,6 @@ function Necrosis:Localization_Dialog_En()
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
 		["BanishSize"] = "Size of the Banish button",
-		["Show"] = {
-			["Firestone"] = "Show Firestone button",
-			["Spellstone"] = "Show Spellstone button",
-			["Healthstone"] = "Show Healthstone button",
-			["Soulstone"] = "Show Soulstone button",
-			["Steed"] = "Show Steed button",
-			["Buff"] = "Show Spell menu button",
-			["Curse"] = "Show Curse menu button",
-			["Demon"] = "Show Demon menu button",
-		},
 	};
 
 	NECROSIS_BINDING = {
