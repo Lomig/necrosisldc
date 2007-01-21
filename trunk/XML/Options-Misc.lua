@@ -155,8 +155,6 @@ function Necrosis:SetMiscConfig()
 		frame:SetPoint("RIGHT", NecrosisMiscConfig, "BOTTOMRIGHT", -20, 275)
 
 		frame:SetScript("OnTextChanged", function()
-			NecrosisConfig.DestroyShard = false
-			NecrosisDestroyShard:SetChecked(false)
 			NecrosisConfig.DestroyCount = this:GetNumber()
 		end)
 
@@ -327,7 +325,7 @@ function Necrosis:SetMiscConfig()
 	NecrosisLock:SetText(Necrosis.Config.Misc["Verrouiller Necrosis sur l'interface"])
 	NecrosisHiddenButtons:SetText(Necrosis.Config.Misc["Afficher les boutons caches"])
 	NecrosisHiddenSizeText:SetText(Necrosis.Config.Misc["Taille des boutons caches"])
-	
+
 	if NecrosisConfig.SoulshardSort then
 		NecrosisDestroyShard:Enable()
 	else
