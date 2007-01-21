@@ -319,6 +319,17 @@ function Necrosis:Localization_Dialog_De()
 		"Zeige den D\195\164monen Men\195\188 Button",
 	}
 
+	Necrosis.Config.Menus = {
+		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Taille du bouton Banir"] = "Gr\195\182\195\159e des Verbannen Button",
+	}
+	Necrosis.Config.Menus.Orientation = {
+		"Horizontal",
+		"Upwards",
+		"Downwards"
+	}
+
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Zeige den Timer Button",
@@ -353,7 +364,6 @@ function Necrosis:Localization_Dialog_De()
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 	};
 
 	NECROSIS_BINDING = {

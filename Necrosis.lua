@@ -200,13 +200,13 @@ Local.DefaultConfig = {
 
 	MainSpell = 41,
 
-	PetMenuPos = {x=1, y=0},
+	PetMenuPos = {x=1, y=0, direction=1},
 	PetMenuDecalage = {x=1, y=26},
 
-	BuffMenuPos = {x=1, y=0},
+	BuffMenuPos = {x=1, y=0, direction=1},
 	BuffMenuDecalage = {x=1, y=26},
 
-	CurseMenuPos = {x=1, y=0},
+	CurseMenuPos = {x=1, y=0, direction=1},
 	CurseMenuDecalage = {x=1, y=-26},
 
 	ChatMsg = true,
@@ -935,11 +935,11 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 
 	-- Si la bulle d'aide est associée à un bouton de menu, on change l'ancrage de la tooltip suivant son sens
 	if sens then
-		if (sens == "Pet" and NecrosisConfig.PetMenuPos.x < 0)
+		if (sens == "Pet" and NecrosisConfig.PetMenuPos.Direction < 0)
 			or
-				(sens == "Buff" and NecrosisConfig.BuffMenuPos.x < 0)
+				(sens == "Buff" and NecrosisConfig.BuffMenuPos.Direction < 0)
 			or
-				(sens == "Curse" and NecrosisConfig.CurseMenuPos.x < 0)
+				(sens == "Curse" and NecrosisConfig.CurseMenuPos.Direction < 0)
 			or
 				(sens == "Timer" and NecrosisConfig.SpellTimerJust == "RIGHT")
 			then
@@ -2785,4 +2785,29 @@ function Necrosis:SearchWand(bool)
 		PickupInventoryItem(18)
 	end
 	del(baggy)
+end
+
+function Necrosis:SetOfxy(menu)
+	if menu == "Buff" and _G["NecrosisBuffMenu0"] then
+		Local.Menu.Buff[1]:ClearAllPoints()
+		Local.Menu.Buff[1]:SetPoint(
+			"CENTER", "NecrosisBuffMenuButton", "CENTER",
+			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
+			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
+		)
+	elseif menu == "Pet" and _G["NecrosisPetMenu0"] then
+		Local.Menu.Pet[1]:ClearAllPoints()
+		Local.Menu.Pet[1]:SetPoint(
+			"CENTER", "NecrosisPetMenuButton", "CENTER",
+			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
+			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
+		)
+	elseif menu == "Curse" and _G["NecrosisCursefMenu0"] then
+		Local.Menu.Curse[1]:ClearAllPoints()
+		Local.Menu.Curse[1]:SetPoint(
+			"CENTER", "NecrosisCurseMenuButton", "CENTER",
+			NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
+		)
+	end
 end

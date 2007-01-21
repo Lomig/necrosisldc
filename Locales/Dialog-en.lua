@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -318,6 +318,17 @@ function Necrosis:Localization_Dialog_En()
 		"Show Curse menu button",
 	}
 
+	Necrosis.Config.Menus = {
+		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Taille du bouton Banir"] = "Size of the Banish button",
+	}
+	Necrosis.Config.Menus.Orientation = {
+		"Horizontal",
+		"Upwards",
+		"Downwards"
+	}
+
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
@@ -352,7 +363,6 @@ function Necrosis:Localization_Dialog_En()
 		["BuffMenu"] = "Put buff menu on the left",
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
-		["BanishSize"] = "Size of the Banish button",
 	};
 
 	NECROSIS_BINDING = {

@@ -279,21 +279,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["M'alerter quand j'entre en Transe"] = "当我获得暗影冥思效果时提醒我。"
 	}
 
-	Necrosis.Config.Buttons = {
-		["Rotation des boutons"] = "Buttons rotation",
-		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
-	}
-	Necrosis.Config.Buttons.Name = {
-		"显示火焰石按钮",
-		"显示法术石按钮",
-		"显示治疗石按钮",
-		"显示灵魂石按钮",
-		"显示buff菜单按钮",
-		"显示战马按钮",
-		"显示恶魔召唤菜单按钮",
-		"显示诅咒菜单按钮"
-	}
-
 	Necrosis.Config.Sphere = {
 		["Taille de la sphere"] = "Necrosis按钮的大小",
 		["Skin de la pierre Necrosis"] = "Necrosis球体的皮肤",
@@ -318,6 +303,32 @@ function Necrosis:Localization_Dialog_Cn()
 		"灵魂石冷却计时",
 		"Mana",
 		"Health"
+	}
+
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"显示火焰石按钮",
+		"显示法术石按钮",
+		"显示治疗石按钮",
+		"显示灵魂石按钮",
+		"显示buff菜单按钮",
+		"显示战马按钮",
+		"显示恶魔召唤菜单按钮",
+		"显示诅咒菜单按钮"
+	}
+
+	Necrosis.Config.Menus = {
+		["Orientation du menu des Buffs"] = "Buffs menu orientation",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Taille du bouton Banir"] = "放逐按钮大小",
+	}
+	Necrosis.Config.Menus.Orientation = {
+		"Horizontal",
+		"Upwards",
+		"Downwards"
 	}
 
 	Necrosis.Config.Timers = {
@@ -355,7 +366,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["BuffMenu"] = "buff菜单在按钮左边",
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
-		["BanishSize"] = "放逐按钮大小",
 	}
 
 	NECROSIS_BINDING = {
