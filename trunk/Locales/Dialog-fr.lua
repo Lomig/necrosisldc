@@ -318,6 +318,9 @@ function Necrosis:Localization_Dialog_Fr()
 	}
 
 	Necrosis.Config.Menus = {
+		["Afficher les menus en permanence"] = "Afficher les menus en permanence",
+		["Afficher automatiquement les menus en combat"] = "Afficher automatiquement les menus en combat",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Fermer le menu apres un clic sur un de ses elements",
 		["Orientation du menu des Buffs"] = "Orientation du menu des Buffs",
 		["Changer la symetrie verticale des boutons"] = "Changer la sym\195\169trie verticale des boutons",
 		["Taille du bouton Banir"] = "Taille du bouton Banir",
