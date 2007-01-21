@@ -314,26 +314,30 @@ function Necrosis:Localization_Dialog_Es()
 		"Modo texto"
 	}
 
+	Necrosis.Config.Misc = {
+		["Deplace les fragments"] = "Poner los Fragmentos en la bolsa seleccionada.",
+		["Detruit les fragments si le sac plein"] = "Destruir nuevos fragmentos si la bolsa est\195\161 llena",
+		["Choix du sac contenant les fragments"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",
+		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Verrouiller Necrosis sur l'interface"] = "Bloquear Necrosis",
+		["Afficher les boutons caches"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos",
+		["Taille des boutons caches"] = "Tama\195\177o de los botones de aviso"
+	}
+
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFnt|CFFFF99FFa|CFFFF50FFr|CFFFF00FFi|CFFB700B7o:",
 		["ShardMenu2"] = "|CFFB700B7F|CFFFF00FFr|CFFFF50FFa|CFFFF99FFg|CFFFFC4FFme|CFFFF99FFn|CFFFF50FFt|CFFFF00FFo|CFFB700B7s:",
-		["ShardMove"] = "Poner los Fragmentos en la bolsa seleccionada.",
-		["ShardDestroy"] = "Destruir nuevos fragmentos si la bolsa est\195\161 llena",
 		["SpellMenu1"] = "|CFFFF00FFH|CFFFF50FFe|CFFFF99FFc|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFz|CFFFF00FFo|CFFB700B7s:",
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFu|CFFFF50FFg|CFFFF99FFa|CFFFFC4FFd|CFFFF99FFo|CFFB700B7r:",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFe|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFo|CFFFF99FFr|CFFFF50FFi|CFFFF00FFz|CFFB700B7ad|CFFFF00FFo|CFFFF50FFr|CFFFF99FFe|CFFFFC4FFs:",
 		["TimerColor"] = "Textos de temporizador blancos en vez de amarillos",
 		["GraphicalTimer"] = "Activar los indicadores de la duraci\195\179n de los hechizos",
-		["TranceButtonView"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos.",
 		["ButtonLock"] = "Bloquear los botones alrededor de la Esfera Necrosis.",
-		["MainLock"] = "Bloquear los botones y la Esfera Necrosis.",
-		["BagSelect"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
 		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
-		["TranseSize"] = "Tama\195\177o de los botones de aviso",
 		["Show"] = {
 			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",
 			["Spellstone"] = "Mostrar bot\195\179n Piedra de Hechizo",

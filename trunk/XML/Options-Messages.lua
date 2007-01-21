@@ -329,6 +329,8 @@ function Necrosis:SetMessagesConfig()
 		NecrosisSteedMessages:Enable()
 	end
 
+	frame:Show()
+
 end
 
 

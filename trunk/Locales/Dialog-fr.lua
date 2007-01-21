@@ -313,27 +313,30 @@ function Necrosis:Localization_Dialog_Fr()
 		"Textuels"
 	}
 
+	Necrosis.Config.Misc = {
+		["Deplace les fragments"] = "D\195\169place les fragments dans le sac specifi\195\169",
+		["Detruit les fragments si le sac plein"] = "D\195\169truit les fragments si le sac plein",
+		["Choix du sac contenant les fragments"] = "Choix du sac contenant les fragments",
+		["Nombre maximum de fragments a conserver"] = "Nombre maximum de fragments \195\160 conserver",
+		["Verrouiller Necrosis sur l'interface"] = "Verrouiller Necrosis sur l'interface",
+		["Afficher les boutons caches"] = "Afficher les boutons cach\195\169s pour les d\195\169placer",
+		["Taille des boutons caches"] = "Taille des boutons cach\195\169s"
+	}
+
 	NECROSIS_CONFIGURATION = {
-		["MainRotation"] = "Rotation de Necrosis",
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFen|CFFFFC4FFt|CFFFF99FFa|CFFFF50FFi|CFFFF00FFr|CFFB700B7e :",
 		["ShardMenu2"] = "|CFFB700B7C|CFFFF00FFo|CFFFF50FFm|CFFFF99FFp|CFFFFC4FFt|CFFFF99FFe|CFFFF50FFu|CFFFF00FFr :",
-		["ShardMove"] = "D\195\169place les fragments dans le sac specifi\195\169",
-		["ShardDestroy"] = "D\195\169truit les fragments si sac plein",
 		["SpellMenu1"] = "|CFFB700B7S|CFFFF00FFo|CFFFF50FFr|CFFFF99FFt|CFFFFC4FFs :",
 		["SpellMenu2"] = "|CFFB700B7J|CFFFF00FFo|CFFFF50FFu|CFFFF99FFe|CFFFFC4FFu|CFFFF99FFr :",
 		["TimerMenu"] = "|CFFB700B7T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFr|CFFFF99FFs G|CFFFF50FFr|CFFFF00FFa|CFFB700B7ph|CFFFF00FFi|CFFFF50FFq|CFFFF99FFue|CFFFFC4FFs :",
 		["GraphicalTimer"] = "Affiche la gestion des dur\195\169es de sorts",
 		["TimerColor"] = "Affiche le texte des timers en blanc",
-		["TranceButtonView"] = "Affichage des boutons cach\195\169s pour les d\195\169placer",
 		["ButtonLock"] = "Verrouiller les boutons sur la sphere Necrosis",
-		["MainLock"] = "Verrouiller les boutons des Pierres et Necrosis",
-		["BagSelect"] = "Choix du sac contenant les fragments",
 		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
 		["NecrosisSize"] = "Taille de la pierre Necrosis",
 		["BanishSize"] = "Taille du bouton Banish",
-		["TranseSize"] = "Taille des boutons cach\195\169s",
 		["Show"] = {
 			["Firestone"] = "Afficher le bouton des Pierres de feu",
 			["Spellstone"] = "Afficher le bouton des Pierres de sort",

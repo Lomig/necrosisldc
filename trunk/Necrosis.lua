@@ -1800,7 +1800,7 @@ function Necrosis:BagExplore(arg)
 				NecrosisTooltip:SetBagItem(container, slot)
 				local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
 				-- Dans le cas d'un emplacement non vide
-				if not itemName then
+				if itemName then
 					-- Si c'est une pierre d'âme, on note son existence et son emplacement
 					if itemName:find(self.Translation.Item.Soulstone) then
 						Local.Stone.Soul.OnHand = container
@@ -1948,12 +1948,34 @@ function Necrosis:BagExplore(arg)
 			end
 		end
 		if Local.Soulshard.Count > AncienCompte and Local.Soulshard.Count == CompteMax then
-			if (SoulshardDestroy) then
+			if (NecrosisConfig.SoulshardDestroy) then
 				self:Msg(NECROSIS_MESSAGE.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..NECROSIS_MESSAGE.Bag.FullDestroySuffix)
 			else
 				self:Msg(NECROSIS_MESSAGE.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..NECROSIS_MESSAGE.Bag.FullSuffix)
 			end
 		end
+	end
+
+	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
+	if NecrosisConfig.DestroyShard
+		and NecrosisConfig.DestroyCount
+		and NecrosisConfig.DestroyCount > 0
+		and NecrosisConfig.DestroyCount < Local.Soulshard.Count
+		then
+			for container = 0, 4, 1 do
+				if Local.BagIsSoulPouch[container + 1] then break end
+				for slot=1, GetContainerNumSlots(container), 1 do
+					self:MoneyToggle()
+					NecrosisTooltip:SetBagItem(container, slot)
+					local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
+					if itemName and itemName:find(self.Translation.Item.Soulshard) then
+						PickupContainerItem(container, slot)
+						if (CursorHasItem()) then DeleteCursorItem() end
+						break
+					end
+				end
+				if NecrosisConfig.DestroyCount >= Local.Soulshard.Count then break end
+			end
 	end
 end
 

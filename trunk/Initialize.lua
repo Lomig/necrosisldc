@@ -133,9 +133,7 @@ function Necrosis:Initialize(Config)
 	NecrosisTimerColor_Button:SetChecked(NecrosisConfig.Yellow)
 
 
-	NecrosisBag_Slider:SetValue(4 - NecrosisConfig.SoulshardContainer)
-	NecrosisBag_SliderLow:SetText("5")
-	NecrosisBag_SliderHigh:SetText("1")
+
 
 	ShadowTranceScale_Slider:SetValue(NecrosisConfig.ShadowTranceScale)
 	ShadowTranceScale_SliderLow:SetText("50%")
@@ -275,7 +273,6 @@ function Necrosis:LanguageInitialize()
 	NecrosisChatType_Option:SetText(NECROSIS_CONFIGURATION.ChatType)
 
 	NecrosisCountType_SliderText:SetText(NECROSIS_CONFIGURATION.CountType)
-	NecrosisBag_SliderText:SetText(NECROSIS_CONFIGURATION.BagSelect)
 	NecrosisButtonScale_SliderText:SetText(NECROSIS_CONFIGURATION.NecrosisSize)
 	NecrosisBanishScale_SliderText:SetText(NECROSIS_CONFIGURATION.BanishSize)
 	ShadowTranceScale_SliderText:SetText(NECROSIS_CONFIGURATION.TranseSize)
