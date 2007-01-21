@@ -171,7 +171,7 @@ function Necrosis:SetMiscConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 200)
+		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 225)
 
 		frame:SetScript("OnClick", function()
 			if (this:GetChecked()) then
@@ -203,7 +203,7 @@ function Necrosis:SetMiscConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 175)
+		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 200)
 
 		frame:SetScript("OnClick", function()
 			if (this:GetChecked()) then
@@ -242,7 +242,7 @@ function Necrosis:SetMiscConfig()
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 145)
+		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 165)
 
 		local STx, STy, BLx, BLy, AFx, AFy, CAx, CAy
 		frame:SetScript("OnEnter", function()
@@ -327,6 +327,12 @@ function Necrosis:SetMiscConfig()
 	NecrosisLock:SetText(Necrosis.Config.Misc["Verrouiller Necrosis sur l'interface"])
 	NecrosisHiddenButtons:SetText(Necrosis.Config.Misc["Afficher les boutons caches"])
 	NecrosisHiddenSizeText:SetText(Necrosis.Config.Misc["Taille des boutons caches"])
+	
+	if NecrosisConfig.SoulshardSort then
+		NecrosisDestroyShard:Enable()
+	else
+		NecrosisDestroyShard:Disable()
+	end
 
 	frame:Show()
 end
