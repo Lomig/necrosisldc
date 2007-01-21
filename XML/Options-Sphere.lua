@@ -55,26 +55,38 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("BOTTOMLEFT")
 
-		-- Création du slider de rotation de Necrosis
-		frame = CreateFrame("Slider", "NecrosisRotation", NecrosisSphereConfig, "OptionsSliderTemplate")
-		frame:SetMinMaxValues(0, 360)
-		frame:SetValueStep(9)
+		-- Création du slider de scale de Necrosis
+		frame = CreateFrame("Slider", "NecrosisSphereSize", NecrosisSphereConfig, "OptionsSliderTemplate")
+		frame:SetMinMaxValues(50, 200)
+		frame:SetValueStep(5)
 		frame:SetWidth(150)
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
 		frame:SetPoint("CENTER", NecrosisSphereConfig, "BOTTOMLEFT", 175, 400)
 
+		local NBx, NBy
 		frame:SetScript("OnEnter", function()
+			NBx, NBy = NecrosisButton:GetCenter()
+			NBx = NBx * (NecrosisConfig.NecrosisButtonScale / 100)
+			NBy = NBy * (NecrosisConfig.NecrosisButtonScale / 100)
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetText(this:GetValue().." %")
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetScript("OnValueChanged", function()
-			NecrosisConfig.NecrosisAngle = this:GetValue()
-			GameTooltip:SetText(this:GetValue())
-			Necrosis:ButtonSetup()
+			if not (this:GetValue() == NecrosisConfig.NecrosisButtonScale) then
+				NecrosisButton:ClearAllPoints()
+				GameTooltip:SetText(this:GetValue().." %")
+				NecrosisConfig.NecrosisButtonScale = this:GetValue()
+				NecrosisButton:SetPoint("CENTER", "UIParent", "BOTTOMLEFT", NBx / (NecrosisConfig.NecrosisButtonScale / 100), NBy / (NecrosisConfig.NecrosisButtonScale / 100))
+				NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale / 100)
+				Necrosis:ButtonSetup()
+			end
 		end)
+		
+		NecrosisSphereSizeLow:SetText("50 %")
+		NecrosisSphereSizeHigh:SetText("200 %")
 
 		-- Skin de la sphère
 		frame = CreateFrame("Frame", "NecrosisSkinSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -160,17 +172,14 @@ function Necrosis:SetSphereConfig()
 	UIDropDownMenu_Initialize(NecrosisSpellSelection, Necrosis.Spell_Init)
 	UIDropDownMenu_Initialize(NecrosisCountSelection, Necrosis.Count_Init)
 
-	NecrosisRotationText:SetText(self.Config.Sphere["Rotation de Necrosis"])
-	NecrosisRotationLow:SetText("0")
-	NecrosisRotationHigh:SetText("360")
-
+	NecrosisSphereSizeText:SetText(self.Config.Sphere["Taille de la sphere"])
 	NecrosisSkinSelectionT:SetText(self.Config.Sphere["Skin de la pierre Necrosis"])
 	NecrosisEventSelectionT:SetText(self.Config.Sphere["Evenement montre par la sphere"])
 	NecrosisSpellSelectionT:SetText(self.Config.Sphere["Sort caste par la sphere"])
 	NecrosisShowCount:SetText(self.Config.Sphere["Afficher le compteur numerique"])
 	NecrosisCountSelectionT:SetText(self.Config.Sphere["Type de compteur numerique"])
 
-	NecrosisRotation:SetValue(NecrosisConfig.NecrosisAngle)
+	NecrosisSphereSize:SetValue(NecrosisConfig.NecrosisButtonScale)
 	NecrosisShowCount:SetChecked(NecrosisConfig.ShowCount)
 
 	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}

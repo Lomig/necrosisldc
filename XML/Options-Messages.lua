@@ -266,7 +266,7 @@ function Necrosis:SetMessagesConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 145)
+		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 140)
 
 		frame:SetScript("OnClick", function() NecrosisConfig.ShadowTranceAlert = this:GetChecked() end)
 

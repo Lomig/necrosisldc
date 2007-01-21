@@ -176,7 +176,7 @@ function Necrosis:OpenConfigPanel()
 		texture:ClearAllPoints()
 		texture:SetPoint("TOPLEFT", -3, 11)
 
-		frame:SetNormalTexture("Interface\\Icons\\INV_Misc_Gem_Amethyst_02")
+		frame:SetNormalTexture("Interface\\Icons\\Ability_Creature_Cursed_03")
 		frame:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 		frame:GetHighlightTexture():SetBlendMode("ADD")
 		frame:SetCheckedTexture("Interface\\Buttons\\CheckButtonHilight")
@@ -184,11 +184,11 @@ function Necrosis:OpenConfigPanel()
 
 		-- Autres onglets
 		local tex = {
-			"Ability_Creature_Cursed_03",
+			"INV_Misc_Gem_Amethyst_02",
 			"Trade_Engineering",
+			"INV_Wand_1H_Stratholme_D_02",
 			"Spell_Nature_TimeStop",
-			"Ability_Creature_Cursed_04",
-			"Ability_Creature_Cursed_04"
+			"Ability_Creature_Disease_05"
 		}
 		for i in ipairs(tex) do
 			frame = CreateFrame("CheckButton", "NecrosisGeneralTab"..(i + 1), NecrosisGeneralFrame)
@@ -252,11 +252,13 @@ function Necrosis:SetPanel(PanelID)
 	if PanelID == 1 then
 		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisTimersConfig)
+		HideUIPanel(NecrosisMiscConfig)
 		self:SetMessagesConfig()
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 2 then
 		HideUIPanel(NecrosisMessagesConfig)
 		HideUIPanel(NecrosisTimersConfig)
+		HideUIPanel(NecrosisMiscConfig)
 		self:SetSphereConfig()
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 3 then
@@ -266,7 +268,14 @@ function Necrosis:SetPanel(PanelID)
 	elseif PanelID == 5 then
 		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisMessagesConfig)
+		HideUIPanel(NecrosisMiscConfig)
 		self:SetTimersConfig()
+		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
+	elseif PanelID == 6 then
+		HideUIPanel(NecrosisSphereConfig)
+		HideUIPanel(NecrosisMessagesConfig)
+		HideUIPanel(NecrosisTimersConfig)
+		self:SetMiscConfig()
 		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	end
 end

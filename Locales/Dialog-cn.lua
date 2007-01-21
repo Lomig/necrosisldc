@@ -257,11 +257,12 @@ function Necrosis:Localization_Dialog_Cn()
 
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
-		"碎片设置",
 		"信息设置",
+		"Sphere Settings",
 		"按钮设置",
+		"图像设置",
 		"计时器设置",
-		"图像设置"
+		"Miscellanious"
 	}
 
 	Necrosis.Config.Messages = {
@@ -277,9 +278,13 @@ function Necrosis:Localization_Dialog_Cn()
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
 		["M'alerter quand j'entre en Transe"] = "当我获得暗影冥思效果时提醒我。"
 	}
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
+	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Necrosis角度选择",
+		["Taille de la sphere"] = "Necrosis按钮的大小",
 		["Skin de la pierre Necrosis"] = "Necrosis球体的皮肤",
 		["Evenement montre par la sphere"] = "图形显示",
 		["Sort caste par la sphere"] = "Spell casted by the Sphere",
@@ -339,7 +344,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["BuffMenu"] = "buff菜单在按钮左边",
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
-		["NecrosisSize"] = "Necrosis按钮的大小",
 		["BanishSize"] = "放逐按钮大小",
 		["Show"] = {
 			["Firestone"] = "显示火焰石按钮",
