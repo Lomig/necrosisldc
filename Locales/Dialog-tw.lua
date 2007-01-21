@@ -315,26 +315,31 @@ function Necrosis:Localization_Dialog_Tw()
 		"Textual"
 	}
 
+	Necrosis.Config.Misc = {
+		["Deplace les fragments"] = "將碎片放入選擇的包包",
+		["Detruit les fragments si le sac plein"] = "如果包包滿了，摧毀所有新的碎片。",
+		["Choix du sac contenant les fragments"] = "選擇靈魂碎片包包",
+		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Verrouiller Necrosis sur l'interface"] = "鎖定Necrosis主體及周圍的按鈕。",
+		["Afficher les boutons caches"] = "顯示隱藏的按鈕以便能拖曳它。",
+		["Taille des boutons caches"] = "暗影冥思和反恐按鈕的大小"
+	}
+
+
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7背包|CFFB700B7 :",--"|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y :",
 		["ShardMenu2"] = "|CFFB700B7碎片|CFFB700B7 :",--"|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t :",
-		["ShardMove"] = "將碎片放入選擇的包包",
-		["ShardDestroy"] = "如果包包滿了，摧毀所有新的碎片。",
 		["SpellMenu1"] = "|CFFB700B7法術|CFFFFC4FF :",--"|CFFB700B7S|CFFFF00FFp|CFFFF50FFe|CFFFF99FFl|CFFFFC4FFls :",
 		["SpellMenu2"] = "|CFFB700B7玩家|CFFFF99FF :",
 		["TimerMenu"] = "|CFFB700B7圖形計時器|CFFFF99FF :",
 		["TimerColor"] = "計時器以白色來取代黃色文字",
 		["GraphicalTimer"] = "打開法術計時器。",
-		["TranceButtonView"] = "顯示隱藏的按鈕以便能拖曳它。",
 		["ButtonLock"] = "鎖定Necrosis主體周圍的按鈕。",
-		["MainLock"] = "鎖定Necrosis主體及周圍的按鈕。",
-		["BagSelect"] = "選擇靈魂碎片包包",
 		["BuffMenu"] = "增益功能表在按鈕左邊",
 		["PetMenu"] = "寵物功能表在按鈕左邊",
 		["CurseMenu"] = "詛咒功能表在按鈕左邊",
 		["NecrosisSize"] = "Necrosis按鈕的大小",
 		["BanishSize"] = "放逐按鈕大小",
-		["TranseSize"] = "暗影冥思和反恐按鈕的大小",
 		["Show"] = {
 			["Firestone"] = "顯示火焰石按鈕",
 			["Spellstone"] = "顯示法術石按鈕",

@@ -169,6 +169,8 @@ function Necrosis:SetTimersConfig()
 		NecrosisTimerUpward:Enable()
 	end
 
+	frame:Show()
+
 end
 
 

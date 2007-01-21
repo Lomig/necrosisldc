@@ -314,26 +314,30 @@ function Necrosis:Localization_Dialog_En()
 		"Textual"
 	}
 
+	Necrosis.Config.Misc = {
+		["Deplace les fragments"] = "Put shards in the selected bag.",
+		["Detruit les fragments si le sac plein"] = "Destroy all new shards if the bag is full.",
+		["Choix du sac contenant les fragments"] = "Selection of Soul Shard Container",
+		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Verrouiller Necrosis sur l'interface"] = "Lock Necrosis",
+		["Afficher les boutons caches"] = "Let me see hidden buttons to drag them",
+		["Taille des boutons caches"] = "Size of hidden buttons"
+	}
+
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFo|CFFFF00FFr|CFFB700B7y:",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFh|CFFFF50FFa|CFFFF99FFr|CFFFFC4FFd C|CFFFF99FFo|CFFFF50FFu|CFFFF00FFn|CFFB700B7t:",
-		["ShardMove"] = "Put shards in the selected bag.",
-		["ShardDestroy"] = "Destroy all new shards if the bag is full.",
 		["SpellMenu1"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFe|CFFFF99FFl|CFFFFC4FFls:",
 		["SpellMenu2"] = "|CFFB700B7P|CFFFF00FFl|CFFFF50FFa|CFFFF99FFy|CFFFFC4FFe|CFFFF99FFr:",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFc|CFFFF00FFa|CFFB700B7l T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFFC4FFrs:",
 		["TimerColor"] = "Show white instead of yellow timer texts",
 		["GraphicalTimer"] = "Turn on the spell durations indicator",
-		["TranceButtonView"] = "Let me see hidden buttons to drag them.",
 		["ButtonLock"] = "Lock the buttons around the Necrosis Sphere.",
-		["MainLock"] = "Lock buttons and the Necrosis Sphere.",
-		["BagSelect"] = "Selection of Soul Shard Container",
 		["BuffMenu"] = "Put buff menu on the left",
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
 		["NecrosisSize"] = "Size of the Necrosis button",
 		["BanishSize"] = "Size of the Banish button",
-		["TranseSize"] = "Size of hidden buttons",
 		["Show"] = {
 			["Firestone"] = "Show Firestone button",
 			["Spellstone"] = "Show Spellstone button",

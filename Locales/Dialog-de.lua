@@ -315,26 +315,30 @@ function Necrosis:Localization_Dialog_De()
 		"Texttimern"
 	}
 
+	Necrosis.Config.Misc = {
+		["Deplace les fragments"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
+		["Detruit les fragments si le sac plein"] = "Zerst\195\182re neue Seelensplitter, wenn die Tasche voll ist.",
+		["Choix du sac contenant les fragments"] = "W\195\164hle die Seelensplitter-Tasche",
+		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Verrouiller Necrosis sur l'interface"] = "Sperre Necrosis",
+		["Afficher les boutons caches"] = "Zeige versteckte Buttons um sie zu verschieben",
+		["Taille des boutons caches"] = "Gr\195\182\195\159e des versteckten Buttons"
+	}
+
 	NECROSIS_CONFIGURATION = {
 		["ShardMenu"] = "|CFFB700B7I|CFFFF00FFn|CFFFF50FFv|CFFFF99FFe|CFFFFC4FFn|CFFFF99FFt|CFFFF50FFa|CFFFF00FFr :",
 		["ShardMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFl|CFFFF99FFi|CFFFFC4FFtt|CFFFF99FFe|CFFFF50FFr :",
-		["ShardMove"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
-		["ShardDestroy"] = "Zerst\195\182re neue Seelensplitter, wenn die Tasche voll ist.",
 		["SpellMenu1"] = "|CFFB700B7Z|CFFFF00FFa|CFFFF50FFu|CFFFFC4FFb|CFFFF99FFe|CFFFF50FFr :",
 		["SpellMenu2"] = "|CFFB700B7S|CFFFF00FFp|CFFFF50FFi|CFFFF99FFe|CFFFFC4FFl|CFFFF99FFe|CFFFF50FFr :",
 		["TimerMenu"] = "|CFFB700B7G|CFFFF00FFr|CFFFF50FFa|CFFFF99FFp|CFFFFC4FFh|CFFFF99FFi|CFFFF50FFs|CFFFF00FFc|CFFB700B7he T|CFFFF00FFi|CFFFF50FFm|CFFFF99FFe|CFFFF00FFr :",
-		["TranceButtonView"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["GraphicalTimer"] = "Spruchdauer anzeigen",
 		["TimerColor"] = "Zeige wei\195\159en Text in Timern anstelle von gelbem Text",
 		["ButtonLock"] = "Sperre die Buttons um die Necrosis Sph\195\164re",
-		["MainLock"] = "Sperre die Buttons und die Necrosis Sph\195\164re",
-		["BagSelect"] = "W\195\164hle die Seelensplitter-Tasche",
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
 		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
-		["TranseSize"] = "Gr\195\182\195\159e des versteckten Buttons",
 		["Show"] = {
 			["Firestone"] = "Zeige den Feuerstein Button",
 			["Spellstone"] = "Zeige den Zauberstein Button",
