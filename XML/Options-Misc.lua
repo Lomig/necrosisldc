@@ -242,7 +242,7 @@ function Necrosis:SetMiscConfig()
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 125)
+		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 145)
 
 		local STx, STy, BLx, BLy, AFx, AFy, CAx, CAy
 		frame:SetScript("OnEnter", function()
