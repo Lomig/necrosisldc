@@ -260,7 +260,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"信息设置",
 		"Sphere Settings",
 		"按钮设置",
-		"图像设置",
+		"Menus Settings",
 		"计时器设置",
 		"Miscellanious"
 	}
@@ -278,9 +278,20 @@ function Necrosis:Localization_Dialog_Cn()
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
 		["M'alerter quand j'entre en Transe"] = "当我获得暗影冥思效果时提醒我。"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"显示火焰石按钮",
+		"显示法术石按钮",
+		"显示治疗石按钮",
+		"显示灵魂石按钮",
+		"显示buff菜单按钮",
+		"显示战马按钮",
+		"显示恶魔召唤菜单按钮",
+		"显示诅咒菜单按钮"
 	}
 
 	Necrosis.Config.Sphere = {
@@ -345,16 +356,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["PetMenu"] = "宠物菜单在按钮左边",
 		["CurseMenu"] = "诅咒菜单在按钮左边",
 		["BanishSize"] = "放逐按钮大小",
-		["Show"] = {
-			["Firestone"] = "显示火焰石按钮",
-			["Spellstone"] = "显示法术石按钮",
-			["Healthstone"] = "显示治疗石按钮",
-			["Soulstone"] = "显示灵魂石按钮",
-			["Steed"] = "显示战马按钮",
-			["Buff"] = "显示buff菜单按钮",
-			["Curse"] = "显示诅咒菜单按钮",
-			["Demon"] = "显示恶魔召唤菜单按钮",
-		},
 	}
 
 	NECROSIS_BINDING = {

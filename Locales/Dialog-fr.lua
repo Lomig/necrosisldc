@@ -258,7 +258,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Configuration des messages",
 		"Configuration de la sph\195\168re",
 		"Configuration des boutons",
-		"Configuration graphique",
+		"Configuration des menus",
 		"Configuration des timers",
 		"Divers"
 	}
@@ -301,11 +301,22 @@ function Necrosis:Localization_Dialog_Fr()
 		"Mana",
 		"Sant\195\169"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Rotation des boutons",
+		["Fixer les boutons autour de la sphere"] = "Fixer les boutons autour de la sph\195\168re"
 	}
-	
+	Necrosis.Config.Buttons.Name = {
+		"Afficher le bouton des Pierres de feu",
+		"Afficher le bouton des Pierres de sort",
+		"Afficher le bouton des Pierres de soin",
+		"Afficher le bouton des Pierres d'\195\162me",
+		"Affiche le bouton des Buffs",
+		"Afficher le bouton de la Monture",
+		"Affiche le bouton d'invocation des D\195\169mons",
+		"Affiche le bouton des Mal\195\169dictions",
+	}
+
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Type de timers",
 		["Afficher le bouton des timers"] = "Afficher le bouton des timers",
@@ -341,17 +352,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
 		["BanishSize"] = "Taille du bouton Banish",
-		["Show"] = {
-			["Firestone"] = "Afficher le bouton des Pierres de feu",
-			["Spellstone"] = "Afficher le bouton des Pierres de sort",
-			["Healthstone"] = "Afficher le bouton des Pierres de soin",
-			["Soulstone"] = "Afficher le bouton des Pierres d'\195\162me",
-			["Steed"] = "Afficher le bouton de la Monture",
-			["Buff"] = "Affiche le bouton des Buffs",
-			["Curse"] = "Affiche le bouton des Mal\195\169dictions",
-			["Demon"] = "Affiche le bouton d'invocation des D\195\169mons",
-		},
-
 	};
 	NECROSIS_BINDING = {
 		["Current"] = " est actuellement associ\195\169 \195\160 ",

@@ -260,7 +260,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"資訊設定",
 		"Sphere Settings",
 		"按鈕設定",
-		"圖像設定",
+		"Menus Settings",
 		"計時器設定",
 		"Miscellanious"
 	}
@@ -303,9 +303,21 @@ function Necrosis:Localization_Dialog_Tw()
 		"Mana",
 		"Health"
 	}
-	
+
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+	}
+	Necrosis.Config.Buttons.Name = {
+		"顯示火焰石按鈕",
+		"顯示法術石按鈕",
+		"顯示治療石按鈕",
+		"顯示靈魂石按鈕",
+		"顯示法術功能表按鈕",
+		"顯示戰馬按鈕",
+		"顯示惡魔召喚功能表按鈕",
+		"顯示詛咒功能表按鈕",
+
 	}
 
 	Necrosis.Config.Timers = {
@@ -344,16 +356,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["PetMenu"] = "寵物功能表在按鈕左邊",
 		["CurseMenu"] = "詛咒功能表在按鈕左邊",
 		["BanishSize"] = "放逐按鈕大小",
-		["Show"] = {
-			["Firestone"] = "顯示火焰石按鈕",
-			["Spellstone"] = "顯示法術石按鈕",
-			["Healthstone"] = "顯示治療石按鈕",
-			["Soulstone"] = "顯示靈魂石按鈕",
-			["Steed"] = "顯示戰馬按鈕",
-			["Buff"] = "顯示法術功能表按鈕",
-			["Curse"] = "顯示詛咒功能表按鈕",
-			["Demon"] = "顯示惡魔召喚功能表按鈕",
-		},
 	}
 
 	NECROSIS_BINDING = {
