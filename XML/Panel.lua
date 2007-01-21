@@ -240,7 +240,7 @@ end
 -- Fonction permettant l'affichage des différentes pages du panneau de configuration
 function Necrosis:SetPanel(PanelID)
 	local TabName
-	for index=1, 5, 1 do
+	for index=1, 6, 1 do
 		TabName = _G["NecrosisGeneralTab"..index]
 		if index == PanelID then
 			TabName:SetChecked(1)
@@ -251,20 +251,18 @@ function Necrosis:SetPanel(PanelID)
 	NecrosisGeneralPageText:SetText(Necrosis.Config.Panel[PanelID])
 	if PanelID == 1 then
 		HideUIPanel(NecrosisSphereConfig)
-		HideUIPanel(NecrosisTimersConfig)
-		HideUIPanel(NecrosisMenusConfig)
-		HideUIPanel(NecrosisMiscConfig)
 		HideUIPanel(NecrosisButtonsConfig)
+		HideUIPanel(NecrosisMenusConfig)
+		HideUIPanel(NecrosisTimersConfig)
+		HideUIPanel(NecrosisMiscConfig)
 		self:SetMessagesConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 2 then
 		HideUIPanel(NecrosisMessagesConfig)
+		HideUIPanel(NecrosisButtonsConfig)
 		HideUIPanel(NecrosisMenusConfig)
 		HideUIPanel(NecrosisTimersConfig)
 		HideUIPanel(NecrosisMiscConfig)
-		HideUIPanel(NecrosisButtonsConfig)
 		self:SetSphereConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 3 then
 		HideUIPanel(NecrosisMessagesConfig)
 		HideUIPanel(NecrosisSphereConfig)
@@ -272,31 +270,26 @@ function Necrosis:SetPanel(PanelID)
 		HideUIPanel(NecrosisTimersConfig)
 		HideUIPanel(NecrosisMiscConfig)
 		self:SetButtonsConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 4 then
-		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisMessagesConfig)
-		HideUIPanel(NecrosisTimersConfig)
+		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisButtonsConfig)
+		HideUIPanel(NecrosisTimersConfig)
 		HideUIPanel(NecrosisMiscConfig)
 		self:SetMenusConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 5 then
-		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisMessagesConfig)
+		HideUIPanel(NecrosisSphereConfig)
+		HideUIPanel(NecrosisButtonsConfig)
 		HideUIPanel(NecrosisMenusConfig)
 		HideUIPanel(NecrosisMiscConfig)
-		HideUIPanel(NecrosisButtonsConfig)
 		self:SetTimersConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	elseif PanelID == 6 then
-		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisMessagesConfig)
+		HideUIPanel(NecrosisSphereConfig)
+		HideUIPanel(NecrosisButtonsConfig)
 		HideUIPanel(NecrosisMenusConfig)
 		HideUIPanel(NecrosisTimersConfig)
-		HideUIPanel(NecrosisButtonsConfig)
 		self:SetMiscConfig()
-		NecrosisGeneralIcon:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon")
 	end
 end

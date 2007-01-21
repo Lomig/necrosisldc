@@ -84,7 +84,7 @@ function Necrosis:SetSphereConfig()
 				Necrosis:ButtonSetup()
 			end
 		end)
-		
+
 		NecrosisSphereSizeLow:SetText("50 %")
 		NecrosisSphereSizeHigh:SetText("200 %")
 
@@ -198,7 +198,7 @@ function Necrosis:SetSphereConfig()
 		UIDropDownMenu_SetText(Necrosis.Config.Sphere.Count[NecrosisConfig.Circle + 1], NecrosisEventSelection)
 	end
 
-	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {19, 31, 37, 41, 43, 44, 47, 49, 55}
 	for i in ipairs(spell) do
 		if spell[i] == NecrosisConfig.MainSpell then
 			UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, i)
@@ -262,7 +262,7 @@ end
 
 -- Fonctions du Dropdown des sorts de la sphère
 function Necrosis.Spell_Init()
-	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {19, 31, 37, 41, 43, 44, 47, 49, 55}
 	local element = {}
 	for i in ipairs(spell) do
 		element.text = Necrosis.Spell[spell[i]].Name
@@ -274,7 +274,7 @@ end
 
 function Necrosis.Spell_Click()
 	local ID = this:GetID()
-	local spell = {19, 31, 36, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {19, 31, 37, 41, 43, 44, 47, 49, 55}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, ID)
 	NecrosisConfig.MainSpell = spell[ID]
 	Necrosis.MainButtonAttribute()
