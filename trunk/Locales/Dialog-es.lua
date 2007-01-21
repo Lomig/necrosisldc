@@ -256,11 +256,12 @@ function Necrosis:Localization_Dialog_Es()
 
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
-		"Opci\195\179nes de Fragmento",
 		"Opci\195\179nes de Mensaje",
+		"Opci\195\179nes de la Esfera",
 		"Opci\195\179nes de Bot\195\179n",
+		"Opci\195\179nes Gr\195\161ficas",
 		"Opci\195\179nes de Temporizador",
-		"Opci\195\179nes Gr\195\161ficas"
+		"Miscellanious"
 	}
 
 	Necrosis.Config.Messages = {
@@ -278,9 +279,9 @@ function Necrosis:Localization_Dialog_Es()
 	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Selecci\195\179n de \195\161ngulo de Necrosis",
+		["Taille de la sphere"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["Skin de la pierre Necrosis"] = "Color de la Esfera Necrosis",
-		["Evenement montre par la sphere"] = "Evento mostrado en la esfera gr\195\161fica",
+		["Evenement montre par la sphere"] = "Evento mostrado en la Esfera",
 		["Sort caste par la sphere"] = "Spell casted by the Sphere",
 		["Afficher le compteur numerique"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
 		["Type de compteur numerique"] = "Tipo de Piedra contabilizada"
@@ -300,6 +301,10 @@ function Necrosis:Localization_Dialog_Es()
 		"Temporizador de Resurrecci\195\179n",
 		"Man\195\161",
 		"Salud"
+	}
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
 	}
 
 	Necrosis.Config.Timers = {
@@ -336,7 +341,6 @@ function Necrosis:Localization_Dialog_Es()
 		["BuffMenu"] = "Poner el men\195\186 de hechizos a la izquierda",
 		["PetMenu"] = "Poner el men\195\186 de mascotas a la izquierda",
 		["CurseMenu"] = "Poner el men\195\186 de maldici\195\179nes a la izquierda",
-		["NecrosisSize"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["BanishSize"] = "Tama\195\177o del bot\195\179n Desterrar",
 		["Show"] = {
 			["Firestone"] = "Mostrar bot\195\179n Piedra de Fuego",

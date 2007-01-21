@@ -256,11 +256,12 @@ function Necrosis:Localization_Dialog_En()
 
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
-		"Shard Settings",
 		"Message Settings",
+		"Sphere Settings",
 		"Button Settings",
+		"Graphical Settings",
 		"Timer Settings",
-		"Graphical Settings"
+		"Miscellanious"
 	}
 
 	Necrosis.Config.Messages = {
@@ -278,9 +279,9 @@ function Necrosis:Localization_Dialog_En()
 	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Necrosis Angle Selection",
-		["Skin de la pierre Necrosis"] = "Skin of the Necrosis Sphere",
-		["Evenement montre par la sphere"] = "Event shown by the graphical sphere",
+		["Taille de la sphere"] = "Size of the Necrosis button",
+		["Skin de la pierre Necrosis"] = "Skin of the Sphere",
+		["Evenement montre par la sphere"] = "Event shown by the Sphere",
 		["Sort caste par la sphere"] = "Spell casted by the Sphere",
 		["Afficher le compteur numerique"] = "Show the digital counter",
 		["Type de compteur numerique"] = "Stone type counted"
@@ -300,6 +301,10 @@ function Necrosis:Localization_Dialog_En()
 		"Resurrection Timer",
 		"Mana",
 		"Health"
+	}
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
 	}
 
 	Necrosis.Config.Timers = {
@@ -336,7 +341,6 @@ function Necrosis:Localization_Dialog_En()
 		["BuffMenu"] = "Put buff menu on the left",
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
-		["NecrosisSize"] = "Size of the Necrosis button",
 		["BanishSize"] = "Size of the Banish button",
 		["Show"] = {
 			["Firestone"] = "Show Firestone button",

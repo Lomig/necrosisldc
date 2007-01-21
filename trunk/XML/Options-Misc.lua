@@ -39,7 +39,7 @@ local _G = getfenv(0)
 -- CREATION DE LA FRAME DES OPTIONS
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis:SetTimersConfig()
+function Necrosis:SetMiscConfig()
 
 	local frame = _G["NecrosisMiscConfig"]
 	if not frame then
@@ -106,7 +106,7 @@ function Necrosis:SetTimersConfig()
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 350)
+		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 325)
 
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
@@ -123,14 +123,14 @@ function Necrosis:SetTimersConfig()
 		NecrosisShardBagLow:SetText("5")
 		NecrosisShardBagHigh:SetText("1")
 
-		-- Destruction des fragments quand le sac est plein
+		-- Destruction des fragments après X
 		frame = CreateFrame("CheckButton", "NecrosisDestroyShard", NecrosisMiscConfig, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 50, 375)
+		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 275)
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.DestroyShard = this:GetChecked()
@@ -148,11 +148,11 @@ function Necrosis:SetTimersConfig()
 		frame:SetNumeric(true)
 		frame:SetFocus(false)
 		frame:EnableMouse(true)
-		frame:SetWidth(40)
+		frame:SetWidth(25)
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMiscConfig, "BOTTOMRIGHT", 0, 375)
+		frame:SetPoint("RIGHT", NecrosisMiscConfig, "BOTTOMRIGHT", -20, 275)
 
 		frame:SetScript("OnTextChanged", function()
 			NecrosisConfig.DestroyShard = false
@@ -162,7 +162,7 @@ function Necrosis:SetTimersConfig()
 
 		FontString = frame:CreateFontString(nil, nil, "ChatFontNormal")
 		FontString:SetFont("Fonts\\ARIALN.TTF", 12)
-		FontString:SetColor(1, 1, 1)
+		FontString:SetTextColor(1, 1, 1)
 
 		-- Verrouillage de Necrosis
 		frame = CreateFrame("CheckButton", "NecrosisLock", NecrosisMiscConfig, "UICheckButtonTemplate")
@@ -171,7 +171,7 @@ function Necrosis:SetTimersConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 50, 325)
+		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 200)
 
 		frame:SetScript("OnClick", function()
 			if (this:GetChecked()) then
@@ -203,7 +203,7 @@ function Necrosis:SetTimersConfig()
 		frame:SetHeight(24)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 50, 300)
+		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 25, 175)
 
 		frame:SetScript("OnClick", function()
 			if (this:GetChecked()) then
@@ -242,7 +242,7 @@ function Necrosis:SetTimersConfig()
 		frame:SetHeight(15)
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 275)
+		frame:SetPoint("CENTER", NecrosisMiscConfig, "BOTTOMLEFT", 175, 125)
 
 		local STx, STy, BLx, BLy, AFx, AFy, CAx, CAy
 		frame:SetScript("OnEnter", function()
@@ -270,7 +270,7 @@ function Necrosis:SetTimersConfig()
 			GameTooltip:SetText(this:GetValue().."%")
 		end)
 		frame:SetScript("OnLeave", function()
-			if not NecrosisHiddenSize:GetChecked() then
+			if not NecrosisHiddenButtons:GetChecked() then
 				HideUIPanel(NecrosisShadowTranceButton)
 				HideUIPanel(NecrosisBacklashButton)
 				HideUIPanel(NecrosisAntiFearButton)
@@ -301,8 +301,8 @@ function Necrosis:SetTimersConfig()
 			end
 		end)
 
-		NecrosisShardBagLow:SetText("50 %")
-		NecrosisShardBagHigh:SetText("200 %")
+		NecrosisHiddenSizeLow:SetText("50 %")
+		NecrosisHiddenSizeHigh:SetText("200 %")
 
 	end
 

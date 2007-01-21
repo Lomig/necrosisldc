@@ -63,10 +63,8 @@ function Necrosis:SetTimersConfig()
 		local FontString = frame:CreateFontString("NecrosisTimerSelectionT", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
-		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		FontString:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 403)
+		FontString:SetTextColor(1, 1, 1)
 
 		UIDropDownMenu_SetWidth(125, frame)
 

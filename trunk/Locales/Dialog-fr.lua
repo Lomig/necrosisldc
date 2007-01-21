@@ -255,11 +255,12 @@ function Necrosis:Localization_Dialog_Fr()
 
 	-- Menus de configuration
 	Necrosis.Config.Panel = {
-		"Configuration des fragments",
 		"Configuration des messages",
+		"Configuration de la sph\195\168re",
 		"Configuration des boutons",
+		"Configuration graphique",
 		"Configuration des timers",
-		"Configuration graphique"
+		"Divers"
 	}
 
 	Necrosis.Config.Messages = {
@@ -277,7 +278,7 @@ function Necrosis:Localization_Dialog_Fr()
 	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Rotation de Necrosis",
+		["Taille de la sphere"] = "Taille de la sph\195\168re",
 		["Skin de la pierre Necrosis"] = "Skin de la sph\195\168re",
 		["Evenement montre par la sphere"] = "Ev\195\168nement montr\195\169 par la sph\195\168re",
 		["Sort caste par la sphere"] = "Sort cast\195\169 par la sph\195\168re",
@@ -300,7 +301,11 @@ function Necrosis:Localization_Dialog_Fr()
 		"Mana",
 		"Sant\195\169"
 	}
-
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Rotation des boutons",
+	}
+	
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Type de timers",
 		["Afficher le bouton des timers"] = "Afficher le bouton des timers",
@@ -335,7 +340,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
-		["NecrosisSize"] = "Taille de la pierre Necrosis",
 		["BanishSize"] = "Taille du bouton Banish",
 		["Show"] = {
 			["Firestone"] = "Afficher le bouton des Pierres de feu",

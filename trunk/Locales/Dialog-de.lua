@@ -257,11 +257,12 @@ function Necrosis:Localization_Dialog_De()
 
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
-		"Splitter Einstellungen",
 		"Nachrichten Einstellungen",
+		"Sph\195\164re Einstellungen",
 		"Buttons Einstellungen",
+		"Graphische Einstellungen",
 		"Timer Einstellungen",
-		"Graphische Einstellungen"
+		"Miscellanious"
 	}
 
 	Necrosis.Config.Messages = {
@@ -279,10 +280,10 @@ function Necrosis:Localization_Dialog_De()
 	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Necrosis Rotiationseinstellung",
+		["Taille de la sphere"] = "Gr\195\182\195\159e der Sph\195\164re",
 		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
 		["Evenement montre par la sphere"] = "Anzeige in der grafischen Sph\195\164re",
-		["Sort caste par la sphere"] = "Zauber der durch Klick auf die Sph195\164re gewirkt wird",
+		["Sort caste par la sphere"] = "Zauber der durch Klick auf die\nSph\195\164re gewirkt wird",
 		["Afficher le compteur numerique"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
 		["Type de compteur numerique"] = "Stein Typ gez\195\164hlt"
 	}
@@ -302,6 +303,10 @@ function Necrosis:Localization_Dialog_De()
 		"Mana",
 		"Health"
 	}
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
+	}
 
 	Necrosis.Config.Timers = {
 		["Type de timers"] = "Timer type",
@@ -317,7 +322,7 @@ function Necrosis:Localization_Dialog_De()
 
 	Necrosis.Config.Misc = {
 		["Deplace les fragments"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
-		["Detruit les fragments si le sac plein"] = "Zerst\195\182re neue Seelensplitter, wenn die Tasche voll ist.",
+		["Detruit les fragments si le sac plein"] = "Zerst\195\182re neue Seelensplitter,\nwenn die Tasche voll ist.",
 		["Choix du sac contenant les fragments"] = "W\195\164hle die Seelensplitter-Tasche",
 		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
 		["Verrouiller Necrosis sur l'interface"] = "Sperre Necrosis",
@@ -337,7 +342,6 @@ function Necrosis:Localization_Dialog_De()
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
-		["NecrosisSize"] = "Gr\195\182\195\159e des Necrosis Button",
 		["BanishSize"] = "Gr\195\182\195\159e des Verbannen Button",
 		["Show"] = {
 			["Firestone"] = "Zeige den Feuerstein Button",

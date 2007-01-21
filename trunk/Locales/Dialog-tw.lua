@@ -257,11 +257,12 @@ function Necrosis:Localization_Dialog_Tw()
 
 	-- Gestion XML - Menu de configuration
 	Necrosis.Config.Panel = {
-		"碎片設定",
 		"資訊設定",
+		"Sphere Settings",
 		"按鈕設定",
+		"圖像設定",
 		"計時器設定",
-		"圖像設定"
+		"Miscellanious"
 	}
 
 	Necrosis.Config.Messages = {
@@ -279,7 +280,7 @@ function Necrosis:Localization_Dialog_Tw()
 	}
 
 	Necrosis.Config.Sphere = {
-		["Rotation de Necrosis"] = "Necrosis角度選擇",
+		["Taille de la sphere"] = "Necrosis按鈕的大小",
 		["Skin de la pierre Necrosis"] = "Necrosis球體的外觀",
 		["Evenement montre par la sphere"] = "球體事件顯示",
 		["Sort caste par la sphere"] = "Spell casted by the Sphere",
@@ -301,6 +302,10 @@ function Necrosis:Localization_Dialog_Tw()
 		"靈魂石冷卻計時",
 		"Mana",
 		"Health"
+	}
+	
+	Necrosis.Config.Buttons = {
+		["Rotation des boutons"] = "Buttons rotation",
 	}
 
 	Necrosis.Config.Timers = {
@@ -338,7 +343,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["BuffMenu"] = "增益功能表在按鈕左邊",
 		["PetMenu"] = "寵物功能表在按鈕左邊",
 		["CurseMenu"] = "詛咒功能表在按鈕左邊",
-		["NecrosisSize"] = "Necrosis按鈕的大小",
 		["BanishSize"] = "放逐按鈕大小",
 		["Show"] = {
 			["Firestone"] = "顯示火焰石按鈕",
