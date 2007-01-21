@@ -154,10 +154,11 @@ function Necrosis:SetMenusConfig()
 
 		frame:SetScript("OnClick", function()
 			if this:GetChecked() then
-				NecrosisConfig.BuffMenuPos.Direction = -1
+				NecrosisConfig.BuffMenuPos.direction = -1
 			else
-				NecrosisConfig.BuffMenuPos.Direction = 1
+				NecrosisConfig.BuffMenuPos.direction = 1
 			end
+			Necrosis:CreateMenu()
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
@@ -270,16 +271,16 @@ function Necrosis:SetMenusConfig()
 		end)
 
 		NecrosisBuffOyText:SetText("Offset Y")
-		NecrosisBuffOxLow:SetText("")
-		NecrosisBuffOxHigh:SetText("")
+		NecrosisBuffOyLow:SetText("")
+		NecrosisBuffOyHigh:SetText("")
 
 	end
 
 	UIDropDownMenu_Initialize(NecrosisBuffVector, Necrosis.BuffVector_Init)
 
-	NecrosisBlockedMenu:SetText(["Afficher les menus en permanence"])
-	NecrosisAutoMenu:SetText(["Afficher automatiquement les menus en combat"])
-	NecrosisCloseMenu:SetText(["Fermer le menu apres un clic sur un de ses elements"])
+	NecrosisBlockedMenu:SetText(Necrosis.Config.Menus["Afficher les menus en permanence"])
+	NecrosisAutoMenu:SetText(Necrosis.Config.Menus["Afficher automatiquement les menus en combat"])
+	NecrosisCloseMenu:SetText(Necrosis.Config.Menus["Fermer le menu apres un clic sur un de ses elements"])
 	NecrosisBuffVectorT:SetText(Necrosis.Config.Menus["Orientation du menu des Buffs"])
 	NecrosisBuffSens:SetText(Necrosis.Config.Menus["Changer la symetrie verticale des boutons"])
 	NecrosisBanishSizeText:SetText(Necrosis.Config.Menus["Taille du bouton Banir"])
@@ -299,7 +300,7 @@ function Necrosis:SetMenusConfig()
 		UIDropDownMenu_SetText(Necrosis.Config.Menus.Orientation[3], NecrosisBuffVector)
 	end
 
-	NecrosisBuffSens:SetChecked(NecrosisConfig.BuffMenuPos.Direction > 0)
+	NecrosisBuffSens:SetChecked(NecrosisConfig.BuffMenuPos.direction < 0)
 	NecrosisBanishSize:SetValue(NecrosisConfig.BanishScale)
 	NecrosisBuffOx:SetValue(NecrosisConfig.BuffMenuDecalage.x)
 	NecrosisBuffOy:SetValue(NecrosisConfig.BuffMenuDecalage.y)
@@ -338,7 +339,7 @@ function Necrosis.BuffVector_Click()
 
 	UIDropDownMenu_SetSelectedID(NecrosisBuffVector, ID)
 	if ID == 1 then
-		NecrosisConfig.BuffMenuPos.x = NecrosisConfig.BuffMenuPos.Direction
+		NecrosisConfig.BuffMenuPos.x = NecrosisConfig.BuffMenuPos.direction
 		NecrosisConfig.BuffMenuPos.y = 0
 	elseif ID == 2 then
 		NecrosisConfig.BuffMenuPos.x = 0

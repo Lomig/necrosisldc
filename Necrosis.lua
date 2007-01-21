@@ -935,11 +935,11 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 
 	-- Si la bulle d'aide est associée à un bouton de menu, on change l'ancrage de la tooltip suivant son sens
 	if sens then
-		if (sens == "Pet" and NecrosisConfig.PetMenuPos.Direction < 0)
+		if (sens == "Pet" and NecrosisConfig.PetMenuPos.direction < 0)
 			or
-				(sens == "Buff" and NecrosisConfig.BuffMenuPos.Direction < 0)
+				(sens == "Buff" and NecrosisConfig.BuffMenuPos.direction < 0)
 			or
-				(sens == "Curse" and NecrosisConfig.CurseMenuPos.Direction < 0)
+				(sens == "Curse" and NecrosisConfig.CurseMenuPos.direction < 0)
 			or
 				(sens == "Timer" and NecrosisConfig.SpellTimerJust == "RIGHT")
 			then
@@ -2535,7 +2535,7 @@ function Necrosis:CreateMenu()
 				menuVariable:ClearAllPoints()
 				menuVariable:SetPoint(
 					"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
-					NecrosisConfig.BuffMenuPos.x * 32,
+					NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
 					NecrosisConfig.BuffMenuPos.y * 32
 				)
 				BuffButtonPosition = 1
@@ -2553,7 +2553,7 @@ function Necrosis:CreateMenu()
 						menuVariable:ClearAllPoints()
 						menuVariable:SetPoint(
 							"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
-							NecrosisConfig.BuffMenuPos.x * 32,
+							NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
 							NecrosisConfig.BuffMenuPos.y * 32
 						)
 						BuffButtonPosition = spell
@@ -2570,7 +2570,7 @@ function Necrosis:CreateMenu()
 		Local.Menu.Buff[1]:ClearAllPoints()
 		Local.Menu.Buff[1]:SetPoint(
 			"CENTER", "NecrosisBuffMenuButton", "CENTER",
-			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
+			NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
 			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
 		)
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
@@ -2792,7 +2792,7 @@ function Necrosis:SetOfxy(menu)
 		Local.Menu.Buff[1]:ClearAllPoints()
 		Local.Menu.Buff[1]:SetPoint(
 			"CENTER", "NecrosisBuffMenuButton", "CENTER",
-			NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
+			NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
 			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
 		)
 	elseif menu == "Pet" and _G["NecrosisPetMenu0"] then
