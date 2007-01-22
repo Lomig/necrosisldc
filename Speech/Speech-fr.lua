@@ -191,7 +191,7 @@ function Necrosis:Localization_Speech_Fr()
 			},
 			[3] = {
 				"<emote>ricane comme un damn\195\169 !",
-				"<after><yell>TREMBLEZ, MORTELS, J'ARRIVE A LA VITESSE DU CAUCHEMARD !!!!",
+				"<after><yell>TREMBLEZ, MORTELS, J'ARRIVE A LA VITESSE DU CAUCHEMAR !!!!",
 			},
 			[4] = {
 				"Et hop, un cheval tout feu tout flamme !",
