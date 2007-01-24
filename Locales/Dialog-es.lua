@@ -26,7 +26,7 @@
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements sp\195\169ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ function Necrosis:Localization_Dialog_Es()
 			},
 			["Soulshard"] = "Fragmento(s) de Alma: ",
 			["InfernalStone"] = "Piedra(s) Infernal(es): ",
-			["DemoniacStone"] = "Figura(s) Demoníaca(s): ",
+			["DemoniacStone"] = "Figura(s) Demon\195\173aca(s): ",
 			["Soulstone"] = "\nPiedra de Alma: ",
 			["Healthstone"] = "Piedra de Salud: ",
 			["Spellstone"] = "Piedra de Hechizo: ",
@@ -89,7 +89,7 @@ function Necrosis:Localization_Dialog_Es()
 			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para equipar","Equipado - Shift+Click para desequipar"}
 		},
 		["SpellTimer"] = {
-			Label = "|c00FFFFFFDuración de Hechizos|r",
+			Label = "|c00FFFFFFDuraci\195\179n de Hechizos|r",
 			Text = "Hechizos activos en el objetivo",
 			Right = "Click derecho para usar Piedra de Hogar a "
 		},
@@ -100,7 +100,7 @@ function Necrosis:Localization_Dialog_Es()
 			Label = "|c00FFFFFFBacklash|r"
 		},
 		["Domination"] = {
-			Label = "|c00FFFFFFDominio de lo Maldito|r"
+			Label = "|c00FFFFFFDominio vil|r"
 		},
 		["Enslave"] = {
 			Label = "|c00FFFFFFEsclavizar|r"
@@ -191,17 +191,17 @@ function Necrosis:Localization_Dialog_Es()
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Hechizos|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Modo automático: Se cierra cuando sales de combate",
+			Text2 = "Modo autom\195\161tico: Se cierra cuando sales de combate",
 		},
 		["PetMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Demonio|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Modo automático: Se cierra cuando sales de combate",
+			Text2 = "Modo autom\195\161tico: Se cierra cuando sales de combate",
 		},
 		["CurseMenu"] = {
 			Label = "|c00FFFFFFMen\195\186 de Maldici\195\179n|r",
 			Text = "Click Derecho para mantener el men\195\186 abierto",
-			Text2 = "Modo automático: Se cierra cuando sales de combate",
+			Text2 = "Modo autom\195\161tico: Se cierra cuando sales de combate",
 		},
 		["Radar"] = {
 			Label = "|c00FFFFFFCaptar Demonios|r"
@@ -256,9 +256,9 @@ function Necrosis:Localization_Dialog_Es()
 		"Opci\195\179nes de Mensaje",
 		"Opci\195\179nes de la Esfera",
 		"Opci\195\179nes de Bot\195\179n",
-		"Menus Settings",
+		"Opci\195\179nes de Men\195\186s",
 		"Opci\195\179nes de Temporizador",
-		"Miscellanious"
+		"Miscel\195\161neos"
 	}
 
 	Necrosis.Config.Messages = {
@@ -266,12 +266,12 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher les bulles d'aide"] = "Mostrar consejos detallados",
 		["Afficher les messages dans la zone systeme"] = "Mensajes de Necrosis como mensajes de sistema",
 		["Activer les messages aleatoires de TP et de Rez"] = "Activar discursos aleatorios",
-		["Utiliser des messages courts"] = "Use short messages",
+		["Utiliser des messages courts"] = "Usar mensajes cortos",
 		["Activer egalement les messages pour les Demons"] = "Activar discursos aleatorios (demonio)",
 		["Activer egalement les messages pour les Montures"] = "Activar discursos aleatorios (corcel)",
 		["Activer les sons"] = "Activar sonidos",
 		["Alerter quand la cible est insensible a la peur"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
-		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Av\195\173same cuando mi objetivo pueda ser desterrado o esclavizado",
 		["M'alerter quand j'entre en Transe"] = "Al\195\169rtame cuando entre en un Trance",
 	}
 
@@ -279,7 +279,7 @@ function Necrosis:Localization_Dialog_Es()
 		["Taille de la sphere"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["Skin de la pierre Necrosis"] = "Color de la Esfera Necrosis",
 		["Evenement montre par la sphere"] = "Evento mostrado en la Esfera",
-		["Sort caste par la sphere"] = "Spell casted by the Sphere",
+		["Sort caste par la sphere"] = "Hechizo lanzado desde la Esfera",
 		["Afficher le compteur numerique"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
 		["Type de compteur numerique"] = "Tipo de Piedra contabilizada"
 	}
@@ -301,8 +301,8 @@ function Necrosis:Localization_Dialog_Es()
 	}
 
 	Necrosis.Config.Buttons = {
-		["Rotation des boutons"] = "Buttons rotation",
-		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+		["Rotation des boutons"] = "Rotaci\195\179n de los botones",
+		["Fixer les boutons autour de la sphere"] = "Fijar los botones alrededor de la Esfera"
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Mostrar bot\195\179n Piedra de Fuego",
@@ -316,26 +316,26 @@ function Necrosis:Localization_Dialog_Es()
 	}
 
 	Necrosis.Config.Menus = {
-		["Options Generales"] = "General Options",
-		["Menu des Buffs"] = "Buffs Menu",
-		["Menu des Demons"] = "Demons Menu",
-		["Menu des Maledictions"] = "Curses Menu",
-		["Afficher les menus en permanence"] = "Always show menus",
-		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
-		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
-		["Orientation du menu"] = "Menu orientation",
-		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Options Generales"] = "Opciones Generales",
+		["Menu des Buffs"] = "Men\195\186 de Hechizos",
+		["Menu des Demons"] = "Men\195\186 de Demonios",
+		["Menu des Maledictions"] = "Men\195\186 de Maldiciones",
+		["Afficher les menus en permanence"] = "Mostrar los men\195\186s siempre",
+		["Afficher automatiquement les menus en combat"] = "Abrir autom\195\161ticamente los men\195\186s mientras est\195\169s en combate",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Cerrar el men\195\186 cuando pulses uno de sus botones",
+		["Orientation du menu"] = "Orientaci\195\179n de men\195\186s",
+		["Changer la symetrie verticale des boutons"] = "Cambiar la simetr\195\173a vertical de los botones",
 		["Taille du bouton Banir"] = "Tama\195\177o del bot\195\179n Desterrar",
 	}
 	Necrosis.Config.Menus.Orientation = {
 		"Horizontal",
-		"Upwards",
-		"Downwards"
+		"Hacia arriba",
+		"Hacia abajo"
 	}
 
 	Necrosis.Config.Timers = {
-		["Type de timers"] = "Timer type",
-		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
+		["Type de timers"] = "Tipo de temporizadores",
+		["Afficher le bouton des timers"] = "Mostrar el bot\195\179n de los temporizadores",
 		["Afficher les timers sur la gauche du bouton"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
 		["Afficher les timers de bas en haut"] = "Los temporizadores se incrementan ascendentemente",
 	}
@@ -349,7 +349,7 @@ function Necrosis:Localization_Dialog_Es()
 		["Deplace les fragments"] = "Poner los Fragmentos en la bolsa seleccionada.",
 		["Detruit les fragments si le sac plein"] = "Destruir nuevos fragmentos si la bolsa est\195\161 llena",
 		["Choix du sac contenant les fragments"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",
-		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Nombre maximum de fragments a conserver"] = "N\195\186mero m\195\161ximo de fragmentos a guardar",
 		["Verrouiller Necrosis sur l'interface"] = "Bloquear Necrosis",
 		["Afficher les boutons caches"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos",
 		["Taille des boutons caches"] = "Tama\195\177o de los botones de aviso"

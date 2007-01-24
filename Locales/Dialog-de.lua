@@ -259,20 +259,20 @@ function Necrosis:Localization_Dialog_De()
 		"Buttons Einstellungen",
 		"Men\195\188s Einstellungen",
 		"Timer Einstellungen",
-		"Miscellanious"
+		"Sonstiges"
 	}
 
 	Necrosis.Config.Messages = {
 		["Position"] = "<- Hier werden Nachrichten von Necrosis erscheinen ->",
 		["Afficher les bulles d'aide"] = "Zeige Tooltips",
-		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
+		["Afficher les messages dans la zone systeme"] = "Zeige Nachrichten von Necrosis im System Frame",
 		["Activer les messages aleatoires de TP et de Rez"] = "Zuf\195\164llige Spr\195\188che",
-		["Utiliser des messages courts"] = "Use short messages",
+		["Utiliser des messages courts"] = "Benutzte kurze Nachrichten",
 		["Activer egalement les messages pour les Demons"] = "Zuf\195\164llige Spr\195\188che f\195\188r D\195\164monen auch",
 		["Activer egalement les messages pour les Montures"] = "Zuf\195\164llige Spr\195\188che f\195\188r Mount auch",
 		["Activer les sons"] = "Aktiviere Sounds",
 		["Alerter quand la cible est insensible a la peur"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
-		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warnung, wenn ein Ziel verbannt oder versklavt werden kann",
 		["M'alerter quand j'entre en Transe"] = "Warnung, wenn Trance eintritt"
 	}
 
@@ -302,8 +302,8 @@ function Necrosis:Localization_Dialog_De()
 	}
 
 	Necrosis.Config.Buttons = {
-		["Rotation des boutons"] = "Buttons rotation",
-		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+		["Rotation des boutons"] = "Rotation der Buttons",
+		["Fixer les boutons autour de la sphere"] = "Fixiere die Buttons um die Sph\195\164re"
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Zeige den Feuerstein Button",
@@ -317,25 +317,25 @@ function Necrosis:Localization_Dialog_De()
 	}
 
 	Necrosis.Config.Menus = {
-		["Options Generales"] = "General Options",
-		["Menu des Buffs"] = "Buffs Menu",
-		["Menu des Demons"] = "Demons Menu",
-		["Menu des Maledictions"] = "Curses Menu",
-		["Afficher les menus en permanence"] = "Always show menus",
-		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
-		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
-		["Orientation du menu"] = "Menu orientation",
-		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Options Generales"] = "Allgemeine Einstellungen",
+		["Menu des Buffs"] = "Zauber Men\195\188",
+		["Menu des Demons"] = "D\195\164monen Men\195\188",
+		["Menu des Maledictions"] = "Fluch Men\195\188",
+		["Afficher les menus en permanence"] = "Zeige die Men\195\188s permanent",
+		["Afficher automatiquement les menus en combat"] = "Zeige automatisch die Men\195\188s, wenn man einem Kampf beitritt",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Schließe das Men\195\188, sobald eines seiner Buttons geklickt wird",
+		["Orientation du menu"] = "Ausrichtung des Men\195\188s",
+		["Changer la symetrie verticale des boutons"] = "Ver\195\164ndert die Vertikale Symmetrie der Buttons",
 		["Taille du bouton Banir"] = "Gr\195\182\195\159e des Verbannen Button",
 	}
 	Necrosis.Config.Menus.Orientation = {
 		"Horizontal",
-		"Upwards",
-		"Downwards"
+		"Aufw\195\164rts",
+		"Abw\195\164rts"
 	}
 
 	Necrosis.Config.Timers = {
-		["Type de timers"] = "Timer type",
+		["Type de timers"] = "Timer Typ",
 		["Afficher le bouton des timers"] = "Zeige den Timer Button",
 		["Afficher les timers sur la gauche du bouton"] = "Zeige die Timer auf der linken Seite des Knopfes",
 		["Afficher les timers de bas en haut"] = "Neue Timer oberhalb der bestehenden Timer anzeigen",
@@ -343,14 +343,14 @@ function Necrosis:Localization_Dialog_De()
 	Necrosis.Config.Timers.Type = {
 		"Kein",
 		"Graphische",
-		"Texttimern"
+		"Texttimer"
 	}
 
 	Necrosis.Config.Misc = {
 		["Deplace les fragments"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
 		["Detruit les fragments si le sac plein"] = "Zerst\195\182re neue Seelensplitter,\nwenn die Tasche voll ist.",
 		["Choix du sac contenant les fragments"] = "W\195\164hle die Seelensplitter-Tasche",
-		["Nombre maximum de fragments a conserver"] = "Maximum number of shards to keep",
+		["Nombre maximum de fragments a conserver"] = "Maximale Anzahl der zu behaltenden Splitter",
 		["Verrouiller Necrosis sur l'interface"] = "Sperre Necrosis",
 		["Afficher les boutons caches"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["Taille des boutons caches"] = "Gr\195\182\195\159e des versteckten Buttons"

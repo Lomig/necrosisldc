@@ -196,11 +196,23 @@ function Necrosis.Timer_Click()
 	if ID == 1 then
 		NecrosisTimerUpward:Disable()
 		NecrosisTimerOnLeft:Disable()
+		if _G["NecrosisListSpells"] then NecrosisListSpells:SetText("") end
+		local index = 1
+		while _G["NecrosisTimerFrame"..i] do
+			_G["NecrosisTimerFrame"..i]:Hide()
+			index = index + 1
+		end
 	elseif ID == 3 then
 		NecrosisTimerUpward:Disable()
 		NecrosisTimerOnLeft:Enable()
+		local index = 1
+		while _G["NecrosisTimerFrame"..i] do
+			_G["NecrosisTimerFrame"..i]:Hide()
+			index = index + 1
+		end
 	else
 		NecrosisTimerUpward:Enable()
 		NecrosisTimerOnLeft:Enable()
+		if _G["NecrosisListSpells"] then NecrosisListSpells:SetText("") end
 	end
 end
