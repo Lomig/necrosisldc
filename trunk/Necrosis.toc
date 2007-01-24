@@ -13,13 +13,6 @@
 #
 Necrosis.xml
 
-NecrosisTimer.xml
-NecrosisShardMenu.xml
-NecrosisMessageMenu.xml
-NecrosisButtonMenu.xml
-NecrosisTimerMenu.xml
-NecrosisGraphOptionMenu.xml
-
 Localization.lua
 
 Locales\Functions-fr.lua

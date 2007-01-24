@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@
 
 if ( GetLocale() == "enUS" ) or ( GetLocale() == "enGB" ) then
 
--- Table des sorts du démoniste
+-- Table des sorts du dÃ©moniste
 Necrosis.Spell = {
 	[1] = {Name = "Summon Felsteed",		Length = 0,	Type = 0},
 	[2] = {Name = "Summon Dreadsteed",		Length = 0,	Type = 0},
@@ -100,7 +100,7 @@ Necrosis.Spell = {
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
 -- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
+-- Type 4 = Timer de malÃ©diction
 -- Type 5 = Timer de corruption
 -- Type 6 = Timer de combat
 
@@ -108,20 +108,20 @@ for i in ipairs(Necrosis.Spell) do
 	Necrosis.Spell[i].Rank = " "
 end
 
--- Types d'unité des PnJ utilisés par Necrosis
+-- Types d'unitÃ© des PnJ utilisÃ©s par Necrosis
 Necrosis.Unit = {
 	["Undead"] = "Undead",
 	["Demon"] = "Demon",
 	["Elemental"] = "Elemental"
 }
 
--- Traduction du nom des procs utilisés par Necrosis
+-- Traduction du nom des procs utilisÃ©s par Necrosis
 Necrosis.Translation.Proc = {
 	["Backlash"] = "Backlash",
 	["ShadowTrance"] = "Shadow Trance"
 }
 
--- Traduction des noms des démons invocables
+-- Traduction des noms des dÃ©mons invocables
 Necrosis.Translation.DemonName = {
 	[1] = "Imp",
 	[2] = "Voidwalker",
@@ -132,7 +132,7 @@ Necrosis.Translation.DemonName = {
 	[7] = "Doomguard"
 }
 
--- Traduction du nom des objets utilisés par Necrosis
+-- Traduction du nom des objets utilisÃ©s par Necrosis
 Necrosis.Translation.Item = {
 	["Soulshard"] = "Soul Shard",
 	["Soulstone"] = "Soulstone",
@@ -154,7 +154,7 @@ Necrosis.Translation.Misc = {
 	["Create"] = "Create"
 }
 
--- Gestion de la détection des cibles protégées contre la peur
+-- Gestion de la dÃ©tection des cibles protÃ©gÃ©es contre la peur
 Necrosis.AntiFear = {
 	-- Buffs giving temporary immunity to fear effects
 	["Buff"] = {

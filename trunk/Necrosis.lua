@@ -391,6 +391,11 @@ function Necrosis:OnUpdate(elapsed)
 		NecrosisUpdateTimer(Local.TimerManagement.SpellTimer)
 	end
 
+	-- Si timers textes, on les met à jour très vite également
+	if NecrosisConfig.TimerType == 2 then
+		self:TextTimerUpdate(Local.TimerManagement.SpellTimer, Local.TimerManagement.SpellGroup)
+	end
+
 	-- Toutes les secondes
 	if Local.LastUpdate[1] > 1 then
 	-- Si configuré, tri des fragment toutes les secondes
@@ -431,11 +436,10 @@ function Necrosis:OnUpdate(elapsed)
 		Local.LastUpdate[1] = 0
 	-- Toutes les demies secondes
 	elseif Local.LastUpdate[2] > 0.5 then
-		-- Si défilement normal des timers, alors on met à jour toutes les 0.5 secondes
+		-- Si défilement normal des timers graphiques, alors on met à jour toutes les 0.5 secondes
 		if not NecrosisConfig.Smooth then
 			NecrosisUpdateTimer(Local.TimerManagement.SpellTimer)
 		end
-		self:TextTimerUpdate(Local.TimerManagement.SpellTimer, Local.TimerManagement.SpellGroup)
 
 		-- Si configuré, affichage des avertissements d'Antifear
 		if NecrosisConfig.AntiFearAlert then

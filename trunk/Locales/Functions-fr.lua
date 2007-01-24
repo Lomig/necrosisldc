@@ -24,9 +24,9 @@
 -- Necrosis LdC
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix FranÃ§aises : Eliah, Ner'zhul
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Remerciements spÃ©ciaux pour Tilienna, Sadyre (JoL) et Aspy
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 
 if ( GetLocale() == "frFR" ) then
 
--- Table des sorts du démoniste
+-- Table des sorts du dÃ©moniste
 Necrosis.Spell = {
 	[1] = {Name = "Invocation d'un palefroi corrompu",			Length = 0,	Type = 0},
 	[2] = {Name = "Invocation d'un destrier de l'effroi",			Length = 0,	Type = 0},
@@ -101,7 +101,7 @@ Necrosis.Spell = {
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
 -- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
+-- Type 4 = Timer de malÃ©diction
 -- Type 5 = Timer de corruption
 -- Type 6 = Timer de combat
 
@@ -109,20 +109,20 @@ for i in ipairs(Necrosis.Spell) do
 	Necrosis.Spell[i].Rank = " "
 end
 
--- Types d'unité des PnJ utilisés par Necrosis
+-- Types d'unitÃ© des PnJ utilisÃ©s par Necrosis
 Necrosis.Unit = {
 	["Undead"] ="Mort-vivant",
 	["Demon"] = "D\195\169mon",
 	["Elemental"] = "El\195\169mentaire"
 }
 
--- Traduction du nom des procs utilisés par Necrosis
+-- Traduction du nom des procs utilisÃ©s par Necrosis
 Necrosis.Translation.Proc = {
 	["Backlash"] = "Contrecoup",
 	["ShadowTrance"] = "Transe de l'ombre"
 }
 
--- Traduction des noms des démons invocables
+-- Traduction des noms des dÃ©mons invocables
 Necrosis.Translation.DemonName = {
 	[1] = "Diablotin",
 	[2] = "Marcheur du Vide",
@@ -133,7 +133,7 @@ Necrosis.Translation.DemonName = {
 	[7] = "Garde funeste"
 }
 
--- Traduction du nom des objets utilisés par Necrosis
+-- Traduction du nom des objets utilisÃ©s par Necrosis
 Necrosis.Translation.Item = {
 	["Soulshard"] = "Fragment d'\195\162me",
 	["Soulstone"] = "Pierre d'\195\162me",
@@ -155,26 +155,26 @@ Necrosis.Translation.Misc = {
 	["Create"] = "Cr\195\169ation"
 }
 
--- Gestion de la détection des cibles protégées contre la peur
+-- Gestion de la dÃ©tection des cibles protÃ©gÃ©es contre la peur
 Necrosis.AntiFear = {
-	-- Buffs donnant une immunité temporaire au Fear
+	-- Buffs donnant une immunitÃ© temporaire au Fear
 	["Buff"] = {
-		"Gardien de peur",					-- Capacité raciale des prêtres nains
-		"Volont\195\169 des r\195\169prouv\195\169",		-- Capacité raciale réprouvée
+		"Gardien de peur",					-- CapacitÃ© raciale des prÃªtres nains
+		"Volont\195\169 des r\195\169prouv\195\169",		-- CapacitÃ© raciale rÃ©prouvÃ©e
 		"Sans peur",						-- Trinket
 		"Furie Berzerker",					-- Talent Guerrier (Branche Fury)
 		"T\195\169m\195\169rit\195\169",			-- Talent Guerrier (Branche Fury)
 		"Souhait mortel",					-- Talent Guerrier (Branche Fury)
 		"Courroux bestial",					-- Talent Chasseur (Branche Beast)
 		"Carapace de glace",					-- Talent Mage (Branche Ice)
-		"Protection divine",					-- Buff sacré Paladin
-		"Bouclier divin",					-- Buff sacré Paladin
+		"Protection divine",					-- Buff sacrÃ© Paladin
+		"Bouclier divin",					-- Buff sacrÃ© Paladin
 		"Totem de s\195\169isme",				-- Totem
 		"Abolir la magie"					-- Sort de Majordomo (PnJ)
 	},
-	-- Debuffs donnant une immunité temporaire au Fear
+	-- Debuffs donnant une immunitÃ© temporaire au Fear
 	["Debuff"] = {
-		"Mal\195\169diction de t\195\169m\195\169rit\195\169"	-- Malédiction de démoniste
+		"Mal\195\169diction de t\195\169m\195\169rit\195\169"	-- MalÃ©diction de dÃ©moniste
 	}
 }
 
