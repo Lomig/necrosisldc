@@ -485,6 +485,7 @@ function Necrosis:OnEvent(event)
 	-- Si le joueur meurt
 	elseif (event == "PLAYER_DEAD") then
 		-- On cache éventuellement les boutons de Crépuscule ou Contrecoup.
+		Local.Dead = true
 		NecrosisShadowTranceButton:Hide()
 		NecrosisBacklashButton:Hide()
 		-- On grise tous les boutons de sort
@@ -521,6 +522,7 @@ function Necrosis:OnEvent(event)
 		end
 		-- On réinitialise la liste des boutons grisés
 		Local.Desatured = {}
+		Local.Dead = false
 	-- Gestion de l'incantation des sorts réussie
 	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") and arg1 == "player" then
 		_, Local.SpellCasted.Name = arg1, arg2
@@ -697,7 +699,7 @@ function Necrosis:ChangeDemon()
 	for i = 1, #self.Translation.DemonName, 1 do
 		if Local.Summon.DemonType == self.Translation.DemonName[i] and not (NecrosisConfig.PetName[i] or (UnitName("pet") == UNKNOWNOBJECT)) then
 			NecrosisConfig.PetName[i] = UnitName("pet")
-			NecrosisLocalization()
+			self:Localization()
 			break
 		end
 	end
@@ -1418,9 +1420,7 @@ end
 
 -- Update des boutons en fonction de la mana
 function Necrosis:UpdateMana()
-	if UnitIsDeadOrGhost("player") then
-		return
-	end
+	if Local.Dead then return end
 
 	local mana = UnitMana("player")
 	local manaMax = UnitManaMax("player")
@@ -1895,11 +1895,35 @@ function Necrosis:BagExplore(arg)
 			end
 		end
 	end
-
-
+	
 	Local.Soulshard.Count = GetItemCount(6265)
 	Local.Reagent.Infernal = GetItemCount(5565)
 	Local.Reagent.Demoniac = GetItemCount(16583)
+
+	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
+	if NecrosisConfig.DestroyShard
+		and NecrosisConfig.DestroyCount
+		and NecrosisConfig.DestroyCount > 0
+		and NecrosisConfig.DestroyCount < Local.Soulshard.Count
+		then
+			for container = 0, 4, 1 do
+				if Local.BagIsSoulPouch[container + 1] then break end
+				for slot=1, GetContainerNumSlots(container), 1 do
+					self:MoneyToggle()
+					NecrosisTooltip:SetBagItem(container, slot)
+					local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
+					if itemName and itemName:find(self.Translation.Item.Soulshard) then
+						PickupContainerItem(container, slot)
+						if (CursorHasItem()) then
+							DeleteCursorItem()
+							Local.Soulshard.Count = GetItemCount(6265)
+						end
+						break
+					end
+				end
+				if NecrosisConfig.DestroyCount >= Local.Soulshard.Count then break end
+			end
+	end
 
 	-- On change l'affectation des boutons de pierre de feu et de sort pour prendre en compte la baguette
 	self:RangedUpdateAttribute()
@@ -1958,29 +1982,7 @@ function Necrosis:BagExplore(arg)
 				self:Msg(NECROSIS_MESSAGE.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..NECROSIS_MESSAGE.Bag.FullSuffix)
 			end
 		end
-	end
-
-	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
-	if NecrosisConfig.DestroyShard
-		and NecrosisConfig.DestroyCount
-		and NecrosisConfig.DestroyCount > 0
-		and NecrosisConfig.DestroyCount < Local.Soulshard.Count
-		then
-			for container = 0, 4, 1 do
-				if Local.BagIsSoulPouch[container + 1] then break end
-				for slot=1, GetContainerNumSlots(container), 1 do
-					self:MoneyToggle()
-					NecrosisTooltip:SetBagItem(container, slot)
-					local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
-					if itemName and itemName:find(self.Translation.Item.Soulshard) then
-						PickupContainerItem(container, slot)
-						if (CursorHasItem()) then DeleteCursorItem() end
-						break
-					end
-				end
-				if NecrosisConfig.DestroyCount >= Local.Soulshard.Count then break end
-			end
-	end
+	end	
 end
 
 -- Fonction qui permet de trouver / ranger les fragments dans les sacs

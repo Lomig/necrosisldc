@@ -141,7 +141,7 @@ function Necrosis:Localization_Speech_Fr()
 		-- Chasseur corrompu
 		[4] = {
 			[1] = {
-				"<pet> ! <pet> ! Aller vient mon brave, viens ! <pet> !",
+				"<pet> ! <pet> ! Aller viens mon brave, viens ! <pet> !",
 			},
 			[2] = {
 				"Rhoo, et qui c'est qui va se bouffer le mage hein ? C'est <pet> !",
