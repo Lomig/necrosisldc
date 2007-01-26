@@ -25,8 +25,9 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
+--
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Version Espagnole par DosS (Zul’jin)
 --
 -- Version 04.12.2006-1
 ------------------------------------------------------------------------------------------------------
