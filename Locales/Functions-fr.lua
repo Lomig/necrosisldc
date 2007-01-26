@@ -50,7 +50,7 @@ Necrosis.Spell = {
 	[7] = {Name = "Invocation d'un gangregarde",				Length = 0,	Type = 0},
 	[8] = {Name = "Inferno",						Length = 3600,	Type = 3},
 	[9] = {Name = "Bannir",							Length = 30,	Type = 2},
-	[10] = {Name = "Asservir d\195\169mon",					Length = 3000,	Type = 2},
+	[10] = {Name = "Asservir d\195\169mon",					Length = 300,	Type = 2},
 	[11] = {Name = "R\195\169surrection de Pierre d'\195\162me",		Length = 1800,	Type = 1},
 	[12] = {Name = "Immolation",						Length = 15,	Type = 6},
 	[13] = {Name = "Peur",							Length = 15,	Type = 6},

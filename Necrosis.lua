@@ -2808,7 +2808,7 @@ function Necrosis:SetOfxy(menu)
 			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
 			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 		)
-	elseif menu == "Curse" and _G["NecrosisCursefMenu0"] then
+	elseif menu == "Curse" and _G["NecrosisCurseMenu0"] then
 		Local.Menu.Curse[1]:ClearAllPoints()
 		Local.Menu.Curse[1]:SetPoint(
 			"CENTER", "NecrosisCurseMenuButton", "CENTER",

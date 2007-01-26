@@ -260,11 +260,9 @@ function Necrosis:SetMenusConfig()
 				NecrosisAutoMenu:Disable()
 				NecrosisCloseMenu:Disable()
 			else
-				local State = 0
-				if NecrosisConfig.AutomaticMenu then State = 3 end
-				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
-				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
-				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
+				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
 				NecrosisAutoMenu:Enable()
 				NecrosisCloseMenu:Enable()
 			end
@@ -286,7 +284,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 325)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.AutomaticMenu = this:GetChecked() end)
+		frame:SetScript("OnClick", function()
+			NecrosisConfig.AutomaticMenu = this:GetChecked()
+			if not NecrosisConfig.AutomaticMenu then
+				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
+			end
+		end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()

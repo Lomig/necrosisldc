@@ -49,7 +49,7 @@ NECROSIS_SPELL_TABLE = {
 	[7] = {Name = "Invocar a guardia maldito",			Length = 0,	Type = 0},
 	[8] = {Name = "Inferno",					Length = 3600,	Type = 3},
 	[9] = {Name = "Desterrar",					Length = 30,	Type = 2},
-	[10] = {Name = "Esclavizar demonio",				Length = 3000,	Type = 2},
+	[10] = {Name = "Esclavizar demonio",				Length = 300,	Type = 2},
 	[11] = {Name = "Resurrecci\195\179n con piedra de alma",	Length = 1800,	Type = 1},
 	[12] = {Name = "Inmolar",					Length = 15,	Type = 6},
 	[13] = {Name = "Miedo",						Length = 15,	Type = 6},
