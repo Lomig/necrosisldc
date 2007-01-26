@@ -154,7 +154,7 @@ function Necrosis:SetMessagesConfig()
 				NecrosisDemonMessages:Disable()
 				NecrosisSteedMessages:Disable()
 			else
-				NecrosisLocalization()
+				self:Localization()
 				NecrosisDemonMessages:Enable()
 				NecrosisSteedMessages:Enable()
 			end

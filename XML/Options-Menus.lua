@@ -70,7 +70,7 @@ function Necrosis:SetMenusConfig()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("1 / 4")
-		
+
 		FontString = frame:CreateFontString("NecrosisMenusConfig1Text", nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -117,7 +117,7 @@ function Necrosis:SetMenusConfig()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("2 / 4")
-		
+
 		FontString = frame:CreateFontString("NecrosisMenusConfig2Text", nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -164,7 +164,7 @@ function Necrosis:SetMenusConfig()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("3 / 4")
-		
+
 		FontString = frame:CreateFontString("NecrosisMenusConfig3Text", nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -211,7 +211,7 @@ function Necrosis:SetMenusConfig()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("BOTTOM", frame, "BOTTOM", 0, 120)
 		FontString:SetText("4 / 4")
-		
+
 		FontString = frame:CreateFontString("NecrosisMenusConfig4Text", nil, "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -312,7 +312,7 @@ function Necrosis:SetMenusConfig()
 
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.ClosingMenu = this:GetChecked()
-			if NecrosisConfig.ClosingMenu then Necrosis:CreateMenu() end
+			Necrosis:CreateMenu()
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
@@ -412,7 +412,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 225)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -446,7 +446,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", -25, 225)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -520,7 +520,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 25, 275)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -554,7 +554,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig3, "BOTTOMRIGHT", -25, 275)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -628,7 +628,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 25, 275)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -662,7 +662,7 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig4, "BOTTOMRIGHT", -25, 275)
 
 		local State = 0
-		if NecrosisBlockedMenu then
+		if NecrosisConfig.BlockedMenu then
 			State = 4
 		end
 		frame:SetScript("OnEnter", function()
@@ -695,7 +695,7 @@ function Necrosis:SetMenusConfig()
 	NecrosisMenusConfig2Text:SetText(self.Config.Menus["Menu des Buffs"])
 	NecrosisMenusConfig3Text:SetText(self.Config.Menus["Menu des Demons"])
 	NecrosisMenusConfig4Text:SetText(self.Config.Menus["Menu des Maledictions"])
-	
+
 	NecrosisBlockedMenu:SetText(self.Config.Menus["Afficher les menus en permanence"])
 	NecrosisAutoMenu:SetText(self.Config.Menus["Afficher automatiquement les menus en combat"])
 	NecrosisCloseMenu:SetText(self.Config.Menus["Fermer le menu apres un clic sur un de ses elements"])

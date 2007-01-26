@@ -312,8 +312,8 @@ function Necrosis:Localization_Dialog_De()
 		"Zeige den Seelenstein Button",
 		"Zeige den Spruch Men\195\188 Button",
 		"Zeige den Mount Button",
-		"Zeige den Fluch Men\195\188 Button",
 		"Zeige den D\195\164monen Men\195\188 Button",
+		"Zeige den Fluch Men\195\188 Button",
 	}
 
 	Necrosis.Config.Menus = {
