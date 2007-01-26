@@ -819,7 +819,7 @@ end
 function Necrosis.DemonVector_Click()
 	local ID = this:GetID()
 
-	UIDropDownMenu_SetSelectedID(NecrosisBuffVector, ID)
+	UIDropDownMenu_SetSelectedID(NecrosisDemonVector, ID)
 	if ID == 1 then
 		NecrosisConfig.PetMenuPos.x = 1
 		NecrosisConfig.PetMenuPos.y = 0

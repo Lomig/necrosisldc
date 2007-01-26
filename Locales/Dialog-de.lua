@@ -273,7 +273,7 @@ function Necrosis:Localization_Dialog_De()
 		["Activer egalement les messages pour les Montures"] = "Zuf\195\164llige Spr\195\188che f\195\188r Mount auch",
 		["Activer les sons"] = "Aktiviere Sounds",
 		["Alerter quand la cible est insensible a la peur"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
-		["Alerter quand la cible peut etre banie ou asservie"] = "Warnung, wenn ein Ziel verbannt oder versklavt werden kann",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Warnung, wenn ein Ziel verbannt\\versklavt werden kann",
 		["M'alerter quand j'entre en Transe"] = "Warnung, wenn Trance eintritt"
 	}
 
@@ -282,8 +282,8 @@ function Necrosis:Localization_Dialog_De()
 		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
 		["Evenement montre par la sphere"] = "Anzeige in der grafischen Sph\195\164re",
 		["Sort caste par la sphere"] = "Zauber der durch Klick auf die\nSph\195\164re gewirkt wird",
-		["Afficher le compteur numerique"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
-		["Type de compteur numerique"] = "Stein Typ gez\195\164hlt"
+		["Afficher le compteur numerique"] = "Zeige die gew195\164hlte Anzeige in der Sph\195\164re",
+		["Type de compteur numerique"] = "Anzeige:"
 	}
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
@@ -323,8 +323,8 @@ function Necrosis:Localization_Dialog_De()
 		["Menu des Demons"] = "D\195\164monen Men\195\188",
 		["Menu des Maledictions"] = "Fluch Men\195\188",
 		["Afficher les menus en permanence"] = "Zeige die Men\195\188s permanent",
-		["Afficher automatiquement les menus en combat"] = "Zeige automatisch die Men\195\188s, wenn man einem Kampf beitritt",
-		["Fermer le menu apres un clic sur un de ses elements"] = "Schließe das Men\195\188, sobald eines seiner Buttons geklickt wird",
+		["Afficher automatiquement les menus en combat"] = "Men\195\188s im Kampf automatisch \195\182ffnen",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Schließe das Men\195\188, sobald ein Button geklickt wird",
 		["Orientation du menu"] = "Ausrichtung des Men\195\188s",
 		["Changer la symetrie verticale des boutons"] = "Ver\195\164ndert die Vertikale Symmetrie der Buttons",
 		["Taille du bouton Banir"] = "Gr\195\182\195\159e des Verbannen Button",
@@ -351,7 +351,7 @@ function Necrosis:Localization_Dialog_De()
 		["Deplace les fragments"] = "Lege die Seelensplitter in die ausgew\195\164hlte Tasche.",
 		["Detruit les fragments si le sac plein"] = "Zerst\195\182re neue Seelensplitter,\nwenn die Tasche voll ist.",
 		["Choix du sac contenant les fragments"] = "W\195\164hle die Seelensplitter-Tasche",
-		["Nombre maximum de fragments a conserver"] = "Maximale Anzahl der zu behaltenden Splitter",
+		["Nombre maximum de fragments a conserver"] = "Maximale Anzahl der zu behaltenden Splitter:",
 		["Verrouiller Necrosis sur l'interface"] = "Sperre Necrosis",
 		["Afficher les boutons caches"] = "Zeige versteckte Buttons um sie zu verschieben",
 		["Taille des boutons caches"] = "Gr\195\182\195\159e des versteckten Buttons"
