@@ -49,7 +49,7 @@ Necrosis.Spell = {
 	[7] = {Name = "Teufelswache beschw\195\182ren",		Length = 0,	Type = 0},
 	[8] = {Name = "Inferno",				Length = 3600,	Type = 3},
 	[9] = {Name = "Verbannen",				Length = 30,	Type = 2},
-	[10] = {Name = "D\195\164monensklave",			Length = 3000,	Type = 2},
+	[10] = {Name = "D\195\164monensklave",			Length = 300,	Type = 2},
 	[11] = {Name = "Seelensteinauferstehung",		Length = 1800,	Type = 1},
 	[12] = {Name = "Feuerbrand",				Length = 15,	Type = 6},
 	[13] = {Name = "Furcht",				Length = 15,	Type = 6},

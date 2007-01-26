@@ -49,7 +49,7 @@ Necrosis.Spell = {
 	[7] = {Name = "Summon Felguard",		Length = 0,	Type = 0},
 	[8] = {Name = "Inferno",			Length = 3600,	Type = 3},
 	[9] = {Name = "Banish",				Length = 30,	Type = 2},
-	[10] = {Name = "Enslave Demon",			Length = 3000,	Type = 2},
+	[10] = {Name = "Enslave Demon",			Length = 300,	Type = 2},
 	[11] = {Name = "Soulstone Resurrection",	Length = 1800,	Type = 1},
 	[12] = {Name = "Immolate",			Length = 15,	Type = 6},
 	[13] = {Name = "Fear",				Length = 15,	Type = 6},

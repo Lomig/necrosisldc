@@ -53,7 +53,7 @@ Necrosis.Spell = {
 	[7] = {Name = "暗影箭",		Length = 0,	Type = 0,	TexturePrefix = nil},
 	[8] = {Name = "地狱火",		Length = 3600,	Type = 3,	TexturePrefix = "Infernal"},
 	[9] = {Name = "放逐术",		Length = 30,	Type = 2,	TexturePrefix = "Banish"},
-	[10] = {Name = "奴役恶魔",	Length = 3000,	Type = 2,	TexturePrefix = nil},
+	[10] = {Name = "奴役恶魔",	Length = 300,	Type = 2,	TexturePrefix = nil},
 	[11] = {Name = "灵魂石复活",	Length = 1800,	Type = 1,	TexturePrefix = nil},
 	[12] = {Name = "献祭",		Length = 15,	Type = 5,	TexturePrefix = nil},
 	[13] = {Name = "恐惧术",		Length = 15,	Type = 5,	TexturePrefix = nil},

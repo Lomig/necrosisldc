@@ -53,7 +53,7 @@ Necrosis.Spell = {
 	[7] = {Name = "召喚地獄守衛",	Length = 0,	Type = 0},
 	[8] = {Name = "地獄火",		Length = 3600,	Type = 3},
 	[9] = {Name = "放逐術",		Length = 30,	Type = 2},
-	[10] = {Name = "奴役惡魔",	Length = 3000,	Type = 2},
+	[10] = {Name = "奴役惡魔",	Length = 300,	Type = 2},
 	[11] = {Name = "靈魂石復活",	Length = 1800,	Type = 1},
 	[12] = {Name = "獻祭",		Length = 15,	Type = 5},
 	[13] = {Name = "恐懼術",		Length = 15,	Type = 5},
