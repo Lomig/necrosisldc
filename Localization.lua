@@ -25,8 +25,9 @@
 -- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
+--
 -- Version Allemande par Geschan
--- Remerciements spéciaux pour Tilienna, Sadyre (JoL) et Aspy
+-- Version Espagnole par DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -35,7 +36,7 @@
 Necrosis = {}
 
 Necrosis.Data = {
-	Version = "2.0 Beta 2.6",
+	Version = "2.0 Beta 2.6.1",
 	AppName = "Necrosis LdC",
 	LastConfig = 20070121.1
 }
