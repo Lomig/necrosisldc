@@ -126,7 +126,6 @@ function Necrosis:SetButtonsConfig()
 				end
 				Necrosis:Drag()
 				NecrosisConfig.NoDragAll = false
-				NecrosisLock_Button:SetChecked(false)
 				NecrosisButton:RegisterForDrag("LeftButton")
 				NecrosisSpellTimerButton:RegisterForDrag("LeftButton")
 			end
