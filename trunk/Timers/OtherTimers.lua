@@ -91,6 +91,7 @@ end
 -- Permet l'affichage des timers textuels
 function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 	if not SpellTimer[1] then
+		NecrosisListSpells:SetText("")
 		return
 	end
 
@@ -109,11 +110,13 @@ function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 		-- Affichage de l'entête si on change de groupe
 		if not (SpellTimer[index].Group == LastGroup) and SpellTimer[index].Group > 3 then
 			if SpellTimer[index].Group and SpellGroup[SpellTimer[index].Group] then
-				display = display.."<purple>-------------------------------\n"
-				display = display..SpellGroup[SpellTimer[index].Group].Name
-				display = display.." - "
-				display = display..SpellGroup[SpellTimer[index].Group].SubName
-				display = display.."\n-------------------------------<close>\n<white>"
+				if SpellGroup[SpellTimer[index].Group].Name then
+					display = display.."<purple>-------------------------------\n"
+					display = display..SpellGroup[SpellTimer[index].Group].Name
+					display = display.." - "
+					display = display..SpellGroup[SpellTimer[index].Group].SubName
+					display = display.."\n-------------------------------<close>\n<white>"
+				end
 			end
 			LastGroup = SpellTimer[index].Group
 		end

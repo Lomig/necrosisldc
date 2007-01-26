@@ -116,7 +116,7 @@ Necrosis.Unit = {
 
 -- Traduction du nom des procs utilisés par Necrosis
 Necrosis.Translation.Proc = {
-	["Backlash"] = "Backlash",
+	["Backlash"] = "Contragolpe",
 	["ShadowTrance"] = "Trance de las Sombras"
 }
 

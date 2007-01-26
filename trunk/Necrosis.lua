@@ -1895,7 +1895,7 @@ function Necrosis:BagExplore(arg)
 			end
 		end
 	end
-	
+
 	Local.Soulshard.Count = GetItemCount(6265)
 	Local.Reagent.Infernal = GetItemCount(5565)
 	Local.Reagent.Demoniac = GetItemCount(16583)
@@ -1982,7 +1982,7 @@ function Necrosis:BagExplore(arg)
 				self:Msg(NECROSIS_MESSAGE.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..NECROSIS_MESSAGE.Bag.FullSuffix)
 			end
 		end
-	end	
+	end
 end
 
 -- Fonction qui permet de trouver / ranger les fragments dans les sacs
@@ -2489,7 +2489,7 @@ function Necrosis:CreateMenu()
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
-						NecrosisConfig.PetMenuPos.x * 32,
+						NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32,
 						NecrosisConfig.PetMenuPos.y * 32
 					)
 					PetButtonPosition = spell
@@ -2505,7 +2505,7 @@ function Necrosis:CreateMenu()
 		Local.Menu.Pet[1]:ClearAllPoints()
 		Local.Menu.Pet[1]:SetPoint(
 			"CENTER", "NecrosisPetMenuButton", "CENTER",
-			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
+			NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
 			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 		)
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
@@ -2615,7 +2615,7 @@ function Necrosis:CreateMenu()
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
 						"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",
-						NecrosisConfig.CurseMenuPos.x * 32,
+						NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32,
 						NecrosisConfig.CurseMenuPos.y * 32
 					)
 					CurseButtonPosition = sort
@@ -2631,7 +2631,7 @@ function Necrosis:CreateMenu()
 		Local.Menu.Curse[1]:ClearAllPoints()
 		Local.Menu.Curse[1]:SetPoint(
 			"CENTER", "NecrosisCurseMenuButton", "CENTER",
-			NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+			NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
 			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 		)
 		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
@@ -2805,14 +2805,14 @@ function Necrosis:SetOfxy(menu)
 		Local.Menu.Pet[1]:ClearAllPoints()
 		Local.Menu.Pet[1]:SetPoint(
 			"CENTER", "NecrosisPetMenuButton", "CENTER",
-			NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
+			NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
 			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 		)
 	elseif menu == "Curse" and _G["NecrosisCurseMenu0"] then
 		Local.Menu.Curse[1]:ClearAllPoints()
 		Local.Menu.Curse[1]:SetPoint(
 			"CENTER", "NecrosisCurseMenuButton", "CENTER",
-			NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+			NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
 			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 		)
 	end

@@ -384,7 +384,11 @@ end
 function Necrosis:MainButtonAttribute()
 	-- Le clic droit ouvre le Menu des options
 	NecrosisButton:SetAttribute("type2", "Open")
-	NecrosisButton.Open = function() Necrosis:OpenConfigPanel() end
+	NecrosisButton.Open = function()
+		if not InCombatLockdown() then
+			Necrosis:OpenConfigPanel()
+		end
+	end
 
 	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
