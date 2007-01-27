@@ -161,6 +161,8 @@ function Necrosis:SetMiscConfig()
 		frame:SetScript("OnEscapePressed", function()
 			NecrosisDestroyCount:SetNumber(0)
 			NecrosisConfig.DestroyCount = 0
+			NecrosisDestroyShard:SetChecked(false)
+			NecrosisConfig.DestroyShard = false
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "ChatFontNormal")
