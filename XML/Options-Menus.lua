@@ -604,9 +604,9 @@ function Necrosis:SetMenusConfig()
 
 		frame:SetScript("OnClick", function()
 			if this:GetChecked() then
-				NecrosisConfig.PetMenuPos.direction = -1
+				NecrosisConfig.CurseMenuPos.direction = -1
 			else
-				NecrosisConfig.PetMenuPos.direction = 1
+				NecrosisConfig.CurseMenuPos.direction = 1
 			end
 			Necrosis:CreateMenu()
 		end)

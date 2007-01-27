@@ -155,10 +155,12 @@ function Necrosis:SetMiscConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisMiscConfig, "BOTTOMRIGHT", -20, 275)
 
-		frame:SetScript("OnTextChanged", function()
-			NecrosisConfig.DestroyCount = this:GetNumber()
-			NecrosisConfig.DestroyShard = false
-			NecrosisDestroyShard:SetChecked(NecrosisConfig.DestroyShard)
+		frame:SetScript("OnEnterPressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
+		frame:SetScript("OnSpacePressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
+		frame:SetScript("OnTabPressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
+		frame:SetScript("OnEscapePressed", function()
+			NecrosisDestroyCount:SetNumber(0)
+			NecrosisConfig.DestroyCount = 0
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "ChatFontNormal")
