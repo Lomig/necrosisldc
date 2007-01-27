@@ -155,9 +155,21 @@ function Necrosis:SetMiscConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisMiscConfig, "BOTTOMRIGHT", -20, 275)
 
-		frame:SetScript("OnEnterPressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
-		frame:SetScript("OnSpacePressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
-		frame:SetScript("OnTabPressed", function() NecrosisConfig.DestroyCount = this:GetNumber() end)
+		frame:SetScript("OnEnterPressed", function()
+			NecrosisConfig.DestroyCount = this:GetNumber()
+			NecrosisDestroyShard:SetChecked(true)
+			NecrosisConfig.DestroyShard = true
+		end)
+		frame:SetScript("OnSpacePressed", function() 
+			NecrosisConfig.DestroyCount = this:GetNumber()
+			NecrosisDestroyShard:SetChecked(true)
+			NecrosisConfig.DestroyShard = true
+		end)
+		frame:SetScript("OnTabPressed", function() 
+			NecrosisConfig.DestroyCount = this:GetNumber()
+			NecrosisDestroyShard:SetChecked(true)
+			NecrosisConfig.DestroyShard = true
+		end)
 		frame:SetScript("OnEscapePressed", function()
 			NecrosisDestroyCount:SetNumber(0)
 			NecrosisConfig.DestroyCount = 0
