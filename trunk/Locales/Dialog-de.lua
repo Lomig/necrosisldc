@@ -282,8 +282,8 @@ function Necrosis:Localization_Dialog_De()
 		["Skin de la pierre Necrosis"] = "Aussehen der Necrosis Sph\195\164re",
 		["Evenement montre par la sphere"] = "Anzeige in der grafischen Sph\195\164re",
 		["Sort caste par la sphere"] = "Zauber der durch Klick auf die\nSph\195\164re gewirkt wird",
-		["Afficher le compteur numerique"] = "Zeige die gew195\164hlte Anzeige in der Sph\195\164re",
-		["Type de compteur numerique"] = "Anzeige:"
+		["Afficher le compteur numerique"] = "Zeige die gew\195\164hlte Anzeige in der Sph\195\164re",
+		["Type de compteur numerique"] = "Anzeige w\195\164hlen:"
 	}
 	Necrosis.Config.Sphere.Colour = {
 		"Pink",
@@ -299,7 +299,7 @@ function Necrosis:Localization_Dialog_De()
 		"D\195\164monenen-Beschw\195\182rungs-Steine",
 		"Wiederbelebungs-Timer",
 		"Mana",
-		"Health"
+		"Gesundheit"
 	}
 
 	Necrosis.Config.Buttons = {
@@ -324,7 +324,7 @@ function Necrosis:Localization_Dialog_De()
 		["Menu des Maledictions"] = "Fluch Men\195\188",
 		["Afficher les menus en permanence"] = "Zeige die Men\195\188s permanent",
 		["Afficher automatiquement les menus en combat"] = "Men\195\188s im Kampf automatisch \195\182ffnen",
-		["Fermer le menu apres un clic sur un de ses elements"] = "Schließe das Men\195\188, sobald ein Button geklickt wird",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Schließe das Men\195\188, sobald ein Button geklickt wurde",
 		["Orientation du menu"] = "Ausrichtung des Men\195\188s",
 		["Changer la symetrie verticale des boutons"] = "Ver\195\164ndert die Vertikale Symmetrie der Buttons",
 		["Taille du bouton Banir"] = "Gr\195\182\195\159e des Verbannen Button",
