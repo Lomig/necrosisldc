@@ -2471,184 +2471,189 @@ function Necrosis:CreateMenu()
 			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000)
 		end
 	end
-
-	local MenuID = new("array",
-		15, 3, 4, 5, 6, 7, 8, 30, 35, 44
-	)
-	-- On ordonne et on affiche les boutons dans le menu des démons
-	for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-		-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
-		for spell = 1, #NecrosisConfig.DemonSpellPosition, 1 do
-			if math.abs(NecrosisConfig.DemonSpellPosition[index]) == spell
-				and NecrosisConfig.DemonSpellPosition[spell] > 0
-				and Necrosis.Spell[ MenuID[spell] ].ID then
-					-- Création à la demande du bouton du menu des démons
-					if not _G["NecrosisPetMenuButton"] then
-						_ = self:CreateSphereButtons("PetMenu")
-					end
-					menuVariable = self:CreateMenuPet(spell)
-					menuVariable:ClearAllPoints()
-					menuVariable:SetPoint(
-						"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
-						NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32,
-						NecrosisConfig.PetMenuPos.y * 32
-					)
-					PetButtonPosition = spell
-					Local.Menu.Pet:insert(menuVariable)
-					break
-			end
-		end
-	end
-	del(MenuID)
-
-	-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
-	if Local.Menu.Pet[1] then
-		Local.Menu.Pet[1]:ClearAllPoints()
-		Local.Menu.Pet[1]:SetPoint(
-			"CENTER", "NecrosisPetMenuButton", "CENTER",
-			NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
-			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
+	if NecrosisConfig.StonePosition[7] > 0 then
+		local MenuID = new("array",
+			15, 3, 4, 5, 6, 7, 8, 30, 35, 44
 		)
-		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-		self:MenuAttribute("NecrosisPetMenu")
-		for i = 1, #Local.Menu.Pet, 1 do
-			NecrosisPetMenu0:SetAttribute("addchild", Local.Menu.Pet[i])
-			Local.Menu.Pet[i]:SetAttribute("showstates", "!0,*")
-			Local.Menu.Pet[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
-			if NecrosisConfig.ClosingMenu then
-				Local.Menu.Pet[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-			else
-				Local.Menu.Pet[i]:SetAttribute("newstate", "")
-			end
-			Local.Menu.Pet[i]:Hide()
-		end
-		self:PetSpellAttribute()
-	end
-
-	-- On ordonne et on affiche les boutons dans le menu des buffs
-	local MenuID = new("array",
-		31, 47, 32, 33, 34, 37, 39, 38, 43, 35, 9
-	)
-	for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
-		-- Si le buff existe, on affiche le bouton dans le menu des buffs
-		if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
-			and NecrosisConfig.BuffSpellPosition[1] > 0
-			and (Necrosis.Spell[31].ID or Necrosis.Spell[36].ID) then
-				-- Création à la demande du bouton du menu des Buffs
-				if not _G["NecrosisBuffMenuButton"] then
-					_ = self:CreateSphereButtons("BuffMenu")
-				end
-				menuVariable = self:CreateMenuBuff(1)
-				menuVariable:ClearAllPoints()
-				menuVariable:SetPoint(
-					"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
-					NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
-					NecrosisConfig.BuffMenuPos.y * 32
-				)
-				BuffButtonPosition = 1
-				Local.Menu.Buff:insert(menuVariable)
-		else
-			for spell = 2, #NecrosisConfig.BuffSpellPosition, 1 do
-				if math.abs(NecrosisConfig.BuffSpellPosition[index]) == spell
-					and NecrosisConfig.BuffSpellPosition[spell] > 0
+		-- On ordonne et on affiche les boutons dans le menu des démons
+		for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+			-- Si le sort d'invocation existe, on affiche le bouton dans le menu des pets
+			for spell = 1, #NecrosisConfig.DemonSpellPosition, 1 do
+				if math.abs(NecrosisConfig.DemonSpellPosition[index]) == spell
+					and NecrosisConfig.DemonSpellPosition[spell] > 0
 					and Necrosis.Spell[ MenuID[spell] ].ID then
-						-- Création à la demande du bouton du menu des Buffs
-						if not _G["NecrosisBuffMenuButton"] then
-							_ = self:CreateSphereButtons("BuffMenu")
+						-- Création à la demande du bouton du menu des démons
+						if not _G["NecrosisPetMenuButton"] then
+							_ = self:CreateSphereButtons("PetMenu")
 						end
-						menuVariable = self:CreateMenuBuff(spell)
+						menuVariable = self:CreateMenuPet(spell)
 						menuVariable:ClearAllPoints()
 						menuVariable:SetPoint(
-							"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
-							NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
-							NecrosisConfig.BuffMenuPos.y * 32
+							"CENTER", "NecrosisPetMenu"..PetButtonPosition, "CENTER",
+							NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32,
+							NecrosisConfig.PetMenuPos.y * 32
 						)
-						BuffButtonPosition = spell
-						Local.Menu.Buff:insert(menuVariable)
+						PetButtonPosition = spell
+						Local.Menu.Pet:insert(menuVariable)
 						break
 				end
 			end
 		end
-	end
-	del(MenuID)
+		del(MenuID)
 
-	-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
-	if Local.Menu.Buff[1] then
-		Local.Menu.Buff[1]:ClearAllPoints()
-		Local.Menu.Buff[1]:SetPoint(
-			"CENTER", "NecrosisBuffMenuButton", "CENTER",
-			NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
-			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
-		)
-		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-		self:MenuAttribute("NecrosisBuffMenu")
-		for i = 1, #Local.Menu.Buff, 1 do
-			NecrosisBuffMenu0:SetAttribute("addchild", Local.Menu.Buff[i])
-			Local.Menu.Buff[i]:SetAttribute("showstates", "!0,*")
-			Local.Menu.Buff[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
-			if NecrosisConfig.ClosingMenu then
-				Local.Menu.Buff[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-			else
-				Local.Menu.Buff[i]:SetAttribute("newstate", "")
+		-- Maintenant que tous les boutons de pet sont placés les uns à côté des autres, on affiche les disponibles
+		if Local.Menu.Pet[1] then
+			Local.Menu.Pet[1]:ClearAllPoints()
+			Local.Menu.Pet[1]:SetPoint(
+				"CENTER", "NecrosisPetMenuButton", "CENTER",
+				NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
+				NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
+			)
+			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+			self:MenuAttribute("NecrosisPetMenu")
+			for i = 1, #Local.Menu.Pet, 1 do
+				NecrosisPetMenu0:SetAttribute("addchild", Local.Menu.Pet[i])
+				Local.Menu.Pet[i]:SetAttribute("showstates", "!0,*")
+				Local.Menu.Pet[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
+				if NecrosisConfig.ClosingMenu then
+					Local.Menu.Pet[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+				else
+					Local.Menu.Pet[i]:SetAttribute("newstate", "")
+				end
+				Local.Menu.Pet[i]:Hide()
 			end
-			Local.Menu.Buff[i]:Hide()
+			self:PetSpellAttribute()
 		end
-		self:BuffSpellAttribute()
 	end
 
-
-	-- On ordonne et on affiche les boutons dans le menu des malédictions
-	-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
-	local MenuID = new("array",
-		42, 23, 22, 24, 25, 40, 26, 27, 16
-	)
-	for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
-		for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
-		-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
-			if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
-				and NecrosisConfig.CurseSpellPosition[sort] > 0
-				and Necrosis.Spell[MenuID[sort]].ID then
-					-- Création à la demande du bouton du menu des malédictions
-					if not _G["NecrosisCurseMenuButton"] then
-						_ = self:CreateSphereButtons("CurseMenu")
+	if NecrosisConfig.StonePosition[5] > 0 then
+		-- On ordonne et on affiche les boutons dans le menu des buffs
+		local MenuID = new("array",
+			31, 47, 32, 33, 34, 37, 39, 38, 43, 35, 9
+		)
+		for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
+			-- Si le buff existe, on affiche le bouton dans le menu des buffs
+			if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
+				and NecrosisConfig.BuffSpellPosition[1] > 0
+				and (Necrosis.Spell[31].ID or Necrosis.Spell[36].ID) then
+					-- Création à la demande du bouton du menu des Buffs
+					if not _G["NecrosisBuffMenuButton"] then
+						_ = self:CreateSphereButtons("BuffMenu")
 					end
-					menuVariable = self:CreateMenuCurse(sort)
+					menuVariable = self:CreateMenuBuff(1)
 					menuVariable:ClearAllPoints()
 					menuVariable:SetPoint(
-						"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",
-						NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32,
-						NecrosisConfig.CurseMenuPos.y * 32
+						"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
+						NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
+						NecrosisConfig.BuffMenuPos.y * 32
 					)
-					CurseButtonPosition = sort
-					Local.Menu.Curse:insert(menuVariable)
-					break
+					BuffButtonPosition = 1
+					Local.Menu.Buff:insert(menuVariable)
+			else
+				for spell = 2, #NecrosisConfig.BuffSpellPosition, 1 do
+					if math.abs(NecrosisConfig.BuffSpellPosition[index]) == spell
+						and NecrosisConfig.BuffSpellPosition[spell] > 0
+						and Necrosis.Spell[ MenuID[spell] ].ID then
+							-- Création à la demande du bouton du menu des Buffs
+							if not _G["NecrosisBuffMenuButton"] then
+								_ = self:CreateSphereButtons("BuffMenu")
+							end
+							menuVariable = self:CreateMenuBuff(spell)
+							menuVariable:ClearAllPoints()
+							menuVariable:SetPoint(
+								"CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER",
+								NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32,
+								NecrosisConfig.BuffMenuPos.y * 32
+							)
+							BuffButtonPosition = spell
+							Local.Menu.Buff:insert(menuVariable)
+							break
+					end
+				end
 			end
+		end
+		del(MenuID)
+
+		-- Maintenant que tous les boutons de buff sont placés les uns à côté des autres, on affiche les disponibles
+		if Local.Menu.Buff[1] then
+			Local.Menu.Buff[1]:ClearAllPoints()
+			Local.Menu.Buff[1]:SetPoint(
+				"CENTER", "NecrosisBuffMenuButton", "CENTER",
+				NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
+				NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
+			)
+			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+			self:MenuAttribute("NecrosisBuffMenu")
+			for i = 1, #Local.Menu.Buff, 1 do
+				NecrosisBuffMenu0:SetAttribute("addchild", Local.Menu.Buff[i])
+				Local.Menu.Buff[i]:SetAttribute("showstates", "!0,*")
+				Local.Menu.Buff[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
+				if NecrosisConfig.ClosingMenu then
+					Local.Menu.Buff[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+				else
+					Local.Menu.Buff[i]:SetAttribute("newstate", "")
+				end
+				Local.Menu.Buff[i]:Hide()
+			end
+			self:BuffSpellAttribute()
 		end
 	end
-	del(MenuID)
 
-	-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles
-	if Local.Menu.Curse[1] then
-		Local.Menu.Curse[1]:ClearAllPoints()
-		Local.Menu.Curse[1]:SetPoint(
-			"CENTER", "NecrosisCurseMenuButton", "CENTER",
-			NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
-			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
+
+	if NecrosisConfig.StonePosition[8] > 0 then
+		-- On ordonne et on affiche les boutons dans le menu des malédictions
+		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
+		local MenuID = new("array",
+			42, 23, 22, 24, 25, 40, 26, 27, 16
 		)
-		-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-		self:MenuAttribute("NecrosisCurseMenu")
-		for i = 1, #Local.Menu.Curse, 1 do
-			NecrosisCurseMenu0:SetAttribute("addchild", Local.Menu.Curse[i])
-			Local.Menu.Curse[i]:SetAttribute("showstates", "!0,*")
-			Local.Menu.Curse[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
-			if NecrosisConfig.ClosingMenu then
-				Local.Menu.Curse[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-			else
-				Local.Menu.Curse[i]:SetAttribute("newstate", "")
+		for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
+			for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
+				-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
+				if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
+					and NecrosisConfig.CurseSpellPosition[sort] > 0
+					and Necrosis.Spell[MenuID[sort]].ID then
+						-- Création à la demande du bouton du menu des malédictions
+						if not _G["NecrosisCurseMenuButton"] then
+							_ = self:CreateSphereButtons("CurseMenu")
+						end
+						menuVariable = self:CreateMenuCurse(sort)
+						menuVariable:ClearAllPoints()
+						menuVariable:SetPoint(
+							"CENTER", "NecrosisCurseMenu"..CurseButtonPosition, "CENTER",
+							NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32,
+							NecrosisConfig.CurseMenuPos.y * 32
+						)
+						CurseButtonPosition = sort
+						Local.Menu.Curse:insert(menuVariable)
+						break
+				end
 			end
-			Local.Menu.Curse[i]:Hide()
 		end
-		self:CurseSpellAttribute()
+		del(MenuID)
+
+		-- Maintenant que tous les boutons de curse sont placés les uns à côté des autres, on affiche les disponibles
+		if Local.Menu.Curse[1] then
+			Local.Menu.Curse[1]:ClearAllPoints()
+			Local.Menu.Curse[1]:SetPoint(
+				"CENTER", "NecrosisCurseMenuButton", "CENTER",
+				NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32 + NecrosisConfig.CurseMenuDecalage.x,
+				NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
+			)
+			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
+			self:MenuAttribute("NecrosisCurseMenu")
+			for i = 1, #Local.Menu.Curse, 1 do
+				NecrosisCurseMenu0:SetAttribute("addchild", Local.Menu.Curse[i])
+				Local.Menu.Curse[i]:SetAttribute("showstates", "!0,*")
+				Local.Menu.Curse[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
+				if NecrosisConfig.ClosingMenu then
+					Local.Menu.Curse[i]:SetAttribute("newstate", "1:0;3:3;4:4")
+				else
+					Local.Menu.Curse[i]:SetAttribute("newstate", "")
+				end
+				Local.Menu.Curse[i]:Hide()
+			end
+			self:CurseSpellAttribute()
+		end
 	end
 
 	-- On bloque le menu en position ouverte si configuré

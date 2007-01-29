@@ -448,9 +448,9 @@ function Necrosis:InCombatAttribute()
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
-		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "3") end
-		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "3") end
-		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "3") end
+		if _G["NecrosisPetMenu0"] and NecrosisConfig.StonePosition[7] then NecrosisPetMenu0:SetAttribute("state", "3") end
+		if _G["NecrosisBuffMenu0"] and NecrosisConfig.StonePosition[5] then NecrosisBuffMenu0:SetAttribute("state", "3") end
+		if _G["NecrosisCurseMenu0"] and NecrosisConfig.StonePosition[8] then NecrosisCurseMenu0:SetAttribute("state", "3") end
 	end
 
 	-- Si on connait le nom de la pierre de sort,

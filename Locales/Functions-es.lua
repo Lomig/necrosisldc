@@ -40,7 +40,7 @@
 if ( GetLocale() == "esES" ) then
 
 -- Table des sorts du démoniste
-NECROSIS_SPELL_TABLE = {
+Necrosis.Spell = {
 	[1] = {Name = "Invocar a corcel vil",				Length = 0,	Type = 0},
 	[2] = {Name = "Invocar a corcel nefasto",			Length = 0,	Type = 0},
 	[3] = {Name = "Invocar a diablillo",				Length = 0,	Type = 0},
