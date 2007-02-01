@@ -1903,6 +1903,7 @@ function Necrosis:BagExplore(arg)
 
 	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
 	if NecrosisConfig.DestroyShard
+		and not (AncienCompte == Local.Soulshard.Count)
 		and NecrosisConfig.DestroyCount
 		and NecrosisConfig.DestroyCount > 0
 		and NecrosisConfig.DestroyCount < Local.Soulshard.Count
