@@ -19,19 +19,18 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
-
 
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0)
@@ -90,6 +89,7 @@ function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 end
 
 -- Permet l'affichage des timers textuels
+-- Allows the posting of text timers
 function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 	if not SpellTimer[1] then
 		NecrosisListSpells:SetText("")
@@ -141,7 +141,7 @@ function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 			display = display.."0"..seconds
 		end
 		display = display.." - <close>"..color..SpellTimer[index].Name.."<close>"
-		if (SpellTimer[index].Type == 1 or SpellTimer[index].Name == Necrosis.Spell[16].Name)
+		if (SpellTimer[index].Type == 1) or (SpellTimer[index].Name == Necrosis.Spell[16].Name)
 			and not (SpellTimer[index].Target == "")
 			then
 				display = display.."<white> - "..SpellTimer[index].Target.."<close>\n";

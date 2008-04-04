@@ -89,16 +89,7 @@ function Necrosis:SetMiscConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMiscConfig, "BOTTOMLEFT", 50, 375)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.SoulshardDestroy = this:GetChecked()
-			if NecrosisConfig.SoulshardSort and NecrosisConfig.SoulshardDestroy then
-				NecrosisDestroyShard:SetChecked(false)
-				NecrosisConfig.DestroyShard = false
-				NecrosisDestroyShard:Disable()
-			else
-				NecrosisDestroyShard:Enable()
-			end
-		end)
+		frame:SetScript("OnClick", function() NecrosisConfig.SoulshardDestroy = this:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -356,14 +347,8 @@ function Necrosis:SetMiscConfig()
 
 	if NecrosisConfig.SoulshardSort then
 		NecrosisDestroyShardBag:Enable()
-		if NecrosisConfig.SoulshardDestroy then
-			NecrosisDestroyShard:Disable()
-		else
-			NecrosisDestroyShard:Enable()
-		end
 	else
 		NecrosisDestroyShardBag:Disable()
-		NecrosisDestroyShard:Enable()
 	end
 
 	frame:Show()

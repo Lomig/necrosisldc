@@ -19,20 +19,18 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
-
-
 
 function Necrosis:Localization_Speech_Fr()
 

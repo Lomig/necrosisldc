@@ -19,21 +19,18 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
--- $LastChangedDate$
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
-
-
-
 
 -- Variables globales
 NecrosisConfig = {}
@@ -142,7 +139,8 @@ Local.Events = {
 	"TRADE_ACCEPT_UPDATE",
 	"TRADE_SHOW",
 	"TRADE_CLOSED",
-	"CHAT_MSG_SPELL_AURA_GONE_OTHER"
+	"CHAT_MSG_SPELL_AURA_GONE_OTHER",
+	"COMBAT_LOG_EVENT_UNFILTERED"
 }
 
 -- Configuration par défaut
@@ -633,13 +631,27 @@ function Necrosis:OnEvent(event)
 	-- Quand le démoniste change de démon
 	elseif (event == "UNIT_PET" and arg1 == "player") then
 		self:ChangeDemon()
-	-- uand le démoniste gagne ou perd un buff.
-	elseif event == "COMBAT_TEXT_UPDATE" then
-		if arg1 == "AURA_START" then
-			self:SelfEffect("BUFF", arg2)
-		elseif arg1 == "AURA_END" then
-			self:SelfEffect("DEBUFF", arg2)
-		end
+
+	------------------------------------------------------------------------------
+	-- patch 2.4 introduced major changes to the combat logging system
+	-- the following change fixes the ShadowTrance / Backlash sound notifications.
+	--[[ removed:
+  -- elseif event == "COMBAT_TEXT_UPDATE" then		
+	--	if arg1 == "AURA_START" then
+	--		self:SelfEffect("BUFF", arg2)
+	--	elseif arg1 == "AURA_END" then
+	--		self:SelfEffect("DEBUFF", arg2)
+	--	end
+	--]]
+	-- replaced with:  
+  elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+  	if arg2 == "SPELL_AURA_APPLIED" and arg6 == UnitGUID("player") then
+				self:SelfEffect("BUFF", arg10)
+	  elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("player") then
+	  		self:SelfEffect("DEBUFF", arg10)
+  	end
+	------------------------------------------------------------------------------
+	
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		Local.PlayerInCombat = true
 		-- On ferme le menu des options
@@ -743,11 +755,13 @@ function Necrosis:SelfEffect(action, nom)
 				NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(nil)
 			end
 		-- si Contrecoup, pouf on affiche l'icone et on proc le son
+		-- if By-effect, pouf one posts the icon and one proc the sound
 		elseif nom == self.Translation.Proc.Backlash and NecrosisConfig.ShadowTranceAlert then
 			self:Msg(NECROSIS_PROC_TEXT.Backlash, "USER")
 			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.Backlash) end
 			NecrosisBacklashButton:Show()
 		-- si Crépuscule, pouf on affiche l'icone et on proc le son
+		-- if Twilight/Nightfall, pouf one posts the icon and one proc the sound
 		elseif nom == self.Translation.Proc.ShadowTrance and NecrosisConfig.ShadowTranceAlert then
 			self:Msg(NECROSIS_PROC_TEXT.ShadowTrance, "USER")
 			if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.ShadowTrance) end
@@ -778,7 +792,7 @@ function Necrosis:SelfEffect(action, nom)
 			if _G["NecrosisBuffMenu8"] then
 				NecrosisBuffMenu8:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-01")
 			end
-		-- On cache les boutons de ShadowTrance quand one st plus sous son emprise
+		-- hide the shadowtrance (nightfall) or backlash buttons when the state is ended.
 		elseif nom == self.Translation.Proc.ShadowTrance or nom == self.Translation.Proc.Backlash then
 			NecrosisShadowTranceButton:Hide()
 			NecrosisBacklashButton:Hide()
@@ -854,12 +868,13 @@ function Necrosis:SpellManagement()
 							if SortActif then break end
 						end
 						-- Si le timer est une malédiction, on enlève la précédente malédiction sur la cible
+						-- If the timer is a curse, one removes the preceding curse on the target
 						if (Necrosis.Spell[spell].Type == 4) or (spell == 16) then
 							for thisspell=1, #Local.TimerManagement.SpellTimer, 1 do
 								-- Mais on garde le cooldown de la malédiction funeste
 								if Local.TimerManagement.SpellTimer[thisspell].Name == Necrosis.Spell[16].Name then
-									Local.TimerManagement.SpellTimer[thisspell].Target = ""
-									Local.TimerManagement.SpellTimer[thisspell].TargetLevel = ""
+									Local.TimerManagement.SpellTimer[thisspell].Target = Local.SpellCasted.TargetName
+									Local.TimerManagement.SpellTimer[thisspell].TargetLevel = Local.SpellCasted.TargetLevel
 								end
 								if Local.TimerManagement.SpellTimer[thisspell].Type == 4
 									and Local.TimerManagement.SpellTimer[thisspell].Target == Local.SpellCasted.TargetName
@@ -1903,7 +1918,6 @@ function Necrosis:BagExplore(arg)
 
 	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
 	if NecrosisConfig.DestroyShard
-		and not (AncienCompte == Local.Soulshard.Count)
 		and NecrosisConfig.DestroyCount
 		and NecrosisConfig.DestroyCount > 0
 		and NecrosisConfig.DestroyCount < Local.Soulshard.Count

@@ -1,9 +1,9 @@
-## Interface: 20003
+## Interface: 20400
 ## Title: Necrosis
 ## Title-frFR: Necrosis
-## Author: Lomig, Liadora & Eliah
-## Version: 2.0
-## Notes: Shard managment UI
+## Author: TarCalion (based upon the works of the original authors: Lomig, Liadora & Eliah)
+## Version: 2.2
+## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## eMail: lomig@larmes-cenarius.net
 ## URL: http://necrosis.larmes-cenarius.net

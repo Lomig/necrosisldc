@@ -19,20 +19,18 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
-
-
 
 ------------------------------------------------
 -- VERSION FRANCAISE DES FONCTIONS --
@@ -92,9 +90,9 @@ Necrosis.Spell = {
 	[48] = {Name = "Graine de Corruption",					Length = 18,	Type = 5},
 	[49] = {Name = "Brise-\195\162me",					Length = 300,	Type = 3},
 	[50] = {Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
-	[51] = {Name = "Cr\195\169ation de Pierre d'\195\162me",		Length = 0,	Type = 0},
+	[51] = {Name = "Cr\195\169ation de pierre d'\195\162me",		Length = 0,	Type = 0},
 	[52] = {Name = "Cr\195\169ation de Pierre de soins",			Length = 0,	Type = 0},
-	[53] = {Name = "Cr\195\169ation de Pierre de sort",			Length = 0,	Type = 0},
+	[53] = {Name = "Cr\195\169ation de pierre de sort",			Length = 0,	Type = 0},
 	[54] = {Name = "Cr\195\169ation de Pierre de feu",			Length = 0,	Type = 0},
 	[55] = {Name = "Pacte noir",						Length = 0,	Type = 0},
 }
