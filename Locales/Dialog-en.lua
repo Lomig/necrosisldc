@@ -19,19 +19,18 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
-
 
 ------------------------------------------------
 -- ENGLISH  VERSION TEXTS --
@@ -187,7 +186,7 @@ function Necrosis:Localization_Dialog_En()
 		},
 		["Mount"] = {
 			Label = "|c00FFFFFFSteed|r",
-			Text = "Right click to cast Rank 1"
+			Text = "Right click to summon Felsteed"
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpell Menu|r",
@@ -322,10 +321,10 @@ function Necrosis:Localization_Dialog_En()
 		["Menu des Demons"] = "Demons Menu",
 		["Menu des Maledictions"] = "Curses Menu",
 		["Afficher les menus en permanence"] = "Always show menus",
-		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
+		["Afficher automatiquement les menus en combat"] = "Automatically display menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",
 		["Orientation du menu"] = "Menu orientation",
-		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
+		["Changer la symetrie verticale des boutons"] = "Change the vertical symmetry of buttons",
 		["Taille du bouton Banir"] = "Size of the Banish button",
 	}
 	Necrosis.Config.Menus.Orientation = {

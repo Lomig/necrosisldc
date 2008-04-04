@@ -19,75 +19,69 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
+-- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins and French voices: Eliah, Ner'zhul
 --
--- Version Allemande par Geschan
--- Version Espagnole par DosS (Zul’jin)
+-- German Version by Geschan
+-- Spanish Version by DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
-
-
--- On définit G comme étant le tableau contenant toutes les frames existantes.
+-- One defines G as being the table containing all the existing frames.
 local _G = getfenv(0)
 
 ------------------------------------------------------------------------------------------------------
--- FONCTIONS D'AFFICHAGE (CONSOLE, CHAT, MESSAGE SYSTEME)
+-- Message handler (CONSOLE, CHAT, MESSAGE SYSTEM)
 ------------------------------------------------------------------------------------------------------
-
 function Necrosis:Msg(msg, type)
 	if msg then
-		-- Si le type du message est "WORLD", le message sera envoyé en raid, à défaut en groupe, et à défaut en chat local
+		-- dispatch the message to the appropriate chat channel depending on the message type
 		if (type == "WORLD") then
 			if (GetNumRaidMembers() > 0) then
+				-- send to all raid members
 				SendChatMessage(msg, "RAID")
 			elseif (GetNumPartyMembers() > 0) then
+				-- send to party members
 				SendChatMessage(msg, "PARTY")
 			else
+				-- not in a group so lets use the 'say' channel
 				SendChatMessage(msg, "SAY")
 			end
-		-- Si le type du message est "PARTY", le message sera envoyé en groupe
 		elseif (type == "PARTY") then
 			SendChatMessage(msg, "PARTY")
-		-- Si le type du message est "RAID", le message sera envoyé en raid
 		elseif (type == "RAID") then
 			SendChatMessage(msg, "RAID")
 		elseif (type == "SAY") then
-		-- Si le type du message est "SAY", le message sera envoyé en chat local
 			SendChatMessage(msg, "SAY")
 		elseif (type == "EMOTE") then
-		-- Si le type du message est "EMOTE", le message sera envoyé en /e
 			SendChatMessage(msg, "EMOTE")
 		elseif (type == "YELL") then
-		-- Si le type du message est "YELL", le message sera envoyé en /y
 			SendChatMessage(msg, "YELL")
 		else
-			-- On colorise astucieusement notre message :D
+			-- Add some color to our message :D
 			msg = self:MsgAddColor(msg)
 			local Intro = "|CFFFF00FFNe|CFFFF50FFcr|CFFFF99FFos|CFFFFC4FFis|CFFFFFFFF: "
 			if NecrosisConfig.ChatType then
-				-- ...... sur la première fenêtre de chat
+				-- ...... on the first chat frame
 				ChatFrame1:AddMessage(Intro..msg, 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
 			else
-				-- ...... ou au milieu de l'écran
+				-- ...... on the middle of the screen
 				UIErrorsFrame:AddMessage(Intro..msg, 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
 			end
 		end
 	end
 end
 
-
 ------------------------------------------------------------------------------------------------------
--- ... ET LE COLORAMA FUT !
+-- Color functions
 ------------------------------------------------------------------------------------------------------
 
--- Remplace dans les chaines les codes de coloration par les définitions de couleur associées
+-- Replace any color strings in the message with its associated value
 function Necrosis:MsgAddColor(msg)
 	if type(msg) == "string" then
 		msg = msg:gsub("<white>", "|CFFFFFFFF")
@@ -114,8 +108,7 @@ function Necrosis:MsgAddColor(msg)
 	return msg
 end
 
-
--- Insère dans les timers des codes de coloration en fonction du pourcentage de temps restant
+-- Adjusts the timer color based on the percentage of time left.
 function NecrosisTimerColor(percent)
 	local color = "<brightGreen>"
 	if (percent < 10) then
@@ -141,9 +134,8 @@ function NecrosisTimerColor(percent)
 end
 
 ------------------------------------------------------------------------------------------------------
--- VARIABLES USER-FRIENDLY DANS LES MESSAGES D'INVOCATION
+-- Replace user-friendly string variables in the invocation messages
 ------------------------------------------------------------------------------------------------------
-
 function Necrosis:MsgReplace(msg, target, pet)
 	msg = msg:gsub("<player>", UnitName("player"))
 	msg = msg:gsub("<emote>", "")
@@ -160,11 +152,10 @@ function Necrosis:MsgReplace(msg, target, pet)
 end
 
 ------------------------------------------------------------------------------------------------------
--- FONCTION D'AFFICHAGE DES MESSAGES EN COURS DE CAST
+-- Handles the posting of messages while casting a spell.
 ------------------------------------------------------------------------------------------------------
-
-function  Necrosis:Speech_It(Spell, Speeches, metatable)
-	-- Affichage des messages d'invocation de monture
+function Necrosis:Speech_It(Spell, Speeches, metatable)
+	-- messages to be posted while summoning a mount
 	if (Spell.Name == Necrosis.Spell[1].Name or Spell.Name == Necrosis.Spell[2].Name) then
 		Speeches.SpellSucceed.Steed = setmetatable({}, metatable)
 		if NecrosisConfig.SteedSummon and NecrosisConfig.ChatMsg and self.Speech.Demon[7] and not NecrosisConfig.SM then
@@ -185,7 +176,7 @@ function  Necrosis:Speech_It(Spell, Speeches, metatable)
 				end
 			end
 		end
-	-- Affichage des messages de rez
+	-- messages to be posted while casting 'Soulstone' on a friendly target
 	elseif Spell.Name == Necrosis.Spell[11].Name and not (Spell.TargetName == UnitName("player")) then
 		Speeches.SpellSucceed.Rez = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and self.Speech.Rez then
@@ -206,7 +197,7 @@ function  Necrosis:Speech_It(Spell, Speeches, metatable)
 				end
 			end
 		end
-	-- Affichage des messages d'invocation de joueurs
+	-- messages to be posted while casting 'Ritual of Summoning'
 	elseif Spell.Name == Necrosis.Spell[37].Name then
 		Speeches.SpellSucceed.TP = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and self.Speech.TP then
@@ -229,7 +220,7 @@ function  Necrosis:Speech_It(Spell, Speeches, metatable)
 		end
 		AlphaBuffMenu = 1
 		AlphaBuffVar = GetTime() + 3
-	-- Affichage des messages d'invocations de démon
+	-- messages to be posted while summoning a pet demon
 	else for type = 3, 7, 1 do
 		if Spell.Name == Necrosis.Spell[type].Name then
 			Speeches.SpellSucceed.Pet = setmetatable({}, metatable)
@@ -287,14 +278,11 @@ function  Necrosis:Speech_It(Spell, Speeches, metatable)
 	return Speeches
 end
 
-
-
 ------------------------------------------------------------------------------------------------------
--- FONCTION D'AFFICHAGE DES MESSAGES EN FIN DE CAST
+-- Handles the posting of messages after a spell has been cast.
 ------------------------------------------------------------------------------------------------------
-
 function Necrosis:Speech_Then(Spell, DemonName, Speech)
-	-- Si le sort était un un cast de monture et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- messages to be posted after a mount is summoned.
 	if (Spell.Name == Necrosis.Spell[1].Name or Spell.Name == Necrosis.Spell[2].Name) then
 		for i in ipairs(Speech.Steed) do
 			if Speech.Steed[i]:find("<emote>") then
@@ -309,7 +297,7 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
 		end
-	-- Si le sort était un cast de Rez et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- messages to be posted after 'Soulstone' is cast
 	elseif Spell.Name == Necrosis.Spell[11].Name then
 		for i in ipairs(Speech.Rez) do
 			if Speech.Rez[i]:find("<emote>") then
@@ -321,7 +309,7 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.Rez = {}
-	-- Si le sort était un cast de TP et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- messages to be posted after 'Ritual of Summoning' is cast
 	elseif (Spell.Name == Necrosis.Spell[37].Name) then
 		for i in ipairs(Speech.TP) do
 			if Speech.TP[i]:find("<emote>") then
@@ -333,7 +321,7 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.TP = {}
-	-- Si le sort était un sacrifice de démon et qu'il y avait quelque chose à faire dire à sa mort, on y va !
+	-- messages to be posted after sacrificing a demon
 	elseif Spell.Name == Necrosis.Spell[44].Name then
 		for i in ipairs(Speech.Sacrifice) do
 			if Speech.Sacrifice[i]:find("<emote>") then
@@ -345,7 +333,7 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 			end
 		end
 		Speech.Sacrifice = {}
-	-- Si le sort était un cast de démon et qu'il y avait quelque chose à faire dire après le cast, on y va !
+	-- messages to be posted after summoning a demon
 	elseif Spell.Name == Necrosis.Spell[3].Name
 			or Spell.Name == Necrosis.Spell[4].Name
 			or Spell.Name == Necrosis.Spell[5].Name
@@ -366,4 +354,3 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 
 	return Speech
 end
-
