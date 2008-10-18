@@ -29,6 +29,7 @@
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
+-- Version Russe par Komsomolka
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------

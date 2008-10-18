@@ -23,12 +23,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 -- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
--- Contributions deLiadora et Nyx (Kael'Thas et Elune)
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
+-- Version Russe par Komsomolka
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -54,6 +55,8 @@ function Necrosis:Initialize(Config)
 			self:Localization_Dialog_Cn()
 		elseif (NecrosisConfig.Language == "esES") then
 			self:Localization_Dialog_Es()
+		elseif (NecrosisConfig.Language == "ruRU") then
+			self:Localization_Dialog_Ru()
 		else
 			self:Localization_Dialog_Fr()
 		end
@@ -67,6 +70,8 @@ function Necrosis:Initialize(Config)
 		self:Localization_Dialog_Cn()
 	elseif  GetLocale() == "esES" then
 		self:Localization_Dialog_Es()
+	elseif  GetLocale() == "ruRU" then
+		self:Localization_Dialog_Ru()
 	else
 		self:Localization_Dialog_Fr()
 	end
