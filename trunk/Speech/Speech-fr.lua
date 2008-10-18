@@ -1,6 +1,6 @@
 --[[
     Necrosis LdC
-    Copyright (C) 2005-2006  Lom Enfroy
+    Copyright (C) 2005-2008  Lom Enfroy
 
     This file is part of Necrosis LdC.
 
@@ -19,15 +19,16 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
+
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Originally by Lomig, Liadora et Nyx (Kael'Thas et Elune) [2005-2007]
--- Now updated by Tarcalion (Nagrand US/Oceanic) [2008-...]
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune)
 --
--- Skins and French voices: Eliah, Ner'zhul
+-- Skins et voix Françaises : Eliah, Ner'zhul
 --
--- German Version by Geschan
--- Spanish Version by DosS (Zul’jin)
+-- Version Allemande par Geschan
+-- Version Espagnole par DosS (Zul’jin)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------

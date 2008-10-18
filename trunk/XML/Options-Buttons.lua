@@ -1,6 +1,6 @@
 --[[
     Necrosis LdC
-    Copyright (C) 2005-2006  Lom Enfroy
+    Copyright (C) 2005-2008  Lom Enfroy
 
     This file is part of Necrosis LdC.
 
@@ -22,7 +22,8 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 --
