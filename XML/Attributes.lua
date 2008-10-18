@@ -1,6 +1,6 @@
 --[[
     Necrosis LdC
-    Copyright (C) 2005-2006  Lom Enfroy
+    Copyright (C) 2005-2008  Lom Enfroy
 
     This file is part of Necrosis LdC.
 
@@ -22,7 +22,8 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig, Liadora et Nyx (Kael'Thas et Elune)
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 --
@@ -411,14 +412,14 @@ function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	-- Si on connait l'emplacement de la pierre de sort,
 	-- Alors cliquer sur le bouton de pierre de sort l'équipe.
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+		NecrosisSpellstoneButton:SetAttribute("macrotext3","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
+		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
 	end
 	-- Si on connait l'emplacement de la pierre de feu,
 	-- Alors cliquer sur le bouton de pierre de feu l'équipe.
 	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
+		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 	end
 end
 
@@ -437,16 +438,16 @@ function Necrosis:InCombatAttribute()
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
 		NecrosisSpellstoneButton:SetAttribute("type1", "item")
 		NecrosisSpellstoneButton:SetAttribute("item", NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[1])
+		NecrosisSpellstoneButton:SetAttribute("macrotext3","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
+		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
 	end
 
 	-- Si on connait le nom de la pierre de feu,
 	-- Alors le clic sur le bouton équipera la pierre
 	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
 		NecrosisFirestoneButton:SetAttribute("type1", "macro")
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/equipslot 18 "..NecrosisConfig.ItemSwitchCombat[2])
+		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
+		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 	end
 
 	-- Si on connait le nom de la pierre de soin,
