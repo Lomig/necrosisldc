@@ -47,8 +47,6 @@ function Necrosis:Localization_Dialog_Tw()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "法術石已裝備",
-		["Spellstone"] = "法術石冷卻時間",
 		["Healthstone"] = "治療石冷卻時間"
 	}
 

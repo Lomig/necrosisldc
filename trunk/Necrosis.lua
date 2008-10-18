@@ -975,13 +975,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		if Local.Stone.Fire.OnHand then FireOnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Soulstone..NecrosisTooltipData[Type].Stone[SoulOnHand])
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Healthstone..NecrosisTooltipData[Type].Stone[HealthOnHand])
-		-- On vérifie si une pierre de sort n'est pas équipée
-		NecrosisTooltip:SetInventoryItem("player", 18)
-		local rightHand = tostring(NecrosisTooltipTextLeft1:GetText())
-		if rightHand:find(self.Translation.Item.Spellstone) then Local.Stone.Spell.OnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Spellstone..NecrosisTooltipData[Type].Stone[SpellOnHand])
-		-- De même pour la pierre de feu
-		if rightHand:find(self.Translation.Item.Firestone) then Local.Stone.Fire.OnHand = true end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Firestone..NecrosisTooltipData[Type].Stone[FireOnHand])
 		-- Affichage du nom du démon, ou s'il est asservi, ou "Aucun" si aucun démon n'est présent
 		if (Local.Summon.DemonType) then
@@ -1033,21 +1027,9 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 				GameTooltip:AddLine(Necrosis.Spell[53].Mana.." Mana")
 			end
 			GameTooltip:AddLine(NecrosisTooltipData[Type].Text[Local.Stone.Spell.Mode])
-			if Local.Stone.Spell.Mode == 3 then
-				self:MoneyToggle()
-				NecrosisTooltip:SetInventoryItem("player", 18)
-				if _G["NecrosisTooltipTextLeft9"] then
-					local itemName = tostring(NecrosisTooltipTextLeft9:GetText())
-					local itemStone = tostring(NecrosisTooltipTextLeft1:GetText())
-					if itemStone:find(self.Translation.Item.Spellstone)
-						and itemName:find(self.Translation.Misc.Cooldown) then
-							GameTooltip:AddLine(itemName)
-					end
-				end
-			end
 		-- Pierre de feu
 		elseif (Type == "Firestone") then
-			-- Idem, mais sans le cooldown
+			-- Idem
 			if Local.Stone.Fire.Mode == 1 then
 				GameTooltip:AddLine(Necrosis.Spell[54].Mana.." Mana")
 			end
@@ -1327,7 +1309,6 @@ function Necrosis:UpdateIcons()
 	-- Pierre inexistante, mode 1
 	elseif not (Local.Stone.Spell.Mode == 3) then
 		Local.Stone.Spell.Mode = 1
-		if Local.Stone.Spell.NeedTimer then Local.Stone.Spell.NeedTimer = not Local.Stone.Spell.NeedTimer end
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if Necrosis.Spell[53].ID and NecrosisConfig.ItemSwitchCombat[1] then
 			self:SpellstoneUpdateAttribute("NoStone")
