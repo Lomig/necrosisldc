@@ -31,7 +31,7 @@
 -- Version Espagnole par DosS (Zul’jin)
 -- Version Russe par Komsomolka
 --
--- Version $LastChangedDate: 2008-10-18 09:28:35 +0200 (sam., 18 oct. 2008) $
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 -- Fonction pour éviter de devoir relocaliser la base des sorts disponibles
