@@ -22,13 +22,14 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
--- Contributions deLiadora et Nyx (Kael'Thas et Elune)
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
+-- Version Russe par Komsomolka
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------

@@ -21,6 +21,7 @@ Locales\Functions-de.lua
 Locales\Functions-es.lua
 Locales\Functions-tw.lua
 Locales\Functions-cn.lua
+Locales\Functions-ru.lua
 
 Locales\Dialog-fr.lua
 Locales\Dialog-en.lua
@@ -28,6 +29,7 @@ Locales\Dialog-de.lua
 Locales\Dialog-es.lua
 Locales\Dialog-tw.lua
 Locales\Dialog-cn.lua
+Locales\Dialog-ru.lua
 
 Speech\Speech-fr.lua
 Speech\Speech-en.lua
@@ -35,6 +37,7 @@ Speech\Speech-de.lua
 Speech\Speech-es.lua
 Speech\Speech-tw.lua
 Speech\Speech-cn.lua
+Speech\Speech-ru.lua
 
 Initialize.lua
 Message.lua

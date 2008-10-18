@@ -23,12 +23,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 -- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
--- Contributions deLiadora et Nyx (Kael'Thas et Elune)
+-- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
+-- Version Russe par Komsomolka
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -36,7 +37,7 @@
 Necrosis = {}
 
 Necrosis.Data = {
-	Version = "3.010180537",
+	Version = "3.010180915",
 	AppName = "Necrosis LdC",
 	LastConfig = 20081018.1
 }
