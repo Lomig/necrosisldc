@@ -132,38 +132,6 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 				Gtimer = nil
 			}
 		)
-	elseif Stone == "SpellstoneIn" then
-		if self:TimerExisteDeja(NECROSIS_COOLDOWN.Spellstone, Timer.SpellTimer) then
-			return Timer
-		end
-		if self:TimerExisteDeja(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer) then
-			self:RetraitTimerParNom(NECROSIS_COOLDOWN.SpellstoneIn, Timer.SpellTimer, Timer.TimerTable)
-		end
-		Timer.SpellTimer:insert(
-			{
-				Name = NECROSIS_COOLDOWN.SpellstoneIn,
-				Time = 30,
-				TimeMax = floor(GetTime() + 30),
-				Type = 2,
-				Target = "",
-				TargetLevel = "",
-				Group = 2,
-				Gtimer = nil
-			}
-		)
-	elseif Stone == "Spellstone" then
-		Timer.SpellTimer:insert(
-			{
-				Name = NECROSIS_COOLDOWN.Spellstone,
-				Time = 180,
-				TimeMax = floor(GetTime() + 180),
-				Type = 2,
-				Target = "",
-				TargetLevel = "",
-				Group = 2,
-				Gtimer = nil
-			}
-		)
 	elseif Stone == "Soulstone" then
 		Timer.SpellTimer:insert(
 			{

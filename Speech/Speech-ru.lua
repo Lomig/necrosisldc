@@ -31,7 +31,7 @@
 -- Version Espagnole par DosS (Zul’jin)
 -- Version Russe par Komsomolka
 --
--- Version $LastChangedDate: 2008-03-30 15:05:46 +1000 $
+-- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 
