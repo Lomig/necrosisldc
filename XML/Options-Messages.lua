@@ -68,7 +68,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:SetTextColor(1, 1, 1)
 		FontString:SetText("Langue / Language / Sprache")
 
-		UIDropDownMenu_SetWidth(125, frame)
+		-- UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame,125)
 
 		-- Activer les bulles d'aide
 		frame = CreateFrame("CheckButton", "NecrosisShowTooltip", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -85,8 +86,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Déplacer les messages dans la zone système
 		frame = CreateFrame("CheckButton", "NecrosisChatType", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -106,8 +107,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Activer les messages de TP et de Rez
 		frame = CreateFrame("CheckButton", "NecrosisSpeech", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -135,8 +136,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Activer les messages courts
 		frame = CreateFrame("CheckButton", "NecrosisShortMessages", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -165,9 +166,9 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
+		-- FontString:SetDisabledTextColor(0.75, 0.75, 0.75)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Activer les messages des démons
 		frame = CreateFrame("CheckButton", "NecrosisDemonMessages", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -184,9 +185,9 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
+		-- FontString:SetDisabledTextColor(0.75, 0.75, 0.75)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Activer les messages des montures
 		frame = CreateFrame("CheckButton", "NecrosisSteedMessages", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -203,9 +204,9 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
+		-- FontString:SetDisabledTextColor(0.75, 0.75, 0.75)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Alertes sonores
 		frame = CreateFrame("CheckButton", "NecrosisSound", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -224,8 +225,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Aertes Antifear
 		frame = CreateFrame("CheckButton", "NecrosisFear", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -242,8 +243,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Alertes Elementaire / Démon
 		frame = CreateFrame("CheckButton", "NecrosisBanish", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -260,8 +261,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Alertes transes
 		frame = CreateFrame("CheckButton", "NecrosisTrance", NecrosisMessagesConfig, "UICheckButtonTemplate")
@@ -278,8 +279,8 @@ function Necrosis:SetMessagesConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 	end
 
@@ -290,7 +291,7 @@ function Necrosis:SetMessagesConfig()
 	for i in ipairs(locales) do
 		if locales[i] == NecrosisConfig.Language then
 			UIDropDownMenu_SetSelectedID(NecrosisLanguageSelection, i)
-			UIDropDownMenu_SetText(langues[i], NecrosisLanguageSelection)
+			UIDropDownMenu_SetText(NecrosisLanguageSelection, langues[i])
 			break
 		end
 	end

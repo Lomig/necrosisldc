@@ -273,8 +273,8 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Afficher les menus en combat
 		frame = CreateFrame("CheckButton", "NecrosisAutoMenu", NecrosisMenusConfig1, "UICheckButtonTemplate")
@@ -298,9 +298,9 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		--frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Cacher les menus sur un click
 		frame = CreateFrame("CheckButton", "NecrosisCloseMenu", NecrosisMenusConfig1, "UICheckButtonTemplate")
@@ -320,9 +320,9 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		--frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- BUFF
 		-- Choix de l'orientation du menu
@@ -337,7 +337,7 @@ function Necrosis:SetMenusConfig()
 		FontString:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 25, 353)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Choix du sens du menu
 		frame = CreateFrame("CheckButton", "NecrosisBuffSens", NecrosisMenusConfig2, "UICheckButtonTemplate")
@@ -361,8 +361,8 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Création du slider de scale du Banish
 		frame = CreateFrame("Slider", "NecrosisBanishSize", NecrosisMenusConfig2, "OptionsSliderTemplate")
@@ -483,7 +483,7 @@ function Necrosis:SetMenusConfig()
 		FontString:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 25, 353)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Choix du sens du menu
 		frame = CreateFrame("CheckButton", "NecrosisDemonSens", NecrosisMenusConfig3, "UICheckButtonTemplate")
@@ -507,8 +507,8 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Création du slider d'Offset X
 		frame = CreateFrame("Slider", "NecrosisDemonOx", NecrosisMenusConfig3, "OptionsSliderTemplate")
@@ -591,7 +591,7 @@ function Necrosis:SetMenusConfig()
 		FontString:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 25, 353)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Choix du sens du menu
 		frame = CreateFrame("CheckButton", "NecrosisCurseSens", NecrosisMenusConfig4, "UICheckButtonTemplate")
@@ -615,8 +615,8 @@ function Necrosis:SetMenusConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Création du slider d'Offset X
 		frame = CreateFrame("Slider", "NecrosisCurseOx", NecrosisMenusConfig4, "OptionsSliderTemplate")
@@ -717,13 +717,13 @@ function Necrosis:SetMenusConfig()
 
 	if not (NecrosisConfig.BuffMenuPos.x == 0) then
 		UIDropDownMenu_SetSelectedID(NecrosisBuffVector, 1)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[1], NecrosisBuffVector)
+		UIDropDownMenu_SetText(NecrosisBuffVector, self.Config.Menus.Orientation[1])
 	elseif NecrosisConfig.BuffMenuPos.y > 0 then
 		UIDropDownMenu_SetSelectedID(NecrosisBuffVector, 2)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[2], NecrosisBuffVector)
+		UIDropDownMenu_SetText(NecrosisBuffVector, self.Config.Menus.Orientation[2])
 	else
 		UIDropDownMenu_SetSelectedID(NecrosisBuffVector, 3)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[3], NecrosisBuffVector)
+		UIDropDownMenu_SetText(NecrosisBuffVector, self.Config.Menus.Orientation[3])
 	end
 	NecrosisBuffSens:SetChecked(NecrosisConfig.BuffMenuPos.direction < 0)
 	NecrosisBanishSize:SetValue(NecrosisConfig.BanishScale)
@@ -732,13 +732,13 @@ function Necrosis:SetMenusConfig()
 
 	if not (NecrosisConfig.PetMenuPos.x == 0) then
 		UIDropDownMenu_SetSelectedID(NecrosisDemonVector, 1)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[1], NecrosisDemonVector)
+		UIDropDownMenu_SetText(NecrosisDemonVector, self.Config.Menus.Orientation[1])
 	elseif NecrosisConfig.PetMenuPos.y > 0 then
 		UIDropDownMenu_SetSelectedID(NecrosisDemonVector, 2)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[2], NecrosisDemonVector)
+		UIDropDownMenu_SetText(NecrosisDemonVector, self.Config.Menus.Orientation[2])
 	else
 		UIDropDownMenu_SetSelectedID(NecrosisDemonVector, 3)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[3], NecrosisDemonVector)
+		UIDropDownMenu_SetText(NecrosisDemonVector, self.Config.Menus.Orientation[3])
 	end
 	NecrosisDemonSens:SetChecked(NecrosisConfig.PetMenuPos.direction < 0)
 	NecrosisDemonOx:SetValue(NecrosisConfig.PetMenuDecalage.x)
@@ -746,13 +746,13 @@ function Necrosis:SetMenusConfig()
 
 	if not (NecrosisConfig.CurseMenuPos.x == 0) then
 		UIDropDownMenu_SetSelectedID(NecrosisCurseVector, 1)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[1], NecrosisCurseVector)
+		UIDropDownMenu_SetText(NecrosisCurseVector, self.Config.Menus.Orientation[1])
 	elseif NecrosisConfig.CurseMenuPos.y > 0 then
 		UIDropDownMenu_SetSelectedID(NecrosisCurseVector, 2)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[2], NecrosisCurseVector)
+		UIDropDownMenu_SetText(NecrosisCurseVector, self.Config.Menus.Orientation[2])
 	else
 		UIDropDownMenu_SetSelectedID(NecrosisCurseVector, 3)
-		UIDropDownMenu_SetText(self.Config.Menus.Orientation[3], NecrosisCurseVector)
+		UIDropDownMenu_SetText(NecrosisCurseVector, self.Config.Menus.Orientation[3])
 	end
 	NecrosisCurseSens:SetChecked(NecrosisConfig.CurseMenuPos.direction < 0)
 	NecrosisCurseOx:SetValue(NecrosisConfig.CurseMenuDecalage.x)

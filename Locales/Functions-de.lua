@@ -40,8 +40,8 @@ if ( GetLocale() == "deDE" ) then
 
 -- Table des sorts du démoniste
 Necrosis.Spell = {
-	[1] = {Name = "Teufelsross beschw\195\182ren",		Length = 0,	Type = 0},
-	[2] = {Name = "Schreckensross herbeirufen",		Length = 0,	Type = 0},
+	[1] = {Name = "Teufelsross",		Length = 0,	Type = 0},
+	[2] = {Name = "Schreckensross",		Length = 0,	Type = 0},
 	[3] = {Name = "Wichtel beschw\195\182ren",		Length = 0,	Type = 0},
 	[4] = {Name = "Leerwandler beschw\195\182ren",		Length = 0,	Type = 0},
 	[5] = {Name = "Sukkubus beschw\195\182ren",		Length = 0,	Type = 0},

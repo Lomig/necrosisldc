@@ -40,8 +40,8 @@ if ( GetLocale() == "esES" ) then
 
 -- Table des sorts du démoniste
 Necrosis.Spell = {
-	[1] = {Name = "Invocar a corcel vil",				Length = 0,	Type = 0},
-	[2] = {Name = "Invocar a corcel nefasto",			Length = 0,	Type = 0},
+	[1] = {Name = "Corcel vil",				Length = 0,	Type = 0},
+	[2] = {Name = "Corcel nefasto",			Length = 0,	Type = 0},
 	[3] = {Name = "Invocar a diablillo",				Length = 0,	Type = 0},
 	[4] = {Name = "Invocar a abisario",				Length = 0,	Type = 0},
 	[5] = {Name = "Invocar a s\195\186cubo",			Length = 0,	Type = 0},

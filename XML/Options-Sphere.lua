@@ -101,7 +101,7 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 328)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Evenement montré par la sphère
 		frame = CreateFrame("Frame", "NecrosisEventSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -115,7 +115,7 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 303)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Sort associé à la sphère
 		frame = CreateFrame("Frame", "NecrosisSpellSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -129,7 +129,7 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 278)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Affiche ou masque le compteur numérique
 		frame = CreateFrame("CheckButton", "NecrosisShowCount", NecrosisSphereConfig, "UICheckButtonTemplate")
@@ -149,8 +149,8 @@ function Necrosis:SetSphereConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Evenement montré par le compteur
 		frame = CreateFrame("Frame", "NecrosisCountSelection", NecrosisSphereConfig, "UIDropDownMenuTemplate")
@@ -164,7 +164,7 @@ function Necrosis:SetSphereConfig()
 		FontString:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 178)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 	end
 
@@ -187,29 +187,29 @@ function Necrosis:SetSphereConfig()
 	for i in ipairs(couleur) do
 		if couleur[i] == NecrosisConfig.NecrosisColor then
 			UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, i)
-			UIDropDownMenu_SetText(self.Config.Sphere.Colour[i], NecrosisSkinSelection)
+			UIDropDownMenu_SetText(NecrosisSkinSelection, self.Config.Sphere.Colour[i])
 			break
 		end
 	end
 
 	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, NecrosisConfig.Circle)
 	if NecrosisConfig.Circle == 1 then
-		UIDropDownMenu_SetText(self.Config.Sphere.Count[NecrosisConfig.Circle], NecrosisEventSelection)
+		UIDropDownMenu_SetText(NecrosisEventSelection, self.Config.Sphere.Count[NecrosisConfig.Circle])
 	else
-		UIDropDownMenu_SetText(self.Config.Sphere.Count[NecrosisConfig.Circle + 1], NecrosisEventSelection)
+		UIDropDownMenu_SetText(NecrosisEventSelection, self.Config.Sphere.Count[NecrosisConfig.Circle + 1])
 	end
 
 	local spell = {19, 31, 37, 41, 43, 44, 47, 49, 55}
 	for i in ipairs(spell) do
 		if spell[i] == NecrosisConfig.MainSpell then
 			UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, i)
-			UIDropDownMenu_SetText(self.Spell[spell[i]].Name, NecrosisSpellSelection)
+			UIDropDownMenu_SetText(NecrosisSpellSelection, self.Spell[spell[i]].Name)
 			break
 		end
 	end
 
 	UIDropDownMenu_SetSelectedID(NecrosisCountSelection, NecrosisConfig.CountType)
-	UIDropDownMenu_SetText(self.Config.Sphere.Count[NecrosisConfig.CountType], NecrosisCountSelection)
+	UIDropDownMenu_SetText(NecrosisCountSelection, self.Config.Sphere.Count[NecrosisConfig.CountType])
 
 	frame:Show()
 end

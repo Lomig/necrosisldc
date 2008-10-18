@@ -248,7 +248,9 @@ end
 
 local function CreateMenuButton(button)
 	-- Creaton du bouton d'ouverture du menu
-	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureAnchorUpDownTemplate")
+	-- Modif temporaire 3.0 -- changement du template
+	-- local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureAnchorUpDownTemplate")
+	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureActionButtonTemplate SecureHandlerClickTemplate")
 
 	-- Définition de ses attributs
 	frame:SetMovable(true)
@@ -266,17 +268,19 @@ local function CreateMenuButton(button)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)
 	frame:SetScript("OnDragStart", function()
-		if not NecrosisConfig.NecrosisLockServ then
+		--if not NecrosisConfig.NecrosisLockServ then
 			Necrosis:OnDragStart(this)
-		end
+		--end
 	end)
 	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(this) end)
 
 	-- Header du bouton
-	local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureStateHeaderTemplate")
+	-- Modif temporaire 3.0 -- changement du template
+	-- local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureStateHeaderTemplate")
+	local b = CreateFrame("Frame", "Necrosis"..button.."0", UIParent, "SecureActionButtonTemplate SecureHandlerClickTemplate")
 	b:ClearAllPoints()
 	b:SetAllPoints(frame)
-	b:Show()
+	b:Hide()
 
 	-- Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if not NecrosisConfig.NecrosisLockServ then
@@ -305,6 +309,8 @@ function Necrosis:CreateMenuBuff(i)
 	-- Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
 	if not frame then
+		-- Modif 3.0 provisoire
+		-- frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate")
 		frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate")
 
 		-- Définition de ses attributs
@@ -357,6 +363,8 @@ function Necrosis:CreateMenuPet(i)
 	-- Creaton du bouton
 	local frame = _G["NecrosisPetMenu"..i]
 	if not frame then
+		-- Modif 3.0 Provisoire
+		-- frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate")
 		frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate")
 
 		-- Définition de ses attributs

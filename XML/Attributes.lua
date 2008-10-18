@@ -50,35 +50,24 @@ function Necrosis:MenuAttribute(menu)
 	local menu0 = _G[menu.."0"]
 	local menuButton = _G[menu.."Button"]
 
-	menuButton:SetAttribute("*childraise*", true)
-
-	menuButton:SetAttribute("onmousedownbutton1", "down1")
-	menuButton:SetAttribute("onmousedownbutton2", "down2")
-	menuButton:SetAttribute("*anchorchild-down1", menu0)
-	menuButton:SetAttribute("*anchorchild-down2", menu0)
-
-	menuButton:SetAttribute("*childofsx-down1", 0)
-	menuButton:SetAttribute("*childofsy-down1", 0)
-	menuButton:SetAttribute("*childofsx-down2", 0)
-	menuButton:SetAttribute("*childofsy-down2", 0)
-	menuButton:SetAttribute("*childpoint-down1", "CENTER")
-	menuButton:SetAttribute("*childpoint-down2", "CENTER")
-	menuButton:SetAttribute("*childrelpoint-down1", "CENTER")
-	menuButton:SetAttribute("*childrelpoint-down2", "CENTER")
-
-	menuButton:SetAttribute("*childstate-down1", "^mousedown1")
-	menuButton:SetAttribute("*childstate-down2", "^mousedown2")
-	menuButton:SetAttribute("*childreparent-down1", "true")
-	menuButton:SetAttribute("*childreparent-down2", "true")
-
-	menu0:SetAttribute("state", 0)
-
-	menu0:SetAttribute("statemap-anchor-mousedown1", "0:1;1:0;3:3;4:4")
-	menu0:SetAttribute("statemap-anchor-mousedown2", "0:1;1:0;3:3;4:4")
-	menu0:SetAttribute("delaystatemap-anchor-mousedown1", "3:3;4:4;*:0")
-	menu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
-	menu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
-
+	menu0:SetParent(menuButton)
+	menuButton:SetAttribute("_adopt", menu0)
+	menuButton:Execute([[
+		ButtonList = table.new(self:GetChildren())
+	]])
+	menuButton:SetAttribute("_onclick", [[
+		if menuOpen then
+			menuOpen = false
+			for i, button in ipairs(ButtonList) do
+				button:Hide()
+			end
+		else
+			menuOpen = true
+			for i, button in ipairs(ButtonList) do
+				button:Show()
+			end
+		end
+	]])
 end
 
 

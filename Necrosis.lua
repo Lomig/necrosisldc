@@ -118,7 +118,6 @@ Local.InWorld = true
 -- Events utilisés dans Necrosis
 Local.Events = {
 	"BAG_UPDATE",
-	"COMBAT_TEXT_UPDATE",
 	"PLAYER_REGEN_DISABLED",
 	"PLAYER_REGEN_ENABLED",
 	"PLAYER_DEAD",
@@ -132,14 +131,12 @@ Local.Events = {
 	"UNIT_MANA",
 	"UNIT_HEALTH",
 	"LEARNED_SPELL_IN_TAB",
-	"CHAT_MSG_SPELL_SELF_DAMAGE",
 	"PLAYER_TARGET_CHANGED",
 	"TRADE_REQUEST",
 	"TRADE_REQUEST_CANCEL",
 	"TRADE_ACCEPT_UPDATE",
 	"TRADE_SHOW",
 	"TRADE_CLOSED",
-	"CHAT_MSG_SPELL_AURA_GONE_OTHER",
 	"COMBAT_LOG_EVENT_UNFILTERED"
 }
 
@@ -262,21 +259,8 @@ Local.TimerManagement = {
 		},
 		metatable
 	),
-	-- Dernier sort casté et regex pour tester les resists
-	LastSpell = {
-		Fail = {
-			SPELLIMMUNESELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
-			SPELLRESISTSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
-			SPELLEVADEDSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
-			SPELLREFLECTSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
-			SPELLMISSSELFOTHER:gsub("%%%d?$?s", [[(.+)]]),
-			SPELLLOGABSORBSELFOTHER:gsub("%%%d?$?s", [[(.+)]])
-		}
-	},
-	-- Un timer de Banish en place et regex pour tester le fade
-	Banish = {
-		Fade = AURAREMOVEDOTHER:gsub("%%%d?$?s", [[(.+)]])
-	}
+	-- Dernier sort casté
+	LastSpell = {}
 }
 
 -- Variables des messages d'invocation
@@ -576,38 +560,6 @@ function Necrosis:OnEvent(event)
 			NecrosisCreatureAlertButton:Hide()
 		end
 
-	-- Détection des immunes et des resists
-	elseif event == "CHAT_MSG_SPELL_SELF_DAMAGE" then
-		local Fini = false
-		for i in ipairs(Local.TimerManagement.LastSpell.Fail) do
-			for spell in arg1:gmatch(Local.TimerManagement.LastSpell.Fail[i]) do
-				if NecrosisConfig.AntiFearAlert
-					and (spell == Necrosis.Spell[13].Name or spell == Necrosis.Spell[19].Name)
-					then
-						Local.Warning.Antifear.Immune = true
-						Fini = true
-						break
-				end
-				if spell == Local.TimerManagement.LastSpell.Name
-					and GetTime() <= (Local.TimerManagement.LastSpell.Time + 1.5)
-					then
-						self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
-						Fini = true
-						break
-				end
-			end
-			if Fini then break end
-		end
-	-- Tentative de détection du déban
-	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" and Local.TimerManagement.Banish.Focus then
-		for spell in arg1:gmatch(Local.TimerManagement.Banish.Fade) do
-			if spell == Necrosis.Spell[9] and not self:UnitHasEffect("focus", Necrosis.Spell[9]) then
-				self:Msg("BAN ! BAN ! BAN !")
-				self:RetraitTimerParNom(Necrosis.Spell[9], Local.TimerManagement)
-				Local.TimerManagement.Banish.Focus = false
-				break
-			end
-		end
 	-- Si le Démoniste apprend un nouveau sort / rang de sort, on récupère la nouvelle liste des sorts
 	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
 	elseif (event == "LEARNED_SPELL_IN_TAB") then
@@ -632,26 +584,40 @@ function Necrosis:OnEvent(event)
 	elseif (event == "UNIT_PET" and arg1 == "player") then
 		self:ChangeDemon()
 
-	------------------------------------------------------------------------------
-	-- patch 2.4 introduced major changes to the combat logging system
-	-- the following change fixes the ShadowTrance / Backlash sound notifications.
-	--[[ removed:
-  -- elseif event == "COMBAT_TEXT_UPDATE" then		
-	--	if arg1 == "AURA_START" then
-	--		self:SelfEffect("BUFF", arg2)
-	--	elseif arg1 == "AURA_END" then
-	--		self:SelfEffect("DEBUFF", arg2)
-	--	end
-	--]]
-	-- replaced with:  
-  elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
-  	if arg2 == "SPELL_AURA_APPLIED" and arg6 == UnitGUID("player") then
-				self:SelfEffect("BUFF", arg10)
-	  elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("player") then
-	  		self:SelfEffect("DEBUFF", arg10)
-  	end
-	------------------------------------------------------------------------------
-	
+	-- Lecture du journal de combat
+	elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+		-- Détection de la transe de l'ombre et de  Contrecoup
+		if arg2 == "SPELL_AURA_APPLIED" and arg6 == UnitGUID("player") then
+			self:SelfEffect("BUFF", arg10)
+		-- Détection de la fin de la transe de l'ombre et de Contrecoup
+		elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("player") then
+			self:SelfEffect("DEBUFF", arg10)
+		-- Détection du Déban
+		elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("focus") and Local.TimerManagement.Banish.Focus then
+			for spell in arg1:gmatch(Local.TimerManagement.Banish.Fade) do
+				if spell == Necrosis.Spell[9] and not self:UnitHasEffect("focus", Necrosis.Spell[9]) then
+					self:Msg("BAN ! BAN ! BAN !")
+					self:RetraitTimerParNom(Necrosis.Spell[9], Local.TimerManagement)
+					Local.TimerManagement.Banish.Focus = false
+					break
+				end
+			end
+		-- Détection des résists / immunes
+		elseif arg2 == "SPELL_MISSED" and arg3 == UnitGUID("player") and arg6 == UnitGUID("target") then
+			if NecrosisConfig.AntiFearAlert
+				and (arg10 == Necrosis.Spell[13].Name or arg10 == Necrosis.Spell[19].Name)
+				and arg12 == "IMMUNE"
+				then
+					Local.Warning.Antifear.Immune = true
+			end
+			if arg10 == Local.TimerManagement.LastSpell.Name
+				and GetTime() <= (Local.TimerManagement.LastSpell.Time + 1.5)
+				then
+					self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
+			end
+		end
+
+	-- Si on rentre en combat
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		Local.PlayerInCombat = true
 		-- On ferme le menu des options
@@ -1113,13 +1079,8 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		if Local.Soulshard.Count == 0 then
 			GameTooltip:AddLine("|c00FF4444"..NecrosisTooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
 		end
-	elseif (Type == "Mount") then
-		if Necrosis.Spell[2].ID then
-			GameTooltip:AddLine(Necrosis.Spell[2].Mana.." Mana")
-			GameTooltip:AddLine(NecrosisTooltipData[Type].Text)
-		elseif Necrosis.Spell[1].ID then
-			GameTooltip:AddLine(Necrosis.Spell[1].Mana.." Mana")
-		end
+	elseif (Type == "Mount") and Necrosis.Spell[2].ID then
+		GameTooltip:AddLine(NecrosisTooltipData[Type].Text)
 	elseif (Type == "Armor") then
 		if Necrosis.Spell[31].ID then
 			GameTooltip:AddLine(Necrosis.Spell[31].Mana.." Mana")
@@ -1596,33 +1557,6 @@ function Necrosis:UpdateMana()
 
 	if mana then
 	-- Coloration du bouton en grisé si pas assez de mana
-		if _G["NecrosisMountButton"] and Local.Summon.SteedAvailable and not Local.BuffActif.Mount then
-			if Necrosis.Spell[2].ID then
-				if (Necrosis.Spell[2].Mana > mana or Local.PlayerInCombat) then
-					if not Local.Desatured["Mount"] then
-						NecrosisMountButton:GetNormalTexture():SetDesaturated(1)
-						Local.Desatured["Mount"] = true
-					end
-				else
-					if Local.Desatured["Mount"] then
-						NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
-						Local.Desatured["Mount"] = false
-					end
-				end
-			else
-				if (Necrosis.Spell[1].Mana > mana or Local.PlayerInCombat) then
-					if not Local.Desatured["Mount"] then
-						NecrosisMountButton:GetNormalTexture():SetDesaturated(1)
-						Local.Desatured["Mount"] = true
-					end
-				else
-					if Local.Desatured["Mount"] then
-						NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
-						Local.Desatured["Mount"] = false
-					end
-				end
-			end
-		end
 		if Necrosis.Spell[35].ID then
 			if Necrosis.Spell[35].Mana > mana or Local.Soulshard.Count == 0 then
 				if not Local.Desatured["Enslave"] then
@@ -2243,9 +2177,19 @@ function Necrosis:SpellSetup()
 		end
 	end
 
-	-- WoW 2.0 : Les boutons doivent être sécurisés pour être utilisés.
-	-- Chaque utilisation passe par la définition d'attributs au bouton, l'UI se chargeant de gérer l'event de clic.
-
+	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
+	if GetNumCompanions("MOUNT") > 0 then
+		for i = 1, GetNumCompanions("MOUNT"), 1 do
+			local _, NomCheval, SpellCheval = GetCompanionInfo("MOUNT", i)
+			if NomCheval == Necrosis.Spell[1].Name then
+				Necrosis.Spell[1].ID = SpellCheval
+			end
+			if NomCheval == Necrosis.Spell[2].Name then
+				Necrosis.Spell[2].ID = SpellCheval
+			end
+		end
+	end
+	
 	-- Association du sort de monture correct au bouton
 	if Necrosis.Spell[1].ID or Necrosis.Spell[2].ID then
 		Local.Summon.SteedAvailable = true
@@ -2527,15 +2471,9 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			self:MenuAttribute("NecrosisPetMenu")
 			for i = 1, #Local.Menu.Pet, 1 do
-				NecrosisPetMenu0:SetAttribute("addchild", Local.Menu.Pet[i])
-				Local.Menu.Pet[i]:SetAttribute("showstates", "!0,*")
-				Local.Menu.Pet[i]:SetAttribute("anchorchild", NecrosisPetMenu0)
-				if NecrosisConfig.ClosingMenu then
-					Local.Menu.Pet[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-				else
-					Local.Menu.Pet[i]:SetAttribute("newstate", "")
-				end
-				Local.Menu.Pet[i]:Hide()
+				NecrosisPetMenu0:SetAttribute("_adopt", Local.Menu.Pet[i])
+				Local.Menu.Pet[i]:SetParent(NecrosisPetMenu0)
+				Local.Menu.Pet[i]:Show()
 			end
 			self:PetSpellAttribute()
 		end
@@ -2600,15 +2538,9 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			self:MenuAttribute("NecrosisBuffMenu")
 			for i = 1, #Local.Menu.Buff, 1 do
-				NecrosisBuffMenu0:SetAttribute("addchild", Local.Menu.Buff[i])
-				Local.Menu.Buff[i]:SetAttribute("showstates", "!0,*")
-				Local.Menu.Buff[i]:SetAttribute("anchorchild", NecrosisBuffMenu0)
-				if NecrosisConfig.ClosingMenu then
-					Local.Menu.Buff[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-				else
-					Local.Menu.Buff[i]:SetAttribute("newstate", "")
-				end
-				Local.Menu.Buff[i]:Hide()
+				NecrosisBuffMenu0:SetAttribute("_adopt", Local.Menu.Buff[i])
+				Local.Menu.Buff[i]:SetParent(NecrosisBuffMenu0)
+				Local.Menu.Buff[i]:Show()
 			end
 			self:BuffSpellAttribute()
 		end
@@ -2657,15 +2589,9 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			self:MenuAttribute("NecrosisCurseMenu")
 			for i = 1, #Local.Menu.Curse, 1 do
-				NecrosisCurseMenu0:SetAttribute("addchild", Local.Menu.Curse[i])
-				Local.Menu.Curse[i]:SetAttribute("showstates", "!0,*")
-				Local.Menu.Curse[i]:SetAttribute("anchorchild", NecrosisCurseMenu0)
-				if NecrosisConfig.ClosingMenu then
-					Local.Menu.Curse[i]:SetAttribute("newstate", "1:0;3:3;4:4")
-				else
-					Local.Menu.Curse[i]:SetAttribute("newstate", "")
-				end
-				Local.Menu.Curse[i]:Hide()
+				NecrosisCurseMenu0:SetAttribute("_adopt", Local.Menu.Curse[i])
+				Local.Menu.Curse[i]:SetParent(NecrosisCurseMenu0)
+				Local.Menu.Curse[i]:Show()
 			end
 			self:CurseSpellAttribute()
 		end
