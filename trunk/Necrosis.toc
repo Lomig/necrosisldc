@@ -41,6 +41,7 @@ Speech\Speech-ru.lua
 
 Initialize.lua
 Message.lua
+Spells.lua
 
 Timers\Functions.lua
 Timers\GraphicalTimers.lua

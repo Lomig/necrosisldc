@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Necrosis LdC
     Copyright (C) 2005-2008  Lom Enfroy
 
@@ -39,76 +39,6 @@
 ------------------------------------------------
 
 if ( GetLocale() == "frFR" ) then
-
--- Table des sorts du démoniste
-Necrosis.Spell = {
-	[1] = {Name = "Palefroi corrompu",			Length = 0,	Type = 0},
-	[2] = {Name = "Destrier de l'effroi",			Length = 0,	Type = 0},
-	[3] = {Name = "Invocation : diablotin",				Length = 0,	Type = 0},
-	[4] = {Name = "Invocation : marcheur du Vide",			Length = 0,	Type = 0},
-	[5] = {Name = "Invocation : succube",				Length = 0,	Type = 0},
-	[6] = {Name = "Invocation : chasseur corrompu",			Length = 0,	Type = 0},
-	[7] = {Name = "Invocation : gangregarde",				Length = 0,	Type = 0},
-	[8] = {Name = "Inferno",						Length = 3600,	Type = 3},
-	[9] = {Name = "Bannir",							Length = 30,	Type = 2},
-	[10] = {Name = "Asservir d\195\169mon",					Length = 300,	Type = 2},
-	[11] = {Name = "R\195\169surrection de Pierre d'\195\162me",		Length = 1800,	Type = 1},
-	[12] = {Name = "Immolation",						Length = 15,	Type = 6},
-	[13] = {Name = "Peur",							Length = 15,	Type = 6},
-	[14] = {Name = "Corruption",						Length = 18,	Type = 5},
-	[15] = {Name = "Domination corrompue",					Length = 900,	Type = 3},
-	[16] = {Name = "Mal\195\169diction funeste",				Length = 60,	Type = 3},
-	[17] = {Name = "Furie de l'ombre",					Length = 20,	Type = 3},
-	[18] = {Name = "Feu de l'\195\162me",					Length = 60,	Type = 3},
-	[19] = {Name = "Voile mortel",						Length = 120,	Type = 3},
-	[20] = {Name = "Br\195\187lure de l'ombre",				Length = 15,	Type = 3},
-	[21] = {Name = "Conflagration",						Length = 10,	Type = 3},
-	[22] = {Name = "Mal\195\169diction d'agonie",				Length = 24,	Type = 4},
-	[23] = {Name = "Mal\195\169diction de faiblesse",			Length = 120,	Type = 4},
-	[24] = {Name = "Mal\195\169diction de t\195\169m\195\169rit\195\169",	Length = 120,	Type = 4},
-	[25] = {Name = "Mal\195\169diction des langages",			Length = 30,	Type = 4},
-	[26] = {Name = "Mal\195\169diction des \195\169l\195\169ments",		Length = 300,	Type = 4},
-	[27] = {Name = "Mal\195\169diction de l'ombre",				Length = 300,	Type = 4},
-	[28] = {Name = "Siphon de vie",						Length = 30,	Type = 6},
-	[29] = {Name = "Hurlement de terreur",					Length = 40,	Type = 3},
-	[30] = {Name = "Rituel de mal\195\169diction",				Length = 3600,	Type = 0},
-	[31] = {Name = "Armure d\195\169moniaque",				Length = 0,	Type = 0},
-	[32] = {Name = "Respiration interminable",				Length = 0,	Type = 0},
-	[33] = {Name = "D\195\169tection de l'invisibilit\195\169",		Length = 0,	Type = 0},
-	[34] = {Name = "Oeil de Kilrogg",					Length = 0,	Type = 0},
-	[35] = {Name = "Asservir d\195\169mon",					Length = 0,	Type = 0},
-	[36] = {Name = "Peau de d\195\169mon",					Length = 0,	Type = 0},
-	[37] = {Name = "Rituel d'invocation",					Length = 0,	Type = 0},
-	[38] = {Name = "Lien spirituel",					Length = 0,	Type = 0},
-	[39] = {Name = "D\195\169tection des d\195\169mons",			Length = 0,	Type = 0},
-	[40] = {Name = "Mal\195\169diction de fatigue",				Length = 12,	Type = 4},
-	[41] = {Name = "Connexion",						Length = 0,	Type = 0},
-	[42] = {Name = "Mal\195\169diction amplifi\195\169e",			Length = 180,	Type = 3},
-	[43] = {Name = "Gardien de l'ombre",					Length = 30,	Type = 3},
-	[44] = {Name = "Sacrifice d\195\169moniaque",				Length = 0,	Type = 0},
-	[45] = {Name = "Trait de l'ombre",					Length = 0,	Type = 0},
-	[46] = {Name = "Affliction instable",					Length = 18,	Type = 6},
-	[47] = {Name = "Gangrarmure",						Length = 0,	Type = 0},
-	[48] = {Name = "Graine de Corruption",					Length = 18,	Type = 5},
-	[49] = {Name = "Brise-\195\162me",					Length = 300,	Type = 3},
-	[50] = {Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
-	[51] = {Name = "Cr\195\169ation de pierre d'\195\162me",		Length = 0,	Type = 0},
-	[52] = {Name = "Cr\195\169ation de pierre de soins",			Length = 0,	Type = 0},
-	[53] = {Name = "Cr\195\169ation de pierre de sort",			Length = 0,	Type = 0},
-	[54] = {Name = "Cr\195\169ation de pierre de feu",			Length = 0,	Type = 0},
-	[55] = {Name = "Pacte noir",						Length = 0,	Type = 0},
-}
--- Type 0 = Pas de Timer
--- Type 1 = Timer permanent principal
--- Type 2 = Timer permanent
--- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
--- Type 5 = Timer de corruption
--- Type 6 = Timer de combat
-
-for i in ipairs(Necrosis.Spell) do
-	Necrosis.Spell[i].Rank = " "
-end
 
 -- Types d'unité des PnJ utilisés par Necrosis
 Necrosis.Unit = {

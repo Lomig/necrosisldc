@@ -45,8 +45,6 @@ function Necrosis:Localization_Dialog_Fr()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Pierre de sort \195\169quip\195\169e",
-		["Spellstone"] = "Cooldown Pierre de sort",
 		["Healthstone"] = "Temps de recharge Pierre de soins"
 	};
 
@@ -84,11 +82,11 @@ function Necrosis:Localization_Dialog_Fr()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPierre de sort|r",
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic milieu ou Ctrl+clic gauche pour \195\169quiper","Tenue en main\nClic gauche pour utiliser\nShift+clic pour d\195\169s\195\169quiper"}
+			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Pierre de feu|r",
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour \195\169quiper","Tenue en main\nShift+clic pour d\195\169s\195\169quiper"}
+			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDur\195\169e des sorts|r",

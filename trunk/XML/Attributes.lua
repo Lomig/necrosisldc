@@ -261,11 +261,7 @@ function Necrosis:CurseSpellAttribute()
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
 			f:SetAttribute("spell-debuff", SpellName_Rank)
-			f:SetAttribute("harmbutton2", "amplif")
-			f:SetAttribute("type-amplif", "macro")
-			f:SetAttribute("macrotext-amplif",
-				"/cast "..Necrosis.Spell[42].Name.."\n/stopcasting\n/cast "..SpellName_Rank
-			)
+
 			-- Création du tableau des raccourcis claviers
 			if not Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
 				Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true

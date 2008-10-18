@@ -99,6 +99,7 @@ function Necrosis:Initialize(Config)
 	for index in ipairs(self.Spell) do
 		self.Spell[index].ID = nil
 	end
+	self:SpellLocalize()
 	self:SpellSetup()
 	-- Création des menus de buff et d'invocation
 	self:CreateMenu()

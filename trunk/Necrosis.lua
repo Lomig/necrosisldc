@@ -102,8 +102,8 @@ local metatable = {
 	}
 }
 
--- SPELL_TABLE est déjà initialisé ; On lui ajoute alors sa métatable
-Necrosis.Spell = setmetatable(Necrosis.Spell, metatable)
+-- Création de la métatable contenant les sorts de nécrosis
+Necrosis.Spell = setmetatable({}, metatable)
 
 ------------------------------------------------------------------------------------------------------
 -- DÉCLARATION DES VARIABLES
@@ -351,7 +351,7 @@ function Necrosis:OnLoad()
 		end
 
 		-- Easter Egg
-		if UnitName("player") == "Lycion" then
+		if UnitName("player") == "Licyon" then
 			SendChatMessage("Je suis le pire noob de la terre, et Lomig est mon maitre !", "GUILD")
 			SendChatMessage("Il n'y a pas plus cr\195\169tin que Lycion... Virez moi !", "OFFICER")
 			SendChatMessage("Lycion floode Cyrax by Lomig", "WHISPER", "Common", "Cyrax")
@@ -516,6 +516,7 @@ function Necrosis:OnEvent(event)
 	-- On sauve également le nom de la cible du sort ainsi que son niveau
 	elseif (event == "UNIT_SPELLCAST_SENT") then
 		_, Local.SpellCasted.Name, Local.SpellCasted.Rank, Local.SpellCasted.TargetName = arg1, arg2, arg3, arg4
+		self:Msg(Local.SpellCasted.Name)
 		if (not Local.SpellCasted.TargetName or Local.SpellCasted.TargetName == "") and UnitName("target") then
 			Local.SpellCasted.TargetName = UnitName("target")
 		elseif not Local.SpellCasted.TargetName then
@@ -782,9 +783,6 @@ function Necrosis:SpellManagement()
 		-- Si le sort était une pierre de soin
 		elseif Local.SpellCasted.Name:find(self.Translation.Item.Healthstone) and not Local.SpellCasted.Name:find(self.Translation.Misc.Create) then
 			Local.TimerManagement = self:InsertTimerStone("Healthstone", nil, nil, Local.TimerManagement)
-		-- Si le sort était une pierre de sort
-		elseif Local.SpellCasted.Name:find(self.Translation.Item.Spellstone) and not Local.SpellCasted.Name:find(self.Translation.Misc.Create) then
-			Local.TimerManagement = self:InsertTimerStone("Spellstone", nil, nil, Local.TimerManagement)
 		-- Pour les autres sorts castés, tentative de timer si valable
 		else
 			for spell=1, #Necrosis.Spell, 1 do
@@ -1334,12 +1332,6 @@ function Necrosis:UpdateIcons()
 		if Necrosis.Spell[53].ID and NecrosisConfig.ItemSwitchCombat[1] then
 			self:SpellstoneUpdateAttribute("NoStone")
 		end
-	end
-
-	-- Timer de la pierre de sort quand on l'équipe
-	if Local.Stone.Spell.Mode == 3 and not Local.Stone.Spell.NeedTimer then
-		Local.Stone.Spell.NeedTimer = true
-		Local.TimerManagement = self:InsertTimerStone("SpellstoneIn", nil, nil, Local.TimerManagement)
 	end
 
 	-- Affichage de l'icone liée au mode
@@ -2059,7 +2051,6 @@ function Necrosis:ButtonSetup()
 end
 
 
-
 -- Ma fonction préférée ! Elle fait la liste des sorts connus par le démo, et les classe par rang.
 -- Pour les pierres, elle sélectionne le plus haut rang connu
 function Necrosis:SpellSetup()
@@ -2122,7 +2113,7 @@ function Necrosis:SpellSetup()
 	del(CurrentSpells)
 
 	for spellID = 1, MAX_SPELLS, 1 do
-        local spellName, subSpellName = GetSpellName(spellID, "spell")
+		local spellName, subSpellName = GetSpellName(spellID, "spell")
 		if (spellName) then
 			for index = 1, #Necrosis.Spell, 1 do
 				if Necrosis.Spell[index].Name == spellName then
