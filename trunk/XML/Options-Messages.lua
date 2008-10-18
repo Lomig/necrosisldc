@@ -61,12 +61,12 @@ function Necrosis:SetMessagesConfig()
 		frame = CreateFrame("Frame", "NecrosisLanguageSelection", NecrosisMessagesConfig, "UIDropDownMenuTemplate")
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisMessagesConfig, "BOTTOMRIGHT", 0, 420)
+		frame:SetPoint("RIGHT", NecrosisMessagesConfig, "BOTTOMRIGHT", 40, 420)
 
 		local FontString = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 423)
+		FontString:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 35, 423)
 		FontString:SetTextColor(1, 1, 1)
 		FontString:SetText("Langue / Language / Sprache")
 
@@ -288,8 +288,8 @@ function Necrosis:SetMessagesConfig()
 
 	UIDropDownMenu_Initialize(NecrosisLanguageSelection, Necrosis.Language_Init)
 
-	local locales = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES"}
-	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español"}
+	local locales = {"frFR", "enUS", "deDE", "zhTW", "zhCN", "esES", "ruRU"}
+	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español", "ruRU"}
 	for i in ipairs(locales) do
 		if locales[i] == NecrosisConfig.Language then
 			UIDropDownMenu_SetSelectedID(NecrosisLanguageSelection, i)
@@ -348,7 +348,7 @@ end
 -- Fonctions du Dropdown des timers
 function Necrosis.Language_Init()
 	local element = {}
-	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español"}
+	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español", "ruRU"}
 
 	for i in ipairs(langues) do
 		element.text = langues[i]
@@ -377,9 +377,12 @@ function Necrosis.Language_Click()
 	elseif ID == 5 then
 		NecrosisConfig.Language = "zhCN"
 		Necrosis:Localization_Dialog_Cn()
-	else
+	elseif ID == 6 then
 		NecrosisConfig.Language = "esES"
 		Necrosis:Localization_Dialog_Es()
+	else
+		NecrosisConfig.Language = "ruRU"
+		Necrosis:Localization_Dialog_Ru()
 	end
 	Necrosis:Localization()
 	Necrosis:SetMessagesConfig()
