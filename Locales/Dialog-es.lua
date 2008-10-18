@@ -46,8 +46,6 @@ function Necrosis:Localization_Dialog_Es()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Piedra de Hechizo equipada",
-		["Spellstone"] = "Tiempo de regeneraci\195\179n Piedra de Hechizo",
 		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud"
 	}
 
@@ -85,11 +83,11 @@ function Necrosis:Localization_Dialog_Es()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPiedra de Hechizo|r",
-			Text = {"Click derecho para crear","En el inventario\nClick central o Ctrl+Click izquierdo para equipar ","Equipado - Click izquierdo para usar\n Shift+Click para desequipar"}
+			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Piedra de Fuego|r",
-			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para equipar","Equipado - Shift+Click para desequipar"}
+			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDuraci\195\179n de Hechizos|r",

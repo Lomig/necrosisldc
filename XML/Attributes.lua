@@ -409,14 +409,14 @@ function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	-- Si on connait l'emplacement de la pierre de sort,
 	-- Alors cliquer sur le bouton de pierre de sort l'équipe.
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
+		NecrosisSpellstoneButton:SetAttribute("type1", "macro")
+		NecrosisSpellstoneButton:SetAttribute("macrotext*","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
 	end
 	-- Si on connait l'emplacement de la pierre de feu,
 	-- Alors cliquer sur le bouton de pierre de feu l'équipe.
 	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
+		NecrosisFirestoneButton:SetAttribute("type1", "macro")
 		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 	end
 end
 
@@ -431,12 +431,9 @@ function Necrosis:InCombatAttribute()
 
 	-- Si on connait le nom de la pierre de sort,
 	-- Alors le clic gauche utiliser la pierre
-	-- Alors le clic milieu sur le bouton équipera la pierre
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("type1", "item")
-		NecrosisSpellstoneButton:SetAttribute("item", NecrosisConfig.ItemSwitchCombat[1])
-		NecrosisSpellstoneButton:SetAttribute("macrotext3","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
-		NecrosisSpellstoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
+		NecrosisSpellstoneButton:SetAttribute("type1", "macro")
+		NecrosisSpellstoneButton:SetAttribute("macrotext*", NecrosisConfig.ItemSwitchCombat[1])
 	end
 
 	-- Si on connait le nom de la pierre de feu,
@@ -444,7 +441,6 @@ function Necrosis:InCombatAttribute()
 	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
 		NecrosisFirestoneButton:SetAttribute("type1", "macro")
 		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
-		NecrosisFirestoneButton:SetAttribute("ctrl-macrotext1", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 	end
 
 	-- Si on connait le nom de la pierre de soin,
@@ -519,7 +515,7 @@ function Necrosis:SpellstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSpellstoneButton:SetAttribute("type1", "spell")
-		NecrosisSpellstoneButton:SetAttribute("spell1", Necrosis.Spell[53].Name.."("..Necrosis.Spell[53].Rank..")")
+		NecrosisSpellstoneButton:SetAttribute("spell*", Necrosis.Spell[53].Name.."("..Necrosis.Spell[53].Rank..")")
 		return
 	end
 
@@ -537,10 +533,10 @@ function Necrosis:FirestoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisFirestoneButton:SetAttribute("type1", "spell")
-		NecrosisFirestoneButton:SetAttribute("spell1", Necrosis.Spell[54].Name.."("..Necrosis.Spell[54].Rank..")")
+		NecrosisFirestoneButton:SetAttribute("spell*", Necrosis.Spell[54].Name.."("..Necrosis.Spell[54].Rank..")")
 		return
 	end
 
-	NecrosisFirestoneButton:SetAttribute("*type1", "macro")
+	NecrosisFirestoneButton:SetAttribute("type1", "macro")
 	NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 end

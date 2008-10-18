@@ -45,8 +45,6 @@ function Necrosis:Localization_Dialog_De()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Zauberstein ausr\195\188sten",
-		["Spellstone"] = "Zauberstein Cooldown",
 		["Healthstone"] = "Gesundheitsstein Cooldown"
 	};
 
@@ -84,11 +82,11 @@ function Necrosis:Localization_Dialog_De()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFZauberstein|r",
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nMittlere Maustaste oder Strg+linke Maustaste zum ausr\195\188sten","Ausger\195\188stet - Linke Maustaste zum benutzten\nShift+Klick um abzulegen"}
+			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Feuerstein|r",
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nMittlere Maustaste zum ausr\195\188sten","Ausger\195\188stet\nShift+Klick um abzulegen"}
+			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpruchdauer|r",

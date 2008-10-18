@@ -45,8 +45,6 @@ function Necrosis:Localization_Dialog_En()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Spellstone equiped",
-		["Spellstone"] = "Spellstone Cooldown",
 		["Healthstone"] = "Healthstone Cooldown"
 	}
 
@@ -84,11 +82,11 @@ function Necrosis:Localization_Dialog_En()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFSpellstone|r",
-			Text = {"Right click to create","In Inventory\nMiddle click or Ctrl+left click to equip","Held in hand\nLeft click to user\nShift+clic to unequip"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Firestone|r",
-			Text = {"Right click to create","In Inventory\nLeft click to equip","Held in hand\nShift+clic to unequip"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpell Durations|r",

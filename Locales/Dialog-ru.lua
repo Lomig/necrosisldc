@@ -45,8 +45,6 @@ function Necrosis:Localization_Dialog_Ru()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["SpellstoneIn"] = "Надеть Камень заклинаний",
-		["Spellstone"] = "Готовность Камня заклинаний",
 		["Healthstone"] = "Готовность Камня здоровья"
 	}
 
