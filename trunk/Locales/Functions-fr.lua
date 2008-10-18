@@ -40,8 +40,8 @@ if ( GetLocale() == "frFR" ) then
 
 -- Table des sorts du démoniste
 Necrosis.Spell = {
-	[1] = {Name = "Invocation d'un palefroi corrompu",			Length = 0,	Type = 0},
-	[2] = {Name = "Invocation d'un destrier de l'effroi",			Length = 0,	Type = 0},
+	[1] = {Name = "Palefroi corrompu",			Length = 0,	Type = 0},
+	[2] = {Name = "Destrier de l'effroi",			Length = 0,	Type = 0},
 	[3] = {Name = "Invocation d'un diablotin",				Length = 0,	Type = 0},
 	[4] = {Name = "Invocation d'un marcheur du Vide",			Length = 0,	Type = 0},
 	[5] = {Name = "Invocation d'une succube",				Length = 0,	Type = 0},
@@ -91,9 +91,9 @@ Necrosis.Spell = {
 	[49] = {Name = "Brise-\195\162me",					Length = 300,	Type = 3},
 	[50] = {Name = "Rituel des \195\162mes",				Length = 300,	Type = 3},
 	[51] = {Name = "Cr\195\169ation de pierre d'\195\162me",		Length = 0,	Type = 0},
-	[52] = {Name = "Cr\195\169ation de Pierre de soins",			Length = 0,	Type = 0},
+	[52] = {Name = "Cr\195\169ation de pierre de soins",			Length = 0,	Type = 0},
 	[53] = {Name = "Cr\195\169ation de pierre de sort",			Length = 0,	Type = 0},
-	[54] = {Name = "Cr\195\169ation de Pierre de feu",			Length = 0,	Type = 0},
+	[54] = {Name = "Cr\195\169ation de pierre de feu",			Length = 0,	Type = 0},
 	[55] = {Name = "Pacte noir",						Length = 0,	Type = 0},
 }
 -- Type 0 = Pas de Timer

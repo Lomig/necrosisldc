@@ -67,7 +67,7 @@ function Necrosis:SetTimersConfig()
 		FontString:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 403)
 		FontString:SetTextColor(1, 1, 1)
 
-		UIDropDownMenu_SetWidth(125, frame)
+		UIDropDownMenu_SetWidth(frame, 125)
 
 		-- Affiche ou masque le bouton des timers
 		frame = CreateFrame("CheckButton", "NecrosisShowSpellTimerButton", NecrosisTimersConfig, "UICheckButtonTemplate")
@@ -91,9 +91,9 @@ function Necrosis:SetTimersConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		-- frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Affiche les timers sur la gauche du bouton
 		frame = CreateFrame("CheckButton", "NecrosisTimerOnLeft", NecrosisTimersConfig, "UICheckButtonTemplate")
@@ -112,9 +112,9 @@ function Necrosis:SetTimersConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		-- frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Affiche les timers de bas en haut
 		frame = CreateFrame("CheckButton", "NecrosisTimerUpward", NecrosisTimersConfig, "UICheckButtonTemplate")
@@ -137,9 +137,9 @@ function Necrosis:SetTimersConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		-- frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 	end
 
 	UIDropDownMenu_Initialize(NecrosisTimerSelection, Necrosis.Timer_Init)
@@ -150,7 +150,7 @@ function Necrosis:SetTimersConfig()
 	NecrosisTimerUpward:SetText(self.Config.Timers["Afficher les timers de bas en haut"])
 
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, (NecrosisConfig.TimerType + 1))
-	UIDropDownMenu_SetText(Necrosis.Config.Timers.Type[NecrosisConfig.TimerType + 1], NecrosisTimerSelection)
+	UIDropDownMenu_SetText(NecrosisTimerSelection, Necrosis.Config.Timers.Type[NecrosisConfig.TimerType + 1])
 
 	NecrosisShowSpellTimerButton:SetChecked(NecrosisConfig.ShowSpellTimers)
 	NecrosisTimerOnLeft:SetChecked(NecrosisConfig.SpellTimerPos == -1)

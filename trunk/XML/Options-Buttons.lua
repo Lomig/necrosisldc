@@ -136,8 +136,8 @@ function Necrosis:SetButtonsConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Affiche ou cache les boutons autour de Necrosis
 		local boutons = {"Firestone", "Spellstone", "HealthStone", "Soulstone", "BuffMenu", "Mount", "PetMenu", "CurseMenu"}
@@ -164,8 +164,8 @@ function Necrosis:SetButtonsConfig()
 			FontString:Show()
 			FontString:ClearAllPoints()
 			FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+			FontString:SetTextColor(1, 1, 1)
 			frame:SetFontString(FontString)
-			frame:SetTextColor(1, 1, 1)
 		end
 
 		-- Bindings

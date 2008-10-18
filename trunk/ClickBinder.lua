@@ -88,8 +88,6 @@ if not ClickBinder or ClickBinder.version<VERSION then
 			button:SetWidth(120)
 			button:SetHeight(24)
 			button:SetPoint("TOPLEFT",font,"TOPRIGHT")
-			button:SetTextFontObject("GameFontHighlightSmall")
-			button:SetHighlightFontObject("GameFontHighlightSmall")
 			button:SetScript("OnClick",ClickBinder.StartBinding)
 		end
 		frame:SetPoint("TOP",ClickBinderFrame,"TOP",0,-(8+(idx*24))-(ClickBinderFrame.numBindings<3 and 24 or 0))

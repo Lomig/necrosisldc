@@ -125,7 +125,7 @@ function Necrosis:OpenConfigPanel()
 
 		-- Texte du titre
 		local FontString = frame:CreateFontString(nil, nil, "GameFontNormal")
-		FontString:SetTextColor(1, 0.8, 0)
+		--FontString:SetTextColor(1, 0.8, 0)
 		FontString:SetText(Necrosis.Data.Label)
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -133,7 +133,7 @@ function Necrosis:OpenConfigPanel()
 
 		-- Crédits
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormal")
-		FontString:SetTextColor(1, 0.8, 0)
+		--FontString:SetTextColor(1, 0.8, 0)
 		FontString:SetText("Developed by Lomig, Liadora & Eliah")
 		FontString:Show()
 		FontString:ClearAllPoints()
@@ -141,7 +141,7 @@ function Necrosis:OpenConfigPanel()
 
 		-- Titre de section au bas de la page
 		FontString = frame:CreateFontString("NecrosisGeneralPageText", nil, "GameFontNormal")
-		FontString:SetTextColor(1, 0.8, 0)
+		--FontString:SetTextColor(1, 0.8, 0)
 		FontString:SetWidth(102)
 		FontString:SetHeight(0)
 		FontString:Show()

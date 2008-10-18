@@ -77,8 +77,8 @@ function Necrosis:SetMiscConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Destruction des fragments quand le sac est plein
 		frame = CreateFrame("CheckButton", "NecrosisDestroyShardBag", NecrosisMiscConfig, "UICheckButtonTemplate")
@@ -95,9 +95,9 @@ function Necrosis:SetMiscConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-		frame:SetDisabledTextColor(0.75, 0.75, 0.75)
+		--frame:SetDisabledTextColor(0.75, 0.75, 0.75)
 
 		-- Choix du sac à fragments
 		frame = CreateFrame("Slider", "NecrosisShardBag", NecrosisMiscConfig, "OptionsSliderTemplate")
@@ -142,8 +142,8 @@ function Necrosis:SetMiscConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		frame = CreateFrame("EditBox", "NecrosisDestroyCount", NecrosisMiscConfig, "InputBoxTemplate")
 		frame:SetNumeric(true)
@@ -210,8 +210,8 @@ function Necrosis:SetMiscConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
 
 		-- Affichage des boutons cachés
 		frame = CreateFrame("CheckButton", "NecrosisHiddenButtons", NecrosisMiscConfig, "UICheckButtonTemplate")
@@ -248,9 +248,9 @@ function Necrosis:SetMiscConfig()
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetTextColor(1, 1, 1)
 		frame:SetFontString(FontString)
-		frame:SetTextColor(1, 1, 1)
-
+		
 		-- Tailles boutons cachés
 		frame = CreateFrame("Slider", "NecrosisHiddenSize", NecrosisMiscConfig, "OptionsSliderTemplate")
 		frame:SetMinMaxValues(50, 200)

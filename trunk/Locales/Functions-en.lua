@@ -40,8 +40,8 @@ if ( GetLocale() == "enUS" ) or ( GetLocale() == "enGB" ) then
 
 -- Table des sorts du démoniste
 Necrosis.Spell = {
-	[1] = {Name = "Summon Felsteed",		Length = 0,	Type = 0},
-	[2] = {Name = "Summon Dreadsteed",		Length = 0,	Type = 0},
+	[1] = {Name = "Felsteed",		Length = 0,	Type = 0},
+	[2] = {Name = "Dreadsteed",		Length = 0,	Type = 0},
 	[3] = {Name = "Summon Imp",			Length = 0,	Type = 0},
 	[4] = {Name = "Summon Voidwalker",		Length = 0,	Type = 0},
 	[5] = {Name = "Summon Succubus",		Length = 0,	Type = 0},
