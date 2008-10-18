@@ -149,20 +149,6 @@ function Necrosis:Initialize(Config)
 		NecrosisSpellTimerButton:RegisterForDrag("LeftButton")
 	end
 
-
-
-	-- Si pas d'objet en distance, on tente d'en équiper un
-	self:MoneyToggle()
-	NecrosisTooltip:SetInventoryItem("player", 18)
-	local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
-	self:MoneyToggle()
-	if (not GetInventoryItemLink("player", 18))
-		or itemName:find(Necrosis.Translation.Item.Spellstone)
-		or itemName:find(Necrosis.Translation.Item.Firestone) then
-			self:SearchWand()
-	end
-
-
 	-- Inventaire des pierres et des fragments possedés par le Démoniste
 	self:BagExplore()
 
