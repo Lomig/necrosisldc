@@ -516,7 +516,6 @@ function Necrosis:OnEvent(event)
 	-- On sauve également le nom de la cible du sort ainsi que son niveau
 	elseif (event == "UNIT_SPELLCAST_SENT") then
 		_, Local.SpellCasted.Name, Local.SpellCasted.Rank, Local.SpellCasted.TargetName = arg1, arg2, arg3, arg4
-		self:Msg(Local.SpellCasted.Name)
 		if (not Local.SpellCasted.TargetName or Local.SpellCasted.TargetName == "") and UnitName("target") then
 			Local.SpellCasted.TargetName = UnitName("target")
 		elseif not Local.SpellCasted.TargetName then
@@ -613,8 +612,32 @@ function Necrosis:OnEvent(event)
 				then
 					self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
 			end
+		-- Détection application d'une pierre de sort sur une arme
+		elseif arg2 == "ENCHANT_APPLIED" and arg9 == "NecrosisConfig.ItemSwitchCombat[1]" then
+			Local.Stone.Spell.Mode = 3
+			self:UpdateIcons()
+		-- Détection application d'une pierre de feu sur une arme
+		elseif arg2 == "ENCHANT_APPLIED" and arg9 == "NecrosisConfig.ItemSwitchCombat[2]" then
+			Local.Stone.Fire.Mode = 3
+			self:UpdateIcons()
+		-- Détection fin d'enchant
+		elseif arg2 == "ENCHANT_REMOVE" and arg9 == "NecrosisConfig.ItemSwitchCombat[1]" then
+			if Local.Stone.Spell.OnHand then
+				Local.Stone.Spell.Mode = 2
+			else
+				Local.Stone.Spell.Mode = 1
+			end
+			self:UpdateIcons()
+		-- Détection fin d'enchant
+		elseif arg2 == "ENCHANT_REMOVE" and arg9 == "NecrosisConfig.ItemSwitchCombat[2]" then
+			if Local.Stone.Fire.OnHand then
+				Local.Stone.Fire.Mode = 2
+			else
+				Local.Stone.Fire.Mode = 1
+			end
+			self:UpdateIcons()
 		end
-
+		
 	-- Si on rentre en combat
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		Local.PlayerInCombat = true
@@ -1305,7 +1328,6 @@ function Necrosis:UpdateIcons()
 	-- Pierre dans l'inventaire, mode 2
 	if (Local.Stone.Spell.OnHand) then
 		Local.Stone.Spell.Mode = 2
-		if Local.Stone.Spell.NeedTimer then Local.Stone.Spell.NeedTimer = not Local.Stone.Spell.NeedTimer end
 	-- Pierre inexistante, mode 1
 	elseif not (Local.Stone.Spell.Mode == 3) then
 		Local.Stone.Spell.Mode = 1
