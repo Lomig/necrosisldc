@@ -1085,7 +1085,14 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 			GameTooltip:AddLine("|c00FF4444"..NecrosisTooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
 		end
 	elseif (Type == "Mount") and Necrosis.Spell[2].ID then
-		GameTooltip:AddLine(NecrosisTooltipData[Type].Text)
+		if NecrosisConfig.OwnMount then
+			local _, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+			GameTooltip:AddLine(nameMount)
+			_, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+			GameTooltip:AddLine(nameMount)
+		else
+			GameTooltip:AddLine(NecrosisTooltipData[Type].Text)
+		end
 	elseif (Type == "Armor") then
 		if Necrosis.Spell[31].ID then
 			GameTooltip:AddLine(Necrosis.Spell[31].Mana.." Mana")
