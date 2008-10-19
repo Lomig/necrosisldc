@@ -71,6 +71,20 @@ function Necrosis:Localization_Speech_Ru()
 		},
 	}
 
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>--> <target> теперь сохранен(а) на 30 минут <--"}},
+		{{"<after><TP> Призываю <target>. Пожалуйста, нажмите на портал! <TP>"}},
+	}
+
 	self.Speech.Demon = {
 		-- Imp
 		[1] = {
@@ -135,11 +149,6 @@ function Necrosis:Localization_Speech_Ru()
 				"Я призываю коня из глубин Ада, для моего комфортного путешествия...",
 			},
 		}
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>--> <target> теперь сохранен(а) на 30 минут <--"}},
-		{{"<after><TP> Призываю <target>. Пожалуйста, нажмите на портал! <TP>"}},
 	}
 
 end

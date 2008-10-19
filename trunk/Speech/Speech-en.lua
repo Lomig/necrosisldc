@@ -70,6 +70,21 @@ function Necrosis:Localization_Speech_En()
 		},
 	}
 
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
+		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
+		{{"Summoning a Ritual of Souls"}},
+	}
+
 	self.Speech.Demon = {
 		-- Imp
 		[1] = {
@@ -134,11 +149,6 @@ function Necrosis:Localization_Speech_En()
 				"I call forth the flames of feet to make my travels swift!",
 			},
 		}
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
-		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
 	}
 
 end

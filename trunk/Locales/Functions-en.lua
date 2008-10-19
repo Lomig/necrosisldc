@@ -93,7 +93,7 @@ Necrosis.AntiFear = {
 		"Fear Ward",		-- Dwarf priest racial trait
 		"Will of the Forsaken",	-- Forsaken racial trait
 		"Fearless",		-- Trinket
-		"Berzerker Rage",	-- Warrior Fury talent
+		"Berserker Rage",	-- Warrior Fury talent
 		"Recklessness",		-- Warrior Fury talent
 		"Death Wish",		-- Warrior Fury talent
 		"Bestial Wrath",	-- Hunter Beast Mastery talent

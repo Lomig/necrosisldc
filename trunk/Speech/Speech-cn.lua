@@ -71,6 +71,21 @@ function Necrosis:Localization_Speech_Cn()
 		},
 	}
 
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>■【<target>】的灵魂，已被绑定３０分钟■"}},
+		{{"<after><TP>正在召唤【<target>】，请帮忙点击传送门<TP>"}},
+		{{"Summoning a Ritual of Souls"}},
+	}
+
 	self.Speech.Demon = {
 		-- Imp
 		[1] = {
@@ -145,11 +160,6 @@ function Necrosis:Localization_Speech_Cn()
 				"午夜的梦魇，出来吧!",
 			},
 		}
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>■【<target>】的灵魂，已被绑定３０分钟■"}},
-		{{"<after><TP>正在召唤【<target>】，请帮忙点击传送门<TP>"}},
 	}
 
 end

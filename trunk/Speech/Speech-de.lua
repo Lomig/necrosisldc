@@ -62,10 +62,19 @@ function Necrosis:Localization_Speech_De()
 		},
 	}
 
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
 
 	self.Speech.ShortMessage = {
 		{{"<after>--> <target> hat nun einen Seelenstein aktiv f\195\188r 30 Minuten <--"}},
-		{{"<after><Portal> Ich beschw\195\182re <target>, bitte klickt auf das Tor <Portal>"}}
+		{{"<after><Portal> Ich beschw\195\182re <target>, bitte klickt auf das Tor <Portal>"}},
+		{{"Summoning a Ritual of Souls"}},
 	}
 
 	self.Speech.Demon = {

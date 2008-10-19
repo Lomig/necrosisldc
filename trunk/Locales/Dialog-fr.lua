@@ -127,6 +127,9 @@ function Necrosis:Localization_Dialog_Fr()
 		["TP"] = {
 			Label = "|c00FFFFFFRituel d'invocation|r"
 		},
+		["RoS"] = {
+			Label = "|c00FFFFFFRituel des \195\162mes|r"
+		},
 		["SoulLink"] = {
 			Label = "|c00FFFFFFLien spirituel|r"
 		},
@@ -269,6 +272,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Utiliser des messages courts"] = "Utiliser des messages courts",
 		["Activer egalement les messages pour les Demons"] = "Activer \195\169galement les messages pour les D\195\169mons",
 		["Activer egalement les messages pour les Montures"] = "Activer \195\169galement les messages pour les Montures",
+		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activer \195\169galment les messages pour les Rituel des \195\162mes",
 		["Activer les sons"] = "Activer les sons",
 		["Alerter quand la cible est insensible a la peur"] = "Alerter quand la cible est insensible \195\160 la peur",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Alerter quand la cible peut \195\170tre banie ou asservie",

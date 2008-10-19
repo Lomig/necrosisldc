@@ -101,6 +101,21 @@ function Necrosis:Localization_Speech_Fr()
 			"<after>Voil\195\160 qui peut ma foi \195\169viter bien des drames !",
 		},
 	}
+	
+	self.Speech.RoS = {
+		[1] = {
+			"Utilisons les \195\162mes, de nos ennemis, pour nous donner vie.",
+		},
+		[2] = {
+			"Mon \195\162me, leur \195\162me, n'importe pas, la prise juste une.",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
+		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}},
+		{{"Rassembler un rituel des \195\162mes"}}
+	}
 
 	self.Speech.Demon = {
 		-- Diablotin
@@ -202,11 +217,6 @@ function Necrosis:Localization_Speech_Fr()
 			},
 		},
 
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
-		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}}
 	}
 
 end
