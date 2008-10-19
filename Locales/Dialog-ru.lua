@@ -127,6 +127,9 @@ function Necrosis:Localization_Dialog_Ru()
 		["TP"] = {
 			Label = "|c00FFFFFFРитуал призывания|r"
 		},
+		["RoS"] = {
+			Label = "|c00FFFFFFRitual of Souls|r"
+		},
 		["SoulLink"] = {
 			Label = "|c00FFFFFFДуховная связь|r"
 		},
@@ -269,6 +272,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Utiliser des messages courts"] = "Использовать только 'короткие' сообщения",
 		["Activer egalement les messages pour les Demons"] = "Показывать сообщения для демонов",
 		["Activer egalement les messages pour les Montures"] = "Показывать сообщения для коней",
+		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activate random speeches for Ritual of Souls",
 		["Activer les sons"] = "Воспроизводить звуковые эффекты",
 		["Alerter quand la cible est insensible a la peur"] = "Предупреждать, если цель не поддается страху",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Предупреждать, если цель изгнана или порабощена",

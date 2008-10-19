@@ -268,9 +268,12 @@ Local.TimerManagement = {
 -- Variables des messages d'invocation
 Local.SpeechManagement = {
 	-- Derniers messages sélectionnés
-	LastSpeech = {Pet = 0, Steed = 0, Rez = 0, TP = 0},
+	-- Added 'RoS = 0' by Draven (April 3rd, 2008)
+	LastSpeech = {Pet = 0, Steed = 0, Rez = 0, TP = 0, RoS = 0},
 	-- Messages à utiliser après la réussite du sort
 	SpellSucceed = {
+		-- Added 'RoS = setmetatable({}, metatable),' by Draven (April 3rd, 2008)
+		RoS = setmetatable({}, metatable),
 		Pet = setmetatable({}, metatable),
 		Steed = setmetatable({}, metatable),
 		Rez = setmetatable({}, metatable),

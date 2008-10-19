@@ -60,6 +60,21 @@ function Necrosis:Localization_Speech_Es()
 			"<after><target> puede ponerse ausente para irse a tomar una tacita de caf\195\169 o lo que sea, la piedra de alma est\195\161 preparada para el wipe...",
 		},
 	}
+	
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>--> <target> ha recibido la piedra del alma durante 30 minutos <--"}},
+		{{"<after><TP> Invocando a <target>, por favor cliquead en el portal <TP>"}},
+		{{"Summoning a Ritual of Souls"}},
+	}
 
 	self.Speech.Demon = {
 		-- Imp
@@ -121,11 +136,6 @@ function Necrosis:Localization_Speech_Es()
 				"\194\161 MUAHAHAHAHA !",
 			},
 		},
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>--> <target> ha recibido la piedra del alma durante 30 minutos <--"}},
-		{{"<after><TP> Invocando a <target>, por favor cliquead en el portal <TP>"}},
 	}
 
 end

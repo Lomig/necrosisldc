@@ -86,6 +86,20 @@ function Necrosis:Localization_Speech_Tw()
 			"<after>【<target>】的靈魂，已經借給惡魔姊姊把玩三十分鐘。",
 		},
 	}
+	
+	self.Speech.RoS = {
+		[1] = {
+			"Let us use the souls of our fallen enemies to give us vitality",
+		},
+		[2] = {
+			"My soul, their soul, doesn't matter, just take one",
+		},
+	}
+
+	self.Speech.ShortMessage = {
+		{{"<after>■【<target>】的靈魂，已被綁定３０分鐘■"}},
+		{{"<after><TP>正在召喚【<target>】，請幫忙點擊傳送門<TP>"}},
+	}
 
 	self.Speech.Demon = {
 		-- Imp
@@ -161,11 +175,6 @@ function Necrosis:Localization_Speech_Tw()
 				"午夜的夢魘，出來吧!",
 			},
 		}
-	}
-
-	self.Speech.ShortMessage = {
-		{{"<after>■【<target>】的靈魂，已被綁定３０分鐘■"}},
-		{{"<after><TP>正在召喚【<target>】，請幫忙點擊傳送門<TP>"}},
 	}
 
 end

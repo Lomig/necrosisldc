@@ -43,7 +43,7 @@
 function Necrosis:Localization_Dialog_Cn()
 
 	function Necrosis:Localization()
-	self:Localization_Speech_Cn();
+		self:Localization_Speech_Cn();
 	end
 
 	NECROSIS_COOLDOWN = {
@@ -128,6 +128,9 @@ function Necrosis:Localization_Dialog_Cn()
 		},
 		["TP"] = {
 			Label = "|c00FFFFFF召唤仪式|r"
+		},
+		["RoS"] = {
+			Label = "|c00FFFFFFRitual of Souls|r"
 		},
 		["SoulLink"] = {
 			Label = "|c00FFFFFF灵魂链接|r"
@@ -270,6 +273,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["Utiliser des messages courts"] = "Use short messages",
 		["Activer egalement les messages pour les Demons"] = "激活随机语言 (恶魔)",
 		["Activer egalement les messages pour les Montures"] = "激活随机语言 (坐骑)",
+		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activate random speeches for Ritual of Souls",
 		["Activer les sons"] = "开启声音",
 		["Alerter quand la cible est insensible a la peur"] = "当我的目标免疫恐惧时提醒我。",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",

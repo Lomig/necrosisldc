@@ -19,7 +19,6 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 -- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
@@ -178,13 +177,34 @@ function Necrosis:Speech_It(Spell, Speeches, metatable)
 				end
 			end
 		end
+	-- messsages to be posted while casting 'Ritual of Souls' -Draven (April 3rd, 2008)
+	elseif Spell.Name == Necrosis.Spell[50].Name then
+		Speeches.SpellSucceed.RoS = setmetatable({}, metatable)
+		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and NecrosisConfig.RoSSummon and self.Speech.RoS then
+			local tempnum = math.random(1, #self.Speech.RoS)
+			while tempnum == Speeches.LastSpeech.RoS and #self.Speech.RoS >= 2 do
+				tempnum = math.random(1, #self.Speech.RoS)
+			end
+			Speeches.LastSpeech.RoS = tempnum
+			for i in ipairs(self.Speech.RoS[tempnum]) do
+				if self.Speech.RoS[tempnum][i]:find("<after>") then
+					Speeches.SpellSucceed.RoS:insert(self.Speech.RoS[tempnum][i])
+				elseif self.Speech.RoS[tempnum][i]:find("<emote>") then
+					self:Msg(self:MsgReplace(self.Speech.RoS[tempnum][i]), "EMOTE")
+				elseif self.Speech.RoS[tempnum][i]:find("<yell>") then
+					self:Msg(self:MsgReplace(self.Speech.RoS[tempnum][i]), "YELL")
+				else
+					self:Msg(self:MsgReplace(self.Speech.RoS[tempnum][i]), "WORLD")
+				end
+			end
+		end
 	-- messages to be posted while casting 'Soulstone' on a friendly target
 	elseif Spell.Name == Necrosis.Spell[11].Name and not (Spell.TargetName == UnitName("player")) then
 		Speeches.SpellSucceed.Rez = setmetatable({}, metatable)
 		if (NecrosisConfig.ChatMsg or NecrosisConfig.SM) and self.Speech.Rez then
 			local tempnum = math.random(1, #self.Speech.Rez)
 			while tempnum == Speeches.LastSpeech.Rez and #self.Speech.Rez >= 2 do
-			tempnum = math.random(1, #self.Speech.Rez)
+				tempnum = math.random(1, #self.Speech.Rez)
 			end
 			Speeches.LastSpeech.Rez = tempnum
 			for i in ipairs(self.Speech.Rez[tempnum]) do
@@ -299,6 +319,18 @@ function Necrosis:Speech_Then(Spell, DemonName, Speech)
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
 		end
+	-- messages to be posted after a 'Ritual of Souls' is cast -Draven (April 3rd, 2008)
+	elseif Spell.Name == Necrosis.Spell[50].Name then
+		for i in ipairs(Speech.RoS) do
+			if Speech.RoS[i]:find("<emote>") then
+				self:Msg(self:MsgReplace(Speech.RoS[i]), "EMOTE")
+			elseif Speech.RoS[i]:find("<yell>") then
+				self:Msg(self:MsgReplace(Speech.RoS[i]), "YELL")
+			else
+				self:Msg(self:MsgReplace(Speech.RoS[i]), "WORLD")
+			end
+		end
+		Speech.RoS = {}
 	-- messages to be posted after 'Soulstone' is cast
 	elseif Spell.Name == Necrosis.Spell[11].Name then
 		for i in ipairs(Speech.Rez) do
