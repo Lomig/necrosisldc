@@ -47,7 +47,7 @@ function Necrosis:SpellLocalize()
 		[8] = {Name = GetSpellInfo(1122),			Length = 3600,	Type = 3}, -- Infernal
 		[9] = {Name = GetSpellInfo(710),			Length = 30,	Type = 2}, -- Banish
 		[10] = {Name = GetSpellInfo(1098),			Length = 300,	Type = 2}, -- Enslave
-		[11] = {Name = GetSpellInfo(27238),			Length = 1800,	Type = 1}, -- Pierre d'ame || Create Soulstone
+		[11] = {Name = GetSpellInfo(27239),			Length = 1800,	Type = 1}, -- Résurrection de pierre d'ame || Soulstone Resurrection
 		[12] = {Name = GetSpellInfo(47811),			Length = 15,	Type = 6}, -- Immolation || Immolate
 		[13] = {Name = GetSpellInfo(6215),			Length = 15,	Type = 6}, -- Peur || Fear
 		[14] = {Name = GetSpellInfo(47813),			Length = 18,	Type = 5}, -- Corruption
