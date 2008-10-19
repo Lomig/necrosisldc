@@ -181,9 +181,6 @@ function Necrosis:Localization_Dialog_En()
 		["Elements"] = {
 			Label = "|c00FFFFFFCurse of Elements|r"
 		},
-		["Shadow"] = {
-			Label = "|c00FFFFFFCurse of Shadow|r"
-		},
 		["Doom"] = {
 			Label = "|c00FFFFFFCurse of Doom|r"
 		},

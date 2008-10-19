@@ -181,9 +181,6 @@ function Necrosis:Localization_Dialog_De()
 		["Elements"] = {
 			Label = "|c00FFFFFFFluch der Elemente|r"
 		},
-		["Shadow"] = {
-			Label = "|c00FFFFFFFluch der Schatten|r"
-		},
 		["Doom"] = {
 			Label = "|c00FFFFFFFluch der Verdammnis|r"
 		},

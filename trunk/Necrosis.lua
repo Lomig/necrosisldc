@@ -162,16 +162,14 @@ Local.DefaultConfig = {
 		-- 6 = Monture
 		-- 7 = Démon
 		-- 8 = Malédictions
-	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9},
-		-- 1 = Malédiction amplifiée
-		-- 2 = Faiblesse
-		-- 3 = Agonie
-		-- 4 = Témérité
-		-- 5 = Langage
-		-- 6 = Fatigue
-		-- 7 = Elements
-		-- 8 = Ombre
-		-- 9 = Funeste
+	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7},
+		-- 1 = Faiblesse
+		-- 2 = Agonie
+		-- 3 = Témérité
+		-- 4 = Langage
+		-- 5 = Fatigue
+		-- 6 = Elements
+		-- 7 = Funeste
 	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 		-- 1 = Domination corrompue
 		-- 2 = Imp
@@ -732,13 +730,6 @@ function Necrosis:SelfEffect(action, nom)
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02")
 				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(nil)
 			end
-		-- Changement du bouton de la malédiction amplifiée si celle-ci est activée + Timer de cooldown
-		elseif  nom == Necrosis.Spell[42].Name then
-			Local.BuffActif.Amplify = true
-			if _G["NecrosisCurseMenu1"] then
-				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-02")
-				NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(nil)
-			end
 		-- Changement du bouton du lien spirituel si celui-ci est activé
 		elseif nom == Necrosis.Spell[38].Name then
 			Local.BuffActif.SoulLink = true
@@ -771,12 +762,6 @@ function Necrosis:SelfEffect(action, nom)
 			Local.BuffActif.Domination = false
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01")
-			end
-		-- Changement du bouton de la malédiction amplifiée quand le Démoniste n'est plus sous son emprise
-		elseif  nom == Necrosis.Spell[42].Name then
-			Local.BuffActif.Amplify = false
-			if _G["NecrosisCurseMenu1"] then
-				NecrosisCurseMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Amplify-01")
 			end
 		-- Changement du bouton du Lien Spirituel quand le Démoniste n'est plus sous son emprise
 		elseif nom == Necrosis.Spell[38].Name then
@@ -972,12 +957,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		start2 = 1
 		duration2 = 1
 	end
-	if Necrosis.Spell[42].ID then
-		start3, duration3 = GetSpellCooldown(Necrosis.Spell[42].ID, BOOKTYPE_SPELL)
-	else
-		start3 = 1
-		duration3 = 1
-	end
 	if Necrosis.Spell[50].ID then
 		start4, duration4 = GetSpellCooldown(Necrosis.Spell[50].ID, BOOKTYPE_SPELL)
 	else
@@ -1130,8 +1109,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		end
 	elseif (Type == "Elements") then
 		GameTooltip:AddLine(Necrosis.Spell[26].Mana.." Mana")
-	elseif (Type == "Shadow") then
-		GameTooltip:AddLine(Necrosis.Spell[27].Mana.." Mana")
 	elseif (Type == "Doom") then
 		GameTooltip:AddLine(Necrosis.Spell[16].Mana.." Mana")
 		if not (start3 > 0 and duration3 > 0) then
@@ -1497,21 +1474,6 @@ function Necrosis:UpdateMana()
 		end
 	end
 
-	-- Si cooldown de la malédiction amplifiée on grise
-	if _G["NecrosisCurseMenu1"] and Necrosis.Spell[42].ID and not Local.BuffActif.Amplify then
-		local start, duration = GetSpellCooldown(Necrosis.Spell[42].ID, "spell")
-		if start > 0 and duration > 0 then
-			if not Local.Desatured["Amplif"] then
-				NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(1)
-				Local.Desatured["Amplif"] = true
-			end
-		else
-			if Local.Desatured["Amplif"] then
-				NecrosisCurseMenu1:GetNormalTexture():SetDesaturated(nil)
-				Local.Desatured["Amplif"] = false
-			end
-		end
-	end
 
 	-- Bouton des démons
 	-----------------------------------------------
@@ -1706,7 +1668,7 @@ function Necrosis:UpdateMana()
 
 	if mana then
 		local SpellMana = new("array",
-			23, 22, 24, 25, 40, 26, 27, 16
+			23, 22, 24, 25, 40, 26, 16
 		)
 		-- Coloration du bouton en grisé si pas assez de mana
 		for i = 1, #SpellMana, 1 do
@@ -2574,7 +2536,7 @@ function Necrosis:CreateMenu()
 		-- On ordonne et on affiche les boutons dans le menu des malédictions
 		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 		local MenuID = new("array",
-			42, 23, 22, 24, 25, 40, 26, 27, 16
+			23, 22, 24, 25, 40, 26, 16
 		)
 		for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 			for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do

@@ -181,9 +181,6 @@ function Necrosis:Localization_Dialog_Ru()
 		["Elements"] = {
 			Label = "|c00FFFFFFПроклятие стихий|r"
 		},
-		["Shadow"] = {
-			Label = "|c00FFFFFFПроклятие тьмы|r"
-		},
 		["Doom"] = {
 			Label = "|c00FFFFFFПроклятие рока|r"
 		},
