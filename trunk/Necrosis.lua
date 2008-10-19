@@ -139,7 +139,8 @@ Local.Events = {
 	"TRADE_ACCEPT_UPDATE",
 	"TRADE_SHOW",
 	"TRADE_CLOSED",
-	"COMBAT_LOG_EVENT_UNFILTERED"
+	"COMBAT_LOG_EVENT_UNFILTERED",
+	"SKILL_LINES_CHANGED"
 }
 
 -- Configuration par défaut
@@ -290,6 +291,7 @@ Local.Stone = {
 	Hearth = {Location = {}},
 	Fire = {Mode = 1},
 }
+Local.SomethingOnHand = "Truc"
 
 -- Variable de comptage des composants
 Local.Reagent = {Infernal = 0, Demoniac = 0}
@@ -615,31 +617,31 @@ function Necrosis:OnEvent(event)
 				then
 					self:RetraitTimerParIndex(Local.TimerManagement.LastSpell.Index, Local.TimerManagement)
 			end
-		-- Détection application d'une pierre de sort sur une arme
-		elseif arg2 == "ENCHANT_APPLIED" and arg9 == "NecrosisConfig.ItemSwitchCombat[1]" then
-			Local.Stone.Spell.Mode = 3
-			self:UpdateIcons()
-		-- Détection application d'une pierre de feu sur une arme
-		elseif arg2 == "ENCHANT_APPLIED" and arg9 == "NecrosisConfig.ItemSwitchCombat[2]" then
-			Local.Stone.Fire.Mode = 3
-			self:UpdateIcons()
+		-- Détection application d'une pierre de sort/feu sur une arme
+		elseif arg2 == "ENCHANT_APPLIED"
+			and arg6 == UnitGUID("player")
+			and (arg9 == NecrosisConfig.ItemSwitchCombat[1] or NecrosisConfig.ItemSwitchCombat[2])
+			then
+				Local.SomethingOnHand = arg9
+				self:UpdateIcons()
 		-- Détection fin d'enchant
-		elseif arg2 == "ENCHANT_REMOVE" and arg9 == "NecrosisConfig.ItemSwitchCombat[1]" then
-			if Local.Stone.Spell.OnHand then
-				Local.Stone.Spell.Mode = 2
-			else
-				Local.Stone.Spell.Mode = 1
-			end
-			self:UpdateIcons()
-		-- Détection fin d'enchant
-		elseif arg2 == "ENCHANT_REMOVE" and arg9 == "NecrosisConfig.ItemSwitchCombat[2]" then
-			if Local.Stone.Fire.OnHand then
-				Local.Stone.Fire.Mode = 2
-			else
-				Local.Stone.Fire.Mode = 1
-			end
-			self:UpdateIcons()
+		elseif arg2 == "ENCHANT_REMOVE"
+			and arg6 == UnitGUID("player")
+			and (arg9 == NecrosisConfig.ItemSwitchCombat[1] or NecrosisConfig.ItemSwitchCombat[2])
+			then
+				Local.SomethingOnHand = "Rien"
+				self:UpdateIcons()
 		end
+
+	-- Si on change d'arme, on regarde si un enchantement de sort / feu est sur la nouvelle
+	elseif event == "SKILL_LINES_CHANGED" then
+		local hasMainHandEnchant = GetWeaponEnchantInfo()
+		if hasMainHandEnchant then 
+			Local.SomethingOnHand = "Truc"
+		else
+			Local.SomethingOnHand = "Rien"
+		end
+		self:UpdateIcons()
 		
 	-- Si on rentre en combat
 	elseif event == "PLAYER_REGEN_DISABLED" then
@@ -1252,6 +1254,19 @@ end
 
 -- Fonction mettant à jour les boutons Necrosis et donnant l'état du bouton de la pierre d'âme
 function Necrosis:UpdateIcons()
+
+	-- Si la fonction a été appelée pour détecter un enchantement, on le détecte !
+	if Local.SomethingOnHand == "Truc" then
+		self:MoneyToggle()
+		NecrosisTooltip:SetInventoryItem("player", 16)
+		local itemName = tostring(NecrosisTooltipTextLeft8:GetText())
+		if itemName and itemName:find(NecrosisConfig.ItemSwitchCombat[1]) then
+			Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[1]
+		elseif itemName and itemName:find(NecrosisConfig.ItemSwitchCombat[2]) then
+			Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[2]
+		end
+	end
+	
 	-- Pierre d'âme
 	-----------------------------------------------
 
@@ -1328,12 +1343,22 @@ function Necrosis:UpdateIcons()
 	-- Pierre de sort
 	-----------------------------------------------
 
-	-- Pierre dans l'inventaire, mode 2
-	if (Local.Stone.Spell.OnHand) then
-		Local.Stone.Spell.Mode = 2
-	-- Pierre inexistante, mode 1
-	elseif not (Local.Stone.Spell.Mode == 3) then
-		Local.Stone.Spell.Mode = 1
+	-- Pierre dans l'inventaire...
+	if Local.Stone.Spell.OnHand then
+		-- ... et sur l'arme = mode 3, sinon = mode 2
+		if Local.SomethingOnHand == NecrosisConfig.ItemSwitchCombat[1] then
+			Local.Stone.Spell.Mode = 3
+		else
+			Local.Stone.Spell.Mode = 2
+		end
+	-- Pierre inexistante...
+	else
+		-- ... mais sur l'arme = mode 4, sinon = mode 1
+		if Local.SomethingOnHand == NecrosisConfig.ItemSwitchCombat[1] then
+			Local.Stone.Spell.Mode = 4
+		else
+			Local.Stone.Spell.Mode = 1
+		end
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if Necrosis.Spell[53].ID and NecrosisConfig.ItemSwitchCombat[1] then
 			self:SpellstoneUpdateAttribute("NoStone")
@@ -1348,12 +1373,22 @@ function Necrosis:UpdateIcons()
 	-- Pierre de feu
 	-----------------------------------------------
 
-	-- Pierre dans l'inventaire = mode 2
-	if (Local.Stone.Fire.OnHand) then
-		Local.Stone.Fire.Mode = 2
-	-- Pierre inexistante = mode 1
-	elseif not (Local.Stone.Fire.Mode == 3) then
-		Local.Stone.Fire.Mode = 1
+	-- Pierre dans l'inventaire...
+	if Local.Stone.Fire.OnHand then
+		-- ... et sur l'arme = mode 3, sinon = mode 2
+		if Local.SomethingOnHand == NecrosisConfig.ItemSwitchCombat[2] then
+			Local.Stone.Fire.Mode = 3
+		else
+			Local.Stone.Fire.Mode = 2
+		end
+	-- Pierre inexistante...
+	else
+		-- ... mais sur l'arme = mode 4, sinon = mode 1
+		if Local.SomethingOnHand == NecrosisConfig.ItemSwitchCombat[2] then
+			Local.Stone.Fire.Mode = 4
+		else
+			Local.Stone.Fire.Mode = 1
+		end
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
 		if Necrosis.Spell[54].ID and NecrosisConfig.ItemSwitchCombat[2] then
 			self:FirestoneUpdateAttribute("NoStone")

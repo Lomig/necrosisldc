@@ -84,11 +84,11 @@ function Necrosis:Localization_Dialog_Cn()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFF法术石|r",
-			Text = {"制造","在包里\n按中键或是Ctrl-左键装备","装备在副手\n左键给玩家\nShift+左键取下装备"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444火焰石|r",
-			Text = {"制造","在包里\n按中键或是Ctrl-左键装备","装备在副手\nShift+左键取下装备"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFF法术持续时间|r",

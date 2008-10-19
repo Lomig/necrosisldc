@@ -82,11 +82,11 @@ function Necrosis:Localization_Dialog_De()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFZauberstein|r",
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt"}
+			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt", "Benutzt\n Maustaste zum herstellen"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Feuerstein|r",
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt"}
+			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt", "Benutzt\n Maustaste zum herstellen"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpruchdauer|r",
