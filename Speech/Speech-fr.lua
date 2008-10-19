@@ -104,10 +104,10 @@ function Necrosis:Localization_Speech_Fr()
 	
 	self.Speech.RoS = {
 		[1] = {
-			"Utilisons les \195\162mes, de nos ennemis, pour nous donner vie.",
+			"Utilisons donc les \195\162mes de nos ennemis, pour nous redonner la vie !",
 		},
 		[2] = {
-			"Mon \195\162me, leur \195\162me, n'importe pas, la prise juste une.",
+			"Votre \195\162me, mon \195\162me, leur \195\162me... Quelle importance ? Allez, piochez-en juste une !",
 		},
 	}
 
