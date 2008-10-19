@@ -236,46 +236,8 @@ function Necrosis:CurseSpellAttribute()
 		return
 	end
 
-	-- Malédiction amplifiée
-	if _G["NecrosisCurseMenu1"] then
-		NecrosisCurseMenu1:SetAttribute("type", "spell")
-		NecrosisCurseMenu1:SetAttribute("spell", Necrosis.Spell[42].Name)
-		-- Création du tableau des raccourcis claviers
-		if not Necrosis.AlreadyBind["NecrosisCurseMenu1"] then
-			Necrosis.AlreadyBind["NecrosisCurseMenu1"] = true
-			Necrosis.Binding:insert({Necrosis.Spell[42].Name, "CLICK NecrosisCurseMenu1:LeftButton"})
-		end
-	end
-
-	-- Malédictions amplifiables
-	local buttonID = {3, 6, 9}
-	local buffID = {22, 40, 16}
-	for i = 1, #buttonID, 1 do
-		local f = _G["NecrosisCurseMenu"..buttonID[i]]
-		if f then
-			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
-			if Necrosis.Spell[ buffID[i] ].Rank and not (Necrosis.Spell[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ buffID[i] ].Rank..")"
-			end
-			f:SetAttribute("harmbutton1", "debuff")
-			f:SetAttribute("type-debuff", "spell")
-			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff", SpellName_Rank)
-
-			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
-				Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[buffID[i]].Name,
-					"CLICK NecrosisCurseMenu"..buttonID[i]..":LeftButton"}
-				)
-			end
-		end
-	end
-
-	-- Autres malédictions
-	local buttonID = {2, 4, 5, 7, 8, 9}
-	local buffID = {23, 24, 25, 26, 27, 16}
+	local buttonID = {2, 3, 4, 5, 6, 7, 8}
+	local buffID = {23, 22, 24, 25, 40, 26, 16}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisCurseMenu"..buttonID[i]]
 		if f then

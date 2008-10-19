@@ -182,9 +182,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Elements"] = {
 			Label = "|c00FFFFFFMaldici\195\179n de los Elementos|r"
 		},
-		["Shadow"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de las Sombras|r"
-		},
 		["Doom"] = {
 			Label = "|c00FFFFFFMaldici\195\179n del Apocalipsis|r"
 		},

@@ -63,7 +63,7 @@ function Necrosis:SpellLocalize()
 		[24] = {Name = GetSpellInfo(57595),			Length = 120,	Type = 4}, -- Malédiction Témérité || Curse of Recklessness
 		[25] = {Name = GetSpellInfo(11719),			Length = 30,	Type = 4}, -- Malédiction Langage || Curse of Tongues
 		[26] = {Name = GetSpellInfo(47865),			Length = 300,	Type = 4}, -- Malédiction Eléments || Curse of the Elements
-		[27] = {},
+		[27] = {Name = GetSpellInfo(59673),			Length = 180,	Type = 1}, -- Metamorphose || Metamorphosis
 		[28] = {Name = GetSpellInfo(47862),			Length = 30,	Type = 6}, -- Syphon de vie || Siphon Life
 		[29] = {Name = GetSpellInfo(17928),			Length = 40,	Type = 3}, -- Hurlement de terreur || Howl of Terror
 		[30] = {Name = GetSpellInfo(18540),			Length = 3600,	Type = 0}, -- Rituel funeste || Ritual of Doom

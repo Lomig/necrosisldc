@@ -183,9 +183,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["Elements"] = {
 			Label = "|c00FFFFFF元素诅咒|r"
 		},
-		["Shadow"] = {
-			Label = "|c00FFFFFF暗影诅咒|r"
-		},
 		["Doom"] = {
 			Label = "|c00FFFFFF厄运诅咒|r"
 		},
