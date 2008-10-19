@@ -82,11 +82,11 @@ function Necrosis:Localization_Dialog_En()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFSpellstone|r",
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\nClick to create"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Firestone|r",
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpell Durations|r",

@@ -83,11 +83,11 @@ function Necrosis:Localization_Dialog_Es()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPiedra de Hechizo|r",
-			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada"}
+			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Piedra de Fuego|r",
-			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada"}
+			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDuraci\195\179n de Hechizos|r",

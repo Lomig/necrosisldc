@@ -82,11 +82,11 @@ function Necrosis:Localization_Dialog_Fr()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPierre de sort|r",
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e"}
+			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Pierre de feu|r",
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e"}
+			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDur\195\169e des sorts|r",

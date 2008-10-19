@@ -82,11 +82,11 @@ function Necrosis:Localization_Dialog_Ru()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFКамень чар|r",
-			Text = {"[Правый Клик] Создать","В сумке\n[Средний Клик] или [Ctrl]+[Левый Клик] Надеть на себя","В руках\n[Левый-Клик] Использовать\n[Shift]+[Клик] Снять с себя"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Камень огня|r",
-			Text = {"[Правый Клик] Создать","В сумке\n[Левый Клик] Надеть на себя","В руках\n[Shift]+[Клик] Снять с себя"}
+			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFТаймер заклинаний|r",
