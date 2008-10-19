@@ -306,7 +306,11 @@ function Necrosis:Localization_Dialog_En()
 
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
-		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere"
+		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
+		["Utiliser mes propres montures"] = "Use my own mounts",
+		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
+		["Monture - Clic gauche"] = "Mount - Left click",
+		["Monture - Clic droit"] = "Mount - Right click",
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Show Firestone button",
