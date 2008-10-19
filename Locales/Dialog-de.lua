@@ -307,7 +307,11 @@ function Necrosis:Localization_Dialog_De()
 
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Rotation der Buttons",
-		["Fixer les boutons autour de la sphere"] = "Fixiere die Buttons um die Sph\195\164re"
+		["Fixer les boutons autour de la sphere"] = "Fixiere die Buttons um die Sph\195\164re",
+		["Utiliser mes propres montures"] = "Use my own mounts",
+		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
+		["Monture - Clic gauche"] = "Mount - Left click",
+		["Monture - Clic droit"] = "Mount - Right click",
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Zeige den Feuerstein Button",

@@ -306,7 +306,11 @@ function Necrosis:Localization_Dialog_Ru()
 
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Вращение кнопок",
-		["Fixer les boutons autour de la sphere"] = "Закрепить кнопки вокруг Сферы"
+		["Fixer les boutons autour de la sphere"] = "Закрепить кнопки вокруг Сферы",
+		["Utiliser mes propres montures"] = "Use my own mounts",
+		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
+		["Monture - Clic gauche"] = "Mount - Left click",
+		["Monture - Clic droit"] = "Mount - Right click",
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Показывать кнопку Камня огня",

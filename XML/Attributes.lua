@@ -340,17 +340,23 @@ function Necrosis:StoneAttribute(Steed)
 	if Steed and  _G["NecrosisMountButton"] then
 		NecrosisMountButton:SetAttribute("type1", "spell")
 		NecrosisMountButton:SetAttribute("type2", "spell")
-		-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
-		if Necrosis.Spell[2].ID then
-			NecrosisMountButton:SetAttribute("spell1", Necrosis.Spell[2].Name)
-			NecrosisMountButton:SetAttribute("spell2", Necrosis.Spell[1].Name)
-
+		if NecrosisConfig.OwnMount then
+			local _, ChevalGauche = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+			local _, ChevalDroit = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+			NecrosisMountButton:SetAttribute("spell1", ChevalGauche)
+			NecrosisMountButton:SetAttribute("spell2", ChevalDroit)
 		else
-			NecrosisMountButton:SetAttribute("spell*", Necrosis.Spell[1].Name)
-		end
-		if not Necrosis.AlreadyBind["NecrosisMountButton"] then
-			Necrosis.AlreadyBind["NecrosisMountButton"] = true
-			Necrosis.Binding:insert({Necrosis.Spell[2].Name, "CLICK NecrosisMountButton:LeftButton"})
+			-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
+			if Necrosis.Spell[2].ID then
+				NecrosisMountButton:SetAttribute("spell1", Necrosis.Spell[2].Name)
+				NecrosisMountButton:SetAttribute("spell2", Necrosis.Spell[1].Name)
+			else
+				NecrosisMountButton:SetAttribute("spell*", Necrosis.Spell[1].Name)
+			end
+			if not Necrosis.AlreadyBind["NecrosisMountButton"] then
+				Necrosis.AlreadyBind["NecrosisMountButton"] = true
+				Necrosis.Binding:insert({Necrosis.Spell[2].Name, "CLICK NecrosisMountButton:LeftButton"})
+			end
 		end
 	end
 

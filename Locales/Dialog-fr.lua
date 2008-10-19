@@ -306,7 +306,11 @@ function Necrosis:Localization_Dialog_Fr()
 
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Rotation des boutons",
-		["Fixer les boutons autour de la sphere"] = "Fixer les boutons autour de la sph\195\168re"
+		["Fixer les boutons autour de la sphere"] = "Fixer les boutons autour de la sph\195\168re",
+		["Utiliser mes propres montures"] = "Utiliser mes propres montures",
+		["Choix des boutons a afficher"] = "Choix des boutons \195\160 afficher",
+		["Monture - Clic gauche"] = "Monture - Clic gauche",
+		["Monture - Clic droit"] = "Monture - Clic droit",
 	}
 	Necrosis.Config.Buttons.Name = {
 		"Afficher le bouton des Pierres de feu",
