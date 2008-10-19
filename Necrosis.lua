@@ -1260,10 +1260,15 @@ function Necrosis:UpdateIcons()
 		self:MoneyToggle()
 		NecrosisTooltip:SetInventoryItem("player", 16)
 		local itemName = tostring(NecrosisTooltipTextLeft8:GetText())
-		if itemName and itemName:find(NecrosisConfig.ItemSwitchCombat[1]) then
-			Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[1]
-		elseif itemName and itemName:find(NecrosisConfig.ItemSwitchCombat[2]) then
-			Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[2]
+		if itemName and NecrosisConfig.ItemSwitchCombat[1] then
+			if itemName:find(NecrosisConfig.ItemSwitchCombat[1]) then
+				Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[1]
+			end
+		end
+		if itemName and NecrosisConfig.ItemSwitchCombat[2] then
+			if itemName:find(NecrosisConfig.ItemSwitchCombat[2]) then
+				Local.SomethingOnHand = NecrosisConfig.ItemSwitchCombat[2]
+			end
 		end
 	end
 	
