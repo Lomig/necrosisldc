@@ -49,6 +49,7 @@ function Necrosis:Localization_Dialog_Tw()
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "治療石冷卻時間",
 		["Utilisation"] = "Use",
+		["Echange"] = "Trade",
 	}
 
 	NecrosisTooltipData = {

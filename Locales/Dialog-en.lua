@@ -47,6 +47,7 @@ function Necrosis:Localization_Dialog_En()
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "Healthstone Cooldown",
 		["Utilisation"] = "Use",
+		["Echange"] = "Trade",
 	}
 
 	NecrosisTooltipData = {
