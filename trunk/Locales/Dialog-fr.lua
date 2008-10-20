@@ -47,6 +47,7 @@ function Necrosis:Localization_Dialog_Fr()
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "Temps de recharge Pierre de soins",
 		["Utilisation"] = "Utilisation",
+		["Echange"] = "Echange",
 		
 	};
 

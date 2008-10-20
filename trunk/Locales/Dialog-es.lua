@@ -48,6 +48,7 @@ function Necrosis:Localization_Dialog_Es()
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud",
 		["Utilisation"] = "Use",
+		["Echange"] = "Trade",
 	}
 
 	NecrosisTooltipData = {

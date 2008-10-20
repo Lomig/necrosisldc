@@ -47,6 +47,7 @@ function Necrosis:Localization_Dialog_Ru()
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "Готовность Камня здоровья",
 		["Utilisation"] = "Use",
+		["Echange"] = "Trade",
 	}
 
 	NecrosisTooltipData = {

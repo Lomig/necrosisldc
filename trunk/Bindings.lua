@@ -67,11 +67,11 @@ function Necrosis:BindName()
 	
 	--La Pierre de soin
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:RightButton"] = Necrosis.Spell[52].Name
-	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:LeftButton"] = self.Translation.Item.Healthstone
-	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:MiddleButton"] = self.Translation.Item.Healthstone.." - "..NECROSIS_COOLDOWN["Utilisation"]
+	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:LeftButton"] = self.Translation.Item.Healthstone.." - "..NECROSIS_COOLDOWN["Utilisation"]
+	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:MiddleButton"] = self.Translation.Item.Healthstone.." - "..NECROSIS_COOLDOWN["Echange"]
 	
 	-- La Pierre de sort
-	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = Necrosis.Spell[52].Name
+	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = Necrosis.Spell[51].Name
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:LeftButton"] = self.Translation.Item.Soulstone
 	
 end
