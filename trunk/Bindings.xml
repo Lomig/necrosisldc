@@ -1,0 +1,6 @@
+﻿<Bindings>
+	<Binding name="CLICK NecrosisButton:LeftButton" header="Necrosis">-- Sphere --</Binding>
+	<Binding name="CLICK NecrosisMountButton:LeftButton">-- Monture --</Binding>
+	<Binding name="CLICK NecrosisFirestoneButton:RightButton">-- Créer Pierre de feu --</Binding>
+	<Binding name="CLICK NecrosisFirestoneButton:LeftButton">-- Utiliser Pierre de feu --</Binding>
+</Bindings>
