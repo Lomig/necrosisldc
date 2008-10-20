@@ -949,6 +949,8 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	end
 	if Necrosis.Spell[43].ID then
 		start2, duration2 = GetSpellCooldown(Necrosis.Spell[43].ID, BOOKTYPE_SPELL)
+		if not start2 then start2 = 1 end
+		if not duration2 then duration2 = 1 end
 	else
 		start2 = 1
 		duration2 = 1
@@ -1091,7 +1093,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		GameTooltip:AddLine(Necrosis.Spell[23].Mana.." Mana")
 	elseif (Type == "Agony") then
 		GameTooltip:AddLine(Necrosis.Spell[22].Mana.." Mana")
-
 	elseif (Type == "Reckless") then
 		GameTooltip:AddLine(Necrosis.Spell[24].Mana.." Mana")
 	elseif (Type == "Tongues") then

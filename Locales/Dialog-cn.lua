@@ -47,7 +47,8 @@ function Necrosis:Localization_Dialog_Cn()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "治疗石冷却时间"
+		["Healthstone"] = "治疗石冷却时间",
+		["Utilisation"] = "Use",
 	}
 
 	NecrosisTooltipData = {
@@ -161,9 +162,6 @@ function Necrosis:Localization_Dialog_Cn()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFF恶魔牺牲|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFF诅咒增幅|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFF虚弱诅咒|r"
@@ -360,22 +358,6 @@ function Necrosis:Localization_Dialog_Cn()
 		["Verrouiller Necrosis sur l'interface"] = "锁定 Necrosis球体及周围的按钮。",
 		["Afficher les boutons caches"] = "显示隐藏的按钮以拖动它。",
 		["Taille des boutons caches"] = "暗影冥思和反恐按钮的大小"
-	}
-
-
-	NECROSIS_BINDING = {
-		["Current"] = "目前设定在",
-		["Confirm"] = "你想要设定",
-		["To"] = "于",
-		["Yes"] = "是",
-		["No"] = "否",
-		["InCombat"] = "抱歉，你不能在战斗中改变按键设定。",
-		["Binding"] = "按键设定",
-		["Unbind"] = "取消按键",
-		["Cancel"] = "取消",
-		["Press"] = "请按想要的按键组合...\n\n",
-		["Now"] = "目前：",
-		["NotBound"] = "未设定",
 	}
 
 end

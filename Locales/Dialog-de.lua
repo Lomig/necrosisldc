@@ -45,7 +45,8 @@ function Necrosis:Localization_Dialog_De()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Gesundheitsstein Cooldown"
+		["Healthstone"] = "Gesundheitsstein Cooldown",
+		["Utilisation"] = "Use",
 	};
 
 	NecrosisTooltipData = {
@@ -159,9 +160,6 @@ function Necrosis:Localization_Dialog_De()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFFD\195\164monenopferung|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFFFluch verst\195\164rken|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFFFluch der Schw\195\164che|r"
@@ -361,18 +359,4 @@ function Necrosis:Localization_Dialog_De()
 		["Taille des boutons caches"] = "Gr\195\182\195\159e des versteckten Buttons"
 	}
 
-	NECROSIS_BINDING = {
-		["Current"] = "  ist im Moment gebunden an ",
-		["Confirm"] = "M\195\182chtest du eine neue Bindung der Taste ",
-		["To"] = " an ",
-		["Yes"] = "Ja",
-		["No"] = "Nein",
-		["InCombat"] = "Es tut mir leid, du kannst Tastenk\195\188rzel nicht im Kampf binden..",
-		["Binding"] = "Tastenk\195\188rzel",
-		["Unbind"] = "Verbindung l\195\182sen",
-		["Cancel"] = "Abbrechen",
-		["Press"] = "Dr\195\188cke zu bindende Taste...\n\n",
-		["Now"] = "Aktuell: ",
-		["NotBound"] = "Nicht gebunden",
-	};
 end
