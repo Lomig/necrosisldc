@@ -46,7 +46,8 @@ function Necrosis:Localization_Dialog_Es()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud"
+		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud",
+		["Utilisation"] = "Use",
 	}
 
 	NecrosisTooltipData = {
@@ -160,9 +161,6 @@ function Necrosis:Localization_Dialog_Es()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFFSacrificio Demon\195\173aco|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFFAmplificar Maldici\195\179n|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFFMaldici\195\179n de Debilidad|r"
@@ -360,20 +358,5 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher les boutons caches"] = "Perm\195\173teme ver los botones ocultos para arrastrarlos",
 		["Taille des boutons caches"] = "Tama\195\177o de los botones de aviso"
 	}
-
-	NECROSIS_BINDING = {
-		["Current"] = " est\195\161 actualmente asignado a ",
-		["Confirm"] = "¿Quieres asignar ",
-		["To"] = " a ",
-		["Yes"] = "S\195\173",
-		["No"] = "No",
-		["InCombat"] = "Lo siento, no puedes cambiar la asignaci\195\179n de teclas mientras est\195\169s en combate.",
-		["Binding"] = "Asignaciones",
-		["Unbind"] = "Desasignar",
-		["Cancel"] = "Cancelar",
-		["Press"] = "Presiona la tecla a asignar...\n\n",
-		["Now"] = "Actualmente: ",
-		["NotBound"] = "No asignado",
-	};
 
 end

@@ -45,7 +45,9 @@ function Necrosis:Localization_Dialog_Fr()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Temps de recharge Pierre de soins"
+		["Healthstone"] = "Temps de recharge Pierre de soins",
+		["Utilisation"] = "Utilisation",
+		
 	};
 
 	NecrosisTooltipData = {
@@ -159,9 +161,6 @@ function Necrosis:Localization_Dialog_Fr()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFFSacrifice d\195\169moniaque|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFFMal\195\169diction amplifi\195\169e|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFFMal\195\169diction de faiblesse|r"
@@ -359,20 +358,5 @@ function Necrosis:Localization_Dialog_Fr()
 		["Afficher les boutons caches"] = "Afficher les boutons cach\195\169s pour les d\195\169placer",
 		["Taille des boutons caches"] = "Taille des boutons cach\195\169s"
 	}
-
-	NECROSIS_BINDING = {
-		["Current"] = " est actuellement associ\195\169 \195\160 ",
-		["Confirm"] = "Voulez-vous associer ",
-		["To"] = " \195\160 ",
-		["Yes"] = "Oui",
-		["No"] = "Non",
-		["InCombat"] = "D\195\169sol\195\169, vous ne pouvez pas changer les raccourcis claviers en combat.",
-		["Binding"] = "Raccourcis",
-		["Unbind"] = "Supprimer",
-		["Cancel"] = "Annuler",
-		["Press"] = "Appuyez sur la touche\n\n\195\160 associer...\n\n\n\n",
-		["Now"] = "Actuellement : ",
-		["NotBound"] = "Non affect\195\169e",
-	};
 
 end

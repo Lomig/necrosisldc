@@ -45,7 +45,8 @@ function Necrosis:Localization_Dialog_Ru()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Готовность Камня здоровья"
+		["Healthstone"] = "Готовность Камня здоровья",
+		["Utilisation"] = "Use",
 	}
 
 	NecrosisTooltipData = {
@@ -159,9 +160,6 @@ function Necrosis:Localization_Dialog_Ru()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFFДемоническое жертвоприношение|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFFУсиление проклятия|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFFПроклятие слабости|r"
@@ -359,20 +357,5 @@ function Necrosis:Localization_Dialog_Ru()
 		["Afficher les boutons caches"] = "Показать скрытые значки для их перемещения",
 		["Taille des boutons caches"] = "Размер скрытых значков"
 	}
-
-	NECROSIS_BINDING = {
-		["Current"] = " уже сопоставлено с ",
-		["Confirm"] = "Желаете выполнить сопоставление ",
-		["To"] = " к ",
-		["Yes"] = "Да",
-		["No"] = "Нет",
-		["InCombat"] = "Извините, Вы не можете выполнять назначение клавиш находясь в бою",
-		["Binding"] = "Сопоставить",
-		["Unbind"] = "Снять",
-		["Cancel"] = "Отменить",
-		["Press"] = "Нажмите клавишу или \nкомбинацию клавиш,\nкоторую хотите\n сопоставить для:\n\n\n",
-		["Now"] = "Текущее сопоставление:\n",
-		["NotBound"] = "<Не сопоставлено>",
-	};
 
 end

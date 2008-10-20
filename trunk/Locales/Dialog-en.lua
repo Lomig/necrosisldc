@@ -45,7 +45,8 @@ function Necrosis:Localization_Dialog_En()
 	end
 
 	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Healthstone Cooldown"
+		["Healthstone"] = "Healthstone Cooldown",
+		["Utilisation"] = "Use",
 	}
 
 	NecrosisTooltipData = {
@@ -159,9 +160,6 @@ function Necrosis:Localization_Dialog_En()
 		},
 		["Sacrifice"] = {
 			Label = "|c00FFFFFFDemonic sacrifice|r"
-		},
-		["Amplify"] = {
-			Label = "|c00FFFFFFAmplify Curse|r"
 		},
 		["Weakness"] = {
 			Label = "|c00FFFFFFCurse of Weakness|r"
@@ -359,20 +357,5 @@ function Necrosis:Localization_Dialog_En()
 		["Afficher les boutons caches"] = "Let me see hidden buttons to drag them",
 		["Taille des boutons caches"] = "Size of hidden buttons"
 	}
-
-	NECROSIS_BINDING = {
-		["Current"] = " is currently bound to ",
-		["Confirm"] = "Do you want to bind ",
-		["To"] = " to ",
-		["Yes"] = "Yes",
-		["No"] = "No",
-		["InCombat"] = "Sorry, you can't change key bindings while in combat.",
-		["Binding"] = "Bindings",
-		["Unbind"] = "Unbind",
-		["Cancel"] = "Cancel",
-		["Press"] = "Press a key to bind...\n\n",
-		["Now"] = "Currently: ",
-		["NotBound"] = "Not Bound",
-	};
 
 end
