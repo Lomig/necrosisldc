@@ -109,10 +109,6 @@ Necrosis.Spell = setmetatable({}, metatable)
 -- DÉCLARATION DES VARIABLES
 ------------------------------------------------------------------------------------------------------
 
-
-Necrosis.Binding = setmetatable({}, metatable)
-Necrosis.AlreadyBind = {}
-
 -- Détection des initialisations du mod
 Local.LoggedIn = true
 Local.InWorld = true
@@ -944,7 +940,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	end
 
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
-	local start, duration, start2, duration2, start3, duration3, start4, duration4
+	local start, duration, start2, duration2, start3, duration3
 	if Necrosis.Spell[15].ID then
 		start, duration = GetSpellCooldown(Necrosis.Spell[15].ID, BOOKTYPE_SPELL)
 	else
@@ -958,10 +954,10 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		duration2 = 1
 	end
 	if Necrosis.Spell[50].ID then
-		start4, duration4 = GetSpellCooldown(Necrosis.Spell[50].ID, BOOKTYPE_SPELL)
+		start3, duration3 = GetSpellCooldown(Necrosis.Spell[50].ID, BOOKTYPE_SPELL)
 	else
-		start4 = 1
-		duration4 = 1
+		start3 = 1
+		duration3 = 1
 	end
 
 	-- Création des bulles d'aides....
@@ -1024,7 +1020,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 			if itemName:find(self.Translation.Misc.Cooldown) then
 				GameTooltip:AddLine(itemName)
 			end
-			if  Local.Soulshard.Count > 0 and not (start4 > 0 and duration4 > 0) then
+			if  Local.Soulshard.Count > 0 and not (start3 > 0 and duration3 > 0) then
 				GameTooltip:AddLine(NecrosisTooltipData[Type].Ritual)
 			end
 		-- Pierre de sort
@@ -1095,43 +1091,17 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		GameTooltip:AddLine(Necrosis.Spell[23].Mana.." Mana")
 	elseif (Type == "Agony") then
 		GameTooltip:AddLine(Necrosis.Spell[22].Mana.." Mana")
-		if not (start3 > 0 and duration3 > 0) then
-			GameTooltip:AddLine(NecrosisTooltipData.AmplifyCooldown)
-		end
+
 	elseif (Type == "Reckless") then
 		GameTooltip:AddLine(Necrosis.Spell[24].Mana.." Mana")
 	elseif (Type == "Tongues") then
 		GameTooltip:AddLine(Necrosis.Spell[25].Mana.." Mana")
 	elseif (Type == "Exhaust") then
 		GameTooltip:AddLine(Necrosis.Spell[40].Mana.." Mana")
-		if not (start3 > 0 and duration3 > 0) then
-			GameTooltip:AddLine(NecrosisTooltipData.AmplifyCooldown)
-		end
 	elseif (Type == "Elements") then
 		GameTooltip:AddLine(Necrosis.Spell[26].Mana.." Mana")
 	elseif (Type == "Doom") then
 		GameTooltip:AddLine(Necrosis.Spell[16].Mana.." Mana")
-		if not (start3 > 0 and duration3 > 0) then
-			GameTooltip:AddLine(NecrosisTooltipData.AmplifyCooldown)
-		end
-	elseif (Type == "Amplify") then
-		if start3 > 0 and duration3 > 0 then
-			local seconde = duration3 - ( GetTime() - start3)
-			local affiche, minute, time
-			if seconde <= 59 then
-				affiche = tostring(floor(seconde)).." sec"
-			else
-				minute = tostring(floor(seconde/60))
-				seconde = mod(seconde, 60)
-				if seconde <= 9 then
-					time = "0"..tostring(floor(seconde))
-				else
-					time = tostring(floor(seconde))
-				end
-				affiche = minute..":"..time
-			end
-			GameTooltip:AddLine("Cooldown : "..affiche)
-		end
 	elseif (Type == "TP") then
 		GameTooltip:AddLine(Necrosis.Spell[37].Mana.." Mana")
 		if Local.Soulshard.Count == 0 then
@@ -2190,7 +2160,7 @@ function Necrosis:SpellSetup()
 		self:StoneAttribute(Local.Summon.SteedAvailable)
 	end
 
-
+	Necrosis:BindName()
 end
 
 -- Fonction d'extraction d'attribut de sort

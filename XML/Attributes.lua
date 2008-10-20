@@ -96,11 +96,6 @@ function Necrosis:BuffSpellAttribute()
 				Necrosis.Spell[31].Name.."("..Necrosis.Spell[31].Rank..")"
 			)
 		end
-		-- Création du tableau des raccourcis claviers
-		if not Necrosis.AlreadyBind["NecrosisBuffMenu1"] then
-			Necrosis.AlreadyBind["NecrosisBuffMenu1"] = true
-			Necrosis.Binding:insert({Necrosis.Spell[31].Name, "CLICK NecrosisBuffMenu1:LeftButton"})
-		end
 	end
 
 
@@ -119,13 +114,6 @@ function Necrosis:BuffSpellAttribute()
 				SpellName_Rank = SpellName_Rank.."("..Necrosis.Spell[ buffID[i] ].Rank..")"
 			end
 			f:SetAttribute("spell", SpellName_Rank)
-			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisBuffMenu"..i] then
-				Necrosis.AlreadyBind["NecrosisBuffMenu"..i] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[ buffID[i] ].Name, "CLICK NecrosisBuffMenu"..i..":LeftButton"}
-				)
-			end
 		end
 	end
 
@@ -145,11 +133,6 @@ function Necrosis:BuffSpellAttribute()
 		NecrosisBuffMenu11:SetAttribute("ctrl-type*", "spell")
 		NecrosisBuffMenu11:SetAttribute("ctrl-spell*", SpellName_Rank)
 
-		-- Création du tableau des raccourcis claviers
-		if not Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] then
-			Necrosis.AlreadyBind["NecrosisBuffMenu11Left"] = true
-			Necrosis.Binding:insert({Necrosis.Spell[9].Name, "CLICK NecrosisBuffMenu11:LeftButton"})
-		end
 		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
 		if Necrosis.Spell[9].Rank:find("2") then
 			NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
@@ -164,13 +147,6 @@ function Necrosis:BuffSpellAttribute()
 			NecrosisBuffMenu11:SetAttribute("ctrl-spell1", SpellName_Rank)
 			NecrosisBuffMenu11:SetAttribute("ctrl-type2", "spell")
 			NecrosisBuffMenu11:SetAttribute("ctrl-spell2", Rank1)
-
-			if not Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] then
-				Necrosis.AlreadyBind["NecrosisBuffMenu11Right"] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[9].Name.." Rank 1", "CLICK NecrosisBuffMenu11:RightButton"}
-				)
-			end
 		end
 
 
@@ -197,13 +173,6 @@ function Necrosis:PetSpellAttribute()
 			f:SetAttribute("macrotext",
 				"/cast "..Necrosis.Spell[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
 			)
-			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisPetMenu"..i] then
-				Necrosis.AlreadyBind["NecrosisPetMenu"..i] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[i+2].Name, "CLICK NecrosisPetMenu"..i..":LeftButton"}
-				)
-			end
 		end
 	end
 
@@ -219,13 +188,6 @@ function Necrosis:PetSpellAttribute()
 			end
 			f:SetAttribute("type", "spell")
 			f:SetAttribute("spell", SpellName_Rank)
-			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] then
-				Necrosis.AlreadyBind["NecrosisPetMenu"..buttonID[i]] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[BuffID[i]].Name, "CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"}
-				)
-			end
 		end
 	end
 end
@@ -249,14 +211,6 @@ function Necrosis:CurseSpellAttribute()
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
 			f:SetAttribute("spell-debuff", SpellName_Rank)
-			-- Création du tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] then
-				Necrosis.AlreadyBind["NecrosisCurseMenu"..buttonID[i]] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[ buffID[i] ].Name,
-					"CLICK NecrosisCurseMenu"..buttonID[i]..":LeftButton"}
-				)
-			end
 		end
 	end
 end
@@ -275,26 +229,6 @@ function Necrosis:StoneAttribute(Steed)
 		if f then
 			f:SetAttribute("type2", "spell")
 			f:SetAttribute("spell2", Necrosis.Spell[ buffID[i] ].Name.."("..Necrosis.Spell[ buffID[i] ].Rank..")")
-
-			-- On prépare le tableau des raccourcis claviers
-			if not Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] then
-				Necrosis.AlreadyBind["Necrosis"..itemName[i].."Button"] = true
-				Necrosis.Binding:insert(
-					{Necrosis.Spell[ buffID[i] ].Name,
-					"CLICK Necrosis"..itemName[i].."Button:RightButton"}
-				)
-				Necrosis.Binding:insert(
-					{Necrosis.Translation.Item[ itemName[i] ], "CLICK Necrosis"..itemName[i].."Button:LeftButton"}
-				)
-				if i == 2 then
-					Necrosis.Binding:insert(
-						{
-							"Trade "..Necrosis.Translation.Item[ itemName[i] ],
-							"CLICK Necrosis"..itemName[i].."Button:MiddleButton"
-						}
-					)
-				end
-			end
 		end
 	end
 
@@ -314,10 +248,6 @@ function Necrosis:StoneAttribute(Steed)
 				NecrosisMountButton:SetAttribute("spell2", Necrosis.Spell[1].Name)
 			else
 				NecrosisMountButton:SetAttribute("spell*", Necrosis.Spell[1].Name)
-			end
-			if not Necrosis.AlreadyBind["NecrosisMountButton"] then
-				Necrosis.AlreadyBind["NecrosisMountButton"] = true
-				Necrosis.Binding:insert({Necrosis.Spell[2].Name, "CLICK NecrosisMountButton:LeftButton"})
 			end
 		end
 	end
@@ -349,12 +279,6 @@ function Necrosis:MainButtonAttribute()
 	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
 		NecrosisButton:SetAttribute("spell", Necrosis.Spell[NecrosisConfig.MainSpell].Name)
-		if not Necrosis.AlreadyBind["NecrosisButton"] then
-			Necrosis.AlreadyBind["NecrosisButton"] = true
-			Necrosis.Binding:insert(
-				{Necrosis.Spell[NecrosisConfig.MainSpell].Name, "CLICK NecrosisButton:LeftButton"}
-			)
-		end
 	end
 end
 

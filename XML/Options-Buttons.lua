@@ -243,18 +243,6 @@ function Necrosis:SetButtonsConfig()
 			frame:SetFontString(FontString)
 		end
 
-		-- Bindings
-		frame = CreateFrame("Button", "Necrosis_Binding", NecrosisButtonsConfig1, "OptionsButtonTemplate")
-		frame:SetText(NECROSIS_BINDING.Binding)
-		frame:EnableMouse(true)
-		frame:Show()
-		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisButtonsConfig1, "BOTTOMRIGHT", 35, 100)
-
-		frame:SetScript("OnClick", function()
-			ClickBinder.Open("Necrosis - "..NECROSIS_BINDING.Binding, Necrosis.Binding)
-		end)
-		
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Sous Menu 2
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -305,11 +293,13 @@ function Necrosis:SetButtonsConfig()
 					end
 					Necrosis:StoneAttribute("Own")
 				end
+				Necrosis:BindName()
 			else
 				NecrosisLeftMount:Hide()
 				NecrosisRightMount:Hide()
 				NecrosisConfig.OwnMount = false
 				Necrosis:StoneAttribute("Own")
+				Necrosis:BindName()
 			end
 		end)
 
