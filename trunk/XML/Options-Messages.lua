@@ -374,7 +374,7 @@ end
 -- Fonctions du Dropdown des timers
 function Necrosis.Language_Init()
 	local element = {}
-	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español", "ruRU"}
+	local langues = {"Français", "English", "Deutsch", "zhTW", "zhCN", "Español", "Русский"}
 
 	for i in ipairs(langues) do
 		element.text = langues[i]

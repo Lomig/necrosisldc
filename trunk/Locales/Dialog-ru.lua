@@ -29,7 +29,7 @@
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
--- Version Russe par Komsomolka(Азурегос/Пиратская Бухта)
+-- Version Russe par Komsomolka:Navigator (Азурегос/Пиратская Бухта) (http://koms.ruguild.ru)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -84,11 +84,11 @@ function Necrosis:Localization_Dialog_Ru()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFКамень чар|r",
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
+			Text = {"[Правй Клик] Создать","В сумке\n[Левый Клик] Использовать","Использован", "Использование\Создение"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Камень огня|r",
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
+			Text = {"[Правй Клик] Создать","В сумке\n[Левый Клик] Использовать","Использован", "Использование\Создение"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFТаймер заклинаний|r",
@@ -130,7 +130,7 @@ function Necrosis:Localization_Dialog_Ru()
 			Label = "|c00FFFFFFРитуал призывания|r"
 		},
 		["RoS"] = {
-			Label = "|c00FFFFFFRitual of Souls|r"
+			Label = "|c00FFFFFFРитуал душ|r"
 		},
 		["SoulLink"] = {
 			Label = "|c00FFFFFFДуховная связь|r"
@@ -214,7 +214,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-Ru.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-Ru.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-Ru.mp3",
-		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
+		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Ru.mp3",
 	};
 
 	NECROSIS_PROC_TEXT = {
@@ -268,7 +268,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Utiliser des messages courts"] = "Использовать только 'короткие' сообщения",
 		["Activer egalement les messages pour les Demons"] = "Показывать сообщения для демонов",
 		["Activer egalement les messages pour les Montures"] = "Показывать сообщения для коней",
-		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activate random speeches for Ritual of Souls",
+		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Показывать сообщения для Ритуала Душ",
 		["Activer les sons"] = "Воспроизводить звуковые эффекты",
 		["Alerter quand la cible est insensible a la peur"] = "Предупреждать, если цель не поддается страху",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Предупреждать, если цель изгнана или порабощена",
@@ -303,11 +303,12 @@ function Necrosis:Localization_Dialog_Ru()
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Вращение кнопок",
 		["Fixer les boutons autour de la sphere"] = "Закрепить кнопки вокруг Сферы",
-		["Utiliser mes propres montures"] = "Use my own mounts",
-		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
-		["Monture - Clic gauche"] = "Mount - Left click",
-		["Monture - Clic droit"] = "Mount - Right click",
+		["Utiliser mes propres montures"] = "Использовать моих маунтов",
+		["Choix des boutons a afficher"] = "Выбор кнопок, которые будут показаны",
+		["Monture - Clic gauche"] = "Питомец под [Левый Клик]",
+		["Monture - Clic droit"] = "Питомец под [Правй Клик]",
 	}
+	
 	Necrosis.Config.Buttons.Name = {
 		"Показывать кнопку Камня огня",
 		"Показывать кнопку Камня чар",
@@ -358,5 +359,4 @@ function Necrosis:Localization_Dialog_Ru()
 		["Afficher les boutons caches"] = "Показать скрытые значки для их перемещения",
 		["Taille des boutons caches"] = "Размер скрытых значков"
 	}
-
 end

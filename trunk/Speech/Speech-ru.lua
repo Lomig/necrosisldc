@@ -29,7 +29,7 @@
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
--- Version Russe par Komsomolka
+-- Version Russe par Komsomolka:Navigator (Азурегос/Пиратская Бухта) (http://koms.ruguild.ru)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ function Necrosis:Localization_Speech_Ru()
 
 	self.Speech.TP = {
 		[1] = {
-			"<after>Логистическая компания Komsomolka™ приветствует Вас! Для осуществления доставки груза с кодовым названием '<target>', нажмите на портал.",
+			"<after>Логистическая компания Комсомолка™ приветствует Вас! Для осуществления доставки груза с кодовым названием '<target>', нажмите на портал.",
 		},
 		[2] = {
 			"<after>Уважаемый <target>, Вас приветствует капитан воздушного судна <player> на борту Темных Авиалиний.",
@@ -73,10 +73,10 @@ function Necrosis:Localization_Speech_Ru()
 
 	self.Speech.RoS = {
 		[1] = {
-			"Let us use the souls of our fallen enemies to give us vitality",
+			"Используйте души наших врагов..., чтобы стать сильнее!",
 		},
 		[2] = {
-			"My soul, their soul, doesn't matter, just take one",
+			"Моя душа... Твоя душа... Не имеет значения! Возьми себе одну...",
 		},
 	}
 
