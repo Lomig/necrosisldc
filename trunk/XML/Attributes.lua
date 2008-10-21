@@ -49,24 +49,48 @@ function Necrosis:MenuAttribute(menu)
 		return
 	end
 
-	local menu0 = _G[menu.."0"]
-	local menuButton = _G[menu.."Button"]
-
-	menu0:SetParent(menuButton)
-	menuButton:SetAttribute("_adopt", menu0)
+	local menuButton = _G[menu]
+	
+	if not menuButton:GetAttribute("state") then 
+		menuButton:SetAttribute("state", 0)
+	end
+	menuButton:SetAttribute("test", "non")
 	menuButton:Execute([[
 		ButtonList = table.new(self:GetChildren())
-	]])
-	menuButton:SetAttribute("_onclick", [[
-		if menuOpen then
-			menuOpen = false
+		if self:GetAttribute("state") == 4 then
+			for i, button in ipairs(ButtonList) do
+				button:Show()
+			end
+		else
 			for i, button in ipairs(ButtonList) do
 				button:Hide()
 			end
-		else
-			menuOpen = true
-			for i, button in ipairs(ButtonList) do
-				button:Show()
+		end
+	]])
+
+	menuButton:SetAttribute("_onclick", [[
+		local Etat = self:GetAttribute("state")
+		if  Etat == 0 then
+			self:SetAttribute("state", 1)
+		elseif Etat == 1 then
+			self:SetAttribute("state", 0)
+		end
+	]])
+	
+	menuButton:SetAttribute("_onattributechanged", [[
+		if name == "state" then
+			if value == 0 then
+				for i, button in ipairs(ButtonList) do
+					button:Hide()
+				end
+			elseif value == 1 then
+				for i, button in ipairs(ButtonList) do
+					button:Show()
+				end
+			elseif value == 4 then
+				for i, button in ipairs(ButtonList) do
+					button:Show()
+				end
 			end
 		end
 	]])
@@ -292,9 +316,9 @@ function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	-- Si on veut que le menu s'engage automatiquement en combat
 	-- Et se désengage à la fin
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
-		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
-		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
-		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
+		if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "0") end
+		if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "0") end
+		if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "0") end
 	end
 
 
@@ -316,9 +340,9 @@ function Necrosis:InCombatAttribute()
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
-		if _G["NecrosisPetMenu0"] and NecrosisConfig.StonePosition[7] then NecrosisPetMenu0:SetAttribute("state", "3") end
-		if _G["NecrosisBuffMenu0"] and NecrosisConfig.StonePosition[5] then NecrosisBuffMenu0:SetAttribute("state", "3") end
-		if _G["NecrosisCurseMenu0"] and NecrosisConfig.StonePosition[8] then NecrosisCurseMenu0:SetAttribute("state", "3") end
+		if _G["NecrosisPetMenuButton"] and NecrosisConfig.StonePosition[7] then NecrosisPetMenuButton:SetAttribute("state", "3") end
+		if _G["NecrosisBuffMenuButton"] and NecrosisConfig.StonePosition[5] then NecrosisBuffMenuButton:SetAttribute("state", "3") end
+		if _G["NecrosisCurseMenuButton"] and NecrosisConfig.StonePosition[8] then NecrosisCurseMenuButton:SetAttribute("state", "3") end
 	end
 
 	-- Si on connait le nom de la pierre de sort,

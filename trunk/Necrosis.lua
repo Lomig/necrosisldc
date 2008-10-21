@@ -2355,9 +2355,9 @@ function Necrosis:CreateMenu()
 	Local.Menu.Curse = setmetatable({}, metatable)
 	Local.Menu.Buff = setmetatable({}, metatable)
 	local menuVariable = nil
-	local PetButtonPosition = 0
-	local BuffButtonPosition = 0
-	local CurseButtonPosition = 0
+	local PetButtonPosition = "Button"
+	local BuffButtonPosition = "Button"
+	local CurseButtonPosition = "Button"
 
 	-- On cache toutes les icones des démons
 	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
@@ -2425,12 +2425,10 @@ function Necrosis:CreateMenu()
 				NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 			)
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-			self:MenuAttribute("NecrosisPetMenu")
 			for i = 1, #Local.Menu.Pet, 1 do
-				NecrosisPetMenu0:SetAttribute("_adopt", Local.Menu.Pet[i])
-				Local.Menu.Pet[i]:SetParent(NecrosisPetMenu0)
-				Local.Menu.Pet[i]:Show()
+				Local.Menu.Pet[i]:SetParent(NecrosisPetMenuButton)
 			end
+			self:MenuAttribute("NecrosisPetMenuButton")
 			self:PetSpellAttribute()
 		end
 	end
@@ -2492,12 +2490,10 @@ function Necrosis:CreateMenu()
 				NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
 			)
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-			self:MenuAttribute("NecrosisBuffMenu")
 			for i = 1, #Local.Menu.Buff, 1 do
-				NecrosisBuffMenu0:SetAttribute("_adopt", Local.Menu.Buff[i])
-				Local.Menu.Buff[i]:SetParent(NecrosisBuffMenu0)
-				Local.Menu.Buff[i]:Show()
+				Local.Menu.Buff[i]:SetParent(NecrosisBuffMenuButton)
 			end
+			self:MenuAttribute("NecrosisBuffMenuButton")
 			self:BuffSpellAttribute()
 		end
 	end
@@ -2543,21 +2539,19 @@ function Necrosis:CreateMenu()
 				NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 			)
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
-			self:MenuAttribute("NecrosisCurseMenu")
 			for i = 1, #Local.Menu.Curse, 1 do
-				NecrosisCurseMenu0:SetAttribute("_adopt", Local.Menu.Curse[i])
-				Local.Menu.Curse[i]:SetParent(NecrosisCurseMenu0)
-				Local.Menu.Curse[i]:Show()
+				Local.Menu.Curse[i]:SetParent(NecrosisCurseMenuButton)
 			end
+			self:MenuAttribute("NecrosisCurseMenuButton")
 			self:CurseSpellAttribute()
 		end
 	end
 
 	-- On bloque le menu en position ouverte si configuré
 	if NecrosisConfig.BlockedMenu then
-		if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
-		if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
-		if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
+		if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
+		if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
+		if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
 	end
 end
 
@@ -2661,21 +2655,21 @@ function NecrosisTimer(nom, duree)
 end
 
 function Necrosis:SetOfxy(menu)
-	if menu == "Buff" and _G["NecrosisBuffMenu0"] then
+	if menu == "Buff" and _G["NecrosisBuffMenuButton"] then
 		Local.Menu.Buff[1]:ClearAllPoints()
 		Local.Menu.Buff[1]:SetPoint(
 			"CENTER", "NecrosisBuffMenuButton", "CENTER",
 			NecrosisConfig.BuffMenuPos.direction * NecrosisConfig.BuffMenuPos.x * 32 + NecrosisConfig.BuffMenuDecalage.x,
 			NecrosisConfig.BuffMenuPos.y * 32 + NecrosisConfig.BuffMenuDecalage.y
 		)
-	elseif menu == "Pet" and _G["NecrosisPetMenu0"] then
+	elseif menu == "Pet" and _G["NecrosisPetMenuButton"] then
 		Local.Menu.Pet[1]:ClearAllPoints()
 		Local.Menu.Pet[1]:SetPoint(
 			"CENTER", "NecrosisPetMenuButton", "CENTER",
 			NecrosisConfig.PetMenuPos.direction * NecrosisConfig.PetMenuPos.x * 32 + NecrosisConfig.PetMenuDecalage.x,
 			NecrosisConfig.PetMenuPos.y * 32 + NecrosisConfig.PetMenuDecalage.y
 		)
-	elseif menu == "Curse" and _G["NecrosisCurseMenu0"] then
+	elseif menu == "Curse" and _G["NecrosisCurseMenuButton"] then
 		Local.Menu.Curse[1]:ClearAllPoints()
 		Local.Menu.Curse[1]:SetPoint(
 			"CENTER", "NecrosisCurseMenuButton", "CENTER",
