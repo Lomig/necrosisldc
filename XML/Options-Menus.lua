@@ -257,15 +257,15 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.BlockedMenu = this:GetChecked()
 			if NecrosisConfig.BlockedMenu then
-				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
-				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
-				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
 				NecrosisAutoMenu:Disable()
 				NecrosisCloseMenu:Disable()
 			else
-				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
-				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
-				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 0) end
 				NecrosisAutoMenu:Enable()
 				NecrosisCloseMenu:Enable()
 			end
@@ -290,9 +290,9 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.AutomaticMenu = this:GetChecked()
 			if not NecrosisConfig.AutomaticMenu then
-				if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "0") end
-				if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "0") end
-				if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "0") end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 0) end
 			end
 		end)
 
@@ -421,12 +421,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
@@ -455,12 +455,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisBuffMenu0"] then NecrosisBuffMenu0:SetAttribute("state", State) end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
@@ -529,12 +529,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
@@ -563,12 +563,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisPetMenu0"] then NecrosisPetMenu0:SetAttribute("state", State) end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
@@ -637,12 +637,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
@@ -671,12 +671,12 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", "4") end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
 
 		end)
 		frame:SetScript("OnLeave", function()
 			GameTooltip:Hide()
-			if _G["NecrosisCurseMenu0"] then NecrosisCurseMenu0:SetAttribute("state", State) end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
 			GameTooltip:SetText(this:GetValue())
