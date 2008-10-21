@@ -29,13 +29,13 @@
 --
 -- Version Allemande par Geschan
 -- Version Espagnole par DosS (Zul’jin)
--- Version Russe par Komsomolka
+-- Version Russe par Komsomolka:Navigator (Азурегос/Пиратская Бухта) (http://koms.ruguild.ru)
 --
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------
--- ENGLISH  VERSION FUNCTIONS --
+-- RUSSIAN VERSION FUNCTIONS --
 ------------------------------------------------
 
 if ( GetLocale() == "ruRU" ) then
