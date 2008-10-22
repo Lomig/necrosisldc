@@ -145,34 +145,41 @@ function Necrosis:BuffSpellAttribute()
 	-- Cas particulier : Bouton de Banish
 	if _G["NecrosisBuffMenu11"] then
 		local SpellName_Rank = Necrosis.Spell[9].Name.."("..Necrosis.Spell[9].Rank..")"
-		local Rank1 = SpellName_Rank:gsub("2", "1")
-		-- Association du sort au clic gauche
-		NecrosisBuffMenu11:SetAttribute("unit*", "target")
-		NecrosisBuffMenu11:SetAttribute("type*", "macro")
-		NecrosisBuffMenu11:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
 
-		-- Si le démoniste control + click le bouton de banish
-		-- On rebanish la dernière cible bannie
-		NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
-		NecrosisBuffMenu11:SetAttribute("ctrl-type*", "spell")
-		NecrosisBuffMenu11:SetAttribute("ctrl-spell*", SpellName_Rank)
+		NecrosisBuffMenu11:SetAttribute("unit*", "target")				-- associate left & right clicks with target
+		NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus") 		-- associate CTRL+left or right clicks with focus
 
-		-- Si le démoniste possède le Banish rang 2, on associe le rang 1 au clic droit
-		if Necrosis.Spell[9].Rank:find("2") then
-			NecrosisBuffMenu11:SetAttribute("ctrl-unit*", "focus")
-			NecrosisBuffMenu11:SetAttribute("harmbutton*", "banish")
-			NecrosisBuffMenu11:SetAttribute("unit*", "target")
-			NecrosisBuffMenu11:SetAttribute("type-banish1", "macro")
-			NecrosisBuffMenu11:SetAttribute("macrotext-banish1", "/focus\n/cast "..SpellName_Rank)
-			NecrosisBuffMenu11:SetAttribute("type-banish2", "macro")
-			NecrosisBuffMenu11:SetAttribute("macrotext-banish2", "/focus\n/cast "..Rank1)
+		if Necrosis.Spell[9].Rank:find("1") then	-- the warlock can only do Banish(Rank 1) 
+			-- left & right click will perform the same macro
+			NecrosisBuffMenu11:SetAttribute("type*", "macro")
+			NecrosisBuffMenu11:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
 
+			-- Si le démoniste control + click le bouton de banish || if the warlock uses ctrl-click then
+			-- On rebanish la dernière cible bannie || rebanish the previously banished target
+			NecrosisBuffMenu11:SetAttribute("ctrl-type*", "spell")
+			NecrosisBuffMenu11:SetAttribute("ctrl-spell*", SpellName_Rank)
+		end 
+
+		if Necrosis.Spell[9].Rank:find("2") then -- the warlock has Banish(rank 2)
+			local Rank1 = SpellName_Rank:gsub("2", "1")
+			
+			-- so lets use the "harmbutton" special attribute!
+			-- assign Banish(rank 2) to LEFT click 
+			NecrosisBuffMenu11:SetAttribute("harmbutton1", "banishrank2")
+			NecrosisBuffMenu11:SetAttribute("type-banishrank2", "macro")
+			NecrosisBuffMenu11:SetAttribute("macrotext-banishrank2", "/focus\n/cast "..SpellName_Rank)
+			
+			-- assign Banish(rank 1) to RIGHT click 
+			NecrosisBuffMenu11:SetAttribute("harmbutton2", "banishrank1")
+			NecrosisBuffMenu11:SetAttribute("type-banishrank1", "macro")
+			NecrosisBuffMenu11:SetAttribute("macrotext-banishrank1", "/focus\n/cast "..Rank1)
+
+			-- allow focused target to be rebanished with CTRL+LEFT or RIGHT click
 			NecrosisBuffMenu11:SetAttribute("ctrl-type1", "spell")
 			NecrosisBuffMenu11:SetAttribute("ctrl-spell1", SpellName_Rank)
 			NecrosisBuffMenu11:SetAttribute("ctrl-type2", "spell")
 			NecrosisBuffMenu11:SetAttribute("ctrl-spell2", Rank1)
 		end
-
 
 	end
 end
