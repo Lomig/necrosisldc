@@ -42,11 +42,11 @@ local _G = getfenv(0)
 function Necrosis:BindName()
 
 	-- Le Titre
-	_G["BINDING_HEADER_Necrosis"] = "Necrosis LdC"
-	
+	_G["BINDING_HEADER_Necrosis"] = "Necrosis"
+
 	-- La Sphere
 	_G["BINDING_NAME_CLICK NecrosisButton:LeftButton"] = Necrosis.Spell[NecrosisConfig.MainSpell].Name
-	
+
 	-- Le Cheval
 	if NecrosisConfig.OwnMount then
 		local _, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
@@ -56,22 +56,21 @@ function Necrosis:BindName()
 	else
 		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = Necrosis.Spell[1].Name
 	end
-	
+
 	-- La Pierre de feu
 	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:RightButton"] = Necrosis.Spell[54].Name
 	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:LeftButton"] = self.Translation.Item.Firestone
-	
+
 	--La Pierre de sort
 	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:RightButton"] = Necrosis.Spell[53].Name
 	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:LeftButton"] = self.Translation.Item.Spellstone
-	
+
 	--La Pierre de soin
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:RightButton"] = Necrosis.Spell[52].Name
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:LeftButton"] = self.Translation.Item.Healthstone.." - "..NECROSIS_COOLDOWN["Utilisation"]
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:MiddleButton"] = self.Translation.Item.Healthstone.." - "..NECROSIS_COOLDOWN["Echange"]
-	
+
 	-- La Pierre de sort
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = Necrosis.Spell[51].Name
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:LeftButton"] = self.Translation.Item.Soulstone
-	
 end

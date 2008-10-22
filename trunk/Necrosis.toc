@@ -2,7 +2,7 @@
 ## Title: Necrosis
 ## Title-frFR: Necrosis
 ## Author: Lomig
-## Version: 3.0-08-1021-0300
+## Version: 3.0-08-1022-0207
 ## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## eMail: lomig@larmes-cenarius.net

@@ -1,13 +1,35 @@
 ﻿<Bindings>
-	<Binding name="CLICK NecrosisButton:LeftButton" header="Necrosis">-- Sphere --</Binding>
-	<Binding name="CLICK NecrosisMountButton:LeftButton">-- Monture --</Binding>
-	<Binding name="CLICK NecrosisFirestoneButton:RightButton">-- Créer Pierre de feu --</Binding>
-	<Binding name="CLICK NecrosisFirestoneButton:LeftButton">-- Utiliser Pierre de feu --</Binding>
-	<Binding name="CLICK NecrosisSpellstoneButton:RightButton">-- Créer Pierre de sort --</Binding>
-	<Binding name="CLICK NecrosisSpellstoneButton:LeftButton">-- Utiliser Pierre de sort --</Binding>
-	<Binding name="CLICK NecrosisHealthstoneButton:RightButton">-- Créer Pierre de soins --</Binding>
-	<Binding name="CLICK NecrosisHealthstoneButton:LeftButton">-- Utiliser Pierre de soins --</Binding>
-	<Binding name="CLICK NecrosisHealthstoneButton:MiddleButton">-- Echanger Pierre de soins --</Binding>
-	<Binding name="CLICK NecrosisSoulstoneButton:RightButton">-- Créer Pierre de résurrection --</Binding>
-	<Binding name="CLICK NecrosisSoulstoneButton:LeftButton">-- Utiliser Pierre de résurrection --</Binding>
+	<Binding name="CLICK NecrosisButton:LeftButton" header="Necrosis">
+		-- Sphere --
+	</Binding>
+	<Binding name="CLICK NecrosisMountButton:LeftButton">
+		-- Monture --
+	</Binding>
+	<Binding name="CLICK NecrosisFirestoneButton:RightButton">
+		-- Créer Pierre de feu --
+	</Binding>
+	<Binding name="CLICK NecrosisFirestoneButton:LeftButton">
+		-- Utiliser Pierre de feu --
+	</Binding>
+	<Binding name="CLICK NecrosisSpellstoneButton:RightButton">
+		-- Créer Pierre de sort --
+	</Binding>
+	<Binding name="CLICK NecrosisSpellstoneButton:LeftButton">
+		-- Utiliser Pierre de sort --
+	</Binding>
+	<Binding name="CLICK NecrosisHealthstoneButton:RightButton">
+		-- Créer Pierre de soins --
+	</Binding>
+	<Binding name="CLICK NecrosisHealthstoneButton:LeftButton">
+		-- Utiliser Pierre de soins --
+	</Binding>
+	<Binding name="CLICK NecrosisHealthstoneButton:MiddleButton">
+		-- Echanger Pierre de soins --
+	</Binding>
+	<Binding name="CLICK NecrosisSoulstoneButton:RightButton">
+		-- Créer Pierre de résurrection --
+	</Binding>
+	<Binding name="CLICK NecrosisSoulstoneButton:LeftButton">
+		-- Utiliser Pierre de résurrection --
+	</Binding>
 </Bindings>
