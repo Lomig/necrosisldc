@@ -184,8 +184,8 @@ function Necrosis:Localization_Dialog_En()
 			Label = "|c00FFFFFFCurse of Doom|r"
 		},
 		["Mount"] = {
-			Label = "|c00FFFFFFSteed|r",
-			Text = "Right click to summon Felsteed"
+			Label = "|c00FFFFFFMounts|r",
+			Text = "Left click to summon Dreadsteed\nRight click to summon Felsteed"
 		},
 		["BuffMenu"] = {
 			Label = "|c00FFFFFFSpell Menu|r",
