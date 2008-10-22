@@ -46,8 +46,8 @@ function Necrosis:Localization_Dialog_Ru()
 
 	NECROSIS_COOLDOWN = {
 		["Healthstone"] = "Готовность Камня здоровья",
-		["Utilisation"] = "Use",
-		["Echange"] = "Trade",
+		["Utilisation"] = "Использовать",
+		["Echange"] = "Обмен",
 	}
 
 	NecrosisTooltipData = {
@@ -84,22 +84,22 @@ function Necrosis:Localization_Dialog_Ru()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFКамень чар|r",
-			Text = {"[Правй Клик] Создать","В сумке\n[Левый Клик] Использовать","Использован", "Использование\Создение"}
+			Text = {"[Клик] Создать камень","Камень у Вас в сумке\n[Клик] Нанести на оружие","Нанесено на оружие\n[Клик] Для замены/обновления", "Созданный ранее камень полностью использован\n[Клик] Создать новый камень"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Камень огня|r",
-			Text = {"[Правй Клик] Создать","В сумке\n[Левый Клик] Использовать","Использован", "Использование\Создение"}
+			Text = {"[Клик] Создать камень","Камень у Вас в сумке\n[Клик] Нанести на оружие","Нанесено на оружие\n[Клик] Для замены/обновления", "Созданный ранее камень полностью использован\n[Клик] Создать новый камень"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFТаймер заклинаний|r",
 			Text = "Активное заклинание на цели",
-			Right = "[Правый Клик] Использовать Камня Здоровья до "
+			Right = "[Правый Клик] Использовать Камень Возвращения в "
 		},
 		["ShadowTrance"] = {
 			Label = "|c00FFFFFFТеневой транс|r"
 		},
 		["Backlash"] = {
-			Label = "|c00FFFFFFУдар Плетью|r"
+			Label = "|c00FFFFFFОтветный Удар|r"
 		},
 		["Domination"] = {
 			Label = "|c00FFFFFFДемоническое превосходство|r"
@@ -124,7 +124,7 @@ function Necrosis:Localization_Dialog_Ru()
 		},
 		["Banish"] = {
 			Label = "|c00FFFFFFИзгнание|r",
-			Text = "Правый-Клик для каста Рейтинг 1"
+			Text = "[Правый Клик] для каста Уровень 1"
 		},
 		["TP"] = {
 			Label = "|c00FFFFFFРитуал призывания|r"
@@ -245,7 +245,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Information"] = {
 			["FearProtect"] = "Ваша цель не поддается страху!",
 			["EnslaveBreak"] = "Ваш демон разорвал цепи!",
-			["SoulstoneEnd"] = "<lightYellow>Ваш камень души выдохся!"
+			["SoulstoneEnd"] = "<lightYellow>Ваш Камень Души выдохся!"
 		}
 	};
 
@@ -303,10 +303,10 @@ function Necrosis:Localization_Dialog_Ru()
 	Necrosis.Config.Buttons = {
 		["Rotation des boutons"] = "Вращение кнопок",
 		["Fixer les boutons autour de la sphere"] = "Закрепить кнопки вокруг Сферы",
-		["Utiliser mes propres montures"] = "Использовать моих маунтов",
+		["Utiliser mes propres montures"] = "Использовать мой транспорт",
 		["Choix des boutons a afficher"] = "Выбор кнопок, которые будут показаны",
-		["Monture - Clic gauche"] = "Питомец под [Левый Клик]",
-		["Monture - Clic droit"] = "Питомец под [Правй Клик]",
+		["Monture - Clic gauche"] = "Транспорт под [Левый Клик]",
+		["Monture - Clic droit"] = "Транспорт под [Правый Клик]",
 	}
 	
 	Necrosis.Config.Buttons.Name = {
@@ -329,7 +329,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Afficher automatiquement les menus en combat"] = "Показывать меню автоматически во время боя",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Закрывать меню тогда, когда Вы нажали на его элемент",
 		["Orientation du menu"] = "Размещение меню",
-		["Changer la symetrie verticale des boutons"] = "Изменить вертикальную симметрию кнопок",
+		["Changer la symetrie verticale des boutons"] = "Изменить вертикальную симметрию кнопок (зеркальное\nотражение при выбранном размещении меню: Горизонтально)",
 		["Taille du bouton Banir"] = "Размер кнопки Изгнания",
 	}
 	Necrosis.Config.Menus.Orientation = {
