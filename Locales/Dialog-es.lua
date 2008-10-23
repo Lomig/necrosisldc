@@ -269,7 +269,7 @@ function Necrosis:Localization_Dialog_Es()
 		["Utiliser des messages courts"] = "Usar mensajes cortos",
 		["Activer egalement les messages pour les Demons"] = "Activar discursos aleatorios (demonio)",
 		["Activer egalement les messages pour les Montures"] = "Activar discursos aleatorios (corcel)",
-		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activar discursos aleatorios para el Ritual de las Almas",
+		["Activer egalement les messages pour le Rituel des ames"] = "Activar discursos aleatorios para el Ritual de las Almas",
 		["Activer les sons"] = "Activar sonidos",
 		["Alerter quand la cible est insensible a la peur"] = "Av\195\173same cuando mi objetivo no pueda ser asustado",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Av\195\173same cuando mi objetivo pueda ser desterrado o esclavizado",

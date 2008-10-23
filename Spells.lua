@@ -78,7 +78,7 @@ function Necrosis:SpellLocalize()
 		[39] = {Name = GetSpellInfo(5500),			Length = 0,		Type = 0}, -- Détection des démons || Sense Demons
 		[40] = {Name = GetSpellInfo(18223),			Length = 12,	Type = 4}, -- Malédiction de fatigue || Curse of Exhaustion
 		[41] = {Name = GetSpellInfo(57946),			Length = 0,		Type = 0}, -- Connexion || Life Tap
-		[42] = {},
+		[42] = {Name = GetSpellInfo(59164),			Length = 12,	Type = 2}, -- Hanter || Haunt
 		[43] = {Name = GetSpellInfo(47891),			Length = 30,	Type = 3}, -- Gardien de l'ombre || Shadow Ward
 		[44] = {Name = GetSpellInfo(18788),			Length = 0,		Type = 0}, -- Sacrifice démoniaque || Demonic Sacrifice
 		[45] = {Name = GetSpellInfo(47809),			Length = 0,		Type = 0}, -- Shadow Bolt

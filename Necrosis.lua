@@ -578,7 +578,7 @@ function Necrosis:OnEvent(event)
 		Local.TimerManagement = self:RetraitTimerCombat(Local.TimerManagement)
 
 		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
-		self:NoCombatAttribute(Local.Stone.Soul.Mode, Local.Stone.Fire.Mode, Local.Stone.Spell.Mode)
+		self:NoCombatAttribute(Local.Stone.Soul.Mode, Local.Stone.Fire.Mode, Local.Stone.Spell.Mode, Local.Menu.Pet, Local.Menu.Buff, Local.Menu.Curse)
 		self:UpdateIcons()
 
 	-- Quand le démoniste change de démon
@@ -645,7 +645,7 @@ function Necrosis:OnEvent(event)
 			NecrosisGeneralFrame:Hide()
 		end
 		-- On annule les attributs des boutons de sorts de manière situationnelle
-		self:InCombatAttribute()
+		self:InCombatAttribute(Local.Menu.Pet, Local.Menu.Buff, Local.Menu.Curse)
 	end
 	return
 end
@@ -2427,6 +2427,15 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			for i = 1, #Local.Menu.Pet, 1 do
 				Local.Menu.Pet[i]:SetParent(NecrosisPetMenuButton)
+				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
+				NecrosisPetMenuButton:WrapScript(Local.Menu.Pet[i], "OnClick", [[
+					if self:GetParent():GetAttribute("state") == 1 then
+						self:GetParent():SetAttribute("state", 0)
+					end
+				]])
+				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
+					NecrosisPetMenuButton:UnwrapScript(Local.Menu.Pet[i], "OnClick")
+				end
 			end
 			self:MenuAttribute("NecrosisPetMenuButton")
 			self:PetSpellAttribute()
@@ -2492,6 +2501,15 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			for i = 1, #Local.Menu.Buff, 1 do
 				Local.Menu.Buff[i]:SetParent(NecrosisBuffMenuButton)
+				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
+				NecrosisBuffMenuButton:WrapScript(Local.Menu.Buff[i], "OnClick", [[
+					if self:GetParent():GetAttribute("state") == 1 then
+						self:GetParent():SetAttribute("state",0)
+					end
+				]])
+				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
+					NecrosisBuffMenuButton:UnwrapScript(Local.Menu.Buff[i], "OnClick")
+				end
 			end
 			self:MenuAttribute("NecrosisBuffMenuButton")
 			self:BuffSpellAttribute()
@@ -2541,6 +2559,15 @@ function Necrosis:CreateMenu()
 			-- Maintenant on sécurise le menu, et on y associe nos nouveaux boutons
 			for i = 1, #Local.Menu.Curse, 1 do
 				Local.Menu.Curse[i]:SetParent(NecrosisCurseMenuButton)
+				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
+				NecrosisCurseMenuButton:WrapScript(Local.Menu.Curse[i], "OnClick", [[
+					if self:GetParent():GetAttribute("state") == 1 then
+						self:GetParent():SetAttribute("state", 0)
+					end
+				]])
+				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
+					NecrosisCurseMenuButton:UnwrapScript(Local.Menu.Curse[i], "OnClick")
+				end
 			end
 			self:MenuAttribute("NecrosisCurseMenuButton")
 			self:CurseSpellAttribute()

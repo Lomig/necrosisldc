@@ -269,7 +269,7 @@ function Necrosis:Localization_Dialog_De()
 		["Utiliser des messages courts"] = "Benutzte kurze Nachrichten",
 		["Activer egalement les messages pour les Demons"] = "Zuf\195\164llige Spr\195\188che f\195\188r D\195\164monen auch",
 		["Activer egalement les messages pour les Montures"] = "Zuf\195\164llige Spr\195\188che f\195\188r Mount auch",
-		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Zuf\195\164llige Spr\195\188che f\195\188r das Ritual der Seelen aktivieren",
+		["Activer egalement les messages pour le Rituel des ames"] = "Zuf\195\164llige Spr\195\188che f\195\188r das Ritual der Seelen aktivieren",
 		["Activer les sons"] = "Aktiviere Sounds",
 		["Alerter quand la cible est insensible a la peur"] = "Warnung, wenn Ziel immun gegen\195\188ber Fear ist",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warnung, wenn ein Ziel verbannt\\versklavt werden kann",
