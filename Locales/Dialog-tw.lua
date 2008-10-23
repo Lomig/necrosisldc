@@ -322,9 +322,9 @@ function Necrosis:Localization_Dialog_Tw()
 
 	Necrosis.Config.Menus = {
 		["Options Generales"] = "General Options",
-		["Menu des Buffs"] = "Buffs Menu",
-		["Menu des Demons"] = "Demons Menu",
-		["Menu des Maledictions"] = "Curses Menu",
+		["Menu des Buffs"] = "法術選單",
+		["Menu des Demons"] = "惡魔選單",
+		["Menu des Maledictions"] = "詛咒選單",
 		["Afficher les menus en permanence"] = "Always show menus",
 		["Afficher automatiquement les menus en combat"] = "Show automatically the menus while in combat",
 		["Fermer le menu apres un clic sur un de ses elements"] = "Close a menu whenever you click on one of its items",

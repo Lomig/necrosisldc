@@ -314,7 +314,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Afficher le bouton des Pierres de sort",
 		"Afficher le bouton des Pierres de soin",
 		"Afficher le bouton des Pierres d'\195\162me",
-		"Affiche le bouton des Buffs",
+		"Affiche le bouton des sorts",
 		"Afficher le bouton de la Monture",
 		"Affiche le bouton d'invocation des D\195\169mons",
 		"Affiche le bouton des Mal\195\169dictions",
@@ -322,7 +322,7 @@ function Necrosis:Localization_Dialog_Fr()
 
 	Necrosis.Config.Menus = {
 		["Options Generales"] = "Options G\195\169n\195\169rales",
-		["Menu des Buffs"] = "Menu des Buffs",
+		["Menu des Buffs"] = "Menu des sorts",
 		["Menu des Demons"] = "Menu des D\195\169mons",
 		["Menu des Maledictions"] = "Menu des Mal\195\169dictions",
 		["Afficher les menus en permanence"] = "Afficher les menus en permanence",

@@ -322,7 +322,7 @@ function Necrosis:Localization_Dialog_Ru()
 
 	Necrosis.Config.Menus = {
 		["Options Generales"] = "Основные настройки",
-		["Menu des Buffs"] = "Меню Заклинаний",
+		["Menu des Buffs"] = "Меню заклинаний",
 		["Menu des Demons"] = "Меню Демонов",
 		["Menu des Maledictions"] = "Меню Проклятий",
 		["Afficher les menus en permanence"] = "Всегда показывать меню",

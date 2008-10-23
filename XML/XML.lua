@@ -250,7 +250,7 @@ end
 
 local function CreateMenuButton(button)
 	-- Creaton du bouton d'ouverture du menu
-	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureHandlerAttributeTemplate SecureHandlerClickTemplate")
+	local frame = CreateFrame("Button", "Necrosis"..button.."Button", UIParent, "SecureHandlerAttributeTemplate SecureHandlerClickTemplate SecureHandlerEnterLeaveTemplate")
 
 	-- Définition de ses attributs
 	frame:SetMovable(true)
