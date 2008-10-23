@@ -236,10 +236,9 @@ function Necrosis:CurseSpellAttribute()
 		return
 	end
 
-	local buttonID = {2, 3, 4, 5, 6, 7, 8}
 	local buffID = {23, 22, 24, 25, 40, 26, 16}
-	for i = 1, #buttonID, 1 do
-		local f = _G["NecrosisCurseMenu"..buttonID[i]]
+	for i = 1, 7, 1 do
+		local f = _G["NecrosisCurseMenu"..i]
 		if f then
 			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
 			if Necrosis.Spell[ buffID[i] ].Rank and not (Necrosis.Spell[ buffID[i] ].Rank == " ") then
