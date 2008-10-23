@@ -322,7 +322,7 @@ function Necrosis:Localization_Dialog_De()
 
 	Necrosis.Config.Menus = {
 		["Options Generales"] = "Allgemeine Einstellungen",
-		["Menu des Buffs"] = "Zauber Men\195\188",
+		["Menu des Buffs"] = "Spruch Men\195\188",
 		["Menu des Demons"] = "D\195\164monen Men\195\188",
 		["Menu des Maledictions"] = "Fluch Men\195\188",
 		["Afficher les menus en permanence"] = "Zeige die Men\195\188s permanent",

@@ -2429,9 +2429,16 @@ function Necrosis:CreateMenu()
 				Local.Menu.Pet[i]:SetParent(NecrosisPetMenuButton)
 				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
 				NecrosisPetMenuButton:WrapScript(Local.Menu.Pet[i], "OnClick", [[
-					if self:GetParent():GetAttribute("state") == 1 then
-						self:GetParent():SetAttribute("state", 0)
+					if self:GetParent():GetAttribute("state") == "Ouvert" then
+						self:GetParent():SetAttribute("state", "Ferme")
 					end
+				]])
+				NecrosisPetMenuButton:WrapScript(Local.Menu.Pet[i], "OnEnter", [[
+					self:GetParent():SetAttribute("mousehere", true)
+				]])
+				NecrosisPetMenuButton:WrapScript(Local.Menu.Pet[i], "OnLeave", [[
+					self:GetParent():SetAttribute("mousehere", false)
+					self:GetParent():SetAttribute("state", "Refresh")
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisPetMenuButton:UnwrapScript(Local.Menu.Pet[i], "OnClick")
@@ -2503,9 +2510,16 @@ function Necrosis:CreateMenu()
 				Local.Menu.Buff[i]:SetParent(NecrosisBuffMenuButton)
 				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
 				NecrosisBuffMenuButton:WrapScript(Local.Menu.Buff[i], "OnClick", [[
-					if self:GetParent():GetAttribute("state") == 1 then
-						self:GetParent():SetAttribute("state",0)
+					if self:GetParent():GetAttribute("state") == "Ouvert" then
+						self:GetParent():SetAttribute("state", "Ferme")
 					end
+				]])
+				NecrosisBuffMenuButton:WrapScript(Local.Menu.Buff[i], "OnEnter", [[
+					self:GetParent():SetAttribute("mousehere", true)
+				]])
+				NecrosisBuffMenuButton:WrapScript(Local.Menu.Buff[i], "OnLeave", [[
+					self:GetParent():SetAttribute("mousehere", false)
+					self:GetParent():SetAttribute("state", "Refresh")
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisBuffMenuButton:UnwrapScript(Local.Menu.Buff[i], "OnClick")
@@ -2561,9 +2575,16 @@ function Necrosis:CreateMenu()
 				Local.Menu.Curse[i]:SetParent(NecrosisCurseMenuButton)
 				-- Si le menu se ferme à l'appui d'un bouton, alors il se ferme à l'appui d'un bouton !
 				NecrosisCurseMenuButton:WrapScript(Local.Menu.Curse[i], "OnClick", [[
-					if self:GetParent():GetAttribute("state") == 1 then
-						self:GetParent():SetAttribute("state", 0)
+					if self:GetParent():GetAttribute("state") == "Ouvert" then
+						self:GetParent():SetAttribute("state","Ferme")
 					end
+				]])
+				NecrosisBuffMenuButton:WrapScript(Local.Menu.Curse[i], "OnEnter", [[
+					self:GetParent():SetAttribute("mousehere", true)
+				]])
+				NecrosisBuffMenuButton:WrapScript(Local.Menu.Curse[i], "OnLeave", [[
+					self:GetParent():SetAttribute("mousehere", false)
+					self:GetParent():SetAttribute("state", "Refresh")
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisCurseMenuButton:UnwrapScript(Local.Menu.Curse[i], "OnClick")
@@ -2576,9 +2597,9 @@ function Necrosis:CreateMenu()
 
 	-- On bloque le menu en position ouverte si configuré
 	if NecrosisConfig.BlockedMenu then
-		if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
-		if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
-		if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
+		if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
+		if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
+		if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 	end
 end
 

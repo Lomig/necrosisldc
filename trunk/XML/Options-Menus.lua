@@ -257,15 +257,15 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.BlockedMenu = this:GetChecked()
 			if NecrosisConfig.BlockedMenu then
-				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
-				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
-				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 				NecrosisAutoMenu:Disable()
 				NecrosisCloseMenu:Disable()
 			else
-				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 0) end
-				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 0) end
-				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Ferme") end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Ferme") end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Ferme") end
 				NecrosisAutoMenu:Enable()
 				NecrosisCloseMenu:Enable()
 			end
@@ -290,9 +290,9 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnClick", function()
 			NecrosisConfig.AutomaticMenu = this:GetChecked()
 			if not NecrosisConfig.AutomaticMenu then
-				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 0) end
-				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 0) end
-				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 0) end
+				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Ferme") end
+				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Ferme") end
+				if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Ferme") end
 			end
 		end)
 
@@ -414,14 +414,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 35, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()
@@ -448,14 +448,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig2, "BOTTOMRIGHT", 40, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()
@@ -522,14 +522,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 35, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()
@@ -556,14 +556,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig3, "BOTTOMRIGHT", 40, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()
@@ -630,14 +630,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 35, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()
@@ -664,14 +664,14 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("RIGHT", NecrosisMenusConfig4, "BOTTOMRIGHT", 40, 200)
 
-		local State = 0
+		local State = "Ferme"
 		if NecrosisConfig.BlockedMenu then
-			State = 4
+			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue())
-			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", 4) end
+			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
 		frame:SetScript("OnLeave", function()

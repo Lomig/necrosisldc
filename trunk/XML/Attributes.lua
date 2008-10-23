@@ -52,11 +52,16 @@ function Necrosis:MenuAttribute(menu)
 	local menuButton = _G[menu]
 	
 	if not menuButton:GetAttribute("state") then 
-		menuButton:SetAttribute("state", 0)
+		menuButton:SetAttribute("state", "Ferme")
 	end
+	
+	if not menuButton:GetAttribute("close") then 
+		menuButton:SetAttribute("close", 0)
+	end
+	
 	menuButton:Execute([[
 		ButtonList = table.new(self:GetChildren())
-		if self:GetAttribute("state") == 4 then
+		if self:GetAttribute("state") == "Bloque" then
 			for i, button in ipairs(ButtonList) do
 				button:Show()
 			end
@@ -69,11 +74,11 @@ function Necrosis:MenuAttribute(menu)
 
 	menuButton:SetAttribute("_onclick", [[
 		local Etat = self:GetAttribute("state")
-		if  Etat == 0 then
-			self:SetAttribute("state", 1)
-		elseif Etat == 1 then
-			self:SetAttribute("state", 0)
-		elseif Etat == 3 then
+		if  Etat == "Ferme" then
+			self:SetAttribute("state", "Ouvert")
+		elseif Etat == "Ouvert" then
+			self:SetAttribute("state", "Ferme")
+		elseif Etat == "Combat" then
 			for i, button in ipairs(ButtonList) do
 				if button:IsShown() then
 					button:Hide()
@@ -86,19 +91,30 @@ function Necrosis:MenuAttribute(menu)
 	
 	menuButton:SetAttribute("_onattributechanged", [[
 		if name == "state" then
-			if value == 0 then
+			if value == "Ferme" then
 				for i, button in ipairs(ButtonList) do
 					button:Hide()
 				end
-			elseif value == 1 then
+			elseif value == "Ouvert" then
 				for i, button in ipairs(ButtonList) do
 					button:Show()
 				end
-			elseif value == 3 or value == 4 then
+				
+				self:SetAttribute("close", self:GetAttribute("close") + 1)
+				control:SetTimer(6, self:GetAttribute("close"))
+			elseif value == "Combat" or value == "Bloque" then
 				for i, button in ipairs(ButtonList) do
 					button:Show()
 				end
+			elseif value == "Refresh" then
+				self:SetAttribute("state", "Ouvert")
 			end
+		end
+	]])
+	
+	menuButton:SetAttribute("_ontimer", [[
+		if self:GetAttribute("close") <= message and not self:GetAttribute("mousehere") then
+			self:SetAttribute("state", "Ferme")
 		end
 	]])
 end
@@ -330,36 +346,36 @@ function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 	-- Et se désengage à la fin
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
 		if _G["NecrosisPetMenuButton"] then
-			NecrosisPetMenuButton:SetAttribute("state", 0)
+			NecrosisPetMenuButton:SetAttribute("state", "Ferme")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Pet, 1 do
 					NecrosisPetMenuButton:WrapScript(Pet[i], "OnClick", [[
-						if self:GetParent():GetAttribute("state") == 1 then
-							self:GetParent():SetAttribute("state",0)
+						if self:GetParent():GetAttribute("state") == "Ouvert" then
+							self:GetParent():SetAttribute("state", "Ferme")
 						end
 					]])
 				end
 			end
 		end
 		if _G["NecrosisBuffMenuButton"] then
-			NecrosisBuffMenuButton:SetAttribute("state", 0)
+			NecrosisBuffMenuButton:SetAttribute("state", "Ferme")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Buff, 1 do
 					NecrosisBuffMenuButton:WrapScript(Buff[i], "OnClick", [[
-						if self:GetParent():GetAttribute("state") == 1 then
-							self:GetParent():SetAttribute("state",0)
+						if self:GetParent():GetAttribute("state") == "Ouvert" then
+							self:GetParent():SetAttribute("state", "Ferme")
 						end
 					]])
 				end
 			end
 		end
 		if _G["NecrosisCurseMenuButton"] then
-			NecrosisCurseMenuButton:SetAttribute("state", 0)
+			NecrosisCurseMenuButton:SetAttribute("state", "Ferme")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Curse, 1 do
 					NecrosisCurseMenuButton:WrapScript(Curse[i], "OnClick", [[
-						if self:GetParent():GetAttribute("state") == 1 then
-							self:GetParent():SetAttribute("state",0)
+						if self:GetParent():GetAttribute("state") == "Ouvert" then
+							self:GetParent():SetAttribute("state", "Ferme")
 						end
 					]])
 				end
@@ -387,7 +403,7 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 	-- Si on veut que le menu s'engage automatiquement en combat
 	if NecrosisConfig.AutomaticMenu and not NecrosisConfig.BlockedMenu then
 		if _G["NecrosisPetMenuButton"] and NecrosisConfig.StonePosition[7] then
-			NecrosisPetMenuButton:SetAttribute("state", 3)
+			NecrosisPetMenuButton:SetAttribute("state", "Combat")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Pet, 1 do
 					NecrosisPetMenuButton:UnwrapScript(Pet[i], "OnClick")
@@ -395,7 +411,7 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 			end
 		end
 		if _G["NecrosisBuffMenuButton"] and NecrosisConfig.StonePosition[5] then
-			NecrosisBuffMenuButton:SetAttribute("state", 3)
+			NecrosisBuffMenuButton:SetAttribute("state", "Combat")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Buff, 1 do
 					NecrosisBuffMenuButton:UnwrapScript(Buff[i], "OnClick")
@@ -403,7 +419,7 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 			end
 		end
 		if _G["NecrosisCurseMenuButton"] and NecrosisConfig.StonePosition[8] then
-			NecrosisCurseMenuButton:SetAttribute("state", 3)
+			NecrosisCurseMenuButton:SetAttribute("state", "Combat")
 			if NecrosisConfig.ClosingMenu then
 				for i = 1, #Curse, 1 do
 					NecrosisCurseMenuButton:UnwrapScript(Curse[i], "OnClick")

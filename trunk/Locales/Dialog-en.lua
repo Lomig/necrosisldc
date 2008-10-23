@@ -321,7 +321,7 @@ function Necrosis:Localization_Dialog_En()
 
 	Necrosis.Config.Menus = {
 		["Options Generales"] = "General Options",
-		["Menu des Buffs"] = "Buffs Menu",
+		["Menu des Buffs"] = "Spell Menu",
 		["Menu des Demons"] = "Demons Menu",
 		["Menu des Maledictions"] = "Curses Menu",
 		["Afficher les menus en permanence"] = "Always show menus",
