@@ -268,7 +268,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Utiliser des messages courts"] = "Использовать только 'короткие' сообщения",
 		["Activer egalement les messages pour les Demons"] = "Показывать сообщения для демонов",
 		["Activer egalement les messages pour les Montures"] = "Показывать сообщения для коней",
-		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Показывать сообщения для Ритуала Душ",
+		["Activer egalement les messages pour le Rituel des ames"] = "Показывать сообщения для Ритуала Душ",
 		["Activer les sons"] = "Воспроизводить звуковые эффекты",
 		["Alerter quand la cible est insensible a la peur"] = "Предупреждать, если цель не поддается страху",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Предупреждать, если цель изгнана или порабощена",

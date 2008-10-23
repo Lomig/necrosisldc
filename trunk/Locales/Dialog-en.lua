@@ -268,7 +268,7 @@ function Necrosis:Localization_Dialog_En()
 		["Utiliser des messages courts"] = "Use short messages",
 		["Activer egalement les messages pour les Demons"] = "Activate random speeches for demons too",
 		["Activer egalement les messages pour les Montures"] = "Activate random speeches for steeds too",
-		["Activer \195\169galment les messages pour les Rituel des \195\162mes"] = "Activate random speeches for Ritual of Souls",
+		["Activer egalement les messages pour le Rituel des ames"] = "Activate random speeches for Ritual of Souls",
 		["Activer les sons"] = "Activate sounds",
 		["Alerter quand la cible est insensible a la peur"] = "Warn when the target cannot be feared",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
