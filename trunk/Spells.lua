@@ -44,7 +44,7 @@ function Necrosis:SpellLocalize()
 		[5] = {Name = GetSpellInfo(712),			Length = 0,		Type = 0}, -- Succube || Succubus
 		[6] = {Name = GetSpellInfo(691),			Length = 0,		Type = 0}, -- Fellhunter
 		[7] = {Name = GetSpellInfo(30146),			Length = 0,		Type = 0}, -- Felguard
-		[8] = {Name = GetSpellInfo(1122),			Length = 3600,	Type = 3}, -- Infernal
+		[8] = {Name = GetSpellInfo(1122),			Length = 1200,	Type = 3}, -- Infernal
 		[9] = {Name = GetSpellInfo(710),			Length = 30,	Type = 2}, -- Banish
 		[10] = {Name = GetSpellInfo(1098),			Length = 300,	Type = 2}, -- Enslave
 		[11] = {Name = GetSpellInfo(27239),			Length = 1800,	Type = 1}, -- Résurrection de pierre d'ame || Soulstone Resurrection

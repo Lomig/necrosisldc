@@ -257,7 +257,7 @@ function Necrosis:Localization_Dialog_En()
 		"Button Settings",
 		"Menu Settings",
 		"Timer Settings",
-		"Miscellanious"
+		"Miscellaneous"
 	}
 
 	Necrosis.Config.Messages = {
