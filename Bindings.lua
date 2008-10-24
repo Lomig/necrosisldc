@@ -129,5 +129,7 @@ function Necrosis:BindName()
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisCurseMenu"..i..":LeftButton"] = Necrosis.Spell[ buffID[i] ].Name
 	end
+	
+	_G["BINDING_NAME_CLICK NecrosisCurseMenu9:LeftButton"] = Necrosis.Spell[14].Name
 
 end
