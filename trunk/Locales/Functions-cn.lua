@@ -107,7 +107,6 @@ Necrosis.AntiFear = {
 	},
 	-- Debuffs and curses giving temporary immunity to fear effects
 	["Debuff"] = {
-		"鲁莽诅咒"	-- Warlock curse
 	}
 }
 

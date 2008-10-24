@@ -105,7 +105,6 @@ Necrosis.AntiFear = {
 	},
 	-- Debuffs donnant une immunité temporaire au Fear
 	["Debuff"] = {
-		"Fluch der Tollk\195\188hnheit"	-- Warlock curse
 	}
 }
 
