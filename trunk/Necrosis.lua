@@ -2438,7 +2438,10 @@ function Necrosis:CreateMenu()
 				]])
 				NecrosisPetMenuButton:WrapScript(Local.Menu.Pet[i], "OnLeave", [[
 					self:GetParent():SetAttribute("mousehere", false)
-					self:GetParent():SetAttribute("state", "Refresh")
+					local stateMenu = self:GetParent():GetAttribute("state")
+					if not (stateMenu == "Bloque" or stateMenu == "Combat") then
+						self:GetParent():SetAttribute("state", "Refresh")
+					end
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisPetMenuButton:UnwrapScript(Local.Menu.Pet[i], "OnClick")
@@ -2519,7 +2522,10 @@ function Necrosis:CreateMenu()
 				]])
 				NecrosisBuffMenuButton:WrapScript(Local.Menu.Buff[i], "OnLeave", [[
 					self:GetParent():SetAttribute("mousehere", false)
-					self:GetParent():SetAttribute("state", "Refresh")
+					local stateMenu = self:GetParent():GetAttribute("state")
+					if not (stateMenu == "Bloque" or stateMenu == "Combat") then
+						self:GetParent():SetAttribute("state", "Refresh")
+					end
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisBuffMenuButton:UnwrapScript(Local.Menu.Buff[i], "OnClick")
@@ -2584,7 +2590,10 @@ function Necrosis:CreateMenu()
 				]])
 				NecrosisBuffMenuButton:WrapScript(Local.Menu.Curse[i], "OnLeave", [[
 					self:GetParent():SetAttribute("mousehere", false)
-					self:GetParent():SetAttribute("state", "Refresh")
+					local stateMenu = self:GetParent():GetAttribute("state")
+					if not (stateMenu == "Bloque" or stateMenu == "Combat") then
+						self:GetParent():SetAttribute("state", "Refresh")
+					end
 				]])
 				if NecrosisConfig.BlockedMenu or not NecrosisConfig.ClosingMenu then
 					NecrosisCurseMenuButton:UnwrapScript(Local.Menu.Curse[i], "OnClick")
