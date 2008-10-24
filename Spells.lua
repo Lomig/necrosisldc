@@ -37,8 +37,8 @@
 -- Fonction pour éviter de devoir relocaliser la base des sorts disponibles
 function Necrosis:SpellLocalize()
 	self.Spell = {
-		[1] = {Name = GetSpellInfo(5784), ID = 5784, 	Length = 0,		Type = 0}, -- Felsteed
-		[2] = {Name = GetSpellInfo(23161), ID = 23161, 	Length = 0,		Type = 0}, -- Dreadsteed
+		[1] = {Name = GetSpellInfo(5784), 				Length = 0,		Type = 0}, -- Felsteed
+		[2] = {Name = GetSpellInfo(23161), 			 	Length = 0,		Type = 0}, -- Dreadsteed
 		[3] = {Name = GetSpellInfo(688), 				Length = 0,		Type = 0}, -- Diablotin || Imp
 		[4] = {Name = GetSpellInfo(697),				Length = 0,		Type = 0}, -- Marcheur || Voidwalker
 		[5] = {Name = GetSpellInfo(712),				Length = 0,		Type = 0}, -- Succube || Succubus
