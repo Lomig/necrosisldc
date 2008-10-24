@@ -132,4 +132,7 @@
 	<Binding name="CLICK NecrosisCurseMenu7:LeftButton">
 		-- Funeste --
 	</Binding>
+	<Binding name="CLICK NecrosisCurseMenu9:LeftButton">
+		-- Corruption --
+	</Binding>
 </Bindings>
