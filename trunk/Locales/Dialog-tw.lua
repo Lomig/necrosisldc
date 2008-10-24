@@ -213,6 +213,9 @@ function Necrosis:Localization_Dialog_Tw()
 		["Haunt"] = {
 			Label = "|c00FFFFFFHaunt|r"
 		},
+		["Corruption"] = {
+			Label = "|c00FFFFFFCorruption|r"
+		},
 		["DominationCooldown"] = "右鍵快速召喚",
 	}
 

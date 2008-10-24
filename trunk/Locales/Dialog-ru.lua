@@ -211,6 +211,9 @@ function Necrosis:Localization_Dialog_Ru()
 		["Haunt"] = {
 			Label = "|c00FFFFFFHaunt|r"
 		},
+		["Corruption"] = {
+			Label = "|c00FFFFFFCorruption|r"
+		},
 		["DominationCooldown"] = "[Правый Клик] Быстрый вызов",
 	}
 
@@ -220,7 +223,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-Ru.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-Ru.mp3",
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Ru.mp3",
-	};
+	}
 
 	NECROSIS_PROC_TEXT = {
 		["ShadowTrance"] = "<white>Т<lightPurple1>е<lightPurple2>н<purple>е<darkPurple1>в<darkPurple2>о<darkPurple1>й Т<purple>р<lightPurple2>а<lightPurple1>н<white>с",
@@ -252,7 +255,7 @@ function Necrosis:Localization_Dialog_Ru()
 			["EnslaveBreak"] = "Ваш демон разорвал цепи!",
 			["SoulstoneEnd"] = "<lightYellow>Ваш Камень Души выдохся!"
 		}
-	};
+	}
 
 
 	-- Gestion XML - Menu de configuration

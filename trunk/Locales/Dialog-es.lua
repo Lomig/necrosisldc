@@ -212,6 +212,9 @@ function Necrosis:Localization_Dialog_Es()
 		["Haunt"] = {
 			Label = "|c00FFFFFFHaunt|r"
 		},
+		["Corruption"] = {
+			Label = "|c00FFFFFFCorruption|r"
+		},
 		["DominationCooldown"] = "Click Derecho para invocaci\195\179n r\195\161pida",
 	};
 
