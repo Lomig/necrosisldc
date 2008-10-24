@@ -205,7 +205,12 @@ function Necrosis:Localization_Dialog_De()
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\164monen sp\195\188ren|r"
 		},
-		["AmplifyCooldown"] = "Mit der rechten Taste klicken um den n\195\164chsten Fluch zu verst\195\164rken",
+		["Metamorphosis"] = {
+			Label = "|c00FFFFFFMetamorphosis|r"
+		},
+		["Haunt"] = {
+			Label = "|c00FFFFFFHaunt|r"
+		},
 		["DominationCooldown"] = "Mit der rechten Taste klicken f\195\188r eine schnelle Beschw\195\182rung",
 	};
 

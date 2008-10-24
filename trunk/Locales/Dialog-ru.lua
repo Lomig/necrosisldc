@@ -205,7 +205,12 @@ function Necrosis:Localization_Dialog_Ru()
 		["Radar"] = {
 			Label = "|c00FFFFFFЧутье на демонов|r"
 		},
-		["AmplifyCooldown"] = "[Правый Клик] Усиливает проклятие",
+		["Metamorphosis"] = {
+			Label = "|c00FFFFFFMetamorphosis|r"
+		},
+		["Haunt"] = {
+			Label = "|c00FFFFFFHaunt|r"
+		},
 		["DominationCooldown"] = "[Правый Клик] Быстрый вызов",
 	}
 

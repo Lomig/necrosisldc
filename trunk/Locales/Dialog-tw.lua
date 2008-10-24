@@ -207,7 +207,12 @@ function Necrosis:Localization_Dialog_Tw()
 		["Radar"] = {
 			Label = "|c00FFFFFF感知惡魔|r"
 		},
-		["AmplifyCooldown"] = "右鍵詛咒增幅",
+		["Metamorphosis"] = {
+			Label = "|c00FFFFFFMetamorphosis|r"
+		},
+		["Haunt"] = {
+			Label = "|c00FFFFFFHaunt|r"
+		},
 		["DominationCooldown"] = "右鍵快速召喚",
 	}
 
