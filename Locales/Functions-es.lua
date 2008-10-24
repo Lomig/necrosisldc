@@ -104,7 +104,6 @@ Necrosis.AntiFear = {
 	},
 	-- Debufos y maldiciones que dan inmunidad temporal a los efectos de miedo
 	["Debuff"] = {
-		"Maldici\195\179n de Temeridad"	-- Warlock curse
 	}
 }
 

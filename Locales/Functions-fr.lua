@@ -105,7 +105,6 @@ Necrosis.AntiFear = {
 	},
 	-- Debuffs donnant une immunité temporaire au Fear
 	["Debuff"] = {
-		"Mal\195\169diction de t\195\169m\195\169rit\195\169"	-- Malédiction de démoniste
 	}
 }
 
