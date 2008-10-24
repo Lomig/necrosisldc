@@ -272,7 +272,7 @@ function Necrosis:CurseSpellAttribute()
 	end
 
 	local buffID = {23, 22, 24, 25, 40, 26, 16}
-	for i = 1, 7, 1 do
+	for i = 1, #buffID, 1 do
 		local f = _G["NecrosisCurseMenu"..i]
 		if f then
 			local SpellName_Rank = Necrosis.Spell[ buffID[i] ].Name
