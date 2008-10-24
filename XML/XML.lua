@@ -183,7 +183,13 @@ end
 
 local function CreateStoneButton(stone)
 	-- Création du bouton de la pierre
-	local frame = CreateFrame("Button", "Necrosis"..stone.."Button", UIParent, "SecureActionButtonTemplate")
+	-- Si c'est le bouton de métamorphose, on le rend sensible au changement de posture
+	local frame
+	if stone == "Metamorphosis" then
+		frame = CreateFrame("Button", "Necrosis"..stone.."Button", UIParent, "SecureActionButtonTemplate SecureHandlerStateTemplate")
+	else
+		frame = CreateFrame("Button", "Necrosis"..stone.."Button", UIParent, "SecureActionButtonTemplate")
+	end
 
 	-- Définition de ses attributs
 	frame:SetMovable(true)
@@ -191,13 +197,13 @@ local function CreateStoneButton(stone)
 	frame:SetWidth(34)
 	frame:SetHeight(34)
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..stone.."Button-01")
-	if i == 1 then
-		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\SoulstoneButton-04")
-	elseif i == 5 then
-		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\MountButton-02")
-	else
-		frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..stone.."Button-03")
+	local num = 3
+	if stone == "Soulstone" then
+		num = 4
+	elseif stone == "Mount" or stone == "Metamorphosis" then
+		num = 2
 	end
+	frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..stone.."Button-0"..num)
 	frame:RegisterForDrag("LeftButton")
 	frame:RegisterForClicks("AnyUp")
 	frame:Show()
@@ -380,7 +386,7 @@ end
 
 -- Boutons du menu des malédictions
 function Necrosis:CreateMenuCurse(i)
-	local CurseName = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Doom"}
+	local CurseName = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Doom", "Haunt"}
 
 	-- Creaton du bouton
 	local frame = _G["NecrosisCurseMenu"..i]

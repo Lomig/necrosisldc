@@ -205,7 +205,12 @@ function Necrosis:Localization_Dialog_En()
 		["Radar"] = {
 			Label = "|c00FFFFFFSense Demons|r"
 		},
-		["AmplifyCooldown"] = "Right click to amplify curse",
+		["Metamorphosis"] = {
+			Label = "|c00FFFFFFMetamorphosis|r"
+		},
+		["Haunt"] = {
+			Label = "|c00FFFFFFHaunt|r"
+		},
 		["DominationCooldown"] = "Right click for fast summon",
 	}
 

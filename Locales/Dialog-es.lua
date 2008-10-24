@@ -206,7 +206,12 @@ function Necrosis:Localization_Dialog_Es()
 		["Radar"] = {
 			Label = "|c00FFFFFFCaptar Demonios|r"
 		},
-		["AmplifyCooldown"] = "Click Derecho para amplificar maldici\195\179n",
+		["Metamorphosis"] = {
+			Label = "|c00FFFFFFMetamorphosis|r"
+		},
+		["Haunt"] = {
+			Label = "|c00FFFFFFHaunt|r"
+		},
 		["DominationCooldown"] = "Click Derecho para invocaci\195\179n r\195\161pida",
 	};
 

@@ -149,7 +149,7 @@ Local.DefaultConfig = {
 	CreatureAlert = true,
 	NecrosisLockServ = true,
 	NecrosisAngle = 180,
-	StonePosition = {1, 2, 3, 4, 5, 6, 7, 8},
+	StonePosition = {1, 2, 3, 4, 5, 6, 7, 8, 9},
 		-- 1 = Firestone
 		-- 2 = Spellstone
 		-- 3 = Soins
@@ -158,7 +158,8 @@ Local.DefaultConfig = {
 		-- 6 = Monture
 		-- 7 = Démon
 		-- 8 = Malédictions
-	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7},
+		-- 9 = Metamorphose=
+	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8},
 		-- 1 = Faiblesse
 		-- 2 = Agonie
 		-- 3 = Témérité
@@ -166,6 +167,7 @@ Local.DefaultConfig = {
 		-- 5 = Fatigue
 		-- 6 = Elements
 		-- 7 = Funeste
+		-- 8 = Hanter
 	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 		-- 1 = Domination corrompue
 		-- 2 = Imp
@@ -1964,7 +1966,8 @@ function Necrosis:ButtonSetup()
 		"NecrosisBuffMenuButton",
 		"NecrosisMountButton",
 		"NecrosisPetMenuButton",
-		"NecrosisCurseMenuButton"
+		"NecrosisCurseMenuButton",
+		"NecrosisMetamorphosisButton"
 	)
 
 	for index, valeur in ipairs(ButtonName) do
@@ -1980,7 +1983,8 @@ function Necrosis:ButtonSetup()
 		Local.Menu.Buff[1],
 		Local.Summon.SteedAvailable,
 		Local.Menu.Pet[1],
-		Local.Menu.Curse[1]
+		Local.Menu.Curse[1],
+		Necrosis.Spell[27].ID
 	)
 
 	if NecrosisConfig.NecrosisLockServ then
@@ -2541,7 +2545,7 @@ function Necrosis:CreateMenu()
 		-- On ordonne et on affiche les boutons dans le menu des malédictions
 		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 		local MenuID = new("array",
-			23, 22, 24, 25, 40, 26, 16
+			23, 22, 24, 25, 40, 26, 16, 42
 		)
 		for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 			for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
