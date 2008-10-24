@@ -158,8 +158,8 @@ Local.DefaultConfig = {
 		-- 6 = Monture
 		-- 7 = Démon
 		-- 8 = Malédictions
-		-- 9 = Metamorphose=
-	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8},
+		-- 9 = Metamorphose
+	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, -8, 9},
 		-- 1 = Faiblesse
 		-- 2 = Agonie
 		-- 3 = Témérité
@@ -168,6 +168,7 @@ Local.DefaultConfig = {
 		-- 6 = Elements
 		-- 7 = Funeste
 		-- 8 = Hanter
+		-- 9 = Corruption
 	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 		-- 1 = Domination corrompue
 		-- 2 = Imp
@@ -1105,6 +1106,8 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		GameTooltip:AddLine(Necrosis.Spell[26].Mana.." Mana")
 	elseif (Type == "Doom") then
 		GameTooltip:AddLine(Necrosis.Spell[16].Mana.." Mana")
+	elseif (Type == "Haunt") then
+		GameTooltip:AddLine(Necrosis.Spell[42].Mana.." Mana")
 	elseif (Type == "TP") then
 		GameTooltip:AddLine(Necrosis.Spell[37].Mana.." Mana")
 		if Local.Soulshard.Count == 0 then
@@ -2545,7 +2548,7 @@ function Necrosis:CreateMenu()
 		-- On ordonne et on affiche les boutons dans le menu des malédictions
 		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 		local MenuID = new("array",
-			23, 22, 24, 25, 40, 26, 16, 42
+			23, 22, 24, 25, 40, 26, 16, 42, 14
 		)
 		for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 			for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do

@@ -212,8 +212,11 @@ function Necrosis:Localization_Dialog_Fr()
 		["Haunt"] = {
 			Label = "|c00FFFFFFHanter|r"
 		},
+		["Corruption"] = {
+			Label = "|c00FFFFFFCorruption|r"
+		},
 		["DominationCooldown"] = "Clic droit pour invocation rapide",
-	};
+	}
 
 	NECROSIS_SOUND = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-Fr.mp3",
@@ -221,12 +224,12 @@ function Necrosis:Localization_Dialog_Fr()
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-Fr.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-Fr.mp3",
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
-	};
+	}
 
 	NECROSIS_PROC_TEXT = {
 		["ShadowTrance"] = "<white>T<lightPurple1>r<lightPurple2>a<purple>n<darkPurple1>s<darkPurple2>e d<darkPurple1>e l<purple>'<lightPurple2>o<lightPurple1>m<white>b<lightPurple1>r<lightPurple2>e";
 		["Backlash"] = "<white>C<lightPurple1>o<lightPurple2>n<purple>t<darkPurple1>r<darkPurple2>e<darkPurple1>c<purple>o<lightPurple2>u<lightPurple1>p"
-	};
+	}
 
 
 	NECROSIS_MESSAGE = {
