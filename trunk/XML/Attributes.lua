@@ -138,7 +138,27 @@ function Necrosis:MenuAttribute(menu)
 	]])
 end
 
+function Necrosis:MetamorphosisAttribute()
 
+	NecrosisMetamorphosisButton:Execute([[
+		ButtonList = table.new(self:GetChildren())
+	]])
+	
+	NecrosisMetamorphosisButton:SetAttribute("_onstate-stance", [[
+		newstate = tonumber(newstate)
+		if newstate == 2 then
+			for i, button in ipairs(ButtonList) do
+				button:Show()
+			end
+		else
+			for i, button in ipairs(ButtonList) do
+				button:Hide()
+			end
+		end
+	]])
+	
+	RegisterStateDriver(NecrosisMetamorphosisButton, "stance", "[stance:2] 2;0")
+end
 
 ------------------------------------------------------------------------------------------------------
 -- DEFINITION INITIALE DES ATTRIBUTS DES SORTS
@@ -330,12 +350,19 @@ function Necrosis:StoneAttribute(Steed)
 	NecrosisSpellTimerButton:SetAttribute("macrotext", "/focus")
 	NecrosisSpellTimerButton:SetAttribute("type2", "item")
 	NecrosisSpellTimerButton:SetAttribute("item", Necrosis.Translation.Item.Hearthstone)
+	
+	-- Pour le menu Métamorphose
+	if _G["NecrosisMetamorphosisButton"] then
+		NecrosisMetamorphosisButton:SetAttribute("type", "spell")
+		NecrosisMetamorphosisButton:SetAttribute("spell", Necrosis.Spell[27].Name)
+	end
 
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.
 	if _G["NecrosisHealthstoneButton"] and Necrosis.Spell[50].ID then
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisHealthstoneButton:SetAttribute("shift-spell*", Necrosis.Spell[50].Name)
 	end
+	
 end
 
 -- Association de la Connexion au bouton central si le sort est disponible

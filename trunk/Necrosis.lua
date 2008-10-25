@@ -204,6 +204,9 @@ Local.DefaultConfig = {
 
 	CurseMenuPos = {x=1, y=0, direction=1},
 	CurseMenuDecalage = {x=1, y=-26},
+	
+	MetamorphosisMenuPos = {x=1, y=0, direction=1},
+	MetamorphosisMenuDecalage = {x=1, y=-26},
 
 	ChatMsg = true,
 	ChatType = true,
@@ -238,6 +241,7 @@ Local.DefaultConfig = {
 		["NecrosisMountButton"] = {"CENTER", "UIParent", "CENTER", 53,-100},
 		["NecrosisPetMenuButton"] = {"CENTER", "UIParent", "CENTER", 87,-100},
 		["NecrosisCurseMenuButton"] = {"CENTER", "UIParent", "CENTER", 121,-100},
+		["NecrosisMetamorphosisButton"] = {"CENTER", "UIParent", "CENTER", 155,-100},
 	},
 }
 
@@ -398,6 +402,7 @@ function Necrosis:OnUpdate(elapsed)
 					local TimeLocal = GetTime()
 					if TimeLocal >= (Local.TimerManagement.SpellTimer[index].TimeMax - 0.5) then
 						local StoneFade = false
+						local MetamorphosisFade = false
 						-- Si le timer était celui de la Pierre d'âme, on prévient le Démoniste
 						if Local.TimerManagement.SpellTimer[index].Name == Necrosis.Spell[11].Name then
 							self:Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd)
@@ -405,6 +410,8 @@ function Necrosis:OnUpdate(elapsed)
 							StoneFade = true
 						elseif Local.TimerManagement.SpellTimer[index].Name == Necrosis.Spell[9].Name then
 							Local.TimerManagement.Banish = false
+						elseif Local.TimerManagement.SpellTimer[index].Name == Necrosis.Spell[27].Name then
+							MetamorphosisFade = true
 						end
 						-- Sinon on enlève le timer silencieusement (mais pas en cas d'enslave)
 						if not (Local.TimerManagement.SpellTimer[index].Name == Necrosis.Spell[10].Name) then
@@ -413,6 +420,9 @@ function Necrosis:OnUpdate(elapsed)
 							if StoneFade then
 								-- On met à jour l'apparence du bouton de la pierre d'âme
 								self:UpdateIcons()
+							elseif MetamorphosisFade then
+								-- On met à jour l'apparence du bouton de métamorphose
+								self:UpdateMana("Metamorphose")
 							end
 							break
 						end
@@ -479,6 +489,9 @@ function Necrosis:OnEvent(event)
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:GetNormalTexture():SetDesaturated(1)
 		end
+		if _G["NecrosisMetamorphosisButton"] then
+			NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(1)
+		end
 		for i = 1, 11, 1 do
 			if _G["NecrosisBuffMenu"..i] then
 				_G["NecrosisBuffMenu"..i]:GetNormalTexture():SetDesaturated(1)
@@ -495,6 +508,9 @@ function Necrosis:OnEvent(event)
 		-- On dégrise tous les boutons de sort
 		if _G["NecrosisMountButton"] then
 			NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
+		end
+		if _G["NecrosisMetamorphosisButton"] then
+			NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(nil)
 		end
 		for i = 1, 11, 1 do
 			if _G["NecrosisBuffMenu"..i] then
@@ -714,9 +730,20 @@ end
 -- Permet de gérer les effets apparaissants et disparaissants sur le démoniste
 -- Basé sur le CombatLog
 function Necrosis:SelfEffect(action, nom)
+	if NecrosisConfig.LeftMount then
+		local _, NomCheval1 = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+	else
+		local NomCheval1 = Necrosis.Spell[2].Name
+	end
+	if NecrosisConfig.RightMount then
+		local _, NomCheval2 = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+	else
+		local NomCheval2 = Necrosis.Spell[1].Name
+	end
+	
 	if action == "BUFF" then
 		-- Changement du bouton de monture quand le Démoniste est démonté
-		if nom == Necrosis.Spell[1].Name or  nom == Necrosis.Spell[2].Name then
+		if nom == Necrosis.Spell[1].Name or  nom == Necrosis.Spell[2].Name or nom == "NomCheval1" or nom == "NomCheval2" then
 			Local.BuffActif.Mount = true
 			if _G["NecrosisMountButton"] then
 				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
@@ -751,7 +778,7 @@ function Necrosis:SelfEffect(action, nom)
 		end
 	else
 		-- Changement du bouton de monture quand le Démoniste est démonté
-		if nom == Necrosis.Spell[1].Name or  nom == Necrosis.Spell[2].Name then
+		if nom == Necrosis.Spell[1].Name or  nom == Necrosis.Spell[2].Name or nom == "NomCheval1" or nom == "NomCheval2" then
 			Local.BuffActif.Mount = false
 			if _G["NecrosisMountButton"] then
 				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01")
@@ -937,13 +964,15 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 				(sens == "Curse" and NecrosisConfig.CurseMenuPos.direction < 0)
 			or
 				(sens == "Timer" and NecrosisConfig.SpellTimerJust == "RIGHT")
+			or
+				(sens == "Metamorphosis" and NecrosisConfig.MetamorphosisMenuPos.direction < 0)
 			then
 				anchor = "ANCHOR_LEFT"
 		end
 	end
 
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
-	local start, duration, start2, duration2, start3, duration3
+	local start, duration, start2, duration2, start3, duration3, startMetamorphose, durationMetamorphose
 	if Necrosis.Spell[15].ID then
 		start, duration = GetSpellCooldown(Necrosis.Spell[15].ID, BOOKTYPE_SPELL)
 	else
@@ -963,6 +992,12 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	else
 		start3 = 1
 		duration3 = 1
+	end
+	if Necrosis.Spell[27].ID then
+		startMetamorphose, durationMetamorphose = GetSpellCooldown(Necrosis.Spell[27].ID, BOOKTYPE_SPELL)
+	else
+		startMetamorphose = 1
+		durationMetamorphose = 1
 	end
 
 	-- Création des bulles d'aides....
@@ -1042,6 +1077,14 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 				GameTooltip:AddLine(Necrosis.Spell[54].Mana.." Mana")
 			end
 			GameTooltip:AddLine(NecrosisTooltipData[Type].Text[Local.Stone.Fire.Mode])
+		end
+	-- .... pour la Métamorphose
+	elseif (Type == "Metamorphosis") then
+		if startMetamorphose > 0 and durationMetamorphose > 0 then
+			local seconde = durationMetamorphose - ( GetTime() - startMetamorphose)
+			local affiche
+			affiche = tostring(floor(seconde)).." sec"
+			GameTooltip:AddLine("Cooldown : "..affiche)
 		end
 	-- ..... pour le bouton des Timers
 	elseif (Type == "SpellTimer") then
@@ -1391,7 +1434,7 @@ function Necrosis:UpdateHealth()
 end
 
 -- Update des boutons en fonction de la mana
-function Necrosis:UpdateMana()
+function Necrosis:UpdateMana(Metamorphose)
 	if Local.Dead then return end
 
 	local mana = UnitMana("player")
@@ -1430,6 +1473,22 @@ function Necrosis:UpdateMana()
 			if Local.Desatured["Domination"] then
 				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(nil)
 				Local.Desatured["Domination"] = false
+			end
+		end
+	end
+	
+	-- Si cooldown de métamorphose, on grise
+	if _G["NecrosisMetamorphosisButton"] and Necrosis.Spell[27].ID then
+		local start, duration = GetSpellCooldown(Necrosis.Spell[27].ID, "spell")
+		if not Metamorphose and (start > 0 and duration > 0) then
+			if not Local.Desatured["Metamorphose"] then
+				NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(1)
+				Local.Desatured["Metamorphose"] = true
+			end
+		else
+			if Local.Desatured["Metamorphose"] then
+				NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(nil)
+				Local.Desatured["Metamorphose"] = false
 			end
 		end
 	end
@@ -2329,6 +2388,7 @@ function Necrosis:ClearAllPoints()
 	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:ClearAllPoints() end
 	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:ClearAllPoints() end
 	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:ClearAllPoints() end
+	if  _G["NecrosisMetamorphosisButton"] then NecrosisMetamorphosisButton:ClearAllPoints() end
 end
 
 -- Fonction (XML) pour étendre la propriété NoDrag() du bouton principal de Necrosis sur tout ses boutons
@@ -2341,6 +2401,7 @@ function Necrosis:NoDrag()
 	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:RegisterForDrag("") end
 	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:RegisterForDrag("") end
 	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:RegisterForDrag("") end
+	if  _G["NecrosisMetamorphosisButton"] then NecrosisMetamorphosisButton:RegisterForDrag("") end
 end
 
 -- Fonction (XML) inverse de celle du dessus
@@ -2353,6 +2414,7 @@ function Necrosis:Drag()
 	if  _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:RegisterForDrag("LeftButton") end
 	if  _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:RegisterForDrag("LeftButton") end
 	if  _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:RegisterForDrag("LeftButton") end
+	if  _G["NecrosisMetamorphosisButton"] then NecrosisMetamorphosisButton:RegisterForDrag("LeftButton") end
 end
 
 
