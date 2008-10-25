@@ -178,7 +178,55 @@ end
 
 
 ------------------------------------------------------------------------------------------------------
--- BOUTON DES PIERRES ET DE LA MONTURE
+-- BOUTON DU MENU DE METAMORPHOSE
+------------------------------------------------------------------------------------------------------
+
+local function CreateMetamorphosisSpell()
+	local DemonicSpell = {"Charge", "Defi", "Enchainement", "Immolation"}
+
+	for i = 1, #DemonicSpell, 1 do
+		-- Creaton du bouton
+		local frame = _G["NecrosisMetamorphosisMenu"..i]
+		if not frame then
+			frame = CreateFrame("Button", "NecrosisMetamorphosisMenu"..i, NecrosisMetamorphosisButton, "SecureActionButtonTemplate")
+
+			-- Définition de ses attributs
+			frame:SetMovable(true)
+			frame:EnableMouse(true)
+			frame:SetWidth(40)
+			frame:SetHeight(40)
+			frame:SetHighlightTexture("Interface\\AddOns\\Necrosis\\UI\\"..DemonicSpell[i].."-02")
+			frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+		end
+
+		frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..DemonicSpell[i].."-01")
+		frame:Show()
+
+		-- Edition des scripts associés au bouton
+		frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, DemonicSpell[i], "ANCHOR_RIGHT", "Curse") end)
+		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
+		frame:SetParent(NecrosisMetamorphosisButton)
+		
+		if i == 1 then
+			frame:ClearAllPoints()
+			frame:SetPoint(
+				"CENTER", "NecrosisMetamorphosisButton", "CENTER",
+				NecrosisConfig.MetamorphosisMenuPos.direction * NecrosisConfig.MetamorphosisMenuPos.x * 32 + NecrosisConfig.MetamorphosisMenuDecalage.x,
+				NecrosisConfig.MetamorphosisMenuPos.y * 32 + NecrosisConfig.MetamorphosisMenuDecalage.y
+			)
+		else
+			frame:ClearAllPoints()
+			frame:SetPoint(
+				"CENTER", "NecrosisMetamorphosisMenu"..i - 1, "CENTER",
+				NecrosisConfig.CurseMenuPos.direction * NecrosisConfig.CurseMenuPos.x * 32,
+				NecrosisConfig.CurseMenuPos.y * 32
+			)
+		end
+	end
+end
+
+------------------------------------------------------------------------------------------------------
+-- BOUTON DES PIERRES, DE LA METAMORPHOSE ET DE LA MONTURE
 ------------------------------------------------------------------------------------------------------
 
 local function CreateStoneButton(stone)
@@ -244,6 +292,11 @@ local function CreateStoneButton(stone)
 			NecrosisConfig.FramePosition[frame:GetName()][4],
 			NecrosisConfig.FramePosition[frame:GetName()][5]
 		)
+	end
+	
+	if stone == "Metamorphosis" then
+		CreateMetamorphosisSpell()
+		Necrosis:MetamorphosisAttribute()
 	end
 
 	return frame

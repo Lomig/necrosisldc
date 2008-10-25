@@ -216,6 +216,18 @@ function Necrosis:Localization_Dialog_Cn()
 		["Corruption"] = {
 			Label = "|c00FFFFFFCorruption|r"
 		},
+		["Charge"] = {
+			Label = "|c00FFFFFFTEST|r"
+		},
+		["Enchainement"] = {
+			Label = "|c00FFFFFFTEST|r"
+		},
+		["Immolation"] = {
+			Label = "|c00FFFFFFTEST|r"
+		},
+		["Defi"] = {
+			Label = "|c00FFFFFFTEST|r"
+		},
 		["DominationCooldown"] = "右键快速召唤",
 	}
 
