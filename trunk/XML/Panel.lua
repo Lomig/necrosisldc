@@ -46,9 +46,9 @@ local _G = getfenv(0)
 function Necrosis:OpenConfigPanel()
 
 	-- On affiche les messages d'aide
-	if NECROSIS_MESSAGE.Help[1] then
-		for i = 1, #NECROSIS_MESSAGE.Help, 1 do
-			self:Msg(NECROSIS_MESSAGE.Help[i], "USER")
+	if self.ChatMessage.Help[1] then
+		for i = 1, #self.ChatMessage.Help, 1 do
+			self:Msg(self.ChatMessage.Help[i], "USER")
 		end
 	end
 
@@ -128,7 +128,7 @@ function Necrosis:OpenConfigPanel()
 		-- Texte du titre
 		local FontString = frame:CreateFontString(nil, nil, "GameFontNormal")
 		FontString:SetTextColor(1, 0.8, 0)
-		FontString:SetText(Necrosis.Data.Label)
+		FontString:SetText(self.Data.Label)
 		FontString:Show()
 		FontString:ClearAllPoints()
 		FontString:SetPoint("CENTER", 6, 233)
@@ -165,7 +165,7 @@ function Necrosis:OpenConfigPanel()
 
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(Necrosis.Config.Panel[1])
+			GameTooltip:SetText(self.Config.Panel[1])
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetScript("OnClick", function() Necrosis:SetPanel(1) end)
@@ -203,7 +203,7 @@ function Necrosis:OpenConfigPanel()
 
 			frame:SetScript("OnEnter", function()
 				GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-				GameTooltip:SetText(Necrosis.Config.Panel[i + 1])
+				GameTooltip:SetText(self.Config.Panel[i + 1])
 			end)
 			frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 			frame:SetScript("OnClick", function() Necrosis:SetPanel(i + 1) end)
@@ -251,7 +251,7 @@ function Necrosis:SetPanel(PanelID)
 			TabName:SetChecked(nil)
 		end
 	end
-	NecrosisGeneralPageText:SetText(Necrosis.Config.Panel[PanelID])
+	NecrosisGeneralPageText:SetText(self.Config.Panel[PanelID])
 	if PanelID == 1 then
 		HideUIPanel(NecrosisSphereConfig)
 		HideUIPanel(NecrosisButtonsConfig)
