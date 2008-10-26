@@ -186,13 +186,13 @@ function Necrosis:BuffSpellAttribute()
 
 
 	-- Association des autres buffs aux boutons
-	local buffID = {31, 47, 32, 33, 34, 37, 38, 43, 35, 9}
+	local buffID = {31, 47, 32, 33, 34, 37, 38, 43, 35, 59, 9}
 	for i = 2, #buffID - 1, 1 do
 		local f = _G["NecrosisBuffMenu"..i]
 		if f then
 			f:SetAttribute("type", "spell")
 			-- Si le sort nécessite une cible, on lui en associe une
-			if not (i == 2 or i == 5 or i == 7 or i == 8 or i == 9) then
+			if not (i == 2 or i == 5 or i == 7 or i == 8 or i == 9 or i == 10) then
 				f:SetAttribute("unit", "target")
 			end
 			local SpellName_Rank = self.Spell[ buffID[i] ].Name
@@ -270,8 +270,8 @@ function Necrosis:PetSpellAttribute()
 	end
 
 	-- Autres sorts démoniaques
-	local buttonID = {1, 7, 8, 9, 10}
-	local BuffID = {15, 8, 30, 35, 44}
+	local buttonID = {1, 7, 8, 9, 10, 11}
+	local BuffID = {15, 8, 30, 35, 44, 59}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then

@@ -363,7 +363,7 @@ end
 
 -- Boutons du menu des buffs
 function Necrosis:CreateMenuBuff(i)
-	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Enslave", "Banish"}
+	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Enslave", "Renforcement", "Banish"}
 
 	-- Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
@@ -415,7 +415,7 @@ end
 
 -- Boutons du menu des démons
 function Necrosis:CreateMenuPet(i)
-	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice"}
+	local PetName = {"Domination", "Imp", "Voidwalker", "Succubus", "Felhunter", "Felguard", "Infernal", "Doomguard", "Enslave", "Sacrifice", "Renforcement"}
 
 	-- Creaton du bouton
 	local frame = _G["NecrosisPetMenu"..i]

@@ -168,7 +168,7 @@ Local.DefaultConfig = {
 		-- 6 = Elements
 		-- 7 = Funeste
 		-- 8 = Corruption
-	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11},
 		-- 1 = Domination corrompue
 		-- 2 = Imp
 		-- 3 = Marcheur
@@ -179,7 +179,8 @@ Local.DefaultConfig = {
 		-- 8 = Doomguard
 		-- 9 = Asservissement
 		-- 10 = Sacrifice
-	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, -9, 10},
+		-- 11 = Renforcement
+	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, -9, 10, 11},
 		-- 1 = Armure
 		-- 2 = Gangrarmure
 		-- 3 = Respiration
@@ -189,7 +190,8 @@ Local.DefaultConfig = {
 		-- 7 = Lien Spirituel
 		-- 8= Protection contre l'ombre
 		-- 9 = Asservissement
-		-- 10 = Bannir
+		-- 10 = Renforcement
+		-- 11 = Bannir
 	NecrosisToolTip = true,
 
 	MainSpell = 41,
@@ -2453,7 +2455,7 @@ function Necrosis:CreateMenu()
 	end
 	if NecrosisConfig.StonePosition[7] > 0 then
 		local MenuID = new("array",
-			15, 3, 4, 5, 6, 7, 8, 30, 35, 44
+			15, 3, 4, 5, 6, 7, 8, 30, 35, 44, 59
 		)
 		-- On ordonne et on affiche les boutons dans le menu des démons
 		for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
@@ -2520,7 +2522,7 @@ function Necrosis:CreateMenu()
 	if NecrosisConfig.StonePosition[5] > 0 then
 		-- On ordonne et on affiche les boutons dans le menu des buffs
 		local MenuID = new("array",
-			31, 47, 32, 33, 34, 37, 38, 43, 35, 9
+			31, 47, 32, 33, 34, 37, 38, 43, 35, 59, 9
 		)
 		for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 			-- Si le buff existe, on affiche le bouton dans le menu des buffs
