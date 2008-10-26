@@ -71,12 +71,10 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "Healthstone",
 	["Spellstone"] = "Spellstone",
 	["Firestone"] = "Firestone",
-	["Ranged"] = "Wand",
-	["Soulbound"] = "Soulbound",
 	["InfernalStone"] = "Infernal Stone",
 	["DemoniacStone"] = "Demonic Figurine",
 	["Hearthstone"] = "Hearthstone",
-	["SoulPouch"] = {"Soul Pouch", "Felcloth Bag", "Core Felcloth Bag"}
+	["SoulPouch"] = {"Soul Pouch", "Small Soul Pouch", "Box of Souls", "Felcloth Bag", "Ebon Shadowbag", "Core Felcloth Bag", "Abyssal Bag"}
 }
 
 -- Traductions diverses
@@ -90,18 +88,18 @@ Necrosis.Translation.Misc = {
 Necrosis.AntiFear = {
 	-- Buffs giving temporary immunity to fear effects
 	["Buff"] = {
-		"Fear Ward",		-- Dwarf priest racial trait
+		"Fear Ward",			-- Dwarf priest racial trait
 		"Will of the Forsaken",	-- Forsaken racial trait
-		"Fearless",		-- Trinket
-		"Berserker Rage",	-- Warrior Fury talent
-		"Recklessness",		-- Warrior Fury talent
-		"Death Wish",		-- Warrior Fury talent
-		"Bestial Wrath",	-- Hunter Beast Mastery talent
-		"Ice Block",		-- Mage Ice talent
+		"Fearless",				-- Trinket
+		"Berserker Rage",		-- Warrior Fury talent
+		"Recklessness",			-- Warrior Fury talent
+		"Death Wish",			-- Warrior Fury talent
+		"Bestial Wrath",		-- Hunter Beast Mastery talent
+		"Ice Block",			-- Mage Ice talent
 		"Divine Protection",	-- Paladin Holy buff
-		"Divine Shield",	-- Paladin Holy buff
-		"Tremor Totem",		-- Shaman totem
-		"Abolish Magic"		-- Majordomo (NPC) spell
+		"Divine Shield",		-- Paladin Holy buff
+		"Tremor Totem",			-- Shaman totem
+		"Abolish Magic"			-- Majordomo (NPC) spell
 	},
 	-- Debuffs and curses giving temporary immunity to fear effects
 	["Debuff"] = {

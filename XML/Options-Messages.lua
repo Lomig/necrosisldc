@@ -412,4 +412,5 @@ function Necrosis.Language_Click()
 	end
 	Necrosis:Localization()
 	Necrosis:SetMessagesConfig()
+	Necrosis:SpellLocalize("tooltip")
 end

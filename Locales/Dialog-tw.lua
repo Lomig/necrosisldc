@@ -46,13 +46,14 @@ function Necrosis:Localization_Dialog_Tw()
 	  self:Localization_Speech_Tw()
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "治療石冷卻時間",
+	self.HealthstoneCooldown = "治療石冷卻時間"
+	
+	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
 	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -75,21 +76,17 @@ function Necrosis:Localization_Dialog_Tw()
 			["NoCurrentDemon"] = "惡魔：無",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FF靈魂石|r",
 			Text = {"製造","使用","已使用","等待中"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33治療石|r",
 			Text = {"製造","使用"},
 			Text2 = "按中鍵或是Ctrl-左鍵交易",
 			Ritual = "|c00FFFFFFShift+左鍵施放靈魂儀式|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFF法術石|r",
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444火焰石|r",
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
@@ -103,42 +100,8 @@ function Necrosis:Localization_Dialog_Tw()
 		["Backlash"] = {
 			Label = "|c00FFFFFF反衝|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFF惡魔支配|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFF奴役惡魔|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFF魔甲術|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFF獄甲術|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFF偵測隱形|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFF魔息術|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFF基爾羅格之眼|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFF放逐術|r",
 			Text = "按右鍵施放等級1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFF召喚儀式|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFRitual of Souls|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFF靈魂鏈結|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFF防護暗影結界|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFF小鬼|r"
@@ -161,30 +124,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["Doomguard"] = {
 			Label = "|c00FFFFFF末日守衛|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFF惡魔犧牲|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFF虛弱詛咒|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFF痛苦詛咒|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFF魯莽詛咒|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFF語言詛咒|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFF疲勞詛咒|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFF元素詛咒|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFF厄運詛咒|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFF坐騎|r",
 			Text = "右鍵施放等級1"
@@ -204,34 +143,10 @@ function Necrosis:Localization_Dialog_Tw()
 			Text = "右鍵保持選單開啟",
 			Text2 = "自動模式：脫離戰鬥後自動關閉",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFF感知惡魔|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFMetamorphosis|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHaunt|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "右鍵快速召喚",
 	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-En.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-En.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-En.mp3",
@@ -245,7 +160,7 @@ function Necrosis:Localization_Dialog_Tw()
 	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "你的",
 			["FullSuffix"] = " 滿了！",
@@ -272,7 +187,7 @@ function Necrosis:Localization_Dialog_Tw()
 	}
 
 	-- Gestion XML - Menu de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"資訊設定",
 		"Sphere Settings",
 		"按鈕設定",
@@ -281,7 +196,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"Miscellanious"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- 這裡將顯示Necrosis的系統訊息 ->",
 		["Afficher les bulles d'aide"] = "顯示提示",
 		["Afficher les messages dans la zone systeme"] = "宣告Necrosis訊息為系統訊息",
@@ -296,7 +211,7 @@ function Necrosis:Localization_Dialog_Tw()
 		["M'alerter quand j'entre en Transe"] = "當我獲得暗影冥思效果時提醒我"
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Necrosis按鈕的大小",
 		["Skin de la pierre Necrosis"] = "Necrosis球體的外觀",
 		["Evenement montre par la sphere"] = "球體事件顯示",
@@ -304,7 +219,7 @@ function Necrosis:Localization_Dialog_Tw()
 		["Afficher le compteur numerique"] = "顯示碎片數量",
 		["Type de compteur numerique"] = "計算石頭類型"
 	}
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"粉紅色",
 		"藍色",
 		"橘色",
@@ -313,7 +228,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"靈魂碎片",
 		"惡魔召喚石",
 		"靈魂石冷卻計時",
@@ -321,7 +236,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"Health"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
 		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
 		["Utiliser mes propres montures"] = "Use my own mounts",
@@ -329,7 +244,7 @@ function Necrosis:Localization_Dialog_Tw()
 		["Monture - Clic gauche"] = "Mount - Left click",
 		["Monture - Clic droit"] = "Mount - Right click",
 	}
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"顯示火焰石按鈕",
 		"顯示法術石按鈕",
 		"顯示治療石按鈕",
@@ -340,7 +255,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"顯示詛咒功能表按鈕",
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "General Options",
 		["Menu des Buffs"] = "法術選單",
 		["Menu des Demons"] = "惡魔選單",
@@ -352,25 +267,25 @@ function Necrosis:Localization_Dialog_Tw()
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "放逐按鈕大小",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Horizontal",
 		"Upwards",
 		"Downwards"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
 		["Afficher les timers sur la gauche du bouton"] = "計時器在按鈕左邊",
 		["Afficher les timers de bas en haut"] = "計時器向上增加",
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"No Timer",
 		"Graphical",
 		"Textual"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "將碎片放入選擇的包包",
 		["Detruit les fragments si le sac plein"] = "如果包包滿了，摧毀所有新的碎片。",
 		["Choix du sac contenant les fragments"] = "選擇靈魂碎片包包",

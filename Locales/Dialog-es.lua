@@ -45,13 +45,14 @@ function Necrosis:Localization_Dialog_Es()
 		self:Localization_Speech_Es()
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Tiempo de regeneraci\195\179n Piedra de Salud",
+	self.HealthstoneCooldown = "Tiempo de regeneraci\195\179n Piedra de Salud"
+	
+	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
 	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -74,21 +75,17 @@ function Necrosis:Localization_Dialog_Es()
 			["NoCurrentDemon"] = "Demonio: Ninguno",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FFPiedra de Alma|r",
 			Text = {"Click derecho para crear","Click izquierdo para usar","Usada\nClick derecho para recrear","Esperando"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33Piedra de Salud|r",
 			Text = {"Click derecho para crear","Click izquierdo para usar"},
 			Text2 = "Click central o Ctrl+Click izquierdo para comerciar",
 			Ritual = "|c00FFFFFFShift+Click para empezar el Ritual de Almas|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFFPiedra de Hechizo|r",
 			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444Piedra de Fuego|r",
 			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
 		},
 		["SpellTimer"] = {
@@ -102,42 +99,8 @@ function Necrosis:Localization_Dialog_Es()
 		["Backlash"] = {
 			Label = "|c00FFFFFFBacklash|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFFDominio vil|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFFEsclavizar|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFFArmadura Demon\195\173aca|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFFFel Armor|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFFDetectar Invisibilidad|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFFAliento Inagotable|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFFOjo de Kilrogg|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFFDesterrar|r",
 			Text = "Click derecho para invocar Rango 1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFFRitual de Invocaci\195\179n|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFRitual de las Almas|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFFEnlace de Alma|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFFResguardo contra las Sombras|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFFDiablillo|r"
@@ -160,30 +123,6 @@ function Necrosis:Localization_Dialog_Es()
 		["Doomguard"] = {
 			Label = "|c00FFFFFFGuardia Apocal\195\173ptico|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFFSacrificio Demon\195\173aco|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de Debilidad|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de Agon\195\173a|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de la Temeridad|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de la Lengua|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de Agotamiento|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFFMaldici\195\179n de los Elementos|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFFMaldici\195\179n del Apocalipsis|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFFCorcel|r",
 			Text = "Click derecho para lanzar Rango 1"
@@ -203,48 +142,24 @@ function Necrosis:Localization_Dialog_Es()
 			Text = "Click Derecho para mantener el men\195\186 abierto",
 			Text2 = "Modo autom\195\161tico: Se cierra cuando sales de combate",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFFCaptar Demonios|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFMetamorphosis|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHaunt|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "Click Derecho para invocaci\195\179n r\195\161pida",
-	};
+	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-En.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-En.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-En.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-En.mp3",
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
-	};
+	}
 
-	NECROSIS_PROC_TEXT = {
+	self.ProcText = {
 		["ShadowTrance"] = "<white>Tr<lightPurple1>a<lightPurple2>n<purple>c<darkPurple1>e<darkPurple2> de las S<darkPurple1>o<purple>m<lightPurple2>b<lightPurple1>r<white>as",
 		["Backlash"] = "<white>B<lightPurple1>a<lightPurple2>c<purple>k<darkPurple1>l<darkPurple2>a<darkPurple1>s<purple>h"
-	};
+	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "\194\161 Tu ",
 			["FullSuffix"] = " est\195\161 llena !",
@@ -268,11 +183,11 @@ function Necrosis:Localization_Dialog_Es()
 			["EnslaveBreak"] = "Tu demonio rompi\195\179 sus cadenas...",
 			["SoulstoneEnd"] = "<lightYellow>Tu Piedra de Alma se ha disipado."
 		}
-	};
+	}
 
 
 	-- Gestion XML - Menu de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"Opci\195\179nes de Mensaje",
 		"Opci\195\179nes de la Esfera",
 		"Opci\195\179nes de Bot\195\179n",
@@ -281,7 +196,7 @@ function Necrosis:Localization_Dialog_Es()
 		"Miscel\195\161neos"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- Los mensajes de Sistema de Necrosis aparecer\195\161n aqu\195\173 ->",
 		["Afficher les bulles d'aide"] = "Mostrar consejos detallados",
 		["Afficher les messages dans la zone systeme"] = "Mensajes de Necrosis como mensajes de sistema",
@@ -296,7 +211,7 @@ function Necrosis:Localization_Dialog_Es()
 		["M'alerter quand j'entre en Transe"] = "Al\195\169rtame cuando entre en un Trance",
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Tama\195\177o del bot\195\179n Necrosis",
 		["Skin de la pierre Necrosis"] = "Color de la Esfera Necrosis",
 		["Evenement montre par la sphere"] = "Evento mostrado en la Esfera",
@@ -304,7 +219,7 @@ function Necrosis:Localization_Dialog_Es()
 		["Afficher le compteur numerique"] = "Mostrar la contabilizaci\195\179n de Fragmentos en Necrosis",
 		["Type de compteur numerique"] = "Tipo de Piedra contabilizada"
 	}
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"Rosa",
 		"Azul",
 		"Naranja",
@@ -313,7 +228,7 @@ function Necrosis:Localization_Dialog_Es()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"Fragmentos de Alma",
 		"Piedras de invocaci\195\179n de Demonios",
 		"Temporizador de Resurrecci\195\179n",
@@ -321,7 +236,7 @@ function Necrosis:Localization_Dialog_Es()
 		"Salud"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Rotaci\195\179n de los botones",
 		["Fixer les boutons autour de la sphere"] = "Fijar los botones alrededor de la Esfera",
 		["Utiliser mes propres montures"] = "Use my own mounts",
@@ -329,7 +244,7 @@ function Necrosis:Localization_Dialog_Es()
 		["Monture - Clic gauche"] = "Mount - Left click",
 		["Monture - Clic droit"] = "Mount - Right click",
 	}
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"Mostrar bot\195\179n Piedra de Fuego",
 		"Mostrar bot\195\179n Piedra de Hechizo",
 		"Mostrar bot\195\179n Piedra de Salud",
@@ -340,7 +255,7 @@ function Necrosis:Localization_Dialog_Es()
 		"Mostrar bot\195\179n del men\195\186 Maldici\195\179n",
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "Opciones Generales",
 		["Menu des Buffs"] = "Men\195\186 de Hechizos",
 		["Menu des Demons"] = "Men\195\186 de Demonios",
@@ -352,25 +267,25 @@ function Necrosis:Localization_Dialog_Es()
 		["Changer la symetrie verticale des boutons"] = "Cambiar la simetr\195\173a vertical de los botones",
 		["Taille du bouton Banir"] = "Tama\195\177o del bot\195\179n Desterrar",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Horizontal",
 		"Hacia arriba",
 		"Hacia abajo"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Tipo de temporizadores",
 		["Afficher le bouton des timers"] = "Mostrar el bot\195\179n de los temporizadores",
 		["Afficher les timers sur la gauche du bouton"] = "Mostrar los temporizadores a la izquierda del bot\195\179n",
 		["Afficher les timers de bas en haut"] = "Los temporizadores se incrementan ascendentemente",
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"Ninguno",
 		"Modo Gr\195\161fico",
 		"Modo texto"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "Poner los Fragmentos en la bolsa seleccionada.",
 		["Detruit les fragments si le sac plein"] = "Destruir nuevos fragmentos si la bolsa est\195\161 llena",
 		["Choix du sac contenant les fragments"] = "Selecci\195\179n de Contenedor de Fragmentos de Alma",

@@ -70,12 +70,10 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "Piedra de salud",
 	["Spellstone"] = "Piedra de hechizo",
 	["Firestone"] = "Piedra de fuego",
-	["Ranged"] = "Varita",
-	["Soulbound"] = "Se liga al equiparlo",
 	["InfernalStone"] = "Piedra infernal",
 	["DemoniacStone"] = "Figura demon\195\173aca",
 	["Hearthstone"] = "Piedra de hogar",
-	["SoulPouch"] = {"Faltriquera de almas", "Bolsa de tela vil", "Bolsa de tela vil del N\195\186cleo"}
+	["SoulPouch"] = {"Faltriquera de almas", "Faltriquera de almas", "Caja de almas", "Bolsa de tela vil", "Bolsa de tela vil del N\195\186cleo", "Bolsa abisal", "Bolsa de las Sombras de \195\169bano"}
 }
 
 -- Traductions diverses
@@ -89,18 +87,18 @@ Necrosis.Translation.Misc = {
 Necrosis.AntiFear = {
 	-- Bufos que dan inmunidad temporal a los efectos de miedo
 	["Buff"] = {
-		"Custodia de miedo",		-- Dwarf priest racial trait
+		"Custodia de miedo",			-- Dwarf priest racial trait
 		"Voluntad de los Renegados.",	-- Forsaken racial trait
-		"Audacia",			-- Trinket
-		"Ira rabiosa",			-- Warrior Fury talent
-		"Temeridad",			-- Warrior Fury talent
-		"Deseo de la muerte",		-- Warrior Fury talent
+		"Audacia",						-- Trinket
+		"Ira rabiosa",					-- Warrior Fury talent
+		"Temeridad",					-- Warrior Fury talent
+		"Deseo de la muerte",			-- Warrior Fury talent
 		"C\195\179lera de las bestias",	-- Hunter Beast Mastery talent (pet only)
-		"Bloqueo de hielo",		-- Mage Ice talent
-		"Protecci\195\179n divina",	-- Paladin Holy buff
-		"Escudo divino",		-- Paladin Holy buff
-		"T\195\179tem de tremor",	-- Shaman totem
-		"Suprimir magia"		-- Majordomo (NPC) spell
+		"Bloqueo de hielo",				-- Mage Ice talent
+		"Protecci\195\179n divina",		-- Paladin Holy buff
+		"Escudo divino",				-- Paladin Holy buff
+		"T\195\179tem de tremor",		-- Shaman totem
+		"Suprimir magia"				-- Majordomo (NPC) spell
 	},
 	-- Debufos y maldiciones que dan inmunidad temporal a los efectos de miedo
 	["Debuff"] = {
