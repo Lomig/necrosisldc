@@ -71,12 +71,10 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "Pierre de soins",
 	["Spellstone"] = "Pierre de sort",
 	["Firestone"] = "Pierre de feu",
-	["Wand"] = "Baguette",
-	["Soulbound"] = "Li\195\169",
 	["InfernalStone"] = "Pierre infernale",
 	["DemoniacStone"] = "Figurine d\195\169moniaque",
 	["Hearthstone"] = "Pierre de foyer",
-	["SoulPouch"] = {"Bourse d'\195\162me", "Sac en gangr\195\169toffe", "Sac en gangr\195\169toffe du Magma"}
+	["SoulPouch"] = {"Bourse d'\195\162me", "Bourse d'\195\162me", "Bo\195\174te d'\192\162mes", "Sac en gangr\195\169toffe", "Sac en gangr\195\169toffe du Magma", "Sac abyssal", "Ombresac d'\195\169b\195\168ne"}
 }
 
 -- Traductions diverses
@@ -90,18 +88,18 @@ Necrosis.Translation.Misc = {
 Necrosis.AntiFear = {
 	-- Buffs donnant une immunité temporaire au Fear
 	["Buff"] = {
-		"Gardien de peur",					-- Capacité raciale des prêtres nains
-		"Volont\195\169 des r\195\169prouv\195\169",		-- Capacité raciale réprouvée
-		"Sans peur",						-- Trinket
-		"Furie Berzerker",					-- Talent Guerrier (Branche Fury)
-		"T\195\169m\195\169rit\195\169",			-- Talent Guerrier (Branche Fury)
-		"Souhait mortel",					-- Talent Guerrier (Branche Fury)
-		"Courroux bestial",					-- Talent Chasseur (Branche Beast)
-		"Carapace de glace",					-- Talent Mage (Branche Ice)
-		"Protection divine",					-- Buff sacré Paladin
-		"Bouclier divin",					-- Buff sacré Paladin
-		"Totem de s\195\169isme",				-- Totem
-		"Abolir la magie"					-- Sort de Majordomo (PnJ)
+		"Gardien de peur",								-- Capacité raciale des prêtres nains
+		"Volont\195\169 des r\195\169prouv\195\169",	-- Capacité raciale réprouvée
+		"Sans peur",									-- Trinket
+		"Furie Berzerker",								-- Talent Guerrier (Branche Fury)
+		"T\195\169m\195\169rit\195\169",				-- Talent Guerrier (Branche Fury)
+		"Souhait mortel",								-- Talent Guerrier (Branche Fury)
+		"Courroux bestial",								-- Talent Chasseur (Branche Beast)
+		"Carapace de glace",							-- Talent Mage (Branche Ice)
+		"Protection divine",							-- Buff sacré Paladin
+		"Bouclier divin",								-- Buff sacré Paladin
+		"Totem de s\195\169isme",						-- Totem
+		"Abolir la magie"								-- Sort de Majordomo (PnJ)
 	},
 	-- Debuffs donnant une immunité temporaire au Fear
 	["Debuff"] = {

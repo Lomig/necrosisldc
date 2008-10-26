@@ -44,13 +44,14 @@ function Necrosis:Localization_Dialog_Ru()
 		self:Localization_Speech_Ru()
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Готовность Камня здоровья",
-		["Utilisation"] = "Использовать",
-		["Echange"] = "Обмен",
+	self.HealthstoneCooldown = "Готовность Камня здоровья"
+	
+	self.Localize = {
+		["Utilisation"] = "Use",
+		["Echange"] = "Trade",
 	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -73,21 +74,17 @@ function Necrosis:Localization_Dialog_Ru()
 			["NoCurrentDemon"] = "Демон: Отсутствует",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FFКамень Души|r",
 			Text = {"[Правый Клик] Создать","[Левый Клик] Использовать","[Правый Клик] Повторное создание","Ожидание"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33Камень здоровья|r",
 			Text = {"[Правый Клик] Создать","[Левый Клик] Использовать"},
 			Text2 = "[Средний Клик] или [Ctrl]+[Левый Клик] для передачи",
 			Ritual = "|c00FFFFFF[Shift]+[Клик] Начать Ритуал Душ|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFFКамень чар|r",
 			Text = {"[Клик] Создать камень","Камень у Вас в сумке\n[Клик] Нанести на оружие","Нанесено на оружие\n[Клик] Для замены/обновления", "Созданный ранее камень полностью использован\n[Клик] Создать новый камень"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444Камень огня|r",
 			Text = {"[Клик] Создать камень","Камень у Вас в сумке\n[Клик] Нанести на оружие","Нанесено на оружие\n[Клик] Для замены/обновления", "Созданный ранее камень полностью использован\n[Клик] Создать новый камень"}
 		},
 		["SpellTimer"] = {
@@ -101,42 +98,8 @@ function Necrosis:Localization_Dialog_Ru()
 		["Backlash"] = {
 			Label = "|c00FFFFFFОтветный Удар|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFFДемоническое превосходство|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFFПорабощение демона|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFFДемоническая Броня|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFFДоспех Скверны|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFFОбнаружение невидимости|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFFБесконечное дыхание|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFFОко Килрогга|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFFИзгнание|r",
 			Text = "[Правый Клик] для каста Уровень 1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFFРитуал призывания|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFРитуал душ|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFFДуховная связь|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFFЗащита от темной магии|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFFБес|r"
@@ -159,30 +122,6 @@ function Necrosis:Localization_Dialog_Ru()
 		["Doomguard"] = {
 			Label = "|c00FFFFFFСтражник Ужаса|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFFДемоническое жертвоприношение|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFFПроклятие слабости|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFFПроклятие агонии|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFFПроклятие безрассудства|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFFПроклятие косноязычия|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFFПроклятие изнеможения|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFFПроклятие стихий|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFFПроклятие рока|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFFКонь|r",
 			Text = "[Правый Клик] Призыв коня Скверны"
@@ -202,34 +141,10 @@ function Necrosis:Localization_Dialog_Ru()
 			Text = "[Правый Клик] Для удержания меню открытым",
 			Text2 = "Авто-Режим: Закрытие при выходе из боя",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFFЧутье на демонов|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFMetamorphosis|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHaunt|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "[Правый Клик] Быстрый вызов",
 	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-Ru.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-Ru.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-Ru.mp3",
@@ -237,13 +152,13 @@ function Necrosis:Localization_Dialog_Ru()
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Ru.mp3",
 	}
 
-	NECROSIS_PROC_TEXT = {
+	self.ProcText = {
 		["ShadowTrance"] = "<white>Т<lightPurple1>е<lightPurple2>н<purple>е<darkPurple1>в<darkPurple2>о<darkPurple1>й Т<purple>р<lightPurple2>а<lightPurple1>н<white>с",
 		["Backlash"] = "<white>О<lightPurple1>т<lightPurple2>в<purple>е<darkPurple1>т<darkPurple2>н<darkPurple1>ы<darkPurple2>й У<purple>д<lightPurple2>а<lightPurple1>р"
 	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "Ваша ",
 			["FullSuffix"] = " полна!",
@@ -271,7 +186,7 @@ function Necrosis:Localization_Dialog_Ru()
 
 
 	-- Gestion XML - Menu de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"Настройки Сообщений",
 		"Настройки Сферы",
 		"Настройки Кнопок",
@@ -280,7 +195,7 @@ function Necrosis:Localization_Dialog_Ru()
 		"Настройки Дополнительные"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- Сообщения Necrosis будут расположены здесь ->",
 		["Afficher les bulles d'aide"] = "Показывать подсказки",
 		["Afficher les messages dans la zone systeme"] = "Показывать сообщения Necrosis в системном окне",
@@ -295,7 +210,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["M'alerter quand j'entre en Transe"] = "Предупреждать о наступлении Теневого Транса"
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Размер кнопок Necrosis",
 		["Skin de la pierre Necrosis"] = "Вид Сферы",
 		["Evenement montre par la sphere"] = "На Сфере отображать",
@@ -303,7 +218,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Afficher le compteur numerique"] = "Показывать отсчет цифрами",
 		["Type de compteur numerique"] = "Показывать количество камней"
 	}
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"Розовый",
 		"Синий",
 		"Оранжевый",
@@ -312,7 +227,7 @@ function Necrosis:Localization_Dialog_Ru()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"Осколки душ",
 		"Камни призыва демонов",
 		"Таймер оживления",
@@ -320,7 +235,7 @@ function Necrosis:Localization_Dialog_Ru()
 		"Здоровье"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Вращение кнопок",
 		["Fixer les boutons autour de la sphere"] = "Закрепить кнопки вокруг Сферы",
 		["Utiliser mes propres montures"] = "Использовать мой транспорт",
@@ -329,7 +244,7 @@ function Necrosis:Localization_Dialog_Ru()
 		["Monture - Clic droit"] = "Транспорт под [Правый Клик]",
 	}
 	
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"Показывать кнопку Камня огня",
 		"Показывать кнопку Камня чар",
 		"Показывать кнопку Камня здоровья",
@@ -340,7 +255,7 @@ function Necrosis:Localization_Dialog_Ru()
 		"Показывать кнопку Проклятий",
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "Основные настройки",
 		["Menu des Buffs"] = "Меню заклинаний",
 		["Menu des Demons"] = "Меню Демонов",
@@ -352,25 +267,25 @@ function Necrosis:Localization_Dialog_Ru()
 		["Changer la symetrie verticale des boutons"] = "Изменить вертикальную симметрию кнопок (зеркальное\nотражение при выбранном размещении меню: Горизонтально)",
 		["Taille du bouton Banir"] = "Размер кнопки Изгнания",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Горизонтально",
 		"Вверх",
 		"Вниз"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Тип таймера",
 		["Afficher le bouton des timers"] = "Показывать кнопку таймера заклинаний",
 		["Afficher les timers sur la gauche du bouton"] = "Показывать строки таймера слева от кнопки таймера",
 		["Afficher les timers de bas en haut"] = "Таймер растет вверх",
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"Нет таймера",
 		"Графический",
 		"Текстовый"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "Размещать осколки душ в выбранной сумке",
 		["Detruit les fragments si le sac plein"] = "Разрушать все новые осколки, если сумка полна",
 		["Choix du sac contenant les fragments"] = "Выбор контейнера для осколков душ",

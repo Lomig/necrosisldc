@@ -183,6 +183,7 @@ end
 
 local function CreateMetamorphosisSpell()
 	local DemonicSpell = {"Charge", "Defi", "Enchainement", "Immolation"}
+	local buffID = {39, 58, 56, 57}
 
 	for i = 1, #DemonicSpell, 1 do
 		-- Creaton du bouton
@@ -222,6 +223,13 @@ local function CreateMetamorphosisSpell()
 				NecrosisConfig.CurseMenuPos.y * 32
 			)
 		end
+		
+		-- Attribution des sorts au bouton
+		frame:SetAttribute("type", "spell")
+		if i == 1 or i == 3 then
+			frame:SetAttribute("unit", "target")
+		end
+		frame:SetAttribute("spell", Necrosis.Spell[ buffID[i] ].Name)
 	end
 end
 
@@ -355,7 +363,7 @@ end
 
 -- Boutons du menu des buffs
 function Necrosis:CreateMenuBuff(i)
-	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "Radar", "SoulLink", "ShadowProtection", "Enslave", "Banish"}
+	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Enslave", "Banish"}
 
 	-- Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
@@ -439,7 +447,7 @@ end
 
 -- Boutons du menu des malédictions
 function Necrosis:CreateMenuCurse(i)
-	local CurseName = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Doom", "Haunt", "Corruption"}
+	local CurseName = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Doom", "Corruption"}
 
 	-- Creaton du bouton
 	local frame = _G["NecrosisCurseMenu"..i]

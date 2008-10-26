@@ -58,18 +58,15 @@
 		-- Invocation --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu7:LeftButton">
-		-- Détection Démons --
-	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu8:LeftButton">
 		-- Lien Spirituel --
 	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu9:LeftButton">
+	<Binding name="CLICK NecrosisBuffMenu8:LeftButton">
 		-- Gardien de l'ombre --
 	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu11:LeftButton">
+	<Binding name="CLICK NecrosisBuffMenu10:LeftButton">
 		-- Bannir --
 	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu11:RightButton">
+	<Binding name="CLICK NecrosisBuffMenu10:RightButton">
 		-- Bannir rang 1 --
 	</Binding>
 	

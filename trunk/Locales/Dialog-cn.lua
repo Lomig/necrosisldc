@@ -46,13 +46,14 @@ function Necrosis:Localization_Dialog_Cn()
 		self:Localization_Speech_Cn();
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "治疗石冷却时间",
+	self.HealthstoneCooldown = "治疗石冷却时间"
+	
+	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
 	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -75,17 +76,14 @@ function Necrosis:Localization_Dialog_Cn()
 			["NoCurrentDemon"] = "恶魔 : 无",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FF灵魂石|r",
 			Text = {"制造","可使用","已使用","等待"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33治疗石|r",
 			Text = {"制造","使用"},
 			Text2 = "按中键或是Ctrl-左键交易",
 			Ritual = "|c00FFFFFFShift+左键施放灵魂仪式|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFF法术石|r",
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["Firestone"] = {
@@ -93,7 +91,6 @@ function Necrosis:Localization_Dialog_Cn()
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
-			Label = "|c00FFFFFF法术持续时间|r",
 			Text = "启用对目标的法术计时",
 			Right = "右键使用炉石到"
 		},
@@ -103,42 +100,8 @@ function Necrosis:Localization_Dialog_Cn()
 		["Backlash"] = {
 			Label = "|c00FFFFFF反冲|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFF恶魔支配|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFF奴役恶魔|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFF魔甲术|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFF狱甲术|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFF侦测隐形|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFF魔息术|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFF基尔罗格之眼|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFF放逐术|r",
 			Text = "按右键施放等级1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFF召唤仪式|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFRitual of Souls|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFF灵魂链接|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFF防护暗影结界|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFF小鬼|r"
@@ -161,77 +124,29 @@ function Necrosis:Localization_Dialog_Cn()
 		["Doomguard"] = {
 			Label = "|c00FFFFFF末日守卫|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFF恶魔牺牲|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFF虚弱诅咒|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFF痛苦诅咒|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFF鲁莽诅咒|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFF语言诅咒|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFF疲劳诅咒|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFF元素诅咒|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFF厄运诅咒|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFF坐骑|r",
 			Text = "右键施放等级1"
 		},
-		["Buff"] = {
+		["BuffMenu"] = {
 			Label = "|c00FFFFFF法术菜单|r",
 			Text = "右键保持菜单开启",
 			Text2 = "自动模式：脱离战斗后自动关闭",
 		},
-		["Pet"] = {
+		["PetMenu"] = {
 			Label = "|c00FFFFFF恶魔菜单|r",
 			Text = "右键保持菜单开启",
 			Text2 = "自动模式：脱离战斗后自动关闭",
 		},
-		["Curse"] = {
+		["CurseMenu"] = {
 			Label = "|c00FFFFFF诅咒菜单|r",
 			Text = "右键保持菜单开启",
 			Text2 = "自动模式：脱离战斗后自动关闭",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFF感知恶魔|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFMetamorphosis|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHaunt|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "右键快速召唤",
 	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-En.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-En.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-En.mp3",
@@ -245,7 +160,7 @@ function Necrosis:Localization_Dialog_Cn()
 	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "你的 ",
 			["FullSuffix"] = " 满了 !",
@@ -272,7 +187,7 @@ function Necrosis:Localization_Dialog_Cn()
 	}
 
 	-- Gestion XML - Menu de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"信息设置",
 		"Sphere Settings",
 		"按钮设置",
@@ -281,7 +196,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"Miscellanious"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- 这儿将显示Necrosis的信息 ->",
 		["Afficher les bulles d'aide"] = "显示提示",
 		["Afficher les messages dans la zone systeme"] = "宣告Necrosis信息作为系统信息",
@@ -296,7 +211,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["M'alerter quand j'entre en Transe"] = "当我获得暗影冥思效果时提醒我。"
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Necrosis按钮的大小",
 		["Skin de la pierre Necrosis"] = "Necrosis球体的皮肤",
 		["Evenement montre par la sphere"] = "图形显示",
@@ -305,7 +220,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["Type de compteur numerique"] = "石头类型"
 	}
 
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"粉红色",
 		"蓝色",
 		"橙色",
@@ -314,7 +229,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"灵魂碎片",
 		"恶魔召唤石",
 		"灵魂石冷却计时",
@@ -322,7 +237,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"Health"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
 		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
 		["Utiliser mes propres montures"] = "Use my own mounts",
@@ -330,7 +245,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["Monture - Clic gauche"] = "Mount - Left click",
 		["Monture - Clic droit"] = "Mount - Right click",
 	}
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"显示火焰石按钮",
 		"显示法术石按钮",
 		"显示治疗石按钮",
@@ -341,7 +256,7 @@ function Necrosis:Localization_Dialog_Cn()
 		"显示诅咒菜单按钮"
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "General Options",
 		["Menu des Buffs"] = "法术菜单",
 		["Menu des Demons"] = "恶魔菜单",
@@ -353,25 +268,25 @@ function Necrosis:Localization_Dialog_Cn()
 		["Changer la symetrie verticale des boutons"] = "Change the vertical simetry of buttons",
 		["Taille du bouton Banir"] = "放逐按钮大小",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Horizontal",
 		"Upwards",
 		"Downwards"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Show the Spell Timer button",
 		["Afficher les timers sur la gauche du bouton"] = "计时器在按钮左边",
 		["Afficher les timers de bas en haut"] = "计时器向上升",
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"No Timer",
 		"Graphical",
 		"Textual"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "将碎片放入选择的包。",
 		["Detruit les fragments si le sac plein"] = "如果包满摧毁所有新的碎片。",
 		["Choix du sac contenant les fragments"] = "选择灵魂碎片包",

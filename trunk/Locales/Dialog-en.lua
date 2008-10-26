@@ -44,13 +44,14 @@ function Necrosis:Localization_Dialog_En()
 		self:Localization_Speech_En()
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Healthstone Cooldown",
+	self.HealthstoneCooldown = "Healthstone Cooldown"
+	
+	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
 	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -73,21 +74,17 @@ function Necrosis:Localization_Dialog_En()
 			["NoCurrentDemon"] = "Demon: None",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FFSoulstone|r",
 			Text = {"Right click to create","Left click to use","Used\nRight click to recreate","Waiting"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33Healthstone|r",
 			Text = {"Right click to create","Left click to use"},
 			Text2 = "Middle click or Ctrl+left click to trade",
 			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Souls|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFFSpellstone|r",
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\nClick to create"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444Firestone|r",
 			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
@@ -101,42 +98,8 @@ function Necrosis:Localization_Dialog_En()
 		["Backlash"] = {
 			Label = "|c00FFFFFFBacklash|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFFFel Domination|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFFEnslave|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFFDemon Armor|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFFFel Armor|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFFDetect Invisibility|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFFUnending Breath|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFFEye of Kilrogg|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFFBanish|r",
 			Text = "Right click to cast Rank 1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFFRitual of Summoning|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFRitual of Souls|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFFSoul Link|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFFShadow Ward|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFFImp|r"
@@ -159,30 +122,6 @@ function Necrosis:Localization_Dialog_En()
 		["Doomguard"] = {
 			Label = "|c00FFFFFFDoomguard|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFFDemonic sacrifice|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFFCurse of Weakness|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFFCurse of Agony|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFFCurse of Recklessness|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFFCurse of Tongues|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFFCurse of Exhaustion|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFFCurse of Elements|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFFCurse of Doom|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFFMounts|r",
 			Text = "Left click to summon Dreadsteed\nRight click to summon Felsteed"
@@ -202,48 +141,24 @@ function Necrosis:Localization_Dialog_En()
 			Text = "Right click to keep the menu open",
 			Text2 = "Automatic Mode : Closing when leave combat",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFFSense Demons|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFMetamorphosis|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHaunt|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "Right click for fast summon",
 	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-En.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-En.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-En.mp3",
 		["ShadowTrance"] = "Interface\\AddOns\\Necrosis\\sounds\\ShadowTrance-En.mp3",
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
-	};
+	}
 
-	NECROSIS_PROC_TEXT = {
+	self.ProcText = {
 		["ShadowTrance"] = "<white>S<lightPurple1>h<lightPurple2>a<purple>d<darkPurple1>o<darkPurple2>w T<darkPurple1>r<purple>a<lightPurple2>n<lightPurple1>c<white>e",
 		["Backlash"] = "<white>B<lightPurple1>a<lightPurple2>c<purple>k<darkPurple1>l<darkPurple2>a<darkPurple1>s<purple>h"
 	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "Your ",
 			["FullSuffix"] = " is full!",
@@ -267,11 +182,11 @@ function Necrosis:Localization_Dialog_En()
 			["EnslaveBreak"] = "Your demon broke his chains...",
 			["SoulstoneEnd"] = "<lightYellow>Your Soulstone has faded."
 		}
-	};
+	}
 
 
 	-- Gestion XML - Menu de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"Message Settings",
 		"Sphere Settings",
 		"Button Settings",
@@ -280,7 +195,7 @@ function Necrosis:Localization_Dialog_En()
 		"Miscellaneous"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- Necrosis system messages will appear here ->",
 		["Afficher les bulles d'aide"] = "Show tooltips",
 		["Afficher les messages dans la zone systeme"] = "Show Necrosis messages in the system frame",
@@ -295,7 +210,7 @@ function Necrosis:Localization_Dialog_En()
 		["M'alerter quand j'entre en Transe"] = "Warn me when I enter a Trance State"
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Size of the Necrosis button",
 		["Skin de la pierre Necrosis"] = "Skin of the Sphere",
 		["Evenement montre par la sphere"] = "Event shown by the Sphere",
@@ -303,7 +218,7 @@ function Necrosis:Localization_Dialog_En()
 		["Afficher le compteur numerique"] = "Show the digital counter",
 		["Type de compteur numerique"] = "Stone type counted"
 	}
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"Pink",
 		"Blue",
 		"Orange",
@@ -312,7 +227,7 @@ function Necrosis:Localization_Dialog_En()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"Soulshards",
 		"Demon summoning stones",
 		"Resurrection Timer",
@@ -320,7 +235,7 @@ function Necrosis:Localization_Dialog_En()
 		"Health"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Buttons rotation",
 		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
 		["Utiliser mes propres montures"] = "Use my own mounts",
@@ -328,7 +243,7 @@ function Necrosis:Localization_Dialog_En()
 		["Monture - Clic gauche"] = "Mount - Left click",
 		["Monture - Clic droit"] = "Mount - Right click",
 	}
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"Show Firestone button",
 		"Show Spellstone button",
 		"Show Healthstone button",
@@ -339,7 +254,7 @@ function Necrosis:Localization_Dialog_En()
 		"Show Curse menu button",
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "General Options",
 		["Menu des Buffs"] = "Spell Menu",
 		["Menu des Demons"] = "Demons Menu",
@@ -351,25 +266,25 @@ function Necrosis:Localization_Dialog_En()
 		["Changer la symetrie verticale des boutons"] = "Change the vertical symmetry of buttons",
 		["Taille du bouton Banir"] = "Size of the Banish button",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Horizontal",
 		"Upwards",
 		"Downwards"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Timer type",
 		["Afficher le bouton des timers"] = "Show the Spell Timer Button",
 		["Afficher les timers sur la gauche du bouton"] = "Show timers on the left side of the button",
 		["Afficher les timers de bas en haut"] = "Timers grow upwards",
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"No Timer",
 		"Graphical",
 		"Textual"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "Put shards in the selected bag.",
 		["Detruit les fragments si le sac plein"] = "Destroy all new shards if the bag is full.",
 		["Choix du sac contenant les fragments"] = "Selection of Soul Shard Container",

@@ -73,8 +73,6 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "治療石",
 	["Spellstone"] = "法術石",
 	["Firestone"] = "火焰石",
-	["Ranged"] = "魔杖",
-	["Soulbound"] = "舍取后绑定",
 	["InfernalStone"] = "地獄火石",
 	["DemoniacStone"] = "惡魔雕像",
 	["Hearthstone"] = "爐石",
@@ -94,16 +92,16 @@ Necrosis.AntiFear = {
 	["Buff"] = {
 		"恐懼防護結界",	-- Dwarf priest racial trait
 		"不死族意志",	-- Forsaken racial trait
-		"反恐懼",	-- Trinket
-		"狂怒",		-- Warrior Fury talent
-		"魯莽",		-- Warrior Fury talent
-		"死亡之願",	-- Warrior Fury talent
-		"狂野怒火",	-- Hunter Beast Mastery talent
-		"寒冰屏障",	-- Mage Ice talent
-		"聖佑術",	-- Paladin Holy buff
-		"聖盾術",	-- Paladin Holy buff
-		"戰慄圖騰",	-- Shaman totem
-		"廢除魔法"	-- Majordomo (NPC) spell
+		"反恐懼",		-- Trinket
+		"狂怒",			-- Warrior Fury talent
+		"魯莽",			-- Warrior Fury talent
+		"死亡之願",		-- Warrior Fury talent
+		"狂野怒火",		-- Hunter Beast Mastery talent
+		"寒冰屏障",		-- Mage Ice talent
+		"聖佑術",		-- Paladin Holy buff
+		"聖盾術",		-- Paladin Holy buff
+		"戰慄圖騰",		-- Shaman totem
+		"廢除魔法"		-- Majordomo (NPC) spell
 	},
 	-- Debuffs donnant une immunité temporaire au Fear
 	["Debuff"] = {

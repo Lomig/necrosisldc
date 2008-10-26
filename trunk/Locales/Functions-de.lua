@@ -71,12 +71,10 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "Gesundheitsstein",
 	["Spellstone"] = "Zauberstein",
 	["Firestone"] = "Feuerstein",
-	["Ranged"] = "Zauberstab",
-	["Soulbound"] = "Soulbound",
 	["InfernalStone"] = "H\195\182llenstein",
 	["DemoniacStone"] = "D\195\164monenstatuette",
 	["Hearthstone"] = "Ruhestein",
-	["SoulPouch"] = {"Seelenbeutel", "Teufelsstofftasche", "Kernteufelsstofftasche"}
+	["SoulPouch"] = {"Kleiner Seelenbeutel", "Seelenkasten", "Seelenbeutel", "Teufelsstofftasche", "Abgr\195\188ndige Tasche", "Kernteufelsstofftasche", "Schwarzschattentasche"}
 }
 
 -- Traductions diverses
@@ -90,18 +88,18 @@ Necrosis.Translation.Misc = {
 Necrosis.AntiFear = {
 	-- Buffs donnant une immunité temporaire au Fear
 	["Buff"] = {
-		"Furchtzauberschutz",		-- Dwarf priest racial trait
-		"Wille der Verlassenen",	-- Forsaken racial trait
-		"Furchtlos",			-- Trinket
-		"Berserkerwut",			-- Warrior Fury talent
-		"Tollk\195\188hnheit",		-- Warrior Fury talent
-		"Todeswunsch",			-- Warrior Fury talent
-		"Zorn des Wildtieres",		-- Hunter Beast Mastery talent (pet only)
-		"Eisblock",			-- Mage Ice talent
-		"G\195\182ttlicher Schutz",	-- Paladin Holy buff
-		"Gottesschild",			-- Paladin Holy buff
+		"Furchtzauberschutz",			-- Dwarf priest racial trait
+		"Wille der Verlassenen",		-- Forsaken racial trait
+		"Furchtlos",					-- Trinket
+		"Berserkerwut",					-- Warrior Fury talent
+		"Tollk\195\188hnheit",			-- Warrior Fury talent
+		"Todeswunsch",					-- Warrior Fury talent
+		"Zorn des Wildtieres",			-- Hunter Beast Mastery talent (pet only)
+		"Eisblock",						-- Mage Ice talent
+		"G\195\182ttlicher Schutz",		-- Paladin Holy buff
+		"Gottesschild",					-- Paladin Holy buff
 		"Totem des Erdsto\195\159es",	-- Shaman totem
-		"Abolish Magic"			-- Majordomo (NPC) spell
+		"Abolish Magic"					-- Majordomo (NPC) spell
 	},
 	-- Debuffs donnant une immunité temporaire au Fear
 	["Debuff"] = {

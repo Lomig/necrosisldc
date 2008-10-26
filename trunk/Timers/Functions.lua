@@ -122,7 +122,7 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 	if Stone == "Healthstone" then
 		Timer.SpellTimer:insert(
 			{
-				Name = NECROSIS_COOLDOWN.Healthstone,
+				Name = self.HealthstoneCooldown,
 				Time = 180,
 				TimeMax = floor(GetTime() + 180),
 				Type = 2,

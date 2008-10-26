@@ -82,9 +82,9 @@ function Necrosis:Initialize(Config)
 		NecrosisConfig = {}
 		NecrosisConfig = Config
 		NecrosisConfig.Version = Necrosis.Data.LastConfig
-		self:Msg(NECROSIS_MESSAGE.Interface.DefaultConfig, "USER")
+		self:Msg(self.ChatMessage.Interface.DefaultConfig, "USER")
 	else
-		self:Msg(NECROSIS_MESSAGE.Interface.UserConfig, "USER")
+		self:Msg(self.ChatMessage.Interface.UserConfig, "USER")
 	end
 
 	self:CreateWarlockUI()
@@ -94,7 +94,7 @@ function Necrosis:Initialize(Config)
 	-- Exécution des fonctions de démarrage
 	-----------------------------------------------------------
 	-- Affichage d'un message sur la console
-	self:Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER")
+	self:Msg(self.ChatMessage.Interface.Welcome, "USER")
 	-- Création de la liste des sorts disponibles
 	for index in ipairs(self.Spell) do
 		self.Spell[index].ID = nil

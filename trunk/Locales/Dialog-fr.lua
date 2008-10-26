@@ -44,14 +44,14 @@ function Necrosis:Localization_Dialog_Fr()
 		self:Localization_Speech_Fr();
 	end
 
-	NECROSIS_COOLDOWN = {
-		["Healthstone"] = "Temps de recharge Pierre de soins",
+	self.HealthstoneCooldown = "Temps de recharge Pierre de soins"
+	
+	self.Localize = {
 		["Utilisation"] = "Utilisation",
 		["Echange"] = "Echange",
-		
-	};
+	}
 
-	NecrosisTooltipData = {
+	self.TooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFNecrosis|r",
 			Stone = {
@@ -74,21 +74,17 @@ function Necrosis:Localization_Dialog_Fr()
 			["NoCurrentDemon"] = "Demon : Aucun",
 		},
 		["Soulstone"] = {
-			Label = "|c00FF99FFPierre d'\195\162me|r",
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser","Utilis\195\169e\nClic droit pour recr\195\169er","En attente"}
 		},
 		["Healthstone"] = {
-			Label = "|c0066FF33Pierre de soins|r",
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser"},
 			Text2 = "Clic du milieu ou Ctrl+clic gauche pour \195\169changer",
 			Ritual = "|c00FFFFFFShift+Clic pour le rituel des \195\162mes|r"
 		},
 		["Spellstone"] = {
-			Label = "|c0099CCFFPierre de sort|r",
 			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
 		},
 		["Firestone"] = {
-			Label = "|c00FF4444Pierre de feu|r",
 			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
 		},
 		["SpellTimer"] = {
@@ -102,42 +98,8 @@ function Necrosis:Localization_Dialog_Fr()
 		["Backlash"] = {
 			Label = "|c00FFFFFFContrecoup|r"
 		},
-		["Domination"] = {
-			Label = "|c00FFFFFFDomination corrompue|r"
-		},
-		["Enslave"] = {
-			Label = "|c00FFFFFFAsservissement|r"
-		},
-		["Armor"] = {
-			Label = "|c00FFFFFFArmure d\195\169moniaque|r"
-		},
-		["FelArmor"] = {
-			Label = "|c00FFFFFFGangrarmure|r"
-		},
-		["Invisible"] = {
-			Label = "|c00FFFFFFD\195\169tection de l'invisibilit\195\169|r"
-		},
-		["Aqua"] = {
-			Label = "|c00FFFFFFRespiration interminable|r"
-		},
-		["Kilrogg"] = {
-			Label = "|c00FFFFFFOeil de Kilrogg|r"
-		},
 		["Banish"] = {
-			Label = "|c00FFFFFFBannir|r",
 			Text = "Clic droit pour Rang 1"
-		},
-		["TP"] = {
-			Label = "|c00FFFFFFRituel d'invocation|r"
-		},
-		["RoS"] = {
-			Label = "|c00FFFFFFRituel des \195\162mes|r"
-		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFFLien spirituel|r"
-		},
-		["ShadowProtection"] = {
-			Label = "|c00FFFFFFGardien de l'ombre|r"
 		},
 		["Imp"] = {
 			Label = "|c00FFFFFFDiablotin|r"
@@ -160,30 +122,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Doomguard"] = {
 			Label = "|c00FFFFFFGarde funeste|r"
 		},
-		["Sacrifice"] = {
-			Label = "|c00FFFFFFSacrifice d\195\169moniaque|r"
-		},
-		["Weakness"] = {
-			Label = "|c00FFFFFFMal\195\169diction de faiblesse|r"
-		},
-		["Agony"] = {
-			Label = "|c00FFFFFFMal\195\169diction d'agonie|r"
-		},
-		["Reckless"] = {
-			Label = "|c00FFFFFFMal\195\169diction de t\195\169m\195\169rit\195\169|r"
-		},
-		["Tongues"] = {
-			Label = "|c00FFFFFFMal\195\169diction des langages|r"
-		},
-		["Exhaust"] = {
-			Label = "|c00FFFFFFMal\195\169diction de fatigue|r"
-		},
-		["Elements"] = {
-			Label = "|c00FFFFFFMal\195\169diction des \195\169l\195\169ments|r"
-		},
-		["Doom"] = {
-			Label = "|c00FFFFFFMal\195\169diction funeste|r"
-		},
 		["Mount"] = {
 			Label = "|c00FFFFFFMonture|r",
 			Text = "Clic droit pour Rang 1"
@@ -203,34 +141,10 @@ function Necrosis:Localization_Dialog_Fr()
 			Text = "Clic droit pour laisser ouvert",
 			Text2 = "Mode automatique : Fermeture \195\160 la fin du combat",
 		},
-		["Radar"] = {
-			Label = "|c00FFFFFFD\195\169tection des d\195\169mons|r"
-		},
-		["Metamorphosis"] = {
-			Label = "|c00FFFFFFM\195\169tamorphose|r"
-		},
-		["Haunt"] = {
-			Label = "|c00FFFFFFHanter|r"
-		},
-		["Corruption"] = {
-			Label = "|c00FFFFFFCorruption|r"
-		},
-		["Charge"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Enchainement"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Immolation"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
-		["Defi"] = {
-			Label = "|c00FFFFFFTEST|r"
-		},
 		["DominationCooldown"] = "Clic droit pour invocation rapide",
 	}
 
-	NECROSIS_SOUND = {
+	self.Sound = {
 		["Fear"] = "Interface\\AddOns\\Necrosis\\sounds\\Fear-Fr.mp3",
 		["SoulstoneEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\SoulstoneEnd-Fr.mp3",
 		["EnslaveEnd"] = "Interface\\AddOns\\Necrosis\\sounds\\EnslaveDemonEnd-Fr.mp3",
@@ -238,13 +152,13 @@ function Necrosis:Localization_Dialog_Fr()
 		["Backlash"] = "Interface\\AddOns\\Necrosis\\sounds\\Backlash-Fr.mp3",
 	}
 
-	NECROSIS_PROC_TEXT = {
+	self.ProcText = {
 		["ShadowTrance"] = "<white>T<lightPurple1>r<lightPurple2>a<purple>n<darkPurple1>s<darkPurple2>e d<darkPurple1>e l<purple>'<lightPurple2>o<lightPurple1>m<white>b<lightPurple1>r<lightPurple2>e";
 		["Backlash"] = "<white>C<lightPurple1>o<lightPurple2>n<purple>t<darkPurple1>r<darkPurple2>e<darkPurple1>c<purple>o<lightPurple2>u<lightPurple1>p"
 	}
 
 
-	NECROSIS_MESSAGE = {
+	self.ChatMessage = {
 		["Bag"] = {
 			["FullPrefix"] = "Votre ",
 			["FullSuffix"] = " est plein !",
@@ -268,11 +182,11 @@ function Necrosis:Localization_Dialog_Fr()
 			["EnslaveBreak"] = "Votre D\195\169mon a bris\195\169 ses chaines...",
 			["SoulstoneEnd"] = "<lightYellow>Votre Pierre d'\195\162me vient de s'eteindre."
 		}
-	};
+	}
 
 
 	-- Menus de configuration
-	Necrosis.Config.Panel = {
+	self.Config.Panel = {
 		"Configuration des messages",
 		"Configuration de la sph\195\168re",
 		"Configuration des boutons",
@@ -281,7 +195,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Divers"
 	}
 
-	Necrosis.Config.Messages = {
+	self.Config.Messages = {
 		["Position"] = "<- Position des messages systeme Necrosis ->",
 		["Afficher les bulles d'aide"] = "Afficher les bulles d'aide",
 		["Afficher les messages dans la zone systeme"] = "Afficher les messages de Necrosis dans la zone syst\195\168me",
@@ -296,7 +210,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["M'alerter quand j'entre en Transe"] = "M'alerter quand j'entre en Transe"
 	}
 
-	Necrosis.Config.Sphere = {
+	self.Config.Sphere = {
 		["Taille de la sphere"] = "Taille de la sph\195\168re",
 		["Skin de la pierre Necrosis"] = "Skin de la sph\195\168re",
 		["Evenement montre par la sphere"] = "Ev\195\168nement montr\195\169 par la sph\195\168re",
@@ -304,7 +218,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Afficher le compteur numerique"] = "Afficher le compteur num\195\169rique",
 		["Type de compteur numerique"] = "Type de compteur num\195\169rique"
 	}
-	Necrosis.Config.Sphere.Colour = {
+	self.Config.Sphere.Colour = {
 		"Rose",
 		"Bleu",
 		"Orange",
@@ -313,7 +227,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"666",
 		"X"
 	}
-	Necrosis.Config.Sphere.Count = {
+	self.Config.Sphere.Count = {
 		"Fragments d'\195\162me",
 		"Pierres d'invocations",
 		"Timer de Rez",
@@ -321,7 +235,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Sant\195\169"
 	}
 
-	Necrosis.Config.Buttons = {
+	self.Config.Buttons = {
 		["Rotation des boutons"] = "Rotation des boutons",
 		["Fixer les boutons autour de la sphere"] = "Fixer les boutons autour de la sph\195\168re",
 		["Utiliser mes propres montures"] = "Utiliser mes propres montures",
@@ -329,7 +243,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Monture - Clic gauche"] = "Monture - Clic gauche",
 		["Monture - Clic droit"] = "Monture - Clic droit",
 	}
-	Necrosis.Config.Buttons.Name = {
+	self.Config.Buttons.Name = {
 		"Afficher le bouton des Pierres de feu",
 		"Afficher le bouton des Pierres de sort",
 		"Afficher le bouton des Pierres de soin",
@@ -340,7 +254,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Affiche le bouton des Mal\195\169dictions",
 	}
 
-	Necrosis.Config.Menus = {
+	self.Config.Menus = {
 		["Options Generales"] = "Options G\195\169n\195\169rales",
 		["Menu des Buffs"] = "Menu des sorts",
 		["Menu des Demons"] = "Menu des D\195\169mons",
@@ -352,25 +266,25 @@ function Necrosis:Localization_Dialog_Fr()
 		["Changer la symetrie verticale des boutons"] = "Changer la sym\195\169trie verticale des boutons",
 		["Taille du bouton Banir"] = "Taille du bouton Banir",
 	}
-	Necrosis.Config.Menus.Orientation = {
+	self.Config.Menus.Orientation = {
 		"Horizontal",
 		"Vers le haut",
 		"Vers le bas"
 	}
 
-	Necrosis.Config.Timers = {
+	self.Config.Timers = {
 		["Type de timers"] = "Type de timers",
 		["Afficher le bouton des timers"] = "Afficher le bouton des timers",
 		["Afficher les timers sur la gauche du bouton"] = "Afficher les timers sur la gauche du bouton",
 		["Afficher les timers de bas en haut"] = "Afficher les timers de bas en haut"
 	}
-	Necrosis.Config.Timers.Type = {
+	self.Config.Timers.Type = {
 		"Aucun",
 		"Graphiques",
 		"Textuels"
 	}
 
-	Necrosis.Config.Misc = {
+	self.Config.Misc = {
 		["Deplace les fragments"] = "D\195\169place les fragments dans le sac specifi\195\169",
 		["Detruit les fragments si le sac plein"] = "D\195\169truit les fragments si le sac plein",
 		["Choix du sac contenant les fragments"] = "Choix du sac contenant les fragments",

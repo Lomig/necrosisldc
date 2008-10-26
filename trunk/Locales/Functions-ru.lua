@@ -71,12 +71,10 @@ Necrosis.Translation.Item = {
 	["Healthstone"] = "камень здоровья",
 	["Spellstone"] = "камень чар",
 	["Firestone"] = "камень огня",
-	["Ranged"] = "Жезл",
-	["Soulbound"] = "Персональный предмет",
 	["InfernalStone"] = "Камень инфернала",
 	["DemoniacStone"] = "Демоническая статуэтка",
 	["Hearthstone"] = "Камень возвращения",
-	["SoulPouch"] = {"Мешок душ", "Сумка из ткани Скверны", "Черная сумка теней"}
+	["SoulPouch"] = {"Мешок душ", "Сума душ", "Коробка душ", "Сумка из ткани Скверны", "Черная сумка теней", "Сумка Бездны", "Черная сумка теней"}
 }
 
 -- Traductions diverses
@@ -91,17 +89,17 @@ Necrosis.AntiFear = {
 	-- Buffs giving temporary immunity to fear effects
 	["Buff"] = {
 		"Защита от страха",		-- Dwarf priest racial trait
-		"Воля отрекшихся",	-- Forsaken racial trait
-		"Бесстрашие",		-- Trinket (Fearless)
-		"Ярость берсерка",	-- Warrior Fury talent
+		"Воля отрекшихся",		-- Forsaken racial trait
+		"Бесстрашие",			-- Trinket (Fearless)
+		"Ярость берсерка",		-- Warrior Fury talent
 		"Безрассудство",		-- Warrior Fury talent
-		"Жажда смерти",		-- Warrior Fury talent
-		"Звериный гнев",	-- Hunter Beast Mastery talent
+		"Жажда смерти",			-- Warrior Fury talent
+		"Звериный гнев",		-- Hunter Beast Mastery talent
 		"Ледяная преграда",		-- Mage Ice talent
 		"Божественная защита",	-- Paladin Holy buff
-		"Божественный щит",	-- Paladin Holy buff
+		"Божественный щит",		-- Paladin Holy buff
 		"Тотем трепета",		-- Shaman totem
-		"Abolish Magic"		-- Majordomo (NPC) spell
+		"Abolish Magic"			-- Majordomo (NPC) spell
 	},
 	-- Debuffs and curses giving temporary immunity to fear effects
 	["Debuff"] = {
