@@ -90,13 +90,13 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisBuffMenuButton:LeftButton"] = self.Config.Menus["Menu des Buffs"]
 	
-	local buffID = {31, 47, 32, 33, 34, 37, 38, 43}
+	local buffID = {31, 47, 32, 33, 34, 37, 38, 43, 59}
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
 	
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:LeftButton"] = self.Spell[9].Name
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:RightButton"] = self.Spell[9].Name.." ("..self.Translation.Misc["Rank"].." 1)"
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu11:LeftButton"] = self.Spell[9].Name
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu11:RightButton"] = self.Spell[9].Name.." ("..self.Translation.Misc["Rank"].." 1)"
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Troisième section
