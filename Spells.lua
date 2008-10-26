@@ -144,6 +144,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[56] = {Name = GetSpellInfo(50581),				Length = 0,		Type = 0}, -- Enchainement d'ombre || Shadow Cleave
 			[57] = {Name = GetSpellInfo(50589),				Length = 0,		Type = 0}, -- Aura d'immolation || Immolation Aura
 			[58] = {Name = GetSpellInfo(59671),				Length = 0,		Type = 0}, -- Hurlement de défi || Challenging Howl
+			[59] = {Name = GetSpellInfo(47193),				Length = 60,	Type = 3}, -- Renforcement démoniaque || Demonic Empowerment
 		}
 		-- Type 0 = Pas de Timer || no timer
 		-- Type 1 = Timer permanent principal || Standing main timer
@@ -193,10 +194,11 @@ function Necrosis:SpellLocalize(tooltip)
 		"TP",
 		"RoS",
 		"SoulLink",
-		"ShadowProtection"
+		"ShadowProtection",
+		"Renforcement"
 	)
 	local buttonName = new("array",
-		15, 35, 31, 47, 33, 32, 34, 9, 37, 50, 38, 43
+		15, 35, 31, 47, 33, 32, 34, 9, 37, 50, 38, 43, 
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
