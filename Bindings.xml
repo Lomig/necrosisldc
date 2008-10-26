@@ -64,9 +64,12 @@
 		-- Gardien de l'ombre --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu10:LeftButton">
+		-- Renforcement --
+	</Binding>
+	<Binding name="CLICK NecrosisBuffMenu11:LeftButton">
 		-- Bannir --
 	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu10:RightButton">
+	<Binding name="CLICK NecrosisBuffMenu11:RightButton">
 		-- Bannir rang 1 --
 	</Binding>
 	
