@@ -371,13 +371,13 @@ function Necrosis:MainButtonAttribute()
 	NecrosisButton:SetAttribute("type2", "Open")
 	NecrosisButton.Open = function()
 		if not InCombatLockdown() then
-			self:OpenConfigPanel()
+			Necrosis:OpenConfigPanel()
 		end
 	end
 
-	if self.Spell[NecrosisConfig.MainSpell].ID then
+	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
 		NecrosisButton:SetAttribute("type1", "spell")
-		NecrosisButton:SetAttribute("spell", self.Spell[NecrosisConfig.MainSpell].Name)
+		NecrosisButton:SetAttribute("spell", Necrosis.Spell[NecrosisConfig.MainSpell].Name)
 	end
 end
 

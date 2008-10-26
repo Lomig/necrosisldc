@@ -132,4 +132,17 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisCurseMenu9:LeftButton"] = self.Spell[14].Name
 
-end
+	-------------------------------------------------------------------------------------------------------------------------------------------------------
+	-- Cinquième section
+	-------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	-- Le Titre
+	_G["BINDING_HEADER_NecrosisMetamorphosis"] = "Necrosis - "..self.Spell[27].Name
+	
+	_G["BINDING_NAME_CLICK NecrosisMetamorphosisButton:LeftButton"] = self.Spell[27].Name
+	
+	local buffID = {39, 58, 56, 57}
+	for i = 1, #buffID, 1 do
+		_G["BINDING_NAME_CLICK NecrosisMetamorphosisMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
+	end
+	end
