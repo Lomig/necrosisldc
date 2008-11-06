@@ -58,17 +58,17 @@ Necrosis.Translation.Proc = {
 -- Traduction des noms des démons invocables
 Necrosis.Translation.DemonName = {
 	[1] = "小鬼",
-	[2] = "虛空行者",
+	[2] = "虛無行者",
 	[3] = "魅魔",
-	[4] = "地獄獵犬",
-	[5] = "地獄火",
-	[6] = "末日守衛",
-	[7] = "厄運守衛"
+	[4] = "惡魔獵犬",
+	[5] = "惡魔守衛",
+	[6] = "地獄火",
+	[7] = "末日守衛"
 }
 
 -- Traduction du nom des objets utilisés par Necrosis
 Necrosis.Translation.Item = {
-	["Soulshard"] = "靈魂碎片",
+	["Soulshard"] = "靈魂裂片",
 	["Soulstone"] = "靈魂石",
 	["Healthstone"] = "治療石",
 	["Spellstone"] = "法術石",
@@ -83,16 +83,16 @@ Necrosis.Translation.Item = {
 Necrosis.Translation.Misc = {
 	["Cooldown"] = "冷卻時間",
 	["Rank"] = "等級",
-	["Create"] = ""
+	["Create"] = "製造"
 }
 
 -- Gestion de la détection des cibles protégées contre la peur
 Necrosis.AntiFear = {
 	-- Buffs donnant une immunité temporaire au Fear
 	["Buff"] = {
-		"恐懼防護結界",	-- Dwarf priest racial trait
-		"不死族意志",	-- Forsaken racial trait
-		"反恐懼",		-- Trinket
+		"防護恐懼結界",	-- Dwarf priest racial trait
+		"亡靈意志",		-- Forsaken racial trait
+		"無畏",			-- Trinket
 		"狂怒",			-- Warrior Fury talent
 		"魯莽",			-- Warrior Fury talent
 		"死亡之願",		-- Warrior Fury talent
