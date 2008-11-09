@@ -204,7 +204,7 @@ function Necrosis:Localization_Dialog_Cn()
 		["Utiliser des messages courts"] = "Use short messages",
 		["Activer egalement les messages pour les Demons"] = "激活随机语言 (恶魔)",
 		["Activer egalement les messages pour les Montures"] = "激活随机语言 (坐骑)",
-		["Activer egalement les messages pour le Rituel des ames"] = "Activate random speeches for Ritual of Souls",
+		["Activer egalement les messages pour le Rituel des ames"] = "激活灵魂仪式的随机信息",
 		["Activer les sons"] = "开启声音",
 		["Alerter quand la cible est insensible a la peur"] = "当我的目标免疫恐惧时提醒我。",
 		["Alerter quand la cible peut etre banie ou asservie"] = "Warn when the target is banishable or enslavable",
