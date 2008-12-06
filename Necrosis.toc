@@ -3,7 +3,7 @@
 ## Title-ruRU: Necrosis (Русский)
 ## Title-frFR: Necrosis (Français)
 ## Author: Lomig
-## Version: 3.0 RC1
+## Version: 3.0 RC2
 ## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## Notes-ruRU: Менеджер заклинаний, камней и демонов для чернокнижника.
@@ -13,9 +13,7 @@
 ## X-Localizations: enUS, enGB, deDE, frFR, koKR, zhCN, zhTW, esES, ruRU
 ## X-Category: Warlock
 ## X-ruRU-Translator: Komsomolka:Navigator
-
 ## X-ruRU-TranslatorSupport-Email: support@ruguild.ru
-
 ## X-ruRU-TranslatorSupport-WEB: http://koms.ruguild.ru
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: NecrosisConfig
