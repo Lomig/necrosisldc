@@ -19,7 +19,6 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 -- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
@@ -2122,30 +2121,35 @@ function Necrosis:SpellSetup()
 		if not spellName then
 			do break end
 		end
-
-		-- Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
-		-- Le rang supérieur est conservé
+		
+		-- for spells with numbered ranks, compare each one || Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
+		-- preserve the highest rank || Le rang supérieur est conservé
 		if subSpellName and not (subSpellName == " " or subSpellName == "") then
-			local found = false
-			local _, _, rank = subSpellName:find("(%d+)")
-			rank = tonumber(rank)
-			for index=1, #CurrentSpells.Name, 1 do
-				if (CurrentSpells.Name[index] == spellName) then
-					found = true
-					local _, _, CurrentRank = CurrentSpells.subName[index]:find("(%d+)")
-					CurrentRank = tonumber(CurrentRank)
-					if CurrentRank < rank then
-						CurrentSpells.ID[index] = spellID
-						CurrentSpells.subName[index] = subSpellName
+			local _, _, spellRank = subSpellName:find("(%d+)")
+			spellRank = tonumber(spellRank)
+			
+			if (spellRank ~= nil) then
+				local found = false
+				for index=1, #CurrentSpells.Name, 1 do
+					if (CurrentSpells.Name[index] == spellName) then
+						found = true
+						local _, _, CurrentRank = CurrentSpells.subName[index]:find("(%d+)")
+						CurrentRank = tonumber(CurrentRank)
+						if (CurrentRank ~= nil) then
+							if (CurrentRank < spellRank) then
+								CurrentSpells.ID[index] = spellID
+								CurrentSpells.subName[index] = subSpellName
+							end
+						end
+						break
 					end
-					break
 				end
-			end
-			-- Les plus grands rangs de chacun des sorts à rang numérotés sont insérés dans la table
-			if (not found) then
-				table.insert(CurrentSpells.ID, spellID)
-				table.insert(CurrentSpells.Name, spellName)
-				table.insert(CurrentSpells.subName, subSpellName)
+				-- Les plus grands rangs de chacun des sorts à rang numérotés sont insérés dans la table
+				if (not found) then
+					table.insert(CurrentSpells.ID, spellID)
+					table.insert(CurrentSpells.Name, spellName)
+					table.insert(CurrentSpells.subName, subSpellName)
+				end
 			end
 		end
 		spellID = spellID + 1
@@ -2163,7 +2167,7 @@ function Necrosis:SpellSetup()
 	del(CurrentSpells)
 
 	for spellID = 1, MAX_SPELLS, 1 do
-		local spellName, subSpellName = GetSpellName(spellID, "spell")
+		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL)
 		if (spellName) then
 			for index = 1, #self.Spell, 1 do
 				if self.Spell[index].Name == spellName then
