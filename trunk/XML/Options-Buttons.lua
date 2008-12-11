@@ -366,7 +366,7 @@ function Necrosis:SetButtonsConfig()
 		NecrosisLeftMount:Hide()
 		NecrosisRightMount:Hide()
 	end
-	local boutons = {"Firestone", "Spellstone", "HealthStone", "Soulstone", "BuffMenu", "Mount", "PetMenu", "CurseMenu"}
+	local boutons = {"Firestone", "Spellstone", "HealthStone", "Soulstone", "BuffMenu", "Mount", "PetMenu", "CurseMenu", "Metamorphosis"}
 	for i in ipairs(boutons) do
 		_G["NecrosisShow"..boutons[i]]:SetChecked(NecrosisConfig.StonePosition[i] > 0)
 		_G["NecrosisShow"..boutons[i]]:SetText(self.Config.Buttons.Name[i])

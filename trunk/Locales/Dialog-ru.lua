@@ -253,6 +253,7 @@ function Necrosis:Localization_Dialog_Ru()
 		"Показывать кнопку вызова Коня",
 		"Показывать кнопку Демонов",
 		"Показывать кнопку Проклятий",
+		"Show Metamorphosis menu button",
 	}
 
 	self.Config.Menus = {

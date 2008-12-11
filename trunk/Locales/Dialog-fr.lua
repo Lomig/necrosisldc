@@ -252,6 +252,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Afficher le bouton de la Monture",
 		"Affiche le bouton d'invocation des D\195\169mons",
 		"Affiche le bouton des Mal\195\169dictions",
+		"Show Metamorphosis menu button",
 	}
 
 	self.Config.Menus = {
