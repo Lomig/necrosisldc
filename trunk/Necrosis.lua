@@ -1871,7 +1871,7 @@ function Necrosis:BagExplore(arg)
 	Local.Reagent.Infernal = GetItemCount(5565)
 	Local.Reagent.Demoniac = GetItemCount(16583)
 
-	-- Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
+	-- Destroy extra shards if set || Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
 	if NecrosisConfig.DestroyShard
 		and NecrosisConfig.DestroyCount
 		and NecrosisConfig.DestroyCount > 0
@@ -1880,16 +1880,18 @@ function Necrosis:BagExplore(arg)
 			for container = 0, 4, 1 do
 				if Local.BagIsSoulPouch[container + 1] then break end
 				for slot=1, GetContainerNumSlots(container), 1 do
-					self:MoneyToggle()
-					NecrosisTooltip:SetBagItem(container, slot)
-					local itemName = tostring(NecrosisTooltipTextLeft1:GetText())
-					if itemName and itemName:find(self.Translation.Item.Soulshard) then
-						PickupContainerItem(container, slot)
-						if (CursorHasItem()) then
-							DeleteCursorItem()
-							Local.Soulshard.Count = GetItemCount(6265)
+					local itemLink = GetContainerItemLink(container, slot)
+					if (itemLink) then
+						local _, itemID = strsplit(":", itemLink)
+						itemID = tonumber(itemID)
+						if (itemID == 6265) then
+							PickupContainerItem(container, slot)
+							if (CursorHasItem()) then
+								DeleteCursorItem()
+								Local.Soulshard.Count = GetItemCount(6265)
+							end
+							break
 						end
-						break
 					end
 				end
 				if NecrosisConfig.DestroyCount >= Local.Soulshard.Count then break end
@@ -1960,15 +1962,17 @@ function Necrosis:SoulshardSwitch(Type)
 		if Local.BagIsSoulPouch[container+1] then break end
 		if not (container == NecrosisConfig.SoulshardContainer) then
 			for slot = 1, GetContainerNumSlots(container), 1 do
-				self:MoneyToggle()
-				NecrosisTooltip:SetBagItem(container, slot)
-				local itemInfo = tostring(NecrosisTooltipTextLeft1:GetText())
-				if itemInfo == self.Translation.Item.Soulshard then
-					if (Type == "CHECK") then
-						Local.Soulshard.Move = Local.Soulshard.Move + 1
-					elseif (Type == "MOVE") then
-						self:FindSlot(container, slot)
-						Local.Soulshard.Move = Local.Soulshard.Move - 1
+				local itemLink = GetContainerItemLink(container, slot)
+				if (itemLink) then
+					local _, itemID = strsplit(":", itemLink)
+					itemID = tonumber(itemID)
+					if (itemID == 6265) then
+						if (Type == "CHECK") then
+							Local.Soulshard.Move = Local.Soulshard.Move + 1
+						elseif (Type == "MOVE") then
+							self:FindSlot(container, slot)
+							Local.Soulshard.Move = Local.Soulshard.Move - 1
+						end
 					end
 				end
 			end
