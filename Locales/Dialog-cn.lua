@@ -253,7 +253,8 @@ function Necrosis:Localization_Dialog_Cn()
 		"显示buff菜单按钮",
 		"显示战马按钮",
 		"显示恶魔召唤菜单按钮",
-		"显示诅咒菜单按钮"
+		"显示诅咒菜单按钮",
+		"Show Metamorphosis menu button",
 	}
 
 	self.Config.Menus = {

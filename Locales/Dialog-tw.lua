@@ -251,6 +251,7 @@ function Necrosis:Localization_Dialog_Tw()
 		"顯示戰馬按鈕",
 		"顯示惡魔召喚功能表按鈕",
 		"顯示詛咒功能表按鈕",
+		"Show Metamorphosis menu button",
 	}
 
 	self.Config.Menus = {

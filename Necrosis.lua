@@ -2420,7 +2420,7 @@ function Necrosis:Drag()
 end
 
 
--- A chaque changement du livre des sorts, au démarrage du mod, ainsi qu'au changement de sens du menu on reconstruit les menus des sorts
+-- Rebuild the menus at mod startup or when the spellbook changes || A chaque changement du livre des sorts, au démarrage du mod, ainsi qu'au changement de sens du menu on reconstruit les menus des sorts
 function Necrosis:CreateMenu()
 	Local.Menu.Pet = setmetatable({}, metatable)
 	Local.Menu.Curse = setmetatable({}, metatable)
@@ -2430,7 +2430,7 @@ function Necrosis:CreateMenu()
 	local BuffButtonPosition = "Button"
 	local CurseButtonPosition = "Button"
 
-	-- On cache toutes les icones des démons
+	-- Hide all the pet demon buttons || On cache toutes les icones des démons
 	for i = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 		menuVariable = _G["NecrosisPetMenu"..i]
 		if menuVariable then
@@ -2439,7 +2439,7 @@ function Necrosis:CreateMenu()
 			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000)
 		end
 	end
-	-- On cache toutes les icones des sorts
+	-- Hide the general buff spell buttons || On cache toutes les icones des sorts
 	for i = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 		menuVariable = _G["NecrosisBuffMenu"..i]
 		if menuVariable then
@@ -2448,7 +2448,7 @@ function Necrosis:CreateMenu()
 			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000)
 		end
 	end
-	-- On cache toutes les icones des curses
+	-- Hide the curse buttons || On cache toutes les icones des curses
 	for i = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 		menuVariable = _G["NecrosisCurseMenu"..i]
 		if menuVariable then
@@ -2656,10 +2656,10 @@ function Necrosis:CreateMenu()
 						self:GetParent():SetAttribute("state","Ferme")
 					end
 				]])
-				NecrosisBuffMenuButton:WrapScript(Local.Menu.Curse[i], "OnEnter", [[
+				NecrosisCurseMenuButton:WrapScript(Local.Menu.Curse[i], "OnEnter", [[
 					self:GetParent():SetAttribute("mousehere", true)
 				]])
-				NecrosisBuffMenuButton:WrapScript(Local.Menu.Curse[i], "OnLeave", [[
+				NecrosisCurseMenuButton:WrapScript(Local.Menu.Curse[i], "OnLeave", [[
 					self:GetParent():SetAttribute("mousehere", false)
 					local stateMenu = self:GetParent():GetAttribute("state")
 					if not (stateMenu == "Bloque" or stateMenu == "Combat" or stateMenu == "ClicDroit") then
