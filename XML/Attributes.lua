@@ -490,7 +490,7 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 	-- Alors le clic gauche utiliser la pierre
 	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
 		NecrosisSpellstoneButton:SetAttribute("type1", "macro")
-		NecrosisSpellstoneButton:SetAttribute("macrotext*", NecrosisConfig.ItemSwitchCombat[1])
+		NecrosisSpellstoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
 	end
 
 	-- Si on connait le nom de la pierre de feu,
