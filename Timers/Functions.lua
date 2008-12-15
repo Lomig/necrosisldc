@@ -123,8 +123,8 @@ function Necrosis:InsertTimerStone(Stone, start, duration, Timer)
 		Timer.SpellTimer:insert(
 			{
 				Name = self.HealthstoneCooldown,
-				Time = 180,
-				TimeMax = floor(GetTime() + 180),
+				Time = 120,
+				TimeMax = floor(GetTime() + 120),
 				Type = 2,
 				Target = "",
 				TargetLevel = "",
