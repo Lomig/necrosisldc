@@ -346,11 +346,11 @@ function Necrosis:SetButtonsConfig()
 	UIDropDownMenu_Initialize(NecrosisRightMount, Necrosis.Mount_InitRight)
 	
 	if NecrosisConfig.LeftMount then
-		local _, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
 		UIDropDownMenu_SetSelectedID(NecrosisLeftMount, NecrosisConfig.LeftMount)
 		UIDropDownMenu_SetText(NecrosisLeftMount, nameMount)
 		
-		_, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+		_, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
 		UIDropDownMenu_SetSelectedID(NecrosisRightMount, NecrosisConfig.RightMount)
 		UIDropDownMenu_SetText(NecrosisRightMount, nameMount)
 	end
@@ -391,7 +391,7 @@ function Necrosis.Mount_InitLeft()
 	local MountCount = GetNumCompanions("MOUNT")
 	local Monture = {}
 	for i = 1, MountCount, 1 do
-		local _, nameMount = GetCompanionInfo("MOUNT", i)
+		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", i)
 		Monture[i] = nameMount
 	end
 	local element = {}
@@ -408,7 +408,7 @@ function Necrosis.Mount_InitRight()
 	local MountCount = GetNumCompanions("MOUNT")
 	local Monture = {}
 	for i = 1, MountCount, 1 do
-		local _, nameMount = GetCompanionInfo("MOUNT", i)
+		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", i)
 		Monture[i] = nameMount
 	end
 	local element = {}

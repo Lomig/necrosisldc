@@ -730,12 +730,12 @@ end
 -- Basé sur le CombatLog
 function Necrosis:SelfEffect(action, nom)
 	if NecrosisConfig.LeftMount then
-		local _, NomCheval1 = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+		local _, NomCheval1 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
 	else
 		local NomCheval1 = self.Spell[2].Name
 	end
 	if NecrosisConfig.RightMount then
-		local _, NomCheval2 = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+		local _, NomCheval2 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
 	else
 		local NomCheval2 = self.Spell[1].Name
 	end
@@ -1108,9 +1108,9 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		end
 	elseif (Type == "Mount") and self.Spell[2].ID then
 		if NecrosisConfig.OwnMount then
-			local _, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+			local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
 			GameTooltip:AddLine(nameMount)
-			_, nameMount = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+			_, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
 			GameTooltip:AddLine(nameMount)
 		else
 			GameTooltip:AddLine(self.TooltipData[Type].Text)
@@ -2208,7 +2208,7 @@ function Necrosis:SpellSetup()
 	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
 	if GetNumCompanions("MOUNT") > 0 then
 		for i = 1, GetNumCompanions("MOUNT"), 1 do
-			local _, NomCheval, SpellCheval = GetCompanionInfo("MOUNT", i)
+			local _, NomCheval, SpellCheval = Necrosis:GetCompanionInfo("MOUNT", i)
 			if NomCheval == self.Spell[1].Name then
 				self.Spell[1].ID = SpellCheval
 			end
@@ -2809,4 +2809,19 @@ function Necrosis:SetOfxy(menu)
 			NecrosisConfig.CurseMenuPos.y * 32 + NecrosisConfig.CurseMenuDecalage.y
 		)
 	end
+end
+
+-- This function fixes a problem with the Blizzard API "GetCompanionInfo", which will return a different name for some mounts in the game.
+-- example: the bronze drake (spell 59569) 
+--      -> GetCompanionInfo will return this as "Bronze Drake Mount" (wrong)
+--      -> GetSpellInfo will return this as "Bronze Drake" (correct)
+function Necrosis:GetCompanionInfo(type, id)
+	local creatureID, creatureName, creatureSpellID, icon, issummoned = GetCompanionInfo(type, id)
+
+	if creatureSpellID then
+		-- get the correct (localised) name 
+		creatureName = GetSpellInfo(creatureSpellID)
+	end
+	
+	return creatureID, creatureName, creatureSpellID, icon, issummoned
 end

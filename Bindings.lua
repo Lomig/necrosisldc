@@ -53,8 +53,8 @@ function Necrosis:BindName()
 
 	-- Le Cheval
 	if NecrosisConfig.OwnMount then
-		local _, nameMount1 = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
-		local _, nameMount2 = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+		local _, nameMount1 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+		local _, nameMount2 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
 		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = nameMount1
 		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = nameMount2
 	elseif self.Spell[2].ID then

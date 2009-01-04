@@ -329,8 +329,8 @@ function Necrosis:StoneAttribute(Steed)
 		NecrosisMountButton:SetAttribute("type1", "spell")
 		NecrosisMountButton:SetAttribute("type2", "spell")
 		if NecrosisConfig.OwnMount then
-			local _, ChevalGauche = GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
-			local _, ChevalDroit = GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
+			local _, ChevalGauche = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
+			local _, ChevalDroit = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
 			NecrosisMountButton:SetAttribute("spell1", ChevalGauche)
 			NecrosisMountButton:SetAttribute("spell2", ChevalDroit)
 		else
