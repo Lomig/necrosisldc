@@ -40,7 +40,7 @@ local _G = getfenv(0)
 
 
 ------------------------------------------------------------------------------------------------------
--- DEFINITION INITIALE DES ATTRIBUTS DES MENUS
+-- DEFINITION OF INITIAL MENU ATTRIBUTES || DEFINITION INITIALE DES ATTRIBUTS DES MENUS
 ------------------------------------------------------------------------------------------------------
 
 -- On crée les menus sécurisés pour les différents sorts Buff / Démon / Malédictions
@@ -94,9 +94,9 @@ function Necrosis:MenuAttribute(menu)
 		elseif Etat == "Combat" then
 			for i, button in ipairs(ButtonList) do
 				if button:IsShown() then
-					button:Hide()
+					--button:Hide()
 				else
-					button:Show()
+					--button:Show()
 				end
 			end
 		elseif Etat == "ClicDroit" and button == "LeftButton" then
@@ -116,7 +116,7 @@ function Necrosis:MenuAttribute(menu)
 				end
 				
 				self:SetAttribute("close", self:GetAttribute("close") + 1)
-				control:SetTimer(6, self:GetAttribute("close"))
+				-- control:SetTimer(6, self:GetAttribute("close"))
 			elseif value == "Combat" or value == "Bloque" then
 				for i, button in ipairs(ButtonList) do
 					button:Show()
