@@ -38,7 +38,7 @@
 -- SPANISH  VERSION FUNCTIONS --
 ------------------------------------------------
 
-if ( GetLocale() == "esES" ) then
+if ( GetLocale() == "esES" ) or ( GetLocale() == "esMX" ) then
 
 Necrosis.Unit = {
 	["Undead"] = "No-muerto",
