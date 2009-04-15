@@ -108,7 +108,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[21] = {Name = GetSpellInfo(47829),				Length = 10,	Type = 3}, -- Conflagration
 			[22] = {Name = GetSpellInfo(47864),				Length = 24,	Type = 4}, -- Malédiction Agonie || Curse of Agony
 			[23] = {Name = GetSpellInfo(50511),				Length = 120,	Type = 4}, -- Malédiction Faiblesse || Curse of Weakness
-			[24] = {Name = GetSpellInfo(57595),				Length = 120,	Type = 4}, -- Malédiction Témérité || Curse of Recklessness
+			[24] = {Name = nil,				Length = 0,	Type = 0}, -- Malédiction Témérité || Curse of Recklessness - removed in patch 3.1
 			[25] = {Name = GetSpellInfo(11719),				Length = 30,	Type = 4}, -- Malédiction Langage || Curse of Tongues
 			[26] = {Name = GetSpellInfo(47865),				Length = 300,	Type = 4}, -- Malédiction Eléments || Curse of the Elements
 			[27] = {Name = GetSpellInfo(59673),				Length = 180,	Type = 3}, -- Metamorphose || Metamorphosis
@@ -237,7 +237,6 @@ function Necrosis:SpellLocalize(tooltip)
 	local buttonTooltip = new("array",
 		"Weakness",
 		"Agony",
-		"Reckless",
 		"Tongues",
 		"Exhaust",
 		"Elements",
@@ -245,7 +244,7 @@ function Necrosis:SpellLocalize(tooltip)
 		"Corruption"
 	)
 	local buttonName = new("array",
-		23, 22, 24, 25, 40, 26, 16, 14
+		23, 22, 25, 40, 26, 16, 14
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
