@@ -360,7 +360,7 @@ end
 
 -- Buttons for the Buffs menu || Boutons du menu des buffs
 function Necrosis:CreateMenuBuff(i)
-	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Enslave", "Renforcement", "Banish"}
+	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Renforcement", "Banish"}
 
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
@@ -398,7 +398,7 @@ function Necrosis:CreateMenuBuff(i)
 	end
 
 	-- Special attribute for the Banish button || Attributes spéciaux pour notre ami le sort de Bannissement
-	if i == 11 then
+	if i == 10 then
 		frame:SetScale(NecrosisConfig.BanishScale/100)
 	end
 

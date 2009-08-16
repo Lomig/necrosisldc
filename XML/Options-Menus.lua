@@ -379,10 +379,10 @@ function Necrosis:SetMenusConfig()
 		frame:SetScript("OnEnter", function()
 			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
 			GameTooltip:SetText(this:GetValue().." %")
-			if _G["NecrosisBuffMenu11"] then
-				NecrosisBuffMenu11:Show();
-				NecrosisBuffMenu11:ClearAllPoints();
-				NecrosisBuffMenu11:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+			if _G["NecrosisBuffMenu10"] then
+				NecrosisBuffMenu10:Show();
+				NecrosisBuffMenu10:ClearAllPoints();
+				NecrosisBuffMenu10:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
 			end
 		end)
 		frame:SetScript("OnLeave", function()
@@ -393,10 +393,10 @@ function Necrosis:SetMenusConfig()
 			if not (this:GetValue() == NecrosisConfig.BanishScale) then
 				GameTooltip:SetText(this:GetValue().." %")
 				NecrosisConfig.BanishScale = this:GetValue()
-				if _G["NecrosisBuffMenu11"] then
-					NecrosisBuffMenu11:ClearAllPoints();
-					NecrosisBuffMenu11:SetScale(NecrosisConfig.BanishScale / 100);
-					NecrosisBuffMenu11:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
+				if _G["NecrosisBuffMenu10"] then
+					NecrosisBuffMenu10:ClearAllPoints();
+					NecrosisBuffMenu10:SetScale(NecrosisConfig.BanishScale / 100);
+					NecrosisBuffMenu10:SetPoint("CENTER", "UIParent", "CENTER", 0, 0);
 				end
 			end
 		end)
