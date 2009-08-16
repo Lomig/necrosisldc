@@ -95,8 +95,8 @@ function Necrosis:BindName()
 		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
 	
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu11:LeftButton"] = self.Spell[9].Name
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu11:RightButton"] = self.Spell[9].Name.." ("..self.Translation.Misc["Rank"].." 1)"
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:LeftButton"] = self.Spell[9].Name
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:RightButton"] = self.Spell[9].Name.." ("..self.Translation.Misc["Rank"].." 1)"
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Troisième section
@@ -125,12 +125,10 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisCurseMenuButton:LeftButton"] = self.Config.Menus["Menu des Maledictions"]
 	
-	local buffID = {23, 22, 24, 25, 40, 26, 16}
+	local buffID = {23, 22, 25, 40, 26, 16, 14}
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisCurseMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
-	
-	_G["BINDING_NAME_CLICK NecrosisCurseMenu9:LeftButton"] = self.Spell[14].Name
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Cinquième section
@@ -145,4 +143,4 @@ function Necrosis:BindName()
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisMetamorphosisMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
-	end
+end

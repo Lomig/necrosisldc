@@ -40,37 +40,37 @@
 		-- Menu des sorts --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu1:LeftButton">
-		-- Armure démoniaque --
+		-- Demon Armor || Armure démoniaque --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu2:LeftButton">
-		-- Gangrarmure --
+		-- Fel Armor || Gangrarmure --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu3:LeftButton">
-		-- Respiration interminable --
+		-- Unending Breath || Respiration interminable --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu4:LeftButton">
-		-- Invisibilité --
+		-- Detect Invisibility || Invisibilité --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu5:LeftButton">
-		-- Kilrogg --
+		-- Eye of Kilrogg --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu6:LeftButton">
-		-- Invocation --
+		-- Ritual of Summoning || Rituel d'invocation --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu7:LeftButton">
-		-- Lien Spirituel --
+		-- Soul Link || Lien Spirituel --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu8:LeftButton">
-		-- Gardien de l'ombre --
+		-- Shadow Ward || Gardien de l'ombre --
+	</Binding>
+	<Binding name="CLICK NecrosisBuffMenu9:LeftButton">
+		-- Demonic Empowerment || Renforcement démoniaque --
 	</Binding>
 	<Binding name="CLICK NecrosisBuffMenu10:LeftButton">
-		-- Renforcement --
+		-- Banish || Bannir --
 	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu11:LeftButton">
-		-- Bannir --
-	</Binding>
-	<Binding name="CLICK NecrosisBuffMenu11:RightButton">
-		-- Bannir rang 1 --
+	<Binding name="CLICK NecrosisBuffMenu10:RightButton">
+		-- Banish rank 1 || Bannir rang 1 --
 	</Binding>
 	
 
@@ -130,13 +130,10 @@
 		-- Elements --
 	</Binding>
 	<Binding name="CLICK NecrosisCurseMenu7:LeftButton">
-		-- Funeste --
-	</Binding>
-	<Binding name="CLICK NecrosisCurseMenu9:LeftButton">
 		-- Corruption --
 	</Binding>
 	
-		<Binding name="CLICK NecrosisMetamorphosisButton:LeftButton" header="NecrosisMetamorphosis">
+	<Binding name="CLICK NecrosisMetamorphosisButton:LeftButton" header="NecrosisMetamorphosis">
 		-- Menu de la Métamorphose --
 	</Binding>
 	<Binding name="CLICK NecrosisMetamorphosisMenu1:LeftButton">

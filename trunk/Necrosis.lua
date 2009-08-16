@@ -1491,16 +1491,16 @@ function Necrosis:UpdateMana(Metamorphose)
 	end
 
 	-- Si cooldown de gardien de l'ombre on grise
-	if _G["NecrosisBuffMenu9"] and self.Spell[43].ID then
+	if _G["NecrosisBuffMenu8"] and self.Spell[43].ID then
 		local start, duration = GetSpellCooldown(self.Spell[43].ID, "spell")
 		if self.Spell[43].Mana > mana and start > 0 and duration > 0 then
 			if not Local.Desatured["Gardien"] then
-				NecrosisBuffMenu9:GetNormalTexture():SetDesaturated(1)
+				NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(1)
 				Local.Desatured["Gardien"] = true
 			end
 		else
 			if Local.Desatured["Gardien"] then
-				NecrosisBuffMenu9:GetNormalTexture():SetDesaturated(nil)
+				NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(nil)
 				Local.Desatured["Gardien"] = false
 			end
 		end
@@ -1599,18 +1599,12 @@ function Necrosis:UpdateMana(Metamorphose)
 					if _G["NecrosisPetMenu9"] then
 						NecrosisPetMenu9:GetNormalTexture():SetDesaturated(1)
 					end
-					if _G["NecrosisBuffMenu10"] then
-						NecrosisBuffMenu10:GetNormalTexture():SetDesaturated(1)
-					end
 					Local.Desatured["Enslave"] = true
 				end
 			else
 				if Local.Desatured["Enslave"]then
 					if _G["NecrosisPetMenu9"] then
 						NecrosisPetMenu9:GetNormalTexture():SetDesaturated(nil)
-					end
-					if _G["NecrosisBuffMenu10"] then
-						NecrosisBuffMenu10:GetNormalTexture():SetDesaturated(nil)
 					end
 					Local.Desatured["Enslave"] = false
 				end
@@ -2530,7 +2524,7 @@ function Necrosis:CreateMenu()
 	if NecrosisConfig.StonePosition[5] > 0 then
 		-- On ordonne et on affiche les boutons dans le menu des buffs
 		local MenuID = new("array",
-			31, 47, 32, 33, 34, 37, 38, 43, 35, 59, 9
+			31, 47, 32, 33, 34, 37, 38, 43, 59, 9
 		)
 		for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 			-- Si le buff existe, on affiche le bouton dans le menu des buffs

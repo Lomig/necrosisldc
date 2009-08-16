@@ -78,7 +78,7 @@ end
 
 
 -- Fonction pour relocaliser  automatiquemlent des éléments en fonction du client
-function Necrosis:SpellLocalize(tooltip)
+function Necrosis:SpellLocalize(tooltip) 
 
 	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Relocalisation des Sorts
@@ -93,7 +93,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[6] = {Name = GetSpellInfo(691),				Length = 0,		Type = 0}, -- Fellhunter
 			[7] = {Name = GetSpellInfo(30146),				Length = 0,		Type = 0}, -- Felguard
 			[8] = {Name = GetSpellInfo(1122),				Length = 1200,	Type = 3}, -- Infernal
-			[9] = {Name = GetSpellInfo(710),				Length = 30,	Type = 2}, -- Banish
+			[9] = {Name = GetSpellInfo(18647),				Length = 30,	Type = 2}, -- Banish
 			[10] = {Name = GetSpellInfo(1098),				Length = 300,	Type = 2}, -- Enslave
 			[11] = {Name = GetSpellInfo(27239),				Length = 1800,	Type = 1}, -- Résurrection de pierre d'ame || Soulstone Resurrection
 			[12] = {Name = GetSpellInfo(47811),				Length = 15,	Type = 6}, -- Immolation || Immolate
@@ -105,7 +105,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[18] = {Name = GetSpellInfo(47825),				Length = 60,	Type = 3}, -- Feu de l'âme || Soul Fire
 			[19] = {Name = GetSpellInfo(47860),				Length = 120,	Type = 3}, -- Voile mortel || Death Coil
 			[20] = {Name = GetSpellInfo(47827),				Length = 15,	Type = 3}, -- Brûlure de l'ombre || Shadowburn
-			[21] = {Name = GetSpellInfo(47829),				Length = 10,	Type = 3}, -- Conflagration
+			[21] = {Name = GetSpellInfo(17962),				Length = 10,	Type = 3}, -- Conflagration
 			[22] = {Name = GetSpellInfo(47864),				Length = 24,	Type = 4}, -- Malédiction Agonie || Curse of Agony
 			[23] = {Name = GetSpellInfo(50511),				Length = 120,	Type = 4}, -- Malédiction Faiblesse || Curse of Weakness
 			[24] = {Name = nil,				Length = 0,	Type = 0}, -- Malédiction Témérité || Curse of Recklessness - removed in patch 3.1
@@ -114,18 +114,18 @@ function Necrosis:SpellLocalize(tooltip)
 			[27] = {Name = GetSpellInfo(59673),				Length = 180,	Type = 3}, -- Metamorphose || Metamorphosis
 			[28] = {Name = GetSpellInfo(47862),				Length = 30,	Type = 6}, -- Syphon de vie || Siphon Life
 			[29] = {Name = GetSpellInfo(17928),				Length = 40,	Type = 3}, -- Hurlement de terreur || Howl of Terror
-			[30] = {Name = GetSpellInfo(18540),				Length = 3600,	Type = 0}, -- Rituel funeste || Ritual of Doom
+			[30] = {Name = GetSpellInfo(18540),				Length = 1800,	Type = 3}, -- Rituel funeste || Ritual of Doom
 			[31] = {Name = GetSpellInfo(47889),				Length = 0,		Type = 0}, -- Armure démoniaque || Demon Armor
-			[32] = {Name = GetSpellInfo(5697),				Length = 0,		Type = 0}, -- Respiration interminable || Unending Breath
+			[32] = {Name = GetSpellInfo(5697),				Length = 600,		Type = 2}, -- Respiration interminable || Unending Breath
 			[33] = {Name = GetSpellInfo(132),				Length = 0,		Type = 0}, -- Détection de l'invisibilité || Detect Invisibility
 			[34] = {Name = GetSpellInfo(126),				Length = 0,		Type = 0}, -- Oeil de Kilrogg || Eye of Kilrogg
 			[35] = {Name = GetSpellInfo(1098),				Length = 0,		Type = 0}, -- Enslave Demon
 			[36] = {Name = GetSpellInfo(696),				Length = 0,		Type = 0}, -- Peau de démon || Demon Skin
-			[37] = {Name = GetSpellInfo(698),				Length = 0,		Type = 0}, -- Rituel d'invocation || Ritual of Summoning
+			[37] = {Name = GetSpellInfo(698),				Length = 120,		Type = 3}, -- Rituel d'invocation || Ritual of Summoning
 			[38] = {Name = GetSpellInfo(19028),				Length = 0,		Type = 0}, -- Lien spirituel || Soul Link
-			[39] = {Name = GetSpellInfo(54785),				Length = 0,		Type = 0}, -- Charge démoniaque || Demon Charge
+			[39] = {Name = GetSpellInfo(54785),				Length = 45,		Type = 3}, -- Charge démoniaque || Demon Charge
 			[40] = {Name = GetSpellInfo(18223),				Length = 12,	Type = 4}, -- Malédiction de fatigue || Curse of Exhaustion
-			[41] = {Name = GetSpellInfo(57946),				Length = 0,		Type = 0}, -- Connexion || Life Tap
+			[41] = {Name = GetSpellInfo(57946),				Length = 40,	Type = 2}, -- Connexion || Life Tap
 			[42] = {Name = GetSpellInfo(59164),				Length = 12,	Type = 2}, -- Hanter || Haunt
 			[43] = {Name = GetSpellInfo(47891),				Length = 30,	Type = 3}, -- Gardien de l'ombre || Shadow Ward
 			[44] = {Name = GetSpellInfo(18788),				Length = 0,		Type = 0}, -- Sacrifice démoniaque || Demonic Sacrifice
@@ -141,8 +141,8 @@ function Necrosis:SpellLocalize(tooltip)
 			[54] = {Name = GetSpellInfo(60220),				Length = 0,		Type = 0}, -- Création pierre de feu || Create Firestone
 			[55] = {Name = GetSpellInfo(59092),				Length = 0,		Type = 0}, -- Pacte noir || Dark Pact
 			[56] = {Name = GetSpellInfo(50581),				Length = 0,		Type = 0}, -- Enchainement d'ombre || Shadow Cleave
-			[57] = {Name = GetSpellInfo(50589),				Length = 0,		Type = 0}, -- Aura d'immolation || Immolation Aura
-			[58] = {Name = GetSpellInfo(59671),				Length = 0,		Type = 0}, -- Hurlement de défi || Challenging Howl
+			[57] = {Name = GetSpellInfo(50589),				Length = 30,	Type = 3}, -- Aura d'immolation || Immolation Aura
+			[58] = {Name = GetSpellInfo(59671),				Length = 15,	Type = 3}, -- Hurlement de défi || Challenging Howl
 			[59] = {Name = GetSpellInfo(47193),				Length = 60,	Type = 3}, -- Renforcement démoniaque || Demonic Empowerment
 		}
 		-- Type 0 = Pas de Timer || no timer
