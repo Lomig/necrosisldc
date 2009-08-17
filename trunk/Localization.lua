@@ -38,7 +38,7 @@ Necrosis = {}
 Necrosis.Data = {
 	Version = GetAddOnMetadata("Necrosis", "Version"),
 	AppName = "Necrosis LdC",
-	LastConfig = 20081206
+	LastConfig = 20090801
 }
 Necrosis.Data.Label = Necrosis.Data.AppName.." "..Necrosis.Data.Version
 
