@@ -90,9 +90,9 @@ do
 	end
 end
 
--- Métatable permettant d'utiliser les tableaux qui l'utilisent comme des objets
--- Je définis les opérations :insert, :remove et :sort
--- Tout tableau qui aura pour déclaration a = setmetatable({}, metatable) pourra utiliser ces opérateurs
+-- Define a metatable which will be applied to any table object that uses it. || Métatable permettant d'utiliser les tableaux qui l'utilisent comme des objets
+-- Common functions = :insert, :remove & :sort || Je définis les opérations :insert, :remove et :sort
+-- Any table declared as follows "a = setmetatable({}, metatable)" will be able to use the common functions. || Tout tableau qui aura pour déclaration a = setmetatable({}, metatable) pourra utiliser ces opérateurs
 local metatable = {
 	__index = {
 		["insert"] = table.insert,
@@ -101,18 +101,18 @@ local metatable = {
 	}
 }
 
--- Création de la métatable contenant les sorts de nécrosis
+-- Create the spell metatable. || Création de la métatable contenant les sorts de nécrosis
 Necrosis.Spell = setmetatable({}, metatable)
 
 ------------------------------------------------------------------------------------------------------
--- DÉCLARATION DES VARIABLES
+-- DECLARATION OF VARIABLES || DÉCLARATION DES VARIABLES
 ------------------------------------------------------------------------------------------------------
 
--- Détection des initialisations du mod
+-- Detection of initialisation || Détection des initialisations du mod
 Local.LoggedIn = true
 Local.InWorld = true
 
--- Events utilisés dans Necrosis
+-- Events utilised by Necrosis || Events utilisés dans Necrosis
 Local.Events = {
 	"BAG_UPDATE",
 	"PLAYER_REGEN_DISABLED",
@@ -138,8 +138,8 @@ Local.Events = {
 	"SKILL_LINES_CHANGED"
 }
 
--- Configuration par défaut
--- Se charge en cas d'absence de configuration ou de changement de version
+-- Configuration defaults || Configuration par défaut
+-- To be used if the configuration savedvariables is missing, or if the NecrosisConfig.Version number is changed. || Se charge en cas d'absence de configuration ou de changement de version
 Local.DefaultConfig = {
 	SoulshardContainer = 4,
 	ShadowTranceAlert = true,
@@ -151,46 +151,45 @@ Local.DefaultConfig = {
 	StonePosition = {1, 2, 3, 4, 5, 6, 7, 8, 9},
 		-- 1 = Firestone
 		-- 2 = Spellstone
-		-- 3 = Soins
-		-- 4 = Ame
-		-- 5 = Buff
-		-- 6 = Monture
-		-- 7 = Démon
-		-- 8 = Malédictions
-		-- 9 = Metamorphose
+		-- 3 = Healthstone
+		-- 4 = Soulstone
+		-- 5 = Buff menu
+		-- 6 = Mounts
+		-- 7 = Demon menu
+		-- 8 = Curse menu
+		-- 9 = Metamorphosis menu
 	CurseSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8},
-		-- 1 = Faiblesse
-		-- 2 = Agonie
-		-- 3 = Témérité
-		-- 4 = Langage
-		-- 5 = Fatigue
+		-- 1 = Weakness || Faiblesse
+		-- 2 = Agony || Agonie
+		-- 3 = Recklessness || Témérité
+		-- 4 = Tongues || Langage
+		-- 5 = Exhaustion || Fatigue
 		-- 6 = Elements
-		-- 7 = Funeste
-		-- 8 = Corruption
+		-- 7 = Doom || Funeste
+		-- 8 = Corruption (not really a curse, but hey - its useful :)
 	DemonSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11},
-		-- 1 = Domination corrompue
-		-- 2 = Imp
-		-- 3 = Marcheur
-		-- 4 = Succube
-		-- 5 = Felhunter
+		-- 1 = Fel Domination || Domination corrompue
+		-- 2 = Summon Imp
+		-- 3 = Summon Voidwalker || Marcheur
+		-- 4 = Summon Succubus
+		-- 5 = Summon Felhunter
 		-- 6 = Gangregarde
 		-- 7 = Infernal
 		-- 8 = Doomguard
-		-- 9 = Asservissement
+		-- 9 = Enslave || Asservissement
 		-- 10 = Sacrifice
-		-- 11 = Renforcement
-	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, -9, 10, 11},
-		-- 1 = Armure
-		-- 2 = Gangrarmure
-		-- 3 = Respiration
-		-- 4 = Invisibilité
-		-- 5 = Kilrogg
-		-- 6 = TP
-		-- 7 = Lien Spirituel
-		-- 8= Protection contre l'ombre
-		-- 9 = Asservissement
-		-- 10 = Renforcement
-		-- 11 = Bannir
+		-- 11 = Demonic Empowerment || Renforcement
+	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, -9, 10},
+		-- 1 = Demon Armor || Armure
+		-- 2 = Fel Armor || Gangrarmure
+		-- 3 = Unending Breath || Respiration
+		-- 4 = Detect Invisibility || Invisibilité
+		-- 5 = Eye of Kilrogg
+		-- 6 = Ritual of Summoning || TP
+		-- 7 = Soul Link || Lien Spirituel
+		-- 8 = Shadow Ward || Protection contre l'ombre
+		-- 9 = Demonic Empowerment || Renforcement démoniaque --
+		-- 10 = Banish || Bannir
 	NecrosisToolTip = true,
 
 	MainSpell = 41,
