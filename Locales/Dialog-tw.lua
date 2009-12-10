@@ -75,7 +75,8 @@ function Necrosis:Localization_Dialog_Tw()
 			["NoCurrentDemon"] = "惡魔：無",
 		},
 		["Soulstone"] = {
-			Text = {"製造","使用","已使用","等待中"}
+			Text = {"製造","使用","已使用","等待中"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"製造","使用"},
@@ -165,7 +166,7 @@ function Necrosis:Localization_Dialog_Tw()
 			["FullDestroySuffix"] = "滿了；下個碎片將被摧毀！",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>/necro 顯示設定功能表",
+			["Welcome"] = "<white>/necrosis 顯示設定功能表",
 			["TooltipOn"] = "打開提示" ,
 			["TooltipOff"] = "關閉提示",
 			["MessageOn"] = "打開聊天訊息通知",
@@ -174,8 +175,8 @@ function Necrosis:Localization_Dialog_Tw()
 			["UserConfig"] = "<lightYellow>配置已載入"
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>將Necrosis置於螢幕中央",
-			"/necro <lightOrange>reset<white> -- <lightBlue>重置所有設定",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>將Necrosis置於螢幕中央",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>重置所有設定",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目標對恐懼免疫",

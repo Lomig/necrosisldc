@@ -76,7 +76,8 @@ function Necrosis:Localization_Dialog_Cn()
 			["NoCurrentDemon"] = "恶魔 : 无",
 		},
 		["Soulstone"] = {
-			Text = {"制造","可使用","已使用","等待"}
+			Text = {"制造","可使用","已使用","等待"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"制造","使用"},
@@ -167,7 +168,7 @@ function Necrosis:Localization_Dialog_Cn()
 			["FullDestroySuffix"] = " 满了; 下个碎片将被摧毁!",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>/necro 显示设置菜单!",
+			["Welcome"] = "<white>/necrosis 显示设置菜单!",
 			["TooltipOn"] = "打开提示" ,
 			["TooltipOff"] = "关闭提示",
 			["MessageOn"] = "打开聊天信息通知",
@@ -176,8 +177,8 @@ function Necrosis:Localization_Dialog_Cn()
 			["UserConfig"] = "<lightYellow>配置已加载。",
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>将Necrosis和所有按钮置于屏幕中间",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>将Necrosis和所有按钮置于屏幕中间",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
 		},
 		["Information"] = {
 			["FearProtect"] = "你的目标对恐惧免疫!!!!",
@@ -242,8 +243,8 @@ function Necrosis:Localization_Dialog_Cn()
 		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
 		["Utiliser mes propres montures"] = "Use my own mounts",
 		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
-		["Monture - Clic gauche"] = "Mount - Left click",
-		["Monture - Clic droit"] = "Mount - Right click",
+		["Monture - Clic gauche"] = "Left click",
+		["Monture - Clic droit"] = "Right click",
 	}
 	self.Config.Buttons.Name = {
 		"显示火焰石按钮",

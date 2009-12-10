@@ -100,14 +100,12 @@ function Necrosis:Initialize(Config)
 	end
 	self:SpellLocalize()
 	self:SpellSetup()
-	-- Création des menus de buff et d'invocation
 	self:CreateMenu()
-	-- Les boutons sont-ils verrouillés sur le Shard ?
 	self:ButtonSetup()
 
 	-- Enregistrement de la commande console
 	SlashCmdList["NecrosisCommand"] = Necrosis.SlashHandler
-	SLASH_NecrosisCommand1 = "/necro"
+	SLASH_NecrosisCommand1 = "/necrosis"
 
 	-- On règle la taille de la pierre et des boutons suivant les réglages du SavedVariables
 	NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale/100)

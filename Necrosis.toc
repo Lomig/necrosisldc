@@ -1,23 +1,22 @@
-## Interface: 30100
+## Interface: 30300
 ## Title: Necrosis
 ## Title-ruRU: Necrosis (Русский)
 ## Title-frFR: Necrosis (Français)
-## Author: Lomig
-## Version: 3.0 (r223)
 ## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## Notes-ruRU: Менеджер заклинаний, камней и демонов для чернокнижника.
-## eMail: lomig@larmes-cenarius.net
-## URL: http://necrosis.larmes-cenarius.net
+## Version: 3.0 (r224)
+## Author: Arpharazon [TarCalion @ US-Nagrand]
+## eMail: arpharazon@godsofchaos.org
+## Website: http://wow.curse.com/downloads/wow-addons/details/necrosis-ld-c.aspx
 ## DefaultState: Enabled
+## X-Original-Author: Lomig
+## X-Original-Website: http://necrosis.larmes-cenarius.net/  [does not work anymore]
 ## X-Localizations: enUS, enGB, deDE, frFR, koKR, zhCN, zhTW, esES, ruRU
 ## X-Category: Warlock
-## X-ruRU-Translator: Komsomolka:Navigator
-## X-ruRU-TranslatorSupport-Email: support@ruguild.ru
-## X-ruRU-TranslatorSupport-WEB: http://koms.ruguild.ru
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: NecrosisConfig
-#
+
 Necrosis.xml
 
 Localization.lua
