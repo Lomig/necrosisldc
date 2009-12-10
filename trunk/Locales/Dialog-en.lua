@@ -74,7 +74,8 @@ function Necrosis:Localization_Dialog_En()
 			["NoCurrentDemon"] = "Demon: None",
 		},
 		["Soulstone"] = {
-			Text = {"Right click to create","Left click to use","Used\nRight click to recreate","Waiting"}
+			Text = {"Right click to create","Left click to use","Used\nRight click to recreate","Waiting"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"Right click to create","Left click to use"},
@@ -162,10 +163,10 @@ function Necrosis:Localization_Dialog_En()
 		["Bag"] = {
 			["FullPrefix"] = "Your ",
 			["FullSuffix"] = " is full!",
-			["FullDestroySuffix"] = " is full; Next shards will be destroyed!",
+			["FullDestroySuffix"] = " is full; New shards will be destroyed!",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>/necro to show the setting menu!",
+			["Welcome"] = "<white>/necrosis to show the setting menu!",
 			["TooltipOn"] = "Tooltips turned on" ,
 			["TooltipOff"] = "Tooltips turned off",
 			["MessageOn"] = "Chat messaging turned on",
@@ -174,8 +175,8 @@ function Necrosis:Localization_Dialog_En()
 			["UserConfig"] = "<lightYellow>Configuration loaded."
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>Center Necrosis and all buttons in the middle of the screen",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>Center Necrosis and all buttons in the middle of the screen",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
 		},
 		["Information"] = {
 			["FearProtect"] = "Your target has got fear protection!",
@@ -240,8 +241,8 @@ function Necrosis:Localization_Dialog_En()
 		["Fixer les boutons autour de la sphere"] = "Stick buttons around the Sphere",
 		["Utiliser mes propres montures"] = "Use my own mounts",
 		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
-		["Monture - Clic gauche"] = "Mount - Left click",
-		["Monture - Clic droit"] = "Mount - Right click",
+		["Monture - Clic gauche"] = "Left click",
+		["Monture - Clic droit"] = "Right click",
 	}
 	self.Config.Buttons.Name = {
 		"Show Firestone button",

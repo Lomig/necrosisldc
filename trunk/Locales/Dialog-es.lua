@@ -75,7 +75,8 @@ function Necrosis:Localization_Dialog_Es()
 			["NoCurrentDemon"] = "Demonio: Ninguno",
 		},
 		["Soulstone"] = {
-			Text = {"Click derecho para crear","Click izquierdo para usar","Usada\nClick derecho para recrear","Esperando"}
+			Text = {"Click derecho para crear","Click izquierdo para usar","Usada\nClick derecho para recrear","Esperando"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"Click derecho para crear","Click izquierdo para usar"},
@@ -166,7 +167,7 @@ function Necrosis:Localization_Dialog_Es()
 			["FullDestroySuffix"] = " est\195\161 llena; \194\161 Los pr\195\179ximos Fragmentos de Alma ser\195\161n destruidos !",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>\194\161 /necro para mostrar el men\195\186 de preferencias !",
+			["Welcome"] = "<white>\194\161 /necrosis para mostrar el men\195\186 de preferencias !",
 			["TooltipOn"] = "Consejos detallados activados" ,
 			["TooltipOff"] = "Consejos detallados desactivados",
 			["MessageOn"] = "Mensaje Chat activado",
@@ -175,8 +176,8 @@ function Necrosis:Localization_Dialog_Es()
 			["UserConfig"] = "<lightYellow>Configuraci\195\179n cargada."
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Reinicia Necrosis entero",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>Centrar Necrosis y todos los botones en el medio de la pantalla",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>Reinicia Necrosis entero",
 		},
 		["Information"] = {
 			["FearProtect"] = "\194\161\194\161\194\161 Tu objetivo tiene una protecci\195\179n contra miedo !!!",
@@ -241,8 +242,8 @@ function Necrosis:Localization_Dialog_Es()
 		["Fixer les boutons autour de la sphere"] = "Fijar los botones alrededor de la Esfera",
 		["Utiliser mes propres montures"] = "Use my own mounts",
 		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
-		["Monture - Clic gauche"] = "Mount - Left click",
-		["Monture - Clic droit"] = "Mount - Right click",
+		["Monture - Clic gauche"] = "Left click",
+		["Monture - Clic droit"] = "Right click",
 	}
 	self.Config.Buttons.Name = {
 		"Mostrar bot\195\179n Piedra de Fuego",

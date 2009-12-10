@@ -34,14 +34,14 @@
 -- Version $LastChangedDate$
 ------------------------------------------------------------------------------------------------------
 
--- On définit G comme étant le tableau contenant toutes les frames existantes.
+-- Get a reference to the global env variable containing all the frames || On définit G comme étant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0)
 
 ------------------------------------------------------------------------------------------------------
--- FONCTIONS DE CREATION DES FRAMES
+-- FUNCTIONS FOR CREATION OF FRAMES ||FONCTIONS DE CREATION DES FRAMES
 ------------------------------------------------------------------------------------------------------
 
---Création des entêtes des groupes de timers
+--Creation of headers for timer groups || Création des entêtes des groupes de timers
 function Necrosis:CreateGroup(SpellGroup, index)
 
 	local texte = ""
@@ -110,7 +110,7 @@ function Necrosis:CreateGroup(SpellGroup, index)
 	return frame
 end
 
--- Création des timers
+-- Creation of the timers || Création des timers
 function Necrosis:AddFrame(FrameName)
 
 	if _G[FrameName] then
@@ -202,7 +202,7 @@ end
 
 
 ------------------------------------------------------------------------------------------------------
--- FONCTION DE MISE À JOUR DE L'AFFICHAGE
+-- FUNCTIONS TO UPDATE THE DISPLAY || FONCTION DE MISE À JOUR DE L'AFFICHAGE
 ------------------------------------------------------------------------------------------------------
 
 function NecrosisUpdateTimer(tableau, Changement)
@@ -216,7 +216,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 
 	local yPosition = - NecrosisConfig.SensListe * 12
 
-	-- *Lisse* l'écoulement des timers si option sélectionnée
+	-- smooth timers (if selected) || *Lisse* l'écoulement des timers si option sélectionnée
 	local Now
 	if NecrosisConfig.Smooth then
 		Now = GetTime()
@@ -228,15 +228,15 @@ function NecrosisUpdateTimer(tableau, Changement)
 		-- Ca arrive quand on passe des timers textes aux timers graphiques
 		if not tableau[index].Gtimer then break end
 
-		-- Sélection des frames du timer qui varient en fonction du temps
+		-- selection of frames timer that vary with time || Sélection des frames du timer qui varient en fonction du temps
 		local Frame = _G["NecrosisTimerFrame"..tableau[index].Gtimer]
 		local StatusBar = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."Bar"]
 		local Spark = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."Spark"]
 		local Text = _G["NecrosisTimerFrame"..tableau[index].Gtimer.."OutText"]
 
-		-- Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
+		-- move frames to ensure they dont overlap || Déplacement des Frames si besoin pour qu'elles ne se chevauchent pas
 		if Changement then
-			-- Si les Frames appartiennent à un groupe de mob, et qu'on doit changer de groupe
+			-- if the frame belongs to a mob group, then move the whole group || Si les Frames appartiennent à un groupe de mob, et qu'on doit changer de groupe
 			if not (tableau[index].Group == LastGroup) and tableau[index].Group > 3 then
 				local f = Necrosis:CreateGroup(Changement, tableau[index].Group)
 				LastPoint[5] = LastPoint[5] + 1.2 * yPosition
@@ -250,7 +250,7 @@ function NecrosisUpdateTimer(tableau, Changement)
 			Frame:SetPoint(LastPoint[1], LastPoint[2], LastPoint[3], LastPoint[4], LastPoint[5])
 		end
 
-		-- Création de la couleur des timers en fonction du temps
+		-- creation of color timers || Création de la couleur des timers en fonction du temps
 		local r, g
 		local b = 37/255
 		local PercentColor = (tableau[index].TimeMax - Now) / tableau[index].Time
@@ -262,17 +262,17 @@ function NecrosisUpdateTimer(tableau, Changement)
 			g = (207/255) - (0.5 - PercentColor) * 2 * (207/255)
 		end
 
-		-- Calcul de la position de l'étincelle sur la barre de status
+		-- calculate the position of the spark on the timer || Calcul de la position de l'étincelle sur la barre de status
 		local sparkPosition = 150 * (tableau[index].TimeMax - Now) / tableau[index].Time
 		if sparkPosition < 1 then sparkPosition = 1 end
 
-		-- Définition de la couleur du timer et de la quantitée de jauge remplie
+		-- set the color and determine the portion to be filled || Définition de la couleur du timer et de la quantitée de jauge remplie
 		StatusBar:SetValue(2 * tableau[index].TimeMax - (tableau[index].Time + Now))
 		StatusBar:SetStatusBarColor(r, g, b)
 		Spark:ClearAllPoints()
 		Spark:SetPoint("CENTER", StatusBar, "LEFT", sparkPosition, 0)
 
-		-- Affichage du chrono extérieur
+		-- update the clock value on the timer || Affichage du chrono extérieur
 		local minutes, secondes, affichage = 0, 0, nil
 		secondes = tableau[index].TimeMax - floor(GetTime())
 		minutes = floor(secondes / 60 )

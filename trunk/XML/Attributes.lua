@@ -307,13 +307,14 @@ function Necrosis:CurseSpellAttribute()
 	end
 end
 
+-- Associating the frames to buttons, and creating stones on right-click.
 -- Association de la monture au bouton, et de la création des pierres sur un clic droit
 function Necrosis:StoneAttribute(Steed)
 	if InCombatLockdown() then
 		return
 	end
 
-	-- Pour les pierres
+	-- stones || Pour les pierres
 	local itemName = {"Soulstone", "Healthstone", "Spellstone", "Firestone" }
 	local buffID = {51,52,53,54}
 	for i = 1, #itemName, 1 do
@@ -324,44 +325,55 @@ function Necrosis:StoneAttribute(Steed)
 		end
 	end
 
-	-- Pour la monture
+	-- mounts || Pour la monture
 	if Steed and  _G["NecrosisMountButton"] then
 		NecrosisMountButton:SetAttribute("type1", "spell")
 		NecrosisMountButton:SetAttribute("type2", "spell")
-		if NecrosisConfig.OwnMount then
-			local _, ChevalGauche = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
-			local _, ChevalDroit = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
-			NecrosisMountButton:SetAttribute("spell1", ChevalGauche)
-			NecrosisMountButton:SetAttribute("spell2", ChevalDroit)
+		
+		if (NecrosisConfig.LeftMount) then
+			local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount)
+			NecrosisMountButton:SetAttribute("spell1", leftMountName)
 		else
-			-- Si le démoniste possède une monture épique, on associe la monture classique au clic droit
-			if self.Spell[2].ID then
+			if (self.Spell[2].ID) then
 				NecrosisMountButton:SetAttribute("spell1", self.Spell[2].Name)
 				NecrosisMountButton:SetAttribute("spell2", self.Spell[1].Name)
 			else
 				NecrosisMountButton:SetAttribute("spell*", self.Spell[1].Name)
-			end
+			end			
+		end
+		
+		if (NecrosisConfig.RightMount) then
+			local rightMountName = GetSpellInfo(NecrosisConfig.RightMount)
+			NecrosisMountButton:SetAttribute("spell2", rightMountName)
 		end
 	end
 
-	-- Pour la pierre de foyer
+	-- hearthstone || Pour la pierre de foyer
 	NecrosisSpellTimerButton:SetAttribute("unit1", "target")
 	NecrosisSpellTimerButton:SetAttribute("type1", "macro")
 	NecrosisSpellTimerButton:SetAttribute("macrotext", "/focus")
 	NecrosisSpellTimerButton:SetAttribute("type2", "item")
 	NecrosisSpellTimerButton:SetAttribute("item", self.Translation.Item.Hearthstone)
 	
-	-- Pour le menu Métamorphose
+	-- metamorphosis menu || Pour le menu Métamorphose
 	if _G["NecrosisMetamorphosisButton"] then
 		NecrosisMetamorphosisButton:SetAttribute("type", "spell")
 		NecrosisMetamorphosisButton:SetAttribute("spell", self.Spell[27].Name)
 	end
 
+	-- if the 'Ritual of Souls' spell is known, then associate it to the hearthstone shift-click.
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.
 	if _G["NecrosisHealthstoneButton"] and self.Spell[50].ID then
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisHealthstoneButton:SetAttribute("shift-spell*", self.Spell[50].Name)
 	end
+	
+	-- if the 'Ritual of Summoning' spell is known, then associate it to the soulstone shift-click.
+	if _G["NecrosisSoulstoneButton"] and self.Spell[37].ID then
+		NecrosisSoulstoneButton:SetAttribute("shift-type*", "spell")
+		NecrosisSoulstoneButton:SetAttribute("shift-spell*", self.Spell[37].Name)
+	end
+	
 	
 end
 

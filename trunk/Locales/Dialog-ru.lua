@@ -74,7 +74,8 @@ function Necrosis:Localization_Dialog_Ru()
 			["NoCurrentDemon"] = "Демон: Отсутствует",
 		},
 		["Soulstone"] = {
-			Text = {"[Правый Клик] Создать","[Левый Клик] Использовать","[Правый Клик] Повторное создание","Ожидание"}
+			Text = {"[Правый Клик] Создать","[Левый Клик] Использовать","[Правый Клик] Повторное создание","Ожидание"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"[Правый Клик] Создать","[Левый Клик] Использовать"},
@@ -165,7 +166,7 @@ function Necrosis:Localization_Dialog_Ru()
 			["FullDestroySuffix"] = " полна. Следующий осколок души будет уничтожен!",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>Введите /necro для отображения окна настроек",
+			["Welcome"] = "<white>Введите /necrosis для отображения окна настроек",
 			["TooltipOn"] = "[+] Всплывающие подсказки включены" ,
 			["TooltipOff"] = "[-] Всплывающие подскажки выключены",
 			["MessageOn"] = "[+] Оповещения в окне чата - включены",
@@ -174,8 +175,8 @@ function Necrosis:Localization_Dialog_Ru()
 			["UserConfig"] = "<lightYellow>Конфигурация успешно загружена."
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>Команда для размещение окна Necrosis и его кнопок в центре экрана.",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Команда полностью страсывает все настройки Necrosis до настроек по-умолчанию.",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>Команда для размещение окна Necrosis и его кнопок в центре экрана.",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>Команда полностью страсывает все настройки Necrosis до настроек по-умолчанию.",
 		},
 		["Information"] = {
 			["FearProtect"] = "Ваша цель не поддается страху!",

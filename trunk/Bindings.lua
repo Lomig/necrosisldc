@@ -51,18 +51,19 @@ function Necrosis:BindName()
 	-- La Sphere
 	_G["BINDING_NAME_CLICK NecrosisButton:LeftButton"] = self.Spell[NecrosisConfig.MainSpell].Name
 
-	-- Le Cheval
-	if NecrosisConfig.OwnMount then
-		local _, nameMount1 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
-		local _, nameMount2 = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
-		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = nameMount1
-		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = nameMount2
-	elseif self.Spell[2].ID then
-		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = self.Spell[2].Name
-		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = self.Spell[1].Name
+	-- mounts || Le Cheval
+	if (NecrosisConfig.LeftMount) then
+		local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount)
+		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = leftMountName
 	else
 		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = self.Spell[1].Name
-		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = self.Spell[1].Name
+	end
+	
+	if (NecrosisConfig.RightMount) then
+		local rightMountName = GetSpellInfo(NecrosisConfig.RightMount)
+		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = rightMountName
+	else
+		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = self.Spell[2].Name
 	end
 
 	-- La Pierre de feu

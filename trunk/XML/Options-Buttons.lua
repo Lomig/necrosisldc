@@ -37,6 +37,8 @@
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0)
 
+NUM_COMPANIONS_PER_PAGE = 12;
+MERCHANT_PAGE_NUMBER = "Page %s of %s";
 
 ------------------------------------------------------------------------------------------------------
 -- CREATION DE LA FRAME DES OPTIONS
@@ -152,10 +154,10 @@ function Necrosis:SetButtonsConfig()
 			NecrosisButtonsConfig2:Hide()
 		end)
 		
-	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	-- Sous Menu 1
-	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		-- Attache ou détache les boutons de Necrosis
+		-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- Sub Menu 1
+		-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- Attach or detach the necrosis buttons || Attache ou détache les boutons de Necrosis
 		frame = CreateFrame("CheckButton", "NecrosisLockButtons", NecrosisButtonsConfig1, "UICheckButtonTemplate")
 		frame:EnableMouse(true)
 		frame:SetWidth(24)
@@ -244,10 +246,10 @@ function Necrosis:SetButtonsConfig()
 			frame:SetFontString(FontString)
 		end
 
-	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	-- Sous Menu 2
-	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		-- Création du slider de rotation de Necrosis
+		-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- Sub Menu 2
+		-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		-- Create a slider control for rotating the buttons around the sphere || Création du slider de rotation de Necrosis
 		frame = CreateFrame("Slider", "NecrosisRotation", NecrosisButtonsConfig2, "OptionsSliderTemplate")
 		frame:SetMinMaxValues(0, 360)
 		frame:SetValueStep(9)
@@ -270,102 +272,265 @@ function Necrosis:SetButtonsConfig()
 
 		NecrosisRotationLow:SetText("0")
 		NecrosisRotationHigh:SetText("360")
-		
-		-- Création du bouton pour utiliser ses propres montures
-		frame = CreateFrame("CheckButton", "NecrosisOwnMountButtons", NecrosisButtonsConfig2, "UICheckButtonTemplate")
-		frame:EnableMouse(true)
-		frame:SetWidth(24)
-		frame:SetHeight(24)
+
+		-- lets create a hidden frame container for the mount selection buttons
+		frame = CreateFrame("Frame", "NecrosisMountsSelectionFrame", NecrosisButtonsConfig2)
+		frame:SetWidth(222);
+		frame:SetHeight(75);
 		frame:Show()
 		frame:ClearAllPoints()
-		frame:SetPoint("LEFT", NecrosisButtonsConfig2, "BOTTOMLEFT", 25, 340)
+		frame:SetPoint("CENTER", NecrosisGeneralFrame, "CENTER", 0, -25)
 
+		frame:SetBackdrop({	bgFile 		= "Interface/Tooltips/UI-Tooltip-Background", 
+	                      edgeFile 	= "Interface/Tooltips/UI-Tooltip-Border", 
+	                      tile 			= true, tileSize = 16, edgeSize = 16, 
+	                      insets 		= { left = 4, right = 4, top = 4, bottom = 4 }});
+		frame:SetBackdropColor(0,0,0,1);
+
+		-- create the navbar page info text
+		local NecrosisCompanionPageNumber = frame:CreateFontString("NecrosisCompanionPageNumber", "OVERLAY", "GameFontNormalSmall")
+		NecrosisCompanionPageNumber:Show()
+		NecrosisCompanionPageNumber:ClearAllPoints()
+		NecrosisCompanionPageNumber:SetPoint("TOP", NecrosisMountsSelectionFrame, "BOTTOM", 0, -10)
+		NecrosisCompanionPageNumber:SetTextColor(1, 1, 1)
+		NecrosisCompanionPageNumber:SetText("Page 1 of n")
+		
+		-- prev button
+		frame = CreateFrame("Button", "NecrosisCompanionPrevButton", NecrosisButtonsConfig2)
+		frame:SetWidth(32);
+		frame:SetHeight(32);
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("RIGHT", NecrosisCompanionPageNumber, "LEFT", -10, 0)
+		frame:SetNormalTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up")
+		frame:SetPushedTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down")
+		frame:SetDisabledTexture("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled")
+		frame:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+		frame:GetHighlightTexture():SetBlendMode("ADD")
 		frame:SetScript("OnClick", function()
-			if (this:GetChecked()) then
-				if GetNumCompanions("MOUNT") == 0 then
-					this:SetChecked(false)
-				else
-					NecrosisLeftMount:Show()
-					NecrosisRightMount:Show()
-					NecrosisConfig.OwnMount = true
-					if not NecrosisConfig.LeftMount then
-						NecrosisConfig.LeftMount = 1
-						NecrosisConfig.RightMount = 1
-					end
-					Necrosis:StoneAttribute("Own")
-				end
-				Necrosis:BindName()
-			else
-				NecrosisLeftMount:Hide()
-				NecrosisRightMount:Hide()
-				NecrosisConfig.OwnMount = false
-				Necrosis:StoneAttribute("Own")
-				Necrosis:BindName()
-			end
-		end)
+			 Necrosis:SetCompanionPage(NecrosisMountsSelectionFrame.pageMount - 1);
+		end);
+		
+		-- next button
+		frame = CreateFrame("Button", "NecrosisCompanionNextButton", NecrosisButtonsConfig2)
+		frame:SetWidth(32);
+		frame:SetHeight(32);
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionPageNumber, "RIGHT", 10, 0)
+		frame:SetNormalTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up")
+		frame:SetPushedTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down")
+		frame:SetDisabledTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled")
+		frame:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+		frame:GetHighlightTexture():SetBlendMode("ADD")
+		frame:SetScript("OnClick", function()
+			 Necrosis:SetCompanionPage((NecrosisMountsSelectionFrame.pageMount or 0)+1);
+		end);
+		
+		-- now create 12 mount selection buttons in 2 rows of 6 buttons each (similar to the layout in the companion's frame)
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton1", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("1")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("TOPLEFT", NecrosisMountsSelectionFrame)
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
 
-		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton2", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("2")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton1, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton3", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("3")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton2, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton4", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("4")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton3, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton5", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("5")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton4, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton6", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("6")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton5, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton7", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("7")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("BOTTOMLEFT", NecrosisMountsSelectionFrame)
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton8", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("8")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton7, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton9", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("9")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton8, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton10", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("10")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton9, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton11", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("11")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton10, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+
+		frame = CreateFrame("CheckButton", "NecrosisCompanionButton12", NecrosisButtonsConfig2, "CompanionButtonTemplate")
+		frame:SetID("12")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("LEFT", NecrosisCompanionButton11, "RIGHT")
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", NecrosisCompanionButton_OnDrag)
+		frame:SetScript("OnReceiveDrag", nil)
+		
+		-- create the left/right mount containers which will hold the selected mounts
+		frame = CreateFrame("CheckButton", "NecrosisSelectedMountLeft", NecrosisMountsSelectionFrame, "CompanionButtonTemplate")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("BOTTOM", NecrosisMountsSelectionFrame, "TOP", -25, 25)
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", nil)
+		frame:SetScript("OnReceiveDrag", NecrosisSelectedMountButton_OnReceiveDrag)
+		
+		frame = CreateFrame("CheckButton", "NecrosisSelectedMountRight", NecrosisMountsSelectionFrame, "CompanionButtonTemplate")
+		frame:EnableMouse(true)
+		frame:Show()
+		frame:ClearAllPoints()
+		frame:SetPoint("BOTTOM", NecrosisMountsSelectionFrame, "TOP", 25, 25)
+		frame:SetScript("OnEnter", NecrosisCompanionButton_OnEnter)
+		frame:SetScript("OnClick", nil)
+		frame:SetScript("OnDragStart", nil)
+		frame:SetScript("OnReceiveDrag", NecrosisSelectedMountButton_OnReceiveDrag)
+
+		local FontString = frame:CreateFontString("NecrosisChooseMountsText", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", frame, "RIGHT", 5, 1)
+		FontString:SetPoint("BOTTOM", NecrosisMountsSelectionFrame, "TOP", 0, 70)
 		FontString:SetTextColor(1, 1, 1)
-		frame:SetFontString(FontString)
+		--TODO: translate this
+		FontString:SetText("Select your mounts:");
 		
-		-- Monture clic Gauche
-		frame = CreateFrame("Frame", "NecrosisLeftMount", NecrosisButtonsConfig2, "UIDropDownMenuTemplate")
-		frame:Hide()
-		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisButtonsConfig2, "BOTTOMRIGHT", 40, 300)
-
 		local FontString = frame:CreateFontString("NecrosisLeftMountText", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisButtonsConfig2, "BOTTOMLEFT", 35, 303)
+		FontString:SetPoint("RIGHT", NecrosisSelectedMountLeft, "LEFT", -10, 0)
 		FontString:SetTextColor(1, 1, 1)
 		FontString:SetText(self.Config.Buttons["Monture - Clic gauche"])
-
-		UIDropDownMenu_SetWidth(frame, 125)
-		
-		-- Monture clic Droit
-		frame = CreateFrame("Frame", "NecrosisRightMount", NecrosisButtonsConfig2, "UIDropDownMenuTemplate")
-		frame:Hide()
-		frame:ClearAllPoints()
-		frame:SetPoint("RIGHT", NecrosisButtonsConfig2, "BOTTOMRIGHT", 40, 280)
 
 		local FontString = frame:CreateFontString("NecrosisRightMountText", "OVERLAY", "GameFontNormalSmall")
 		FontString:Show()
 		FontString:ClearAllPoints()
-		FontString:SetPoint("LEFT", NecrosisButtonsConfig2, "BOTTOMLEFT", 35, 283)
+		FontString:SetPoint("LEFT", NecrosisSelectedMountRight, "RIGHT", 10, 0)
 		FontString:SetTextColor(1, 1, 1)
 		FontString:SetText(self.Config.Buttons["Monture - Clic droit"])
-
-		UIDropDownMenu_SetWidth(frame, 125)
-	end
-
-	UIDropDownMenu_Initialize(NecrosisLeftMount, Necrosis.Mount_InitLeft)
-	UIDropDownMenu_Initialize(NecrosisRightMount, Necrosis.Mount_InitRight)
-	
-	if NecrosisConfig.LeftMount then
-		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.LeftMount)
-		UIDropDownMenu_SetSelectedID(NecrosisLeftMount, NecrosisConfig.LeftMount)
-		UIDropDownMenu_SetText(NecrosisLeftMount, nameMount)
 		
-		_, nameMount = Necrosis:GetCompanionInfo("MOUNT", NecrosisConfig.RightMount)
-		UIDropDownMenu_SetSelectedID(NecrosisRightMount, NecrosisConfig.RightMount)
-		UIDropDownMenu_SetText(NecrosisRightMount, nameMount)
 	end
 	
+	-- the frame is created, so set some defaults
+	NecrosisMountsSelectionFrame.idMount = GetCompanionInfo("MOUNT", 1);
 	
+	-- set to 1st page
+	Necrosis:SetCompanionPage(0)
+
+	-- make sure our mount buttons are updated
+	Necrosis:UpdateMountButtons()
+	
+	-- the spellID's (not creatureID's) for the selected left & right mounts are stored in savedvariables
+	-- if nothing is specified (empty / reset config) then use felsteed (5784) and dreadsteed (23161) as the default spellids
+	if (NecrosisConfig.LeftMount) then
+		NecrosisInitSelectedMountButton(NecrosisSelectedMountLeft, NecrosisConfig.LeftMount);
+	else
+		NecrosisInitSelectedMountButton(NecrosisSelectedMountLeft, 5784);
+	end
+	
+	if (NecrosisConfig.RightMount) then
+		NecrosisInitSelectedMountButton(NecrosisSelectedMountRight, NecrosisConfig.RightMount);
+	else
+		NecrosisInitSelectedMountButton(NecrosisSelectedMountRight, 23161);
+	end
+
 	NecrosisRotation:SetValue(NecrosisConfig.NecrosisAngle)
 	NecrosisLockButtons:SetChecked(NecrosisConfig.NecrosisLockServ)
-	NecrosisOwnMountButtons:SetChecked(NecrosisConfig.OwnMount)
-	if NecrosisConfig.OwnMount then
-		NecrosisLeftMount:Show()
-		NecrosisRightMount:Show()
-	else
-		NecrosisLeftMount:Hide()
-		NecrosisRightMount:Hide()
-	end
+
 	local boutons = {"Firestone", "Spellstone", "HealthStone", "Soulstone", "BuffMenu", "Mount", "PetMenu", "CurseMenu", "Metamorphosis"}
 	for i in ipairs(boutons) do
 		_G["NecrosisShow"..boutons[i]]:SetChecked(NecrosisConfig.StonePosition[i] > 0)
@@ -376,62 +541,199 @@ function Necrosis:SetButtonsConfig()
 	NecrosisButtonsConfig2Text:SetText(self.Config.Menus["Options Generales"])
 	NecrosisRotationText:SetText(self.Config.Buttons["Rotation des boutons"])
 	NecrosisLockButtons:SetText(self.Config.Buttons["Fixer les boutons autour de la sphere"])
-	NecrosisOwnMountButtons:SetText(self.Config.Buttons["Utiliser mes propres montures"])
 
 	local frame = _G["NecrosisButtonsConfig"]
 	frame:Show()
 end
 
 ------------------------------------------------------------------------------------------------------
--- FONCTIONS NECESSAIRES AUX DROPDOWNS
+-- MOUNT FUNCTIONS
 ------------------------------------------------------------------------------------------------------
-
--- Fonctions du Dropdown des Montures
-function Necrosis.Mount_InitLeft()
-	local MountCount = GetNumCompanions("MOUNT")
-	local Monture = {}
-	for i = 1, MountCount, 1 do
-		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", i)
-		Monture[i] = nameMount
+function Necrosis:SetCompanionPage(num)
+	NecrosisMountsSelectionFrame.pageMount = num;
+	
+	num = num + 1;	--For easier usage
+	local maxpage = ceil(GetNumCompanions("MOUNT")/NUM_COMPANIONS_PER_PAGE);
+	NecrosisCompanionPageNumber:SetFormattedText(MERCHANT_PAGE_NUMBER, num, maxpage);
+	
+	if ( num <= 1 ) then
+		NecrosisCompanionPrevButton:Disable();
+	else
+		NecrosisCompanionPrevButton:Enable();
 	end
-	local element = {}
+	
+	if ( num >= maxpage ) then
+		NecrosisCompanionNextButton:Disable();
+	else
+		NecrosisCompanionNextButton:Enable();
+	end
+	
+	Necrosis:UpdateMountButtons();
+	--PetPaperDollFrame_UpdateCompanionCooldowns();
+end
 
-	for i in ipairs(Monture) do
-		element.text = Monture[i]
-		element.checked = false
-		element.func = Necrosis.Mount_ClickLeft
-		UIDropDownMenu_AddButton(element)
+function Necrosis:UpdateMountButtons()
+	local button, iconTexture, id;
+	local creatureID, creatureName, spellID, icon, active;
+	local offset, selected;
+
+	offset = (NecrosisMountsSelectionFrame.pageMount or 0)*NUM_COMPANIONS_PER_PAGE;
+	--offset = 0;
+	selected = FindCompanionIndex(NecrosisMountsSelectionFrame.idMount);
+	--selected = 0;
+
+	for i = 1, NUM_COMPANIONS_PER_PAGE do
+		button = _G["NecrosisCompanionButton"..i];
+		id = i + (offset or 0);
+		creatureID, creatureName, spellID, icon, active = GetCompanionInfo("MOUNT", id);
+		button.creatureID = creatureID;
+		button.spellID = spellID;
+		button.active = active;
+		if ( creatureID ) then
+			button:SetNormalTexture(icon);
+			button:Enable();
+		else
+			button:Disable();
+		end
+		if ( (id == selected) and creatureID ) then
+			button:SetChecked(true);
+		else
+			button:SetChecked(false);
+		end
+		
+		if ( active ) then
+			_G["NecrosisCompanionButton"..i.."ActiveTexture"]:Show();
+		else
+			_G["NecrosisCompanionButton"..i.."ActiveTexture"]:Hide();
+		end
+	end
+	
+	if ( selected > 0 ) then
+		creatureID, creatureName, spellID, icon, active = GetCompanionInfo("MOUNT", selected);
+--		if ( active and creatureID ) then
+--			CompanionSummonButton:SetText(PetPaperDollFrameCompanionFrame.mode == "MOUNT" and BINDING_NAME_DISMOUNT or PET_DISMISS);
+--		else
+--			CompanionSummonButton:SetText(PetPaperDollFrameCompanionFrame.mode == "MOUNT" and MOUNT or SUMMON);
+--		end
 	end
 end
 
-function Necrosis.Mount_InitRight()
-	local MountCount = GetNumCompanions("MOUNT")
-	local Monture = {}
-	for i = 1, MountCount, 1 do
-		local _, nameMount = Necrosis:GetCompanionInfo("MOUNT", i)
-		Monture[i] = nameMount
+function FindCompanionIndex(creatureID, mode)
+--[[
+	if ( not mode ) then
+		mode = NecrosisMountsSelectionFrame.mode;
 	end
-	local element = {}
-
-	for i in ipairs(Monture) do
-		element.text = Monture[i]
-		element.checked = false
-		element.func = Necrosis.Mount_ClickRight
-		UIDropDownMenu_AddButton(element)
+	if (not creatureID ) then
+		creatureID = (NecrosisMountsSelectionFrame.mode=="MOUNT") and NecrosisMountsSelectionFrame.idMount or NecrosisMountsSelectionFrame.idCritter;
 	end
+--]]
+	for i=1,GetNumCompanions("MOUNT") do
+		if ( GetCompanionInfo("MOUNT", i) == creatureID ) then
+			return i;
+		end
+	end
+	return 0
 end
 
-function Necrosis.Mount_ClickLeft()
-	local ID = this:GetID()
 
-	UIDropDownMenu_SetSelectedID(NecrosisLeftMount, ID)
-	NecrosisConfig.LeftMount = ID
-	Necrosis:StoneAttribute("Own")
+function NecrosisCompanionButton_OnDrag(self)
+	local offset = (NecrosisMountsSelectionFrame.pageMount or 0) * NUM_COMPANIONS_PER_PAGE;
+	local dragged = self:GetID() + offset;
+	PickupCompanion("MOUNT", dragged );
 end
 
-function Necrosis.Mount_ClickRight()
-	local ID = this:GetID()
-	UIDropDownMenu_SetSelectedID(NecrosisRightMount, ID)
-	NecrosisConfig.RightMount = ID
-	Necrosis:StoneAttribute("Own")
+function NecrosisCompanionButton_OnEnter(self)
+	if ( GetCVar("UberTooltips") == "1" ) then
+		GameTooltip_SetDefaultAnchor(GameTooltip, self);
+	else
+		GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+	end
+
+	if (self.spellID) then
+		if ( GameTooltip:SetHyperlink("spell:"..self.spellID) ) then
+			self.UpdateTooltip = NecrosisCompanionButton_OnEnter;
+		else
+			self.UpdateTooltip = nil;
+		end
+	end
+	GameTooltip:Show()
+end
+
+function NecrosisSelectedMountButton_OnReceiveDrag(self)
+	local infoType, info1, info2 = GetCursorInfo();
+	if (infoType == "companion") then
+		-- info1 contains the mount index 
+		-- info2 contains the companion type, e.g. "MOUNT" or "CRITTER"
+	  local creatureID, creatureName, spellID, icon, active = GetCompanionInfo("MOUNT", info1);
+		local button = _G[self:GetName()];
+		
+		-- a mount was dragged to the left/right selected mount button boxes, so save the spellID to savedvariables
+		-- note: 
+		--   using spellID because the API GetSpellInfo() will always return the correctly localised creature name.
+		--   The creatureID cannot be used because the API GetCompanionInfo() does not always return the correctly localised creature name.
+		if (button == NecrosisSelectedMountLeft) then
+			NecrosisConfig.LeftMount = spellID;
+		end
+		if (button == NecrosisSelectedMountRight) then
+			NecrosisConfig.RightMount = spellID;
+		end
+		
+		button.creatureID = creatureID;
+		button.creatureName = creatureName;
+		button.spellID = spellID;
+		button.active = active;
+		
+		if ( creatureID ) then
+			button:SetNormalTexture(icon);
+			button:Enable();
+		else
+			button:Disable();
+		end
+		
+		if ( active ) then
+			_G[self:GetName().."ActiveTexture"]:Show();
+		else
+			_G[self:GetName().."ActiveTexture"]:Hide();
+		end
+		
+		--update mount button (on the sphere) and also the keybindings
+		Necrosis:StoneAttribute("Own");
+		Necrosis:BindName();
+		
+	end
+	ClearCursor();
+end
+
+function NecrosisInitSelectedMountButton(button, id)
+	if ( id ) then
+		local mounts = GetNumCompanions("MOUNT");
+		
+		if (mounts > 0) then
+			for index = 1, mounts do
+				local creatureID, creatureName, spellID, icon, active = GetCompanionInfo("MOUNT", index);
+				
+				if ( spellID == id ) then
+					button.creatureID = creatureID;
+					button.creatureName = creatureName;
+					button.spellID = spellID;
+					button.active = active;
+					
+					if ( creatureID ) then
+						button:SetNormalTexture(icon);
+						button:Enable();
+					else
+						button:Disable();
+					end
+					
+					if ( active ) then
+						_G[button:GetName().."ActiveTexture"]:Show();
+					else
+						_G[button:GetName().."ActiveTexture"]:Hide();
+					end		
+					
+					break;
+				end
+			end
+		end
+	end
 end

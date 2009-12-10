@@ -38,20 +38,23 @@ function Necrosis:Localization_Speech_En()
 
 	self.Speech.TP = {
 		[1] = {
-			"<after>Arcanum Taxi Cab! I am summoning <target>, please click on the portal.",
+			"<after>Arcanum Taxi Cab! Please click on the portal so we can get this show on the road.",
 		},
 		[2] = {
-			"<after>Welcome aboard, <target>, you are flying on the ~Succubus Air Lines~ to <player>...",
+			"<after>Welcome aboard ~Succubus Air Lines~...",
 			"<after>Air Hostesses and their lashes are at your service during your trip!",
 		},
 		[3] = {
-			"<after>If you click on the portal, someone named <target> will appear and do your job for you!",
+			"<after>If you click on the portal, we might get this party started a lot quicker!",
 		},
 		[4] = {
-			"<after>If you do not want a sprawling, phlegm-looking, asthmatic creature to come from this portal, click on it to help <target> find a path through Hell as quickly as possible!",
+			"<after>Fools! Dont just stand there looking at the portal - click on it so we can summon those scrubs!",
 		},
 		[5] =  {
-			"<after>Arcane Taxi Cab for <target>, please click the portal for the slacker please.",
+			"<after>Healthstones=10g, Soulstones=20g, Summons(cos you're too lazy to fly here)=10000g!",
+		},
+		[6] =  {
+			"<after>WTB people that click on the portal instead of looking at it :/",
 		},
 	}
 
@@ -68,6 +71,9 @@ function Necrosis:Localization_Speech_En()
 		[4]= {
 			"<after><target> is Stoned... duuuude heavy!",
 		},
+		[5]= {
+			"<after>Why does <target> always go afk when they are soulstoned?!!!",
+		},
 	}
 
 	self.Speech.RoS = {
@@ -77,12 +83,21 @@ function Necrosis:Localization_Speech_En()
 		[2] = {
 			"My soul, their soul, doesn't matter, just take one",
 		},
+		[3] = {
+			"WTS healthstones 10g each!! Cheaper than AH!",
+		},
+		[4] = {
+			"This healthstone probably wont save your life, but take one anyway!",
+		},
+		[5] = {
+			"If you dont pull aggro, then you wont need a healthstone!",
+		},
 	}
 
 	self.Speech.ShortMessage = {
 		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
 		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
-		{{"Summoning a Ritual of Souls"}},
+		{{"Casting Ritual of Souls"}},
 	}
 
 	self.Speech.Demon = {

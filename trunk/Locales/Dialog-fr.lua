@@ -74,7 +74,8 @@ function Necrosis:Localization_Dialog_Fr()
 			["NoCurrentDemon"] = "Demon : Aucun",
 		},
 		["Soulstone"] = {
-			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser","Utilis\195\169e\nClic droit pour recr\195\169er","En attente"}
+			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser","Utilis\195\169e\nClic droit pour recr\195\169er","En attente"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser"},
@@ -165,7 +166,7 @@ function Necrosis:Localization_Dialog_Fr()
 			["FullDestroySuffix"] = " est plein ; Les prochains fragments seront detruits !",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>/necro pour les options !",
+			["Welcome"] = "<white>/necrosis pour les options !",
 			["TooltipOn"] = "Bulles d'aide activ\195\169es" ,
 			["TooltipOff"] = "Bulles d'aide d\195\169sactiv\195\169es",
 			["MessageOn"] = "Messages Pierre d'\195\162me et Invocation de joueur activ\195\169s",
@@ -174,8 +175,8 @@ function Necrosis:Localization_Dialog_Fr()
 			["UserConfig"] = "<lightYellow>Configuration charg\195\169e"
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>Centre Necrosis et tous les boutons au milieu de l'\195\169cran",
-			"/necro <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>Centre Necrosis et tous les boutons au milieu de l'\195\169cran",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
 		},
 		["Information"] = {
 			["FearProtect"] = "La cible est prot\195\168g\195\169e contre la peur !!!!",
@@ -240,8 +241,8 @@ function Necrosis:Localization_Dialog_Fr()
 		["Fixer les boutons autour de la sphere"] = "Fixer les boutons autour de la sph\195\168re",
 		["Utiliser mes propres montures"] = "Utiliser mes propres montures",
 		["Choix des boutons a afficher"] = "Choix des boutons \195\160 afficher",
-		["Monture - Clic gauche"] = "Monture - Clic gauche",
-		["Monture - Clic droit"] = "Monture - Clic droit",
+		["Monture - Clic gauche"] = "Clic gauche",
+		["Monture - Clic droit"] = "Clic droit",
 	}
 	self.Config.Buttons.Name = {
 		"Afficher le bouton des Pierres de feu",

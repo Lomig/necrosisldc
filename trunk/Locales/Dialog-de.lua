@@ -74,7 +74,8 @@ function Necrosis:Localization_Dialog_De()
 			["NoCurrentDemon"] = "D\195\164mon : Keiner",
 		},
 		["Soulstone"] = {
-			Text = {"Rechte Maustaste zum herstellen","Linke Maustaste zum benutzten","Benutzt\nRechte Maustaste zum wiederherstellen","Warten"}
+			Text = {"Rechte Maustaste zum herstellen","Linke Maustaste zum benutzten","Benutzt\nRechte Maustaste zum wiederherstellen","Warten"},
+			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
 		},
 		["Healthstone"] = {
 			Text = {"Rechte Maustaste zum herstellen","Linke Maustaste zum benutzten"},
@@ -166,7 +167,7 @@ function Necrosis:Localization_Dialog_De()
 			["FullDestroySuffix"] = " ist voll; folgende Seelensplitter werden zerst\195\182rt !",
 		},
 		["Interface"] = {
-			["Welcome"] = "<white>/necro f\195\188r das Einstellungsmen\195\188.",
+			["Welcome"] = "<white>/necrosis f\195\188r das Einstellungsmen\195\188.",
 			["TooltipOn"] = "Tooltips an" ,
 			["TooltipOff"] = "Tooltips aus",
 			["MessageOn"] = "Chat Nachrichten an",
@@ -175,8 +176,8 @@ function Necrosis:Localization_Dialog_De()
 			["UserConfig"] = "<lightYellow>Einstellungen geladen."
 		},
 		["Help"] = {
-			"/necro <lightOrange>recall<white> -- <lightBlue>Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
-			"/necro <lightOrange>reset<white> -- <lightBlue>Setzt Necrosis komplett auf Grundeinstellungen zur\195\188ck",
+			"/necrosis <lightOrange>recall<white> -- <lightBlue>Zentriere Necrosis und alle Buttons in der Mitte des Bildschirms",
+			"/necrosis <lightOrange>reset<white> -- <lightBlue>Setzt Necrosis komplett auf Grundeinstellungen zur\195\188ck",
 		},
 		["Information"] = {
 			["FearProtect"] = "Dein Ziel hat Fear-Protection!!!",
@@ -241,8 +242,8 @@ function Necrosis:Localization_Dialog_De()
 		["Fixer les boutons autour de la sphere"] = "Fixiere die Buttons um die Sph\195\164re",
 		["Utiliser mes propres montures"] = "Use my own mounts",
 		["Choix des boutons a afficher"] = "Selection of buttons to be shown",
-		["Monture - Clic gauche"] = "Mount - Left click",
-		["Monture - Clic droit"] = "Mount - Right click",
+		["Monture - Clic gauche"] = "Left click",
+		["Monture - Clic droit"] = "Right click",
 	}
 	self.Config.Buttons.Name = {
 		"Zeige den Feuerstein Button",

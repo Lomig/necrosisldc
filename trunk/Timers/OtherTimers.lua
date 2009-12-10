@@ -38,10 +38,10 @@
 local _G = getfenv(0)
 
 ------------------------------------------------------------------------------------------------------
--- FONCTIONS D'AFFICHAGE DES TIMERS NON GRAPHIQUES
+-- NON-GRAPHICAL TIMERS FUNCTIONS || FONCTIONS D'AFFICHAGE DES TIMERS NON GRAPHIQUES
 ------------------------------------------------------------------------------------------------------
 
--- Permet l'affichage du timer de rez dans la Sphere
+-- Displays the resurrection timer in the sphere || Permet l'affichage du timer de rez dans la Sphere
 function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 	local Time, TimeMax, Minutes, Secondes
 	for index, valeur in ipairs(SpellTimer) do
@@ -90,8 +90,8 @@ function Necrosis:RezTimerUpdate(SpellTimer, LastUpdate)
 	return LastUpdate
 end
 
--- Permet l'affichage des timers textuels
--- Allows the posting of text timers
+-- Allows the viewing of recorded timers || Permet l'affichage des timers textuels
+-- and other textual timers || Allows the posting of text timers
 function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 	if not SpellTimer[1] then
 		NecrosisListSpells:SetText("")
