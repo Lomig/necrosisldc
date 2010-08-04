@@ -444,7 +444,7 @@ end
 
 -- Buttons for the Curse menu || Boutons du menu des malédictions
 function Necrosis:CreateMenuCurse(i)
-	local CurseName = {"Weakness", "Agony", "Reckless", "Tongues", "Exhaust", "Elements", "Doom", "Corruption"}
+	local CurseName = {"Weakness", "Agony", "Tongues", "Exhaust", "Elements", "Doom", "Corruption"}
 
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisCurseMenu"..i]

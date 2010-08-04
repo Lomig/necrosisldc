@@ -37,8 +37,8 @@
 -- On définit G comme étant le tableau contenant toutes les frames existantes.
 local _G = getfenv(0)
 
-NUM_COMPANIONS_PER_PAGE = 12;
-MERCHANT_PAGE_NUMBER = "Page %s of %s";
+local NECROSIS_COMPANIONS_PER_PAGE = 12;
+local NECROSIS_PAGE_NUMBER = "Page %s of %s";
 
 ------------------------------------------------------------------------------------------------------
 -- CREATION DE LA FRAME DES OPTIONS
@@ -553,8 +553,8 @@ function Necrosis:SetCompanionPage(num)
 	NecrosisMountsSelectionFrame.pageMount = num;
 	
 	num = num + 1;	--For easier usage
-	local maxpage = ceil(GetNumCompanions("MOUNT")/NUM_COMPANIONS_PER_PAGE);
-	NecrosisCompanionPageNumber:SetFormattedText(MERCHANT_PAGE_NUMBER, num, maxpage);
+	local maxpage = ceil(GetNumCompanions("MOUNT")/NECROSIS_COMPANIONS_PER_PAGE);
+	NecrosisCompanionPageNumber:SetFormattedText(NECROSIS_PAGE_NUMBER, num, maxpage);
 	
 	if ( num <= 1 ) then
 		NecrosisCompanionPrevButton:Disable();
@@ -577,12 +577,12 @@ function Necrosis:UpdateMountButtons()
 	local creatureID, creatureName, spellID, icon, active;
 	local offset, selected;
 
-	offset = (NecrosisMountsSelectionFrame.pageMount or 0)*NUM_COMPANIONS_PER_PAGE;
+	offset = (NecrosisMountsSelectionFrame.pageMount or 0)*NECROSIS_COMPANIONS_PER_PAGE;
 	--offset = 0;
 	selected = FindCompanionIndex(NecrosisMountsSelectionFrame.idMount);
 	--selected = 0;
 
-	for i = 1, NUM_COMPANIONS_PER_PAGE do
+	for i = 1, NECROSIS_COMPANIONS_PER_PAGE do
 		button = _G["NecrosisCompanionButton"..i];
 		id = i + (offset or 0);
 		creatureID, creatureName, spellID, icon, active = GetCompanionInfo("MOUNT", id);
@@ -637,7 +637,7 @@ end
 
 
 function NecrosisCompanionButton_OnDrag(self)
-	local offset = (NecrosisMountsSelectionFrame.pageMount or 0) * NUM_COMPANIONS_PER_PAGE;
+	local offset = (NecrosisMountsSelectionFrame.pageMount or 0) * NECROSIS_COMPANIONS_PER_PAGE;
 	local dragged = self:GetID() + offset;
 	PickupCompanion("MOUNT", dragged );
 end

@@ -69,13 +69,13 @@ function Necrosis:Localization_Dialog_Fr()
 			["Healthstone"] = "Pierre de soins : ",
 			["Spellstone"] = "Pierre de sort : ",
 			["Firestone"] = "Pierre de feu : ",
-			["CurrentDemon"] = "Demon : ",
-			["EnslavedDemon"] = "Demon : Asservi",
-			["NoCurrentDemon"] = "Demon : Aucun",
+			["CurrentDemon"] = "D\195\169mon : ",
+			["EnslavedDemon"] = "D\195\169mon : Asservi",
+			["NoCurrentDemon"] = "D\195\169mon : Aucun",
 		},
 		["Soulstone"] = {
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser","Utilis\195\169e\nClic droit pour recr\195\169er","En attente"},
-			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Summoning|r"
+			Ritual = "|c00FFFFFFShift+Clic pour le rituel d'invocation|r"
 		},
 		["Healthstone"] = {
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser"},
@@ -163,15 +163,15 @@ function Necrosis:Localization_Dialog_Fr()
 		["Bag"] = {
 			["FullPrefix"] = "Votre ",
 			["FullSuffix"] = " est plein !",
-			["FullDestroySuffix"] = " est plein ; Les prochains fragments seront detruits !",
+			["FullDestroySuffix"] = " est plein ; Les prochains fragments seront d\195\169truits !",
 		},
 		["Interface"] = {
 			["Welcome"] = "<white>/necrosis pour les options !",
 			["TooltipOn"] = "Bulles d'aide activ\195\169es" ,
 			["TooltipOff"] = "Bulles d'aide d\195\169sactiv\195\169es",
 			["MessageOn"] = "Messages Pierre d'\195\162me et Invocation de joueur activ\195\169s",
-			["MessageOff"] = "Messages Pierre d'\195\162me et Invocation de joueur desactiv\195\169s",
-			["DefaultConfig"] = "<lightYellow>Configuration par defaut charg\195\169e.",
+			["MessageOff"] = "Messages Pierre d'\195\162me et Invocation de joueur d\195\169sactiv\195\169s",
+			["DefaultConfig"] = "<lightYellow>Configuration par d\195\169faut charg\195\169e.",
 			["UserConfig"] = "<lightYellow>Configuration charg\195\169e"
 		},
 		["Help"] = {
@@ -179,9 +179,9 @@ function Necrosis:Localization_Dialog_Fr()
 			"/necrosis <lightOrange>reset<white> -- <lightBlue>R\195\169initialise totalement Necrosis",
 		},
 		["Information"] = {
-			["FearProtect"] = "La cible est prot\195\168g\195\169e contre la peur !!!!",
-			["EnslaveBreak"] = "Votre D\195\169mon a bris\195\169 ses chaines...",
-			["SoulstoneEnd"] = "<lightYellow>Votre Pierre d'\195\162me vient de s'eteindre."
+			["FearProtect"] = "La cible est prot\195\169g\195\169e contre la peur !!!!",
+			["EnslaveBreak"] = "Votre D\195\169mon a bris\195\169 ses cha\195\174nes...",
+			["SoulstoneEnd"] = "<lightYellow>Votre Pierre d'\195\162me vient de s'\195\169teindre."
 		}
 	}
 
@@ -249,11 +249,11 @@ function Necrosis:Localization_Dialog_Fr()
 		"Afficher le bouton des Pierres de sort",
 		"Afficher le bouton des Pierres de soin",
 		"Afficher le bouton des Pierres d'\195\162me",
-		"Affiche le bouton des sorts",
+		"Afficher le bouton des sorts",
 		"Afficher le bouton de la Monture",
-		"Affiche le bouton d'invocation des D\195\169mons",
-		"Affiche le bouton des Mal\195\169dictions",
-		"Show Metamorphosis menu button",
+		"Afficher le bouton d'invocation des D\195\169mons",
+		"Afficher le bouton des Mal\195\169dictions",
+		"Afficher le bouton de M\195\169tamorphe",
 	}
 
 	self.Config.Menus = {
@@ -263,10 +263,10 @@ function Necrosis:Localization_Dialog_Fr()
 		["Menu des Maledictions"] = "Menu des Mal\195\169dictions",
 		["Afficher les menus en permanence"] = "Afficher les menus en permanence",
 		["Afficher automatiquement les menus en combat"] = "Afficher automatiquement les menus en combat",
-		["Fermer le menu apres un clic sur un de ses elements"] = "Fermer le menu apres un clic sur un de ses elements",
+		["Fermer le menu apres un clic sur un de ses elements"] = "Fermer le menu apr\195\168s un clic sur un de ses \195\169l\195\169ments",
 		["Orientation du menu"] = "Orientation du menu",
 		["Changer la symetrie verticale des boutons"] = "Changer la sym\195\169trie verticale des boutons",
-		["Taille du bouton Banir"] = "Taille du bouton Banir",
+		["Taille du bouton Banir"] = "Taille du bouton Bannir",
 	}
 	self.Config.Menus.Orientation = {
 		"Horizontal",

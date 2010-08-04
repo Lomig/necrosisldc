@@ -67,14 +67,14 @@ Necrosis.Translation.DemonName = {
 -- Traduction du nom des objets utilisés par Necrosis
 Necrosis.Translation.Item = {
 	["Soulshard"] = "Осколок души",
-	["Soulstone"] = "камень души",
-	["Healthstone"] = "камень здоровья",
-	["Spellstone"] = "камень чар",
-	["Firestone"] = "камень огня",
+	["Soulstone"] = "[Кк]амень души", --[Кк]
+	["Healthstone"] = "[Кк]амень здоровья", --[Кк]
+	["Spellstone"] = "[Кк]амень чар", --[Кк]
+	["Firestone"] = "[Кк]амень огня", --[Кк]
 	["InfernalStone"] = "Камень инфернала",
 	["DemoniacStone"] = "Демоническая статуэтка",
 	["Hearthstone"] = "Камень возвращения",
-	["SoulPouch"] = {"Мешок душ", "Сума душ", "Коробка душ", "Сумка из ткани Скверны", "Черная сумка теней", "Сумка Бездны", "Черная сумка теней"}
+	["SoulPouch"] = {"Мешок душ", "Сума душ", "Коробка душ", "Сумка из ткани Скверны", "Черная сумка теней", "Сумка Бездны", "Черная сумка теней", "Сумка из сердцевинной ткани Скверны"}
 }
 
 -- Traductions diverses

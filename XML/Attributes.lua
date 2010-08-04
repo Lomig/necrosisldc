@@ -291,7 +291,7 @@ function Necrosis:CurseSpellAttribute()
 		return
 	end
 
-	local buffID = {23, 22, 24, 25, 40, 26, 16, 14}
+	local buffID = {23, 22, 25, 40, 26, 16, 14}
 	for i = 1, #buffID, 1 do
 		local f = _G["NecrosisCurseMenu"..i]
 		if f then

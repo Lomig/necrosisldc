@@ -128,7 +128,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[41] = {Name = GetSpellInfo(57946),				Length = 40,	Type = 2}, -- Life Tap || Connexion
 			[42] = {Name = GetSpellInfo(59164),				Length = 12,	Type = 2}, -- Haunt || Hanter
 			[43] = {Name = GetSpellInfo(47891),				Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
-			[44] = {Name = GetSpellInfo(18788),				Length = 0,		Type = 0}, -- Demonic Sacrifice || Sacrifice démoniaque 
+			[44] = {Name = GetSpellInfo(47986),				Length = 60,	Type = 3}, -- Sacrifice || Sacrifice démoniaque 
 			[45] = {Name = GetSpellInfo(47809),				Length = 0,		Type = 0}, -- Shadow Bolt
 			[46] = {Name = GetSpellInfo(47843),				Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
 			[47] = {Name = GetSpellInfo(47893),				Length = 0,		Type = 0}, -- Fel Armor || Gangrarmure
