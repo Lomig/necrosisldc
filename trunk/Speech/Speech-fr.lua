@@ -38,32 +38,25 @@ function Necrosis:Localization_Speech_Fr()
 
 	self.Speech.TP = {
 		[1] = {
-			"<after>Taxi des Arcanes ! J'invoque <target>, cliquez sur le portail svp !",
+			"<after>Taxi des Arcanes ! Cliquez sur le portail svp !",
 		},
 		[2] = {
-			"<after>Bienvenue, <target>, sur le vol de ~Succube Air Lines~ \195\160 destination de <player>...",
+			"<after>Bienvenue, sur le vol de ~Succube Air Lines~ \195\160 destination de <player>...",
 			"<after>Les h\195\180tesses et leur fouet sont \195\160 votre disposition durant le trajet",
 		},
 		[3] = {
-			"<after>Si vous ne voulez pas qu'une cr\195\169ature tentaculaire, glaireuse et asthmatique sorte de ce portail, cliquez dessus pour aider <target> \195\160 trouver son chemin au plus vite !",
+			"<after>Si vous ne voulez pas qu'une cr\195\169ature tentaculaire, glaireuse et asthmatique sorte de ce portail, cliquez dessus au plus vite !",
 		},
 		[4] = {
-			"<after>Si vous cliquez sur le portail, un machin nomm\195\169 <target> sortira et fera le boulot \195\160 votre place...",
+			"<after>Si vous cliquez sur le portail, on commencera \195\160 jouer plus vite...",
 		},
 		[5] = {
-			"Tel un lapin dans un chapeau de mage, <target> va appara\195\174tre devant vos yeux \195\169bahis.",
+			"Tel un lapin dans un chapeau de mage, nous allons faire appara\195\174tre devant vos yeux \195\169bahis...",
 			"<after>Et hop.",
 		},
 		[6] = {
 			"PAR ASTAROTH ET DASMODES, JE T'INVOQUE, O TOUT PUISSANT DEMON DES SEPTS ENFERS, PARANGON VELU DES INFRA MONDES DEMONIAQUES, PAR LA PUISSANCE DU SCEAU ANCESTR... euh ?!? Je crois qu'il y a un probl\195\168me l\195\160...",
-			"<after>Ah merde c'est <target> qui d\195\169barque !!",
-		},
-		[7] = {
-			"Chantons ensemble ! Venu de nulle part, c'est <target>, Plus vif que le serpent, c'est <target> !",
-			"Personne ne l'aper\195\167oit, c'est <target>, Mais il est toujours l\195\160, c'est <target> !",
-			"Plein d'effroi les Pirates de Tanaris rien qu'\195\160 son nom voient leur sang qui se glace, se glace, se glace... Mais quand il y a danger, c'est <target> qui vient pour nous aider, <target>...",
-			"<after>(Cliquez vite sur le portail sinon je continue...)",
-			"<after>C'EST <target> ! <target> ! <target> !",
+			"<after>Ah ben non...",
 		},
 	}
 
@@ -113,7 +106,7 @@ function Necrosis:Localization_Speech_Fr()
 
 	self.Speech.ShortMessage = {
 		{{"<after>--> <target> est prot\195\169g\195\169 par une pierre d'\195\162me <--"}},
-		{{"<after><TP> Invocation de <target> en cours, cliquez sur le portail svp <TP>"}},
+		{{"<after><TP> Invocation en cours, cliquez sur le portail svp <TP>"}},
 		{{"Rassembler un rituel des \195\162mes"}}
 	}
 
@@ -227,8 +220,8 @@ end
 -- à = \195\160 ---- â = \195\162
 -- ô = \195\180 ---- ê = \195\170
 -- û = \195\187 ---- ä = \195\164
--- Ä = \195\132 ---- ö = \195\182
+-- - = \195\132 ---- ö = \195\182
 -- Ö = \195\150 ---- ü = \195\188
--- Ü = \195\156 ---- ß = \195\159
+-- _ = \195\156 ---- î = \195\159
 -- ç = \195\167 ---- î = \195\174
 

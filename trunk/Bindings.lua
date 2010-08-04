@@ -53,15 +53,13 @@ function Necrosis:BindName()
 
 	-- mounts || Le Cheval
 	if (NecrosisConfig.LeftMount) then
-		local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount)
-		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = leftMountName
+		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = GetSpellInfo(NecrosisConfig.LeftMount)
 	else
 		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = self.Spell[1].Name
 	end
 	
 	if (NecrosisConfig.RightMount) then
-		local rightMountName = GetSpellInfo(NecrosisConfig.RightMount)
-		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = rightMountName
+		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = GetSpellInfo(NecrosisConfig.RightMount)
 	else
 		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = self.Spell[2].Name
 	end
@@ -91,7 +89,15 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisBuffMenuButton:LeftButton"] = self.Config.Menus["Menu des Buffs"]
 	
-	local buffID = {31, 47, 32, 33, 34, 37, 38, 43, 59}
+	local buffID = {31, -- demon armor
+	                47, -- fel armor 
+	                32, -- unending breath
+	                33, -- detect invisibility
+	                34, -- eye of killrogg
+	                37, -- ritual of summoning
+	                38, -- soul link
+	                43, -- shadow ward
+	                59} -- demonic empowerment
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
@@ -112,7 +118,11 @@ function Necrosis:BindName()
 	end
 	
 	local buttonID = {1, 7, 8, 9, 10}
-	local BuffID = {15, 8, 30, 35, 44}
+	local BuffID = {15, -- fel domination
+	                8,  -- summon infernal
+	                30, -- ritual of doom
+	                35, -- enslave demon
+	                44} -- demonic sacrifice
 	for i = 1, #buttonID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"] = self.Spell[ BuffID[i] ].Name
 	end
@@ -126,7 +136,13 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisCurseMenuButton:LeftButton"] = self.Config.Menus["Menu des Maledictions"]
 	
-	local buffID = {23, 22, 25, 40, 26, 16, 14}
+	local buffID = {23, -- curse of weakness
+	                22, -- curse of agony
+	                25, -- curse of tongues
+	                40, -- curse of exhaustion
+	                26, -- curse of the elements
+	                16, -- curse of doom
+	                14} -- corruption
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisCurseMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end

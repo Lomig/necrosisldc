@@ -95,8 +95,8 @@ function Necrosis:Localization_Speech_En()
 	}
 
 	self.Speech.ShortMessage = {
-		{{"<after>--> <target> is soulstoned for 30 minutes <--"}},
-		{{"<after><TP> Summoning <target>, please click on the portal <TP>"}},
+		{{"<after>--> <target> is soulstoned! <--"}},
+		{{"<after><TP> Summoning <target> - please click on the portal <TP>"}},
 		{{"Casting Ritual of Souls"}},
 	}
 
@@ -165,6 +165,4 @@ function Necrosis:Localization_Speech_En()
 			},
 		}
 	}
-
 end
-

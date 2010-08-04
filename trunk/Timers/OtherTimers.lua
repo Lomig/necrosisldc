@@ -143,6 +143,11 @@ function Necrosis:TextTimerUpdate(SpellTimer, SpellGroup)
 			display = display.."0"..seconds
 		end
 		display = display.." - <close>"..color..SpellTimer[index].Name.."<close>"
+		
+		if (SpellTimer[index].Target == nil) then
+			SpellTimer[index].Target = "";
+		end
+		
 		if (SpellTimer[index].Type == 1) or (SpellTimer[index].Name == Necrosis.Spell[16].Name)
 			and not (SpellTimer[index].Target == "")
 			then
