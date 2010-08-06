@@ -1,4 +1,4 @@
-## Interface: 30500
+## Interface: 30300
 ## Title: Necrosis
 ## Title-ruRU: Necrosis (Русский)
 ## Title-frFR: Necrosis (Français)
