@@ -2162,7 +2162,7 @@ function Necrosis:SpellSetup()
 			do break end
 		end
 
-		-- !!!!! CA NE DEVRAIT PLUS ETRE UTILE !
+	--[[	-- !!!!! CA NE DEVRAIT PLUS ETRE UTILE !
 		-- for spells with numbered ranks, compare each one || Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
 		-- and preserve the highest rank || Le rang supérieur est conservé
 		if subSpellName and not (subSpellName == " " or subSpellName == "") then
@@ -2177,7 +2177,7 @@ function Necrosis:SpellSetup()
 						local _, _, CurrentRank = CurrentSpells.subName[index]:find("(%d+)")
 						CurrentRank = tonumber(CurrentRank)
 						if (CurrentRank ~= nil) then
-							if (CurrentRank < spellRank) then
+							if (CurrentRank  spellRank) then
 								CurrentSpells.ID[index] = spellID
 								CurrentSpells.subName[index] = subSpellName
 							end
@@ -2206,6 +2206,7 @@ function Necrosis:SpellSetup()
 		end
 	end
 	del(CurrentSpells)
+	]]
 
 	for spellID = 1, MAX_SPELLS, 1 do
 		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
