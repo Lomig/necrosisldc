@@ -2212,7 +2212,7 @@ function Necrosis:SpellSetup()
 
 	local ManaCost
 	for index = 1, #self.Spell, 1 do
-		if self.Spell[index].Id  then
+		if self.Spell[index] then
 			_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
 			self.Spell[index].Mana = tonumber(ManaCost)
 		end
