@@ -1,12 +1,12 @@
-## Interface: 30300
+## Interface: 40000
 ## Title: Necrosis
 ## Title-ruRU: Necrosis (Русский)
 ## Title-frFR: Necrosis (Français)
 ## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## Notes-ruRU: Менеджер заклинаний, камней и демонов для чернокнижника.
-## Version: 3.0 (r225)
-## Author: Arpharazon [TarCalion @ US-Nagrand]
+## Version: 3.1.20101110.0242
+## Author: Lomig & Arpharazon
 ## eMail: arpharazon@godsofchaos.org
 ## Website: http://wow.curse.com/downloads/wow-addons/details/necrosis-ld-c.aspx
 ## DefaultState: Enabled
