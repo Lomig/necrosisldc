@@ -2208,39 +2208,10 @@ function Necrosis:SpellSetup()
 	del(CurrentSpells)
 	]]
 
-	for spellID = 1, MAX_SPELLS, 1 do
-		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
-		if (spellName) then
-			for index = 1, #self.Spell, 1 do
-				if self.Spell[index].Name == spellName then
-					self:MoneyToggle()
-					NecrosisTooltip:SetSpell(spellID, 1)
-					local _, _, ManaCost = NecrosisTooltipTextLeft2:GetText():find("(%d+)")
-					if not self.Spell[index].ID then
-						self.Spell[index].ID = spellID
-					end
-					self.Spell[index].Mana = tonumber(ManaCost)
-				end
-			end
-		end
-	end
-
-	-- update the spell durations according to their rank || On met à jour la durée de chaque sort en fonction de son rang
-	-- Fear || Peur
-	if self.Spell[13].ID then
-		local _, _, lengtH = self.Spell[13].Rank:find("(%d+)")
-		if lengtH then
-			lengtH = tonumber(lengtH)
-			self.Spell[13].Length = tonumber(lengtH) * 5 + 5
-		end
-	end
-	-- Corruption
-	local _, _, ranK = self.Spell[14].Rank:find("(%d+)")
-	if ranK then
-		ranK = tonumber(ranK)
-		if self.Spell[14].ID and ranK <= 2 then
-			self.Spell[14].Length = ranK * 3 + 9
-		end
+	local ManaCost
+	for index = 1, #self.Spell, 1 do
+		_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
+		self.Spell[index].Mana = tonumber(ManaCost)
 	end
 
 	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
