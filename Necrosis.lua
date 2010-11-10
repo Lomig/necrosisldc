@@ -2156,12 +2156,13 @@ function Necrosis:SpellSetup()
 
 	-- Search for all spells known by the warlock || On va parcourir tous les sorts possedés par le Démoniste
 	while true do
-		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL)
+		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
 
 		if not spellName then
 			do break end
 		end
-		
+
+		-- !!!!! CA NE DEVRAIT PLUS ETRE UTILE !
 		-- for spells with numbered ranks, compare each one || Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
 		-- and preserve the highest rank || Le rang supérieur est conservé
 		if subSpellName and not (subSpellName == " " or subSpellName == "") then
@@ -2207,7 +2208,7 @@ function Necrosis:SpellSetup()
 	del(CurrentSpells)
 
 	for spellID = 1, MAX_SPELLS, 1 do
-		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL)
+		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
 		if (spellName) then
 			for index = 1, #self.Spell, 1 do
 				if self.Spell[index].Name == spellName then
