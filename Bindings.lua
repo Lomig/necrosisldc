@@ -92,12 +92,11 @@ function Necrosis:BindName()
 	local buffID = {31, -- demon armor
 	                47, -- fel armor 
 	                32, -- unending breath
-	                33, -- detect invisibility
 	                34, -- eye of killrogg
 	                37, -- ritual of summoning
 	                38, -- soul link
 	                43, -- shadow ward
-	                59} -- demonic empowerment
+	                24} -- demonic empowerment
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
@@ -156,7 +155,9 @@ function Necrosis:BindName()
 	
 	_G["BINDING_NAME_CLICK NecrosisMetamorphosisButton:LeftButton"] = self.Spell[27].Name
 	
-	local buffID = {39, 58, 56, 57}
+	local buffID = {39, -- Demon charge
+			24, -- Demonic Empowerment
+			33} -- Bon démoniaque
 	for i = 1, #buffID, 1 do
 		_G["BINDING_NAME_CLICK NecrosisMetamorphosisMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
 	end
