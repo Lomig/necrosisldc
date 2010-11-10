@@ -2,8 +2,8 @@
 	<Frame name="Necrosis_Variable_Frame" hidden="false">
 		<Scripts>
 			<OnLoad>
-				this:RegisterEvent("PLAYER_LOGIN")
-				this:RegisterEvent("VARIABLES_LOADED")
+				Necrosis_Variable_Frame:RegisterEvent("PLAYER_LOGIN")
+				Necrosis_Variable_Frame:RegisterEvent("VARIABLES_LOADED")
 			</OnLoad>
 			<OnEvent>
 				Necrosis:OnLoad()
