@@ -224,10 +224,11 @@ function Necrosis:SpellLocalize(tooltip)
 		if not self.TooltipData[button] then
 			self.TooltipData[button] = {}
 		end
-		if buttonName[i]].Name then
+		if buttonName[i].Name then
 			self.TooltipData[button].Label = "|c00FFFFFF"..self.Spell[buttonName[i]].Name.."|r"
 		else
-			
+			ChatFrame1:AddMessage("Erreur "..buttonName[i], 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
+		end
 	end
 	del(buttonTooltip)
 	del(colorCode)
@@ -250,7 +251,11 @@ function Necrosis:SpellLocalize(tooltip)
 		if not self.TooltipData[button] then
 			self.TooltipData[button] = {}
 		end
-		self.TooltipData[button].Label = "|c00FFFFFF"..self.Spell[buttonName[i]].Name.."|r"
+		if buttonName[i].Name then
+			self.TooltipData[button].Label = "|c00FFFFFF"..self.Spell[buttonName[i]].Name.."|r"
+		else
+			ChatFrame1:AddMessage("Erreur "..buttonName[i], 1.0, 0.7, 1.0, 1.0, UIERRORS_HOLD_TIME)
+		end
 	end
 	del(buttonTooltip)
 	del(colorCode)
