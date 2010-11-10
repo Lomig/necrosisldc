@@ -93,7 +93,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[6] = {Name = GetSpellInfo(691),				Length = 0,		Type = 0}, -- Fellhunter
 			[7] = {Name = GetSpellInfo(30146),				Length = 0,		Type = 0}, -- Felguard
 			[8] = {Name = GetSpellInfo(1122),				Length = 600,	Type = 3}, -- Infernal
-			[9] = {Name = GetSpellInfo(18647),				Length = 30,	Type = 2}, -- Banish
+			[9] = {Name = GetSpellInfo(710),				Length = 30,	Type = 2}, -- Banish
 			[10] = {Name = GetSpellInfo(1098),				Length = 300,	Type = 2}, -- Enslave
 			[11] = {Name = GetSpellInfo(27239),				Length = 900,	Type = 1}, -- Soulstone Resurrection || Résurrection de pierre d'ame
 			[12] = {Name = GetSpellInfo(47811),				Length = 15,	Type = 6}, -- Immolate
@@ -114,9 +114,8 @@ function Necrosis:SpellLocalize(tooltip)
 			[28] = {Name = GetSpellInfo(47862),				Length = 30,	Type = 6}, -- Siphon Life || Syphon de vie
 			[29] = {Name = GetSpellInfo(17928),				Length = 40,	Type = 3}, -- Howl of Terror || Hurlement de terreur
 			[30] = {Name = GetSpellInfo(18540),				Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
-			[31] = {Name = GetSpellInfo(47889),				Length = 0,		Type = 0}, -- Demon Armor || Armure démoniaque
+			[31] = {Name = GetSpellInfo(687),				Length = 0,		Type = 0}, -- Demon Armor || Armure démoniaque
 			[32] = {Name = GetSpellInfo(5697),				Length = 600,		Type = 2}, -- Unending Breath || Respiration interminable
-			[33] = {Name = GetSpellInfo(132),				Length = 0,		Type = 0}, -- Detect Invisibility || Détection de l'invisibilité
 			[34] = {Name = GetSpellInfo(126),				Length = 0,		Type = 0}, -- Eye of Kilrogg
 			[35] = {Name = GetSpellInfo(1098),				Length = 0,		Type = 0}, -- Enslave Demon
 			[36] = {Name = GetSpellInfo(696),				Length = 0,		Type = 0}, -- Demon Skin || Peau de démon 
@@ -126,14 +125,14 @@ function Necrosis:SpellLocalize(tooltip)
 			[40] = {Name = GetSpellInfo(18223),				Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction de fatigue
 			[41] = {Name = GetSpellInfo(57946),				Length = 40,	Type = 2}, -- Life Tap || Connexion
 			[42] = {Name = GetSpellInfo(59164),				Length = 12,	Type = 2}, -- Haunt || Hanter
-			[43] = {Name = GetSpellInfo(47891),				Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
+			[43] = {Name = GetSpellInfo(6229),				Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
 			[44] = {Name = GetSpellInfo(47986),				Length = 60,	Type = 3}, -- Sacrifice || Sacrifice démoniaque 
 			[45] = {Name = GetSpellInfo(47809),				Length = 0,		Type = 0}, -- Shadow Bolt
 			[46] = {Name = GetSpellInfo(47843),				Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
-			[47] = {Name = GetSpellInfo(47893),				Length = 0,		Type = 0}, -- Fel Armor || Gangrarmure
+			[47] = {Name = GetSpellInfo(28176),				Length = 0,		Type = 0}, -- Fel Armor || Gangrarmure
 			[48] = {Name = GetSpellInfo(47836),				Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
 			[49] = {Name = GetSpellInfo(29858),				Length = 180,	Type = 3}, -- SoulShatter || Brise âme
-			[50] = {Name = GetSpellInfo(58887),				Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
+			[50] = {Name = GetSpellInfo(29893),				Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
 			[51] = {Name = GetSpellInfo(47884),				Length = 0,		Type = 0}, -- Create Soulstone || Création pierre d'âme
 			[52] = {Name = GetSpellInfo(47878),				Length = 0,		Type = 0}, -- Create Healthstone || Création pierre de soin
 			[53] = {Name = GetSpellInfo(47888),				Length = 0,		Type = 0}, -- Create Spellstone || Création pierre de sort
@@ -185,7 +184,6 @@ function Necrosis:SpellLocalize(tooltip)
 		"Enslave",
 		"Armor",
 		"FelArmor",
-		"Invisible",
 		"Aqua",
 		"Kilrogg",
 		"Banish",
@@ -196,7 +194,7 @@ function Necrosis:SpellLocalize(tooltip)
 		"Renforcement"
 	)
 	local buttonName = new("array",
-		15, 35, 31, 47, 33, 32, 34, 9, 37, 50, 38, 43, 59
+		15, 35, 31, 47, 32, 34, 9, 37, 50, 38, 43, 59
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
