@@ -452,7 +452,9 @@ function Necrosis:OnUpdate(elapsed)
 end
 
 -- Fonction lancée selon l'événement intercepté
-function Necrosis:OnEvent(event)
+function Necrosis:OnEvent(self, event, ...)
+	local arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12 = ...
+	
 	if (event == "PLAYER_ENTERING_WORLD") then
 		Local.InWorld = true
 	elseif (event == "PLAYER_LEAVING_WORLD") then
@@ -2210,8 +2212,10 @@ function Necrosis:SpellSetup()
 
 	local ManaCost
 	for index = 1, #self.Spell, 1 do
-		_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
-		self.Spell[index].Mana = tonumber(ManaCost)
+		if self.Spell[index].Id  then
+			_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
+			self.Spell[index].Mana = tonumber(ManaCost)
+		end
 	end
 
 	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
