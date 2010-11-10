@@ -2212,10 +2212,8 @@ function Necrosis:SpellSetup()
 
 	local ManaCost
 	for index = 1, #self.Spell, 1 do
-		if self.Spell[index] then
-			_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
-			self.Spell[index].Mana = tonumber(ManaCost)
-		end
+		_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
+		self.Spell[index].Mana = tonumber(ManaCost)
 	end
 
 	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
@@ -2476,7 +2474,7 @@ function Necrosis:CreateMenu()
 	end
 	if NecrosisConfig.StonePosition[7] > 0 then
 		local MenuID = new("array",
-			15, 3, 4, 5, 6, 7, 8, 30, 35, 44, 59
+			15, 3, 4, 5, 6, 7, 8, 30, 35, 44, 24
 		)
 		-- On ordonne et on affiche les boutons dans le menu des démons
 		for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
@@ -2543,7 +2541,7 @@ function Necrosis:CreateMenu()
 	if NecrosisConfig.StonePosition[5] > 0 then
 		-- setup the buttons available on the buffs menu || On ordonne et on affiche les boutons dans le menu des buffs
 		local MenuID = new("array",
-			31, 47, 32, 33, 34, 37, 38, 43, 59, 9
+			31, 47, 32, 33, 34, 37, 38, 43, 24, 9
 		)
 		for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 			-- display the button if the spell is known || Si le buff existe, on affiche le bouton dans le menu des buffs

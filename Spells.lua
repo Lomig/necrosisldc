@@ -108,6 +108,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[21] = {Id = 17962,	Name = GetSpellInfo(17962),	Length = 10,	Type = 3}, -- Conflagration
 			[22] = {Id = 980,	Name = GetSpellInfo(980),	Length = 24,	Type = 4}, -- Bane of Agony || Plaie Agonie
 			[23] = {Id = 702,	Name = GetSpellInfo(702),	Length = 120,	Type = 4}, -- Curse of Weakness || Malédiction Faiblesse
+			[24] = {Id = 47193,	Name = GetSpellInfo(47193),	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
 			[25] = {Id = 1714,	Name = GetSpellInfo(1714),	Length = 30,	Type = 4}, -- Curse of Tongues || Malédiction Langage
 			[26] = {Id = 1490,	Name = GetSpellInfo(1490),	Length = 300,	Type = 4}, -- Curse of the Elements || Malédiction Eléments
 			[27] = {Id = 59673,	Name = GetSpellInfo(59673),	Length = 180,	Type = 3}, -- Metamorphosis || Metamorphose
@@ -116,6 +117,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[30] = {Id = 18540,	Name = GetSpellInfo(18540),	Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
 			[31] = {Id = 687,	Name = GetSpellInfo(687),	Length = 0,	Type = 0}, -- Demon Armor || Armure démoniaque
 			[32] = {Id = 5697,	Name = GetSpellInfo(5697),	Length = 600,	Type = 2}, -- Unending Breath || Respiration interminable
+			[33] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Bon démoniaque
 			[34] = {Id = 126,	Name = GetSpellInfo(126),	Length = 0,	Type = 0}, -- Eye of Kilrogg
 			[35] = {Id = 1098,	Name = GetSpellInfo(1098),	Length = 0,	Type = 0}, -- Enslave Demon
 			[36] = {Id = 696,	Name = GetSpellInfo(696),	Length = 0,	Type = 0}, -- Demon Skin || Peau de démon
@@ -138,9 +140,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[53] = {Id = 47888,	Name = GetSpellInfo(47888),	Length = 0,	Type = 0}, -- Create Spellstone || Création pierre de sort
 			[54] = {Id = 60220,	Name = GetSpellInfo(60220),	Length = 0,	Type = 0}, -- Create Firestone || Création pierre de feu
 			[55] = {Id = 59092,	Name = GetSpellInfo(59092),	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
-			[57] = {Id = 50589,	Name = GetSpellInfo(50589),	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
-			[58] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Bon démoniaque
-			[59] = {Id = 47193,	Name = GetSpellInfo(47193),	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
+			[56] = {Id = 50589,	Name = GetSpellInfo(50589),	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 		}
 		-- Type 0 = Pas de Timer || no timer
 		-- Type 1 = Timer permanent principal || Standing main timer
@@ -193,7 +193,7 @@ function Necrosis:SpellLocalize(tooltip)
 		"Renforcement"
 	)
 	local buttonName = new("array",
-		15, 35, 31, 47, 32, 34, 9, 37, 50, 38, 43, 59
+		15, 35, 31, 47, 32, 34, 9, 37, 50, 38, 43, 24
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
@@ -216,7 +216,7 @@ function Necrosis:SpellLocalize(tooltip)
 		"Enslave"
 	)
 	local buttonName = new("array",
-		44, 27, 39, 57, 58, 59, 35
+		44, 27, 39, 56, 33, 24, 35
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
