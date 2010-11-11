@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -160,7 +160,7 @@ function Necrosis:CreateWarlockUI()
 		NecrosisConfig.FramePosition["NecrosisButton"][4],
 		NecrosisConfig.FramePosition["NecrosisButton"][5]
 	)
-	
+
 	-- Create the soulshard counter || Création du compteur de fragments d'âme
 	local FontString = _G["NecrosisShardCount"]
 	if not FontString then
@@ -180,7 +180,7 @@ end
 
 local function CreateMetamorphosisSpell()
 	local DemonicSpell = {"Charge", "Bond", "Immolation"}
-	local buffID = {39, 33, 56}
+	local buffID = {39, 33, 54}
 
 	for i = 1, #DemonicSpell, 1 do
 		-- Create the button || Creaton du bouton
@@ -204,7 +204,7 @@ local function CreateMetamorphosisSpell()
 		frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, DemonicSpell[i], "ANCHOR_RIGHT", "Curse") end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetParent(NecrosisMetamorphosisButton)
-		
+
 		if i == 1 then
 			frame:ClearAllPoints()
 			frame:SetPoint(
@@ -220,7 +220,7 @@ local function CreateMetamorphosisSpell()
 				NecrosisConfig.CurseMenuPos.y * 32
 			)
 		end
-		
+
 		-- special attributes || Attribution des sorts au bouton
 		frame:SetAttribute("type", "spell")
 		if i == 1 or i == 3 then
@@ -231,7 +231,7 @@ local function CreateMetamorphosisSpell()
 end
 
 ------------------------------------------------------------------------------------------------------
--- BUTTONS for stones (health / spell / Fire), Metamorphosis & the Mount || BOUTON DES PIERRES, DE LA METAMORPHOSE ET DE LA MONTURE
+BOUTON DES PIERRES, DE LA METAMORPHOSE ET DE LA MONTURE
 ------------------------------------------------------------------------------------------------------
 
 local function CreateStoneButton(stone)
@@ -298,7 +298,7 @@ local function CreateStoneButton(stone)
 			NecrosisConfig.FramePosition[frame:GetName()][5]
 		)
 	end
-	
+
 	if stone == "Metamorphosis" then
 		CreateMetamorphosisSpell()
 		Necrosis:MetamorphosisAttribute()
@@ -634,5 +634,5 @@ function Necrosis:CreateSphereButtons(ButtonName)
 	else
 		return CreateStoneButton(ShortButtonName)
 	end
-	
+
 end
