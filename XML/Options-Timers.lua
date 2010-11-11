@@ -80,8 +80,8 @@ function Necrosis:SetTimersConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 325)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.ShowSpellTimers = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.ShowSpellTimers = self:GetChecked()
 			if NecrosisConfig.ShowSpellTimers then
 				NecrosisSpellTimerButton:Show()
 			else
@@ -106,8 +106,8 @@ function Necrosis:SetTimersConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 300)
 
-		frame:SetScript("OnClick", function()
-			Necrosis:SymetrieTimer(this:GetChecked())
+		frame:SetScript("OnClick", function(self)
+			Necrosis:SymetrieTimer(self:GetChecked())
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
@@ -127,8 +127,8 @@ function Necrosis:SetTimersConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisTimersConfig, "BOTTOMLEFT", 25, 275)
 
-		frame:SetScript("OnClick", function()
-			if (this:GetChecked()) then
+		frame:SetScript("OnClick", function(self)
+			if (self:GetChecked()) then
 				NecrosisConfig.SensListe = -1
 			else
 				NecrosisConfig.SensListe = 1
@@ -191,8 +191,8 @@ function Necrosis.Timer_Init()
 	end
 end
 
-function Necrosis.Timer_Click()
-	local ID = this:GetID()
+function Necrosis.Timer_Click(self)
+	local ID = self:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisTimerSelection, ID)
 	NecrosisConfig.TimerType = ID - 1
 	if not (ID == 1) then Necrosis:CreateTimerAnchor() end

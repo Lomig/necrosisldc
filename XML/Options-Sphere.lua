@@ -73,15 +73,15 @@ function Necrosis:SetSphereConfig()
 			NBx, NBy = NecrosisButton:GetCenter()
 			NBx = NBx * (NecrosisConfig.NecrosisButtonScale / 100)
 			NBy = NBy * (NecrosisConfig.NecrosisButtonScale / 100)
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue().." %")
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(NecrosisSphereSize:GetValue().." %")
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetScript("OnValueChanged", function()
-			if not (this:GetValue() == NecrosisConfig.NecrosisButtonScale) then
+			if not (NecrosisSphereSize:GetValue() == NecrosisConfig.NecrosisButtonScale) then
 				NecrosisButton:ClearAllPoints()
-				GameTooltip:SetText(this:GetValue().." %")
-				NecrosisConfig.NecrosisButtonScale = this:GetValue()
+				GameTooltip:SetText(NecrosisSphereSize:GetValue().." %")
+				NecrosisConfig.NecrosisButtonScale = NecrosisSphereSize:GetValue()
 				NecrosisButton:SetPoint("CENTER", "UIParent", "BOTTOMLEFT", NBx / (NecrosisConfig.NecrosisButtonScale / 100), NBy / (NecrosisConfig.NecrosisButtonScale / 100))
 				NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale / 100)
 				Necrosis:ButtonSetup()
@@ -142,8 +142,8 @@ function Necrosis:SetSphereConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisSphereConfig, "BOTTOMLEFT", 25, 200)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.ShowCount = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.ShowCount = self:GetChecked()
 			Necrosis:BagExplore()
 		end)
 
@@ -233,8 +233,8 @@ function Necrosis.Skin_Init()
 	end
 end
 
-function Necrosis.Skin_Click()
-	local ID = this:GetID()
+function Necrosis.Skin_Click(self)
+	local ID = self:GetID()
 	local couleur = {"Rose", "Bleu", "Orange", "Turquoise", "Violet", "666", "X"}
 	UIDropDownMenu_SetSelectedID(NecrosisSkinSelection, ID)
 	NecrosisConfig.NecrosisColor = couleur[ID]
@@ -254,8 +254,8 @@ function Necrosis.Event_Init()
 	end
 end
 
-function Necrosis.Event_Click()
-	local ID = this:GetID()
+function Necrosis.Event_Click(self)
+	local ID = self:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, ID)
 	NecrosisConfig.Circle = ID
 	Necrosis:UpdateHealth()
@@ -275,8 +275,8 @@ function Necrosis.Spell_Init()
 	end
 end
 
-function Necrosis.Spell_Click()
-	local ID = this:GetID()
+function Necrosis.Spell_Click(self)
+	local ID = self:GetID()
 	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 55}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, ID)
 	NecrosisConfig.MainSpell = spell[ID]
@@ -294,8 +294,8 @@ function Necrosis.Count_Init()
 	end
 end
 
-function Necrosis.Count_Click()
-	local ID = this:GetID()
+function Necrosis.Count_Click(self)
+	local ID = self:GetID()
 	UIDropDownMenu_SetSelectedID(NecrosisCountSelection, ID)
 	NecrosisConfig.CountType = ID
 	NecrosisShardCount:SetText("")

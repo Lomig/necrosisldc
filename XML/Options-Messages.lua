@@ -82,7 +82,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 395)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.NecrosisToolTip = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.NecrosisToolTip = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -100,8 +100,8 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 370)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.ChatType = not this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.ChatType = not self:GetChecked()
 			Necrosis:Msg(Necrosis.Config.Messages.Position)
 		end)
 
@@ -121,8 +121,8 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 330)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.ChatMsg = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.ChatMsg = self:GetChecked()
 			if not NecrosisConfig.ChatMsg then
 				NecrosisShortMessages:Disable()
 				NecrosisDemonMessages:Disable()
@@ -152,8 +152,8 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 305)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.SM = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.SM = self:GetChecked()
 			if NecrosisConfig.SM then
 				Necrosis.Speech.Rez = Necrosis.Speech.ShortMessage[1]
 				Necrosis.Speech.TP = Necrosis.Speech.ShortMessage[2]
@@ -183,7 +183,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 280)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.DemonSummon = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.DemonSummon = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -202,7 +202,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 255)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.SteedSummon = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.SteedSummon = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -221,7 +221,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 50, 230)
 		
-		frame:SetScript("OnClick", function() NecrosisConfig.RoSSummon = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.RoSSummon = self:GetChecked() end)
 		
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -240,8 +240,8 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 215)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.Sound = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.Sound = self:GetChecked()
 		end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
@@ -260,7 +260,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 190)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.AntiFearAlert = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.AntiFearAlert = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -278,7 +278,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 165)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.Banish = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.Banish = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -296,7 +296,7 @@ function Necrosis:SetMessagesConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMessagesConfig, "BOTTOMLEFT", 25, 140)
 
-		frame:SetScript("OnClick", function() NecrosisConfig.ShadowTranceAlert = this:GetChecked() end)
+		frame:SetScript("OnClick", function(self) NecrosisConfig.ShadowTranceAlert = self:GetChecked() end)
 
 		FontString = frame:CreateFontString(nil, nil, "GameFontNormalSmall")
 		FontString:Show()
@@ -384,8 +384,8 @@ function Necrosis.Language_Init()
 	end
 end
 
-function Necrosis.Language_Click()
-	local ID = this:GetID()
+function Necrosis.Language_Click(self)
+	local ID = self:GetID()
 
 	UIDropDownMenu_SetSelectedID(NecrosisLanguageSelection, ID)
 	if ID == 1 then

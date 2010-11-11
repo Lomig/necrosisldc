@@ -254,8 +254,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig, "BOTTOMLEFT", 25, 350)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.BlockedMenu = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.BlockedMenu = self:GetChecked()
 			if NecrosisConfig.BlockedMenu then
 				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
 				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
@@ -287,8 +287,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 325)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.AutomaticMenu = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.AutomaticMenu = self:GetChecked()
 			if not NecrosisConfig.AutomaticMenu then
 				if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Ferme") end
 				if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Ferme") end
@@ -313,8 +313,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig1, "BOTTOMLEFT", 25, 300)
 
-		frame:SetScript("OnClick", function()
-			NecrosisConfig.ClosingMenu = this:GetChecked()
+		frame:SetScript("OnClick", function(self)
+			NecrosisConfig.ClosingMenu = self:GetChecked()
 			Necrosis:CreateMenu()
 		end)
 
@@ -350,8 +350,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig2, "BOTTOMLEFT", 50, 325)
 
-		frame:SetScript("OnClick", function()
-			if this:GetChecked() then
+		frame:SetScript("OnClick", function(self)
+			if self:GetChecked() then
 				NecrosisConfig.BuffMenuPos.direction = -1
 			else
 				NecrosisConfig.BuffMenuPos.direction = 1
@@ -377,8 +377,8 @@ function Necrosis:SetMenusConfig()
 		frame:SetPoint("CENTER", NecrosisMenusConfig2, "BOTTOM", 50, 265)
 
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue().." %")
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue().." %")
 			if _G["NecrosisBuffMenu10"] then
 				NecrosisBuffMenu10:Show();
 				NecrosisBuffMenu10:ClearAllPoints();
@@ -390,9 +390,9 @@ function Necrosis:SetMenusConfig()
 			Necrosis:CreateMenu()
 		end)
 		frame:SetScript("OnValueChanged", function()
-			if not (this:GetValue() == NecrosisConfig.BanishScale) then
-				GameTooltip:SetText(this:GetValue().." %")
-				NecrosisConfig.BanishScale = this:GetValue()
+			if not (frame:GetValue() == NecrosisConfig.BanishScale) then
+				GameTooltip:SetText(frame:GetValue().." %")
+				NecrosisConfig.BanishScale = frame:GetValue()
 				if _G["NecrosisBuffMenu10"] then
 					NecrosisBuffMenu10:ClearAllPoints();
 					NecrosisBuffMenu10:SetScale(NecrosisConfig.BanishScale / 100);
@@ -419,8 +419,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -429,8 +429,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.BuffMenuDecalage.x = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.BuffMenuDecalage.x = frame:GetValue()
 			Necrosis:SetOfxy("Buff")
 		end)
 
@@ -453,8 +453,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -463,8 +463,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisBuffMenuButton"] then NecrosisBuffMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.BuffMenuDecalage.y = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.BuffMenuDecalage.y = frame:GetValue()
 			Necrosis:SetOfxy("Buff")
 		end)
 
@@ -496,8 +496,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig3, "BOTTOMLEFT", 50, 325)
 
-		frame:SetScript("OnClick", function()
-			if this:GetChecked() then
+		frame:SetScript("OnClick", function(self)
+			if self:GetChecked() then
 				NecrosisConfig.PetMenuPos.direction = -1
 			else
 				NecrosisConfig.PetMenuPos.direction = 1
@@ -527,8 +527,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -537,8 +537,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.PetMenuDecalage.x = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.PetMenuDecalage.x = frame:GetValue()
 			Necrosis:SetOfxy("Pet")
 		end)
 
@@ -561,8 +561,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -571,8 +571,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisPetMenuButton"] then NecrosisPetMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.PetMenuDecalage.y = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.PetMenuDecalage.y = frame:GetValue()
 			Necrosis:SetOfxy("Pet")
 		end)
 
@@ -604,8 +604,8 @@ function Necrosis:SetMenusConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisMenusConfig4, "BOTTOMLEFT", 50, 325)
 
-		frame:SetScript("OnClick", function()
-			if this:GetChecked() then
+		frame:SetScript("OnClick", function(self)
+			if self:GetChecked() then
 				NecrosisConfig.CurseMenuPos.direction = -1
 			else
 				NecrosisConfig.CurseMenuPos.direction = 1
@@ -635,8 +635,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -645,8 +645,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.CurseMenuDecalage.x = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.CurseMenuDecalage.x = frame:GetValue()
 			Necrosis:SetOfxy("Curse")
 		end)
 
@@ -669,8 +669,8 @@ function Necrosis:SetMenusConfig()
 			State = "Bloque"
 		end
 		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(frame:GetValue())
 			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", "Bloque") end
 
 		end)
@@ -679,8 +679,8 @@ function Necrosis:SetMenusConfig()
 			if _G["NecrosisCurseMenuButton"] then NecrosisCurseMenuButton:SetAttribute("state", State) end
 		end)
 		frame:SetScript("OnValueChanged", function()
-			GameTooltip:SetText(this:GetValue())
-			NecrosisConfig.CurseMenuDecalage.y = this:GetValue()
+			GameTooltip:SetText(frame:GetValue())
+			NecrosisConfig.CurseMenuDecalage.y = frame:GetValue()
 			Necrosis:SetOfxy("Curse")
 		end)
 
@@ -789,8 +789,8 @@ function Necrosis.BuffVector_Init()
 	end
 end
 
-function Necrosis.BuffVector_Click()
-	local ID = this:GetID()
+function Necrosis.BuffVector_Click(self)
+	local ID = self:GetID()
 
 	UIDropDownMenu_SetSelectedID(NecrosisBuffVector, ID)
 	if ID == 1 then
@@ -818,8 +818,8 @@ function Necrosis.DemonVector_Init()
 	end
 end
 
-function Necrosis.DemonVector_Click()
-	local ID = this:GetID()
+function Necrosis.DemonVector_Click(self)
+	local ID = self:GetID()
 
 	UIDropDownMenu_SetSelectedID(NecrosisDemonVector, ID)
 	if ID == 1 then
@@ -847,8 +847,8 @@ function Necrosis.CurseVector_Init()
 	end
 end
 
-function Necrosis.CurseVector_Click()
-	local ID = this:GetID()
+function Necrosis.CurseVector_Click(self)
+	local ID = self:GetID()
 
 	UIDropDownMenu_SetSelectedID(NecrosisCurseVector, ID)
 	if ID == 1 then
