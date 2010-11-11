@@ -178,17 +178,16 @@ Local.DefaultConfig = {
 		-- 9 = Enslave || Asservissement
 		-- 10 = Sacrifice
 		-- 11 = Demonic Empowerment || Renforcement
-	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, -9, 10},
+	BuffSpellPosition = {1, 2, 3, 4, 5, 6, 7, 8, 9},
 		-- 1 = Demon Armor || Armure
 		-- 2 = Fel Armor || Gangrarmure
 		-- 3 = Unending Breath || Respiration
-		-- 4 = Detect Invisibility || Invisibilité
-		-- 5 = Eye of Kilrogg
-		-- 6 = Ritual of Summoning || TP
-		-- 7 = Soul Link || Lien Spirituel
-		-- 8 = Shadow Ward || Protection contre l'ombre
-		-- 9 = Demonic Empowerment || Renforcement démoniaque --
-		-- 10 = Banish || Bannir
+		-- 4 = Eye of Kilrogg
+		-- 5 = Ritual of Summoning || TP
+		-- 6 = Soul Link || Lien Spirituel
+		-- 7 = Shadow Ward || Protection contre l'ombre
+		-- 8 = Demonic Empowerment || Renforcement démoniaque --
+		-- 9 = Banish || Bannir
 	NecrosisToolTip = true,
 
 	MainSpell = 41,
@@ -1155,8 +1154,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		end
 	elseif (Type == "FelArmor") then
 		GameTooltip:AddLine(self.Spell[47].Mana.." Mana")
-	elseif (Type == "Invisible") then
-		GameTooltip:AddLine(self.Spell[33].Mana.." Mana")
 	elseif (Type == "Aqua") then
 		GameTooltip:AddLine(self.Spell[32].Mana.." Mana")
 	elseif (Type == "Kilrogg") then
@@ -1681,10 +1678,10 @@ function Necrosis:UpdateMana(Metamorphose)
 		end
 
 		local BoutonNumber = new("array",
-			2, 3, 4, 5, 6, 11
+			2, 3, 5, 6, 11
 		)
 		local SortNumber = new("array",
-			47, 32, 33, 34, 37, 9
+			47, 32, 34, 37, 9
 		)
 		for i = 1, #SortNumber, 1 do
 			local f = _G["NecrosisBuffMenu"..BoutonNumber[i]]
@@ -2497,7 +2494,7 @@ function Necrosis:CreateMenu()
 	if NecrosisConfig.StonePosition[5] > 0 then
 		-- setup the buttons available on the buffs menu || On ordonne et on affiche les boutons dans le menu des buffs
 		local MenuID = new("array",
-			31, 47, 32, 33, 34, 37, 38, 43, 24, 9
+			31, 47, 32, 34, 37, 38, 43, 24, 9
 		)
 		for index = 1, #NecrosisConfig.BuffSpellPosition, 1 do
 			-- display the button if the spell is known || Si le buff existe, on affiche le bouton dans le menu des buffs

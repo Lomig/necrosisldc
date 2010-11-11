@@ -39,7 +39,12 @@ local _G = getfenv(0)
 
 local NECROSIS_COMPANIONS_PER_PAGE = 12;
 local NECROSIS_PAGE_NUMBER = "Page %s of %s";
-CompanionButton_OnLoad = function() end;
+
+-- Hack due to an unkown bug. THIS IS TO BE FIXED
+function CompanionButton_OnLoad(self)
+    self:RegisterForDrag("LeftButton");
+    self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+end
 
 ------------------------------------------------------------------------------------------------------
 -- CREATION DE LA FRAME DES OPTIONS

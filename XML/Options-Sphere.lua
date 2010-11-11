@@ -69,11 +69,11 @@ function Necrosis:SetSphereConfig()
 		frame:SetPoint("CENTER", NecrosisSphereConfig, "BOTTOMLEFT", 225, 400)
 
 		local NBx, NBy
-		frame:SetScript("OnEnter", function()
+		frame:SetScript("OnEnter", function(self)
 			NBx, NBy = NecrosisButton:GetCenter()
 			NBx = NBx * (NecrosisConfig.NecrosisButtonScale / 100)
 			NBy = NBy * (NecrosisConfig.NecrosisButtonScale / 100)
-			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 			GameTooltip:SetText(NecrosisSphereSize:GetValue().." %")
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)

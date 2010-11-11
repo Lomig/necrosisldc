@@ -185,14 +185,14 @@ function Necrosis:BuffSpellAttribute()
 	end
 
 	-- Buff menu buttons || Association des autres buffs aux boutons
-	-- 31=Demon Armor | 47=Fel Armor | 32=Unending Breath | 33=Detect Invis | 34=Eye of Kilrogg | 37=Ritual of Summoning | 38=Soul Link | 43=Shadow Ward | 35=Enslave Demon | 59=Demonic Empowerment | 9=Banish
-	local buffID = {31, 47, 32, 33, 34, 37, 38, 43, 59, 9}
+	-- 31=Demon Armor | 47=Fel Armor | 32=Unending Breath | 34=Eye of Kilrogg | 37=Ritual of Summoning | 38=Soul Link | 43=Shadow Ward | 35=Enslave Demon | 24=Demonic Empowerment | 9=Banish
+	local buffID = {31, 47, 32, 34, 37, 38, 43, 24, 9}
 	for i = 2, #buffID - 1, 1 do
 		local f = _G["NecrosisBuffMenu"..i]
 		if f then
 			f:SetAttribute("type", "spell")
 			-- Si le sort nécessite une cible, on lui en associe une
-			if not (i == 2 or i == 5 or i == 7 or i == 8 or i == 9 or i == 10) then
+			if (i == 3 or i == 8 or i == 10) then
 				f:SetAttribute("unit", "target")
 			end
 			f:SetAttribute("spell", self.Spell[ buffID[i] ].Name)
@@ -201,44 +201,20 @@ function Necrosis:BuffSpellAttribute()
 
 
 	-- Cas particulier : Bouton de Banish
-	if _G["NecrosisBuffMenu10"] then
+	if _G["NecrosisBuffMenu9"] then
 		local SpellName_Rank = self.Spell[9].Name
 
-		NecrosisBuffMenu10:SetAttribute("unit*", "target")				-- associate left & right clicks with target
-		NecrosisBuffMenu10:SetAttribute("ctrl-unit*", "focus") 		-- associate CTRL+left or right clicks with focus
+		NecrosisBuffMenu9:SetAttribute("unit*", "target")				-- associate left & right clicks with target
+		NecrosisBuffMenu9:SetAttribute("ctrl-unit*", "focus") 		-- associate CTRL+left or right clicks with focus
 
-		if self.Spell[9].Rank:find("1") then	-- the warlock can only do Banish(Rank 1) 
-			-- left & right click will perform the same macro
-			NecrosisBuffMenu10:SetAttribute("type*", "macro")
-			NecrosisBuffMenu10:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
+		-- left & right click will perform the same macro
+		NecrosisBuffMenu9:SetAttribute("type*", "macro")
+		NecrosisBuffMenu9:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
 
-			-- Si le démoniste control + click le bouton de banish || if the warlock uses ctrl-click then
-			-- On rebanish la dernière cible bannie || rebanish the previously banished target
-			NecrosisBuffMenu10:SetAttribute("ctrl-type*", "spell")
-			NecrosisBuffMenu10:SetAttribute("ctrl-spell*", SpellName_Rank)
-		end 
-
-		if self.Spell[9].Rank:find("2") then -- the warlock has Banish(rank 2)
-			local Rank1 = SpellName_Rank:gsub("2", "1")
-			
-			-- so lets use the "harmbutton" special attribute!
-			-- assign Banish(rank 2) to LEFT click 
-			NecrosisBuffMenu10:SetAttribute("harmbutton1", "banishrank2")
-			NecrosisBuffMenu10:SetAttribute("type-banishrank2", "macro")
-			NecrosisBuffMenu10:SetAttribute("macrotext-banishrank2", "/focus\n/cast "..SpellName_Rank)
-			
-			-- assign Banish(rank 1) to RIGHT click 
-			NecrosisBuffMenu10:SetAttribute("harmbutton2", "banishrank1")
-			NecrosisBuffMenu10:SetAttribute("type-banishrank1", "macro")
-			NecrosisBuffMenu10:SetAttribute("macrotext-banishrank1", "/focus\n/cast "..Rank1)
-
-			-- allow focused target to be rebanished with CTRL+LEFT or RIGHT click
-			NecrosisBuffMenu10:SetAttribute("ctrl-type1", "spell")
-			NecrosisBuffMenu10:SetAttribute("ctrl-spell1", SpellName_Rank)
-			NecrosisBuffMenu10:SetAttribute("ctrl-type2", "spell")
-			NecrosisBuffMenu10:SetAttribute("ctrl-spell2", Rank1)
-		end
-
+		-- Si le démoniste control + click le bouton de banish || if the warlock uses ctrl-click then
+		-- On rebanish la dernière cible bannie || rebanish the previously banished target
+		NecrosisBuffMenu9:SetAttribute("ctrl-type*", "spell")
+		NecrosisBuffMenu9:SetAttribute("ctrl-spell*", SpellName_Rank)
 	end
 end
 
@@ -264,7 +240,7 @@ function Necrosis:PetSpellAttribute()
 
 	-- Autres sorts démoniaques
 	local buttonID = {1, 7, 8, 9, 10, 11}
-	local BuffID = {15, 8, 30, 35, 44, 59}
+	local BuffID = {15, 8, 30, 35, 44, 24}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
