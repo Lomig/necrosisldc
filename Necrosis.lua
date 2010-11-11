@@ -1000,13 +1000,13 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, startMetamorphose, durationMetamorphose
 	if self.Spell[15].Name then
-		start, duration = GetSpellCooldown(self.Spell[15].Id, BOOKTYPE_SPELL)
+		start, duration = GetSpellCooldown(self.Spell[15].Id)
 	else
 		start = 1
 		duration = 1
 	end
 	if self.Spell[43].Name then
-		start2, duration2 = GetSpellCooldown(self.Spell[43].Id, BOOKTYPE_SPELL)
+		start2, duration2 = GetSpellCooldown(self.Spell[43].Id)
 		if not start2 then start2 = 1 end
 		if not duration2 then duration2 = 1 end
 	else
@@ -1014,13 +1014,13 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		duration2 = 1
 	end
 	if self.Spell[50].Name then
-		start3, duration3 = GetSpellCooldown(self.Spell[50].Id, BOOKTYPE_SPELL)
+		start3, duration3 = GetSpellCooldown(self.Spell[50].Id)
 	else
 		start3 = 1
 		duration3 = 1
 	end
 	if self.Spell[27].Name then
-		startMetamorphose, durationMetamorphose = GetSpellCooldown(self.Spell[27].Id, BOOKTYPE_SPELL)
+		startMetamorphose, durationMetamorphose = GetSpellCooldown(self.Spell[27].Id)
 	else
 		startMetamorphose = 1
 		durationMetamorphose = 1
