@@ -173,13 +173,13 @@ function Necrosis:BuffSpellAttribute()
 	-- Association de l'armure demoniaque si le sort est disponible
 	if _G["NecrosisBuffMenu1"] then
 		NecrosisBuffMenu1:SetAttribute("type", "spell")
-		if not self.Spell[31].ID then
+		if not self.Spell[31].Name then
 			NecrosisBuffMenu1:SetAttribute("spell",
-				self.Spell[36].Name.."("..self.Spell[36].Rank..")"
+				self.Spell[36].Name
 			)
 		else
 			NecrosisBuffMenu1:SetAttribute("spell",
-				self.Spell[31].Name.."("..self.Spell[31].Rank..")"
+				self.Spell[31].Name
 			)
 		end
 	end
@@ -195,18 +195,14 @@ function Necrosis:BuffSpellAttribute()
 			if not (i == 2 or i == 5 or i == 7 or i == 8 or i == 9 or i == 10) then
 				f:SetAttribute("unit", "target")
 			end
-			local SpellName_Rank = self.Spell[ buffID[i] ].Name
-			if self.Spell[ buffID[i] ].Rank and not (self.Spell[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..self.Spell[ buffID[i] ].Rank..")"
-			end
-			f:SetAttribute("spell", SpellName_Rank)
+			f:SetAttribute("spell", self.Spell[ buffID[i] ].Name)
 		end
 	end
 
 
 	-- Cas particulier : Bouton de Banish
 	if _G["NecrosisBuffMenu10"] then
-		local SpellName_Rank = self.Spell[9].Name.."("..self.Spell[9].Rank..")"
+		local SpellName_Rank = self.Spell[9].Name
 
 		NecrosisBuffMenu10:SetAttribute("unit*", "target")				-- associate left & right clicks with target
 		NecrosisBuffMenu10:SetAttribute("ctrl-unit*", "focus") 		-- associate CTRL+left or right clicks with focus
@@ -257,9 +253,6 @@ function Necrosis:PetSpellAttribute()
 		local f = _G["NecrosisPetMenu"..i]
 		if f then
 			local SpellName_Rank = self.Spell[i+1].Name
-			if self.Spell[i+1].Rank and not (self.Spell[i+1].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..self.Spell[i+1].Rank..")"
-			end
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
 			f:SetAttribute("spell", SpellName_Rank)
@@ -276,9 +269,6 @@ function Necrosis:PetSpellAttribute()
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f then
 			local SpellName_Rank = self.Spell[ BuffID[i] ].Name
-			if self.Spell[ BuffID[i] ].Rank and not (self.Spell[ BuffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..self.Spell[ BuffID[i] ].Rank..")"
-			end
 			f:SetAttribute("type", "spell")
 			f:SetAttribute("spell", SpellName_Rank)
 		end
@@ -296,9 +286,6 @@ function Necrosis:CurseSpellAttribute()
 		local f = _G["NecrosisCurseMenu"..i]
 		if f then
 			local SpellName_Rank = self.Spell[ buffID[i] ].Name
-			if self.Spell[ buffID[i] ].Rank and not (self.Spell[ buffID[i] ].Rank == " ") then
-				SpellName_Rank = SpellName_Rank.."("..self.Spell[ buffID[i] ].Rank..")"
-			end
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
@@ -321,7 +308,7 @@ function Necrosis:StoneAttribute(Steed)
 		local f = _G["Necrosis"..itemName[i].."Button"]
 		if f then
 			f:SetAttribute("type2", "spell")
-			f:SetAttribute("spell2", self.Spell[ buffID[i] ].Name.."("..self.Spell[ buffID[i] ].Rank..")")
+			f:SetAttribute("spell2", self.Spell[ buffID[i] ].Name)
 		end
 	end
 
@@ -334,7 +321,7 @@ function Necrosis:StoneAttribute(Steed)
 			local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount)
 			NecrosisMountButton:SetAttribute("spell1", leftMountName)
 		else
-			if (self.Spell[2].ID) then
+			if (self.Spell[2].Name) then
 				NecrosisMountButton:SetAttribute("spell1", self.Spell[2].Name)
 				NecrosisMountButton:SetAttribute("spell2", self.Spell[1].Name)
 			else
@@ -363,13 +350,13 @@ function Necrosis:StoneAttribute(Steed)
 
 	-- if the 'Ritual of Souls' spell is known, then associate it to the hearthstone shift-click.
 	-- Cas particulier : Si le sort du Rituel des âmes existe, on l'associe au shift+clic healthstone.
-	if _G["NecrosisHealthstoneButton"] and self.Spell[50].ID then
+	if _G["NecrosisHealthstoneButton"] and self.Spell[50].Name then
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisHealthstoneButton:SetAttribute("shift-spell*", self.Spell[50].Name)
 	end
 	
 	-- if the 'Ritual of Summoning' spell is known, then associate it to the soulstone shift-click.
-	if _G["NecrosisSoulstoneButton"] and self.Spell[37].ID then
+	if _G["NecrosisSoulstoneButton"] and self.Spell[37].Name then
 		NecrosisSoulstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisSoulstoneButton:SetAttribute("shift-spell*", self.Spell[37].Name)
 	end
@@ -387,7 +374,7 @@ function Necrosis:MainButtonAttribute()
 		end
 	end
 
-	if Necrosis.Spell[NecrosisConfig.MainSpell].ID then
+	if Necrosis.Spell[NecrosisConfig.MainSpell].Name then
 		NecrosisButton:SetAttribute("type1", "spell")
 		NecrosisButton:SetAttribute("spell", Necrosis.Spell[NecrosisConfig.MainSpell].Name)
 	end
@@ -542,7 +529,7 @@ function Necrosis:SoulstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSoulstoneButton:SetAttribute("type1", "spell")
-		NecrosisSoulstoneButton:SetAttribute("spell1", self.Spell[51].Name.."("..self.Spell[51].Rank..")")
+		NecrosisSoulstoneButton:SetAttribute("spell1", self.Spell[51].Name)
 		return
 	end
 
@@ -563,7 +550,7 @@ function Necrosis:HealthstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisHealthstoneButton:SetAttribute("type1", "spell")
-		NecrosisHealthstoneButton:SetAttribute("spell1", self.Spell[52].Name.."("..self.Spell[52].Rank..")")
+		NecrosisHealthstoneButton:SetAttribute("spell1", self.Spell[52].Name)
 		return
 	end
 
@@ -584,7 +571,7 @@ function Necrosis:SpellstoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisSpellstoneButton:SetAttribute("type1", "spell")
-		NecrosisSpellstoneButton:SetAttribute("spell*", self.Spell[53].Name.."("..self.Spell[53].Rank..")")
+		NecrosisSpellstoneButton:SetAttribute("spell*", self.Spell[53].Name)
 		return
 	end
 
@@ -602,7 +589,7 @@ function Necrosis:FirestoneUpdateAttribute(nostone)
 	-- Un clic gauche crée la pierre
 	if nostone then
 		NecrosisFirestoneButton:SetAttribute("type1", "spell")
-		NecrosisFirestoneButton:SetAttribute("spell*", self.Spell[54].Name.."("..self.Spell[54].Rank..")")
+		NecrosisFirestoneButton:SetAttribute("spell*", self.Spell[54].Name)
 		return
 	end
 
