@@ -21,7 +21,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -78,7 +78,7 @@ end
 
 
 -- Fonction pour relocaliser  automatiquemlent des éléments en fonction du client
-function Necrosis:SpellLocalize(tooltip) 
+function Necrosis:SpellLocalize(tooltip)
 
 	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Relocalisation des Sorts
@@ -135,12 +135,10 @@ function Necrosis:SpellLocalize(tooltip)
 			[48] = {Id = 47836,	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
 			[49] = {Id = 29858,	Length = 180,	Type = 3}, -- SoulShatter || Brise âme
 			[50] = {Id = 29893,	Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
-			[51] = {Id = 47884,	Length = 0,	Type = 0}, -- Create Soulstone || Création pierre d'âme
-			[52] = {Id = 47878,	Length = 0,	Type = 0}, -- Create Healthstone || Création pierre de soin
-			[53] = {Id = 47888,	Length = 0,	Type = 0}, -- Create Spellstone || Création pierre de sort
-			[54] = {Id = 60220,	Length = 0,	Type = 0}, -- Create Firestone || Création pierre de feu
-			[55] = {Id = 59092,	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
-			[56] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
+			[51] = {Id = 693,	Length = 0,	Type = 0}, -- Create Soulstone || Création pierre d'âme
+			[52] = {Id = 6201,	Length = 0,	Type = 0}, -- Create Healthstone || Création pierre de soin
+			[53] = {Id = 59092,	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
+			[54] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 		}
 		-- Type 0 = Pas de Timer || no timer
 		-- Type 1 = Timer permanent principal || Standing main timer
@@ -154,10 +152,10 @@ function Necrosis:SpellLocalize(tooltip)
 			self.Spell[i].Rank = " "
 		end
 	end
-	
+
 	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Relocalisation des Tooltips
-	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- stones || Pierres
 	local buttonTooltip = new("array",
 		"Soulstone",
@@ -176,7 +174,7 @@ function Necrosis:SpellLocalize(tooltip)
 	end
 	del(buttonTooltip)
 	del(colorCode)
-	
+
 	-- Buffs
 	local buttonTooltip = new("array",
 		"Domination",
@@ -204,7 +202,7 @@ function Necrosis:SpellLocalize(tooltip)
 	del(buttonTooltip)
 	del(colorCode)
 	del(buttonName)
-	
+
 	-- Demons
 	local buttonTooltip = new("array",
 		"Sacrifice",
@@ -227,7 +225,7 @@ function Necrosis:SpellLocalize(tooltip)
 	del(buttonTooltip)
 	del(colorCode)
 	del(buttonName)
-	
+
 	-- Curses || Malédiction
 	local buttonTooltip = new("array",
 		"Weakness",
