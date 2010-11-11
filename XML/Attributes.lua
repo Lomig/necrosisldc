@@ -189,7 +189,7 @@ function Necrosis:BuffSpellAttribute()
 	local buffID = {31, 47, 32, 34, 37, 38, 43, 24, 9}
 	for i = 2, #buffID - 1, 1 do
 		local f = _G["NecrosisBuffMenu"..i]
-		if f then
+		if f and self.Spell[ buffID[i] ].Name then
 			f:SetAttribute("type", "spell")
 			-- Si le sort nécessite une cible, on lui en associe une
 			if (i == 3 or i == 8 or i == 10) then
@@ -201,7 +201,7 @@ function Necrosis:BuffSpellAttribute()
 
 
 	-- Cas particulier : Bouton de Banish
-	if _G["NecrosisBuffMenu9"] then
+	if _G["NecrosisBuffMenu9"] and self.Spell[9].Name then
 		local SpellName_Rank = self.Spell[9].Name
 
 		NecrosisBuffMenu9:SetAttribute("unit*", "target")				-- associate left & right clicks with target
@@ -227,7 +227,7 @@ function Necrosis:PetSpellAttribute()
 	-- Démons maitrisés
 	for i = 2, 6, 1 do
 		local f = _G["NecrosisPetMenu"..i]
-		if f then
+		if f and self.Spell[i+1].Name then
 			local SpellName_Rank = self.Spell[i+1].Name
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
@@ -243,7 +243,7 @@ function Necrosis:PetSpellAttribute()
 	local BuffID = {15, 8, 30, 35, 44, 24}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
-		if f then
+		if f and self.Spell[ BuffID[i] ].Name then
 			local SpellName_Rank = self.Spell[ BuffID[i] ].Name
 			f:SetAttribute("type", "spell")
 			f:SetAttribute("spell", SpellName_Rank)
@@ -260,7 +260,7 @@ function Necrosis:CurseSpellAttribute()
 	local buffID = {23, 22, 25, 40, 26, 16, 14}
 	for i = 1, #buffID, 1 do
 		local f = _G["NecrosisCurseMenu"..i]
-		if f then
+		if f and self.Spell[ buffID[i] ].Name then
 			local SpellName_Rank = self.Spell[ buffID[i] ].Name
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
@@ -282,7 +282,7 @@ function Necrosis:StoneAttribute(Steed)
 	local buffID = {51,52,53,54}
 	for i = 1, #itemName, 1 do
 		local f = _G["Necrosis"..itemName[i].."Button"]
-		if f then
+		if f and self.Spell[ buffID[i] ].Name then
 			f:SetAttribute("type2", "spell")
 			f:SetAttribute("spell2", self.Spell[ buffID[i] ].Name)
 		end
