@@ -257,7 +257,7 @@ function Necrosis:PetSpellAttribute()
 			f:SetAttribute("type2", "macro")
 			f:SetAttribute("spell", SpellName_Rank)
 			f:SetAttribute("macrotext",
-				"/cast "..self.Spell[15].Name.."\n/stopcasting\n/cast "..SpellName_Rank
+				"/cast "..GetSpellInfo(18708).."\n/stopcasting\n/cast "..SpellName_Rank
 			)
 		end
 	end
