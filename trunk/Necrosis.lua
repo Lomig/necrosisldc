@@ -1492,7 +1492,7 @@ function Necrosis:UpdateMana(Metamorphose)
 
 	-- Si cooldown de domination corrompue on grise
 	if _G["NecrosisPetMenu1"] and self.Spell[15].Name and not Local.BuffActif.Domination then
-		local start, duration = GetSpellCooldown(self.Spell[15].Id, "spell")
+		local start, duration = GetSpellCooldown(self.Spell[15].Id)
 		if start > 0 and duration > 0 then
 			if not Local.Desatured["Domination"] then
 				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(1)
@@ -1508,7 +1508,7 @@ function Necrosis:UpdateMana(Metamorphose)
 	
 	-- Si cooldown de métamorphose, on grise
 	if _G["NecrosisMetamorphosisButton"] and self.Spell[27].Name then
-		local start, duration = GetSpellCooldown(self.Spell[27].Id, "spell")
+		local start, duration = GetSpellCooldown(self.Spell[27].Id)
 		if not Metamorphose and (start > 0 and duration > 0) then
 			if not Local.Desatured["Metamorphose"] then
 				NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(1)
@@ -1524,7 +1524,7 @@ function Necrosis:UpdateMana(Metamorphose)
 
 	-- Si cooldown de gardien de l'ombre on grise
 	if _G["NecrosisBuffMenu8"] and self.Spell[43].Name then
-		local start, duration = GetSpellCooldown(self.Spell[43].Id, "spell")
+		local start, duration = GetSpellCooldown(self.Spell[43].Id)
 		if self.Spell[43].Mana > mana and start > 0 and duration > 0 then
 			if not Local.Desatured["Gardien"] then
 				NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(1)
