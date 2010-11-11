@@ -85,62 +85,62 @@ function Necrosis:SpellLocalize(tooltip)
 	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	if not tooltip then
 		self.Spell = {
-			[1] = {Id = 5784,	Name = GetSpellInfo(5784), 	Length = 0,	Type = 0}, -- Felsteed
-			[2] = {Id = 23161,	Name = GetSpellInfo(23161), 	Length = 0,	Type = 0}, -- Dreadsteed
-			[3] = {Id = 688,	Name = GetSpellInfo(688), 	Length = 0,	Type = 0}, -- Imp || Diablotin
-			[4] = {Id = 697,	Name = GetSpellInfo(697),	Length = 0,	Type = 0}, -- Voidwalker || Marcheur
-			[5] = {Id = 712,	Name = GetSpellInfo(712),	Length = 0,	Type = 0}, -- Succubus || Succube
-			[6] = {Id = 691,	Name = GetSpellInfo(691),	Length = 0,	Type = 0}, -- Fellhunter
-			[7] = {Id = 30146,	Name = GetSpellInfo(30146),	Length = 0,	Type = 0}, -- Felguard
-			[8] = {Id = 1122,	Name = GetSpellInfo(1122),	Length = 600,	Type = 3}, -- Infernal
-			[9] = {Id = 710,	Name = GetSpellInfo(710),	Length = 30,	Type = 2}, -- Banish
-			[10] = {Id = 1098,	Name = GetSpellInfo(1098),	Length = 300,	Type = 2}, -- Enslave
-			[11] = {Id = 27239,	Name = GetSpellInfo(27239),	Length = 900,	Type = 1}, -- Soulstone Resurrection || Résurrection de pierre d'ame
-			[12] = {Id = 47811,	Name = GetSpellInfo(47811),	Length = 15,	Type = 6}, -- Immolate
-			[13] = {Id = 6215,	Name = GetSpellInfo(6215),	Length = 20,	Type = 6}, -- Fear
-			[14] = {Id = 172,	Name = GetSpellInfo(172),	Length = 18,	Type = 5}, -- Corruption
-			[15] = {Id = 18708,	Name = GetSpellInfo(18708),	Length = 180,	Type = 3}, -- Fel Domination || Domination corrompue
-			[16] = {Id = 603,	Name = GetSpellInfo(603),	Length = 60,	Type = 3}, -- Bane of Doom || Plaie funeste
-			[17] = {Id = 47847,	Name = GetSpellInfo(47847),	Length = 20,	Type = 3}, -- Shadowfury || Furie de l'ombre
-			[18] = {Id = 47825,	Name = GetSpellInfo(47825),	Length = 60,	Type = 3}, -- Soul Fire || Feu de l'âme
-			[19] = {Id = 47860,	Name = GetSpellInfo(47860),	Length = 120,	Type = 3}, -- Death Coil || Voile mortel
-			[20] = {Id = 47827,	Name = GetSpellInfo(47827),	Length = 15,	Type = 3}, -- Shadowburn || Brûlure de l'ombre
-			[21] = {Id = 17962,	Name = GetSpellInfo(17962),	Length = 10,	Type = 3}, -- Conflagration
-			[22] = {Id = 980,	Name = GetSpellInfo(980),	Length = 24,	Type = 4}, -- Bane of Agony || Plaie Agonie
-			[23] = {Id = 702,	Name = GetSpellInfo(702),	Length = 120,	Type = 4}, -- Curse of Weakness || Malédiction Faiblesse
-			[24] = {Id = 47193,	Name = GetSpellInfo(47193),	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
-			[25] = {Id = 1714,	Name = GetSpellInfo(1714),	Length = 30,	Type = 4}, -- Curse of Tongues || Malédiction Langage
-			[26] = {Id = 1490,	Name = GetSpellInfo(1490),	Length = 300,	Type = 4}, -- Curse of the Elements || Malédiction Eléments
-			[27] = {Id = 59673,	Name = GetSpellInfo(59673),	Length = 180,	Type = 3}, -- Metamorphosis || Metamorphose
-			[28] = {Id = 47862,	Name = GetSpellInfo(47862),	Length = 30,	Type = 6}, -- Siphon Life || Syphon de vie
-			[29] = {Id = 17928,	Name = GetSpellInfo(17928),	Length = 40,	Type = 3}, -- Howl of Terror || Hurlement de terreur
-			[30] = {Id = 18540,	Name = GetSpellInfo(18540),	Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
-			[31] = {Id = 687,	Name = GetSpellInfo(687),	Length = 0,	Type = 0}, -- Demon Armor || Armure démoniaque
-			[32] = {Id = 5697,	Name = GetSpellInfo(5697),	Length = 600,	Type = 2}, -- Unending Breath || Respiration interminable
-			[33] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Bond démoniaque
-			[34] = {Id = 126,	Name = GetSpellInfo(126),	Length = 0,	Type = 0}, -- Eye of Kilrogg
-			[35] = {Id = 1098,	Name = GetSpellInfo(1098),	Length = 0,	Type = 0}, -- Enslave Demon
-			[36] = {Id = 696,	Name = GetSpellInfo(696),	Length = 0,	Type = 0}, -- Demon Skin || Peau de démon
-			[37] = {Id = 698,	Name = GetSpellInfo(698),	Length = 120,	Type = 3}, -- Ritual of Summoning || Rituel d'invocation
-			[38] = {Id = 19028,	Name = GetSpellInfo(19028),	Length = 0,	Type = 0}, -- Soul Link || Lien spirituel
-			[39] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Demon Charge || Charge démoniaque
-			[40] = {Id = 18223,	Name = GetSpellInfo(18223),	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction de fatigue
-			[41] = {Id = 57946,	Name = GetSpellInfo(57946),	Length = 40,	Type = 2}, -- Life Tap || Connexion
-			[42] = {Id = 59164,	Name = GetSpellInfo(59164),	Length = 12,	Type = 2}, -- Haunt || Hanter
-			[43] = {Id = 6229,	Name = GetSpellInfo(6229),	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
-			[44] = {Id = 18788,	Name = GetSpellInfo(18788),	Length = 60,	Type = 3}, -- Sacrifice || Sacrifice démoniaque
-			[45] = {Id = 47809,	Name = GetSpellInfo(47809),	Length = 0,	Type = 0}, -- Shadow Bolt
-			[46] = {Id = 47843,	Name = GetSpellInfo(47843),	Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
-			[47] = {Id = 28176,	Name = GetSpellInfo(28176),	Length = 0,	Type = 0}, -- Fel Armor || Gangrarmure
-			[48] = {Id = 47836,	Name = GetSpellInfo(47836),	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
-			[49] = {Id = 29858,	Name = GetSpellInfo(29858),	Length = 180,	Type = 3}, -- SoulShatter || Brise âme
-			[50] = {Id = 29893,	Name = GetSpellInfo(29893),	Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
-			[51] = {Id = 47884,	Name = GetSpellInfo(47884),	Length = 0,	Type = 0}, -- Create Soulstone || Création pierre d'âme
-			[52] = {Id = 47878,	Name = GetSpellInfo(47878),	Length = 0,	Type = 0}, -- Create Healthstone || Création pierre de soin
-			[53] = {Id = 47888,	Name = GetSpellInfo(47888),	Length = 0,	Type = 0}, -- Create Spellstone || Création pierre de sort
-			[54] = {Id = 60220,	Name = GetSpellInfo(60220),	Length = 0,	Type = 0}, -- Create Firestone || Création pierre de feu
-			[55] = {Id = 59092,	Name = GetSpellInfo(59092),	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
-			[56] = {Id = 50589,	Name = GetSpellInfo(50589),	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
+			[1] = {Id = 5784,	Length = 0,	Type = 0}, -- Felsteed
+			[2] = {Id = 23161,	Length = 0,	Type = 0}, -- Dreadsteed
+			[3] = {Id = 688,	Length = 0,	Type = 0}, -- Imp || Diablotin
+			[4] = {Id = 697,	Length = 0,	Type = 0}, -- Voidwalker || Marcheur
+			[5] = {Id = 712,	Length = 0,	Type = 0}, -- Succubus || Succube
+			[6] = {Id = 691,	Length = 0,	Type = 0}, -- Fellhunter
+			[7] = {Id = 30146,	Length = 0,	Type = 0}, -- Felguard
+			[8] = {Id = 1122,	Length = 600,	Type = 3}, -- Infernal
+			[9] = {Id = 710,	Length = 30,	Type = 2}, -- Banish
+			[10] = {Id = 1098,	Length = 300,	Type = 2}, -- Enslave
+			[11] = {Id = 27239,	Length = 900,	Type = 1}, -- Soulstone Resurrection || Résurrection de pierre d'ame
+			[12] = {Id = 47811,	Length = 15,	Type = 6}, -- Immolate
+			[13] = {Id = 6215,	Length = 20,	Type = 6}, -- Fear
+			[14] = {Id = 172,	Length = 18,	Type = 5}, -- Corruption
+			[15] = {Id = 18708,	Length = 180,	Type = 3}, -- Fel Domination || Domination corrompue
+			[16] = {Id = 603,	Length = 60,	Type = 3}, -- Bane of Doom || Plaie funeste
+			[17] = {Id = 47847,	Length = 20,	Type = 3}, -- Shadowfury || Furie de l'ombre
+			[18] = {Id = 47825,	Length = 60,	Type = 3}, -- Soul Fire || Feu de l'âme
+			[19] = {Id = 47860,	Length = 120,	Type = 3}, -- Death Coil || Voile mortel
+			[20] = {Id = 47827,	Length = 15,	Type = 3}, -- Shadowburn || Brûlure de l'ombre
+			[21] = {Id = 17962,	Length = 10,	Type = 3}, -- Conflagration
+			[22] = {Id = 980,	Length = 24,	Type = 4}, -- Bane of Agony || Plaie Agonie
+			[23] = {Id = 702,	Length = 120,	Type = 4}, -- Curse of Weakness || Malédiction Faiblesse
+			[24] = {Id = 47193,	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
+			[25] = {Id = 1714,	Length = 30,	Type = 4}, -- Curse of Tongues || Malédiction Langage
+			[26] = {Id = 1490,	Length = 300,	Type = 4}, -- Curse of the Elements || Malédiction Eléments
+			[27] = {Id = 59673,	Length = 180,	Type = 3}, -- Metamorphosis || Metamorphose
+			[28] = {Id = 47862,	Length = 30,	Type = 6}, -- Siphon Life || Syphon de vie
+			[29] = {Id = 17928,	Length = 40,	Type = 3}, -- Howl of Terror || Hurlement de terreur
+			[30] = {Id = 18540,	Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
+			[31] = {Id = 687,	Length = 0,	Type = 0}, -- Demon Armor || Armure démoniaque
+			[32] = {Id = 5697,	Length = 600,	Type = 2}, -- Unending Breath || Respiration interminable
+			[33] = {Id = 54785,	Length = 45,	Type = 3}, -- Bond démoniaque
+			[34] = {Id = 126,	Length = 0,	Type = 0}, -- Eye of Kilrogg
+			[35] = {Id = 1098,	Length = 0,	Type = 0}, -- Enslave Demon
+			[36] = {Id = 696,	Length = 0,	Type = 0}, -- Demon Skin || Peau de démon
+			[37] = {Id = 698,	Length = 120,	Type = 3}, -- Ritual of Summoning || Rituel d'invocation
+			[38] = {Id = 19028,	Length = 0,	Type = 0}, -- Soul Link || Lien spirituel
+			[39] = {Id = 54785,	Length = 45,	Type = 3}, -- Demon Charge || Charge démoniaque
+			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction de fatigue
+			[41] = {Id = 57946,	Length = 40,	Type = 2}, -- Life Tap || Connexion
+			[42] = {Id = 59164,	Length = 12,	Type = 2}, -- Haunt || Hanter
+			[43] = {Id = 6229,	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
+			[44] = {Id = 18788,	Length = 60,	Type = 3}, -- Sacrifice || Sacrifice démoniaque
+			[45] = {Id = 47809,	Length = 0,	Type = 0}, -- Shadow Bolt
+			[46] = {Id = 47843,	Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
+			[47] = {Id = 28176,	Length = 0,	Type = 0}, -- Fel Armor || Gangrarmure
+			[48] = {Id = 47836,	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
+			[49] = {Id = 29858,	Length = 180,	Type = 3}, -- SoulShatter || Brise âme
+			[50] = {Id = 29893,	Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
+			[51] = {Id = 47884,	Length = 0,	Type = 0}, -- Create Soulstone || Création pierre d'âme
+			[52] = {Id = 47878,	Length = 0,	Type = 0}, -- Create Healthstone || Création pierre de soin
+			[53] = {Id = 47888,	Length = 0,	Type = 0}, -- Create Spellstone || Création pierre de sort
+			[54] = {Id = 60220,	Length = 0,	Type = 0}, -- Create Firestone || Création pierre de feu
+			[55] = {Id = 59092,	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
+			[56] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 		}
 		-- Type 0 = Pas de Timer || no timer
 		-- Type 1 = Timer permanent principal || Standing main timer
