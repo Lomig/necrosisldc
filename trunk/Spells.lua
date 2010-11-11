@@ -117,7 +117,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[30] = {Id = 18540,	Name = GetSpellInfo(18540),	Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
 			[31] = {Id = 687,	Name = GetSpellInfo(687),	Length = 0,	Type = 0}, -- Demon Armor || Armure démoniaque
 			[32] = {Id = 5697,	Name = GetSpellInfo(5697),	Length = 600,	Type = 2}, -- Unending Breath || Respiration interminable
-			[33] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Bon démoniaque
+			[33] = {Id = 54785,	Name = GetSpellInfo(54785),	Length = 45,	Type = 3}, -- Bond démoniaque
 			[34] = {Id = 126,	Name = GetSpellInfo(126),	Length = 0,	Type = 0}, -- Eye of Kilrogg
 			[35] = {Id = 1098,	Name = GetSpellInfo(1098),	Length = 0,	Type = 0}, -- Enslave Demon
 			[36] = {Id = 696,	Name = GetSpellInfo(696),	Length = 0,	Type = 0}, -- Demon Skin || Peau de démon
