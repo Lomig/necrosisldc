@@ -49,36 +49,36 @@ function Necrosis:BindName()
 	_G["BINDING_HEADER_Necrosis"] = "Necrosis LdC"
 
 	-- La Sphere
-	_G["BINDING_NAME_CLICK NecrosisButton:LeftButton"] = self.Spell[NecrosisConfig.MainSpell].Name
+	_G["BINDING_NAME_CLICK NecrosisButton:LeftButton"] = GetSpellInfo(self.Spell[NecrosisConfig.MainSpell].Id)
 
 	-- mounts || Le Cheval
 	if (NecrosisConfig.LeftMount) then
 		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = GetSpellInfo(NecrosisConfig.LeftMount)
 	else
-		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = self.Spell[1].Name
+		_G["BINDING_NAME_CLICK NecrosisMountButton:LeftButton"] = GetSpellInfo(self.Spell[1].Id)
 	end
 	
 	if (NecrosisConfig.RightMount) then
 		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = GetSpellInfo(NecrosisConfig.RightMount)
 	else
-		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = self.Spell[2].Name
+		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = GetSpellInfo(self.Spell[2].Id)
 	end
 
 	-- La Pierre de feu
-	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:RightButton"] = self.Spell[54].Name
+	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:RightButton"] = GetSpellInfo(self.Spell[54].Id)
 	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:LeftButton"] = self.Translation.Item.Firestone
 
 	--La Pierre de sort
-	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:RightButton"] = self.Spell[53].Name
+	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:RightButton"] = GetSpellInfo(self.Spell[53].Id)
 	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:LeftButton"] = self.Translation.Item.Spellstone
 
 	--La Pierre de soin
-	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:RightButton"] = self.Spell[52].Name
+	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:RightButton"] = GetSpellInfo(self.Spell[52].Id)
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:LeftButton"] = self.Translation.Item.Healthstone.." - "..self.Localize["Utilisation"]
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:MiddleButton"] = self.Translation.Item.Healthstone.." - "..self.Localize["Echange"]
 
 	-- La Pierre de sort
-	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = self.Spell[51].Name
+	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = GetSpellInfo(self.Spell[51].Id)
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:LeftButton"] = self.Translation.Item.Soulstone
 	
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -98,11 +98,11 @@ function Necrosis:BindName()
 	                43, -- shadow ward
 	                24} -- demonic empowerment
 	for i = 1, #buffID, 1 do
-		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
+		_G["BINDING_NAME_CLICK NecrosisBuffMenu"..i..":LeftButton"] = GetSpellInfo(self.Spell[ buffID[i] ].Id)
 	end
 	
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:LeftButton"] = self.Spell[9].Name
-	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:RightButton"] = self.Spell[9].Name.." ("..self.Translation.Misc["Rank"].." 1)"
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:LeftButton"] = GetSpellInfo(self.Spell[9].Id)
+	_G["BINDING_NAME_CLICK NecrosisBuffMenu10:RightButton"] = GetSpellInfo(self.Spell[9].Id).." ("..self.Translation.Misc["Rank"].." 1)"
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- Troisième section
@@ -113,7 +113,7 @@ function Necrosis:BindName()
 	_G["BINDING_NAME_CLICK NecrosisPetMenuButton:LeftButton"] = self.Config.Menus["Menu des Demons"]
 	
 	for i = 2, 6, 1 do
-		_G["BINDING_NAME_CLICK NecrosisPetMenu"..i..":LeftButton"] = self.Spell[i+1].Name
+		_G["BINDING_NAME_CLICK NecrosisPetMenu"..i..":LeftButton"] = GetSpellInfo(self.Spell[i+1].Id)
 	end
 	
 	local buttonID = {1, 7, 8, 9, 10}
@@ -123,7 +123,7 @@ function Necrosis:BindName()
 	                35, -- enslave demon
 	                44} -- demonic sacrifice
 	for i = 1, #buttonID, 1 do
-		_G["BINDING_NAME_CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"] = self.Spell[ BuffID[i] ].Name
+		_G["BINDING_NAME_CLICK NecrosisPetMenu"..buttonID[i]..":LeftButton"] = GetSpellInfo(self.Spell[ BuffID[i] ].Id)
 	end
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ function Necrosis:BindName()
 	                16, -- curse of doom
 	                14} -- corruption
 	for i = 1, #buffID, 1 do
-		_G["BINDING_NAME_CLICK NecrosisCurseMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
+		_G["BINDING_NAME_CLICK NecrosisCurseMenu"..i..":LeftButton"] = GetSpellInfo(self.Spell[ buffID[i] ].Id)
 	end
 
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -151,14 +151,14 @@ function Necrosis:BindName()
 	-------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	-- Le Titre
-	_G["BINDING_HEADER_NecrosisMetamorphosis"] = "Necrosis - "..self.Spell[27].Name
+	_G["BINDING_HEADER_NecrosisMetamorphosis"] = "Necrosis - "..GetSpellInfo(self.Spell[27].Id)
 	
-	_G["BINDING_NAME_CLICK NecrosisMetamorphosisButton:LeftButton"] = self.Spell[27].Name
+	_G["BINDING_NAME_CLICK NecrosisMetamorphosisButton:LeftButton"] = GetSpellInfo(self.Spell[27].Id)
 	
 	local buffID = {39, -- Demon charge
 			24, -- Demonic Empowerment
 			33} -- Bon démoniaque
 	for i = 1, #buffID, 1 do
-		_G["BINDING_NAME_CLICK NecrosisMetamorphosisMenu"..i..":LeftButton"] = self.Spell[ buffID[i] ].Name
+		_G["BINDING_NAME_CLICK NecrosisMetamorphosisMenu"..i..":LeftButton"] = GetSpellInfo(self.Spell[ buffID[i] ].Id)
 	end
 end
