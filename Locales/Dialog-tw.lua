@@ -21,7 +21,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -46,7 +46,7 @@ function Necrosis:Localization_Dialog_Tw()
 	end
 
 	self.HealthstoneCooldown = "治療石冷卻時間"
-	
+
 	self.Localize = {
 		["Utilisation"] = "使用",
 		["Echange"] = "交易",
@@ -244,8 +244,6 @@ function Necrosis:Localization_Dialog_Tw()
 		["Monture - Clic droit"] = "坐騎 - 右鍵",
 	}
 	self.Config.Buttons.Name = {
-		"顯示火焰石按鈕",
-		"顯示法術石按鈕",
 		"顯示治療石按鈕",
 		"顯示靈魂石按鈕",
 		"顯示法術功能表按鈕",

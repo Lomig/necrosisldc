@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -45,7 +45,7 @@ function Necrosis:Localization_Dialog_De()
 	end
 
 	self.HealthstoneCooldown = "Gesundheitsstein Cooldown"
-	
+
 	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
@@ -246,8 +246,6 @@ function Necrosis:Localization_Dialog_De()
 		["Monture - Clic droit"] = "Right click",
 	}
 	self.Config.Buttons.Name = {
-		"Zeige den Feuerstein Button",
-		"Zeige den Zauberstein Button",
 		"Zeige den Gesundheitsstein Button",
 		"Zeige den Seelenstein Button",
 		"Zeige den Spruch Men\195\188 Button",
