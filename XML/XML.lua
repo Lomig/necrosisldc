@@ -143,8 +143,8 @@ function Necrosis:CreateWarlockUI()
 	frame:Show()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEvent", function() Necrosis:OnEvent(event) end)
-	frame:SetScript("OnUpdate", function() Necrosis:OnUpdate(arg1) end)
+	frame:SetScript("OnEvent", function() Necrosis:OnEvent(self, event, ...) end)
+	frame:SetScript("OnUpdate", function() Necrosis:OnUpdate(self, arg1, ...) end)
 	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(this, "Main", "ANCHOR_LEFT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(this) end)

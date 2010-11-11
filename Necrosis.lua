@@ -370,7 +370,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Fonction lancée à la mise à jour de l'interface (main) -- toutes les 0,1 secondes environ
-function Necrosis:OnUpdate(elapsed)
+function Necrosis:OnUpdate(self, elapsed)
 	Local.LastUpdate[1] = Local.LastUpdate[1] + elapsed
 	Local.LastUpdate[2] = Local.LastUpdate[2] + elapsed
 
