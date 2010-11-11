@@ -166,8 +166,8 @@ function Necrosis:SetButtonsConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("LEFT", NecrosisButtonsConfig1, "BOTTOMLEFT", 25, 395)
 
-		frame:SetScript("OnClick", function()
-			if (this:GetChecked()) then
+		frame:SetScript("OnClick", function(self)
+			if (self:GetChecked()) then
 				NecrosisConfig.NecrosisLockServ = true
 				Necrosis:ClearAllPoints()
 				Necrosis:ButtonSetup()
@@ -229,8 +229,8 @@ function Necrosis:SetButtonsConfig()
 			frame:ClearAllPoints()
 			frame:SetPoint("LEFT", NecrosisButtonsConfig1, "BOTTOMLEFT", 25, initY - (25 * i))
 
-			frame:SetScript("OnClick", function()
-				if (this:GetChecked()) then
+			frame:SetScript("OnClick", function(self)
+				if (self:GetChecked()) then
 					NecrosisConfig.StonePosition[i] = math.abs(NecrosisConfig.StonePosition[i])
 				else
 					NecrosisConfig.StonePosition[i] = - math.abs(NecrosisConfig.StonePosition[i])
@@ -259,14 +259,14 @@ function Necrosis:SetButtonsConfig()
 		frame:ClearAllPoints()
 		frame:SetPoint("CENTER", NecrosisButtonsConfig2, "BOTTOMLEFT", 225, 380)
 
-		frame:SetScript("OnEnter", function()
-			GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-			GameTooltip:SetText(this:GetValue())
+		frame:SetScript("OnEnter", function(self)
+			GameTooltip:SetOwner(frame, "ANCHOR_RIGHT")
+			GameTooltip:SetText(self:GetValue())
 		end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-		frame:SetScript("OnValueChanged", function()
-			NecrosisConfig.NecrosisAngle = this:GetValue()
-			GameTooltip:SetText(this:GetValue())
+		frame:SetScript("OnValueChanged", function(self)
+			NecrosisConfig.NecrosisAngle = self:GetValue()
+			GameTooltip:SetText(self:GetValue())
 			Necrosis:ButtonSetup()
 		end)
 
