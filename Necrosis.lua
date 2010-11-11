@@ -2168,6 +2168,7 @@ function Necrosis:SpellSetup()
 				end
 			end
 		end
+		spellSlot = spellSlote + 1
 	end
 
 
