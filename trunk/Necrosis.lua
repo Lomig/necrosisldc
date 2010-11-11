@@ -583,7 +583,7 @@ function Necrosis:OnEvent(frame, event, ...)
 	-- Si le Démoniste apprend un nouveau sort de buff ou d'invocation, on recrée les boutons
 	elseif (event == "LEARNED_SPELL_IN_TAB") then
 		for index in ipairs(self.Spell) do
-			self.Spell[index].ID = nil
+			self.Spell[index].Name = nil
 		end
 		self:SpellSetup()
 		self:CreateMenu()
@@ -999,28 +999,28 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, startMetamorphose, durationMetamorphose
-	if self.Spell[15].ID then
-		start, duration = GetSpellCooldown(self.Spell[15].ID, BOOKTYPE_SPELL)
+	if self.Spell[15].Name then
+		start, duration = GetSpellCooldown(self.Spell[15].Id, BOOKTYPE_SPELL)
 	else
 		start = 1
 		duration = 1
 	end
-	if self.Spell[43].ID then
-		start2, duration2 = GetSpellCooldown(self.Spell[43].ID, BOOKTYPE_SPELL)
+	if self.Spell[43].Name then
+		start2, duration2 = GetSpellCooldown(self.Spell[43].Id, BOOKTYPE_SPELL)
 		if not start2 then start2 = 1 end
 		if not duration2 then duration2 = 1 end
 	else
 		start2 = 1
 		duration2 = 1
 	end
-	if self.Spell[50].ID then
-		start3, duration3 = GetSpellCooldown(self.Spell[50].ID, BOOKTYPE_SPELL)
+	if self.Spell[50].Name then
+		start3, duration3 = GetSpellCooldown(self.Spell[50].Id, BOOKTYPE_SPELL)
 	else
 		start3 = 1
 		duration3 = 1
 	end
-	if self.Spell[27].ID then
-		startMetamorphose, durationMetamorphose = GetSpellCooldown(self.Spell[27].ID, BOOKTYPE_SPELL)
+	if self.Spell[27].Name then
+		startMetamorphose, durationMetamorphose = GetSpellCooldown(self.Spell[27].Id, BOOKTYPE_SPELL)
 	else
 		startMetamorphose = 1
 		durationMetamorphose = 1
@@ -1134,7 +1134,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		if Local.Soulshard.Count == 0 then
 			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
 		end
-	elseif (Type == "Mount") and self.Spell[2].ID then
+	elseif (Type == "Mount") and self.Spell[2].Name then
 		if (NecrosisConfig.LeftMount) then
 			local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount);
 			GameTooltip:AddLine(leftMountName);
@@ -1148,7 +1148,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		end
 		
 	elseif (Type == "Armor") then
-		if self.Spell[31].ID then
+		if self.Spell[31].Name then
 			GameTooltip:AddLine(self.Spell[31].Mana.." Mana")
 		else
 			GameTooltip:AddLine(self.Spell[36].Mana.." Mana")
@@ -1349,7 +1349,7 @@ function Necrosis:UpdateIcons()
 	end
 
 	-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-	if self.Spell[51].ID and NecrosisConfig.ItemSwitchCombat[4] and (Local.Stone.Soul.Mode == 1 or Local.Stone.Soul.Mode == 3) then
+	if self.Spell[51].Name and NecrosisConfig.ItemSwitchCombat[4] and (Local.Stone.Soul.Mode == 1 or Local.Stone.Soul.Mode == 3) then
 		self:SoulstoneUpdateAttribute("NoStone")
 	end
 
@@ -1367,7 +1367,7 @@ function Necrosis:UpdateIcons()
 	else
 		Local.Stone.Health.Mode = 1
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-		if self.Spell[52].ID and NecrosisConfig.ItemSwitchCombat[3] then
+		if self.Spell[52].Name and NecrosisConfig.ItemSwitchCombat[3] then
 			self:HealthstoneUpdateAttribute("NoStone")
 		end
 	end
@@ -1397,7 +1397,7 @@ function Necrosis:UpdateIcons()
 			Local.Stone.Spell.Mode = 1
 		end
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-		if self.Spell[53].ID and NecrosisConfig.ItemSwitchCombat[1] then
+		if self.Spell[53].Name and NecrosisConfig.ItemSwitchCombat[1] then
 			self:SpellstoneUpdateAttribute("NoStone")
 		end
 	end
@@ -1427,7 +1427,7 @@ function Necrosis:UpdateIcons()
 			Local.Stone.Fire.Mode = 1
 		end
 		-- Si hors combat et qu'on peut créer une pierre, on associe le bouton gauche à créer une pierre.
-		if self.Spell[54].ID and NecrosisConfig.ItemSwitchCombat[2] then
+		if self.Spell[54].Name and NecrosisConfig.ItemSwitchCombat[2] then
 			self:FirestoneUpdateAttribute("NoStone")
 		end
 	end
@@ -1491,8 +1491,8 @@ function Necrosis:UpdateMana(Metamorphose)
 	end
 
 	-- Si cooldown de domination corrompue on grise
-	if _G["NecrosisPetMenu1"] and self.Spell[15].ID and not Local.BuffActif.Domination then
-		local start, duration = GetSpellCooldown(self.Spell[15].ID, "spell")
+	if _G["NecrosisPetMenu1"] and self.Spell[15].Name and not Local.BuffActif.Domination then
+		local start, duration = GetSpellCooldown(self.Spell[15].Id, "spell")
 		if start > 0 and duration > 0 then
 			if not Local.Desatured["Domination"] then
 				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(1)
@@ -1507,8 +1507,8 @@ function Necrosis:UpdateMana(Metamorphose)
 	end
 	
 	-- Si cooldown de métamorphose, on grise
-	if _G["NecrosisMetamorphosisButton"] and self.Spell[27].ID then
-		local start, duration = GetSpellCooldown(self.Spell[27].ID, "spell")
+	if _G["NecrosisMetamorphosisButton"] and self.Spell[27].Name then
+		local start, duration = GetSpellCooldown(self.Spell[27].Id, "spell")
 		if not Metamorphose and (start > 0 and duration > 0) then
 			if not Local.Desatured["Metamorphose"] then
 				NecrosisMetamorphosisButton:GetNormalTexture():SetDesaturated(1)
@@ -1523,8 +1523,8 @@ function Necrosis:UpdateMana(Metamorphose)
 	end
 
 	-- Si cooldown de gardien de l'ombre on grise
-	if _G["NecrosisBuffMenu8"] and self.Spell[43].ID then
-		local start, duration = GetSpellCooldown(self.Spell[43].ID, "spell")
+	if _G["NecrosisBuffMenu8"] and self.Spell[43].Name then
+		local start, duration = GetSpellCooldown(self.Spell[43].Id, "spell")
 		if self.Spell[43].Mana > mana and start > 0 and duration > 0 then
 			if not Local.Desatured["Gardien"] then
 				NecrosisBuffMenu8:GetNormalTexture():SetDesaturated(1)
@@ -1548,21 +1548,21 @@ function Necrosis:UpdateMana(Metamorphose)
 
 	if mana then
 	-- Coloration du bouton en grisé si pas assez de mana
-		if self.Spell[3].ID then
+		if self.Spell[3].Name then
 			if self.Spell[3].Mana > mana then
 				for i = 1, 7, 1 do
 					ManaPet[i] = false
 				end
-			elseif self.Spell[4].ID then
+			elseif self.Spell[4].Name then
 				if self.Spell[4].Mana > mana then
 					for i = 2, 7, 1 do
 						ManaPet[i] = false
 					end
-				elseif self.Spell[8].ID then
+				elseif self.Spell[8].Name then
 					if self.Spell[8].Mana > mana then
 							ManaPet[7] = false
 							ManaPet[8] = false
-					elseif self.Spell[30].ID then
+					elseif self.Spell[30].Name then
 						if self.Spell[30].Mana > mana then
 							ManaPet[8] = false
 						end
@@ -1625,7 +1625,7 @@ function Necrosis:UpdateMana(Metamorphose)
 
 	if mana then
 	-- Coloration du bouton en grisé si pas assez de mana
-		if self.Spell[35].ID then
+		if self.Spell[35].Name then
 			if self.Spell[35].Mana > mana or Local.Soulshard.Count == 0 then
 				if not Local.Desatured["Enslave"] then
 					if _G["NecrosisPetMenu9"] then
@@ -1642,7 +1642,7 @@ function Necrosis:UpdateMana(Metamorphose)
 				end
 			end
 		end
-		if _G["NecrosisBuffMenu1"] and self.Spell[31].ID then
+		if _G["NecrosisBuffMenu1"] and self.Spell[31].Name then
 			if self.Spell[31].Mana > mana then
 				if  not Local.Desatured["Armor"] then
 					NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(1)
@@ -1654,7 +1654,7 @@ function Necrosis:UpdateMana(Metamorphose)
 					Local.Desatured["Armor"] = false
 				end
 			end
-		elseif _G["NecrosisBuffMenu1"] and self.Spell[36].ID then
+		elseif _G["NecrosisBuffMenu1"] and self.Spell[36].Name then
 			if self.Spell[36].Mana > mana then
 				if not Local.Desatured["Armor"] then
 					NecrosisBuffMenu1:GetNormalTexture():SetDesaturated(1)
@@ -1666,7 +1666,7 @@ function Necrosis:UpdateMana(Metamorphose)
 					Local.Desatured["Armor"] = false
 				end
 			end
-		elseif _G["NecrosisBuffMenu7"] and self.Spell[38].ID and not Local.BuffActif.SoulLink then
+		elseif _G["NecrosisBuffMenu7"] and self.Spell[38].Name and not Local.BuffActif.SoulLink then
 			if self.Spell[38].Mana > mana then
 				if not Local.Desatured["SoulLink"] then
 					NecrosisBuffMenu7:GetNormalTexture():SetDesaturated(1)
@@ -1688,7 +1688,7 @@ function Necrosis:UpdateMana(Metamorphose)
 		)
 		for i = 1, #SortNumber, 1 do
 			local f = _G["NecrosisBuffMenu"..BoutonNumber[i]]
-			if f and self.Spell[SortNumber[i]].ID then
+			if f and self.Spell[SortNumber[i]].Name then
 				if self.Spell[SortNumber[i]].Mana > mana then
 					if not Local.Desatured["NecrosisBuffMenu"..BoutonNumber[i]] then
 						f:GetNormalTexture():SetDesaturated(1)
@@ -1705,7 +1705,7 @@ function Necrosis:UpdateMana(Metamorphose)
 		del(BoutonNumber)
 		del(SortNumber)
 
-		if _G["NecrosisPetMenu10"] and self.Spell[44].ID then
+		if _G["NecrosisPetMenu10"] and self.Spell[44].Name then
 			if not UnitExists("pet") then
 				if not Local.Desatured["Sacrifice"] then
 					NecrosisPetMenu10:GetNormalTexture():SetDesaturated(1)
@@ -1738,7 +1738,7 @@ function Necrosis:UpdateMana(Metamorphose)
 		-- Coloration du bouton en grisé si pas assez de mana
 		for i = 1, #SpellMana, 1 do
 			local f = _G["NecrosisCurseMenu"..i+1]
-			if f and self.Spell[SpellMana[i]].ID then
+			if f and self.Spell[SpellMana[i]].Name then
 				if self.Spell[SpellMana[i]].Mana > mana then
 					if not Local.Desatured["NecrosisCurseMenu"..i+1] then
 						f:GetNormalTexture():SetDesaturated(1)
@@ -2077,15 +2077,15 @@ function Necrosis:ButtonSetup()
 	end
 
 	local SpellExist = new("array",
-		self.Spell[54].ID,
-		self.Spell[53].ID,
-		self.Spell[52].ID,
-		self.Spell[51].ID,
+		self.Spell[54].Name,
+		self.Spell[53].Name,
+		self.Spell[52].Name,
+		self.Spell[51].Name,
 		Local.Menu.Buff[1],
 		Local.Summon.SteedAvailable,
 		Local.Menu.Pet[1],
 		Local.Menu.Curse[1],
-		self.Spell[27].ID
+		self.Spell[27].Name
 	)
 
 	if NecrosisConfig.NecrosisLockServ then
@@ -2146,91 +2146,46 @@ end
 -- select the highest available spell in the case of stones. || Pour les pierres, elle sélectionne le plus haut rang connu
 function Necrosis:SpellSetup()
 
-	local CurrentSpells = new("hash",
-		"ID", {},
-		"Name", {},
-		"subName", {}
-	)
+	local spellSlot = 1
 
-	local spellID = 1
-	local Invisible = 0
-	local InvisibleID = 0
 
-	-- Search for all spells known by the warlock || On va parcourir tous les sorts possedés par le Démoniste
---[[	while true do
-		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
+	-- On parcourt les sorts du démoniste
+	-- Si un sort du grimoire est dans la liste des sorts, on le nomme, et on calcule son coût en mana
+	while true do
+		local _, spellId = GetSpellBookItemInfo(spellSlot, BOOKTYPE_SPELL)
 
-		if not spellName then
+		if not spellId then
 			do break end
 		end
 
-		-- !!!!! CA NE DEVRAIT PLUS ETRE UTILE !
-		-- for spells with numbered ranks, compare each one || Pour les sorts avec des rangs numérotés, on compare pour chaque sort les rangs 1 à 1
-		-- and preserve the highest rank || Le rang supérieur est conservé
-		if subSpellName and not (subSpellName == " " or subSpellName == "") then
-			local _, _, spellRank = subSpellName:find("(%d+)")
-			spellRank = tonumber(spellRank)
-			
-			if (spellRank ~= nil) then
-				local found = false
-				for index=1, #CurrentSpells.Name, 1 do
-					if (CurrentSpells.Name[index] == spellName) then
-						found = true
-						local _, _, CurrentRank = CurrentSpells.subName[index]:find("(%d+)")
-						CurrentRank = tonumber(CurrentRank)
-						if (CurrentRank ~= nil) then
-							if (CurrentRank  spellRank) then
-								CurrentSpells.ID[index] = spellID
-								CurrentSpells.subName[index] = subSpellName
-							end
-						end
-						break
-					end
-				end
-				-- The highest rank of each spell is inserted into the table || Les plus grands rangs de chacun des sorts à rang numérotés sont insérés dans la table
-				if (not found) then
-					table.insert(CurrentSpells.ID, spellID)
-					table.insert(CurrentSpells.Name, spellName)
-					table.insert(CurrentSpells.subName, subSpellName)
+		for i=1, #self.Spell, 1 do
+			if self.Spell[i].Id == spellId then
+				do
+					local spellName, _, _, ManaCost = GetSpellInfo(spellId)
+					self.Spell[i].Name = spellName
+					self.Spell[i].Mana = tonumber(ManaCost)
+					break
 				end
 			end
 		end
-		spellID = spellID + 1
 	end
 
-	-- update the list of spells with the new ranks || On met à jour la liste des sorts avec les nouveaux rangs
-	for spell=1, #self.Spell, 1 do
-		for index = 1, #CurrentSpells.Name, 1 do
-			if (self.Spell[spell].Name == CurrentSpells.Name[index]) then
-				self.Spell[spell].ID = CurrentSpells.ID[index]
-				self.Spell[spell].Rank = CurrentSpells.subName[index]
-			end
-		end
-	end
-	del(CurrentSpells)
-	]]
-
-	local ManaCost
-	for index = 1, #self.Spell, 1 do
-		_, _, _, ManaCost = GetSpellInfo(self.Spell[index].Id)
-		self.Spell[index].Mana = tonumber(ManaCost)
-	end
 
 	-- WoW 3.0 :  Les montures se retrouvent dans une interface à part
 	if GetNumCompanions("MOUNT") > 0 then
 		for i = 1, GetNumCompanions("MOUNT"), 1 do
 			local _, NomCheval, SpellCheval = Necrosis:GetCompanionInfo("MOUNT", i)
-			if NomCheval == self.Spell[1].Name then
-				self.Spell[1].ID = SpellCheval
+			if SpellCheval == self.Spell[1].Id then
+				self.Spell[1].Name = NomCheval
 			end
-			if NomCheval == self.Spell[2].Name then
-				self.Spell[2].ID = SpellCheval
+			if SpellCheval == self.Spell[2].Id then
+				self.Spell[2].Name = NomCheval
 			end
 		end
 	end
 	
 	-- associate the mounts to the sphere button || Association du sort de monture correct au bouton
-	if self.Spell[1].ID or self.Spell[2].ID then
+	if self.Spell[1].Name or self.Spell[2].Name then
 		Local.Summon.SteedAvailable = true
 	else
 		Local.Summon.SteedAvailable = false
@@ -2482,7 +2437,7 @@ function Necrosis:CreateMenu()
 			for spell = 1, #NecrosisConfig.DemonSpellPosition, 1 do
 				if math.abs(NecrosisConfig.DemonSpellPosition[index]) == spell
 					and NecrosisConfig.DemonSpellPosition[spell] > 0
-					and self.Spell[ MenuID[spell] ].ID then
+					and self.Spell[ MenuID[spell] ].Name then
 						-- Création à la demande du bouton du menu des démons
 						if not _G["NecrosisPetMenuButton"] then
 							_ = self:CreateSphereButtons("PetMenu")
@@ -2547,7 +2502,7 @@ function Necrosis:CreateMenu()
 			-- display the button if the spell is known || Si le buff existe, on affiche le bouton dans le menu des buffs
 			if math.abs(NecrosisConfig.BuffSpellPosition[index]) == 1
 				and NecrosisConfig.BuffSpellPosition[1] > 0
-				and (self.Spell[31].ID or self.Spell[36].ID) then
+				and (self.Spell[31].Name or self.Spell[36].Name) then
 					-- Create on demand || Création à la demande du bouton du menu des Buffs
 					if not _G["NecrosisBuffMenuButton"] then
 						_ = self:CreateSphereButtons("BuffMenu")
@@ -2565,7 +2520,7 @@ function Necrosis:CreateMenu()
 				for spell = 2, #NecrosisConfig.BuffSpellPosition, 1 do
 					if math.abs(NecrosisConfig.BuffSpellPosition[index]) == spell
 						and NecrosisConfig.BuffSpellPosition[spell] > 0
-						and self.Spell[ MenuID[spell] ].ID then
+						and self.Spell[ MenuID[spell] ].Name then
 							-- Create on demand || Création à la demande du bouton du menu des Buffs
 							if not _G["NecrosisBuffMenuButton"] then
 								_ = self:CreateSphereButtons("BuffMenu")
@@ -2640,7 +2595,7 @@ function Necrosis:CreateMenu()
 				-- Si la Malédiction existe, on affiche le bouton dans le menu des curses
 				if math.abs(NecrosisConfig.CurseSpellPosition[index]) == sort
 					and NecrosisConfig.CurseSpellPosition[sort] > 0
-					and self.Spell[MenuID[sort]].ID then
+					and self.Spell[MenuID[sort]].Name then
 						-- Création à la demande du bouton du menu des malédictions
 						if not _G["NecrosisCurseMenuButton"] then
 							_ = self:CreateSphereButtons("CurseMenu")
