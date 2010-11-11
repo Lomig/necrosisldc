@@ -125,7 +125,7 @@ Local.Events = {
 	"UNIT_SPELLCAST_INTERRUPTED",
 	"UNIT_SPELLCAST_SUCCEEDED",
 	"UNIT_SPELLCAST_SENT",
-	"UNIT_MANA",
+	"UNIT_POWER",
 	"UNIT_HEALTH",
 	"LEARNED_SPELL_IN_TAB",
 	"PLAYER_TARGET_CHANGED",
@@ -140,14 +140,13 @@ Local.Events = {
 -- Configuration defaults || Configuration par défaut
 -- To be used if the configuration savedvariables is missing, or if the NecrosisConfig.Version number is changed. || Se charge en cas d'absence de configuration ou de changement de version
 Local.DefaultConfig = {
-	SoulshardContainer = 4,
 	ShadowTranceAlert = true,
 	ShowSpellTimers = true,
 	AntiFearAlert = true,
 	CreatureAlert = true,
 	NecrosisLockServ = true,
-	NecrosisAngle = 180,
-	StonePosition = {1, 2, 3, 4, 5, 6, 7},
+	NecrosisAngle = 90,
+	StonePosition = {1, 2, 4, 3, 5, 6, 7},
 		-- 1 = Healthstone
 		-- 2 = Soulstone
 		-- 3 = Buff menu
@@ -190,7 +189,7 @@ Local.DefaultConfig = {
 	MainSpell = 41,
 
 	PetMenuPos = {x=1, y=0, direction=1},
-	PetMenuDecalage = {x=1, y=26},
+	PetMenuDecalage = {x=1, y=0},
 
 	BuffMenuPos = {x=1, y=0, direction=1},
 	BuffMenuDecalage = {x=1, y=26},
@@ -282,9 +281,6 @@ Local.Stone = {
 	Hearth = {Location = {}},
 }
 
--- Variable de comptage des composants
-Local.Reagent = {Infernal = 0, Demoniac = 0}
-
 -- Variables utilisées dans la gestion des démons
 Local.Summon = {}
 
@@ -297,6 +293,7 @@ Local.Menu = {
 
 -- Variable des Buffs Actifs
 Local.BuffActif = {}
+Local.BuffActif.MountChange = true
 
 -- Variable de l'état des boutons (grisés ou non)
 Local.Desatured = {}
@@ -370,14 +367,22 @@ function Necrosis:OnUpdate(frame, elapsed)
 	if NecrosisConfig.TimerType == 2 then
 		self:TextTimerUpdate(Local.TimerManagement.SpellTimer, Local.TimerManagement.SpellGroup)
 	end
+	
+	-- Changement du bouton de monture quand le Démoniste est démonté
+	if Local.BuffActif.MountChange and _G["NecrosisMountButton"] then
+		if not Local.BuffActif.Mount and IsMounted() then
+			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
+			NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
+			Local.BuffActif.Mount = true
+		elseif Local.BuffActif.Mount and not IsMounted() then
+			NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01")
+			Local.BuffActif.Mount = false
+		end
+		Local.BuffActif.MountChange = false
+	end
 
 	-- Toutes les secondes
 	if Local.LastUpdate[1] > 1 then
-	-- Si configuré, tri des fragment toutes les secondes
-		if NecrosisConfig.SoulshardSort and Local.Soulshard.Move > 0  then
-			self:SoulshardSwitch("MOVE")
-		end
-
 		-- Parcours du tableau des Timers
 		if Local.TimerManagement.SpellTimer[1] then
 			for index = 1, #Local.TimerManagement.SpellTimer, 1 do
@@ -457,8 +462,8 @@ function Necrosis:OnEvent(frame, event, ...)
 	if (event == "BAG_UPDATE") then
 		self:BagExplore(arg1)
 	-- Si le joueur gagne ou perd de la mana
-	elseif (event == "UNIT_MANA") and arg1 == "player" then
-		self:UpdateMana()
+	elseif (event == "UNIT_POWER") and arg1 == "player" then
+		self:UpdateMana(nil, arg2)
 	-- Si le joueur gagneou perd de la vie
 	elseif (event == "UNIT_HEALTH") and arg1 == "player" then
 		self:UpdateHealth()
@@ -592,9 +597,11 @@ function Necrosis:OnEvent(frame, event, ...)
 	elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
 		-- Détection de la transe de l'ombre et de  Contrecoup
 		if arg2 == "SPELL_AURA_APPLIED" and arg6 == UnitGUID("player") then
+			Local.BuffActif.MountChange = true
 			self:SelfEffect("BUFF", arg10)
 		-- Détection de la fin de la transe de l'ombre et de Contrecoup
 		elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("player") then
+			Local.BuffActif.MountChange = true
 			self:SelfEffect("DEBUFF", arg10)
 		-- Détection du Déban
 		elseif arg2 == "SPELL_AURA_REMOVED" and arg6 == UnitGUID("focus") and Local.TimerManagement.Banish and arg10 == self.Spell[9].Name then
@@ -692,14 +699,6 @@ end
 function Necrosis:SelfEffect(action, nom)
 
 	if action == "BUFF" then
-		-- Changement du bouton de monture quand le Démoniste est démonté
-		if not Local.BuffActif.Mount and IsMounted() then
-			Local.BuffActif.Mount = true
-			if _G["NecrosisMountButton"] then
-				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
-				NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
-			end
-		end
 		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
 		if  nom == self.Spell[15].Name then
 			Local.BuffActif.Domination = true
@@ -710,9 +709,9 @@ function Necrosis:SelfEffect(action, nom)
 		-- Changement du bouton du lien spirituel si celui-ci est activé
 		elseif nom == self.Spell[38].Name then
 			Local.BuffActif.SoulLink = true
-			if _G["NecrosisBuffMenu7"] then
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-02")
-				NecrosisBuffMenu7:GetNormalTexture():SetDesaturated(nil)
+			if _G["NecrosisBuffMenu6"] then
+				NecrosisBuffMenu6:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-02")
+				NecrosisBuffMenu6:GetNormalTexture():SetDesaturated(nil)
 			end
 		-- si Contrecoup, pouf on affiche l'icone et on proc le son
 		-- if By-effect, pouf one posts the icon and one proc the sound
@@ -728,13 +727,6 @@ function Necrosis:SelfEffect(action, nom)
 			NecrosisShadowTranceButton:Show()
 		end
 	else
-		-- Changement du bouton de monture quand le Démoniste est démonté
-		if Local.BuffActif.Mount and not IsMounted() then
-			Local.BuffActif.Mount = false
-			if _G["NecrosisMountButton"] then
-				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01")
-			end
-		end
 		-- Changement du bouton de Domination quand le Démoniste n'est plus sous son emprise
 		if  nom == self.Spell[15].Name then
 			Local.BuffActif.Domination = false
@@ -744,8 +736,8 @@ function Necrosis:SelfEffect(action, nom)
 		-- Changement du bouton du Lien Spirituel quand le Démoniste n'est plus sous son emprise
 		elseif nom == self.Spell[38].Name then
 			Local.BuffActif.SoulLink = false
-			if _G["NecrosisBuffMenu7"] then
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-01")
+			if _G["NecrosisBuffMenu6"] then
+				NecrosisBuffMenu6:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\SoulLink-01")
 			end
 		-- hide the shadowtrance (nightfall) or backlash buttons when the state is ended.
 		elseif nom == self.Translation.Proc.ShadowTrance or nom == self.Translation.Proc.Backlash then
@@ -984,7 +976,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	GameTooltip:SetText(self.TooltipData[Type].Label)
 	-- ..... pour le bouton principal
 	if (Type == "Main") then
-		GameTooltip:AddLine(self.TooltipData.Main.Soulshard..Local.Soulshard.Count)
+		GameTooltip:AddLine(self.TooltipData.Main.Soulshard.."Not Yet")
 		local SoulOnHand = false
 		local HealthOnHand = false
 		if Local.Stone.Soul.OnHand then SoulOnHand = true end
@@ -1032,7 +1024,7 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 			if itemName:find(self.Translation.Misc.Cooldown) then
 				GameTooltip:AddLine(itemName)
 			end
-			if  Local.Soulshard.Count > 0 and not (start3 > 0 and duration3 > 0) then
+			if  not (start3 > 0 and duration3 > 0) then
 				GameTooltip:AddLine(self.TooltipData[Type].Ritual)
 			end
 		end
@@ -1062,9 +1054,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	-- ..... pour les autres buffs et démons, le coût en mana...
 	elseif (Type == "Enslave") then
 		GameTooltip:AddLine(self.Spell[35].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		end
 	elseif (Type == "Mount") and self.Spell[2].Name then
 		if (NecrosisConfig.LeftMount) then
 			local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount);
@@ -1092,9 +1081,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		GameTooltip:AddLine(self.Spell[34].Mana.." Mana")
 	elseif (Type == "Banish") then
 		GameTooltip:AddLine(self.Spell[9].Mana.." Mana")
-		if self.Spell[9].Rank:find("2") then
-		GameTooltip:AddLine(self.TooltipData[Type].Text)
-		end
 	elseif (Type == "Weakness") then
 		GameTooltip:AddLine(self.Spell[23].Mana.." Mana")
 	elseif (Type == "Agony") then
@@ -1111,9 +1097,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 		GameTooltip:AddLine(self.Spell[14].Mana.." Mana")
 	elseif (Type == "TP") then
 		GameTooltip:AddLine(self.Spell[37].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		end
 	elseif (Type == "SoulLink") then
 		GameTooltip:AddLine(self.Spell[38].Mana.." Mana")
 	elseif (Type == "ShadowProtection") then
@@ -1150,46 +1133,28 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 
 	elseif (Type == "Voidwalker") then
 		GameTooltip:AddLine(self.Spell[4].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		elseif not (start > 0 and duration > 0) then
+		if not (start > 0 and duration > 0) then
 			GameTooltip:AddLine(self.TooltipData.DominationCooldown)
 		end
 	elseif (Type == "Succubus") then
 		GameTooltip:AddLine(self.Spell[5].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		elseif not (start > 0 and duration > 0) then
+		if not (start > 0 and duration > 0) then
 			GameTooltip:AddLine(self.TooltipData.DominationCooldown)
 		end
 	elseif (Type == "Felhunter") then
 		GameTooltip:AddLine(self.Spell[6].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		elseif not (start > 0 and duration > 0) then
+		if not (start > 0 and duration > 0) then
 			GameTooltip:AddLine(self.TooltipData.DominationCooldown)
 		end
 	elseif (Type == "Felguard") then
 		GameTooltip:AddLine(self.Spell[7].Mana.." Mana")
-		if Local.Soulshard.Count == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.Soulshard..Local.Soulshard.Count.."|r")
-		elseif not (start > 0 and duration > 0) then
+		if not (start > 0 and duration > 0) then
 			GameTooltip:AddLine(self.TooltipData.DominationCooldown)
 		end
 	elseif (Type == "Infernal") then
 		GameTooltip:AddLine(self.Spell[8].Mana.." Mana")
-		if Local.Reagent.Infernal == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.InfernalStone..Local.Reagent.Infernal.."|r")
-		else
-			GameTooltip:AddLine(self.TooltipData.Main.InfernalStone..Local.Reagent.Infernal)
-		end
 	elseif (Type == "Doomguard") then
 		GameTooltip:AddLine(self.Spell[30].Mana.." Mana")
-		if DemoniacStone == 0 then
-			GameTooltip:AddLine("|c00FF4444"..self.TooltipData.Main.DemoniacStone..Local.Reagent.Demoniac.."|r")
-		else
-			GameTooltip:AddLine(self.TooltipData.Main.DemoniacStone..Local.Reagent.Demoniac)
-		end
 	elseif (Type == "BuffMenu") then
 		if Local.PlayerInCombat and NecrosisConfig.AutomaticMenu then
 			GameTooltip:AddLine(self.TooltipData[Type].Text2)
@@ -1315,7 +1280,7 @@ function Necrosis:UpdateHealth()
 end
 
 -- Update des boutons en fonction de la mana
-function Necrosis:UpdateMana(Metamorphose)
+function Necrosis:UpdateMana(Metamorphose, Type)
 	if Local.Dead then return end
 
 	local mana = UnitMana("player")
@@ -1465,7 +1430,7 @@ function Necrosis:UpdateMana(Metamorphose)
 	if mana then
 	-- Coloration du bouton en grisé si pas assez de mana
 		if self.Spell[35].Name then
-			if self.Spell[35].Mana > mana or Local.Soulshard.Count == 0 then
+			if self.Spell[35].Mana > mana then
 				if not Local.Desatured["Enslave"] then
 					if _G["NecrosisPetMenu9"] then
 						NecrosisPetMenu9:GetNormalTexture():SetDesaturated(1)
