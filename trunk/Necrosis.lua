@@ -452,7 +452,7 @@ function Necrosis:OnUpdate(self, elapsed)
 end
 
 -- Fonction lancée selon l'événement intercepté
-function Necrosis:OnEvent(self, event, ...)
+function Necrosis:OnEvent(frame, event, ...)
 	local arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12 = ...
 	
 	if (event == "PLAYER_ENTERING_WORLD") then
@@ -2157,7 +2157,7 @@ function Necrosis:SpellSetup()
 	local InvisibleID = 0
 
 	-- Search for all spells known by the warlock || On va parcourir tous les sorts possedés par le Démoniste
-	--[[while true do
+--[[	while true do
 		local spellName, subSpellName = GetSpellBookItemName(spellID, BOOKTYPE_SPELL)
 
 		if not spellName then
