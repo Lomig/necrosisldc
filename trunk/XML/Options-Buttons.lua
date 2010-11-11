@@ -39,6 +39,7 @@ local _G = getfenv(0)
 
 local NECROSIS_COMPANIONS_PER_PAGE = 12;
 local NECROSIS_PAGE_NUMBER = "Page %s of %s";
+CompanionButton_OnLoad = function() end;
 
 ------------------------------------------------------------------------------------------------------
 -- CREATION DE LA FRAME DES OPTIONS
