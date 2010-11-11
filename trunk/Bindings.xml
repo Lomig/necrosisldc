@@ -8,18 +8,6 @@
 	<Binding name="CLICK NecrosisMountButton:RightButton">
 		-- Monture 2--
 	</Binding>
-	<Binding name="CLICK NecrosisFirestoneButton:RightButton">
-		-- Créer Pierre de feu --
-	</Binding>
-	<Binding name="CLICK NecrosisFirestoneButton:LeftButton">
-		-- Utiliser Pierre de feu --
-	</Binding>
-	<Binding name="CLICK NecrosisSpellstoneButton:RightButton">
-		-- Créer Pierre de sort --
-	</Binding>
-	<Binding name="CLICK NecrosisSpellstoneButton:LeftButton">
-		-- Utiliser Pierre de sort --
-	</Binding>
 	<Binding name="CLICK NecrosisHealthstoneButton:RightButton">
 		-- Créer Pierre de soins --
 	</Binding>

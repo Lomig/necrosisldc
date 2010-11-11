@@ -231,7 +231,7 @@ local function CreateMetamorphosisSpell()
 end
 
 ------------------------------------------------------------------------------------------------------
-BOUTON DES PIERRES, DE LA METAMORPHOSE ET DE LA MONTURE
+-- BOUTON DES PIERRES, DE LA METAMORPHOSE ET DE LA MONTURE
 ------------------------------------------------------------------------------------------------------
 
 local function CreateStoneButton(stone)
