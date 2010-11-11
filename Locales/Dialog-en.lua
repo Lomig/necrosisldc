@@ -67,8 +67,6 @@ function Necrosis:Localization_Dialog_En()
 			["DemoniacStone"] = "Demonic Figurine(s): ",
 			["Soulstone"] = "\nSoulstone: ",
 			["Healthstone"] = "Healthstone: ",
-			["Spellstone"] = "Spellstone: ",
-			["Firestone"] = "Firestone: ",
 			["CurrentDemon"] = "Demon: ",
 			["EnslavedDemon"] = "Demon: Enslaved",
 			["NoCurrentDemon"] = "Demon: None",
@@ -81,12 +79,6 @@ function Necrosis:Localization_Dialog_En()
 			Text = {"Right click to create","Left click to use"},
 			Text2 = "Middle click or Ctrl+left click to trade",
 			Ritual = "|c00FFFFFFShift+Click to cast the Ritual of Souls|r"
-		},
-		["Spellstone"] = {
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\nClick to create"}
-		},
-		["Firestone"] = {
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpell Durations|r",

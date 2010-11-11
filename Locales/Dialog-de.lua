@@ -67,8 +67,6 @@ function Necrosis:Localization_Dialog_De()
 			["DemoniacStone"] = "D\195\164monen-Statuetten : ",
 			["Soulstone"] = "\nSeelenstein : ",
 			["Healthstone"] = "Gesundheitsstein : ",
-			["Spellstone"] = "Zauberstein: ",
-			["Firestone"] = "Feuerstein : ",
 			["CurrentDemon"] = "D\195\164mon : ",
 			["EnslavedDemon"] = "D\195\164mon : Versklavter",
 			["NoCurrentDemon"] = "D\195\164mon : Keiner",
@@ -81,12 +79,6 @@ function Necrosis:Localization_Dialog_De()
 			Text = {"Rechte Maustaste zum herstellen","Linke Maustaste zum benutzten"},
 			Text2 = "Mittlerer Maustaste oder Strg+rechte Maustaste zum handeln",
 			Ritual = "|c00FFFFFFShift+Klick um das Ritual der Seelen zu zaubern|r"
-		},
-		["Spellstone"] = {
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt", "Benutzt\n Maustaste zum herstellen"}
-		},
-		["Firestone"] = {
-			Text = {"Rechte Maustaste zum herstellen","Im Inventar\nLinke Maustaste zum benutzten","Benutzt", "Benutzt\n Maustaste zum herstellen"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpruchdauer|r",

@@ -179,8 +179,8 @@ end
 ------------------------------------------------------------------------------------------------------
 
 local function CreateMetamorphosisSpell()
-	local DemonicSpell = {"Charge", "Bond", "Immolation"}
-	local buffID = {39, 33, 54}
+	local DemonicSpell = {"Bond", "Immolation"}
+	local buffID = {33, 39}
 
 	for i = 1, #DemonicSpell, 1 do
 		-- Create the button || Creaton du bouton

@@ -69,8 +69,6 @@ function Necrosis:Localization_Dialog_Cn()
 			["DemoniacStone"] = "恶魔雕像: ",
 			["Soulstone"] = "\n灵魂石: ",
 			["Healthstone"] = "治疗石: ",
-			["Spellstone"] = "法术石: ",
-			["Firestone"] = "火焰石: ",
 			["CurrentDemon"] = "恶魔: ",
 			["EnslavedDemon"] = "恶魔: 奴役",
 			["NoCurrentDemon"] = "恶魔 : 无",
@@ -83,13 +81,6 @@ function Necrosis:Localization_Dialog_Cn()
 			Text = {"制造","使用"},
 			Text2 = "按中键或是Ctrl-左键交易",
 			Ritual = "|c00FFFFFFShift+左键施放灵魂仪式|r"
-		},
-		["Spellstone"] = {
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
-		},
-		["Firestone"] = {
-			Label = "|c00FF4444火焰石|r",
-			Text = {"Right click to create","In Inventory\nLeft click to use","Used", "Used\Click to create"}
 		},
 		["SpellTimer"] = {
 			Text = "启用对目标的法术计时",

@@ -111,34 +111,33 @@ function Necrosis:SpellLocalize(tooltip)
 			[24] = {Id = 47193,	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
 			[25] = {Id = 1714,	Length = 30,	Type = 4}, -- Curse of Tongues || Malédiction Langage
 			[26] = {Id = 1490,	Length = 300,	Type = 4}, -- Curse of the Elements || Malédiction Eléments
-			[27] = {Id = 59673,	Length = 180,	Type = 3}, -- Metamorphosis || Metamorphose
+			[27] = {Id = 47241,	Length = 180,	Type = 3}, -- Metamorphosis || Metamorphose
 			[28] = {Id = 47862,	Length = 30,	Type = 6}, -- Siphon Life || Syphon de vie
 			[29] = {Id = 17928,	Length = 40,	Type = 3}, -- Howl of Terror || Hurlement de terreur
 			[30] = {Id = 18540,	Length = 1800,	Type = 3}, -- Ritual of Doom || Rituel funeste
-			[31] = {Id = 687,	Length = 0,	Type = 0}, -- Demon Armor || Armure démoniaque
+			[31] = {Id = 687,	Length = 0,		Type = 0}, -- Demon Armor || Armure démoniaque
 			[32] = {Id = 5697,	Length = 600,	Type = 2}, -- Unending Breath || Respiration interminable
 			[33] = {Id = 54785,	Length = 45,	Type = 3}, -- Bond démoniaque
-			[34] = {Id = 126,	Length = 0,	Type = 0}, -- Eye of Kilrogg
-			[35] = {Id = 1098,	Length = 0,	Type = 0}, -- Enslave Demon
-			[36] = {Id = 696,	Length = 0,	Type = 0}, -- Demon Skin || Peau de démon
+			[34] = {Id = 126,	Length = 0,		Type = 0}, -- Eye of Kilrogg
+			[35] = {Id = 1098,	Length = 0,		Type = 0}, -- Enslave Demon
+			[36] = {Id = 696,	Length = 0,		Type = 0}, -- Demon Skin || Peau de démon
 			[37] = {Id = 698,	Length = 120,	Type = 3}, -- Ritual of Summoning || Rituel d'invocation
-			[38] = {Id = 19028,	Length = 0,	Type = 0}, -- Soul Link || Lien spirituel
-			[39] = {Id = 54785,	Length = 45,	Type = 3}, -- Demon Charge || Charge démoniaque
+			[38] = {Id = 19028,	Length = 0,		Type = 0}, -- Soul Link || Lien spirituel
+			[39] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction de fatigue
 			[41] = {Id = 57946,	Length = 40,	Type = 2}, -- Life Tap || Connexion
 			[42] = {Id = 59164,	Length = 12,	Type = 2}, -- Haunt || Hanter
 			[43] = {Id = 6229,	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
 			[44] = {Id = 18788,	Length = 60,	Type = 3}, -- Sacrifice || Sacrifice démoniaque
-			[45] = {Id = 47809,	Length = 0,	Type = 0}, -- Shadow Bolt
+			[45] = {Id = 47809,	Length = 0,		Type = 0}, -- Shadow Bolt
 			[46] = {Id = 47843,	Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
-			[47] = {Id = 28176,	Length = 0,	Type = 0}, -- Fel Armor || Gangrarmure
+			[47] = {Id = 28176,	Length = 0,		Type = 0}, -- Fel Armor || Gangrarmure
 			[48] = {Id = 47836,	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
 			[49] = {Id = 29858,	Length = 180,	Type = 3}, -- SoulShatter || Brise âme
 			[50] = {Id = 29893,	Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
-			[51] = {Id = 693,	Length = 0,	Type = 0}, -- Create Soulstone || Création pierre d'âme
-			[52] = {Id = 6201,	Length = 0,	Type = 0}, -- Create Healthstone || Création pierre de soin
-			[53] = {Id = 59092,	Length = 0,	Type = 0}, -- Dark Pact || Pacte noir
-			[54] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
+			[51] = {Id = 693,	Length = 0,		Type = 0}, -- Create Soulstone || Création pierre d'âme
+			[52] = {Id = 6201,	Length = 0,		Type = 0}, -- Create Healthstone || Création pierre de soin
+			[53] = {Id = 59092,	Length = 0,		Type = 0}, -- Dark Pact || Pacte noir
 		}
 		-- Type 0 = Pas de Timer || no timer
 		-- Type 1 = Timer permanent principal || Standing main timer
@@ -207,14 +206,13 @@ function Necrosis:SpellLocalize(tooltip)
 	local buttonTooltip = new("array",
 		"Sacrifice",
 		"Metamorphosis",
-		"Charge",
+		"Bond",
 		"Immolation",
-		"Leap",
 		"Renforcement",
 		"Enslave"
 	)
 	local buttonName = new("array",
-		44, 27, 39, 54, 33, 24, 35
+		44, 27, 33, 39, 24, 35
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then

@@ -68,8 +68,6 @@ function Necrosis:Localization_Dialog_Tw()
 			["DemoniacStone"] = "惡魔雕像：",
 			["Soulstone"] = "\n靈魂石：",
 			["Healthstone"] = "治療石：",
-			["Spellstone"] = "法術石：",
-			["Firestone"] = "火焰石：",
 			["CurrentDemon"] = "惡魔：",
 			["EnslavedDemon"] = "惡魔：奴役",
 			["NoCurrentDemon"] = "惡魔：無",
@@ -82,12 +80,6 @@ function Necrosis:Localization_Dialog_Tw()
 			Text = {"製造","使用"},
 			Text2 = "按中鍵或是Ctrl-左鍵交易",
 			Ritual = "|c00FFFFFFShift+左鍵施放靈魂儀式|r"
-		},
-		["Spellstone"] = {
-			Text = {"按右鍵製造","按左鍵使用","已使用", "已使用\點擊製造"}
-		},
-		["Firestone"] = {
-			Text = {"按右鍵製造","按左鍵使用","已使用", "已使用\點擊製造"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFF法術持續時間|r",
