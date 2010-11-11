@@ -512,8 +512,8 @@ function Necrosis:SoulstoneUpdateAttribute(nostone)
 	NecrosisSoulstoneButton:SetAttribute("type1", "item")
 	NecrosisSoulstoneButton:SetAttribute("type3", "item")
 	NecrosisSoulstoneButton:SetAttribute("unit", "target")
-	NecrosisSoulstoneButton:SetAttribute("item1", NecrosisConfig.ItemSwitchCombat[4])
-	NecrosisSoulstoneButton:SetAttribute("item3", NecrosisConfig.ItemSwitchCombat[4])
+	NecrosisSoulstoneButton:SetAttribute("item1", NecrosisConfig.ItemSwitchCombat[2])
+	NecrosisSoulstoneButton:SetAttribute("item3", NecrosisConfig.ItemSwitchCombat[2])
 end
 
 function Necrosis:HealthstoneUpdateAttribute(nostone)
@@ -531,44 +531,8 @@ function Necrosis:HealthstoneUpdateAttribute(nostone)
 	end
 
 	NecrosisHealthstoneButton:SetAttribute("type1", "macro")
-	NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[3])
+	NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[1])
 	NecrosisHealthstoneButton:SetAttribute("type3", "Trade")
 	NecrosisHealthstoneButton:SetAttribute("ctrl-type1", "Trade")
 	NecrosisHealthstoneButton.Trade = function () self:TradeStone() end
-end
-
-function Necrosis:SpellstoneUpdateAttribute(nostone)
-	-- Si le démoniste est en combat, on ne fait rien :)
-	if InCombatLockdown() or not _G["NecrosisSpellstoneButton"] then
-		return
-	end
-
-	-- Si le démoniste n'a pas de pierre dans son inventaire,
-	-- Un clic gauche crée la pierre
-	if nostone then
-		NecrosisSpellstoneButton:SetAttribute("type1", "spell")
-		NecrosisSpellstoneButton:SetAttribute("spell*", self.Spell[53].Name)
-		return
-	end
-
-	NecrosisSpellstoneButton:SetAttribute("type1", "macro")
-	NecrosisSpellstoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
-end
-
-function Necrosis:FirestoneUpdateAttribute(nostone)
-	-- Si le démoniste est en combat, on ne fait rien :)
-	if InCombatLockdown() or not _G["NecrosisFirestoneButton"] then
-		return
-	end
-
-	-- Si le démoniste n'a pas de pierre dans son inventaire,
-	-- Un clic gauche crée la pierre
-	if nostone then
-		NecrosisFirestoneButton:SetAttribute("type1", "spell")
-		NecrosisFirestoneButton:SetAttribute("spell*", self.Spell[54].Name)
-		return
-	end
-
-	NecrosisFirestoneButton:SetAttribute("type1", "macro")
-	NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 end

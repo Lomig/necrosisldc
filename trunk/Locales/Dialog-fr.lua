@@ -67,8 +67,6 @@ function Necrosis:Localization_Dialog_Fr()
 			["DemoniacStone"] = "Pierre(s) d\195\169moniaque(s) : ",
 			["Soulstone"] = "\nPierre d'\195\162me : ",
 			["Healthstone"] = "Pierre de soins : ",
-			["Spellstone"] = "Pierre de sort : ",
-			["Firestone"] = "Pierre de feu : ",
 			["CurrentDemon"] = "D\195\169mon : ",
 			["EnslavedDemon"] = "D\195\169mon : Asservi",
 			["NoCurrentDemon"] = "D\195\169mon : Aucun",
@@ -81,12 +79,6 @@ function Necrosis:Localization_Dialog_Fr()
 			Text = {"Clic droit pour cr\195\169er","Clic gauche pour utiliser"},
 			Text2 = "Clic du milieu ou Ctrl+clic gauche pour \195\169changer",
 			Ritual = "|c00FFFFFFShift+Clic pour le rituel des \195\162mes|r"
-		},
-		["Spellstone"] = {
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
-		},
-		["Firestone"] = {
-			Text = {"Clic droit pour cr\195\169er","En inventaire\nClic gauche pour utiliser","Utilis\195\169e", "Utilis\195\169e\nClic pour cr\195\169er"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDur\195\169e des sorts|r",

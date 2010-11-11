@@ -68,8 +68,6 @@ function Necrosis:Localization_Dialog_Es()
 			["DemoniacStone"] = "Figura(s) Demon\195\173aca(s): ",
 			["Soulstone"] = "\nPiedra de Alma: ",
 			["Healthstone"] = "Piedra de Salud: ",
-			["Spellstone"] = "Piedra de Hechizo: ",
-			["Firestone"] = "Piedra de Fuego: ",
 			["CurrentDemon"] = "Demonio: ",
 			["EnslavedDemon"] = "Demonio: Esclavizado ",
 			["NoCurrentDemon"] = "Demonio: Ninguno",
@@ -82,12 +80,6 @@ function Necrosis:Localization_Dialog_Es()
 			Text = {"Click derecho para crear","Click izquierdo para usar"},
 			Text2 = "Click central o Ctrl+Click izquierdo para comerciar",
 			Ritual = "|c00FFFFFFShift+Click para empezar el Ritual de Almas|r"
-		},
-		["Spellstone"] = {
-			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
-		},
-		["Firestone"] = {
-			Text = {"Click derecho para crear","En el inventario\nClick izquierdo para usar","Usada", "Usada\nClick derecho para crear"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDuraci\195\179n de Hechizos|r",
