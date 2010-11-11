@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -265,7 +265,7 @@ end
 
 -- Fonctions du Dropdown des sorts de la sphère
 function Necrosis.Spell_Init()
-	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 53}
 	local element = {}
 	for i in ipairs(spell) do
 		element.text = Necrosis.Spell[spell[i]].Name
@@ -277,7 +277,7 @@ end
 
 function Necrosis.Spell_Click(self)
 	local ID = self:GetID()
-	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 53}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, ID)
 	NecrosisConfig.MainSpell = spell[ID]
 	Necrosis.MainButtonAttribute()
