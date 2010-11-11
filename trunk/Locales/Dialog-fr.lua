@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -45,7 +45,7 @@ function Necrosis:Localization_Dialog_Fr()
 	end
 
 	self.HealthstoneCooldown = "Temps de recharge Pierre de soins"
-	
+
 	self.Localize = {
 		["Utilisation"] = "Utilisation",
 		["Echange"] = "Echange",
@@ -245,8 +245,6 @@ function Necrosis:Localization_Dialog_Fr()
 		["Monture - Clic droit"] = "Clic droit",
 	}
 	self.Config.Buttons.Name = {
-		"Afficher le bouton des Pierres de feu",
-		"Afficher le bouton des Pierres de sort",
 		"Afficher le bouton des Pierres de soin",
 		"Afficher le bouton des Pierres d'\195\162me",
 		"Afficher le bouton des sorts",

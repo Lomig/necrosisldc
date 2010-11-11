@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -45,7 +45,7 @@ function Necrosis:Localization_Dialog_Ru()
 	end
 
 	self.HealthstoneCooldown = "Готовность Камня здоровья"
-	
+
 	self.Localize = {
 		["Utilisation"] = "Use",
 		["Echange"] = "Trade",
@@ -245,8 +245,6 @@ function Necrosis:Localization_Dialog_Ru()
 		["Monture - Clic droit"] = "[Правый Клик]",
 	}
 	self.Config.Buttons.Name = {
-		"Показывать кнопку Камня огня",
-		"Показывать кнопку Камня чар",
 		"Показывать кнопку Камня здоровья",
 		"Показывать кнопку Камня Души",
 		"Показывать кнопку Заклинаний",
