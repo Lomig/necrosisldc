@@ -279,11 +279,8 @@ Local.SpeechManagement = {
 Local.Stone = {
 	Soul = {Mode = 1, Location = {}},
 	Health = {Mode = 1, Location = {}},
-	Spell = {Mode = 1, Location = {}},
 	Hearth = {Location = {}},
-	Fire = {Mode = 1},
 }
-Local.SomethingOnHand = "Truc"
 
 -- Variable de comptage des composants
 Local.Reagent = {Infernal = 0, Demoniac = 0}
@@ -309,10 +306,6 @@ Local.LastSphereSkin = "Aucune"
 
 -- Variables des échanges de pierres de soins
 Local.Trade = {}
-
--- Variables utilisées pour la gestion des fragments d'âme
-Local.Soulshard = {Count = 0, Move = 0}
-Local.BagIsSoulPouch = {}
 
 -- Variables utilisées pour les avertissements
 -- Antifear et Cible démoniaque ou élémentaire
@@ -463,9 +456,6 @@ function Necrosis:OnEvent(frame, event, ...)
 	-- Si le contenu des sacs a changé, on vérifie que les Fragments d'âme sont toujours dans le bon sac
 	if (event == "BAG_UPDATE") then
 		self:BagExplore(arg1)
-		if (NecrosisConfig.SoulshardSort) then
-			self:SoulshardSwitch("CHECK")
-		end
 	-- Si le joueur gagne ou perd de la mana
 	elseif (event == "UNIT_MANA") and arg1 == "player" then
 		self:UpdateMana()
@@ -579,6 +569,7 @@ function Necrosis:OnEvent(frame, event, ...)
 		for index in ipairs(self.Spell) do
 			self.Spell[index].Name = nil
 		end
+		self.Spell[11].Name = GetSpellInfo(self.Spell[11].Id)
 		self:SpellSetup()
 		self:CreateMenu()
 		self:ButtonSetup()
@@ -699,27 +690,18 @@ end
 -- Permet de gérer les effets apparaissants et disparaissants sur le démoniste
 -- Basé sur le CombatLog
 function Necrosis:SelfEffect(action, nom)
-	if NecrosisConfig.LeftMount then
-		local NomCheval1 = GetSpellInfo(NecrosisConfig.LeftMount)
-	else
-		local NomCheval1 = self.Spell[2].Name
-	end
-	if NecrosisConfig.RightMount then
-		local NomCheval2 = GetSpellInfo(NecrosisConfig.RightMount)
-	else
-		local NomCheval2 = self.Spell[1].Name
-	end
 
 	if action == "BUFF" then
 		-- Changement du bouton de monture quand le Démoniste est démonté
-		if nom == self.Spell[1].Name or  nom == self.Spell[2].Name or nom == "NomCheval1" or nom == "NomCheval2" then
+		if not Local.BuffActif.Mount and IsMounted() then
 			Local.BuffActif.Mount = true
 			if _G["NecrosisMountButton"] then
 				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-02")
 				NecrosisMountButton:GetNormalTexture():SetDesaturated(nil)
 			end
+		end
 		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
-		elseif  nom == self.Spell[15].Name then
+		if  nom == self.Spell[15].Name then
 			Local.BuffActif.Domination = true
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02")
@@ -747,13 +729,14 @@ function Necrosis:SelfEffect(action, nom)
 		end
 	else
 		-- Changement du bouton de monture quand le Démoniste est démonté
-		if nom == self.Spell[1].Name or  nom == self.Spell[2].Name or nom == "NomCheval1" or nom == "NomCheval2" then
+		if Local.BuffActif.Mount and not IsMounted() then
 			Local.BuffActif.Mount = false
 			if _G["NecrosisMountButton"] then
 				NecrosisMountButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\MountButton-01")
 			end
+		end
 		-- Changement du bouton de Domination quand le Démoniste n'est plus sous son emprise
-		elseif  nom == self.Spell[15].Name then
+		if  nom == self.Spell[15].Name then
 			Local.BuffActif.Domination = false
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01")
@@ -1002,8 +985,6 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 	-- ..... pour le bouton principal
 	if (Type == "Main") then
 		GameTooltip:AddLine(self.TooltipData.Main.Soulshard..Local.Soulshard.Count)
-		GameTooltip:AddLine(self.TooltipData.Main.InfernalStone..Local.Reagent.Infernal)
-		GameTooltip:AddLine(self.TooltipData.Main.DemoniacStone..Local.Reagent.Demoniac)
 		local SoulOnHand = false
 		local HealthOnHand = false
 		if Local.Stone.Soul.OnHand then SoulOnHand = true end
@@ -1443,19 +1424,6 @@ function Necrosis:UpdateMana(Metamorphose)
 		end
 	end
 
-	-- Coloration du bouton en grisé si pas de pierre pour l'invocation
-	if Local.Soulshard.Count == 0 then
-		for i = 2, 5, 1 do
-			ManaPet[i] = false
-		end
-	end
-	if Local.Reagent.Infernal == 0 then
-		ManaPet[6] = false
-	end
-	if Local.Reagent.Demoniac == 0 then
-		ManaPet[7] = false
-	end
-
 	-- Texturage des boutons de pet
 	local PetNameHere = new("array",
 		"Imp-0", "Voidwalker-0", "Succubus-0", "Felhunter-0", "Felguard-0", "Infernal-0", "Doomguard-0"
@@ -1597,14 +1565,14 @@ function Necrosis:UpdateMana(Metamorphose)
 
 	if mana then
 		local SpellMana = new("array",
-													 23, -- curse of weakness
-													 22, -- curse of agony
-													 25, -- curse of tongues
-													 40, -- curse of exhaustion
-													 26, -- curse of the elements
-													 16, -- curse of doom
-													 14  -- corruption
-													)
+			23, -- curse of weakness
+			22, -- curse of agony
+			25, -- curse of tongues
+			40, -- curse of exhaustion
+			26, -- curse of the elements
+			16, -- curse of doom
+			14  -- corruption
+		)
 
 		-- Coloration du bouton en grisé si pas assez de mana
 		for i = 1, #SpellMana, 1 do
@@ -1652,8 +1620,6 @@ end
 
 -- Explore bags for stones & shards || Fonction qui fait l'inventaire des éléments utilisés en démonologie : Pierres, Fragments, Composants d'invocation
 function Necrosis:BagExplore(arg)
-
-	local AncienCompte = Local.Soulshard.Count
 
 	if not arg then
 		Local.Stone.Soul.OnHand = nil
@@ -1727,152 +1693,10 @@ function Necrosis:BagExplore(arg)
 		end
 	end
 
-	-- update stone / reagent counters
-	Local.Soulshard.Count = GetItemCount(6265)
-	Local.Reagent.Infernal = GetItemCount(5565)
-	Local.Reagent.Demoniac = GetItemCount(16583)
-
-	-- Destroy extra shards (if enabled) || Si il y a un nombre maximum de fragments à conserver, on enlève les supplémentaires
-	if NecrosisConfig.DestroyShard
-		and NecrosisConfig.DestroyCount
-		and NecrosisConfig.DestroyCount > 0
-		then
-			for container = 0, 4, 1 do
-				for slot=1, GetContainerNumSlots(container), 1 do
-					local itemLink = GetContainerItemLink(container, slot)
-					if (itemLink) then
-						local _, itemID = strsplit(":", itemLink)
-						itemID = tonumber(itemID)
-						if (itemID == 6265) then
-							if (NecrosisConfig.DestroyCount < Local.Soulshard.Count) then
-								PickupContainerItem(container, slot)
-								if (CursorHasItem()) then
-									DeleteCursorItem()
-									Local.Soulshard.Count = GetItemCount(6265)
-								end
-							end
-							break
-						end
-					end
-				end
-				if NecrosisConfig.DestroyCount >= Local.Soulshard.Count then break end
-			end
-	end
-
-	-- updtae the main (sphere) button display || Affichage du bouton principal de Necrosis
-	if NecrosisConfig.Circle == 1 then
-		if (Local.Soulshard.Count <= 32) then
-			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..Local.Soulshard.Count) then
-				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..Local.Soulshard.Count
-				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
-			end
-		elseif not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard32") then
-			Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard32"
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
-		end
-	elseif NecrosisConfig.Circle == 2 and (Local.Stone.Soul.Mode == 1 or Local.Stone.Soul.Mode == 2) then
-
-		if (Local.Soulshard.Count <= 32) then
-			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor:gsub("Turquoise", "Bleu"):gsub("Rose", "Bleu"):gsub("Orange", "Bleu").."\\Shard"..Local.Soulshard.Count) then
-				Local.LastSphereSkin = NecrosisConfig.NecrosisColor:gsub("Turquoise", "Bleu"):gsub("Rose", "Bleu"):gsub("Orange", "Bleu").."\\Shard"..Local.Soulshard.Count
-				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
-			end
-		elseif not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor:gsub("Turquoise", "Bleu"):gsub("Rose", "Bleu"):gsub("Orange", "Bleu").."\\Shard32") then
-			Local.LastSphereSkin = NecrosisConfig.NecrosisColor:gsub("Turquoise", "Bleu"):gsub("Rose", "Bleu"):gsub("Orange", "Bleu").."\\Shard32"
-			NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
-		end
-	end
-	if NecrosisConfig.ShowCount then
-		if NecrosisConfig.CountType == 2 then
-			NecrosisShardCount:SetText(Local.Reagent.Infernal.." / "..Local.Reagent.Demoniac)
-		elseif NecrosisConfig.CountType == 1 then
-			if Local.Soulshard.Count < 10 then
-				NecrosisShardCount:SetText("0"..Local.Soulshard.Count)
-			else
-				NecrosisShardCount:SetText(Local.Soulshard.Count)
-			end
-		end
-	else
-		NecrosisShardCount:SetText("")
-	end
 	-- update icons and we're done || Et on met le tout à jour !
 	self:UpdateIcons()
-
-	-- if bags are full (or if we have reached the limit) then display a notification message || S'il y a plus de fragment que d'emplacements dans le sac défini, on affiche un message d'avertissement
-	if NecrosisConfig.SoulshardSort then
-		local CompteMax = GetContainerNumSlots(NecrosisConfig.SoulshardContainer)
-		for i = 1, 5, 1 do
-			if Local.BagIsSoulPouch[i] and (not NecrosisConfig.SoulshardContainer == i - 1) then
-				CompteMax = CompteMax + GetContainerNumSlots(i-1)
-			end
-		end
-		if Local.Soulshard.Count > AncienCompte and Local.Soulshard.Count == CompteMax then
-			if (NecrosisConfig.SoulshardDestroy) then
-				self:Msg(self.ChatMessage.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..self.ChatMessage.Bag.FullDestroySuffix)
-			else
-				self:Msg(self.ChatMessage.Bag.FullPrefix..GetBagName(NecrosisConfig.SoulshardContainer)..self.ChatMessage.Bag.FullSuffix)
-			end
-		end
-	end
 end
 
--- allows you to find / arrange shards in bags || Fonction qui permet de trouver / ranger les fragments dans les sacs
-function Necrosis:SoulshardSwitch(Type)
-	if (Type == "CHECK") then Local.Soulshard.Move = 0 end
-	for container = 0, 4, 1 do
-		if Local.BagIsSoulPouch[container+1] then break end
-		if not (container == NecrosisConfig.SoulshardContainer) then
-			for slot = 1, GetContainerNumSlots(container), 1 do
-				local itemLink = GetContainerItemLink(container, slot)
-				if (itemLink) then
-					local _, itemID = strsplit(":", itemLink)
-					itemID = tonumber(itemID)
-					if (itemID == 6265) then
-						if (Type == "CHECK") then
-							Local.Soulshard.Move = Local.Soulshard.Move + 1
-						elseif (Type == "MOVE") then
-							self:FindSlot(container, slot)
-							Local.Soulshard.Move = Local.Soulshard.Move - 1
-						end
-					end
-				end
-			end
-		end
-	end
-end
-
--- finds a new bag / slot when moving shards || Pendant le déplacement des fragments, il faut trouver un nouvel emplacement aux objets déplacés :)
-function Necrosis:FindSlot(shardIndex, shardSlot)
-	local full = true
-	for slot=1, GetContainerNumSlots(NecrosisConfig.SoulshardContainer), 1 do
-		self:MoneyToggle()
- 		NecrosisTooltip:SetBagItem(NecrosisConfig.SoulshardContainer, slot)
- 		local itemInfo = tostring(NecrosisTooltipTextLeft1:GetText())
-		if not itemInfo:find(self.Translation.Item.Soulshard) then
-			PickupContainerItem(shardIndex, shardSlot)
-			PickupContainerItem(NecrosisConfig.SoulshardContainer, slot)
-			if (CursorHasItem()) then
-				if shardIndex == 0 then
-					PutItemInBackpack()
-				else
-					PutItemInBag(19 + shardIndex)
-				end
-			end
-			full = false
-			break
-		end
-	end
-	-- destory extra shards if the option is enabled || Destruction des fragments en sur-nombre si l'option est activée
-	if (full and NecrosisConfig.SoulshardDestroy) then
-		if (NecrosisConfig.DestroyCount < Local.Soulshard.Count) then
-			PickupContainerItem(shardIndex, shardSlot)
-			if (CursorHasItem()) then
-				DeleteCursorItem()
-				Local.Soulshard.Count = GetItemCount(6265)
-			end
-		end
-	end
-end
 
 ------------------------------------------------------------------------------------------------------
 -- VARIOUS FUNCTIONS || FONCTIONS DES SORTS
@@ -2398,14 +2222,14 @@ function Necrosis:CreateMenu()
 		-- setup the buttons to be displayed on the curse menu || On ordonne et on affiche les boutons dans le menu des malédictions
 		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 		local MenuID = new("array",
-												23, -- curse of weakness
-												22, -- curse of agony
-												25, -- curse of tongues
-												40, -- curse of exhaustion
-												26, -- curse of the elements
-												16, -- curse of doom
-												14 -- corruption
-											 )
+			23, -- curse of weakness
+			22, -- curse of agony
+			25, -- curse of tongues
+			40, -- curse of exhaustion
+			26, -- curse of the elements
+			16, -- curse of doom
+			14 -- corruption
+		)
 		for index = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 			for sort = 1, #NecrosisConfig.CurseSpellPosition, 1 do
 				-- Si la Malédiction existe, on affiche le bouton dans le menu des curses

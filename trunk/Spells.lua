@@ -147,9 +147,7 @@ function Necrosis:SpellLocalize(tooltip)
 		-- Type 5 = Timer de corruption || corruption timer
 		-- Type 6 = Timer de combat || combat timer
 
-		for i in ipairs(self.Spell) do
-			self.Spell[i].Rank = " "
-		end
+		self.Spell[11].Name = GetSpellInfo(self.Spell[11].Id)
 	end
 
 	------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
