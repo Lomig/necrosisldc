@@ -99,15 +99,15 @@ function Necrosis:CreateWarlockUI()
 	self:CreateTimerAnchor()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnLoad", function()
-		frame:RegisterForDrag("LeftButton")
-		frame:RegisterForClicks("RightButtonUp")
+	frame:SetScript("OnLoad", function(self)
+		self:RegisterForDrag("LeftButton")
+		self:RegisterForClicks("RightButtonUp")
 	end)
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, "SpellTimer", "ANCHOR_RIGHT", "Timer") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, "SpellTimer", "ANCHOR_RIGHT", "Timer") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -145,11 +145,11 @@ function Necrosis:CreateWarlockUI()
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
 	frame:SetScript("OnEvent", function(self, event, ...) Necrosis:OnEvent(self, event, ...) end)
 	frame:SetScript("OnUpdate", function(self, arg1) Necrosis:OnUpdate(self, arg1) end)
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, "Main", "ANCHOR_LEFT") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, "Main", "ANCHOR_LEFT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -201,7 +201,7 @@ local function CreateMetamorphosisSpell()
 		frame:Show()
 
 		-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-		frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, DemonicSpell[i], "ANCHOR_RIGHT", "Curse") end)
+		frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, DemonicSpell[i], "ANCHOR_RIGHT", "Curse") end)
 		frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 		frame:SetParent(NecrosisMetamorphosisButton)
 		
@@ -262,27 +262,27 @@ local function CreateStoneButton(stone)
 	frame:Show()
 
 	-- Edit the scripts associated with the buttons || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, stone, "ANCHOR_LEFT") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, stone, "ANCHOR_LEFT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function()
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self)
 		if not NecrosisConfig.NecrosisLockServ then
-			Necrosis:OnDragStart(frame)
+			Necrosis:OnDragStart(self)
 		end
 	end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Attributes specific to the soulstone button || Attributs spécifiques à la pierre d'âme
 	-- if there are no restrictions while in combat, then allow the stone to be cast || Ils permettent de caster la pierre sur soi si pas de cible et hors combat
 	if stone == "Soulstone" then
-		frame:SetScript("PreClick", function()
+		frame:SetScript("PreClick", function(self)
 			if not (InCombatLockdown() or UnitIsFriend("player","target")) then
-				frame:SetAttribute("unit", "player")
+				self:SetAttribute("unit", "player")
 			end
 		end)
-		frame:SetScript("PostClick", function()
+		frame:SetScript("PostClick", function(self)
 			if not InCombatLockdown() then
-				frame:SetAttribute("unit", "target")
+				self:SetAttribute("unit", "target")
 			end
 		end)
 	end
@@ -328,15 +328,15 @@ local function CreateMenuButton(button)
 	frame:Show()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, button, "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, button, "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function()
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self)
 		--if not NecrosisConfig.NecrosisLockServ then
-	Necrosis:OnDragStart(frame)
+	Necrosis:OnDragStart(self)
 		--end
 	end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if not NecrosisConfig.NecrosisLockServ then
@@ -360,7 +360,7 @@ end
 
 -- Buttons for the Buffs menu || Boutons du menu des buffs
 function Necrosis:CreateMenuBuff(i)
-	local BuffName = {"Armor", "FelArmor", "Aqua", "Invisible", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Renforcement", "Banish"}
+	local BuffName = {"Armor", "FelArmor", "Aqua", "Kilrogg", "TP", "SoulLink", "ShadowProtection", "Renforcement", "Banish"}
 
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
@@ -380,25 +380,25 @@ function Necrosis:CreateMenuBuff(i)
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 	-- Special attributes for casting certain buffs || Attributs spéciaux pour les buffs castables sur les autres joueurs
-	if i == 3 or i == 4 then
-		frame:SetScript("PreClick", function()
+	if i == 3 then
+		frame:SetScript("PreClick", function(self)
 			if not (InCombatLockdown() or UnitIsFriend("player","target")) then
-				frame:SetAttribute("unit", "player")
+				self:SetAttribute("unit", "player")
 			end
 		end)
-		frame:SetScript("PostClick", function()
+		frame:SetScript("PostClick", function(self)
 			if not InCombatLockdown() then
-				frame:SetAttribute("unit", "target")
+				self:SetAttribute("unit", "target")
 			end
 		end)
 	end
 
 	-- Special attribute for the Banish button || Attributes spéciaux pour notre ami le sort de Bannissement
-	if i == 10 then
+	if i == 9 then
 		frame:SetScale(NecrosisConfig.BanishScale/100)
 	end
 
@@ -432,7 +432,7 @@ function Necrosis:CreateMenuPet(i)
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, PetName[i], "ANCHOR_RIGHT", "Pet") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, PetName[i], "ANCHOR_RIGHT", "Pet") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
@@ -464,7 +464,7 @@ function Necrosis:CreateMenuCurse(i)
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	return frame
 end
@@ -495,11 +495,11 @@ function Necrosis:CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edit scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, "ShadowTrance", "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, "ShadowTrance", "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -528,11 +528,11 @@ function Necrosis:CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnEnter", function() Necrosis:BuildTooltip(frame, "Backlash", "ANCHOR_RIGHT") end)
+	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, "Backlash", "ANCHOR_RIGHT") end)
 	frame:SetScript("OnLeave", function() GameTooltip:Hide() end)
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	frame:ClearAllPoints()
@@ -562,9 +562,9 @@ function Necrosis:CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if NecrosisConfig.FramePosition then
@@ -600,9 +600,9 @@ function Necrosis:CreateWarlockPopup()
 	frame:Hide()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
-	frame:SetScript("OnMouseUp", function() Necrosis:OnDragStop(frame) end)
-	frame:SetScript("OnDragStart", function() Necrosis:OnDragStart(frame) end)
-	frame:SetScript("OnDragStop", function() Necrosis:OnDragStop(frame) end)
+	frame:SetScript("OnMouseUp", function(self) Necrosis:OnDragStop(self) end)
+	frame:SetScript("OnDragStart", function(self) Necrosis:OnDragStart(self) end)
+	frame:SetScript("OnDragStop", function(self) Necrosis:OnDragStop(self) end)
 
 	-- Place the button window at its saved location || Placement de la fenêtre à l'endroit sauvegardé ou à l'emplacement par défaut
 	if NecrosisConfig.FramePosition then
