@@ -64,20 +64,12 @@ function Necrosis:BindName()
 		_G["BINDING_NAME_CLICK NecrosisMountButton:RightButton"] = GetSpellInfo(self.Spell[2].Id)
 	end
 
-	-- La Pierre de feu
-	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:RightButton"] = GetSpellInfo(self.Spell[54].Id)
-	_G["BINDING_NAME_CLICK NecrosisFirestoneButton:LeftButton"] = self.Translation.Item.Firestone
-
-	--La Pierre de sort
-	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:RightButton"] = GetSpellInfo(self.Spell[53].Id)
-	_G["BINDING_NAME_CLICK NecrosisSpellstoneButton:LeftButton"] = self.Translation.Item.Spellstone
-
 	--La Pierre de soin
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:RightButton"] = GetSpellInfo(self.Spell[52].Id)
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:LeftButton"] = self.Translation.Item.Healthstone.." - "..self.Localize["Utilisation"]
 	_G["BINDING_NAME_CLICK NecrosisHealthstoneButton:MiddleButton"] = self.Translation.Item.Healthstone.." - "..self.Localize["Echange"]
 
-	-- La Pierre de sort
+	-- La Pierre d'âme
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:RightButton"] = GetSpellInfo(self.Spell[51].Id)
 	_G["BINDING_NAME_CLICK NecrosisSoulstoneButton:LeftButton"] = self.Translation.Item.Soulstone
 	

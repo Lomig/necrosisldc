@@ -2243,7 +2243,7 @@ function Necrosis:CreateMenu()
 			menuVariable:SetPoint("CENTER", "NecrosisButton", "CENTER", 3000, 3000)
 		end
 	end
-	if NecrosisConfig.StonePosition[7] > 0 then
+	if NecrosisConfig.StonePosition[5] > 0 then
 		local MenuID = new("array",
 			15, 3, 4, 5, 6, 7, 8, 30, 35, 44, 24
 		)
@@ -2309,7 +2309,7 @@ function Necrosis:CreateMenu()
 		end
 	end
 
-	if NecrosisConfig.StonePosition[5] > 0 then
+	if NecrosisConfig.StonePosition[3] > 0 then
 		-- setup the buttons available on the buffs menu || On ordonne et on affiche les boutons dans le menu des buffs
 		local MenuID = new("array",
 			31, 47, 32, 34, 37, 38, 43, 24, 9
@@ -2394,7 +2394,7 @@ function Necrosis:CreateMenu()
 	end
 
 
-	if NecrosisConfig.StonePosition[8] > 0 then
+	if NecrosisConfig.StonePosition[6] > 0 then
 		-- setup the buttons to be displayed on the curse menu || On ordonne et on affiche les boutons dans le menu des malédictions
 		-- MenuID contient l'emplacement des sorts en question dans la table des sorts de Necrosis.
 		local MenuID = new("array",
