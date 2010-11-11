@@ -367,7 +367,7 @@ function Necrosis:OnUpdate(frame, elapsed)
 	if NecrosisConfig.TimerType == 2 then
 		self:TextTimerUpdate(Local.TimerManagement.SpellTimer, Local.TimerManagement.SpellGroup)
 	end
-	
+
 	-- Changement du bouton de monture quand le Démoniste est démonté
 	if Local.BuffActif.MountChange and _G["NecrosisMountButton"] then
 		if not Local.BuffActif.Mount and IsMounted() then
@@ -1280,8 +1280,31 @@ function Necrosis:UpdateHealth()
 end
 
 -- Update des boutons en fonction de la mana
-function Necrosis:UpdateMana(Metamorphose, Type)
+function Necrosis:UpdateMana(Metamorphose, Power)
 	if Local.Dead then return end
+
+	-- Si l'event UNIT_POWER est dû à un changement de fragments d'âmes
+	if Power == "SOUL_SHARDS" then
+		local shardCount = UnitPower("player" Power)
+
+		-- On met le compteur numérique à jour s'il affiche les fragments
+		if NecrosisConfig.CountType == 1 then
+			NecrosisShardCount:SetText(shardCount)
+		end
+
+		-- On met la sphere à jour si elle affiche les fragments
+		if NecrosisConfig.Circle == 1 then
+			local ShardThird = new("array",
+				11, 22, 32
+			)
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount]) then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount]
+				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
+			end
+			del(ShardThird)
+		end
+		return
+	end
 
 	local mana = UnitMana("player")
 	local manaMax = UnitManaMax("player")
@@ -1577,7 +1600,6 @@ function Necrosis:UpdateMana(Metamorphose, Type)
 		end
 	end
 end
-
 
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS MANAGING STONES & SHARDS || FONCTIONS DES PIERRES ET DES FRAGMENTS
