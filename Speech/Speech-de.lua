@@ -92,6 +92,7 @@ function Necrosis:Localization_Speech_De()
 			[1] = {
 				"Huuuch, anscheinend brauch ich einen Idioten, der f\195\188r mich die R\195\188be hinh\195\164lt...",
 				"<pet>, hilf mir !",
+				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
 		},
 		-- Sukkubus
@@ -113,7 +114,6 @@ function Necrosis:Localization_Speech_De()
 				"I'll give you a soul if you come to me, Felguard ! Please hear my command !",
 				"<after>Obey now, <pet> !",
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
-				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
 		},
 		-- Sätze für die erste Beschwörung : Wenn Necrosis den Namen Deines Dämons noch nicht kennt

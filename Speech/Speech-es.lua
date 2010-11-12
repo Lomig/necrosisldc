@@ -91,6 +91,7 @@ function Necrosis:Localization_Speech_Es()
 			[1] = {
 				"Ups, Probablemente necesitar\195\169 a un idiota para que le zurren en mi lugar...",
 				"\194\161 <pet>, por favor ayuda !",
+				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
 		},
 		-- Succubus
@@ -112,7 +113,6 @@ function Necrosis:Localization_Speech_Es()
 				"I'll give you a soul if you come to me, Felguard ! Please hear my command !",
 				"<after>Obey now, <pet> !",
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
-				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange !"
 			},
 		},
 		-- Sentences for the first summon : When Necrosis do not know the name of your demons yet

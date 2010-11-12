@@ -199,7 +199,7 @@ function Necrosis:Localization_Dialog_Fr()
 		["Activer egalement les messages pour le Rituel des ames"] = "Activer \195\169galement les messages pour le Rituel des \195\162mes",
 		["Activer les sons"] = "Activer les sons",
 		["Alerter quand la cible est insensible a la peur"] = "Alerter quand la cible est insensible \195\160 la peur",
-		["Alerter quand la cible peut etre banie ou asservie"] = "Alerter quand la cible peut \195\170tre banie ou asservie",
+		["Alerter quand la cible peut etre banie ou asservie"] = "Alerter quand la cible peut \195\170tre bannie ou asservie",
 		["M'alerter quand j'entre en Transe"] = "M'alerter quand j'entre en Transe"
 	}
 
@@ -223,7 +223,7 @@ function Necrosis:Localization_Dialog_Fr()
 	self.Config.Sphere.Count = {
 		"Fragments d'\195\162me",
 		"Pierres d'invocations",
-		"Timer de Rez",
+		"Timer de Pierre d'\195\162me",
 		"Mana",
 		"Sant\195\169"
 	}
@@ -243,7 +243,7 @@ function Necrosis:Localization_Dialog_Fr()
 		"Afficher le bouton de la Monture",
 		"Afficher le bouton d'invocation des D\195\169mons",
 		"Afficher le bouton des Mal\195\169dictions",
-		"Afficher le bouton de M\195\169tamorphe",
+		"Afficher le bouton de M\195\169tamorphose",
 	}
 
 	self.Config.Menus = {

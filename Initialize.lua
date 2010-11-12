@@ -158,12 +158,7 @@ function Necrosis:Initialize(Config)
 
 	-- Si la sphere doit indiquer la vie ou la mana, on y va
 	Necrosis:UpdateHealth()
-	Necrosis:UpdateMana()
-
-	-- On vérifie que les fragments sont dans le sac défini par le Démoniste
-	if NecrosisConfig.SoulshardSort then
-		self:SoulshardSwitch("CHECK")
-	end
+	Necrosis:UpdateMana(nil, "SOUL_SHARDS")
 
 	-- Initialisation des fichiers de langues -- Mise en place ponctuelle du SMS
 	self:Localization()

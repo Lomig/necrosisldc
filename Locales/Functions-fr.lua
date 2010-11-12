@@ -66,15 +66,9 @@ Necrosis.Translation.DemonName = {
 
 -- Traduction du nom des objets utilisés par Necrosis
 Necrosis.Translation.Item = {
-	["Soulshard"] = "Fragment d'\195\162me",
 	["Soulstone"] = "Pierre d'\195\162me",
 	["Healthstone"] = "Pierre de soins",
-	["Spellstone"] = "Pierre de sort",
-	["Firestone"] = "Pierre de feu",
-	["InfernalStone"] = "Pierre infernale",
-	["DemoniacStone"] = "Figurine d\195\169moniaque",
 	["Hearthstone"] = "Pierre de foyer",
-	["SoulPouch"] = {"Bourse d'\195\162me", "Bourse d'\195\162me", "Bo\195\174te d'\192\162mes", "Sac en gangr\195\169toffe", "Sac en gangr\195\169toffe du Magma", "Sac abyssal", "Ombresac d'\195\169b\195\168ne"}
 }
 
 -- Traductions diverses
