@@ -186,7 +186,7 @@ Local.DefaultConfig = {
 		-- 9 = Banish || Bannir
 	NecrosisToolTip = true,
 
-	MainSpell = 41,
+	MainSpell = 53,
 
 	PetMenuPos = {x=1, y=0, direction=1},
 	PetMenuDecalage = {x=1, y=0},
@@ -1284,8 +1284,8 @@ function Necrosis:UpdateMana(Metamorphose, Power)
 	if Local.Dead then return end
 
 	-- Si l'event UNIT_POWER est dû à un changement de fragments d'âmes
-	if Power == "SOUL_SHARDS" then
-		local shardCount = UnitPower("player" Power)
+	if Power == "SOUL_SHARDS" or Local.LastSphereSkin == "Aucune" or NecrosisShardCount:GetText() == "00" then
+		local shardCount = UnitPower("player", 7)
 
 		-- On met le compteur numérique à jour s'il affiche les fragments
 		if NecrosisConfig.CountType == 1 then
@@ -1295,15 +1295,14 @@ function Necrosis:UpdateMana(Metamorphose, Power)
 		-- On met la sphere à jour si elle affiche les fragments
 		if NecrosisConfig.Circle == 1 then
 			local ShardThird = new("array",
-				11, 22, 32
+				0, 5, 10, 16
 			)
-			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount]) then
-				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount]
+			if not (Local.LastSphereSkin == NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount+1]) then
+				Local.LastSphereSkin = NecrosisConfig.NecrosisColor.."\\Shard"..ShardThird[shardCount+1]
 				NecrosisButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..Local.LastSphereSkin)
 			end
 			del(ShardThird)
 		end
-		return
 	end
 
 	local mana = UnitMana("player")
