@@ -144,6 +144,7 @@ function Necrosis:SetSphereConfig()
 
 		frame:SetScript("OnClick", function(self)
 			NecrosisConfig.ShowCount = self:GetChecked()
+			Necrosis:UpdateMana(nil, "SOUL_SHARDS")
 			Necrosis:BagExplore()
 		end)
 
@@ -201,7 +202,16 @@ function Necrosis:SetSphereConfig()
 		UIDropDownMenu_SetText(NecrosisEventSelection, self.Config.Sphere.Count[NecrosisConfig.Circle + 1])
 	end
 
-	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 55}
+	local spell = {
+		19, -- Voile mortel
+		27, -- Métamorphose
+		31, -- Armure démoniaque
+		37, -- Rituel d'invocation
+		41, -- Connexion
+		43, -- Gardien de l'ombre
+		47, -- Gangrarmure
+		49, -- Brise-Âme
+		53} -- Brûlure d'âme
 	for i in ipairs(spell) do
 		if spell[i] == NecrosisConfig.MainSpell then
 			UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, i)
@@ -259,13 +269,13 @@ function Necrosis.Event_Click(self)
 	UIDropDownMenu_SetSelectedID(NecrosisEventSelection, ID)
 	NecrosisConfig.Circle = ID
 	Necrosis:UpdateHealth()
-	Necrosis:UpdateMana()
+	Necrosis:UpdateMana(nil, "SOUL_SHARDS")
 	Necrosis:BagExplore()
 end
 
 -- Fonctions du Dropdown des sorts de la sphère
 function Necrosis.Spell_Init()
-	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 53}
+	local spell = {19, 27, 31, 37, 41, 43, 47, 49, 53}
 	local element = {}
 	for i in ipairs(spell) do
 		element.text = Necrosis.Spell[spell[i]].Name
@@ -277,7 +287,7 @@ end
 
 function Necrosis.Spell_Click(self)
 	local ID = self:GetID()
-	local spell = {19, 27, 31, 37, 41, 43, 44, 47, 49, 53}
+	local spell = {19, 27, 31, 37, 41, 43, 47, 49, 53}
 	UIDropDownMenu_SetSelectedID(NecrosisSpellSelection, ID)
 	NecrosisConfig.MainSpell = spell[ID]
 	Necrosis.MainButtonAttribute()
@@ -300,6 +310,6 @@ function Necrosis.Count_Click(self)
 	NecrosisConfig.CountType = ID
 	NecrosisShardCount:SetText("")
 	Necrosis:UpdateHealth()
-	Necrosis:UpdateMana()
+	Necrosis:UpdateMana(nil, "SOUL_SHARDS")
 	Necrosis:BagExplore()
 end
