@@ -778,7 +778,7 @@ function Necrosis:SpellManagement()
 			end
 			Local.TimerManagement = self:InsertTimerParTable(11, Local.SpellCasted.TargetName, "", Local.TimerManagement)
 		-- Create a timer if a healthstone was used || Si le sort était une pierre de soin
-		elseif Local.SpellCasted.Name:find(self.Translation.Item.Healthstone) and not Local.SpellCasted.Name:find(self.Translation.Misc.Create) then
+		elseif Local.SpellCasted.Name == self.Translation.Item.Healthstone then
 			Local.TimerManagement = self:InsertTimerStone("Healthstone", nil, nil, Local.TimerManagement)
 		-- Create a timer for any other spell cast (if valid) || Pour les autres sorts castés, tentative de timer si valable
 		else
@@ -1284,7 +1284,7 @@ function Necrosis:UpdateMana(Metamorphose, Power)
 	if Local.Dead then return end
 
 	-- Si l'event UNIT_POWER est dû à un changement de fragments d'âmes
-	if Power == "SOUL_SHARDS" or Local.LastSphereSkin == "Aucune" or NecrosisShardCount:GetText() == "00" then
+	if Power == "SOUL_SHARDS" then
 		local shardCount = UnitPower("player", 7)
 
 		-- On met le compteur numérique à jour s'il affiche les fragments
@@ -1621,7 +1621,7 @@ function Necrosis:BagExplore(arg)
 				-- if there is an item located in that bag slot || Dans le cas d'un emplacement non vide
 				if itemName then
 					-- check if its a soulstone || Si c'est une pierre d'âme, on note son existence et son emplacement
-					if itemName:find(self.Translation.Item.Soulstone) then
+					if itemName == self.Translation.Item.Soulstone then
 						Local.Stone.Soul.OnHand = container
 						Local.Stone.Soul.Location = {container,slot}
 						NecrosisConfig.ItemSwitchCombat[2] = itemName
@@ -1629,7 +1629,7 @@ function Necrosis:BagExplore(arg)
 						-- update its button attributes on the sphere || On attache des actions au bouton de la pierre
 						self:SoulstoneUpdateAttribute()
 					-- check if its a healthstone || Même chose pour une pierre de soin
-					elseif itemName:find(self.Translation.Item.Healthstone) then
+					elseif itemName == self.Translation.Item.Healthstone then
 						Local.Stone.Health.OnHand = container
 						Local.Stone.Health.Location = {container,slot}
 						NecrosisConfig.ItemSwitchCombat[1] = itemName
@@ -1655,7 +1655,7 @@ function Necrosis:BagExplore(arg)
 			-- if there is an item located in that bag slot || Dans le cas d'un emplacement non vide
 			if itemName then
 				-- check if its a soulstone || Si c'est une pierre d'âme, on note son existence et son emplacement
-				if itemName:find(self.Translation.Item.Soulstone) then
+				if itemName == self.Translation.Item.Soulstone then
 					Local.Stone.Soul.OnHand = arg
 					Local.Stone.Soul.Location = {arg,slot}
 					NecrosisConfig.ItemSwitchCombat[2] = itemName
@@ -1663,7 +1663,7 @@ function Necrosis:BagExplore(arg)
 					-- update its button attributes on the sphere || On attache des actions au bouton de la pierre
 					self:SoulstoneUpdateAttribute()
 				-- check if its a healthstone || Même chose pour une pierre de soin
-				elseif itemName:find(self.Translation.Item.Healthstone) then
+				elseif itemName == self.Translation.Item.Healthstone then
 					Local.Stone.Health.OnHand = arg
 					Local.Stone.Health.Location = {arg,slot}
 					NecrosisConfig.ItemSwitchCombat[1] = itemName

@@ -116,6 +116,7 @@ function Necrosis:Localization_Speech_Ru()
 			[1] = {
 				"Упс... Похоже, мне нужне идиот, который бы прислуживал мне...",
 				"<pet>, мне нужна твоя помощь!",
+				"<sacrifice>Я возвращаю тебя туда, откуда ты пришел, демон... но в замен ты одашь мне свою силу!"
 			},
 		},
 		-- Succubus
@@ -137,7 +138,6 @@ function Necrosis:Localization_Speech_Ru()
 				"Я отдам тебе душу, если ты явишься! Слушай мою команду!",
 				"<after>Воскресни вновь, <pet>!",
 				"<after><emote>смотрит в сумку, затем кидает мистический осколок в <pet>",
-				"<sacrifice>Я возвращаю тебя туда, откуда ты пришел, демон... но в замен ты одашь мне свою силу!"
 			},
 		},
 		-- Sentences for the first summon : When Necrosis do not know the name of your demons yet

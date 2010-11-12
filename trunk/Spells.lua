@@ -107,7 +107,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[20] = {Id = 47827,	Length = 15,	Type = 3}, -- Shadowburn || Brûlure de l'ombre
 			[21] = {Id = 17962,	Length = 10,	Type = 3}, -- Conflagration
 			[22] = {Id = 980,	Length = 24,	Type = 4}, -- Bane of Agony || Plaie Agonie
-			[23] = {Id = 702,	Length = 120,	Type = 4}, -- Curse of Weakness || Malédiction Faiblesse
+			[23] = {Id = 702,	Length = 120,	Type = 4}, -- Curse of Weakness || Malédiction de Faiblesse
 			[24] = {Id = 47193,	Length = 60,	Type = 3}, -- Demonic Empowerment || Renforcement démoniaque
 			[25] = {Id = 1714,	Length = 30,	Type = 4}, -- Curse of Tongues || Malédiction Langage
 			[26] = {Id = 1490,	Length = 300,	Type = 4}, -- Curse of the Elements || Malédiction Eléments
@@ -124,7 +124,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[37] = {Id = 698,	Length = 120,	Type = 3}, -- Ritual of Summoning || Rituel d'invocation
 			[38] = {Id = 19028,	Length = 0,		Type = 0}, -- Soul Link || Lien spirituel
 			[39] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
-			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction de fatigue
+			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction d'épuisement
 			[41] = {Id = 1454,	Length = 40,	Type = 2}, -- Life Tap || Connexion
 			[42] = {Id = 59164,	Length = 12,	Type = 2}, -- Haunt || Hanter
 			[43] = {Id = 6229,	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre

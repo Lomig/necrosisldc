@@ -5,9 +5,9 @@
 ## Notes: Warlock UI & Shard Management
 ## Notes-frFR: Gestion graphique des shards.
 ## Notes-ruRU: Менеджер заклинаний, камней и демонов для чернокнижника.
-## Version: 3.1.20101111.0620
+## Version: 3.1.20101112.0351
 ## Author: Lomig & Arpharazon
-## eMail: arpharazon@godsofchaos.org
+## eMail: dunwael@gmail.com / arpharazon@godsofchaos.org
 ## Website: http://wow.curse.com/downloads/wow-addons/details/necrosis-ld-c.aspx
 ## DefaultState: Enabled
 ## X-Original-Author: Lomig

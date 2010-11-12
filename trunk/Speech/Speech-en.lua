@@ -115,6 +115,7 @@ function Necrosis:Localization_Speech_En()
 			[1] = {
 				"Oops, I'll probably need an idiot to be knocked for me...",
 				"<pet>, please help!",
+				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange!"
 			},
 		},
 		-- Succubus
@@ -132,11 +133,10 @@ function Necrosis:Localization_Speech_En()
 		-- Felguard
 		[5] = {
 			[1] = {
-				"<emote> is concentrating hard on Demoniac knowledge...",
+				"<emote> is concentrating hard on Demonic knowledge...",
 				"I'll give you a soul if you come to me, Felguard! Please hear my command!",
 				"<after>Obey now, <pet>!",
 				"<after><emote>looks in a bag, then throws a mysterious shard at <pet>",
-				"<sacrifice>Please return in the Limbs you are from, Demon, and give me your power in exchange!"
 			},
 		},
 		-- Sentences for the first summon : When Necrosis do not know the name of your demons yet

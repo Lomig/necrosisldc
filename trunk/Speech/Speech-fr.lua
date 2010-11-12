@@ -128,6 +128,7 @@ function Necrosis:Localization_Speech_Fr()
 			[1] = {
 				"Oups, je vais sans doute avoir besoin d'un idiot pour prendre les coups \195\160 ma place...",
 				"<pet>, viens m'aider !",
+				"<sacrifice>Retourne dans les limbes et donne moi de ta puissance, D\195\169mon !"
 			},
 			[2] = {
 				"GRAOUbouhhhhh GROUAHOUhououhhaahpfffROUAH !",
@@ -167,7 +168,6 @@ function Necrosis:Localization_Speech_Fr()
 				"En \195\169change de cette \195\162me, viens \195\160 moi, Gangregarde !",
 				"<after>Ob\195\169is moi maintenant, <pet> !",
 				"<after><emote>fouille dans son sac, puis lance un cristal \195\160 <pet>",
-				"<sacrifice>Retourne dans les limbes et donne moi de ta puissance, D\195\169mon !"
 			},
 		},
 		-- Phrase pour la première invocation de pet (quand Necrosis ne connait pas encore leur nom)

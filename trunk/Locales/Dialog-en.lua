@@ -171,7 +171,7 @@ function Necrosis:Localization_Dialog_En()
 			"/necrosis <lightOrange>reset<white> -- <lightBlue>Reset Necrosis entirely",
 		},
 		["Information"] = {
-			["FearProtect"] = "Your target has got fear protection!",
+			["FearProtect"] = "Your target has fear protection!",
 			["EnslaveBreak"] = "Your demon broke his chains...",
 			["SoulstoneEnd"] = "<lightYellow>Your Soulstone has faded."
 		}
