@@ -157,11 +157,9 @@ function Necrosis:SpellLocalize(tooltip)
 	local buttonTooltip = new("array",
 		"Soulstone",
 		"Healthstone",
-		"Spellstone",
-		"Firestone"
 	)
 	local colorCode = new("array",
-		"|c00FF99FF", "|c0066FF33", "|c0099CCFF", "|c00FF4444"
+		"|c00FF99FF", "|c0066FF33"
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
