@@ -125,7 +125,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[38] = {Id = 19028,	Length = 0,		Type = 0}, -- Soul Link || Lien spirituel
 			[39] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction d'épuisement
-			[41] = {Id = 1454,	Length = 40,	Type = 2}, -- Life Tap || Connexion
+			[41] = {Id = 1454,	Length = 0,		Type = 0}, -- Life Tap || Connexion
 			[42] = {Id = 48181,	Length = 12,	Type = 6}, -- Haunt || Hanter (dot)
 			[43] = {Id = 6229,	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
 			[44] = {Id = 18788,	Length = 60,	Type = 3}, -- DEPRECATED
@@ -156,7 +156,7 @@ function Necrosis:SpellLocalize(tooltip)
 	-- stones || Pierres
 	local buttonTooltip = new("array",
 		"Soulstone",
-		"Healthstone",
+		"Healthstone"
 	)
 	local colorCode = new("array",
 		"|c00FF99FF", "|c0066FF33"
