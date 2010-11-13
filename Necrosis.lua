@@ -586,7 +586,7 @@ function Necrosis:OnEvent(frame, event, ...)
 		Local.TimerManagement = self:RetraitTimerCombat(Local.TimerManagement)
 
 		-- On redéfinit les attributs des boutons de sorts de manière situationnelle
-		self:NoCombatAttribute(Local.Stone.Soul.Mode, Local.Stone.Fire.Mode, Local.Stone.Spell.Mode, Local.Menu.Pet, Local.Menu.Buff, Local.Menu.Curse)
+		self:NoCombatAttribute(Local.Stone.Soul.Mode, Local.Menu.Pet, Local.Menu.Buff, Local.Menu.Curse)
 		self:UpdateIcons()
 
 	-- Quand le démoniste change de démon
