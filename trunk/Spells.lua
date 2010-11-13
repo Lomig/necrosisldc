@@ -99,7 +99,7 @@ function Necrosis:SpellLocalize(tooltip)
 			[12] = {Id = 47811,	Length = 15,	Type = 6}, -- Immolate
 			[13] = {Id = 6215,	Length = 20,	Type = 6}, -- Fear
 			[14] = {Id = 172,	Length = 18,	Type = 5}, -- Corruption
-			[15] = {Id = 18708,	Length = 180,	Type = 3}, -- DEPRECATED
+			[15] = {Id = 48181,	Length = 8,		Type = 3}, -- Hanter (cooldown)
 			[16] = {Id = 603,	Length = 60,	Type = 3}, -- Bane of Doom || Plaie funeste
 			[17] = {Id = 47847,	Length = 20,	Type = 3}, -- Shadowfury || Furie de l'ombre
 			[18] = {Id = 47825,	Length = 60,	Type = 3}, -- Soul Fire || Feu de l'âme
@@ -126,13 +126,13 @@ function Necrosis:SpellLocalize(tooltip)
 			[39] = {Id = 50589,	Length = 30,	Type = 3}, -- Immolation Aura || Aura d'immolation
 			[40] = {Id = 18223,	Length = 12,	Type = 4}, -- Curse of Exhaustion || Malédiction d'épuisement
 			[41] = {Id = 1454,	Length = 40,	Type = 2}, -- Life Tap || Connexion
-			[42] = {Id = 59164,	Length = 12,	Type = 2}, -- Haunt || Hanter
+			[42] = {Id = 48181,	Length = 12,	Type = 6}, -- Haunt || Hanter (dot)
 			[43] = {Id = 6229,	Length = 30,	Type = 3}, -- Shadow Ward || Gardien de l'ombre
 			[44] = {Id = 18788,	Length = 60,	Type = 3}, -- DEPRECATED
 			[45] = {Id = 47809,	Length = 0,		Type = 0}, -- Shadow Bolt
-			[46] = {Id = 47843,	Length = 18,	Type = 6}, -- Unstable Affliction || Affliction instable
+			[46] = {Id = 30108,	Length = 15,	Type = 6}, -- Unstable Affliction || Affliction instable
 			[47] = {Id = 28176,	Length = 0,		Type = 0}, -- Fel Armor || Gangrarmure
-			[48] = {Id = 47836,	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
+			[48] = {Id = 27243,	Length = 18,	Type = 5}, -- Seed of Corruption || Graine de Corruption
 			[49] = {Id = 29858,	Length = 180,	Type = 3}, -- SoulShatter || Brise âme
 			[50] = {Id = 29893,	Length = 300,	Type = 3}, -- Ritual of Souls || Rituel des âmes
 			[51] = {Id = 693,	Length = 0,		Type = 0}, -- Create Soulstone || Création pierre d'âme
