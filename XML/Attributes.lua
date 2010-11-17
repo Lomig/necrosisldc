@@ -94,9 +94,9 @@ function Necrosis:MenuAttribute(menu)
 		elseif Etat == "Combat" then
 			for i, button in ipairs(ButtonList) do
 				if button:IsShown() then
-					--button:Hide()
+					button:Hide()
 				else
-					--button:Show()
+					button:Show()
 				end
 			end
 		elseif Etat == "ClicDroit" and button == "LeftButton" then
@@ -116,7 +116,7 @@ function Necrosis:MenuAttribute(menu)
 				end
 
 				self:SetAttribute("close", self:GetAttribute("close") + 1)
-				-- control:SetTimer(6, self:GetAttribute("close"))
+				control:SetTimer(6, self:GetAttribute("close"))
 			elseif value == "Combat" or value == "Bloque" then
 				for i, button in ipairs(ButtonList) do
 					button:Show()
@@ -202,19 +202,18 @@ function Necrosis:BuffSpellAttribute()
 
 	-- Cas particulier : Bouton de Banish
 	if _G["NecrosisBuffMenu9"] and self.Spell[9].Name then
-		local SpellName_Rank = self.Spell[9].Name
 
 		NecrosisBuffMenu9:SetAttribute("unit*", "target")				-- associate left & right clicks with target
 		NecrosisBuffMenu9:SetAttribute("ctrl-unit*", "focus") 		-- associate CTRL+left or right clicks with focus
 
 		-- left & right click will perform the same macro
 		NecrosisBuffMenu9:SetAttribute("type*", "macro")
-		NecrosisBuffMenu9:SetAttribute("macrotext*", "/focus\n/cast "..SpellName_Rank)
+		NecrosisBuffMenu9:SetAttribute("macrotext*", "/focus\n/cast "..self.Spell[9].Name)
 
 		-- Si le démoniste control + click le bouton de banish || if the warlock uses ctrl-click then
 		-- On rebanish la dernière cible bannie || rebanish the previously banished target
 		NecrosisBuffMenu9:SetAttribute("ctrl-type*", "spell")
-		NecrosisBuffMenu9:SetAttribute("ctrl-spell*", SpellName_Rank)
+		NecrosisBuffMenu9:SetAttribute("ctrl-spell*", self.Spell[9].Name)
 	end
 end
 
@@ -228,12 +227,11 @@ function Necrosis:PetSpellAttribute()
 	for i = 2, 6, 1 do
 		local f = _G["NecrosisPetMenu"..i]
 		if f and self.Spell[i+1].Name then
-			local SpellName_Rank = self.Spell[i+1].Name
 			f:SetAttribute("type1", "spell")
 			f:SetAttribute("type2", "macro")
-			f:SetAttribute("spell", SpellName_Rank)
+			f:SetAttribute("spell", self.Spell[i+1].Name)
 			f:SetAttribute("macrotext",
-				"/cast "..GetSpellInfo(18708).."\n/stopcasting\n/cast "..SpellName_Rank
+				"/cast "..GetSpellInfo(74434).."\n/stopcasting\n/cast "..self.Spell[i+1].Name
 			)
 		end
 	end
@@ -244,9 +242,8 @@ function Necrosis:PetSpellAttribute()
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f and self.Spell[ BuffID[i] ].Name then
-			local SpellName_Rank = self.Spell[ BuffID[i] ].Name
 			f:SetAttribute("type", "spell")
-			f:SetAttribute("spell", SpellName_Rank)
+			f:SetAttribute("spell", self.Spell[ BuffID[i] ].Name)
 		end
 	end
 end
@@ -261,11 +258,10 @@ function Necrosis:CurseSpellAttribute()
 	for i = 1, #buffID, 1 do
 		local f = _G["NecrosisCurseMenu"..i]
 		if f and self.Spell[ buffID[i] ].Name then
-			local SpellName_Rank = self.Spell[ buffID[i] ].Name
 			f:SetAttribute("harmbutton", "debuff")
 			f:SetAttribute("type-debuff", "spell")
 			f:SetAttribute("unit", "target")
-			f:SetAttribute("spell-debuff", SpellName_Rank)
+			f:SetAttribute("spell-debuff", self.Spell[ buffID[i] ].Name)
 		end
 	end
 end
@@ -449,17 +445,17 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 
 	-- Si on connait le nom de la pierre de soin,
 	-- Alors le clic gauche sur le bouton utilisera la pierre
-	if NecrosisConfig.ItemSwitchCombat[3] and _G["NecrosisHealthstoneButton"] then
+	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisHealthstoneButton"] then
 		NecrosisHealthstoneButton:SetAttribute("type1", "macro")
-		NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[3])
+		NecrosisHealthstoneButton:SetAttribute("macrotext1", "/stopcasting \n/use "..NecrosisConfig.ItemSwitchCombat[1])
 	end
 
 	-- Si on connait le nom de la pierre d'âme,
 	-- Alors le clic gauche sur le bouton utilisera la pierre
-	if NecrosisConfig.ItemSwitchCombat[4] and _G["NecrosisSoulstoneButton"] then
+	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisSoulstoneButton"] then
 		NecrosisSoulstoneButton:SetAttribute("type1", "item")
 		NecrosisSoulstoneButton:SetAttribute("unit", "target")
-		NecrosisSoulstoneButton:SetAttribute("item1", NecrosisConfig.ItemSwitchCombat[4])
+		NecrosisSoulstoneButton:SetAttribute("item1", NecrosisConfig.ItemSwitchCombat[2])
 	end
 end
 
