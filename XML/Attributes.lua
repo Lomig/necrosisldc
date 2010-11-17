@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
--- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic) 
+-- Par Lomig (Kael'Thas EU/FR) & Tarcalion (Nagrand US/Oceanic)
 -- Contributions deLiadora et Nyx (Kael'Thas et Elune EU/FR)
 --
 -- Skins et voix Françaises : Eliah, Ner'zhul
@@ -50,19 +50,19 @@ function Necrosis:MenuAttribute(menu)
 	end
 
 	local menuButton = _G[menu]
-	
-	if not menuButton:GetAttribute("state") then 
+
+	if not menuButton:GetAttribute("state") then
 		menuButton:SetAttribute("state", "Ferme")
 	end
-	
-	if not menuButton:GetAttribute("lastClick") then 
+
+	if not menuButton:GetAttribute("lastClick") then
 		menuButton:SetAttribute("lastClick", "LeftButton")
 	end
-	
-	if not menuButton:GetAttribute("close") then 
+
+	if not menuButton:GetAttribute("close") then
 		menuButton:SetAttribute("close", 0)
 	end
-	
+
 	menuButton:Execute([[
 		ButtonList = table.new(self:GetChildren())
 		if self:GetAttribute("state") == "Bloque" then
@@ -103,7 +103,7 @@ function Necrosis:MenuAttribute(menu)
 			self:SetAttribute("state", "Ferme")
 		end
 	]])
-	
+
 	menuButton:SetAttribute("_onattributechanged", [[
 		if name == "state" then
 			if value == "Ferme" then
@@ -114,7 +114,7 @@ function Necrosis:MenuAttribute(menu)
 				for i, button in ipairs(ButtonList) do
 					button:Show()
 				end
-				
+
 				self:SetAttribute("close", self:GetAttribute("close") + 1)
 				-- control:SetTimer(6, self:GetAttribute("close"))
 			elseif value == "Combat" or value == "Bloque" then
@@ -130,7 +130,7 @@ function Necrosis:MenuAttribute(menu)
 			end
 		end
 	]])
-	
+
 	menuButton:SetAttribute("_ontimer", [[
 		if self:GetAttribute("close") <= message and not self:GetAttribute("mousehere") then
 			self:SetAttribute("state", "Ferme")
@@ -143,7 +143,7 @@ function Necrosis:MetamorphosisAttribute()
 	NecrosisMetamorphosisButton:Execute([[
 		ButtonList = table.new(self:GetChildren())
 	]])
-	
+
 	NecrosisMetamorphosisButton:SetAttribute("_onstate-stance", [[
 		newstate = tonumber(newstate)
 		if newstate == 2 then
@@ -156,7 +156,7 @@ function Necrosis:MetamorphosisAttribute()
 			end
 		end
 	]])
-	
+
 	RegisterStateDriver(NecrosisMetamorphosisButton, "stance", "[stance:2] 2;0")
 end
 
@@ -278,8 +278,8 @@ function Necrosis:StoneAttribute(Steed)
 	end
 
 	-- stones || Pour les pierres
-	local itemName = {"Soulstone", "Healthstone", "Spellstone", "Firestone" }
-	local buffID = {51,52,53,54}
+	local itemName = {"Soulstone", "Healthstone"}
+	local buffID = {51,52}
 	for i = 1, #itemName, 1 do
 		local f = _G["Necrosis"..itemName[i].."Button"]
 		if f and self.Spell[ buffID[i] ].Name then
@@ -292,7 +292,7 @@ function Necrosis:StoneAttribute(Steed)
 	if Steed and  _G["NecrosisMountButton"] then
 		NecrosisMountButton:SetAttribute("type1", "spell")
 		NecrosisMountButton:SetAttribute("type2", "spell")
-		
+
 		if (NecrosisConfig.LeftMount) then
 			local leftMountName = GetSpellInfo(NecrosisConfig.LeftMount)
 			NecrosisMountButton:SetAttribute("spell1", leftMountName)
@@ -302,9 +302,9 @@ function Necrosis:StoneAttribute(Steed)
 				NecrosisMountButton:SetAttribute("spell2", self.Spell[1].Name)
 			else
 				NecrosisMountButton:SetAttribute("spell*", self.Spell[1].Name)
-			end			
+			end
 		end
-		
+
 		if (NecrosisConfig.RightMount) then
 			local rightMountName = GetSpellInfo(NecrosisConfig.RightMount)
 			NecrosisMountButton:SetAttribute("spell2", rightMountName)
@@ -317,7 +317,7 @@ function Necrosis:StoneAttribute(Steed)
 	NecrosisSpellTimerButton:SetAttribute("macrotext", "/focus")
 	NecrosisSpellTimerButton:SetAttribute("type2", "item")
 	NecrosisSpellTimerButton:SetAttribute("item", self.Translation.Item.Hearthstone)
-	
+
 	-- metamorphosis menu || Pour le menu Métamorphose
 	if _G["NecrosisMetamorphosisButton"] then
 		NecrosisMetamorphosisButton:SetAttribute("type", "spell")
@@ -330,14 +330,14 @@ function Necrosis:StoneAttribute(Steed)
 		NecrosisHealthstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisHealthstoneButton:SetAttribute("shift-spell*", self.Spell[50].Name)
 	end
-	
+
 	-- if the 'Ritual of Summoning' spell is known, then associate it to the soulstone shift-click.
 	if _G["NecrosisSoulstoneButton"] and self.Spell[37].Name then
 		NecrosisSoulstoneButton:SetAttribute("shift-type*", "spell")
 		NecrosisSoulstoneButton:SetAttribute("shift-spell*", self.Spell[37].Name)
 	end
-	
-	
+
+
 end
 
 -- Association de la Connexion au bouton central si le sort est disponible
@@ -361,7 +361,7 @@ end
 -- DEFINITION DES ATTRIBUTS DES SORTS EN FONCTION DU COMBAT / REGEN
 ------------------------------------------------------------------------------------------------------
 
-function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode, Pet, Buff, Curse)
+function Necrosis:NoCombatAttribute(SoulstoneMode, Pet, Buff, Curse)
 
 	-- Si on veut que le menu s'engage automatiquement en combat
 	-- Et se désengage à la fin
@@ -415,20 +415,6 @@ function Necrosis:NoCombatAttribute(SoulstoneMode, FirestoneMode, SpellstoneMode
 			end
 		end
 	end
-
-
-	-- Si on connait l'emplacement de la pierre de sort,
-	-- Alors cliquer sur le bouton de pierre de sort l'équipe.
-	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("type1", "macro")
-		NecrosisSpellstoneButton:SetAttribute("macrotext*","/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
-	end
-	-- Si on connait l'emplacement de la pierre de feu,
-	-- Alors cliquer sur le bouton de pierre de feu l'équipe.
-	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
-		NecrosisFirestoneButton:SetAttribute("type1", "macro")
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
-	end
 end
 
 function Necrosis:InCombatAttribute(Pet, Buff, Curse)
@@ -459,20 +445,6 @@ function Necrosis:InCombatAttribute(Pet, Buff, Curse)
 				end
 			end
 		end
-	end
-
-	-- Si on connait le nom de la pierre de sort,
-	-- Alors le clic gauche utiliser la pierre
-	if NecrosisConfig.ItemSwitchCombat[1] and _G["NecrosisSpellstoneButton"] then
-		NecrosisSpellstoneButton:SetAttribute("type1", "macro")
-		NecrosisSpellstoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[1].."\n/use 16")
-	end
-
-	-- Si on connait le nom de la pierre de feu,
-	-- Alors le clic sur le bouton équipera la pierre
-	if NecrosisConfig.ItemSwitchCombat[2] and _G["NecrosisFirestoneButton"] then
-		NecrosisFirestoneButton:SetAttribute("type1", "macro")
-		NecrosisFirestoneButton:SetAttribute("macrotext*", "/cast "..NecrosisConfig.ItemSwitchCombat[2].."\n/use 16")
 	end
 
 	-- Si on connait le nom de la pierre de soin,
