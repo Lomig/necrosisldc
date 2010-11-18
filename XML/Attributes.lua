@@ -222,7 +222,7 @@ function Necrosis:PetSpellAttribute()
 
 	-- Autres sorts démoniaques
 	local buttonID = {1, 7, 8, 9, 10, 11}
-	local BuffID = {15, 8, 30, 35, 44, 24}
+	local BuffID = {53, 8, 30, 35, 44, 24}
 	for i = 1, #buttonID, 1 do
 		local f = _G["NecrosisPetMenu"..buttonID[i]]
 		if f and self.Spell[ BuffID[i] ].Name then

@@ -186,7 +186,7 @@ function Necrosis:SpellLocalize(tooltip)
 		"Renforcement"
 	)
 	local buttonName = new("array",
-		15, 35, 31, 47, 32, 34, 9, 37, 50, 38, 43, 24
+		53, 35, 31, 47, 32, 34, 9, 37, 50, 38, 43, 24
 	)
 	for i, button in ipairs(buttonTooltip) do
 		if not self.TooltipData[button] then
