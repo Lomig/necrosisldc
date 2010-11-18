@@ -224,8 +224,9 @@ function Necrosis:SetButtonsConfig()
 		-- Affiche ou cache les boutons autour de Necrosis
 		local boutons = {"HealthStone", "Soulstone", "BuffMenu", "Mount", "PetMenu", "CurseMenu", "Metamorphosis"}
 		local initY = 380
-		for i in ipairs(boutons) do
-			frame = CreateFrame("CheckButton", "NecrosisShow"..boutons[i], NecrosisButtonsConfig1, "UICheckButtonTemplate")
+		for i in ipairs(NecrosisConfig.StonePosition) do
+			local Absolu = math.abs(NecrosisConfig.StonePosition[i])
+			frame = CreateFrame("CheckButton", "NecrosisShow"..boutons[Absolu], NecrosisButtonsConfig1, "UICheckButtonTemplate")
 			frame:EnableMouse(true)
 			frame:SetWidth(24)
 			frame:SetHeight(24)

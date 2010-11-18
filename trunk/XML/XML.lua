@@ -348,8 +348,20 @@ local function CreateMenuButton(button)
 			NecrosisConfig.FramePosition[frame:GetName()][4],
 			NecrosisConfig.FramePosition[frame:GetName()][5]
 		)
+	
 	end
-
+	
+	local frame0 = CreateFrame("Button", "Necrosis"..button.."0", frame, "SecureHandlerAttributeTemplate SecureHandlerClickTemplate SecureHandlerEnterLeaveTemplate")
+	frame0:SetWidth(34)
+	frame0:SetHeight(34)
+	frame0:ClearAllPoints()
+	frame0:SetPoint("CENTER", "Necrosis"..button.."Button", "CENTER", 0, 0)
+	frame0:SetFrameStrata("BACKGROUND")
+	frame0:Show()
+	frame0:SetScript("OnHide", function(self)
+		self:GetParent():SetAttribute("state", "Ferme")
+	end)
+	
 	return frame
 end
 
@@ -365,7 +377,7 @@ function Necrosis:CreateMenuBuff(i)
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisBuffMenu"..i]
 	if not frame then
-		frame = CreateFrame("Button", "NecrosisBuffMenu"..i, UIParent, "SecureActionButtonTemplate")
+		frame = CreateFrame("Button", "NecrosisBuffMenu"..i, NecrosisBuffMenu0, "SecureActionButtonTemplate")
 
 		-- Définition de ses attributs
 		frame:SetMovable(true)
@@ -377,7 +389,7 @@ function Necrosis:CreateMenuBuff(i)
 	end
 
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..BuffName[i].."-01")
-	frame:Hide()
+	frame:Show()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, BuffName[i], "ANCHOR_RIGHT", "Buff") end)
@@ -417,7 +429,7 @@ function Necrosis:CreateMenuPet(i)
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisPetMenu"..i]
 	if not frame then
-		frame = CreateFrame("Button", "NecrosisPetMenu"..i, UIParent, "SecureActionButtonTemplate")
+		frame = CreateFrame("Button", "NecrosisPetMenu"..i, NecrosisPetMenu0, "SecureActionButtonTemplate")
 
 		-- Définition de ses attributs
 		frame:SetMovable(true)
@@ -429,7 +441,7 @@ function Necrosis:CreateMenuPet(i)
 	end
 
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..PetName[i].."-01")
-	frame:Hide()
+	frame:Show()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, PetName[i], "ANCHOR_RIGHT", "Pet") end)
@@ -449,7 +461,7 @@ function Necrosis:CreateMenuCurse(i)
 	-- Create the button || Creaton du bouton
 	local frame = _G["NecrosisCurseMenu"..i]
 	if not frame then
-		frame = CreateFrame("Button", "NecrosisCurseMenu"..i, UIParent, "SecureActionButtonTemplate")
+		frame = CreateFrame("Button", "NecrosisCurseMenu"..i, NecrosisCurseMenu0, "SecureActionButtonTemplate")
 
 		-- Définition de ses attributs
 		frame:SetMovable(true)
@@ -461,7 +473,7 @@ function Necrosis:CreateMenuCurse(i)
 	end
 
 	frame:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\"..CurseName[i].."-01")
-	frame:Hide()
+	frame:Show()
 
 	-- Edit the scripts associated with the button || Edition des scripts associés au bouton
 	frame:SetScript("OnEnter", function(self) Necrosis:BuildTooltip(self, CurseName[i], "ANCHOR_RIGHT", "Curse") end)
