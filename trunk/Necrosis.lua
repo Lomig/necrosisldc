@@ -700,7 +700,7 @@ function Necrosis:SelfEffect(action, nom)
 
 	if action == "BUFF" then
 		-- Changement du bouton de la domination corrompue si celle-ci est activée + Timer de cooldown
-		if  nom == self.Spell[15].Name then
+		if  nom == self.Spell[53].Name then
 			Local.BuffActif.Domination = true
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-02")
@@ -728,7 +728,7 @@ function Necrosis:SelfEffect(action, nom)
 		end
 	else
 		-- Changement du bouton de Domination quand le Démoniste n'est plus sous son emprise
-		if  nom == self.Spell[15].Name then
+		if  nom == self.Spell[53].Name then
 			Local.BuffActif.Domination = false
 			if _G["NecrosisPetMenu1"] then
 				NecrosisPetMenu1:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\Domination-01")
@@ -944,8 +944,8 @@ function Necrosis:BuildTooltip(button, Type, anchor, sens)
 
 	-- On regarde si la domination corrompue, le gardien de l'ombre ou l'amplification de malédiction sont up (pour tooltips)
 	local start, duration, start2, duration2, start3, duration3, startMetamorphose, durationMetamorphose
-	if self.Spell[15].Name then
-		start, duration = GetSpellCooldown(self.Spell[15].Id)
+	if self.Spell[53].Name then
+		start, duration = GetSpellCooldown(self.Spell[53].Id)
 	else
 		start = 1
 		duration = 1
@@ -1329,9 +1329,9 @@ function Necrosis:UpdateMana(Metamorphose, Power)
 		NecrosisShardCount:SetText(mana)
 	end
 
-	-- Si cooldown de domination corrompue on grise
-	if _G["NecrosisPetMenu1"] and self.Spell[15].Name and not Local.BuffActif.Domination then
-		local start, duration = GetSpellCooldown(self.Spell[15].Id)
+	-- Si cooldown de Brulure d'âme, on grise
+	if _G["NecrosisPetMenu1"] and self.Spell[53].Name and not Local.BuffActif.Domination then
+		local start, duration = GetSpellCooldown(self.Spell[53].Id)
 		if start > 0 and duration > 0 then
 			if not Local.Desatured["Domination"] then
 				NecrosisPetMenu1:GetNormalTexture():SetDesaturated(1)
@@ -2039,7 +2039,7 @@ function Necrosis:CreateMenu()
 	for AfficheStone, ValeurStone in ipairs(NecrosisConfig.StonePosition) do
 		if ValeurStone == 5 then
 			local MenuID = new("array",
-				15, 3, 4, 5, 6, 7, 8, 30, 35, 44, 24
+				53, 3, 4, 5, 6, 7, 8, 30, 35, 44, 24
 			)
 			-- On ordonne et on affiche les boutons dans le menu des démons
 			for index = 1, #NecrosisConfig.DemonSpellPosition, 1 do
